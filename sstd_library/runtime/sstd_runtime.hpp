@@ -21,12 +21,13 @@ public:
     inline _1_sstd_runtime_static_basic()=delete;
     inline _1_sstd_runtime_static_basic&operator=(_1_sstd_runtime_static_basic &&)=delete;
     inline _1_sstd_runtime_static_basic&operator=(const _1_sstd_runtime_static_basic &)=delete;
-    inline _1_sstd_runtime_static_basic(_1_sstd_runtime_static_basic &&)=delete;
-    inline _1_sstd_runtime_static_basic(const _1_sstd_runtime_static_basic &)=delete;
+    inline _1_sstd_runtime_static_basic(_1_sstd_runtime_static_basic &&)=default;
+    inline _1_sstd_runtime_static_basic(const _1_sstd_runtime_static_basic &)=default;
     const bool mmmIsDynamic;
     const std::type_info & mmmTypeInfo;
     const std::type_index mmmTypeIndex;
     const std::size_t mmmHashCode;
+    const _1_sstd_runtime_static_basic *mmmUnique;
 };
 
 template<typename Tt>
@@ -118,6 +119,15 @@ sstd_type_index sstd_type_id(){
     using Ttt = std::remove_cv_t<Tt>;
     const static _2_sstd_runtime_static_basic<Ttt> var;
     return sstd_type_index(&var.mmmData);
+}
+
+template<typename T>
+sstd_type_index sstd_type_id(const T & arg){
+    using Tt = std::remove_reference_t<T>;
+    using Ttt = std::remove_cv_t<Tt>;
+    _1_sstd_runtime_static_basic varAns{ std::is_polymorphic_v<Ttt>,
+                typeid(arg) };
+    return sstd_type_index(varAns.mmmUnique);
 }
 
 template<typename Tt,
@@ -232,6 +242,7 @@ public:
 #ifndef SSTD_END_DEFINE_VIRTUAL_CLASS
 #define SSTD_END_DEFINE_VIRTUAL_CLASS(_SSTD_T_) \
     _1_SSTD_END_DEFINE_CLASS(true,_SSTD_T_) \
+    public : \
     inline bool sstd_is_polymorphic() const noexcept override { \
     return _sstd_this_type_::sstd_is_polymorphic(); \
     }\
@@ -250,6 +261,7 @@ public:
 #ifndef SSTD_DEFINE_STATIC_CLASS
 #define SSTD_DEFINE_STATIC_CLASS(_SSTD_T_) \
     _1_SSTD_END_DEFINE_CLASS(false,_SSTD_T_) \
+    public : \
     inline static bool sstd_is_polymorphic() noexcept { \
     return _sstd_this_type_::sstd_is_polymorphic(); \
     }\
