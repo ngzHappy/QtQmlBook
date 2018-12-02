@@ -56,11 +56,18 @@ namespace {
 _1_sstd_runtime_static_basic::_1_sstd_runtime_static_basic(
         bool isDynamic,
         const std::type_info & typeInfo):
-    mmmIsDynamic(isDynamic),
+    _1_sstd_runtime_static_basic(typeInfo) {
+    this->mmmIsDynamic=isDynamic;
+    this->mmmUnique = getRuntimeStaticBasic().insert(*this);
+}
+
+_1_sstd_runtime_static_basic::_1_sstd_runtime_static_basic(
+        const std::type_info & typeInfo) :
     mmmTypeInfo(typeInfo),
     mmmTypeIndex(typeInfo),
-    mmmHashCode(typeInfo.hash_code()){
-    this->mmmUnique = getRuntimeStaticBasic().insert(*this);
+    mmmHashCode(typeInfo.hash_code()) {
+    this->mmmIsDynamic=2;
+    this->mmmUnique=nullptr;
 }
 
 sstd_virtual_basic::~sstd_virtual_basic(){

@@ -19,16 +19,17 @@ class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic :
         public _1_sstd_memory_static_class_basic {
 public:
     _1_sstd_runtime_static_basic(bool,const std::type_info &);
+    _1_sstd_runtime_static_basic(const std::type_info &);
     inline _1_sstd_runtime_static_basic()=delete;
     inline _1_sstd_runtime_static_basic&operator=(_1_sstd_runtime_static_basic &&)=delete;
     inline _1_sstd_runtime_static_basic&operator=(const _1_sstd_runtime_static_basic &)=delete;
     inline _1_sstd_runtime_static_basic(_1_sstd_runtime_static_basic &&)=delete;
     inline _1_sstd_runtime_static_basic(const _1_sstd_runtime_static_basic &)=default;
-    const bool mmmIsDynamic;
     const std::type_info & mmmTypeInfo;
     const std::type_index mmmTypeIndex;
     const std::size_t mmmHashCode;
     const _1_sstd_runtime_static_basic *mmmUnique;
+    unsigned char mmmIsDynamic/*0 not dynamic,1 is dynamic 2 unknow*/;
 };
 
 template<typename Tt>
@@ -57,7 +58,7 @@ public:
         return mmmData->mmmHashCode;
     }
     inline bool sstd_is_polymorphic() const{
-        return mmmData->mmmIsDynamic;
+        return ( mmmData->mmmIsDynamic == true ) ;
     }
     inline friend bool operator<(const sstd_type_index &l,const sstd_type_index &r){
         if( l.mmmData == r.mmmData ){
@@ -99,7 +100,7 @@ public:
         return l.mmmData->mmmTypeIndex <= r.mmmData->mmmTypeIndex;
     }
     inline friend bool operator>=(const sstd_type_index &l,const sstd_type_index &r){
-        return r<=l;
+        return r<=l ;
     }
 protected:
     const _1_sstd_runtime_static_basic * mmmData ;
