@@ -15,13 +15,14 @@ public:
     virtual void * sstd_get_this_void() const noexcept = 0 ;
 };
 
-class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic {
+class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic :
+        public _1_sstd_memory_static_class_basic {
 public:
     _1_sstd_runtime_static_basic(bool,const std::type_info &);
     inline _1_sstd_runtime_static_basic()=delete;
     inline _1_sstd_runtime_static_basic&operator=(_1_sstd_runtime_static_basic &&)=delete;
     inline _1_sstd_runtime_static_basic&operator=(const _1_sstd_runtime_static_basic &)=delete;
-    inline _1_sstd_runtime_static_basic(_1_sstd_runtime_static_basic &&)=default;
+    inline _1_sstd_runtime_static_basic(_1_sstd_runtime_static_basic &&)=delete;
     inline _1_sstd_runtime_static_basic(const _1_sstd_runtime_static_basic &)=default;
     const bool mmmIsDynamic;
     const std::type_info & mmmTypeInfo;
@@ -41,7 +42,8 @@ public:
     static _1_sstd_runtime_static_basic mmmData;
 };
 
-class _1_SSTD_CORE_EXPORT sstd_type_index{
+class _1_SSTD_CORE_EXPORT sstd_type_index :
+    public _1_sstd_memory_static_class_basic{
 public:
     sstd_type_index(const _1_sstd_runtime_static_basic *);
     inline sstd_type_index(const sstd_type_index &) = default;
@@ -134,7 +136,8 @@ template<typename Tt,
          bool = std::is_polymorphic_v<
              std::remove_cv_t <
                  std::remove_reference_t<Tt> > > >
-class _3_sstd_runtime_basic : public _1_sstd_memory_static_class_basic {
+class _3_sstd_runtime_basic :
+        public _1_sstd_memory_static_class_basic {
 public:
     using sstd_this_type = std::remove_cv_t< std::remove_reference_t<Tt> >;
     static_assert ( false == std::is_polymorphic_v<sstd_this_type> , "");
