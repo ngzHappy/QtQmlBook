@@ -292,7 +292,7 @@ _2_sstd_runtime_static_basic<Tt>::mmmData{
 
 template<typename Tt>
 inline bool _2_sstd_runtime_static_basic<Tt>::sstd_is_polymorphic(){
-    return mmmData.mmmIsDynamic;
+    return mmmData.mmmIsDynamic == static_cast<unsigned char>( true ) ;
 }
 
 template<typename Tt>
