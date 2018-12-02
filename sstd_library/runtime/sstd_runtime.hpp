@@ -2,6 +2,7 @@
 
 #include <typeinfo>
 #include <typeindex>
+#include <functional>
 #include "../global/sstd_basic_library_global.hpp"
 #include "../memory/sstd_memory.hpp"
 
@@ -25,6 +26,7 @@ public:
     const bool mmmIsDynamic;
     const std::type_info & mmmTypeInfo;
     const std::type_index mmmTypeIndex;
+    const std::size_t mmmHashCode;
 };
 
 template<typename Tt>
@@ -35,9 +37,88 @@ public:
     inline static bool sstd_is_polymorphic();
     inline static const std::type_info & sstd_get_type_info();
     inline static const std::type_index & sstd_get_type_index();
-private:
     static _1_sstd_runtime_static_basic mmmData;
 };
+
+class _1_SSTD_CORE_EXPORT sstd_type_index{
+public:
+    sstd_type_index(const _1_sstd_runtime_static_basic *);
+    inline sstd_type_index(const sstd_type_index &) = default;
+    inline sstd_type_index(sstd_type_index &&) = default;
+    inline sstd_type_index&operator=(const sstd_type_index &) = default;
+    inline sstd_type_index&operator=(sstd_type_index &&) = default;
+    inline const char * name() const {
+        return mmmData->mmmTypeIndex.name();
+    }
+    inline std::size_t hash_code() const {
+        return mmmData->mmmHashCode;
+    }
+    inline bool sstd_is_polymorphic() const{
+        return mmmData->mmmIsDynamic;
+    }
+    inline friend bool operator<(const sstd_type_index &l,const sstd_type_index &r){
+        if( l.mmmData == r.mmmData ){
+            return false;
+        }
+        if(l.hash_code() < r.hash_code()){
+            return true;
+        }
+        if(r.hash_code() < l.hash_code()){
+            return false;
+        }
+        return l.mmmData->mmmTypeIndex < r.mmmData->mmmTypeIndex;
+    }
+    inline friend bool operator>(const sstd_type_index &l,const sstd_type_index &r){
+        return r<l;
+    }
+    inline friend bool operator==(const sstd_type_index &l,const sstd_type_index &r){
+        if( l.mmmData == r.mmmData ){
+            return true;
+        }
+        if(l.hash_code() != r.hash_code()){
+            return false;
+        }
+        return l.mmmData->mmmTypeIndex == r.mmmData->mmmTypeIndex;
+    }
+    inline friend bool operator!=(const sstd_type_index &l,const sstd_type_index &r){
+        return !(r==l);
+    }
+    inline friend bool operator<=(const sstd_type_index &l,const sstd_type_index &r){
+        if( l.mmmData == r.mmmData ){
+            return true;
+        }
+        if(l.hash_code() < r.hash_code()){
+            return true;
+        }
+        if(r.hash_code() < l.hash_code()){
+            return false;
+        }
+        return l.mmmData->mmmTypeIndex <= r.mmmData->mmmTypeIndex;
+    }
+    inline friend bool operator>=(const sstd_type_index &l,const sstd_type_index &r){
+        return r<=l;
+    }
+protected:
+    const _1_sstd_runtime_static_basic * mmmData ;
+};
+
+namespace std {
+    template<>
+    class hash<sstd_type_index>{
+    public:
+        inline std::size_t operator()(const sstd_type_index & a) const {
+            return a.hash_code();
+        }
+    };
+}/*std*/
+
+template<typename T>
+sstd_type_index sstd_type_id(){
+    using Tt = std::remove_reference_t<T>;
+    using Ttt = std::remove_cv_t<Tt>;
+    const static _2_sstd_runtime_static_basic<Ttt> var;
+    return sstd_type_index(&var.mmmData);
+}
 
 template<typename Tt,
          bool = std::is_polymorphic_v<
