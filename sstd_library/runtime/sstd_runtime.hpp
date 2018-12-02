@@ -58,7 +58,7 @@ public:
         return mmmData->mmmHashCode;
     }
     inline bool sstd_is_polymorphic() const{
-        return ( mmmData->mmmIsDynamic == true ) ;
+        return ( mmmData->mmmIsDynamic == static_cast<unsigned char>( true ) ) ;
     }
     inline friend bool operator<(const sstd_type_index &l,const sstd_type_index &r){
         if( l.mmmData == r.mmmData ){
