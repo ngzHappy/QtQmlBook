@@ -18,6 +18,7 @@ include($$PWD/../cplusplus.pri)
 }
 
 HEADERS += $$PWD/global/sstd_basic_library_global.hpp
+HEADERS += $$PWD/sstd_library.hpp
 
 SOURCES += $$PWD/memory/sstd_memory.cpp
 SOURCES += $$PWD/runtime/sstd_runtime.cpp
@@ -26,7 +27,7 @@ HEADERS += $$PWD/memory/sstd_memory.hpp
 HEADERS += $$PWD/runtime/sstd_runtime.hpp
 
 
-
+DESTDIR = $$RootDestDir
 
 
 
