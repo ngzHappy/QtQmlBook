@@ -1,0 +1,8 @@
+.vs
+.vscode
+*.sln
+*.vcxproj
+*.filters
+*.stash
+*.qmlc
+*.autosave
