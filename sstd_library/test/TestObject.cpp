@@ -28,7 +28,7 @@ namespace static_test_ns {
     class StaticClassTest {
     public:
         SSTD_DEFINE_STATIC_CLASS(StaticClassTest);
-        int value=1;
+        int value = 1;
     };
 
     /*静态检查，是否有语法错误*/
@@ -40,7 +40,11 @@ namespace static_test_ns {
 }
 
 namespace dynamic_test_ns {
-    class DynamicClassTest : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(DynamicClassTest) {
+    class DynamicClassTestBasic : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(DynamicClassTestBasic) {
+        SSTD_END_DEFINE_VIRTUAL_CLASS(DynamicClassTestBasic);
+    };
+    class DynamicClassTest : public DynamicClassTestBasic,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(DynamicClassTest) {
         SSTD_END_DEFINE_VIRTUAL_CLASS(DynamicClassTest);
     };
 }
@@ -53,15 +57,21 @@ void TestObject::staticTest() {
         QVERIFY(var->sstd_get_type_index() == typeid(static_test_ns::StaticClassTest));
         QVERIFY(var->sstd_get_type_info() == typeid(static_test_ns::StaticClassTest));
         QVERIFY(var->sstd_is_polymorphic() == false);
+        QVERIFY(var->sstd_get_sstd_type_index() == sstd_type_id(*var));
+        delete var;
     }
 }
 
-void TestObject::dynamicTest(){
+void TestObject::dynamicTest() {
     auto var = new dynamic_test_ns::DynamicClassTest;
-    QVERIFY(var->sstd_get_this_void() == var);
-    QVERIFY(var->sstd_get_type_index() == typeid(dynamic_test_ns::DynamicClassTest));
-    QVERIFY(var->sstd_get_type_info() == typeid(dynamic_test_ns::DynamicClassTest));
-    QVERIFY(var->sstd_is_polymorphic() == true);
+    dynamic_test_ns::DynamicClassTestBasic * varBase = var;
+    QVERIFY(varBase->sstd_get_this_void() == var);
+    QVERIFY(varBase->sstd_get_type_index() == typeid(dynamic_test_ns::DynamicClassTest));
+    QVERIFY(varBase->sstd_get_type_info() == typeid(dynamic_test_ns::DynamicClassTest));
+    QVERIFY(varBase->sstd_is_polymorphic() == true);
+    QVERIFY(varBase->sstd_get_sstd_type_index() == sstd_type_id(*var));
+    QVERIFY(sstd_type_id(var) == sstd_type_id(*var));
+    delete varBase;
 }
 
 void TestObject::sstdTypeIndexTest() {
