@@ -10,7 +10,7 @@ namespace {
     class this_map : public sstd::unordered_map<T, V> {
         using super_type_ = sstd::unordered_map<T, V>;
     public:
-        this_map() : super_type_(1024 * 1024 * 10) {
+        this_map() : super_type_(1024 * 128) {
         }
     };
 
