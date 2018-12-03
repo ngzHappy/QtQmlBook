@@ -315,3 +315,7 @@ _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & 
     varInformation->mmmTypeCastMap.insert(toType, function);
 }
 
+/*禁止编译器优化*/
+_1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *){
+}
+

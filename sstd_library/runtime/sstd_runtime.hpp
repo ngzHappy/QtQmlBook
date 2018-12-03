@@ -19,10 +19,12 @@ class sstd_type_index;
 _1_SSTD_CORE_EXPORT void * _sstd_runtime_dynamic_cast(void * /* dynamic_cast< void * > */,
     const sstd_type_index & /* typeid(value) */,
     const sstd_type_index & /* out put id */);
-/*register dynamic cast function*/
+/* register dynamic cast function */
 _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & /* from ... */,
     const sstd_type_index & /* to ... */,
     void*(*)(void *) /* function ... */);
+/* never used */
+_1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *);
 
 class _1_SSTD_CORE_EXPORT sstd_virtual_basic {
 public:
@@ -68,6 +70,7 @@ public:
     inline static const std::type_index & sstd_get_type_index() noexcept;
     inline static const sstd_type_index & sstd_get_sstd_type_index() noexcept;
     const static _1_sstd_runtime_static_basic mmmData;
+    inline _2_sstd_runtime_static_basic();
 private:
     const static _2_1_sstd_runtime_static_basic<Tt> mmmDataRegisterBases;
 };
@@ -550,5 +553,10 @@ inline _2_1_sstd_runtime_static_basic<Tt>::_2_1_sstd_runtime_static_basic() {
     abi_sstd_private_2_sstd_runtime_static_basic
         ::construct_add_upcast_functions<CleanType>(bases_{});
 #endif
+}
+
+template<typename T>
+inline _2_sstd_runtime_static_basic<T>::_2_sstd_runtime_static_basic() {
+    _sstd_add_runtime_dynamic_cast(&mmmDataRegisterBases);
 }
 
