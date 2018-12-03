@@ -48,7 +48,7 @@ public:
     const std::type_index mmmTypeIndex;
     const std::size_t mmmHashCode;
     const _1_sstd_runtime_static_basic *mmmUnique;
-    void * mmmCached{nullptr};
+    void * mmmCached{ nullptr };
     unsigned char mmmIsDynamic/*0 not dynamic,1 is dynamic 2 unknow*/;
 };
 
@@ -222,12 +222,26 @@ namespace abi_sstd_get_sstd_index_private {
     > > : public std::true_type {
     };
 
+    template<typename T, typename = void >
+    class get_void_helper : public std::false_type {
+    };
+
+    template<typename T>
+    class get_void_helper<T, std::void_t<
+        decltype(std::declval<T>()->sstd_get_this_void())
+    > > : public std::true_type {
+    };
+
     template<typename T, bool = std::is_polymorphic_v<T>>
     class get_void_pointer {
     public:
         template<typename U>
         static inline const void * get_data(const U * arg) {
-            return dynamic_cast<const void *>(arg);
+            if constexpr (get_void_helper<const U *>::value) {
+                return arg->sstd_get_this_void();
+            } else {
+                return dynamic_cast<const void *>(arg);
+            }
         }
     };
 
@@ -236,7 +250,11 @@ namespace abi_sstd_get_sstd_index_private {
     public:
         template<typename U>
         static inline const void * get_data(const U * arg) {
-            return arg;
+            if constexpr (get_void_helper<const U *>::value) {
+                return arg->sstd_get_this_void();
+            } else {
+                return arg;
+            }
         }
     };
 
@@ -489,8 +507,8 @@ namespace abi_sstd_private_2_sstd_runtime_static_basic {
         using To_ = std::remove_cv_t< std::remove_reference_t< To > >;
         if constexpr (std::is_convertible_v<From_ *, To_ *>) {
             auto varFromTypePrivate =
-                _1_sstd_runtime_static_basic( std::is_polymorphic_v<From_>,typeid(From_) );
-            auto varToTypePrivate = 
+                _1_sstd_runtime_static_basic(std::is_polymorphic_v<From_>, typeid(From_));
+            auto varToTypePrivate =
                 _1_sstd_runtime_static_basic(std::is_polymorphic_v<To_>, typeid(To_));
             auto varFromType = sstd_type_id(&varFromTypePrivate);
             auto varToType = sstd_type_id(&varToTypePrivate);
