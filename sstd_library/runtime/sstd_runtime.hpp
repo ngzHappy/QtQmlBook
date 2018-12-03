@@ -48,6 +48,7 @@ public:
     const std::type_index mmmTypeIndex;
     const std::size_t mmmHashCode;
     const _1_sstd_runtime_static_basic *mmmUnique;
+    void * mmmCached{nullptr};
     unsigned char mmmIsDynamic/*0 not dynamic,1 is dynamic 2 unknow*/;
 };
 

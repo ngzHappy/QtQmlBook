@@ -179,14 +179,16 @@ namespace {
             auto varAns = varIndexBasic.get();
             varIndexBasic->mmmUnique = varAns;
             if constexpr (N == 0) {
-                mmmTypeSet.emplace(sstd_type_index{ varAns },
+                auto varPos = mmmTypeSet.emplace(sstd_type_index{ varAns },
                     std::make_unique<RuntimeStaticBasicItem>(
                         std::move(varIndexBasic)));
+                varAns->mmmCached = varPos.first->second.get();
                 return varAns;
             } else {
                 auto varPos = mmmTypeSet.emplace(sstd_type_index{ varAns },
                     std::make_unique<RuntimeStaticBasicItem>(
                         std::move(varIndexBasic)));
+                varAns->mmmCached = varPos.first->second.get();
                 return *(varPos.first->second);
             }
         }
@@ -209,6 +211,7 @@ _1_sstd_runtime_static_basic::_1_sstd_runtime_static_basic(
     if (this->mmmUnique == nullptr) {
         this->mmmIsDynamic = isDynamic;
         this->mmmUnique = getRuntimeStaticBasic().insert(*this);
+        this->mmmCached = this->mmmUnique->mmmCached;
     }
 }
 
@@ -222,6 +225,7 @@ _1_sstd_runtime_static_basic::_1_sstd_runtime_static_basic(
     this->mmmUnique = getRuntimeStaticBasic().find(*this);
     if (this->mmmUnique) {
         this->mmmIsDynamic = this->mmmUnique->mmmIsDynamic;
+        this->mmmCached = this->mmmUnique->mmmCached;
     }
 }
 
@@ -254,10 +258,18 @@ _1_SSTD_CORE_EXPORT void * _sstd_runtime_dynamic_cast(
         return nullptr;
     }
 
-    auto & varCast = getRuntimeStaticBasic();
-    auto & varInformation = varCast.insert(argType);
+    RuntimeStaticBasicItem* varInformation = nullptr;
+    {
+        auto varCached = argType.operator const _1_sstd_runtime_static_basic *()->mmmCached;
+        if (varCached) {
+            varInformation = reinterpret_cast<RuntimeStaticBasicItem*>(varCached);
+        } else {
+            auto & varCast = getRuntimeStaticBasic();
+            varInformation = &varCast.insert(argType);
+        }
+    }
 
-    auto varCastFunction = varInformation.mmmTypeCastMap.find(outPutType);
+    auto varCastFunction = varInformation->mmmTypeCastMap.find(outPutType);
     if (0 != varCastFunction.index()) {
         type_cast_item varCastItem{ arg };
         return std::visit(varCastItem, varCastFunction);
@@ -276,7 +288,7 @@ _1_SSTD_CORE_EXPORT void * _sstd_runtime_dynamic_cast(
 
     /*转型成功，注册此转型函数*/
     if (varAns) {
-        varInformation.mmmTypeCastMap.insert(outPutType,
+        varInformation->mmmTypeCastMap.insert(outPutType,
             reinterpret_cast<std::uint8_t *>(varAns) -
             reinterpret_cast<std::uint8_t *>(arg));
         return varAns;
@@ -288,15 +300,22 @@ _1_SSTD_CORE_EXPORT void * _sstd_runtime_dynamic_cast(
 
 _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & fromType/* from ... */,
     const sstd_type_index & toType/* to ... */,
-    void*(* function)(void *) /* function ... */) {
-    
+    void*(*function)(void *) /* function ... */) {
+
     if (function == nullptr) {
         return;
     }
 
-    auto & varCast = getRuntimeStaticBasic();
-    auto & varInformation = varCast.insert(fromType);
-    varInformation.mmmTypeCastMap.insert(toType,function);
-
+    RuntimeStaticBasicItem * varInformation = nullptr;
+    {
+        void * varCatched = fromType.operator const _1_sstd_runtime_static_basic *()->mmmCached;
+        if (varCatched) {
+            varInformation = reinterpret_cast<RuntimeStaticBasicItem*>(varCatched);
+        } else {
+            auto & varCast = getRuntimeStaticBasic();
+            varInformation = &varCast.insert(fromType);
+        }
+    }
+    varInformation->mmmTypeCastMap.insert(toType, function);
 }
 
