@@ -1,5 +1,8 @@
 TEMPLATE = lib
 
+QT -=core
+QT -=gui
+
 CONFIG(debug,debug|release){
     TARGET = sstd_libraryd
 }else{
@@ -26,9 +29,7 @@ SOURCES += $$PWD/runtime/sstd_runtime.cpp
 HEADERS += $$PWD/memory/sstd_memory.hpp
 HEADERS += $$PWD/runtime/sstd_runtime.hpp
 
-
-DESTDIR = $$RootDestDir
-
-
-
+DESTDIR = $${RootDestDir}
+INCLUDEPATH += $$[QT_INSTALL_HEADERS]
+#qmake -query
 

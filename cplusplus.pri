@@ -2,7 +2,7 @@
 CONFIG += c++17
 
 win32-msvc*{
-
+    CONFIG+=suppress_vcproj_warnings
 }else{
      QMAKE_CFLAGS += -std=c11
 }

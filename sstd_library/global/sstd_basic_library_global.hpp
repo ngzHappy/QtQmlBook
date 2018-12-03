@@ -15,9 +15,9 @@
 #define _1_SSTD_CORE_EXPORT BOOST_SYMBOL_IMPORT
 #endif
 
-
-
-
+#if defined( _MSC_VER )
+#pragma warning(disable:4251)
+#endif
 
 
 
