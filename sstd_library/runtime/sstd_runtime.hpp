@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <cassert>
 #include <typeinfo>
 #include <typeindex>
 #include <functional>
@@ -141,8 +142,8 @@ class _3_sstd_runtime_basic :
         public _1_sstd_memory_static_class_basic {
 public:
     using sstd_this_type = std::remove_cv_t< std::remove_reference_t<Tt> >;
-    static_assert ( false == std::is_polymorphic_v<sstd_this_type> , "");
     static inline bool sstd_is_polymorphic() noexcept  {
+        static_assert (false == std::is_polymorphic_v<sstd_this_type>, "");
         const static _2_sstd_runtime_static_basic<sstd_this_type> var;
         return var.sstd_is_polymorphic();
     }
@@ -162,8 +163,8 @@ class _3_sstd_runtime_basic<Tt,true> :
         public virtual sstd_virtual_basic {
 public:
     using sstd_this_type = std::remove_cv_t< std::remove_reference_t<Tt> >;
-    static_assert ( true == std::is_polymorphic_v<sstd_this_type> , "");
     inline bool sstd_is_polymorphic() const noexcept override {
+        static_assert (true == std::is_polymorphic_v<sstd_this_type>, "");
         const static _2_sstd_runtime_static_basic<sstd_this_type> var;
         return var.sstd_is_polymorphic();
     }
@@ -239,7 +240,7 @@ public:
     } \
     static inline void operator delete[](void* argA, std::align_val_t argB){ \
     return _sstd_this_type_:: operator delete[](argA,argB);\
-    }
+    } 
 /**************************************************/
 #endif
 
@@ -258,7 +259,8 @@ public:
     } \
     void * sstd_get_this_void() const noexcept override { \
     return _sstd_this_type_::sstd_get_this_void(); \
-    }
+    } \
+static_assert(true,"")
 /**************************************************/
 #endif
 
@@ -268,7 +270,7 @@ public:
     public : \
     inline static bool sstd_is_polymorphic() noexcept { \
     return _sstd_this_type_::sstd_is_polymorphic(); \
-    }\
+    } \
     inline static const std::type_info & sstd_get_type_info() noexcept { \
     return _sstd_this_type_::sstd_get_type_info(); \
     } \
@@ -277,7 +279,8 @@ public:
     } \
     inline constexpr void * sstd_get_this_void() const noexcept { \
     return const_cast<sstd_this_type *>(this); \
-    }
+    } \
+static_assert(true,"")
 /**************************************************/
 #endif
 

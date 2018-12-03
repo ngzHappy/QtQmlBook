@@ -22,11 +22,14 @@ include($$PWD/../import_sstd_library.pri)
     QMAKE_LFLAGS += -Wl,-rpath .
 }
 
+win32-msvc*{
+    CONFIG += console
+}
+
 DESTDIR = $${TestRootDestDir}
 
 SOURCES += $$PWD/main.cpp
-SOURCES += $$PWD/TestApplication.cpp
-
-HEADERS += $$PWD/TestApplication.hpp
+SOURCES += $$PWD/TestObject.cpp
+HEADERS += $$PWD/TestObject.hpp
 
 

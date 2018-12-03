@@ -1,11 +1,6 @@
-﻿
-int main(int,char **){
+﻿#include "TestObject.hpp"
 
-
-    return 0;
-}
-
-
+QTEST_MAIN(TestObject);
 
 
 
