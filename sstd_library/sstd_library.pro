@@ -25,6 +25,8 @@ HEADERS += $$PWD/sstd_library.hpp
 
 SOURCES += $$PWD/memory/sstd_memory.cpp
 SOURCES += $$PWD/runtime/sstd_runtime.cpp
+SOURCES += $$PWD/runtime/sstd_private_runtime_cast_gcc.cpp
+SOURCES += $$PWD/runtime/sstd_private_runtime_cast_msvc.cpp
 
 HEADERS += $$PWD/memory/sstd_memory.hpp
 HEADERS += $$PWD/runtime/sstd_runtime.hpp

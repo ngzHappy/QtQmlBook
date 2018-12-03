@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include <mutex>
 #include <cassert>
 #include <typeinfo>
 #include <typeindex>
@@ -7,7 +8,22 @@
 #include "../global/sstd_basic_library_global.hpp"
 #include "../memory/sstd_memory.hpp"
 
+#if __has_include(<tr2/type_traits>)
+#include <tr2/type_traits>
+#define _0_SSTD_HAS_GET_BASES (1u)
+#endif
+
 class sstd_type_index;
+
+/* dynamic cast at runtime */
+_1_SSTD_CORE_EXPORT void * _sstd_runtime_dynamic_cast(void * /* dynamic_cast< void * > */,
+    const sstd_type_index & /* typeid(value) */,
+    const sstd_type_index & /* out put id */);
+/*register dynamic cast function*/
+_1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & /* from ... */,
+    const sstd_type_index & /* to ... */,
+    void*(*)(void *) /* function ... */);
+
 class _1_SSTD_CORE_EXPORT sstd_virtual_basic {
 public:
     virtual ~sstd_virtual_basic();
@@ -35,6 +51,12 @@ public:
     unsigned char mmmIsDynamic/*0 not dynamic,1 is dynamic 2 unknow*/;
 };
 
+template<typename T>
+class _2_1_sstd_runtime_static_basic {
+public:
+    inline _2_1_sstd_runtime_static_basic();
+};
+
 template<typename Tt>
 class _2_sstd_runtime_static_basic :
     public _1_sstd_memory_static_class_basic {
@@ -45,6 +67,8 @@ public:
     inline static const std::type_index & sstd_get_type_index() noexcept;
     inline static const sstd_type_index & sstd_get_sstd_type_index() noexcept;
     const static _1_sstd_runtime_static_basic mmmData;
+private:
+    const static _2_1_sstd_runtime_static_basic<Tt> mmmDataRegisterBases;
 };
 
 class _1_SSTD_CORE_EXPORT sstd_type_index :
@@ -105,6 +129,15 @@ public:
     }
     inline friend bool operator>=(const sstd_type_index &l, const sstd_type_index &r) {
         return r <= l;
+    }
+    inline operator const _1_sstd_runtime_static_basic *() const {
+        return mmmData;
+    }
+    inline const std::type_info & sstd_get_type_info() const noexcept {
+        return mmmData->mmmTypeInfo;
+    }
+    inline const std::type_index & sstd_get_type_index() const noexcept {
+        return mmmData->mmmTypeIndex;
     }
 protected:
     const _1_sstd_runtime_static_basic * mmmData;
@@ -188,6 +221,24 @@ namespace abi_sstd_get_sstd_index_private {
     > > : public std::true_type {
     };
 
+    template<typename T, bool = std::is_polymorphic_v<T>>
+    class get_void_pointer {
+    public:
+        template<typename U>
+        static inline const void * get_data(const U * arg) {
+            return dynamic_cast<const void *>(arg);
+        }
+    };
+
+    template<typename T >
+    class get_void_pointer<T, false> {
+    public:
+        template<typename U>
+        static inline const void * get_data(const U * arg) {
+            return arg;
+        }
+    };
+
 }/****/
 
 template<typename T>
@@ -207,6 +258,27 @@ inline sstd_type_index sstd_type_id(const T & arg) {
             abi_sstd_get_sstd_index_private::get_sstd_type_index_none>;
         return G::get_index(arg);
     }
+}
+
+template<typename T>
+inline std::pair<void *, sstd_type_index> sstd_class_runtime_meta_data(const T * arg) {
+    using T1 = std::remove_cv_t< std::remove_reference_t<T> >;
+    using G = abi_sstd_get_sstd_index_private::get_void_pointer<T1>;
+    return { const_cast<void *>(G::get_data(arg)) , sstd_type_id(*arg) };
+}
+
+inline void * sstd_runtime_cast(const std::pair<void *, sstd_type_index> & argInputMeta,
+    const sstd_type_index & argOutPutType) {
+    return _sstd_runtime_dynamic_cast(argInputMeta.first,
+        argInputMeta.second,
+        argOutPutType);
+}
+
+template<typename T, typename I>
+inline T * sstd_runtime_cast(const I * arg) {
+    return reinterpret_cast<T *>(sstd_runtime_cast(
+        sstd_class_runtime_meta_data(arg),
+        sstd_type_id<T>()));
 }
 
 template<typename Tt,
@@ -323,7 +395,7 @@ template<typename T,
     } \
     static inline void operator delete[](void* argA, std::align_val_t argB){ \
     return _sstd_this_type_:: operator delete[](argA,argB);\
-    } 
+    }
 /**************************************************/
 #endif
 
@@ -405,4 +477,59 @@ inline const sstd_type_index & _2_sstd_runtime_static_basic<Tt>::sstd_get_sstd_t
     return varAns;
 }
 
+template<typename Tt>
+const _2_1_sstd_runtime_static_basic<Tt> _2_sstd_runtime_static_basic<Tt>::mmmDataRegisterBases;
+
+namespace abi_sstd_private_2_sstd_runtime_static_basic {
+
+    template<typename From, typename To>
+    void add_once() {
+        using From_ = std::remove_cv_t< std::remove_reference_t< From > >;
+        using To_ = std::remove_cv_t< std::remove_reference_t< To > >;
+        if constexpr (std::is_convertible_v<From_ *, To_ *>) {
+            auto varFromTypePrivate =
+                _1_sstd_runtime_static_basic( std::is_polymorphic_v<From_>,typeid(From_) );
+            auto varToTypePrivate = 
+                _1_sstd_runtime_static_basic(std::is_polymorphic_v<To_>, typeid(To_));
+            auto varFromType = sstd_type_id(&varFromTypePrivate);
+            auto varToType = sstd_type_id(&varToTypePrivate);
+            _sstd_add_runtime_dynamic_cast(
+                varFromType,
+                varToType,
+                [](void * arg)->void * {
+                return static_cast<To_ *>(
+                    reinterpret_cast<From_ *>(arg));
+            });
+        }
+    }
+
+    template<typename To,
+        template<typename ...> class Wrap,
+        typename ... Parents >
+        void construct_add_upcast_functions(const Wrap<Parents...> &) {
+        add_once<To, To>();
+        if constexpr (sizeof...(Parents)) {
+            (add_once<To, Parents>(), ...);
+        }
+    }
+
+    template<typename ...>
+    class empty {
+    };
+
+
+}/**/
+template<typename Tt>
+inline _2_1_sstd_runtime_static_basic<Tt>::_2_1_sstd_runtime_static_basic() {
+    using CleanType = std::remove_cv_t< std::remove_reference_t< Tt > >;
+#if defined(_0_SSTD_HAS_GET_BASES)
+    using bases_ = typename std::tr2::bases<CleanType>::type;
+    abi_sstd_private_2_sstd_runtime_static_basic
+        ::construct_add_upcast_functions<CleanType>(bases_{});
+#else
+    using bases_ = abi_sstd_private_2_sstd_runtime_static_basic::empty<>;
+    abi_sstd_private_2_sstd_runtime_static_basic
+        ::construct_add_upcast_functions<CleanType>(bases_{});
+#endif
+}
 

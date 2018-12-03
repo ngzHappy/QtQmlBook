@@ -38,7 +38,27 @@ namespace sstd {
     };
 }/*namespace sstd*/
 
-
+#include <unordered_map>
+namespace sstd {
+    template<typename K, typename V,
+        typename H = std::hash<K>,
+        typename E = std::equal_to<void>
+    > using unordered_map = std::unordered_map < K, V, H, E,
+        sstd::allocator<std::pair<const K, V> > >;
+    template<typename K, typename V,
+        typename H = std::hash<K>,
+        typename E = std::equal_to<void>
+    > class UnorderedMap : public unordered_map<K, V, H, E> {
+        using super_type_ = unordered_map<K, V, H, E>;
+    public:
+        template<typename ... Args>
+        UnorderedMap(Args && ... args) :super_type_(std::forward<Args>(args)...) {
+        }
+    private:
+        SSTD_DELETE_COPY_ASSIGN(UnorderedMap);
+        SSTD_DEFINE_STATIC_CLASS(UnorderedMap);
+    };
+}/*namespace sstd*/
 
 
 
