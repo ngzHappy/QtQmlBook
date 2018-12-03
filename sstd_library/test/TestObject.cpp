@@ -230,6 +230,171 @@ void TestObject::typeCastTest() {
     QVERIFY(a0 == sstd_runtime_cast<A0>(a4));
     QVERIFY(a0 == sstd_runtime_cast<A0>(a5));
 
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a0));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a1));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a2));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a3));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a4));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a5));
+
 }
 
+namespace type_cast_test_ns1 {
+
+    class A0 : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A0) {
+    public:
+        virtual ~A0() {
+        }
+        SSTD_END_DEFINE_VIRTUAL_CLASS(A0);
+    };
+
+    class A1 : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A1) {
+    public:
+        virtual ~A1() {
+        }
+        SSTD_END_DEFINE_VIRTUAL_CLASS(A1);
+    };
+
+    class A2 : public virtual A1,
+         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A2) {
+    public:
+        virtual ~A2() {
+        }
+        SSTD_END_DEFINE_VIRTUAL_CLASS(A2);
+    };
+
+    class A3 : public virtual A1,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A3) {
+    public:
+        virtual ~A3() {
+        }
+        SSTD_END_DEFINE_VIRTUAL_CLASS(A3);
+    };
+
+    class A4 : public A0, public A2, public A3,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A4){
+    public:
+        virtual ~A4() {
+        }
+        SSTD_END_DEFINE_VIRTUAL_CLASS(A4);
+    };
+
+    class A5 : public A4,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A5){
+    public:
+        virtual ~A5() {
+        }
+        SSTD_END_DEFINE_VIRTUAL_CLASS(A5);
+    };
+
+    class A6 : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A6) {
+    public:
+        virtual ~A6() {
+        }
+        SSTD_END_DEFINE_VIRTUAL_CLASS(A6);
+    };
+
+}/**/
+
+void TestObject::typeCastTest1() {
+    using namespace type_cast_test_ns1;
+    auto a5 = new A5;
+    A0 * a0 = a5;
+    A1 * a1 = a5;
+    A2 * a2 = a5;
+    A3 * a3 = a5;
+    A4 * a4 = a5;
+
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a0));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a1));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a2));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a3));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a4));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a5));
+
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a0));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a1));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a2));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a3));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a4));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a5));
+
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a0));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a1));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a2));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a3));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a4));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a5));
+
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a0));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a1));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a2));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a3));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a4));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a5));
+
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a0));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a1));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a2));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a3));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a4));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a5));
+
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a0));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a1));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a2));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a3));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a4));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a5));
+
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a0));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a1));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a2));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a3));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a4));
+    QVERIFY(a5 == sstd_runtime_cast<A5>(a5));
+
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a0));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a1));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a2));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a3));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a4));
+    QVERIFY(a4 == sstd_runtime_cast<A4>(a5));
+
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a0));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a1));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a2));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a3));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a4));
+    QVERIFY(a3 == sstd_runtime_cast<A3>(a5));
+
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a0));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a1));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a2));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a3));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a4));
+    QVERIFY(a2 == sstd_runtime_cast<A2>(a5));
+
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a0));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a1));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a2));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a3));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a4));
+    QVERIFY(a1 == sstd_runtime_cast<A1>(a5));
+
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a0));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a1));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a2));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a3));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a4));
+    QVERIFY(a0 == sstd_runtime_cast<A0>(a5));
+
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a0));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a1));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a2));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a3));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a4));
+    QVERIFY(nullptr == sstd_runtime_cast<A6>(a5));
+
+}
 

@@ -13,6 +13,7 @@ private slots:
     void dynamicTest();
     void sstdTypeIndexTest();
     void typeCastTest();
+    void typeCastTest1();
     void cleanupTestCase();
 };
 
