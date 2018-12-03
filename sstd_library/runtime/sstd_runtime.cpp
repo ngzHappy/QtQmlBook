@@ -1,13 +1,12 @@
 ﻿#include "sstd_runtime.hpp"
-#include <set>
-#include <map>
+#include "../container/sstd_container.hpp"
 #include <shared_mutex>
 #include <optional>
 
 namespace {
 
     template<typename T, typename V>
-    using this_map = std::map<T, V>;
+    using this_map = sstd::map<T, V>;
 
     class RuntimeStaticBasicItem {
     public:
@@ -15,14 +14,18 @@ namespace {
             :mmmIndex(std::move(a)) {
         }
         std::unique_ptr<_1_sstd_runtime_static_basic> mmmIndex;
+        SSTD_DELETE_COPY_ASSIGN(RuntimeStaticBasicItem);
+        SSTD_DEFINE_STATIC_CLASS(RuntimeStaticBasicItem);
     };
 
     class RuntimeStaticBasic {
+        SSTD_DELETE_COPY_ASSIGN(RuntimeStaticBasic);
+        SSTD_DEFINE_STATIC_CLASS(RuntimeStaticBasic);
     public:
         this_map< sstd_type_index, std::unique_ptr<RuntimeStaticBasicItem>  > mmmTypeSet;
         std::shared_mutex mmmTypeSetMutex;
 
-        const _1_sstd_runtime_static_basic * find(const _1_sstd_runtime_static_basic & arg) {
+        inline const _1_sstd_runtime_static_basic * find(const _1_sstd_runtime_static_basic & arg) {
             sstd_type_index varIndex{ &arg };
             std::shared_lock varReadLock{ mmmTypeSetMutex };
             auto varPos = std::as_const(mmmTypeSet).find(varIndex);
@@ -32,7 +35,7 @@ namespace {
             return nullptr;
         }
 
-        const _1_sstd_runtime_static_basic * insert(const _1_sstd_runtime_static_basic & arg) {
+        inline const _1_sstd_runtime_static_basic * insert(const _1_sstd_runtime_static_basic & arg) {
             sstd_type_index varIndex{ &arg };
             {
                 std::shared_lock varReadLock{ mmmTypeSetMutex };
@@ -56,11 +59,14 @@ namespace {
                     std::move(varIndexBasic)));
             return varAns;
         }
+
+        RuntimeStaticBasic() = default;
+
     };
 
     inline RuntimeStaticBasic & getRuntimeStaticBasic() {
-        static RuntimeStaticBasic varAns;
-        return varAns;
+        static auto * varAns = new RuntimeStaticBasic/*never delete*/;
+        return *varAns;
     }
 
 }/**********/

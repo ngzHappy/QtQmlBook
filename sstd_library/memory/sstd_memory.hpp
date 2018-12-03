@@ -56,7 +56,14 @@ public:
     inline _1_sstd_memory_dynamic_class_basic&operator=(_1_sstd_memory_dynamic_class_basic &&) = default;
 };
 
-
+#ifndef SSTD_DELETE_COPY_ASSIGN
+#define SSTD_DELETE_COPY_ASSIGN(_SSTD_T_) \
+_SSTD_T_(const _SSTD_T_ &)=delete; \
+_SSTD_T_(_SSTD_T_ &&)=delete; \
+_SSTD_T_&operator=(const _SSTD_T_ &)=delete; \
+_SSTD_T_&operator=(_SSTD_T_ &&)=delete; \
+static_assert(true,"")
+#endif
 
 
 

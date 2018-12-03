@@ -36,7 +36,9 @@ namespace static_test_ns {
         static_assert(sizeof(StaticClassTest) == sizeof(int), "");
         static_test_1_sstd_memory_static_class_basic();
         static_test_1_sstd_memory_dynamic_class_basic();
+        sstd::vector<int> var;
     }
+
 }
 
 namespace dynamic_test_ns {

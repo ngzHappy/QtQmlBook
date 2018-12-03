@@ -29,6 +29,10 @@ SOURCES += $$PWD/runtime/sstd_runtime.cpp
 HEADERS += $$PWD/memory/sstd_memory.hpp
 HEADERS += $$PWD/runtime/sstd_runtime.hpp
 
+HEADERS += $$PWD/container/sstd_container.hpp
+HEADERS += $$PWD/allocator/sstd_allocator.hpp
+HEADERS += $$PWD/new/sstd_new.hpp
+
 DESTDIR = $${RootDestDir}
 INCLUDEPATH += $$[QT_INSTALL_HEADERS]
 #qmake -query
