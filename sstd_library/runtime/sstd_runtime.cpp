@@ -178,17 +178,13 @@ namespace {
             auto varIndexBasic = std::make_unique<_1_sstd_runtime_static_basic>(arg);
             auto varAns = varIndexBasic.get();
             varIndexBasic->mmmUnique = varAns;
+            auto varPos = mmmTypeSet.emplace(sstd_type_index{ varAns },
+                std::make_unique<RuntimeStaticBasicItem>(
+                    std::move(varIndexBasic)));
+            varAns->mmmCached = varPos.first->second.get();
             if constexpr (N == 0) {
-                auto varPos = mmmTypeSet.emplace(sstd_type_index{ varAns },
-                    std::make_unique<RuntimeStaticBasicItem>(
-                        std::move(varIndexBasic)));
-                varAns->mmmCached = varPos.first->second.get();
                 return varAns;
             } else {
-                auto varPos = mmmTypeSet.emplace(sstd_type_index{ varAns },
-                    std::make_unique<RuntimeStaticBasicItem>(
-                        std::move(varIndexBasic)));
-                varAns->mmmCached = varPos.first->second.get();
                 return *(varPos.first->second);
             }
         }
