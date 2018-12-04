@@ -5,19 +5,19 @@
 #include "sstd_private/sstd_quick_view_window.hpp"
 
 namespace sstd {
-    Q_NAMESPACE/**/static_assert(true);
+    Q_NAMESPACE 
 
     enum class WindowType : std::size_t {
         QtQuickWindow,
         QtWidget,
     };
-    Q_ENUM_NS(WindowType)/**/static_assert(true);
+    Q_ENUM_NS(WindowType) 
 
     enum class ResizeMode : std::size_t {
         SizeViewToRootObject,
         SizeRootObjectToView,
     };
-    Q_ENUM_NS(ResizeMode)/**/static_assert(true);
+    Q_ENUM_NS(ResizeMode) 
 
     enum class LoadState : std::size_t {
         Null,
@@ -25,7 +25,7 @@ namespace sstd {
         Loading,
         Error,
     };
-    Q_ENUM_NS(LoadState)/**/static_assert(true);
+    Q_ENUM_NS(LoadState) 
 
     class EXPORT_SSTD_QT_AND_QML_LIBRARY AbstractRootWindow :
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(AbstractRootWindow) {

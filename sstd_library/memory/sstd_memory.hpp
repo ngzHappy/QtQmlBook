@@ -8,7 +8,7 @@
 #define _0_DO_NOT_HAVE_MEMORY_RESOURCE (1u)
 #endif
 
-class _1_SSTD_CORE_EXPORT _1_sstd_memory_static_class_basic {
+class _1_SSTD_CORE_EXPORT _1_sstd_memory_static_class_basic final {
 public:
     inline constexpr _1_sstd_memory_static_class_basic() noexcept;
     inline ~_1_sstd_memory_static_class_basic() = default;
@@ -29,10 +29,10 @@ public:
     static void* operator new[](std::size_t count, std::align_val_t al);
     static void operator delete[](void* ptr, std::align_val_t al);
 public:
-    static constexpr inline void* operator new  (std::size_t, void* ptr) noexcept {
+    static inline void* operator new  (std::size_t, void* ptr) noexcept {
         return ptr;
     }
-    static constexpr inline void* operator new[](std::size_t, void* ptr) noexcept {
+    static inline void* operator new[](std::size_t, void* ptr) noexcept {
         return ptr;
     }
 public:
@@ -42,11 +42,52 @@ public:
     }
 };
 
+#ifndef _SSTD_MEMORY_1_DFINE
+#define _SSTD_MEMORY_1_DFINE \
+public : \
+    static inline void* operator new  (std::size_t argA, void* argB) noexcept { \
+    return _1_sstd_memory_static_class_basic::operator new(argA,argB); \
+    } \
+    static inline void* operator new[](std::size_t argA, void* argB) noexcept { \
+    return _1_sstd_memory_static_class_basic::operator new[](argA,argB); \
+    } \
+    static constexpr inline void operator delete(void * argA, void * argB) noexcept { \
+    return _1_sstd_memory_static_class_basic::operator delete(argA,argB); \
+    } \
+    static constexpr inline void operator delete[](void * argA, void * argB) noexcept { \
+    return _1_sstd_memory_static_class_basic::operator delete[](argA,argB); \
+    } \
+    static inline void* operator new (std::size_t argA){ \
+    return _1_sstd_memory_static_class_basic::operator new(argA);\
+    } \
+    static inline void operator delete(void * argA){ \
+    return _1_sstd_memory_static_class_basic::operator delete(argA); \
+    } \
+    static inline void* operator new[](std::size_t argA){ \
+    return _1_sstd_memory_static_class_basic::operator new[](argA);\
+    } \
+    static inline void operator delete[](void * argA){ \
+    return _1_sstd_memory_static_class_basic::operator delete[](argA) ;\
+    } \
+    static inline void* operator new(std::size_t argA, std::align_val_t argB){ \
+    return _1_sstd_memory_static_class_basic::operator new(argA,argB);\
+    } \
+    static inline void operator delete(void* argA, std::align_val_t argB){ \
+    return _1_sstd_memory_static_class_basic::operator delete(argA,argB);\
+    } \
+    static inline void* operator new[](std::size_t argA, std::align_val_t argB){ \
+    return _1_sstd_memory_static_class_basic::operator new[](argA,argB);\
+    } \
+    static inline void operator delete[](void* argA, std::align_val_t argB){ \
+    return _1_sstd_memory_static_class_basic::operator delete[](argA,argB);\
+    }
+
+#endif 
+
 inline constexpr _1_sstd_memory_static_class_basic::_1_sstd_memory_static_class_basic() noexcept {
 }
 
-class _1_SSTD_CORE_EXPORT _1_sstd_memory_dynamic_class_basic :
-    public _1_sstd_memory_static_class_basic {
+class _1_SSTD_CORE_EXPORT _1_sstd_memory_dynamic_class_basic {
 public:
     virtual ~_1_sstd_memory_dynamic_class_basic();
     inline _1_sstd_memory_dynamic_class_basic() = default;
@@ -54,6 +95,7 @@ public:
     inline _1_sstd_memory_dynamic_class_basic(_1_sstd_memory_dynamic_class_basic &&) = default;
     inline _1_sstd_memory_dynamic_class_basic&operator=(const _1_sstd_memory_dynamic_class_basic &) = default;
     inline _1_sstd_memory_dynamic_class_basic&operator=(_1_sstd_memory_dynamic_class_basic &&) = default;
+    _SSTD_MEMORY_1_DFINE
 };
 
 #ifndef SSTD_DELETE_COPY_ASSIGN

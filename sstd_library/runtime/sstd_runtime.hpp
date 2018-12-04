@@ -26,7 +26,8 @@ _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & 
 /* never used */
 _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *);
 
-class _1_SSTD_CORE_EXPORT sstd_virtual_basic {
+class _1_SSTD_CORE_EXPORT sstd_virtual_basic : 
+    public _1_sstd_memory_dynamic_class_basic {
 public:
     virtual ~sstd_virtual_basic();
     virtual bool sstd_is_polymorphic() const noexcept = 0;
@@ -34,10 +35,10 @@ public:
     virtual const std::type_index & sstd_get_type_index() const noexcept = 0;
     virtual void * sstd_get_this_void() const noexcept = 0;
     virtual const sstd_type_index & sstd_get_sstd_type_index() const noexcept = 0;
+    _SSTD_MEMORY_1_DFINE
 };
 
-class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic :
-    public _1_sstd_memory_static_class_basic {
+class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic  {
 public:
     _1_sstd_runtime_static_basic(bool, const std::type_info &);
     _1_sstd_runtime_static_basic(const std::type_info &);
@@ -52,18 +53,18 @@ public:
     const _1_sstd_runtime_static_basic *mmmUnique;
     void * mmmCached{ nullptr };
     unsigned char mmmIsDynamic/*0 not dynamic,1 is dynamic 2 unknow*/;
+    _SSTD_MEMORY_1_DFINE
 };
 
 template<typename T>
 class _2_1_sstd_runtime_static_basic {
 public:
     inline _2_1_sstd_runtime_static_basic();
+    _SSTD_MEMORY_1_DFINE
 };
 
 template<typename Tt>
-class _2_sstd_runtime_static_basic :
-    public _1_sstd_memory_static_class_basic {
-    using sstd_super = _1_sstd_memory_static_class_basic;
+class _2_sstd_runtime_static_basic {
 public:
     inline static bool sstd_is_polymorphic() noexcept;
     inline static const std::type_info & sstd_get_type_info() noexcept;
@@ -73,10 +74,10 @@ public:
     inline _2_sstd_runtime_static_basic();
 private:
     const static _2_1_sstd_runtime_static_basic<Tt> mmmDataRegisterBases;
+    _SSTD_MEMORY_1_DFINE
 };
 
-class _1_SSTD_CORE_EXPORT sstd_type_index :
-    public _1_sstd_memory_static_class_basic {
+class _1_SSTD_CORE_EXPORT sstd_type_index  {
 public:
     sstd_type_index(const _1_sstd_runtime_static_basic *);
     inline sstd_type_index(const sstd_type_index &) = default;
@@ -145,6 +146,7 @@ public:
     }
 protected:
     const _1_sstd_runtime_static_basic * mmmData;
+    _SSTD_MEMORY_1_DFINE
 };
 
 namespace std {
@@ -154,6 +156,7 @@ namespace std {
         inline std::size_t operator()(const sstd_type_index & a) const {
             return a.hash_code();
         }
+        _SSTD_MEMORY_1_DFINE
     };
 }/*std*/
 
@@ -185,6 +188,7 @@ namespace abi_sstd_get_sstd_index_private {
                 typeid(arg) };
             return sstd_type_index(varAns.mmmUnique);
         }
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T >
@@ -194,6 +198,7 @@ namespace abi_sstd_get_sstd_index_private {
         inline static sstd_type_index get_index(const U & arg) {
             return arg.sstd_get_sstd_type_index();
         }
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T >
@@ -203,36 +208,43 @@ namespace abi_sstd_get_sstd_index_private {
         inline static sstd_type_index get_index(const U & arg) {
             return arg->sstd_get_sstd_type_index();
         }
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T, typename = void >
     class is_by_value : public std::false_type {
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T>
     class is_by_value<T, std::void_t<
         decltype(std::declval<T>().sstd_get_sstd_type_index())
     > > : public std::true_type {
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T, typename = void >
     class is_by_pointer : public std::false_type {
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T>
     class is_by_pointer<T, std::void_t<
         decltype(std::declval<T>()->sstd_get_sstd_type_index())
     > > : public std::true_type {
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T, typename = void >
     class get_void_helper : public std::false_type {
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T>
     class get_void_helper<T, std::void_t<
         decltype(std::declval<T>()->sstd_get_this_void())
     > > : public std::true_type {
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T, bool = std::is_polymorphic_v<T>>
@@ -246,6 +258,7 @@ namespace abi_sstd_get_sstd_index_private {
                 return dynamic_cast<const void *>(arg);
             }
         }
+        _SSTD_MEMORY_1_DFINE
     };
 
     template<typename T >
@@ -259,6 +272,7 @@ namespace abi_sstd_get_sstd_index_private {
                 return arg;
             }
         }
+        _SSTD_MEMORY_1_DFINE
     };
 
 }/****/
@@ -307,8 +321,7 @@ template<typename Tt,
     bool = std::is_polymorphic_v<
     std::remove_cv_t <
     std::remove_reference_t<Tt> > > >
-    class _3_sstd_runtime_basic :
-    public _1_sstd_memory_static_class_basic {
+    class _3_sstd_runtime_basic  {
     public:
         using sstd_this_type = std::remove_cv_t< std::remove_reference_t<Tt> >;
         static inline bool sstd_is_polymorphic() noexcept {
@@ -328,11 +341,11 @@ template<typename Tt,
             const static _2_sstd_runtime_static_basic<sstd_this_type> var;
             return var.sstd_get_sstd_type_index();
         }
+        _SSTD_MEMORY_1_DFINE
 };
 
 template<typename Tt>
 class _3_sstd_runtime_basic<Tt, true> :
-    public _1_sstd_memory_dynamic_class_basic,
     public virtual sstd_virtual_basic {
 protected:
     using sstd_this_type = std::remove_cv_t< std::remove_reference_t<Tt> >;
@@ -357,6 +370,7 @@ protected:
         return static_cast<sstd_this_type *>(
             const_cast<_3_sstd_runtime_basic *>(this));
     }
+    _SSTD_MEMORY_1_DFINE
 };
 
 template<typename T,
@@ -368,6 +382,7 @@ template<typename T,
         using sstd_super_ = _3_sstd_runtime_basic<T, IsVirtual>;
     public:
         using sstd_this_type = typename sstd_super_::sstd_this_type;
+        _SSTD_MEMORY_1_DFINE
 };
 
 #ifndef SSTD_BEGIN_DEFINE_VIRTUAL_CLASS
@@ -382,42 +397,7 @@ template<typename T,
     using _sstd_this_type_ = sstd_runtime_basic<_SSTD_T_ , _SSTD_B_> ; \
     public : \
     using sstd_this_type = typename _sstd_this_type_::sstd_this_type ; \
-    static constexpr inline void* operator new  (std::size_t argA, void* argB) noexcept { \
-    return _1_sstd_runtime_static_basic::operator new(argA,argB); \
-    } \
-    static constexpr inline void* operator new[](std::size_t argA, void* argB) noexcept { \
-    return _1_sstd_runtime_static_basic::operator new[](argA,argB); \
-    } \
-    static constexpr inline void operator delete(void * argA, void * argB) noexcept { \
-    return _1_sstd_runtime_static_basic::operator delete(argA,argB); \
-    } \
-    static constexpr inline void operator delete[](void * argA, void * argB) noexcept { \
-    return _1_sstd_runtime_static_basic::operator delete[](argA,argB); \
-    } \
-    static inline void* operator new (std::size_t argA){ \
-    return _1_sstd_runtime_static_basic::operator new(argA);\
-    } \
-    static inline void operator delete(void * argA){ \
-    return _1_sstd_runtime_static_basic::operator delete(argA); \
-    } \
-    static inline void* operator new[](std::size_t argA){ \
-    return _1_sstd_runtime_static_basic::operator new[](argA);\
-    } \
-    static inline void operator delete[](void * argA){ \
-    return _1_sstd_runtime_static_basic::operator delete[](argA) ;\
-    } \
-    static inline void* operator new(std::size_t argA, std::align_val_t argB){ \
-    return _1_sstd_runtime_static_basic::operator new(argA,argB);\
-    } \
-    static inline void operator delete(void* argA, std::align_val_t argB){ \
-    return _1_sstd_runtime_static_basic::operator delete(argA,argB);\
-    } \
-    static inline void* operator new[](std::size_t argA, std::align_val_t argB){ \
-    return _1_sstd_runtime_static_basic::operator new[](argA,argB);\
-    } \
-    static inline void operator delete[](void* argA, std::align_val_t argB){ \
-    return _1_sstd_runtime_static_basic::operator delete[](argA,argB);\
-    }
+    _SSTD_MEMORY_1_DFINE
 /**************************************************/
 #endif
 
