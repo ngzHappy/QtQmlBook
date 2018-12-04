@@ -52,11 +52,7 @@ win32-msvc*{#win32-msvc*
 
 DEFINES *= _0_SSTD_HAS_JE_MALLLOC
 
-CONFIG(debug,debug|release){
-LIBS += -L$$PWD/memory/libs -ljemalloc_win64_msvc2017d
-}else{
-LIBS += -L$$PWD/memory/libs -ljemalloc_win64_msvc2017
-}
+include($$PWD/memory/libs/jemalloc_msvc_64/jemalloc_msvc_64.pri)
 
 }#win32-msvc*
 
