@@ -39,6 +39,7 @@ namespace {
         private_type_cast_map mmmCastMap;
         std::shared_mutex mmmMutex;
     public:
+
         inline type_cast_function find(const sstd_type_index & arg) {
             std::shared_lock varReadLock{ mmmMutex };
             auto varPos = std::as_const(mmmCastMap).find(arg);
@@ -47,9 +48,9 @@ namespace {
             }
             return nullptr;
         }
-        inline void insert(const sstd_type_index & arg, raw_type_cast_function argv) {
 
-            const type_cast_function v{ argv };
+        inline void insert(const sstd_type_index & arg, const type_cast_function & argv) {
+            const type_cast_function & v{ argv };
             {
                 std::shared_lock varReadLock{ mmmMutex };
                 /********************************************************/
@@ -80,25 +81,6 @@ namespace {
                     }
                     /*当前值是empty，要插入的值不是empty，更新当前值*/
                     varPos->second = v;
-                    return;
-                }
-            }
-            mmmCastMap.emplace(arg, v);
-        }
-
-        template<typename VType>
-        inline void insert(const sstd_type_index & arg, VType v) {
-            {
-                std::shared_lock varReadLock{ mmmMutex };
-                auto varPos = std::as_const(mmmCastMap).find(arg);
-                if (std::as_const(mmmCastMap).end() != varPos) {
-                    return;
-                }
-            }
-            std::unique_lock varWriteLock{ mmmMutex };
-            {
-                auto varPos = std::as_const(mmmCastMap).find(arg);
-                if (std::as_const(mmmCastMap).end() != varPos) {
                     return;
                 }
             }
