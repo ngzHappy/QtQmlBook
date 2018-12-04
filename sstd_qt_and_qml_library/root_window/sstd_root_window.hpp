@@ -5,47 +5,47 @@
 #include "sstd_private/sstd_quick_view_window.hpp"
 
 namespace sstd {
-    Q_NAMESPACE
+    Q_NAMESPACE/**/static_assert(true);
 
-        enum class WindowType : std::size_t {
+    enum class WindowType : std::size_t {
         QtQuickWindow,
         QtWidget,
     };
-    Q_ENUM_NS(WindowType)
+    Q_ENUM_NS(WindowType)/**/static_assert(true);
 
-        enum class ResizeMode : std::size_t {
+    enum class ResizeMode : std::size_t {
         SizeViewToRootObject,
         SizeRootObjectToView,
     };
-    Q_ENUM_NS(ResizeMode)
+    Q_ENUM_NS(ResizeMode)/**/static_assert(true);
 
-        enum class LoadState : std::size_t {
+    enum class LoadState : std::size_t {
         Null,
         Ready,
         Loading,
         Error,
     };
-    Q_ENUM_NS(LoadState)
+    Q_ENUM_NS(LoadState)/**/static_assert(true);
 
-        class EXPORT_SSTD_QT_AND_QML_LIBRARY AbstractRootWindow :
+    class EXPORT_SSTD_QT_AND_QML_LIBRARY AbstractRootWindow :
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(AbstractRootWindow) {
-        public:
-            virtual WindowType getWindowType() const = 0;
-            virtual QObject * getObject() const = 0;
-            virtual void setResizeMode(sstd::ResizeMode) = 0;
-            virtual void load(const QUrl &) = 0;
-            virtual sstd::LoadState status() const = 0;
-            virtual void setTitle(const QString &) = 0;
-            virtual void setClearColor(const QColor &) = 0;
-            virtual void show() = 0;
-            virtual void setX(int) = 0;
-            virtual void setY(int) = 0;
-            virtual QQuickWindow * getQuickWindow() const = 0;
-            virtual QQmlEngine * getEngine() const = 0;
-            virtual QQmlContext * getRootContext() const = 0;
-            virtual QQuickItem * getRootObject() const = 0;
-            virtual ~AbstractRootWindow();
-            SSTD_END_DEFINE_VIRTUAL_CLASS(AbstractRootWindow);
+    public:
+        virtual WindowType getWindowType() const = 0;
+        virtual QObject * getObject() const = 0;
+        virtual void setResizeMode(sstd::ResizeMode) = 0;
+        virtual void load(const QUrl &) = 0;
+        virtual sstd::LoadState status() const = 0;
+        virtual void setTitle(const QString &) = 0;
+        virtual void setClearColor(const QColor &) = 0;
+        virtual void show() = 0;
+        virtual void setX(int) = 0;
+        virtual void setY(int) = 0;
+        virtual QQuickWindow * getQuickWindow() const = 0;
+        virtual QQmlEngine * getEngine() const = 0;
+        virtual QQmlContext * getRootContext() const = 0;
+        virtual QQuickItem * getRootObject() const = 0;
+        virtual ~AbstractRootWindow();
+        SSTD_END_DEFINE_VIRTUAL_CLASS(AbstractRootWindow);
     };
 
     template <WindowType>
