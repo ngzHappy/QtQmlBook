@@ -23,7 +23,19 @@ win32-msvc*{
     CONFIG += console
 }
 
+DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
+
 DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
+
+CONFIG(debug,debug|release){
+    QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
+}else{
+    QMAKE_POST_LINK += $${DESTDIR}/build_install $$PWD "myqml"
+}
+export(QMAKE_POST_LINK)
+
+
+
 
