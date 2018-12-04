@@ -19,7 +19,9 @@
 #pragma warning(disable:4251)
 #endif
 
-
+#ifndef sstdg
+#define sstdg
+#endif
 
 
 
