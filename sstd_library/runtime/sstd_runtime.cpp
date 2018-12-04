@@ -3,8 +3,13 @@
 #include <shared_mutex>
 #include <optional>
 #include <variant>
+#include <iostream>
 
 namespace {
+
+    inline auto emptyCast(void *)->void * {
+        return nullptr;
+    }
 
     template<typename T, typename V>
     class this_map : public sstd::unordered_map<T, V> {
@@ -19,6 +24,8 @@ namespace {
         decltype(nullptr),
         std::ptrdiff_t,
         raw_type_cast_function >;
+
+    const static constexpr type_cast_function globalEmptyCast{ emptyCast };
 
     class private_type_cast_map : public sstd::map<
         sstd_type_index,
@@ -40,7 +47,47 @@ namespace {
             }
             return nullptr;
         }
-        inline void insert(const sstd_type_index & arg, raw_type_cast_function v) {
+        inline void insert(const sstd_type_index & arg, raw_type_cast_function argv) {
+
+            const type_cast_function v{ argv };
+            {
+                std::shared_lock varReadLock{ mmmMutex };
+                /********************************************************/
+                if (std::as_const(mmmCastMap).size() > 1024) {
+                    std::cout << __func__ << "bad design !!!" << std::endl;
+                }
+                /********************************************************/
+                auto varPos = std::as_const(mmmCastMap).find(arg);
+                if (std::as_const(mmmCastMap).end() != varPos) {/*找到当前值*/
+                    if (varPos->second != globalEmptyCast) {/*当存储前值不是empty cast*/
+                        return;
+                    }
+                    if (v == globalEmptyCast) {/*当前值和要插入的值都是empty cast*/
+                        return;
+                    }
+                    /*当前值是empty，要插入的值不是empty，更新当前值*/
+                }
+            }
+            std::unique_lock varWriteLock{ mmmMutex };
+            {
+                auto varPos = mmmCastMap.find(arg);
+                if (std::as_const(mmmCastMap).end() != varPos) {/*找到当前值*/
+                    if (varPos->second != globalEmptyCast) {/*当存储前值不是empty cast*/
+                        return;
+                    }
+                    if (v == globalEmptyCast) {/*当前值和要插入的值都是empty cast*/
+                        return;
+                    }
+                    /*当前值是empty，要插入的值不是empty，更新当前值*/
+                    varPos->second = v;
+                    return;
+                }
+            }
+            mmmCastMap.emplace(arg, v);
+        }
+
+        template<typename VType>
+        inline void insert(const sstd_type_index & arg, VType v) {
             {
                 std::shared_lock varReadLock{ mmmMutex };
                 auto varPos = std::as_const(mmmCastMap).find(arg);
@@ -57,23 +104,7 @@ namespace {
             }
             mmmCastMap.emplace(arg, v);
         }
-        inline void insert(const sstd_type_index & arg, std::ptrdiff_t v) {
-            {
-                std::shared_lock varReadLock{ mmmMutex };
-                auto varPos = std::as_const(mmmCastMap).find(arg);
-                if (std::as_const(mmmCastMap).end() != varPos) {
-                    return;
-                }
-            }
-            std::unique_lock varWriteLock{ mmmMutex };
-            {
-                auto varPos = std::as_const(mmmCastMap).find(arg);
-                if (std::as_const(mmmCastMap).end() != varPos) {
-                    return;
-                }
-            }
-            mmmCastMap.emplace(arg, v);
-        }
+
     };
 
     class type_cast_item {
@@ -288,6 +319,9 @@ _1_SSTD_CORE_EXPORT void * _sstd_runtime_dynamic_cast(
             reinterpret_cast<std::uint8_t *>(varAns) -
             reinterpret_cast<std::uint8_t *>(arg));
         return varAns;
+    } else {
+        /*注册转型失败*/
+        varInformation->mmmTypeCastMap.insert(outPutType, globalEmptyCast);
     }
 
     /*转型失败*/
@@ -316,6 +350,6 @@ _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & 
 }
 
 /*禁止编译器优化*/
-_1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *){
+_1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *) {
 }
 
