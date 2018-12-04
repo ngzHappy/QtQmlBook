@@ -42,7 +42,8 @@ namespace static_test_ns {
 }
 
 namespace dynamic_test_ns {
-    class DynamicClassTestBasic : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(DynamicClassTestBasic) {
+    class DynamicClassTestBasic : public QObject,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(DynamicClassTestBasic) {
         SSTD_END_DEFINE_VIRTUAL_CLASS(DynamicClassTestBasic);
     };
     class DynamicClassTest : public DynamicClassTestBasic,
