@@ -12,11 +12,13 @@ namespace sstd::_private_sstd {
 
     void _WindowPrivate::setResizeMode(sstd::ResizeMode arg) {
         switch (arg) {
-        case sstd::ResizeMode::SizeViewToRootObject: {
+        case sstd::ResizeMode::SizeViewToRootObject:
+        {
             Super::setResizeMode(Super::SizeViewToRootObject);
             break;
         }
-        case sstd::ResizeMode::SizeRootObjectToView: {
+        case sstd::ResizeMode::SizeRootObjectToView:
+        {
             Super::setResizeMode(Super::SizeRootObjectToView);
             break;
         }
@@ -25,11 +27,13 @@ namespace sstd::_private_sstd {
 
     void _WidgetPrivate::setResizeMode(sstd::ResizeMode arg) {
         switch (arg) {
-        case sstd::ResizeMode::SizeViewToRootObject: {
+        case sstd::ResizeMode::SizeViewToRootObject:
+        {
             Super::setResizeMode(Super::SizeViewToRootObject);
             break;
         }
-        case sstd::ResizeMode::SizeRootObjectToView: {
+        case sstd::ResizeMode::SizeRootObjectToView:
+        {
             Super::setResizeMode(Super::SizeRootObjectToView);
             break;
         }
@@ -114,19 +118,19 @@ namespace sstd::_private_sstd {
         Super::setGeometry(varGeomety.x(), arg, varGeomety.width(), varGeomety.height());
     }
 
-    QObject * _WidgetPrivate::getObject() const{
-        return const_cast<_WidgetPrivate*>( this );
+    QObject * _WidgetPrivate::getObject() const {
+        return const_cast<_WidgetPrivate*>(this);
     }
 
-    QObject * _WindowPrivate::getObject() const{
-        return const_cast<_WindowPrivate*>( this );
+    QObject * _WindowPrivate::getObject() const {
+        return const_cast<_WindowPrivate*>(this);
     }
 
-    QQuickWindow * _WindowPrivate::getQuickWindow() const{
+    QQuickWindow * _WindowPrivate::getQuickWindow() const {
         return Super::getQuickWindow();
     }
 
-    QQuickWindow * _WidgetPrivate::getQuickWindow() const{
+    QQuickWindow * _WidgetPrivate::getQuickWindow() const {
         return Super::getQuickWindow();
     }
 
@@ -138,7 +142,7 @@ namespace sstd::_private_sstd {
         return Super::rootContext();
     }
 
-    QQuickItem * _WidgetPrivate::getRootObject() const{
+    QQuickItem * _WidgetPrivate::getRootObject() const {
         return Super::rootObject();
     }
 
@@ -150,7 +154,7 @@ namespace sstd::_private_sstd {
         return Super::rootContext();
     }
 
-    QQuickItem * _WindowPrivate::getRootObject() const{
+    QQuickItem * _WindowPrivate::getRootObject() const {
         return Super::rootObject();
     }
 

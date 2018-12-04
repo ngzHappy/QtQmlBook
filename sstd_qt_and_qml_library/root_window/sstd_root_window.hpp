@@ -7,19 +7,19 @@
 namespace sstd {
     Q_NAMESPACE
 
-    enum class WindowType : std::size_t {
+        enum class WindowType : std::size_t {
         QtQuickWindow,
         QtWidget,
     };
     Q_ENUM_NS(WindowType)
 
-    enum class ResizeMode : std::size_t {
+        enum class ResizeMode : std::size_t {
         SizeViewToRootObject,
         SizeRootObjectToView,
     };
     Q_ENUM_NS(ResizeMode)
 
-    enum class LoadState : std::size_t {
+        enum class LoadState : std::size_t {
         Null,
         Ready,
         Loading,
@@ -27,25 +27,25 @@ namespace sstd {
     };
     Q_ENUM_NS(LoadState)
 
-    class EXPORT_SSTD_QT_AND_QML_LIBRARY AbstractRootWindow :
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(AbstractRootWindow){
-    public:
-        virtual WindowType getWindowType() const=0;
-        virtual QObject * getObject() const =0;
-        virtual void setResizeMode(sstd::ResizeMode)=0;
-        virtual void load(const QUrl &)=0;
-        virtual sstd::LoadState status() const=0;
-        virtual void setTitle(const QString &)=0;
-        virtual void setClearColor(const QColor &)=0;
-        virtual void show()=0;
-        virtual void setX(int)=0;
-        virtual void setY(int)=0;
-        virtual QQuickWindow * getQuickWindow() const=0;
-        virtual QQmlEngine * getEngine() const =0;
-        virtual QQmlContext * getRootContext() const =0;
-        virtual QQuickItem * getRootObject() const=0;
-        virtual ~AbstractRootWindow();
-        SSTD_END_DEFINE_VIRTUAL_CLASS(AbstractRootWindow);
+        class EXPORT_SSTD_QT_AND_QML_LIBRARY AbstractRootWindow :
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(AbstractRootWindow) {
+        public:
+            virtual WindowType getWindowType() const = 0;
+            virtual QObject * getObject() const = 0;
+            virtual void setResizeMode(sstd::ResizeMode) = 0;
+            virtual void load(const QUrl &) = 0;
+            virtual sstd::LoadState status() const = 0;
+            virtual void setTitle(const QString &) = 0;
+            virtual void setClearColor(const QColor &) = 0;
+            virtual void show() = 0;
+            virtual void setX(int) = 0;
+            virtual void setY(int) = 0;
+            virtual QQuickWindow * getQuickWindow() const = 0;
+            virtual QQmlEngine * getEngine() const = 0;
+            virtual QQmlContext * getRootContext() const = 0;
+            virtual QQuickItem * getRootObject() const = 0;
+            virtual ~AbstractRootWindow();
+            SSTD_END_DEFINE_VIRTUAL_CLASS(AbstractRootWindow);
     };
 
     template <WindowType>
@@ -54,8 +54,8 @@ namespace sstd {
     namespace _private_sstd {
 
         class EXPORT_SSTD_QT_AND_QML_LIBRARY _WindowPrivate :
-                public QuickViewWindow ,
-            public virtual AbstractRootWindow ,
+            public QuickViewWindow,
+            public virtual AbstractRootWindow,
             SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_WindowPrivate){
             Q_OBJECT
         public:
@@ -70,10 +70,12 @@ namespace sstd {
             Q_SLOT void setY(int) override;
             Q_SLOT QObject * getObject() const override;
             Q_SLOT QQuickWindow * getQuickWindow() const override;
-            Q_SLOT WindowType getWindowType() const override { return WindowType::QtQuickWindow; }
-            Q_SLOT QQmlEngine * getEngine() const override ;
-            Q_SLOT QQmlContext * getRootContext() const override ;
-            Q_SLOT QQuickItem * getRootObject() const override ;
+            Q_SLOT WindowType getWindowType() const override {
+                return WindowType::QtQuickWindow;
+            }
+            Q_SLOT QQmlEngine * getEngine() const override;
+            Q_SLOT QQmlContext * getRootContext() const override;
+            Q_SLOT QQuickItem * getRootObject() const override;
             _WindowPrivate();
         private:
             using Super = QuickViewWindow;
@@ -82,9 +84,9 @@ namespace sstd {
         };
 
         class EXPORT_SSTD_QT_AND_QML_LIBRARY _WidgetPrivate :
-                public QuickViewWidget,
-                public virtual AbstractRootWindow ,
-                SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_WidgetPrivate){
+            public QuickViewWidget,
+            public virtual AbstractRootWindow,
+            SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_WidgetPrivate){
             Q_OBJECT
         public:
             using QuickViewWidget::QuickViewWidget;
@@ -98,10 +100,12 @@ namespace sstd {
             Q_SLOT void setY(int) override;
             Q_SLOT QObject * getObject() const override;
             Q_SLOT QQuickWindow * getQuickWindow() const override;
-            Q_SLOT WindowType getWindowType() const override { return WindowType::QtWidget; }
-            Q_SLOT QQmlEngine * getEngine() const override ;
-            Q_SLOT QQmlContext * getRootContext() const override ;
-            Q_SLOT QQuickItem * getRootObject() const override ;
+            Q_SLOT WindowType getWindowType() const override {
+                return WindowType::QtWidget;
+            }
+            Q_SLOT QQmlEngine * getEngine() const override;
+            Q_SLOT QQmlContext * getRootContext() const override;
+            Q_SLOT QQuickItem * getRootObject() const override;
             _WidgetPrivate();
         private:
             using Super = QuickViewWidget;
@@ -112,17 +116,25 @@ namespace sstd {
 
     template <>
     class RootWindow<WindowType::QtWidget> :
-        public _private_sstd::_WidgetPrivate {};
+        public _private_sstd::_WidgetPrivate,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RootWindow<WindowType::QtWidget>){
+    public:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(RootWindow);
+    };
 
     template <>
     class RootWindow<WindowType::QtQuickWindow> :
-        public _private_sstd::_WindowPrivate {};
+        public _private_sstd::_WindowPrivate,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RootWindow<WindowType::QtQuickWindow>){
+    public:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(RootWindow);
+    };
 
 #if !defined(_DEBUG)/*选择使用QQuickWidget还是QQuickView作为显示窗口*/
     using DefaultRoowWindow = RootWindow<sstd::WindowType::QtWidget>;
 #else
     using DefaultRoowWindow = RootWindow<sstd::WindowType::QtQuickWindow>;
-#endif
+#endif 
 
 }/*namespace sstd*/
 

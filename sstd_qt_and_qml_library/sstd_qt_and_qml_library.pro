@@ -6,6 +6,7 @@ QT += core
 QT += quick
 QT += widgets
 QT += concurrent
+QT += quickwidgets
 
 CONFIG(debug,debug|release){
     TARGET = sstd_qt_and_qml_libraryd

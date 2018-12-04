@@ -7,7 +7,7 @@ win32-msvc*{
 
     TestRootDestDir = $$PWD/bin/test
     RootDestDir = $$PWD/bin/final
-    
+
 }
 
 CONFIG(debug,debug|release){#debug

@@ -3,8 +3,8 @@ TEMPLATE = app
 QT -= core
 QT -= gui
 
-include($$PWD/build_install.pri)
-include($$PWD/../../outdirpath.pri)
+include($$PWD/../build_install.pri)
+include($$PWD/../../../outdirpath.pri)
 
 CONFIG(debug,debug|release){
     TARGET = build_install_test_debug
