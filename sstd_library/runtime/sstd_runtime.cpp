@@ -49,11 +49,13 @@ namespace {
             return nullptr;
         }
 
+        /*如果当前值是empty cast，新值不是empty cast，更新当前值*/
         inline void insert(const sstd_type_index & arg, const type_cast_function & argv) {
             const type_cast_function & v{ argv };
             {
                 std::shared_lock varReadLock{ mmmMutex };
                 /********************************************************/
+                //TODO : log
                 if (std::as_const(mmmCastMap).size() > 1024) {
                     std::cout << __func__ << "bad design !!!" << std::endl;
                 }
