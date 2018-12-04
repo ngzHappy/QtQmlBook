@@ -38,5 +38,7 @@ SOURCES += $$PWD/application/sstd_application.cpp
 SOURCES += $$PWD/application/sstd_application_environment.cpp
 SOURCES += $$PWD/opengl_default_format/sstd_opengl_default_format.cpp
 
+RESOURCES += $$PWD/resource/sstd_qt_and_qml_library.qrc
+
 
 
