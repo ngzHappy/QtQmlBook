@@ -53,6 +53,11 @@ namespace dynamic_test_ns {
 
 void TestObject::staticTest() {
     static_test_ns::static_test();
+    {/*simple test new delete*/
+        auto var = new int[32];
+        var[12] = 3;
+        delete var;
+    }
     {
         auto var = new static_test_ns::StaticClassTest;
         QVERIFY(var->sstd_get_this_void() == var);
