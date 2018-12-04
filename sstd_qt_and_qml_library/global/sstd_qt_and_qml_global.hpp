@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <QtCore/QtCore>
+#include <sstd_library.hpp>
 
 #ifndef _1_SSTD_QT_AND_QML_LIBRARY
 
