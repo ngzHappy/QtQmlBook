@@ -28,6 +28,9 @@ win32-msvc*{
 DESTDIR = $${TestRootDestDir}
 
 SOURCES += $$PWD/main.cpp
+SOURCES += $$PWD/TestObject.cpp
+
+HEADERS += $$PWD/TestObject.hpp
 
 
 

@@ -1,15 +1,13 @@
 ﻿#include <sstd_qt_and_qml_library.hpp>
-
-#include <QtWidgets/qwidget.h>
+#include "TestObject.hpp"
 
 int main(int argc,char ** argv){
 
-    sstd::Application varApp{argc,argv};
+    auto varApp = sstd_make_unique<sstd::Application>(argc,argv);
 
-    QWidget window;
-    window.show();
+    TestObject varTestObject;
 
-    return varApp.exec();
+    return QTest::qExec(&varTestObject, argc, argv);
 
 }
 
