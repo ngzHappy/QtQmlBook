@@ -7,8 +7,8 @@ namespace sstd {
         /*在QApplication构造之后构造*/
         {
             /*强制加载QImage插件*/
-            QImage varImage{ QStringLiteral("foreceLoadQImage.png") };
-            (void) varImage;
+            QImage varImage{ QStringLiteral(":/qtandqmlglobal/image/foreceLoadQImage.png") };
+            (void)varImage;
         }
     }
 

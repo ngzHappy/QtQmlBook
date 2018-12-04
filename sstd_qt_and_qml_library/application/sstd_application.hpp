@@ -7,7 +7,7 @@
 
 namespace sstd {
 
-    class Application :
+    class EXPORT_SSTD_QT_AND_QML_LIBRARY Application :
         public QApplication,
         public virtual ApplicationEnvironment,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Application){
