@@ -13,7 +13,7 @@ namespace  {
 #ifdef _0_SSTD_HAS_JE_MALLLOC
     return je_malloc(n);
 #else
-    return ::operator new(count);
+    return ::operator new(n);
 #endif
     }
     inline void auto_free(void *ptr){
