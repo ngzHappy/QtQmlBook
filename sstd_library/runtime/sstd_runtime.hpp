@@ -383,40 +383,40 @@ template<typename T,
     public : \
     using sstd_this_type = typename _sstd_this_type_::sstd_this_type ; \
     static constexpr inline void* operator new  (std::size_t argA, void* argB) noexcept { \
-    return _sstd_this_type_::operator new(argA,argB); \
+    return _1_sstd_runtime_static_basic::operator new(argA,argB); \
     } \
     static constexpr inline void* operator new[](std::size_t argA, void* argB) noexcept { \
-    return _sstd_this_type_::operator new[](argA,argB); \
+    return _1_sstd_runtime_static_basic::operator new[](argA,argB); \
     } \
     static constexpr inline void operator delete(void * argA, void * argB) noexcept { \
-    return _sstd_this_type_::operator delete(argA,argB); \
+    return _1_sstd_runtime_static_basic::operator delete(argA,argB); \
     } \
     static constexpr inline void operator delete[](void * argA, void * argB) noexcept { \
-    return _sstd_this_type_::operator delete[](argA,argB); \
+    return _1_sstd_runtime_static_basic::operator delete[](argA,argB); \
     } \
     static inline void* operator new (std::size_t argA){ \
-    return _sstd_this_type_::operator new(argA);\
+    return _1_sstd_runtime_static_basic::operator new(argA);\
     } \
     static inline void operator delete(void * argA){ \
-    return _sstd_this_type_::operator delete(argA); \
+    return _1_sstd_runtime_static_basic::operator delete(argA); \
     } \
     static inline void* operator new[](std::size_t argA){ \
-    return _sstd_this_type_::operator new[](argA);\
+    return _1_sstd_runtime_static_basic::operator new[](argA);\
     } \
     static inline void operator delete[](void * argA){ \
-    return _sstd_this_type_::operator delete[](argA) ;\
+    return _1_sstd_runtime_static_basic::operator delete[](argA) ;\
     } \
     static inline void* operator new(std::size_t argA, std::align_val_t argB){ \
-    return _sstd_this_type_::operator new(argA,argB);\
+    return _1_sstd_runtime_static_basic::operator new(argA,argB);\
     } \
     static inline void operator delete(void* argA, std::align_val_t argB){ \
-    return _sstd_this_type_::operator delete(argA,argB);\
+    return _1_sstd_runtime_static_basic::operator delete(argA,argB);\
     } \
     static inline void* operator new[](std::size_t argA, std::align_val_t argB){ \
-    return _sstd_this_type_::operator new[](argA,argB);\
+    return _1_sstd_runtime_static_basic::operator new[](argA,argB);\
     } \
     static inline void operator delete[](void* argA, std::align_val_t argB){ \
-    return _sstd_this_type_:: operator delete[](argA,argB);\
+    return _1_sstd_runtime_static_basic::operator delete[](argA,argB);\
     }
 /**************************************************/
 #endif
