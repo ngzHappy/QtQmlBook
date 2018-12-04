@@ -6,7 +6,8 @@
 namespace sstd {
 
     /*用于在QApplication构造之前构造*/
-    class EXPORT_SSTD_QT_AND_QML_LIBRARY ApplicationEnvironment : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(ApplicationEnvironment) {
+    class EXPORT_SSTD_QT_AND_QML_LIBRARY ApplicationEnvironment :
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(ApplicationEnvironment) {
     public:
         ApplicationEnvironment();
     private:
