@@ -39,3 +39,25 @@ DESTDIR = $${RootDestDir}
 INCLUDEPATH += $$[QT_INSTALL_HEADERS]
 #qmake -query
 
+#change here ...
+
+win32-g++*{#win32-g++*
+
+DEFINES *= _0_SSTD_HAS_JE_MALLLOC
+LIBS += -L$$PWD/memory/libs -ljemalloc_win64_mingw_730
+
+} else {#win32-g++*
+
+win32-msvc*{#win32-msvc*
+
+DEFINES *= _0_SSTD_HAS_JE_MALLLOC
+
+CONFIG(debug,debug|release){
+LIBS += -L$$PWD/memory/libs -ljemalloc_win64_msvc2017d
+}else{
+LIBS += -L$$PWD/memory/libs -ljemalloc_win64_msvc2017
+}
+
+}#win32-msvc*
+
+}#win32-g++*
