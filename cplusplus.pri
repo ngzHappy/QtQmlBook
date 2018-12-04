@@ -1,5 +1,10 @@
 #use Qt 5.12.0 or later
-CONFIG += c++17
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+}
 
 win32-msvc*{
     CONFIG+=suppress_vcproj_warnings
