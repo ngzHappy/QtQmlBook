@@ -7,18 +7,41 @@
 
 namespace sstd {
 
+    class _ApplicationArgsPrivate;
+    class EXPORT_SSTD_QT_AND_QML_LIBRARY ApplicationArgs {
+    public:
+        ApplicationArgs(int, char **);
+        inline ApplicationArgs(const ApplicationArgs &)=default;
+        inline ApplicationArgs(ApplicationArgs &&) = default;
+        inline ApplicationArgs&operator=(const ApplicationArgs &) = default;
+        inline ApplicationArgs&operator=(ApplicationArgs &&) = default;
+    public:
+        int & getArgC() const;
+        char ** getArgV() const;
+    private:
+        std::shared_ptr<const _ApplicationArgsPrivate> mmmData;
+    private:
+        SSTD_DEFINE_STATIC_CLASS(ApplicationArgs);
+    };
+
     class EXPORT_SSTD_QT_AND_QML_LIBRARY Application :
         public QApplication,
         public virtual ApplicationEnvironment,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Application){
         Q_OBJECT
     public:
-        Application(int &, char **);
+        inline Application(int, char **);
+        Application(ApplicationArgs);
     private:
+        ApplicationArgs mmmArgs;
         using Super = QApplication;
         SSTD_DELETE_COPY_ASSIGN(Application);
         SSTD_END_DEFINE_VIRTUAL_CLASS(Application);
     };
+
+    inline Application::Application(int argc, char ** argv) :
+        Application(ApplicationArgs{ argc,argv }) {
+    }
 
 }/*namespace sstd*/
 
