@@ -16,6 +16,7 @@ int main(int argc, char ** argv) {
         /*检查并报错*/
         if (varWindow->status() != sstd::LoadState::Ready) {
             qWarning() << QStringLiteral("can not load : ") << varFullFileName;
+            return -1;
         }
     }
     varWindow->show();
