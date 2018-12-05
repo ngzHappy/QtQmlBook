@@ -127,11 +127,11 @@ namespace sstd::_private_sstd {
     }
 
     QQuickWindow * _WindowPrivate::getQuickWindow() const {
-        return Super::getQuickWindow();
+        return const_cast<_WindowPrivate*>(this);
     }
 
     QQuickWindow * _WidgetPrivate::getQuickWindow() const {
-        return Super::getQuickWindow();
+        return const_cast<_WidgetPrivate*>(this)->quickWindow();
     }
 
     QQmlEngine * _WidgetPrivate::getEngine() const {

@@ -1,8 +1,8 @@
 ﻿#pragma once
 
 #include "../sstd_qt_and_qml_library.hpp"
-#include "sstd_private/sstd_quick_view_widget.hpp"
-#include "sstd_private/sstd_quick_view_window.hpp"
+#include <QtQuick/qquickview.h>
+#include <QtQuickWidgets/qquickwidget.h>
 
 namespace sstd {
     Q_NAMESPACE 
@@ -54,12 +54,11 @@ namespace sstd {
     namespace _private_sstd {
 
         class EXPORT_SSTD_QT_AND_QML_LIBRARY _WindowPrivate :
-            public QuickViewWindow,
-            public virtual AbstractRootWindow,
+            public QQuickView ,
+            public AbstractRootWindow,
             SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_WindowPrivate){
             Q_OBJECT
         public:
-            using QuickViewWindow::QuickViewWindow;
             Q_SLOT void setResizeMode(sstd::ResizeMode) override;
             Q_SLOT void load(const QUrl &) override;
             Q_SLOT sstd::LoadState status() const override;
@@ -78,18 +77,17 @@ namespace sstd {
             Q_SLOT QQuickItem * getRootObject() const override;
             _WindowPrivate();
         private:
-            using Super = QuickViewWindow;
+            using Super = QQuickView;
         private:
             SSTD_END_DEFINE_VIRTUAL_CLASS(_WindowPrivate);
         };
 
         class EXPORT_SSTD_QT_AND_QML_LIBRARY _WidgetPrivate :
-            public QuickViewWidget,
-            public virtual AbstractRootWindow,
+            public QQuickWidget ,
+            public AbstractRootWindow,
             SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_WidgetPrivate){
             Q_OBJECT
         public:
-            using QuickViewWidget::QuickViewWidget;
             Q_SLOT void setResizeMode(sstd::ResizeMode) override;
             Q_SLOT void load(const QUrl &) override;
             Q_SLOT sstd::LoadState status() const override;
@@ -108,32 +106,28 @@ namespace sstd {
             Q_SLOT QQuickItem * getRootObject() const override;
             _WidgetPrivate();
         private:
-            using Super = QuickViewWidget;
+            using Super = QQuickWidget;
         private:
             SSTD_END_DEFINE_VIRTUAL_CLASS(_WidgetPrivate);
         };
     }
 
     template <>
-    class RootWindow<WindowType::QtWidget> :
-        public _private_sstd::_WidgetPrivate,
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RootWindow<WindowType::QtWidget>){
+    class RootWindow<WindowType::QtWidget> {
     public:
-        SSTD_END_DEFINE_VIRTUAL_CLASS(RootWindow);
+        using type = _private_sstd::_WidgetPrivate;
     };
 
     template <>
-    class RootWindow<WindowType::QtQuickWindow> :
-        public _private_sstd::_WindowPrivate,
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RootWindow<WindowType::QtQuickWindow>){
+    class RootWindow<WindowType::QtQuickWindow> {
     public:
-        SSTD_END_DEFINE_VIRTUAL_CLASS(RootWindow);
+        using type = _private_sstd::_WindowPrivate;
     };
 
 #if !defined(_DEBUG)/*选择使用QQuickWidget还是QQuickView作为显示窗口*/
-    using DefaultRoowWindow = RootWindow<sstd::WindowType::QtWidget>;
+    using DefaultRoowWindow = typename RootWindow<sstd::WindowType::QtWidget>::type ;
 #else
-    using DefaultRoowWindow = RootWindow<sstd::WindowType::QtQuickWindow>;
+    using DefaultRoowWindow = typename RootWindow<sstd::WindowType::QtQuickWindow>::type ;
 #endif 
 
 }/*namespace sstd*/

@@ -9,12 +9,18 @@ SOURCES += $$PWD/main.cpp \
     $$PWD/boost_filesystem_libs/boost_filesystem_utf8_codecvt_facet.cpp \
     $$PWD/boost_filesystem_libs/boost_filesystem_windows_file_codecvt.cpp
 
-CONFIG += c++17
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+}
+
 win32-msvc*{
     CONFIG+=suppress_vcproj_warnings
 }else{
      QMAKE_CFLAGS += -std=c11
 }
+
 INCLUDEPATH += $$PWD/boost_filesystem
 DEFINES *= BOOST_ALL_NO_LIB
 DEFINES *= BOOST_THREAD_PROVIDES_FUTURE_CTOR_ALLOCATORS
