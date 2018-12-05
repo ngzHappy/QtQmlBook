@@ -4,6 +4,7 @@
 #include <iostream>
 #include <atomic>
 #include <charconv>
+#include <mutex>
 using namespace std::string_view_literals;
 
 namespace sstd {
@@ -66,7 +67,7 @@ namespace {
         varAns += argLogFileName;
         varAns += u8R"(
 )"sv;
-        std::cout << varAns;
+        std::cout << varAns << std::flush ;
     }
 
     class BuildInLogFunction :
@@ -91,6 +92,11 @@ namespace {
         return varAns;
     }
 
+    std::mutex & getMutex() {
+        static auto * varAns = sstd_new<std::mutex>();
+        return *varAns;
+    }
+
 }/**/
 
 _1_SSTD_CORE_EXPORT void _1_sstd_log(
@@ -100,10 +106,11 @@ _1_SSTD_CORE_EXPORT void _1_sstd_log(
     std::string_view/*func*/d,
     std::string_view/*filename*/e) {
     auto f = getSSTDLogFunction().load();
+    std::unique_lock varLock{ getMutex() };
     if (f) {
         f->log(a, b, c, d, e);
     } else {
-        build_in_log_function(a,b,c,d,e);
+        build_in_log_function(a, b, c, d, e);
     }
 }
 
