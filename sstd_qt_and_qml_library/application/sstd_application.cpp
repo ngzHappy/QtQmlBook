@@ -24,10 +24,14 @@ namespace sstd {
             mmmArgv.reserve(argc);
             mmmArgvCStyle.reserve(argc);
             for (int varI = 0; varI < argc; ++varI) {
-                mmmArgvCStyle.push_back(
-                    mmmArgv.emplace_back(argv[varI]).data());
+                mmmArgv.emplace_back(argv[varI]);
             }
-            mmmArgvFinal = &(mmmArgvCStyle[0]);
+            for (const auto & varI : std::as_const(mmmArgv)) {
+                mmmArgvCStyle.push_back(
+                    const_cast<char *>(std::as_const(varI).c_str()));
+            }
+            mmmArgvFinal =const_cast<char **>(
+                &(std::as_const(mmmArgvCStyle)[0]));
         }
         SSTD_DEFINE_STATIC_CLASS(_ApplicationArgsPrivate);
     };
@@ -41,7 +45,7 @@ namespace sstd {
     }
 
     ApplicationArgs::ApplicationArgs(int argc, char ** argv) {
-        mmmData = sstd_make_shared<_ApplicationArgsPrivate>(argc,argv);
+        mmmData = sstd_make_shared<_ApplicationArgsPrivate>(argc, argv);
     }
 
 }/*namespace sstd*/
