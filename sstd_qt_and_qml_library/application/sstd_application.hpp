@@ -13,7 +13,7 @@ namespace sstd {
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Application){
         Q_OBJECT
     public:
-        Application(int, char **);
+        Application(int &, char **);
     private:
         using Super = QApplication;
         SSTD_DELETE_COPY_ASSIGN(Application);

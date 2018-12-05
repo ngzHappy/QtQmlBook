@@ -3,7 +3,7 @@
 
 namespace sstd {
 
-    Application::Application(int argc, char ** argv) :Super(argc, argv) {
+    Application::Application(int & argc, char ** argv) :Super(argc, argv) {
         /*在QApplication构造之后构造*/
         {
             /*强制加载QImage插件*/
