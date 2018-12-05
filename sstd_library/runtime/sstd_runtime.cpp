@@ -3,7 +3,9 @@
 #include <shared_mutex>
 #include <optional>
 #include <variant>
-#include <iostream>
+#include "../log/sstd_log.hpp"
+#include <string_view>
+using namespace std::string_view_literals;
 
 namespace {
 
@@ -55,10 +57,11 @@ namespace {
             {
                 std::shared_lock varReadLock{ mmmMutex };
                 /********************************************************/
-                //TODO : log
+#if defined(_DEBUG)
                 if (std::as_const(mmmCastMap).size() > 1024) {
-                    std::cout << __func__ << "bad design !!!" << std::endl;
+                    sstd_log("bad_design"sv);
                 }
+#endif
                 /********************************************************/
                 auto varPos = std::as_const(mmmCastMap).find(arg);
                 if (std::as_const(mmmCastMap).end() != varPos) {/*找到当前值*/

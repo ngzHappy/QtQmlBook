@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "../memory/sstd_memory.hpp"
+#include "../runtime/sstd_runtime.hpp"
 #include "../allocator/sstd_allocator.hpp"
 
 #include <vector>

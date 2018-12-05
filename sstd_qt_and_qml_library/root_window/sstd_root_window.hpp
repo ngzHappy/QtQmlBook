@@ -5,19 +5,19 @@
 #include <QtQuickWidgets/qquickwidget.h>
 
 namespace sstd {
-    Q_NAMESPACE 
+    Q_NAMESPACE
 
     enum class WindowType : std::size_t {
         QtQuickWindow,
         QtWidget,
     };
-    Q_ENUM_NS(WindowType) 
+    Q_ENUM_NS(WindowType)
 
     enum class ResizeMode : std::size_t {
         SizeViewToRootObject,
         SizeRootObjectToView,
     };
-    Q_ENUM_NS(ResizeMode) 
+    Q_ENUM_NS(ResizeMode)
 
     enum class LoadState : std::size_t {
         Null,
@@ -25,7 +25,7 @@ namespace sstd {
         Loading,
         Error,
     };
-    Q_ENUM_NS(LoadState) 
+    Q_ENUM_NS(LoadState)
 
     class EXPORT_SSTD_QT_AND_QML_LIBRARY AbstractRootWindow :
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(AbstractRootWindow) {
@@ -49,7 +49,7 @@ namespace sstd {
     };
 
     template <WindowType>
-    class RootWindow;
+    class _RootWindow;
 
     namespace _private_sstd {
 
@@ -113,22 +113,25 @@ namespace sstd {
     }
 
     template <>
-    class RootWindow<WindowType::QtWidget> {
+    class _RootWindow<WindowType::QtWidget> {
     public:
         using type = _private_sstd::_WidgetPrivate;
     };
 
     template <>
-    class RootWindow<WindowType::QtQuickWindow> {
+    class _RootWindow<WindowType::QtQuickWindow> {
     public:
         using type = _private_sstd::_WindowPrivate;
     };
 
+    template<WindowType St>
+    using RootWindow = typename _RootWindow<St>::type ;
+
 #if !defined(_DEBUG)/*选择使用QQuickWidget还是QQuickView作为显示窗口*/
-    using DefaultRoowWindow = typename RootWindow<sstd::WindowType::QtWidget>::type ;
+    using DefaultRoowWindow = typename RootWindow<sstd::WindowType::QtWidget> ;
 #else
-    using DefaultRoowWindow = typename RootWindow<sstd::WindowType::QtQuickWindow>::type ;
-#endif 
+    using DefaultRoowWindow = typename RootWindow<sstd::WindowType::QtQuickWindow> ;
+#endif
 
 }/*namespace sstd*/
 

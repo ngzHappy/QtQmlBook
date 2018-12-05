@@ -6,5 +6,5 @@
 #include "allocator/sstd_allocator.hpp"
 #include "container/sstd_container.hpp"
 #include "new/sstd_new.hpp"
-
+#include "log/sstd_log.hpp"
 
