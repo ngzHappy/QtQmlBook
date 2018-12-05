@@ -92,7 +92,16 @@ namespace {
         return varAns;
     }
 
-    class Mutex : public std::mutex {
+    class Mutex {
+        std::atomic_flag mmmFlag{ ATOMIC_FLAG_INIT };
+    public:
+        inline void lock() {
+            while (mmmFlag.test_and_set(std::memory_order_acquire)) {
+            }
+        }
+        inline void unlock() {
+            mmmFlag.clear(std::memory_order_release);
+        }
     public:
         SSTD_DEFINE_STATIC_CLASS(Mutex);
     };
@@ -122,7 +131,7 @@ _1_SSTD_CORE_EXPORT void _1_sstd_log(
 _1_SSTD_CORE_EXPORT sstd::LogFunction * sstd_set_log_function(sstd::LogFunction * a) {
     auto & varValue = getSSTDLogFunction();
     sstd::LogFunction * varAns = nullptr;
-    while (false == varValue.compare_exchange_weak(varAns, a)) {
+    while (!varValue.compare_exchange_weak(varAns, a)) {
     }
     return varAns;
 }
