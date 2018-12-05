@@ -67,7 +67,7 @@ namespace {
         varAns += argLogFileName;
         varAns += u8R"(
 )"sv;
-        std::cout << varAns << std::flush ;
+        std::cout << varAns << std::flush;
     }
 
     class BuildInLogFunction :
@@ -92,8 +92,13 @@ namespace {
         return varAns;
     }
 
-    std::mutex & getMutex() {
-        static auto * varAns = sstd_new<std::mutex>();
+    class Mutex : public std::mutex {
+    public:
+        SSTD_DEFINE_STATIC_CLASS(Mutex);
+    };
+
+    Mutex & getMutex() {
+        static auto * varAns = sstd_new<Mutex>();
         return *varAns;
     }
 
