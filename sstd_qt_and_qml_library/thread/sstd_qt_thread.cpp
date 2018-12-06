@@ -31,7 +31,10 @@ sstd_qt_thread_object::sstd_qt_thread_object(_0_sstd_qt_thread_object * arg) {
 }
 
 void sstd_qt_thread_call_object::_do_exception() noexcept {
-    mmmPromise.set_exception( std::current_exception() );
+    if (false == this->mmmHasException) {
+        this->mmmHasException = true;
+        mmmPromise.set_exception(std::current_exception());
+    }
 }
 
 sstd_qt_thread_call_object::~sstd_qt_thread_call_object() {
@@ -46,7 +49,6 @@ sstd_qt_thread_call_object::~sstd_qt_thread_call_object() {
         this->exitButNoCall();
         this->mmmPromise.set_value();
     } catch (...) {
-        this->mmmHasException = true;
         this->_do_exception();
     }
 
@@ -82,19 +84,21 @@ void sstd_qt_thread_call_object::call() noexcept {
                 try {
                     a->endCall();
                 } catch (...) {
-                    a->mmmHasException = true;
                     a->_do_exception();
                 }
             }
         } varLock{ this };
 
-        this->do_call();
+        try {
+            this->do_call();
+        } catch (...) {
+            this->_do_exception();
+        }
 
     } catch (...) {
 
-        this->mmmHasException = true;
         this->_do_exception();
-        
+
     }
 
     if (false == this->mmmHasException) {
