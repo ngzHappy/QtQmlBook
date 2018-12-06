@@ -111,6 +111,25 @@ void _0_sstd_qt_thread_object::_call_private_(sstd_qt_thread_call_object_ptr arg
     arg->call();
 }
 
+namespace {
+    class DestoryObject {
+        std::once_flag mmmFlag;
+        QThread * const mmmThread;
+        sstd_register_qthread_object_private * const mmmRegister;
+    public:
+        inline DestoryObject(QThread * a, sstd_register_qthread_object_private * b)
+            :mmmThread(a), mmmRegister(b) {
+        }
+        inline void doDestory() {
+            std::call_once(mmmFlag, [this]() {
+                mmmRegister->remove_qthread(mmmThread);
+            });
+        }
+    private:
+        SSTD_DEFINE_STATIC_CLASS(DestoryObject);
+    };
+}/****/
+
 EXPORT_SSTD_QT_AND_QML_LIBRARY auto _0_sstd_get_thread_object(QPointer<QThread> argThread)
 ->sstd::intrusive_ptr<_0_sstd_qt_thread_object> {
 
@@ -142,14 +161,17 @@ EXPORT_SSTD_QT_AND_QML_LIBRARY auto _0_sstd_get_thread_object(QPointer<QThread> 
             sstd::allocator<sstd_qt_thread_object>{});
     }
 
+    auto varDestoryObject =
+        sstd_make_shared<DestoryObject>(varThread, varRegister);
+
     QObject::connect(argThread, &QObject::destroyed,
-        varRegister, [varRegister, varThread]() {
-        varRegister->remove_qthread(varThread);
+        varRegister, [varDestoryObject]() {
+        varDestoryObject->doDestory();
     }, Qt::DirectConnection);
 
     QObject::connect(argThread, &QThread::finished,
-        varRegister, [varRegister, varThread]() {
-        varRegister->remove_qthread(varThread);
+        varRegister, [varDestoryObject]() {
+        varDestoryObject->doDestory();
     }, Qt::DirectConnection);
 
     /*before return the thread can not be destoryed ... */
