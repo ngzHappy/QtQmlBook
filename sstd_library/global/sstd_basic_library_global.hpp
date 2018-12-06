@@ -20,7 +20,7 @@
 #define sstdg
 #endif
 
-#if defined(_1_SSTD_CORE_LIBRARY) && defined( _MSC_VER )
+#if defined( _MSC_VER )
 #pragma warning(disable:4251)
 #endif
 
