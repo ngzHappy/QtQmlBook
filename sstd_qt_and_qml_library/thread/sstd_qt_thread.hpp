@@ -84,6 +84,9 @@ inline void sstd_qt_thread_object::call(sstd_qt_thread_call_object * arg) {
     }
 }
 
+EXPORT_SSTD_QT_AND_QML_LIBRARY sstd::intrusive_ptr<_0_sstd_qt_thread_object>
+_0_sstd_get_thread_object(QPointer<QThread>);
+
 class EXPORT_SSTD_QT_AND_QML_LIBRARY _0_sstd_qt_thread_object :
     public QObject,
     public virtual sstd_intrusive_ptr_basic,
@@ -100,8 +103,8 @@ public:
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(_0_sstd_qt_thread_object);
 public:
-    friend EXPORT_SSTD_QT_AND_QML_LIBRARY auto _0_sstd_get_thread_object(QPointer<QThread>)
-        ->sstd::intrusive_ptr<_0_sstd_qt_thread_object>;
+    friend sstd::intrusive_ptr<_0_sstd_qt_thread_object>
+            _0_sstd_get_thread_object(QPointer<QThread>);
 };
 
 inline auto sstd_get_thread_object(QPointer<QThread> arg)
