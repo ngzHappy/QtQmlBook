@@ -36,12 +36,16 @@ HEADERS += $$PWD/application/sstd_application_environment.hpp
 HEADERS += $$PWD/opengl_default_format/sstd_opengl_default_format.hpp
 HEADERS += $$PWD/root_window/sstd_root_window.hpp
 HEADERS += $$PWD/get_local_file_full_path/sstd_get_local_file_full_path.hpp
+HEADERS += $$PWD/thread/sstd_qt_thread.hpp
+HEADERS += $$PWD/thread/sstd_private/sstd_qt_thread_private.hpp
 
 SOURCES += $$PWD/application/sstd_application.cpp
 SOURCES += $$PWD/application/sstd_application_environment.cpp
 SOURCES += $$PWD/opengl_default_format/sstd_opengl_default_format.cpp
 SOURCES += $$PWD/root_window/sstd_root_window.cpp
 SOURCES += $$PWD/get_local_file_full_path/sstd_get_local_file_full_path.cpp
+SOURCES += $$PWD/thread/sstd_qt_thread.cpp
+SOURCES += $$PWD/thread/sstd_private/sstd_qt_thread_private.cpp
 
 RESOURCES += $$PWD/resource/sstd_qt_and_qml_library.qrc
 

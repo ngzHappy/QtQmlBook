@@ -3,7 +3,11 @@
 #include "../container/sstd_container.hpp"
 #include <iostream>
 #include <atomic>
+#if __has_include(<charconv>)
 #include <charconv>
+#else
+#define _F_NO_CHAR_CONV
+#endif
 #include <mutex>
 using namespace std::string_view_literals;
 
@@ -32,10 +36,35 @@ namespace {
         }
         sstd::string varAns;
         constexpr const auto varMaxSize = 256;
+#ifdef _F_NO_CHAR_CONV
+        varAns.resize(varMaxSize, char(0));
+        char * pos = &( * varAns.rbegin() );
+        char * varLast = pos + 1 ;
+        int num = 0 ;
+        bool isN = arg < 0;
+        int den = isN ? (-arg) : arg ;
+        const static constexpr char
+                varCast[]{'0','1','2','3','4','5','6','7','8','9'};
+        do {
+            num = den % 10 ;
+            den /= 10 ;
+            *pos = varCast[num];
+            --pos;
+        } while( den );
+        if(isN){
+            *pos = '-';
+        }else{
+            ++pos;
+        }
+        std::copy(pos,varLast,varAns.data());
+        varAns.resize( static_cast<std::size_t>( varLast - pos ) );
+        return std::move(varAns);
+#else
         varAns.resize(varMaxSize, char(0));
         const auto varResult = std::to_chars(varAns.data(), varAns.data() + varMaxSize, arg);
         varAns.resize(varResult.ptr - varAns.data());
         return std::move(varAns);
+#endif
     }
 
     inline void build_in_log_function(

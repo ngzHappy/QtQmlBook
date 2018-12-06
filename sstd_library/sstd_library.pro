@@ -28,6 +28,7 @@ SOURCES += $$PWD/runtime/sstd_runtime.cpp
 SOURCES += $$PWD/runtime/sstd_private_runtime_cast_gcc.cpp
 SOURCES += $$PWD/runtime/sstd_private_runtime_cast_msvc.cpp
 SOURCES += $$PWD/log/sstd_log.cpp
+SOURCES += $$PWD/intrusive_ptr/sstd_intrusive_ptr.cpp
 
 HEADERS += $$PWD/memory/sstd_memory.hpp
 HEADERS += $$PWD/runtime/sstd_runtime.hpp
@@ -35,6 +36,7 @@ HEADERS += $$PWD/container/sstd_container.hpp
 HEADERS += $$PWD/allocator/sstd_allocator.hpp
 HEADERS += $$PWD/new/sstd_new.hpp
 HEADERS += $$PWD/log/sstd_log.hpp
+SOURCES += $$PWD/intrusive_ptr/sstd_intrusive_ptr.hpp
 
 DESTDIR = $${RootDestDir}
 INCLUDEPATH += $$[QT_INSTALL_HEADERS]
