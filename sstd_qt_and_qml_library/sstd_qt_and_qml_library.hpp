@@ -5,7 +5,7 @@
 #include "opengl_default_format/sstd_opengl_default_format.hpp"
 #include "root_window/sstd_root_window.hpp"
 #include "get_local_file_full_path/sstd_get_local_file_full_path.hpp"
-
+#include "thread/sstd_qt_thread.hpp"
 
 
 
