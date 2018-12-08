@@ -103,7 +103,7 @@ public:
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(_0_sstd_qt_thread_object);
 public:
-    friend sstd::intrusive_ptr<_0_sstd_qt_thread_object>
+    friend EXPORT_SSTD_QT_AND_QML_LIBRARY sstd::intrusive_ptr<_0_sstd_qt_thread_object>
             _0_sstd_get_thread_object(QPointer<QThread>);
 };
 
