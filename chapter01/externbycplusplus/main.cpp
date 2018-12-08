@@ -27,7 +27,7 @@ int main(int argc, char ** argv) {
             QStringLiteral("quick_memory_image"));
         assert(varImageObject);
         /*设置测试图片*/
-        QImage varTestImage{ 128 , 512 ,QImage::Format_RGBA64_Premultiplied };
+        QImage varTestImage{ 256 , 512 ,QImage::Format_RGBA64_Premultiplied };
         varTestImage.fill(QColor(QRgba64::fromRgba64(1, 32215, 5535, 65535)));
         varImageObject->setImage(varTestImage);
     }

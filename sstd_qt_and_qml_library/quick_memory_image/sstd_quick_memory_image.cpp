@@ -1,6 +1,7 @@
 ﻿#include "sstd_quick_memory_image.hpp"
 #include <QtCore/qcoreapplication.h>
 #include <shared_mutex>
+#include <array>
 
 namespace {
 
@@ -25,6 +26,37 @@ namespace {
     public:
         std::size_t operator()(const QString & arg) const {
             return qHash(arg);
+        }
+    };
+
+    class Index {
+        union _Data {
+            std::array< QChar, 64 > data;
+            std::array< char16_t, 64 > dataChar16;
+            _Data() {
+            }
+        } mmmData;
+        static_assert(sizeof(std::array< char16_t, 64 >) == sizeof(std::array< QChar, 64 >));
+    public:
+        Index() {
+            for (auto & varI : mmmData.dataChar16) {
+                varI = 'z';
+            }
+        }
+        Index & operator++() {
+            for (auto & varI : mmmData.dataChar16) {
+                if (varI == 'z') {
+                    varI = 'a';
+                    continue;
+                }
+                varI += 1;
+                break;
+            }
+            return *this;
+        }
+        operator QStringView() const {
+            return { mmmData.data.data() ,
+                mmmData.data.data() + mmmData.data.size() };
         }
     };
 
@@ -62,11 +94,16 @@ namespace {
         }
 
         QString getNextName(const QString & varCode2) {
-            const auto varCode1 = QString::number(++mmmCode1);
-            return varCode1 + QChar('/') + varCode2;
+            const QStringView varCode1 = ++mmmCode1;
+            QString varAns;
+            varAns.reserve(1 + varCode2.size() + varCode1.size());
+            varAns.append(varCode1.data(), varCode1.size());
+            varAns.append(QChar('/'));
+            varAns.append(varCode2);
+            return std::move(varAns);
         }
 
-        std::uint64_t mmmCode1{ 0 };
+        Index mmmCode1;
         std::chrono::steady_clock::time_point mmmStartTime;
     public:
         SSTD_DEFINE_STATIC_CLASS(GlobalImageProvider);
