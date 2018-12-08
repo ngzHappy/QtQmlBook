@@ -39,6 +39,7 @@ HEADERS += $$PWD/get_local_file_full_path/sstd_get_local_file_full_path.hpp
 HEADERS += $$PWD/thread/sstd_qt_thread.hpp
 HEADERS += $$PWD/thread/sstd_private/sstd_qt_thread_private.hpp
 HEADERS += $$PWD/glew/sstd_glew.hpp
+HEADERS += $$PWD/quick_memory_image/sstd_quick_memory_image.hpp
 
 SOURCES += $$PWD/application/sstd_application.cpp
 SOURCES += $$PWD/application/sstd_application_environment.cpp
@@ -50,6 +51,7 @@ SOURCES += $$PWD/thread/sstd_private/sstd_qt_thread_private.cpp
 SOURCES += $$PWD/glew/sstd_glew.cpp
 SOURCES += $$PWD/glew/glew.c
 INCLUDEPATH += $$PWD/glew
+SOURCES += $$PWD/quick_memory_image/sstd_quick_memory_image.cpp
 
 DEFINES *= GLEW_NO_GLU
 DEFINES *= GLEW_STATIC

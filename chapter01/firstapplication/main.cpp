@@ -59,7 +59,7 @@ inline void afterApplication() {
     }
 }
 
-#define QML_USE_WINDOW_TYPE (3u)
+#define QML_USE_WINDOW_TYPE (1u)
 
 int main(int argc, char ** argv) {
 
