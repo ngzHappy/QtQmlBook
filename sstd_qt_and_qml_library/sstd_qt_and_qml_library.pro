@@ -38,6 +38,7 @@ HEADERS += $$PWD/root_window/sstd_root_window.hpp
 HEADERS += $$PWD/get_local_file_full_path/sstd_get_local_file_full_path.hpp
 HEADERS += $$PWD/thread/sstd_qt_thread.hpp
 HEADERS += $$PWD/thread/sstd_private/sstd_qt_thread_private.hpp
+HEADERS += $$PWD/glew/sstd_glew.hpp
 
 SOURCES += $$PWD/application/sstd_application.cpp
 SOURCES += $$PWD/application/sstd_application_environment.cpp
@@ -46,6 +47,20 @@ SOURCES += $$PWD/root_window/sstd_root_window.cpp
 SOURCES += $$PWD/get_local_file_full_path/sstd_get_local_file_full_path.cpp
 SOURCES += $$PWD/thread/sstd_qt_thread.cpp
 SOURCES += $$PWD/thread/sstd_private/sstd_qt_thread_private.cpp
+SOURCES += $$PWD/glew/sstd_glew.cpp
+SOURCES += $$PWD/glew/glew.c
+INCLUDEPATH += $$PWD/glew
+
+DEFINES *= GLEW_NO_GLU
+DEFINES *= GLEW_STATIC
+
+win32:{
+LIBS+= -lopengl32 -lgdi32 -luser32 -lkernel32
+} else {
+###libglu1-mesa-dev
+###libgl1-mesa-dev
+LIBS+=-lXmu -lXi -lGL -lXext -lX11
+}
 
 RESOURCES += $$PWD/resource/sstd_qt_and_qml_library.qrc
 
