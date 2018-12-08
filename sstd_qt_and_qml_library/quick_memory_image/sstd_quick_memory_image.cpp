@@ -14,7 +14,9 @@ namespace {
     }
 
     inline static QImage _0_getNullImage() {
-        return {};
+        QImage varImage{1,1,QImage::Format_ARGB4444_Premultiplied};
+        varImage.fill(QColor(0,0,0,0));
+        return std::move(varImage);
     }
 
     inline static QImage getNullImage() {

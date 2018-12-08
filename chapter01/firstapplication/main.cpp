@@ -101,7 +101,7 @@ int main(int argc, char ** argv) {
             QStringLiteral("myqml/firstapplication/main2.qml"),
             qApp->applicationDirPath()));
 #endif
-        if (varWidget.status() != QQuickView::Status::Ready) {
+        if (varWidget.status() != QQuickWidget::Status::Ready) {
             qWarning() << QStringLiteral("can not load : main2.qml");
             return -1;
         }

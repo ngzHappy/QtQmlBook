@@ -10,10 +10,22 @@ int main(int argc, char ** argv) {
         /*获得Qml文件绝对路径*/
         auto varFullFileName = sstd::getLocalFileFullPath(
             QStringLiteral("myqml/externbycplusplus/main.qml"));
-        /*装载图像加载器*/
-        auto varImageProvider = sstd::QuickMemoryImage::getQuickImageProvider();
-        varWindow->getEngine()->addImageProvider(
-            varImageProvider.first, varImageProvider.second);
+        {
+            /*装载图像加载器*/
+            auto varImageProvider = sstd::QuickMemoryImage::getQuickImageProvider();
+            varWindow->getEngine()->addImageProvider(
+                varImageProvider.first, varImageProvider.second);
+        }
+        {
+            auto varImageObject = sstd_new<sstd::QuickMemoryImage>();
+            /*设置测试图片*/
+            QImage varTestImage{ 512 , 256 ,QImage::Format_RGBA64_Premultiplied };
+            varTestImage.fill(QColor(QRgba64::fromRgba64(1, 5535, 32215, 65535)));
+            varImageObject->setImage(varTestImage);
+            /*从C++端注册对象*/
+            varWindow->getRootContext()
+                ->setContextProperty(QStringLiteral("contex_quick_memory_image"), varImageObject);
+        }
         /*加载Qml文件*/
         varWindow->load(varFullFileName);
         /*检查并报错*/
@@ -21,15 +33,17 @@ int main(int argc, char ** argv) {
             qWarning() << QStringLiteral("can not load : ") << varFullFileName;
             return -1;
         }
-        /*从Qml端获得对象*/
-        auto varRootItem = varWindow->getRootObject();
-        auto varImageObject = varRootItem->findChild<sstd::QuickMemoryImage*>(
-            QStringLiteral("quick_memory_image"));
-        assert(varImageObject);
-        /*设置测试图片*/
-        QImage varTestImage{ 256 , 512 ,QImage::Format_RGBA64_Premultiplied };
-        varTestImage.fill(QColor(QRgba64::fromRgba64(1, 32215, 5535, 65535)));
-        varImageObject->setImage(varTestImage);
+        {
+            /*从Qml端获得对象*/
+            auto varRootItem = varWindow->getRootObject();
+            auto varImageObject = varRootItem->findChild<sstd::QuickMemoryImage*>(
+                QStringLiteral("quick_memory_image"));
+            assert(varImageObject);
+            /*设置测试图片*/
+            QImage varTestImage{ 256 , 512 ,QImage::Format_RGBA64_Premultiplied };
+            varTestImage.fill(QColor(QRgba64::fromRgba64(1, 32215, 5535, 65535)));
+            varImageObject->setImage(varTestImage);
+        }
     }
     varWindow->show();
 

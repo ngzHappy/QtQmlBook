@@ -11,7 +11,8 @@
 #include <iostream>
 
 #if __has_include(<execution>)
-#include <execution>
+//#include <execution>
+#define NO_STD_EXCUTION (1u)
 #else
 #define NO_STD_EXCUTION (1u)
 #endif
