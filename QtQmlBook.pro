@@ -19,7 +19,9 @@ app_firstapplication.file = $$PWD/chapter01/firstapplication/firstapplication.pr
 app_firstapplication.depends = sstd_qt_and_qml_library
 SUBDIRS += app_firstapplication
 
-
+app_externbycplusplus.file = $$PWD/chapter01/externbycplusplus/externbycplusplus.pro
+app_externbycplusplus.depends = sstd_qt_and_qml_library
+SUBDIRS += app_externbycplusplus
 
 
 

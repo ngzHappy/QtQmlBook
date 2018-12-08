@@ -1,7 +1,9 @@
 ﻿#include "GLSSTD/glew.h"
-#include "../global/sstd_qt_and_qml_global.hpp"
+#include <QtCore/qglobal.h>
 
-/*EXPORT_SSTD_QT_AND_QML_LIBRARY*/
+#ifndef EXPORT_SSTD_QT_AND_QML_LIBRARY
+#define EXPORT_SSTD_QT_AND_QML_LIBRARY Q_DECL_EXPORT
+#endif 
 
 namespace sstd {
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glActiveShaderProgram(GLuint  pipeline, GLuint  program);
