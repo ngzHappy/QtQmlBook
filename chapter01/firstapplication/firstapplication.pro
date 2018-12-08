@@ -1,9 +1,9 @@
 TEMPLATE = app
 
 CONFIG(debug,debug|release){
-    TARGET = hellowworld_debug
+    TARGET = firstapplication_debug
 }else{
-    TARGET = hellowworld
+    TARGET = firstapplication
 }
 
 #define out put dir
@@ -36,15 +36,16 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/hellowworld/main.qml
-QMLSOURCES += $$PWD/myqml/hellowworld/main_private/MainRectangle.qml
-QMLSOURCES += $$PWD/myqml/hellowworld/main_private/MainText.qml
+QMLSOURCES += $$PWD/myqml/firstapplication/main1.qml
+QMLSOURCES += $$PWD/myqml/firstapplication/main2.qml
+QMLSOURCES += $$PWD/myqml/firstapplication/main3.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
 }
 
 DISTFILES += $$QMLSOURCES
+
 
 
 
