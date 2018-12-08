@@ -62,7 +62,7 @@ namespace sstd {
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearDepthf(GLfloat  dd);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedBufferData(GLuint  buffer, GLenum  internalformat, GLenum  format, GLenum  type, void *  data);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedBufferSubData(GLuint  buffer, GLenum  internalformat, GLintptr  offset, GLsizei  size, GLenum  format, GLenum  type, void *  data);
-    EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLfloat  depth, GLint  stencil);
+    EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLfloat  depth, GLint  stencil);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferfv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLfloat *  value);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferiv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLint *  value);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferuiv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLuint *  value);
@@ -828,8 +828,8 @@ EXPORT_SSTD_QT_AND_QML_LIBRARY void  sstd::_sstd_glClearNamedBufferData(GLuint  
 EXPORT_SSTD_QT_AND_QML_LIBRARY void  sstd::_sstd_glClearNamedBufferSubData(GLuint  buffer, GLenum  internalformat, GLintptr  offset, GLsizei  size, GLenum  format, GLenum  type, void *  data) {
     return ::glClearNamedBufferSubData(buffer, internalformat, offset, size, format, type, data);
 }
-EXPORT_SSTD_QT_AND_QML_LIBRARY void  sstd::_sstd_glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLfloat  depth, GLint  stencil) {
-    return ::glClearNamedFramebufferfi(framebuffer, buffer, depth, stencil);
+EXPORT_SSTD_QT_AND_QML_LIBRARY void  sstd::_sstd_glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLfloat  depth, GLint  stencil) {
+    return ::glClearNamedFramebufferfi(framebuffer, buffer, drawbuffer, depth, stencil);
 }
 EXPORT_SSTD_QT_AND_QML_LIBRARY void  sstd::_sstd_glClearNamedFramebufferfv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLfloat *  value) {
     return ::glClearNamedFramebufferfv(framebuffer, buffer, drawbuffer, value);

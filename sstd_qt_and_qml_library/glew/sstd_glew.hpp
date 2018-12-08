@@ -5,7 +5,6 @@
 #include <QtGui/qopenglfunctions_4_5_core.h>
 
 /*EXPORT_SSTD_QT_AND_QML_LIBRARY*/
-
 namespace sstd {
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glActiveShaderProgram(GLuint  pipeline, GLuint  program);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glActiveTexture(GLenum  texture);
@@ -65,7 +64,7 @@ namespace sstd {
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearDepthf(GLfloat  dd);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedBufferData(GLuint  buffer, GLenum  internalformat, GLenum  format, GLenum  type, void *  data);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedBufferSubData(GLuint  buffer, GLenum  internalformat, GLintptr  offset, GLsizei  size, GLenum  format, GLenum  type, void *  data);
-    EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLfloat  depth, GLint  stencil);
+    EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLfloat  depth, GLint  stencil);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferfv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLfloat *  value);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferiv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLint *  value);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glClearNamedFramebufferuiv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLuint *  value);
@@ -656,6 +655,7 @@ namespace sstd {
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glViewportIndexedfv(GLuint  index, GLfloat *  v);
     EXPORT_SSTD_QT_AND_QML_LIBRARY void  _sstd_glWaitSync(GLsync  sync, GLbitfield  flags, GLuint64  timeout);
 }
+
 namespace sstd {
 
 
@@ -833,8 +833,8 @@ namespace sstd {
     inline void  glClearNamedBufferSubData(GLuint  buffer, GLenum  internalformat, GLintptr  offset, GLsizei  size, GLenum  format, GLenum  type, const void *  data) {
         return sstd::_sstd_glClearNamedBufferSubData(buffer, internalformat, offset, size, format, type, const_cast<void *>(data));
     }
-    inline void  glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLfloat  depth, GLint  stencil) {
-        return sstd::_sstd_glClearNamedFramebufferfi(framebuffer, buffer, depth, stencil);
+    inline void  glClearNamedFramebufferfi(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, GLfloat  depth, GLint  stencil) {
+        return sstd::_sstd_glClearNamedFramebufferfi(framebuffer, buffer, drawbuffer, depth, stencil);
     }
     inline void  glClearNamedFramebufferfv(GLuint  framebuffer, GLenum  buffer, GLint  drawbuffer, const GLfloat *  value) {
         return sstd::_sstd_glClearNamedFramebufferfv(framebuffer, buffer, drawbuffer, const_cast<GLfloat *>(value));
