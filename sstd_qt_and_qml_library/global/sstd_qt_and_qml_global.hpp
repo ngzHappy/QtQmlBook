@@ -1,9 +1,6 @@
 ﻿#pragma once
 
-#include <QtGui/QtGui>
-#include <QtQml/QtQml>
-#include <QtCore/QtCore>
-#include <QtQuick/QtQuick>
+#include <QtCore/qglobal.h>
 #include <sstd_library.hpp>
 
 #ifndef _1_SSTD_QT_AND_QML_LIBRARY

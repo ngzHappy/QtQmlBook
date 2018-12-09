@@ -1,5 +1,10 @@
 ﻿#pragma once
 
+#include <QtGui/QtGui>
+#include <QtQml/QtQml>
+#include <QtCore/QtCore>
+#include <QtQuick/QtQuick>
+
 #include "global/sstd_qt_and_qml_global.hpp"
 #include "application/sstd_application.hpp"
 #include "opengl_default_format/sstd_opengl_default_format.hpp"
@@ -8,7 +13,7 @@
 #include "thread/sstd_qt_thread.hpp"
 #include "quick_memory_image/sstd_quick_memory_image.hpp"
 #include "glew/sstd_glew.hpp"
-
+#include "glew/sstd_glew_initialization.hpp"
 
 
 

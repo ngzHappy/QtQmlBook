@@ -23,7 +23,9 @@ app_externbycplusplus.file = $$PWD/chapter01/externbycplusplus/externbycplusplus
 app_externbycplusplus.depends = sstd_qt_and_qml_library
 SUBDIRS += app_externbycplusplus
 
-
+app_directdrawbyopengl.file = $$PWD/chapter01/directdrawbyopengl/directdrawbyopengl.pro
+app_directdrawbyopengl.depends = sstd_qt_and_qml_library
+SUBDIRS += app_directdrawbyopengl
 
 
 
