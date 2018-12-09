@@ -24,3 +24,7 @@ void MainWidget::resizeGL(int width, int height) {
     sstd::glViewport(0,0,width,height);
 }
 
+MainWidget::~MainWidget(){
+
+}
+
