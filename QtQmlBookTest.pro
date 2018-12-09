@@ -12,7 +12,9 @@ sstd_qt_and_qml_library.file = $$PWD/sstd_qt_and_qml_library/test/sstd_qt_and_qm
 sstd_qt_and_qml_library.depends = build_install_test
 SUBDIRS += sstd_qt_and_qml_library
 
-
+sstd_qt_and_qml_library_glew_test.file = $$PWD/sstd_qt_and_qml_library/test_glew/sstd_qt_and_qml_library_glew_test.pro
+sstd_qt_and_qml_library_glew_test.depends = build_install_test
+SUBDIRS += sstd_qt_and_qml_library_glew_test
 
 
 
