@@ -32,5 +32,7 @@ void MainWidget::resizeGL(int width, int height) {
 
 MainWidget::~MainWidget() {
 
+    sstd::glDeleteProgram(mmmProgram);
+
 }
 

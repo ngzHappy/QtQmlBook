@@ -15,6 +15,8 @@ protected:
     virtual void paintGL() override;
     virtual void resizeGL(int width, int height) override;
 
+private:
+    GLuint mmmProgram{0};
 };
 
 
