@@ -7,6 +7,7 @@ class MainWidget : public QGLWidget {
     Q_OBJECT
 public:
     MainWidget();
+    ~MainWidget();
 protected:
 
     bool mmmIsInitalize{false};

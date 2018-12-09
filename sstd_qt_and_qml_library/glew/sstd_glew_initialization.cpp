@@ -22,14 +22,14 @@ inline static bool _0_sstd_init_glew(){
 
 inline static bool _call_once_init_glew(){
     static std::once_flag varCallOnce;
-    bool varAns{false};
+    bool varAns{true};
     std::call_once(varCallOnce ,[](bool * ans){
         *ans = _0_sstd_init_glew() ;
     } , &varAns );
     return varAns;
 }
 
-EXPORT_SSTD_QT_AND_QML_LIBRARY bool glew_initialize(){
+EXPORT_SSTD_QT_AND_QML_LIBRARY bool sstd::glew_initialize(){
     return _call_once_init_glew();
 }
 
