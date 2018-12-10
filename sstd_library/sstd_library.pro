@@ -27,6 +27,7 @@ SOURCES += $$PWD/memory/sstd_memory.cpp
 SOURCES += $$PWD/runtime/sstd_runtime.cpp
 SOURCES += $$PWD/runtime/sstd_private_runtime_cast_gcc.cpp
 SOURCES += $$PWD/runtime/sstd_private_runtime_cast_msvc.cpp
+SOURCES += $$PWD/runtime/sstd_runtime_dynamic_object.cpp
 SOURCES += $$PWD/log/sstd_log.cpp
 SOURCES += $$PWD/intrusive_ptr/sstd_intrusive_ptr.cpp
 

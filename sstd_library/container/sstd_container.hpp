@@ -4,6 +4,12 @@
 #include "../runtime/sstd_runtime.hpp"
 #include "../allocator/sstd_allocator.hpp"
 
+#include <list>
+namespace sstd {
+    template<typename T>
+    using list = std::list<T,sstd::allocator<T>>;
+}/*namespace sstd*/
+
 #include <vector>
 namespace sstd {
     template<typename T>

@@ -26,8 +26,47 @@ _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & 
 /* never used */
 _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *);
 
-class _1_SSTD_CORE_EXPORT sstd_virtual_basic : 
-    public _1_sstd_memory_dynamic_class_basic {
+
+class _1_SSTD_CORE_EXPORT _wrap_data_sstd_virtual_basic {
+public:
+    virtual ~_wrap_data_sstd_virtual_basic();
+    _SSTD_MEMORY_1_DFINE
+};
+
+class _1_SSTD_CORE_EXPORT _named_wrap_data_sstd_virtual_basic :
+    public _wrap_data_sstd_virtual_basic {
+    _wrap_data_sstd_virtual_basic * const mmmItem;
+public:
+    virtual ~_named_wrap_data_sstd_virtual_basic();
+    _named_wrap_data_sstd_virtual_basic();
+    std::string_view setName(const std::string_view &);
+    void setData(const std::pair<void *, sstd_type_index > &);
+    const std::pair<void *, sstd_type_index > * getData() const;
+    _SSTD_MEMORY_1_DFINE
+};
+
+class _1_SSTD_CORE_EXPORT _data_sstd_virtual_basic {
+    _wrap_data_sstd_virtual_basic * const mmmData;
+public:
+    virtual ~_data_sstd_virtual_basic();
+    _data_sstd_virtual_basic();
+public:
+    template<typename T, typename ... Args>
+    inline T * sstd_create_data_in_this_class(Args && ...);
+    template<typename T, typename ... Args >
+    inline T * sstd_create_named_data_in_this_class(std::string_view, Args && ...);
+    template<typename T>
+    inline T * sstd_find_named_data_in_this_class(std::string_view) const;
+private:
+    void _append(_wrap_data_sstd_virtual_basic *);
+    void _append(std::string_view, _named_wrap_data_sstd_virtual_basic *);
+    const std::pair<void *, sstd_type_index> * _find(std::string_view) const;
+    _SSTD_MEMORY_1_DFINE
+};
+
+class _1_SSTD_CORE_EXPORT sstd_virtual_basic :
+    public _1_sstd_memory_dynamic_class_basic,
+    public _data_sstd_virtual_basic {
 public:
     virtual ~sstd_virtual_basic();
     virtual bool sstd_is_polymorphic() const noexcept = 0;
@@ -38,7 +77,7 @@ public:
     _SSTD_MEMORY_1_DFINE
 };
 
-class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic  {
+class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic {
 public:
     _1_sstd_runtime_static_basic(bool, const std::type_info &);
     _1_sstd_runtime_static_basic(const std::type_info &);
@@ -77,7 +116,7 @@ private:
     _SSTD_MEMORY_1_DFINE
 };
 
-class _1_SSTD_CORE_EXPORT sstd_type_index  {
+class _1_SSTD_CORE_EXPORT sstd_type_index {
 public:
     sstd_type_index(const _1_sstd_runtime_static_basic *);
     inline sstd_type_index(const sstd_type_index &) = default;
@@ -321,7 +360,7 @@ template<typename Tt,
     bool = std::is_polymorphic_v<
     std::remove_cv_t <
     std::remove_reference_t<Tt> > > >
-    class _3_sstd_runtime_basic  {
+    class _3_sstd_runtime_basic {
     public:
         using sstd_this_type = std::remove_cv_t< std::remove_reference_t<Tt> >;
         static inline bool sstd_is_polymorphic() noexcept {
@@ -539,5 +578,75 @@ inline _2_1_sstd_runtime_static_basic<Tt>::_2_1_sstd_runtime_static_basic() {
 template<typename T>
 inline _2_sstd_runtime_static_basic<T>::_2_sstd_runtime_static_basic() {
     _sstd_add_runtime_dynamic_cast(&mmmDataRegisterBases);
+}
+
+namespace _1_private_sstd_class_wrap_2 {
+
+    template<typename T, typename B>
+    class _t_wrap_data_sstd_virtual_basic : public B {
+        T mmmElement;
+    public:
+        inline T * getElement() const {
+            return const_cast<T *>(&mmmElement);
+        }
+        _t_wrap_data_sstd_virtual_basic() : mmmElement{} {
+        }
+        template<typename A0, typename ... Args,
+            typename = std::enable_if_t< true == std::is_constructible_v<T, A0&&, Args && ...> >
+        > _t_wrap_data_sstd_virtual_basic(A0 && a0, Args && ... args) :
+            mmmElement(std::forward<A0>(a0), std::forward<Args>(args)...) {
+        }
+        template<typename A0, typename ... Args,
+            typename = void **********,
+            typename = std::enable_if_t< false == std::is_constructible_v<T, A0&&, Args && ...> >
+        > _t_wrap_data_sstd_virtual_basic(A0 && a0, Args && ... args) :
+            mmmElement{ std::forward<A0>(a0), std::forward<Args>(args)... } {
+        }
+    private:
+        _SSTD_MEMORY_1_DFINE
+    };
+
+}/****/
+
+template<typename T, typename ... Args>
+inline T * _data_sstd_virtual_basic::sstd_create_data_in_this_class(Args && ... args) {
+    static_assert(false == std::is_reference_v<T>);
+    static_assert(false == std::is_array_v<T>);
+    using T1 = std::remove_cv_t< std::remove_reference_t<T> >;
+    using R = _1_private_sstd_class_wrap_2::_t_wrap_data_sstd_virtual_basic<
+        T1, _wrap_data_sstd_virtual_basic>;
+    auto varAns = sstd_new<R>(std::forward<Args>(args)...);
+    auto varElement = varAns->getElement();
+    this->_append(varAns);
+    return varElement;
+}
+
+template<typename T, typename ... Args >
+inline T * _data_sstd_virtual_basic::sstd_create_named_data_in_this_class(
+    std::string_view name,
+    Args && ... args) {
+    static_assert(false == std::is_reference_v<T>);
+    static_assert(false == std::is_array_v<T>);
+    using T1 = std::remove_cv_t< std::remove_reference_t<T> >;
+    using R = _1_private_sstd_class_wrap_2::_t_wrap_data_sstd_virtual_basic<
+        T1, _named_wrap_data_sstd_virtual_basic>;
+    auto varAns = sstd_new<R>(std::forward<Args>(args)...);
+    auto varElement = varAns->getElement();
+    varAns->setData({ varElement,sstd_type_id<T1>() });
+    this->_append(name, varAns);
+    return varElement;
+}
+
+template<typename T>
+inline T * _data_sstd_virtual_basic::sstd_find_named_data_in_this_class(std::string_view arg) const {
+    static_assert(false == std::is_reference_v<T>);
+    static_assert(false == std::is_array_v<T>);
+    using T1 = std::remove_cv_t< std::remove_reference_t<T> >;
+    auto varRunTime = this->_find(arg);
+    if (varRunTime == nullptr) {
+        return nullptr;
+    }
+    return reinterpret_cast<T *>(
+        sstd_runtime_cast(*varRunTime, sstd_type_id<T1>()));
 }
 
