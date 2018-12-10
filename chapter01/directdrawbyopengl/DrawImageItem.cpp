@@ -62,26 +62,32 @@ namespace {
 
     inline void OpenGLPaintNode::render(const QSGRenderNode::RenderState *argState) {
         USING_SSTD_GLEW;
+
         /*初始化OpenGL环境*/
         ppp_construct_opengl();
-        /*更新数据*/
-        ppp_update_data();
-        {
-            /*更新矩阵*/
-            const auto * varMVMatrix = this->matrix();
-            const auto * varPMatrix = argState->projectionMatrix();
-            auto varMatrix = (*varPMatrix) * (*varMVMatrix);
-            glUniformMatrix4fv(2, 1, false, varMatrix.data());
-        }
-        {
-            /*更新透明度*/
-            const GLfloat varOpacity = static_cast<GLfloat>(this->inheritedOpacity());
-            glUniform1f(3, varOpacity);
-        }
 
-        /*开始绘制*/
+        assert(mmmGLProgram);
+        assert(mmmGLVAO);
+        assert(mmmGLVABI);
+
         glUseProgram(mmmGLProgram);
         glBindVertexArray(mmmGLVAO);
+        glVertexArrayElementBuffer(mmmGLVAO, mmmGLVABI);
+
+        /*更新数据*/
+        ppp_update_data();
+
+        /*更新矩阵*/
+        const auto * varMVMatrix = this->matrix();
+        const auto * varPMatrix = argState->projectionMatrix();
+        auto varMatrix = (*varPMatrix) * (*varMVMatrix);
+        glUniformMatrix4fv(2, 1, false, varMatrix.data());
+
+        /*更新透明度*/
+        const GLfloat varOpacity = static_cast<GLfloat>(this->inheritedOpacity());
+        glUniform1f(3, varOpacity);
+
+        /*开始绘制*/
         glBindTexture(GL_TEXTURE_2D, mmmGLTexture);
         glActiveTexture(GL_TEXTURE0 + 1);
         glBindTextureUnit(1, mmmGLTexture);
@@ -99,7 +105,9 @@ namespace {
 
     inline void OpenGLPaintNode::ppp_construct_opengl() {
         USING_SSTD_GLEW;
-        std::call_once(mmm_construct_opengl, [this]() {
+
+        auto varCallFunction = [this]() {
+
             /*初始化glew库*/
             sstd::glew_initialize();
 
@@ -115,8 +123,8 @@ layout (location = 2 ) uniform mat4 argMVPMatrix ;
 out vec4 ioTexturePos                            ;
 
 void main(){
-    ioTexturePos = argMVPMatrix * argTexturePos  ;
-    gl_Position =  argPosition                   ;
+    ioTexturePos = argTexturePos                ;
+    gl_Position =  argMVPMatrix * argPosition   ;
 }
 
 /*简单顶点着色器，用于渲染一个图片*/
@@ -146,11 +154,12 @@ void main(){
 
             using row_type = std::array<GLfloat, 8>;
             constexpr const std::array<row_type, 4 > varPoints{
-                row_type{-1,1,0,1,/**/0,0,0,1},
-                row_type{-1,-1,0,1,/**/0,1,0,1},
-                row_type{1,-1,0,1,/**/1,1,0,1},
-                row_type{1,1,0,1,/**/1,0,0,1},
+                row_type{-1,1,0,1,/**/0,1,0,1},
+                row_type{-1,-1,0,1,/**/0,0,0,1},
+                row_type{1,-1,0,1,/**/1,0,0,1},
+                row_type{1,1,0,1,/**/1,1,0,1},
             };
+
             constexpr const std::array<std::uint16_t, 6> varIndex{
                    3,2,1,
                    3,1,0
@@ -172,19 +181,29 @@ void main(){
             glNamedBufferData(mmmGLVABI, sizeof(varIndex), varIndex.data(), GL_STATIC_DRAW);
             glVertexArrayElementBuffer(mmmGLVAO, mmmGLVABI);
 
-        });
+        };
+
+        std::call_once(mmm_construct_opengl, varCallFunction);
     }
 
     using sstd::glDeleteTextures;
     inline void OpenGLPaintNode::ppp_destory_opengl() {
         USING_SSTD_GLEW;
-        std::call_once(mmm_destory_opengl, [this]() {
+        auto varCallFunction = [this]() {
             glDeleteProgram(mmmGLProgram);
             glDeleteVertexArrays(1, &mmmGLVAO);
             glDeleteTextures(1, &mmmGLTexture);
             glDeleteBuffers(1, &mmmGLVAB);
             glDeleteBuffers(1, &mmmGLVABI);
-        });
+#if defined(_DEBUG)
+            mmmGLProgram = 0;
+            mmmGLVAO = 0;
+            mmmGLVAB = 0;
+            mmmGLTexture = 0;
+            mmmGLVABI = 0;
+#endif
+        };
+        std::call_once(mmm_destory_opengl, varCallFunction);
     }
 
     inline void OpenGLPaintNode::setData(const QImage & arg) {
@@ -196,7 +215,9 @@ void main(){
     }
 
     inline void OpenGLPaintNode::ppp_update_data() {
+
         USING_SSTD_GLEW;
+
         /*更新图片信息*/
         if (mmmIsImageNotUpdate || (0 == mmmGLTexture)) {
             mmmIsImageNotUpdate = false;
@@ -209,11 +230,12 @@ void main(){
             const auto varWidth = static_cast<GLfloat>(mmmRect.width());
             const auto varHeight = static_cast<GLfloat>(mmmRect.height());
             const std::array<row_type, 4 > varPoints{
-                row_type{-varWidth,varHeight,0,1,/**/0,0,0,1},
-                row_type{-varWidth,-varHeight,0,1,/**/0,1,0,1},
-                row_type{varWidth,-varHeight,0,1,/**/1,1,0,1},
-                row_type{varWidth,varHeight,0,1,/**/1,0,0,1},
+                row_type{0,varHeight,0,1,       /**/0,1,0,1},
+                row_type{0,0,0,1,               /**/0,0,0,1},
+                row_type{varWidth,0,0,1,        /**/1,0,0,1},
+                row_type{varWidth,varHeight,0,1,/**/1,1,0,1},
             };
+            assert(mmmGLVAB);
             glNamedBufferSubData(mmmGLVAB, 0, sizeof(varPoints), varPoints.data());
         }
 
@@ -230,6 +252,7 @@ QSGNode * DrawImageItem::updatePaintNode(
     QQuickItem::UpdatePaintNodeData *) {
 
     OpenGLPaintNode * varNode;
+
     if (oldNode == nullptr) {
         varNode = sstd_new<OpenGLPaintNode>(this);
     } else {
@@ -246,11 +269,30 @@ QImage DrawImageItem::getImage() const {
     return mmmImage;
 }
 
-void DrawImageItem::setImage(const QImage & arg) {
-    mmmImage = arg;
+void DrawImageItem::pppSetImage(const QVariant & arg) {
+    QImage varTmp;
+    if (arg.canConvert<QUrl>()) {
+        const auto varFilePath = arg.toUrl().toLocalFile();
+        varTmp = QImage{ varFilePath };
+    } else {
+        varTmp = arg.value<QImage>();
+    }
+    pppSetImage1(varTmp);
+}
+
+void DrawImageItem::pppSetImage1(const QImage & arg) {
+    mmmImage = arg.convertToFormat(QImage::Format_RGBA64);
     this->imageChanged();
     this->update();
 }
+
+static inline void register_this() {
+    qmlRegisterType<DrawImageItem>(
+        "sstd.quick",
+        1, 0,
+        "DrawImageItem");
+}
+Q_COREAPP_STARTUP_FUNCTION(register_this)
 
 
 
