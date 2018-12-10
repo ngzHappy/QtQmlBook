@@ -656,7 +656,7 @@ static_assert(true,"true")
 /**********************************************/
 #endif
 
-USING_SSTD_GLEW;
+
 
 
 

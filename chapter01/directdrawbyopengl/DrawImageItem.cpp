@@ -63,6 +63,7 @@ namespace {
     }
 
     inline void OpenGLPaintNode::render(const QSGRenderNode::RenderState *argState) {
+        USING_SSTD_GLEW;
         /*初始化OpenGL环境*/
         ppp_construct_opengl();
         /*更新数据*/
@@ -99,6 +100,7 @@ namespace {
     }
 
     inline void OpenGLPaintNode::ppp_construct_opengl() {
+        USING_SSTD_GLEW;
         std::call_once(mmm_construct_opengl, [this]() {
             /*初始化glew库*/
             sstd::glew_initialize();
@@ -177,6 +179,7 @@ void main(){
 
     using sstd::glDeleteTextures;
     inline void OpenGLPaintNode::ppp_destory_opengl() {
+        USING_SSTD_GLEW;
         std::call_once(mmm_destory_opengl, [this]() {
             glDeleteProgram(mmmGLProgram);
             glDeleteVertexArrays(1, &mmmGLVAO);
@@ -195,7 +198,7 @@ void main(){
     }
 
     inline void OpenGLPaintNode::ppp_update_data() {
-
+        USING_SSTD_GLEW;
         /*更新图片信息*/
         if (mmmIsImageNotUpdate || (0 == mmmGLTexture)) {
             mmmIsImageNotUpdate = false;
