@@ -22,7 +22,7 @@ inline static bool _0_sstd_init_glew(){
 
 inline static bool _call_once_init_glew(){
     static std::once_flag varCallOnce;
-    bool varAns{true};
+    static bool varAns{true};
     std::call_once(varCallOnce ,[](bool * ans){
         *ans = _0_sstd_init_glew() ;
     } , &varAns );

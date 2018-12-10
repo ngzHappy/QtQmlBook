@@ -20,12 +20,10 @@
 #include "get_local_file_full_path/sstd_get_local_file_full_path.hpp"
 #include "thread/sstd_qt_thread.hpp"
 #include "quick_memory_image/sstd_quick_memory_image.hpp"
-#include "glew/sstd_glew.hpp"
 #include "glew/sstd_glew_initialization.hpp"
 #include "glew/sstd_glew_utility.hpp"
-
-
-
+#include "glew/sstd_glew.hpp"
+#include "glew/sstd_using_glew.hpp"
 
 
 

@@ -9,6 +9,10 @@ private:
     using Super = QQuickItem;
 public:
     DrawImageItem();
+protected:
+    QSGNode * updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData * ) override;
+private:
+    QImage mmmImage;
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(DrawImageItem);
 };
