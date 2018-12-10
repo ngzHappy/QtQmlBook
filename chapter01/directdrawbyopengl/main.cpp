@@ -22,7 +22,7 @@ int main(int argc, char ** argv) {
 
     }
 
-    varWindow->showMaximized();
+    varWindow->show();
 
     {   
         /*运行时由C++端添加对象*/
@@ -34,8 +34,8 @@ int main(int argc, char ** argv) {
         const auto varImage = QImage(sstd::getLocalFileFullFilePath(
             QStringLiteral("myqml/directdrawbyopengl/0000.jpg")));
         varItem->setImage(varImage);
-        varItem->setWidth(varRootObject->width() / 2);
-        varItem->setHeight(varRootObject->height() / 2);
+        varItem->setWidth(360);
+        varItem->setHeight(256);
         varItem->setTransformOrigin(QQuickItem::Center);
         varItem->setRotation(45);
         varItem->setParentItem(varRootObject);

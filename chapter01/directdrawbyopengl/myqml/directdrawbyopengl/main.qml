@@ -4,8 +4,8 @@ import sstd.quick 1.0
 Rectangle{
     id : root_object
     objectName: "root_object";
-    width: 512 ;
-    height: 512 ;
+    width: 1024 ;
+    height: 768 ;
     color: Qt.rgba(1,0,0,1);
 
     DrawImageItemRaw {
