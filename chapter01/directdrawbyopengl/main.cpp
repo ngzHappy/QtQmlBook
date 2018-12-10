@@ -22,9 +22,10 @@ int main(int argc, char ** argv) {
 
     }
 
-    varWindow->show();
+    varWindow->showMaximized();
 
-    {   /*运行时由C++端添加对象*/
+    {   
+        /*运行时由C++端添加对象*/
         auto varRootObject = varWindow->getRootObject();
         assert(varRootObject);
         assert(varRootObject->objectName() == QStringLiteral("root_object"));
@@ -38,6 +39,40 @@ int main(int argc, char ** argv) {
         varItem->setTransformOrigin(QQuickItem::Center);
         varItem->setRotation(45);
         varItem->setParentItem(varRootObject);
+    }
+
+    {
+        /*运行时由C++编译QML对象*/
+        const auto varQmlCode = u8R"+++(
+
+import QtQuick 2.9
+import sstd.quick 1.0
+
+DrawImageItemRaw { 
+
+    width: 256                             ;
+    height: 256                            ;
+    rawImage : Qt.resolvedUrl( "0000.jpg" );
+    anchors.bottom: parent.bottom          ;
+    anchors.right : parent.right           ;
+
+}
+
+)+++"sv;
+
+        QQmlComponent varComponent{ varWindow->getEngine() };
+        auto varContex = QQmlEngine::contextForObject( varWindow->getRootObject() );
+        varComponent.setData(   
+            QByteArray( varQmlCode.data(),static_cast<int>(varQmlCode.size()) ),
+            varContex->baseUrl()
+        );
+        auto varObject = sstd_runtime_cast<DrawImageItem>(
+            varComponent.beginCreate( varContex ) );
+        assert(varObject);
+        varObject->setParent(varWindow->getRootObject());
+        varObject->setParentItem(varWindow->getRootObject());
+        varComponent.completeCreate();
+
     }
 
     return varApp->exec();

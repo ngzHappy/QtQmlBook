@@ -2,13 +2,13 @@
 import sstd.quick 1.0
 
 Rectangle{
-
+    id : root_object
     objectName: "root_object";
     width: 512 ;
     height: 512 ;
     color: Qt.rgba(1,0,0,1);
 
-    DrawImageItem{
+    DrawImageItemRaw {
 
         width: parent.width /2  ;
         height: parent.height /2;
@@ -31,6 +31,24 @@ Rectangle{
             }
         }
 
+    }
+
+
+    Component.onCompleted : {
+        Qt.createQmlObject(
+"
+import QtQuick 2.9
+import sstd.quick 1.0
+
+DrawImageItemRaw {
+    width: 256   ;
+    height: 256  ;
+    anchors.top: parent.top          ;
+    anchors.right : parent.right           ;
+    rawImage : Qt.resolvedUrl( '0000.jpg' ) ;
+}
+
+" , root_object  ) ;
     }
 
 }/*Rectangle*/

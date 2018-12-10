@@ -25,7 +25,8 @@
 #include "glew/sstd_glew.hpp"
 #include "glew/sstd_using_glew.hpp"
 
-
+using namespace std::chrono_literals;
+using namespace std::string_view_literals;
 
 
 
