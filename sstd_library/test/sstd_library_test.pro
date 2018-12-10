@@ -32,4 +32,4 @@ SOURCES += $$PWD/main.cpp
 SOURCES += $$PWD/TestObject.cpp
 HEADERS += $$PWD/TestObject.hpp
 
-
+DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"

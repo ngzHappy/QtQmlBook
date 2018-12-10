@@ -33,7 +33,12 @@ SOURCES += $$PWD/MainWidget.cpp
 
 HEADERS += $$PWD/MainWidget.hpp
 
+CONFIG(debug,debug|release){
+    QMAKE_POST_LINK += $${DESTDIR}/build_install_test_debug $$PWD "myqml"
+}else{
+    QMAKE_POST_LINK += $${DESTDIR}/build_install_test $$PWD "myqml"
+}
+export(QMAKE_POST_LINK)
 
-
-
+DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 

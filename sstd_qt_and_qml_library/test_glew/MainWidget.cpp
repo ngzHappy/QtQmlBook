@@ -49,17 +49,45 @@ void main(){
 
 )2---2"sv);
 
-    sstd::glCreateVertexArrays(1,&mmmVAO);
-    sstd::glCreateBuffers(1,&mmmBuffer);
-    sstd::glCreateBuffers(1,&mmmBufferIndex);
+    sstd::glCreateVertexArrays(1, &mmmVAO);
+    sstd::glCreateBuffers(1, &mmmBuffer);
+    sstd::glCreateBuffers(1, &mmmBufferIndex);
 
-    std::array< std::array<float, 8>, 4 > varPoints;
+    using row_type = std::array<float, 8>;
+    constexpr const std::array<row_type, 4 > varPoints{
+        row_type{-1,1,0,1,/**/0,1,0,1},
+        row_type{-1,-1,0,1,/**/0,0,0,1},
+        row_type{1,-1,0,1,/**/1,0,0,1},
+        row_type{1,1,0,1,/**/1,1,0,1},
+    };
+    constexpr const std::array<std::uint16_t, 6> varIndex{
+           3,2,1,
+           3,1,0
+    };
 
+    sstd::glBindVertexArray(mmmVAO);
+    sstd::glNamedBufferData(mmmBuffer, sizeof(varPoints), varPoints.data(), GL_STATIC_DRAW);
+
+    sstd::glEnableVertexAttribArray(0);
+    sstd::glVertexArrayVertexBuffer(mmmVAO, 0, mmmBuffer, 0, sizeof(row_type));
+    sstd::glVertexArrayAttribFormat(mmmVAO, 0, 4, GL_FLOAT, false, 0);
+    sstd::glVertexArrayAttribBinding(mmmVAO, 0, 0);
+
+    sstd::glEnableVertexAttribArray(1);
+    sstd::glVertexArrayVertexBuffer(mmmVAO, 1, mmmBuffer, (sizeof(row_type)>>1), sizeof(row_type));
+    sstd::glVertexArrayAttribFormat(mmmVAO, 1, 4, GL_FLOAT, false, 0);
+    sstd::glVertexArrayAttribBinding(mmmVAO, 1, 1);
+
+    sstd::glNamedBufferData(mmmBufferIndex, sizeof(varIndex), varIndex.data(), GL_STATIC_DRAW);
+    sstd::glVertexArrayElementBuffer(mmmVAO, mmmBufferIndex);
+
+    QImage varImage{ 
+        sstd::getLocalFileFullFilePath(QStringLiteral("myqml/test_glew/0000.jpg")) };
 
 }
 
 void MainWidget::paintGL() {
-    
+
     sstd::glClearColor(0.2f, 0.3f, 0.4f, 1.0f);
     sstd::glClear(GL_COLOR_BUFFER_BIT);
 
@@ -75,8 +103,8 @@ void MainWidget::resizeGL(int width, int height) {
 MainWidget::~MainWidget() {
 
     sstd::glDeleteProgram(mmmProgram);
-    sstd::glDeleteVertexArrays(1,&mmmVAO);
-    sstd::glDeleteBuffers(1,&mmmBuffer);
+    sstd::glDeleteVertexArrays(1, &mmmVAO);
+    sstd::glDeleteBuffers(1, &mmmBuffer);
     sstd::glDeleteBuffers(1, &mmmBufferIndex);
 
 }

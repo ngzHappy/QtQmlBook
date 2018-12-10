@@ -6,13 +6,21 @@ namespace sstd {
             const QString & argFileName,
             const QString & argBase  ){
 
-        const QDir varRootDir{ argBase };
-        const auto varAns = varRootDir.absoluteFilePath(argFileName);
+        const auto varAns = getLocalFileFullFilePath(argFileName,argBase);
         if( varAns.startsWith(QChar('/')) ){
             return QStringLiteral(R"(file://)")+varAns;
         }else{
             return QStringLiteral(R"(file:///)")+varAns;
         }
+
+    }
+
+    EXPORT_SSTD_QT_AND_QML_LIBRARY QString getLocalFileFullFilePath(
+        const QString & argFileName, 
+        const QString & argBase) {
+
+        const QDir varRootDir{ argBase };
+        return varRootDir.absoluteFilePath(argFileName);
 
     }
 
