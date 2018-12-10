@@ -17,6 +17,9 @@ protected:
 
 private:
     GLuint mmmProgram{0};
+    GLuint mmmVAO{0};
+    GLuint mmmBuffer{ 0 };
+    GLuint mmmBufferIndex{0};
 };
 
 

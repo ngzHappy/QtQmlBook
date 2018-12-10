@@ -1,5 +1,13 @@
 ﻿#pragma once
 
+#include <array>
+#include <cstddef>
+#include <cstdint>
+#include <utility>
+#include <algorithm>
+#include <string_view>
+#include <type_traits>
+
 #include <QtGui/QtGui>
 #include <QtQml/QtQml>
 #include <QtCore/QtCore>
@@ -14,7 +22,7 @@
 #include "quick_memory_image/sstd_quick_memory_image.hpp"
 #include "glew/sstd_glew.hpp"
 #include "glew/sstd_glew_initialization.hpp"
-
+#include "glew/sstd_glew_utility.hpp"
 
 
 

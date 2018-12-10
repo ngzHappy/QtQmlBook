@@ -95,7 +95,8 @@ namespace sstd::opengl_utility {
     }
 
     template<std::size_t argC>
-    inline static GLuint _1_createVFProgram(const std::initializer_list<gl_program_type> & args) {
+    inline static GLuint _1_createVFProgram(
+        const std::array<gl_program_type, argC> & args) {
 
         for (const auto & varI : args) {
             if (std::get<0>(varI).empty()) {
@@ -194,8 +195,10 @@ namespace sstd::opengl_utility {
     }
 
     template<typename ... Args>
-    inline static GLuint _0_createVFProgram(const Args & ... args) {
-        return _1_createVFProgram<sizeof...(Args)>({ args... });
+    inline static GLuint _0_createVFProgram(Args && ... args) {
+        const std::array<gl_program_type, sizeof...(Args)> 
+            varArg{ std::forward<Args>(args)... };
+        return _1_createVFProgram<sizeof...(Args)>(varArg);
     }
 
     EXPORT_SSTD_QT_AND_QML_LIBRARY GLuint createVFProgram(
