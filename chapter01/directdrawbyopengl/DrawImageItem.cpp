@@ -37,8 +37,6 @@ namespace {
         GLuint mmmGLVAB{ 0 };
         GLuint mmmGLVABI{ 0 };
         GLuint mmmGLTexture{ 0 };
-        std::array< std::array< GLfloat, 8 >, 4 > mmmGLVABData;
-        std::array< GLuint, 4 > mmmIndexBufferData;
         QRectF mmmRect;
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(OpenGLPaintNode);
@@ -82,12 +80,12 @@ namespace {
         }
 
         /*开始绘制*/
-        sstd::glUseProgram(mmmGLProgram);
-        sstd::glBindVertexArray(mmmGLVAO);
-        sstd::glBindTexture(GL_TEXTURE_2D, mmmGLTexture);
-        sstd::glActiveTexture(GL_TEXTURE0 + 1);
-        sstd::glBindTextureUnit(1, mmmGLTexture);
-        sstd::glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
+        glUseProgram(mmmGLProgram);
+        glBindVertexArray(mmmGLVAO);
+        glBindTexture(GL_TEXTURE_2D, mmmGLTexture);
+        glActiveTexture(GL_TEXTURE0 + 1);
+        glBindTextureUnit(1, mmmGLTexture);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 
     }
 
@@ -244,7 +242,15 @@ QSGNode * DrawImageItem::updatePaintNode(
 
 }
 
+QImage DrawImageItem::getImage() const {
+    return mmmImage;
+}
 
+void DrawImageItem::setImage(const QImage & arg) {
+    mmmImage = arg;
+    this->imageChanged();
+    this->update();
+}
 
 
 
