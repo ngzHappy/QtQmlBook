@@ -20,6 +20,7 @@ private:
     GLuint mmmVAO{0};
     GLuint mmmBuffer{ 0 };
     GLuint mmmBufferIndex{0};
+    GLuint mmmTexture{0};
 };
 
 

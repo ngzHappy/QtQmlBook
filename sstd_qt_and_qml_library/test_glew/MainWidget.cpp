@@ -25,8 +25,8 @@ layout( location = 1 ) in vec4 argTexturePos;
 out vec4 ioTexturePos                       ;
 
 void main(){
-    ioTexturePos = argTexturePos ;
-    gl_Position = argPosition    ;
+    ioTexturePos = argTexturePos  ;
+    gl_Position =  argPosition    ;
 }
 
 /*简单顶点着色器，用于渲染一个图片*/
@@ -42,7 +42,7 @@ out vec4 outColor                               ;
 layout (binding=1) uniform sampler2D argTexture ;
 
 void main(){
-    outColor = texture2D( argTexture , ioTexturePos.xy ) ;
+    outColor = texture( argTexture , ioTexturePos.xy ) ;
 }
 
 /*简单片段着色器*/
@@ -55,10 +55,10 @@ void main(){
 
     using row_type = std::array<float, 8>;
     constexpr const std::array<row_type, 4 > varPoints{
-        row_type{-1,1,0,1,/**/0,1,0,1},
-        row_type{-1,-1,0,1,/**/0,0,0,1},
-        row_type{1,-1,0,1,/**/1,0,0,1},
-        row_type{1,1,0,1,/**/1,1,0,1},
+        row_type{-1,1,0,1,/**/0,0,0,1},
+        row_type{-1,-1,0,1,/**/0,1,0,1},
+        row_type{1,-1,0,1,/**/1,1,0,1},
+        row_type{1,1,0,1,/**/1,0,0,1},
     };
     constexpr const std::array<std::uint16_t, 6> varIndex{
            3,2,1,
@@ -74,15 +74,16 @@ void main(){
     sstd::glVertexArrayAttribBinding(mmmVAO, 0, 0);
 
     sstd::glEnableVertexAttribArray(1);
-    sstd::glVertexArrayVertexBuffer(mmmVAO, 1, mmmBuffer, (sizeof(row_type)>>1), sizeof(row_type));
+    sstd::glVertexArrayVertexBuffer(mmmVAO, 1, mmmBuffer, (sizeof(row_type) >> 1), sizeof(row_type));
     sstd::glVertexArrayAttribFormat(mmmVAO, 1, 4, GL_FLOAT, false, 0);
     sstd::glVertexArrayAttribBinding(mmmVAO, 1, 1);
 
     sstd::glNamedBufferData(mmmBufferIndex, sizeof(varIndex), varIndex.data(), GL_STATIC_DRAW);
     sstd::glVertexArrayElementBuffer(mmmVAO, mmmBufferIndex);
 
-    QImage varImage{ 
+    QImage varImage{
         sstd::getLocalFileFullFilePath(QStringLiteral("myqml/test_glew/0000.jpg")) };
+    mmmTexture = sstd::opengl_utility::createTexture(varImage);
 
 }
 
@@ -91,8 +92,12 @@ void MainWidget::paintGL() {
     sstd::glClearColor(0.2f, 0.3f, 0.4f, 1.0f);
     sstd::glClear(GL_COLOR_BUFFER_BIT);
 
-
-
+    sstd::glUseProgram(mmmProgram);
+    sstd::glBindVertexArray(mmmVAO);
+    sstd::glBindTexture(GL_TEXTURE_2D, mmmTexture);
+    sstd::glActiveTexture(GL_TEXTURE0 + 1);
+    sstd::glBindTextureUnit(1, mmmTexture);
+    sstd::glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
 
 }
 
@@ -106,6 +111,7 @@ MainWidget::~MainWidget() {
     sstd::glDeleteVertexArrays(1, &mmmVAO);
     sstd::glDeleteBuffers(1, &mmmBuffer);
     sstd::glDeleteBuffers(1, &mmmBufferIndex);
+    sstd::glDeleteTextures(1, &mmmTexture);
 
 }
 

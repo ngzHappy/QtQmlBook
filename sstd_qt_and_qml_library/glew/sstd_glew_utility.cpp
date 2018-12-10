@@ -42,13 +42,15 @@ namespace sstd::opengl_utility {
             return 0;
         }
 
-        glTextureStorage2D(varAns, 1, GL_RGBA16UI,
+        glTextureStorage2D(varAns, 1, GL_RGBA16 ,
             varImage.width(), varImage.height());
+
         glTextureSubImage2D(varAns, 0,
             0, 0,
             varImage.width(), varImage.height(),
             GL_RGBA, GL_UNSIGNED_SHORT,
             varImage.constBits());
+
         return varAns;
     }
 
@@ -69,7 +71,9 @@ namespace sstd::opengl_utility {
             return;
         }
 
-        const auto & varImage = argImage;
+        const auto varImage = 
+            argImage.convertToFormat(QImage::Format_RGBA64);
+
         glTextureSubImage2D(*argTextureID, 0,
             0, 0,
             varImage.width(), varImage.height(),
