@@ -345,8 +345,7 @@ template<typename Tt,
 };
 
 template<typename Tt>
-class _3_sstd_runtime_basic<Tt, true> :
-    public virtual sstd_virtual_basic {
+class _3_sstd_runtime_basic<Tt, true> {
 protected:
     using sstd_this_type = std::remove_cv_t< std::remove_reference_t<Tt> >;
     inline static bool _sstd_is_polymorphic() noexcept {
@@ -370,6 +369,7 @@ protected:
         return static_cast<sstd_this_type *>(
             const_cast<_3_sstd_runtime_basic *>(this));
     }
+    virtual ~_3_sstd_runtime_basic() = default;
     _SSTD_MEMORY_1_DFINE
 };
 
@@ -387,7 +387,8 @@ template<typename T,
 
 #ifndef SSTD_BEGIN_DEFINE_VIRTUAL_CLASS
 #define SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_SSTD_T_) \
-    private sstd_runtime_basic<_SSTD_T_ , true>
+    private sstd_runtime_basic<_SSTD_T_ , true> , \
+    public virtual sstd_virtual_basic
 /**************************************************/
 #endif
 
