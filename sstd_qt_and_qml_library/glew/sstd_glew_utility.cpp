@@ -67,11 +67,12 @@ namespace sstd::opengl_utility {
         auto varTextureSize = getTextureSize(*argTextureID);
 
         if (varImageSize != varTextureSize) {
+            glDeleteTextures(1,argTextureID);
             *argTextureID = createTexture(argImage);
             return;
         }
 
-        const auto varImage = 
+        const auto varImage =
             argImage.convertToFormat(QImage::Format_RGBA64);
 
         glTextureSubImage2D(*argTextureID, 0,
@@ -200,7 +201,7 @@ namespace sstd::opengl_utility {
 
     template<typename ... Args>
     inline static GLuint _0_createVFProgram(Args && ... args) {
-        const std::array<gl_program_type, sizeof...(Args)> 
+        const std::array<gl_program_type, sizeof...(Args)>
             varArg{ std::forward<Args>(args)... };
         return _1_createVFProgram<sizeof...(Args)>(varArg);
     }
