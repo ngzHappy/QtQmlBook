@@ -7,7 +7,6 @@ using namespace std::string_view_literals;
 namespace {
 
     class OpenGLPaintNode :
-        public QObject,
         public QSGRenderNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(OpenGLPaintNode) {
         QQuickItem * const mmmQuickItem;
@@ -42,7 +41,6 @@ namespace {
     };
 
     inline OpenGLPaintNode::OpenGLPaintNode(QQuickItem * arg) :
-        QObject(arg),
         mmmQuickItem(arg) {
     }
 
@@ -287,7 +285,13 @@ void _0_sstd_direct_draw_image::pppSetImage(const QVariant & arg) {
 }
 
 void _0_sstd_direct_draw_image::pppSetImage1(const QImage & arg) {
-    mmmImage = arg.convertToFormat(QImage::Format_RGBA64);
+
+    if (arg.isNull()) {
+        mmmImage = arg ;
+    } else {
+        mmmImage = arg.convertToFormat(QImage::Format_RGBA64);
+    }
+   
     mmmImageUpdate = true;
     this->imageChanged();
     this->update();

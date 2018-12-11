@@ -31,7 +31,9 @@ app_colormodel.file = $$PWD/chapter01/colormodel/colormodel.pro
 app_colormodel.depends = sstd_qt_and_qml_library
 SUBDIRS += app_colormodel
 
-
+app_bigscene.file = $$PWD/chapter01/bigscene/bigscene.pro
+app_bigscene.depends = sstd_qt_and_qml_library
+SUBDIRS += app_bigscene
 
 
 

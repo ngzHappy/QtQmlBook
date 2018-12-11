@@ -18,7 +18,7 @@ Rectangle {
         anchors.fill : parent;
     }/*~MainRectangle*/
 
-}/*~Window*/
+}/*~Rectangle*/
 
 
 
