@@ -1,19 +1,22 @@
 ﻿#include "BigScene.hpp"
+#include <set>
 
 namespace this_file {
 
     inline constexpr const static qreal globalRectWidth = 64;
     inline constexpr const static qreal globalRectHeight = 64;
-    inline constexpr const static int globalNumberRect = 100 ;
+    inline constexpr const static int globalNumberRect = 1024 * 1024;
     inline constexpr const static qreal globalSceneWidth = globalNumberRect * globalRectWidth;
     inline constexpr const static qreal globalSceneHeight = globalNumberRect * globalRectHeight;
+    std::intmax_t globalCount{ 0 };
 
     class Node :
         public QSGNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Node) {
     public:
         inline Node(const QPointF &, const QPointF &, const QPointF &, const QPointF &);
-        void updateAll(const QPointF &, const QPointF &, const QPointF &, const QPointF &);
+        inline void updateAll(const QPointF &, const QPointF &, const QPointF &, const QPointF &);
+        sstd::map< std::pair<int, int>, QSGSimpleRectNode * > mmmHasNode;
         SSTD_END_DEFINE_VIRTUAL_CLASS(Node);
     };
 
@@ -23,32 +26,49 @@ namespace this_file {
         case 1:return (std::rand() & 63);
         case 2:return (std::rand() & 255);
         }
+        return (std::rand() & 63);
     }
 
     class RectNode : public QSGSimpleRectNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RectNode){
     public:
         RectNode(int nw, int nh) {
+
             this->setRect(
                 nw * globalRectWidth,
                 nh * globalRectHeight,
                 globalRectWidth,
                 globalRectHeight);
-            this->setColor({ randomColor(nw), randomColor(nh), 200 , 255 });
+
+            this->setColor({
+                randomColor(nw),
+                randomColor(nh),
+                randomColor(nw + nh) , 255 });
+
+            qDebug() << __func__ << ++globalCount;
+
         }
+
+        virtual ~RectNode() {
+
+            qDebug() << __func__ << --globalCount;
+
+        }
+
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(RectNode);
     };
 
-    void  Node::updateAll(
-        const QPointF & a, 
-        const QPointF & b, 
-        const QPointF & c, 
+    void Node::updateAll(
+        const QPointF & a,
+        const QPointF & b,
+        const QPointF & c,
         const QPointF & d) {
 
         std::array<QPointF, 4> varRotatedRectangle{ a,b,c,d };
         qreal varMinX, varMinY;
         qreal varMaxX, varMaxY;
+
         {
             auto var = std::minmax_element(
                 varRotatedRectangle.begin(),
@@ -71,14 +91,44 @@ namespace this_file {
         }
 
         int varMinYN, varMaxYN, varMinXN, varMaxXN;
+
         std::remquo(varMinY, this_file::globalRectHeight, &varMinYN);
         std::remquo(varMaxY, this_file::globalRectHeight, &varMaxYN);
         std::remquo(varMinX, this_file::globalRectWidth, &varMinXN);
         std::remquo(varMaxX, this_file::globalRectWidth, &varMaxXN);
 
-        for (int i = varMinXN-1; i <= varMaxXN; ++i) {
-            for (int j = varMinYN-1 ; j <= varMaxYN; ++j) {
-                this->appendChildNode(sstd_new<RectNode>(i, j));
+        {
+            constexpr const auto varMargin = 5 + 
+                this_file::globalRectHeight + 
+                this_file::globalRectWidth;
+            const QRectF varCheckedRect{
+               varMinX - varMargin ,
+               varMinY - varMargin ,
+               varMaxX - varMinX + varMargin ,
+               varMaxY - varMinY + varMargin
+            };
+
+            const auto varEnd = mmmHasNode.end();
+            for (auto varPos = mmmHasNode.begin(); varPos != varEnd; ) {
+                if (varPos->second->rect().intersects(varCheckedRect)) {
+                    ++varPos;
+                    continue;
+                }
+                this->removeChildNode(varPos->second);
+                delete varPos->second;
+                varPos = mmmHasNode.erase(varPos);
+            }
+
+        }
+
+        for (int i = std::max(0, varMinXN - 1); i <= varMaxXN; ++i) {
+            for (int j = std::max(0, varMinYN - 1); j <= varMaxYN; ++j) {
+                if (mmmHasNode.count({ i, j })) {
+                    continue;
+                }
+                auto varElement = sstd_new<RectNode>(i, j);
+                mmmHasNode.emplace(std::pair<int, int>{ i, j }, varElement);
+                this->appendChildNode(varElement);
             }
         }
 
@@ -90,7 +140,8 @@ namespace this_file {
         const QPointF & b,
         const QPointF & c,
         const QPointF & d) {
-        this->updateAll(a,b,c,d);
+        this->updateAll(a, b, c, d);
+        this->setFlag(QSGNode::OwnedByParent);
     }
 
 }/*this_file*/
@@ -106,8 +157,8 @@ BigScene::BigScene() {
 QSGNode * BigScene::updatePaintNode(
     QSGNode *oldNode,
     QQuickItem::UpdatePaintNodeData *) {
-    
-    
+
+
     auto varWindow = this->window();
     if (varWindow == nullptr) {
         return nullptr;
@@ -115,23 +166,89 @@ QSGNode * BigScene::updatePaintNode(
 
     this_file::Node * varNode = static_cast<this_file::Node*>(oldNode);
 
+    QRectF varWindowScene{
+           mmmVisibleXPos , mmmVisibleYPos ,
+           mmmVisibleWidth ,mmmVisibleHeight };
+
     if (varNode == nullptr) {
-        QRectF varWindowScene{ {0,0}, varWindow->size() };
         return sstd_new<this_file::Node>(
-            this->mapFromScene(varWindowScene.topLeft()),
-            this->mapFromScene(varWindowScene.topRight()),
-            this->mapFromScene(varWindowScene.bottomRight()),
-            this->mapFromScene(varWindowScene.bottomLeft()));
+            varWindowScene.topLeft(),
+            varWindowScene.topRight(),
+            varWindowScene.bottomRight(),
+            varWindowScene.bottomLeft());
+
     } else {
-        varNode->removeAllChildNodes();
-        QRectF varWindowScene{ {0,0}, varWindow->size() };
         varNode->updateAll(
-            this->mapFromScene(varWindowScene.topLeft()),
-            this->mapFromScene(varWindowScene.topRight()),
-            this->mapFromScene(varWindowScene.bottomRight()),
-            this->mapFromScene(varWindowScene.bottomLeft()));
+            varWindowScene.topLeft(),
+            varWindowScene.topRight(),
+            varWindowScene.bottomRight(),
+            varWindowScene.bottomLeft());
     }
     return varNode;
+}
+
+qreal BigScene::getVisibleXPosition() const {
+    return mmmVisibleXPos;
+}
+
+qreal BigScene::getVisibleYPosition() const {
+    return mmmVisibleYPos;
+}
+
+qreal BigScene::getVisibleWidth()const {
+    return mmmVisibleWidth;
+}
+
+qreal BigScene::getVisibleHeight()const {
+    return mmmVisibleHeight;
+}
+
+void BigScene::setVisibleXPosition(qreal v) {
+    if (std::isnan(v) || std::isinf(v)) {
+        return;
+    }
+    if (v == mmmVisibleXPos) {
+        return;
+    }
+    mmmVisibleXPos = v;
+    visibleXPositionChanged();
+    this->update();
+}
+
+void BigScene::setVisibleYPosition(qreal v) {
+    if (std::isnan(v) || std::isinf(v)) {
+        return;
+    }
+    if (v == mmmVisibleYPos) {
+        return;
+    }
+    mmmVisibleYPos = v;
+    visibleYPositionChanged();
+    this->update();
+}
+
+void BigScene::setVisibleWidth(qreal v) {
+    if (std::isnan(v) || std::isinf(v)) {
+        return;
+    }
+    if (v == mmmVisibleWidth) {
+        return;
+    }
+    mmmVisibleWidth = v;
+    visibleWidthChanged();
+    this->update();
+}
+
+void BigScene::setVisibleHeight(qreal v) {
+    if (std::isnan(v) || std::isinf(v)) {
+        return;
+    }
+    if (v == mmmVisibleHeight) {
+        return;
+    }
+    mmmVisibleHeight = v;
+    visibleHeightChanged();
+    this->update();
 }
 
 static inline void register_this() {

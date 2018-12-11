@@ -10,20 +10,44 @@ Rectangle {
 
     Flickable {
 
+        id : idf ;
         width: parent.width   ;
         height: parent.height ;
-        contentWidth: _id_big_scene.width ;
-        contentHeight: _id_big_scene.height ;
+        contentWidth: idb.width ;
+        contentHeight: idb.height ;
 
         BigScene {
-            id : _id_big_scene ;
-
+            id : idb ;
         }
 
+        visibleArea.onXPositionChanged: {
+            idb.visibleXPosition =
+                    idf.visibleArea.xPosition * idb.width ;
+            /*begin:debug*/
+            console.log("x",idb.visibleXPosition)
+            /*end:debug*/
+        }
 
+        visibleArea.onYPositionChanged: {
+            idb.visibleYPosition =
+                    idf.visibleArea.yPosition * idb.height ;
+            /*begin:debug*/
+            console.log("y",idb.visibleYPosition)
+            /*end:debug*/
+        }
 
-        onFlickEnded: {
-            _id_big_scene.update() ;
+        visibleArea.onWidthRatioChanged: {
+            idb.visibleWidth = idf.width ;
+            /*begin:debug*/
+            console.log("w",idb.visibleWidth )
+            /*end:debug*/
+        }
+
+        visibleArea.onHeightRatioChanged: {
+            idb.visibleHeight = idf.height ;
+            /*begin:debug*/
+            console.log("h",idb.visibleHeight)
+            /*end:debug*/
         }
 
     }
