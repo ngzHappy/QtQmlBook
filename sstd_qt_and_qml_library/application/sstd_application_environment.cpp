@@ -17,6 +17,10 @@ namespace sstd {
             QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
         }
         {
+            /*OpenGL共享资源*/
+            QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+        }
+        {
             /*设置默认opengl环境*/
             QSurfaceFormat::setDefaultFormat(sstd::getDefaultQSurfaceFormat());
         }
