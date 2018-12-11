@@ -36,6 +36,7 @@ namespace sstd::opengl_utility {
         }
 
         GLuint varAns{ 0 };
+
         glCreateTextures(GL_TEXTURE_2D, 1, &varAns);
 
         if (varAns < 1) {
@@ -50,6 +51,9 @@ namespace sstd::opengl_utility {
             varImage.width(), varImage.height(),
             GL_RGBA, GL_UNSIGNED_SHORT,
             varImage.constBits());
+
+        glTextureParameteri(varAns,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+        glTextureParameteri(varAns,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
 
         return varAns;
     }

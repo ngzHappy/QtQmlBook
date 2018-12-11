@@ -436,6 +436,8 @@ void TestObject::dynamicObjectTest() {
 
     {
         auto var = sstd_make_unique<sstd_function_stack>();
+        auto varState = var->sstd_get_class_state();
+        std::unique_lock varLock { varState };
 
         var->sstd_create_data_in_this_class_thread_safe<A5>();
         QVERIFY(globalA5Count == 1);
