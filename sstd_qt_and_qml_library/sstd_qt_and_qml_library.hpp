@@ -24,6 +24,7 @@
 #include "glew/sstd_glew_utility.hpp"
 #include "glew/sstd_glew.hpp"
 #include "glew/sstd_using_glew.hpp"
+#include "direct_draw_image/sstd_direct_draw_image.hpp"
 
 using namespace std::chrono_literals;
 using namespace std::string_view_literals;

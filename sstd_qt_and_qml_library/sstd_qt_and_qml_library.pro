@@ -43,6 +43,7 @@ HEADERS += $$PWD/glew/sstd_glew.hpp
 HEADERS += $$PWD/quick_memory_image/sstd_quick_memory_image.hpp
 HEADERS += $$PWD/glew/sstd_glew_initialization.hpp
 HEADERS += $$PWD/glew/sstd_glew_utility.hpp
+HEADERS += $$PWD/direct_draw_image/sstd_direct_draw_image.hpp
 
 SOURCES += $$PWD/application/sstd_application.cpp
 SOURCES += $$PWD/application/sstd_application_environment.cpp
@@ -58,6 +59,7 @@ INCLUDEPATH += $$PWD/glew
 SOURCES += $$PWD/quick_memory_image/sstd_quick_memory_image.cpp
 SOURCES += $$PWD/glew/sstd_glew_initialization.cpp
 SOURCES += $$PWD/glew/sstd_glew_utility.cpp
+SOURCES += $$PWD/direct_draw_image/sstd_direct_draw_image.cpp
 
 DEFINES *= GLEW_NO_GLU
 DEFINES *= GLEW_STATIC
