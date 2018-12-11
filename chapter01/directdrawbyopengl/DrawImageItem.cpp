@@ -9,6 +9,7 @@ using namespace std::string_view_literals;
 namespace {
 
     class OpenGLPaintNode :
+        public QObject,
         public QSGRenderNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(OpenGLPaintNode) {
         QQuickItem * const mmmQuickItem;
@@ -43,6 +44,7 @@ namespace {
     };
 
     inline OpenGLPaintNode::OpenGLPaintNode(QQuickItem * arg) :
+        QObject(arg),
         mmmQuickItem(arg) {
     }
 
