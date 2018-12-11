@@ -41,7 +41,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/firstapplication/main.qml
+QMLSOURCES += $$PWD/myqml/colormodel/main.qml
 
 
 lupdate_only{
