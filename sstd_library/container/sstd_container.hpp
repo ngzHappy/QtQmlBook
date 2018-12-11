@@ -10,6 +10,12 @@ namespace sstd {
     using list = std::list<T,sstd::allocator<T>>;
 }/*namespace sstd*/
 
+#include <forward_list>
+namespace sstd {
+    template<typename T>
+    using forward_list = std::forward_list<T, sstd::allocator<T>>;
+}
+
 #include <vector>
 namespace sstd {
     template<typename T>

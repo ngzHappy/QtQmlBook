@@ -14,6 +14,7 @@ private slots:
     void sstdTypeIndexTest();
     void typeCastTest();
     void typeCastTest1();
+    void dynamicObjectTest();
     void cleanupTestCase();
 };
 

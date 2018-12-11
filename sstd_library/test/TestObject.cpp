@@ -1,6 +1,9 @@
 ﻿#include "TestObject.hpp"
 #include <sstd_library.hpp>
 
+#include <string_view>
+using namespace std::string_view_literals;
+
 TestObject::TestObject() {
 
 }
@@ -262,7 +265,7 @@ namespace type_cast_test_ns1 {
     };
 
     class A2 : public virtual A1,
-         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A2) {
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A2) {
     public:
         virtual ~A2() {
         }
@@ -285,10 +288,15 @@ namespace type_cast_test_ns1 {
         SSTD_END_DEFINE_VIRTUAL_CLASS(A4);
     };
 
+    static int globalA5Count{ 0 };
     class A5 : public A4,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(A5){
     public:
+        A5() {
+            ++globalA5Count;
+        }
         virtual ~A5() {
+            --globalA5Count;
         }
         SSTD_END_DEFINE_VIRTUAL_CLASS(A5);
     };
@@ -401,6 +409,30 @@ void TestObject::typeCastTest1() {
     QVERIFY(nullptr == sstd_runtime_cast<A6>(a3));
     QVERIFY(nullptr == sstd_runtime_cast<A6>(a4));
     QVERIFY(nullptr == sstd_runtime_cast<A6>(a5));
+
+    delete a5;
+}
+
+void TestObject::dynamicObjectTest() {
+
+    using namespace type_cast_test_ns1;
+
+    {
+        auto var = sstd_make_unique<sstd_function_stack>();
+
+        var->sstd_create_data_in_this_class<A5>();
+        QVERIFY(globalA5Count == 1);
+        auto varA5_1 = var->sstd_create_named_data_in_this_class<A5>("a5"sv);
+        QVERIFY(globalA5Count == 2);
+        auto varA2_1 = var->sstd_find_named_data_in_this_class<A2>("a5"sv);
+        QVERIFY(globalA5Count == 2);
+
+        QVERIFY(varA2_1);
+        QVERIFY(dynamic_cast<A5 *>(varA2_1) == varA5_1);
+        QVERIFY(nullptr == var->sstd_find_named_data_in_this_class<int>("a5"sv));
+    }
+
+    QVERIFY(globalA5Count == 0);
 
 }
 

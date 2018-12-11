@@ -17,7 +17,7 @@ namespace {
 
     class RuntimeData :
         public _wrap_data_sstd_virtual_basic {
-        sstd::list< std::unique_ptr< _wrap_data_sstd_virtual_basic > > mmmItems;
+        sstd::forward_list< std::unique_ptr< _wrap_data_sstd_virtual_basic > > mmmItems;
         sstd::map< std::string_view, _named_wrap_data_sstd_virtual_basic * > mmmNamedItems;
     public:
 
@@ -26,12 +26,12 @@ namespace {
 
         ~RuntimeData() {
             while (false == mmmItems.empty()) {
-                mmmItems.pop_back();
+                mmmItems.pop_front();
             }
         }
 
         void append(_wrap_data_sstd_virtual_basic * arg) try {
-            mmmItems.emplace_back(arg);
+            mmmItems.emplace_front(arg);
         } catch (...) {
             delete arg;
             throw;
@@ -111,6 +111,12 @@ _data_sstd_virtual_basic::_data_sstd_virtual_basic() :
 
 _data_sstd_virtual_basic::~_data_sstd_virtual_basic() {
     delete mmmData;
+}
+
+sstd_function_stack::sstd_function_stack() {
+}
+
+sstd_function_stack::~sstd_function_stack(){
 }
 
 
