@@ -19,6 +19,7 @@ protected:
     QSGNode * updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *) override;
 private:
     QImage mmmImage;
+    bool mmmImageUpdate{true};
     void pppSetImage(const QVariant &);
     void pppSetImage1(const QImage &);
     QVariant pppGetImage() const {

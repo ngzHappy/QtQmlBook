@@ -21,7 +21,7 @@ namespace {
         inline void releaseResources() override;
         inline ~OpenGLPaintNode();
     public:
-        inline void setData(const QImage &);
+        inline void setData(const QImage &,bool);
     private:
         std::once_flag mmm_construct_opengl;
         std::once_flag mmm_destory_opengl;
@@ -206,12 +206,17 @@ void main(){
         std::call_once(mmm_destory_opengl, varCallFunction);
     }
 
-    inline void OpenGLPaintNode::setData(const QImage & arg) {
-        mmmImage = arg;
-        mmmIsImageNotUpdate = true;
+    inline void OpenGLPaintNode::setData(const QImage & arg,bool isNewImage) {
+        
+        if (isNewImage) {
+            mmmImage = arg;
+            mmmIsImageNotUpdate = true;
+        }
+
         mmmRect = { 0 , 0,
             mmmQuickItem->width(),
             mmmQuickItem->height() };
+
     }
 
     inline void OpenGLPaintNode::ppp_update_data() {
@@ -259,7 +264,8 @@ QSGNode * DrawImageItem::updatePaintNode(
         varNode = static_cast<OpenGLPaintNode *>(oldNode);
     }
 
-    varNode->setData(mmmImage);
+    varNode->setData(mmmImage, mmmImageUpdate);
+    mmmImageUpdate = false;
 
     return varNode;
 
@@ -282,6 +288,7 @@ void DrawImageItem::pppSetImage(const QVariant & arg) {
 
 void DrawImageItem::pppSetImage1(const QImage & arg) {
     mmmImage = arg.convertToFormat(QImage::Format_RGBA64);
+    mmmImageUpdate = true;
     this->imageChanged();
     this->update();
 }
