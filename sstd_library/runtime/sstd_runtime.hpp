@@ -7,6 +7,7 @@
 #include <functional>
 #include "../global/sstd_basic_library_global.hpp"
 #include "../memory/sstd_memory.hpp"
+#include "../new/sstd_new.hpp"
 
 #if __has_include(<tr2/type_traits>)
 #include <tr2/type_traits>
@@ -704,7 +705,7 @@ inline T * sstd_virtual_basic::sstd_create_data_in_this_class_thread_safe(Args &
 }
 template<typename T, typename ... Args >
 inline T * sstd_virtual_basic::sstd_create_named_data_in_this_class_thread_safe(std::string_view a, Args && ... b) {
-    
+
     auto varState = this->sstd_get_class_state();
     std::unique_lock varLock{ varState };
     if (varState.isDestoryed()) {
@@ -717,7 +718,7 @@ inline T * sstd_virtual_basic::sstd_create_named_data_in_this_class_thread_safe(
 }
 template<typename T>
 inline T * sstd_virtual_basic::sstd_find_named_data_in_this_class_thread_safe(std::string_view a) const {
-    
+
     auto varState = this->sstd_get_class_state();
     std::unique_lock varLock{ varState };
     if (varState.isDestoryed()) {

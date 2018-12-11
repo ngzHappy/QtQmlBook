@@ -38,8 +38,8 @@ QVariant ColorModel::data(const QModelIndex & varIndex, int role) const {
             const auto varKey = varRow % 3;
             switch (varKey) {
             case 0:return QColor(255, (std::rand() & 127), (std::rand() & 127), 255);
-            case 1:return  QColor((std::rand() & 127), 255, (std::rand() & 127), 255);
-            case 2:return  QColor((std::rand() & 127), (std::rand() & 127), 255, 255);
+            case 1:return QColor((std::rand() & 127), 255, (std::rand() & 127), 255);
+            case 2:return QColor((std::rand() & 127), (std::rand() & 127), 255, 255);
             }
         }
     }
