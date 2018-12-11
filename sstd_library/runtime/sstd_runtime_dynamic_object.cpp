@@ -44,8 +44,8 @@ namespace {
         }
 
         const std::pair<void *, sstd_type_index> * find(const std::string_view & arg) {
-            auto varPos = mmmNamedItems.find(arg);
-            if (varPos == mmmNamedItems.end()) {
+            auto varPos = std::as_const( mmmNamedItems ).find(arg);
+            if (varPos == std::as_const( mmmNamedItems ).end()) {
                 return nullptr;
             }
             return varPos->second->getData();

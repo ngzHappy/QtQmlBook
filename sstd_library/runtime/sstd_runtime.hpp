@@ -45,6 +45,18 @@ public:
     _SSTD_MEMORY_1_DFINE
 };
 
+class sstd_virtual_basic;
+class  _1_SSTD_CORE_EXPORT sstd_virtual_basic_state {
+public:
+    std::shared_ptr<void> mmm_sstd_data;
+    void lock();
+    void unlock();
+    bool isDestoryed() const;
+    sstd_virtual_basic * getPointer() const;
+    sstd_virtual_basic_state(sstd_virtual_basic *);
+    _SSTD_MEMORY_1_DFINE
+};
+
 class _1_SSTD_CORE_EXPORT _data_sstd_virtual_basic {
     _wrap_data_sstd_virtual_basic * const mmmData;
 public:
@@ -67,13 +79,22 @@ private:
 class _1_SSTD_CORE_EXPORT sstd_virtual_basic :
     public _1_sstd_memory_dynamic_class_basic,
     public _data_sstd_virtual_basic {
+    sstd_virtual_basic_state mmm_this_state;
 public:
     virtual ~sstd_virtual_basic();
+    sstd_virtual_basic();
     virtual bool sstd_is_polymorphic() const noexcept = 0;
     virtual const std::type_info & sstd_get_type_info() const noexcept = 0;
     virtual const std::type_index & sstd_get_type_index() const noexcept = 0;
     virtual void * sstd_get_this_void() const noexcept = 0;
     virtual const sstd_type_index & sstd_get_sstd_type_index() const noexcept = 0;
+    sstd_virtual_basic_state sstd_get_class_state() const;
+    template<typename T, typename ... Args>
+    inline T * sstd_create_data_in_this_class_thread_safe(Args && ...);
+    template<typename T, typename ... Args >
+    inline T * sstd_create_named_data_in_this_class_thread_safe(std::string_view, Args && ...);
+    template<typename T>
+    inline T * sstd_find_named_data_in_this_class_thread_safe(std::string_view) const;
     _SSTD_MEMORY_1_DFINE
 };
 
@@ -641,6 +662,13 @@ inline T * _data_sstd_virtual_basic::sstd_create_named_data_in_this_class(
     using T1 = std::remove_cv_t< std::remove_reference_t<T> >;
     using R = _1_private_sstd_class_wrap_2::_t_wrap_data_sstd_virtual_basic<
         T1, _named_wrap_data_sstd_virtual_basic>;
+    {
+        auto varRunTime = this->_find(name);
+        if (varRunTime) {
+            return reinterpret_cast<T *>(
+                sstd_runtime_cast(*varRunTime, sstd_type_id<T1>()));
+        }
+    }
     auto varAns = sstd_new<R>(std::forward<Args>(args)...);
     auto varElement = varAns->getElement();
     varAns->setData({ varElement,sstd_type_id<T1>() });
@@ -659,5 +687,45 @@ inline T * _data_sstd_virtual_basic::sstd_find_named_data_in_this_class(std::str
     }
     return reinterpret_cast<T *>(
         sstd_runtime_cast(*varRunTime, sstd_type_id<T1>()));
+}
+
+template<typename T, typename ... Args>
+inline T * sstd_virtual_basic::sstd_create_data_in_this_class_thread_safe(Args && ... args) {
+
+    auto varState = this->sstd_get_class_state();
+    std::unique_lock varLock{ varState };
+    if (varState.isDestoryed()) {
+        return nullptr;
+    }
+
+    return
+        this->sstd_create_data_in_this_class<T>(
+            std::forward<Args>(args)...);
+}
+template<typename T, typename ... Args >
+inline T * sstd_virtual_basic::sstd_create_named_data_in_this_class_thread_safe(std::string_view a, Args && ... b) {
+    
+    auto varState = this->sstd_get_class_state();
+    std::unique_lock varLock{ varState };
+    if (varState.isDestoryed()) {
+        return nullptr;
+    }
+
+    return
+        this->sstd_create_named_data_in_this_class<T>(
+            a, std::forward<Args>(b)...);
+}
+template<typename T>
+inline T * sstd_virtual_basic::sstd_find_named_data_in_this_class_thread_safe(std::string_view a) const {
+    
+    auto varState = this->sstd_get_class_state();
+    std::unique_lock varLock{ varState };
+    if (varState.isDestoryed()) {
+        return nullptr;
+    }
+
+    return
+        this->sstd_find_named_data_in_this_class<T>(
+            a);
 }
 

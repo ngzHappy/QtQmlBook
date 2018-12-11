@@ -22,7 +22,7 @@ namespace {
         inline void releaseResources() override;
         inline ~OpenGLPaintNode();
     public:
-        inline void setData(const QImage &,bool);
+        inline void setData(const QImage &, bool);
     private:
         std::once_flag mmm_construct_opengl;
         std::once_flag mmm_destory_opengl;
@@ -208,8 +208,8 @@ void main(){
         std::call_once(mmm_destory_opengl, varCallFunction);
     }
 
-    inline void OpenGLPaintNode::setData(const QImage & arg,bool isNewImage) {
-        
+    inline void OpenGLPaintNode::setData(const QImage & arg, bool isNewImage) {
+
         if (isNewImage) {
             mmmImage = arg;
             mmmIsImageNotUpdate = true;

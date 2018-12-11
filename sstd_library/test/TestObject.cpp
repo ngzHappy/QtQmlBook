@@ -434,5 +434,22 @@ void TestObject::dynamicObjectTest() {
 
     QVERIFY(globalA5Count == 0);
 
+    {
+        auto var = sstd_make_unique<sstd_function_stack>();
+
+        var->sstd_create_data_in_this_class_thread_safe<A5>();
+        QVERIFY(globalA5Count == 1);
+        auto varA5_1 = var->sstd_create_named_data_in_this_class_thread_safe<A5>("a5"sv);
+        QVERIFY(globalA5Count == 2);
+        auto varA2_1 = var->sstd_find_named_data_in_this_class_thread_safe<A2>("a5"sv);
+        QVERIFY(globalA5Count == 2);
+
+        QVERIFY(varA2_1);
+        QVERIFY(dynamic_cast<A5 *>(varA2_1) == varA5_1);
+        QVERIFY(nullptr == var->sstd_find_named_data_in_this_class_thread_safe<int>("a5"sv));
+    }
+
+    QVERIFY(globalA5Count == 0);
+
 }
 

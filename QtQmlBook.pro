@@ -27,7 +27,9 @@ app_directdrawbyopengl.file = $$PWD/chapter01/directdrawbyopengl/directdrawbyope
 app_directdrawbyopengl.depends = sstd_qt_and_qml_library
 SUBDIRS += app_directdrawbyopengl
 
-
+app_colormodel.file = $$PWD/chapter01/colormodel/colormodel.pro
+app_colormodel.depends = sstd_qt_and_qml_library
+SUBDIRS += app_colormodel
 
 
 

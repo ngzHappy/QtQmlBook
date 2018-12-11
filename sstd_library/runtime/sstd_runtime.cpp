@@ -1,11 +1,54 @@
 ﻿#include "sstd_runtime.hpp"
 #include "../container/sstd_container.hpp"
+#include "../new/sstd_new.hpp"
 #include <shared_mutex>
 #include <optional>
 #include <variant>
 #include "../log/sstd_log.hpp"
 #include <string_view>
 using namespace std::string_view_literals;
+
+namespace {
+    class data_sstd_virtual_basic_state {
+    public:
+        std::recursive_mutex mutex;
+        bool isDestory{false };
+        sstd_virtual_basic * pointer{nullptr};
+        _SSTD_MEMORY_1_DFINE
+    };
+}
+
+void sstd_virtual_basic_state::lock() {
+    auto varData =
+        std::static_pointer_cast<data_sstd_virtual_basic_state>(mmm_sstd_data);
+    varData->mutex.lock();
+}
+
+void sstd_virtual_basic_state::unlock() {
+    auto varData =
+        std::static_pointer_cast<data_sstd_virtual_basic_state>(mmm_sstd_data);
+    varData->mutex.unlock();
+}
+
+bool sstd_virtual_basic_state::isDestoryed() const {
+    auto varData =
+        std::static_pointer_cast<data_sstd_virtual_basic_state>(mmm_sstd_data);
+    std::unique_lock varLock{ varData->mutex };
+    return varData->isDestory;
+}
+
+sstd_virtual_basic * sstd_virtual_basic_state::getPointer() const {
+    auto varData =
+        std::static_pointer_cast<data_sstd_virtual_basic_state>(mmm_sstd_data);
+    std::unique_lock varLock{ varData->mutex };
+    return varData->pointer;
+}
+
+sstd_virtual_basic_state::sstd_virtual_basic_state(sstd_virtual_basic * arg) {
+    auto varAns = sstd_make_shared<data_sstd_virtual_basic_state>();
+    varAns->pointer = arg;
+    mmm_sstd_data = std::move(varAns);
+}
 
 namespace {
 
@@ -73,7 +116,7 @@ namespace {
                     }
                     /*当前值是empty，要插入的值不是empty，更新当前值*/
                 }
-            }
+        }
             std::unique_lock varWriteLock{ mmmMutex };
             {
                 auto varPos = mmmCastMap.find(arg);
@@ -90,9 +133,9 @@ namespace {
                 }
             }
             mmmCastMap.emplace(arg, v);
-        }
+    }
 
-    };
+};
 
     class type_cast_item {
         void * a;
@@ -243,8 +286,21 @@ _1_sstd_runtime_static_basic::_1_sstd_runtime_static_basic(
     }
 }
 
-sstd_virtual_basic::~sstd_virtual_basic() {
+sstd_virtual_basic_state sstd_virtual_basic::sstd_get_class_state() const {
+    return mmm_this_state;
+}
 
+sstd_virtual_basic::sstd_virtual_basic() : 
+    mmm_this_state(this) {
+}
+
+sstd_virtual_basic::~sstd_virtual_basic() {
+    auto varState = mmm_this_state;
+    auto varData =
+        std::static_pointer_cast<data_sstd_virtual_basic_state>(varState.mmm_sstd_data);
+    std::unique_lock varLock{ varData->mutex };
+    varData->isDestory = true;
+    varData->pointer = nullptr;
 }
 
 sstd_type_index::sstd_type_index(const _1_sstd_runtime_static_basic *a)
