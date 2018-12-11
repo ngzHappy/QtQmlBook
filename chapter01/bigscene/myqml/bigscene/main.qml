@@ -6,7 +6,7 @@ Rectangle {
 
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+    color: Qt.rgba(0.3,0.3,0.38,1);
 
     Flickable {
 
@@ -15,9 +15,17 @@ Rectangle {
         height: parent.height ;
         contentWidth: idb.width ;
         contentHeight: idb.height ;
+        x : 0 ;
+        y : 0 ;
+        rotation: 45
+        scale: 0.8
+        transformOrigin : Item.Center
+        clip:true
+        antialiasing: true
 
         BigScene {
             id : idb ;
+            antialiasing: true ;
         }
 
         visibleArea.onXPositionChanged: {

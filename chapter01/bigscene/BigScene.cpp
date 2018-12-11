@@ -158,7 +158,6 @@ QSGNode * BigScene::updatePaintNode(
     QSGNode *oldNode,
     QQuickItem::UpdatePaintNodeData *) {
 
-
     auto varWindow = this->window();
     if (varWindow == nullptr) {
         return nullptr;
