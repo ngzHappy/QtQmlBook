@@ -59,25 +59,99 @@ namespace this_file {
         inline void addNode(int, int);
         inline void removeNode(RectNode *);
     private:
+        sstd::map< std::pair<int, int>, RectNode * > mmmHasNode;
+    private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(Node);
     };
 
     inline Node::Node() {
-        addNode(0, 0);
     }
 
-    void Node::update(const QMatrix & varMatrix, const std::array<QPointF, 4> &) {
+    void Node::update(const QMatrix & varMatrix,
+        const std::array<QPointF, 4> & varRotatedRectangle) {
+
         this->setMatrix(varMatrix);
+
+        qreal varMinX, varMinY;
+        qreal varMaxX, varMaxY;
+        int varMinYN, varMaxYN;
+        int varMinXN, varMaxXN;
+
+        {/*获得最大最小 xy */
+            auto var = std::minmax_element(
+                varRotatedRectangle.begin(),
+                varRotatedRectangle.end(), [](const auto &l, const auto &r) {
+                return l.x() < r.x();
+            });
+
+            varMaxX = var.second->x();
+            varMinX = var.first->x();
+
+            var = std::minmax_element(
+                varRotatedRectangle.begin(),
+                varRotatedRectangle.end(), [](const auto &l, const auto &r) {
+                return l.y() < r.y();
+            });
+
+            varMaxY = var.second->y();
+            varMinY = var.first->y();
+
+        }
+
+        {/*获得最大最小 xn,yn */
+            const constexpr auto varRH = 1.0 / this_file::globalRectHeight;
+            const constexpr auto varRW = 1.0 / this_file::globalRectWidth;
+
+            varMinYN = static_cast<int>(std::fma(varMinY, varRH, 0.5));
+            varMaxYN = static_cast<int>(std::fma(varMaxY, varRH, 0.5));
+            varMinXN = static_cast<int>(std::fma(varMinX, varRW, 0.5));
+            varMaxXN = static_cast<int>(std::fma(varMaxX, varRW, 0.5));
+        }
+
+        {/*删除不可见元素*/
+            constexpr const auto varMargin = 5 +
+                this_file::globalRectHeight +
+                this_file::globalRectWidth;
+            const QRectF varCheckedRect{
+               varMinX - varMargin ,
+               varMinY - varMargin ,
+               varMaxX - varMinX + varMargin ,
+               varMaxY - varMinY + varMargin
+            };
+
+            const auto varEnd = mmmHasNode.end();
+            for (auto varPos = mmmHasNode.begin(); varPos != varEnd; ) {
+                if (varPos->second->rect().intersects(varCheckedRect)) {
+                    ++varPos;
+                    continue;
+                }
+                this->removeNode(varPos->second);
+                varPos = mmmHasNode.erase(varPos);
+            }
+
+        }
+
+        /*添加元素*/
+        for (int i = std::max(0, varMinXN - 1); i <= varMaxXN; ++i) {
+            for (int j = std::max(0, varMinYN - 1); j <= varMaxYN; ++j) {
+                if (mmmHasNode.count({ i, j })) {
+                    continue;
+                }
+                this->addNode(i, j);
+            }
+        }
+
     }
 
     inline void Node::addNode(int argX, int argY) {
-        auto t = sstd_new< RectNode >(argX, argY);
-        t->setRect({ 0,0,100,100 });
-        this->appendChildNode(t);
+        auto var = sstd_new< RectNode >(argX, argY);
+        this->appendChildNode(var);
+        mmmHasNode.emplace(std::pair<int, int>(argX, argY), var);
     }
 
-    inline void Node::removeNode(RectNode *) {
-
+    inline void Node::removeNode(RectNode * arg) {
+        this->removeChildNode(arg);
+        delete arg;
     }
 
 }/****/
@@ -169,6 +243,7 @@ void BigScene2DViewer::pppSetCenterY(qreal v) {
 
 BigScene2DViewer::BigScene2DViewer() {
     this->setFlag(QQuickItem::ItemHasContents, true);
+    this->setClip(true);
     using namespace this_file;
     this->setWidth(globalSceneWidth);
     this->setHeight(globalSceneHeight);
@@ -195,7 +270,12 @@ QSGNode * BigScene2DViewer::updatePaintNode(
         varNode = sstd_new<Node>();
     }
 
-    varNode->update(this->mmmThisMatrix, {});
+    QRectF varRect{ 0 , 0 , this->width() ,this->height() };
+    varNode->update(this->mmmThisMatrix, {
+        varRect.topLeft()*mmmThisInvMatrix,
+        varRect.topRight()*mmmThisInvMatrix,
+        varRect.bottomRight()*mmmThisInvMatrix,
+        varRect.bottomLeft()*mmmThisInvMatrix });
 
     return varNode;
 
@@ -203,7 +283,7 @@ QSGNode * BigScene2DViewer::updatePaintNode(
 
 void  BigScene2DViewer::rotateByAngle(qreal angle) {
     QPointF varPoint{ mmmCenterX,mmmCenterY };
-    varPoint = mmmThisInvMatrix * varPoint;
+    varPoint = varPoint * mmmThisInvMatrix;
     auto varMatrix = mmmThisMatrix;
     varMatrix.translate(varPoint.x(), varPoint.y());
     varMatrix.rotate(angle);
@@ -213,18 +293,22 @@ void  BigScene2DViewer::rotateByAngle(qreal angle) {
 }
 
 void BigScene2DViewer::moveByX(qreal x) {
-    mmmThisMatrix = QMatrix{ 1,0,0,1,x,0 } *mmmThisMatrix;
+    mmmThisMatrix.translate(
+        x*mmmThisInvMatrix.m11(),
+        x*mmmThisInvMatrix.m12());
     pppUpdateMatrix();
 }
 
 void BigScene2DViewer::moveByY(qreal y) {
-    mmmThisMatrix = QMatrix{ 1,0,0,1,0,y } *mmmThisMatrix;
+    mmmThisMatrix.translate(
+        y*mmmThisInvMatrix.m21(),
+        y*mmmThisInvMatrix.m22());
     pppUpdateMatrix();
 }
 
 void BigScene2DViewer::scaleByXY(qreal s) {
     QPointF varPoint{ mmmCenterX,mmmCenterY };
-    varPoint = mmmThisInvMatrix * varPoint;
+    varPoint = varPoint * mmmThisInvMatrix;
     auto varMatrix = mmmThisMatrix;
     varMatrix.translate(varPoint.x(), varPoint.y());
     varMatrix.scale(s, s);
@@ -234,6 +318,8 @@ void BigScene2DViewer::scaleByXY(qreal s) {
 }
 
 void BigScene2DViewer::resetThisMatrix() {
+    mmmControlObject->setX(128 - 13);
+    mmmControlObject->setY(128 - 13);
     mmmThisMatrix = QMatrix{};
     pppUpdateMatrix();
 }
@@ -252,7 +338,10 @@ static inline void register_this() {
 Q_COREAPP_STARTUP_FUNCTION(register_this)
 
 
-
+/**
+x' = m11*x + m21*y + dx
+y' = m22*y + m12*x + dy
+**/
 
 
 

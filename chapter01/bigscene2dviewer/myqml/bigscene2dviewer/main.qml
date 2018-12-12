@@ -60,6 +60,7 @@ Rectangle {
             ids.runCommand( idCommand.text );
             idCommand.text=""               ;
         }
+        z : 100
     }
 
     BigScene2DViewer{
@@ -74,9 +75,11 @@ Rectangle {
             id : idcr ;
             width: 26 ;
             height: 26 ;
-            color: Qt.rgba( 0 , 0 , 0 , 1 );
+            color: Qt.rgba( 0.3 , 0.4 , 0.8 , 1 );
             x : 100 ;
             y : 100 ;
+            border.color: Qt.rgba(0.1,0.1,0.1,1)
+            border.width: 2
 
             MouseArea {
                 anchors.fill: idcr ;
