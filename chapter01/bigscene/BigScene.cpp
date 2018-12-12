@@ -105,11 +105,15 @@ namespace this_file {
             constexpr const auto varMargin = 5 +
                 this_file::globalRectHeight +
                 this_file::globalRectWidth;
+
+            constexpr const auto varMargin2 =
+                2 * varMargin;
+
             const QRectF varCheckedRect{
                varMinX - varMargin ,
                varMinY - varMargin ,
-               varMaxX - varMinX + varMargin ,
-               varMaxY - varMinY + varMargin
+               varMaxX - varMinX + varMargin2 ,
+               varMaxY - varMinY + varMargin2
             };
 
             const auto varEnd = mmmHasNode.end();

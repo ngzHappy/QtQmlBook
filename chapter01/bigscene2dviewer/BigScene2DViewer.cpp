@@ -20,9 +20,17 @@ namespace this_file {
 
     class RectNode : public sstd::SimpleRectangleNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RectNode){
+    private:
+#if defined(_DEBUG)
+        int mmmW;
+        int mmmH;
+#endif
     public:
         RectNode(int nw, int nh) {
-
+#if defined(_DEBUG)
+            mmmW = nw;
+            mmmH = nh;
+#endif
             this->setFlag(QSGNode::OwnedByParent);
 
             this->setRect(
@@ -36,14 +44,15 @@ namespace this_file {
                 randomColor(nh),
                 randomColor(nw + nh) , 255 });
 
-            qDebug() << __func__ << ++globalCount;
-
+#if defined(_DEBUG)
+            qDebug() << __func__ << mmmW << mmmH << ++globalCount;
+#endif
         }
 
         virtual ~RectNode() {
-
-            qDebug() << __func__ << --globalCount;
-
+#if defined(_DEBUG)
+            qDebug() << __func__ << mmmW << mmmH << --globalCount;
+#endif
         }
 
     private:
@@ -55,7 +64,7 @@ namespace this_file {
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Node) {
     public:
         inline Node();
-        inline void update(const QMatrix &, const std::array<QPointF, 4> &);
+        inline void update(const QMatrix &, const std::array<QPointF, 4> &,const QPointF &);
         inline void addNode(int, int);
         inline void removeNode(RectNode *);
     private:
@@ -67,8 +76,10 @@ namespace this_file {
     inline Node::Node() {
     }
 
-    void Node::update(const QMatrix & varMatrix,
-        const std::array<QPointF, 4> & varRotatedRectangle) {
+    void Node::update(
+        const QMatrix & varMatrix,
+        const std::array<QPointF, 4> & varRotatedRectangle,
+        const QPointF & varCenterPoint) {
 
         this->setMatrix(varMatrix);
 
@@ -106,22 +117,37 @@ namespace this_file {
             varMaxYN = static_cast<int>(std::fma(varMaxY, varRH, 0.5));
             varMinXN = static_cast<int>(std::fma(varMinX, varRW, 0.5));
             varMaxXN = static_cast<int>(std::fma(varMaxX, varRW, 0.5));
+
         }
 
-        {/*删除不可见元素*/
+        {/*删除不可见元素,更新中心点元素颜色*/
             constexpr const auto varMargin = 5 +
                 this_file::globalRectHeight +
                 this_file::globalRectWidth;
+
+            constexpr const auto varMargin2 = 
+                2 * varMargin;
+
             const QRectF varCheckedRect{
                varMinX - varMargin ,
                varMinY - varMargin ,
-               varMaxX - varMinX + varMargin ,
-               varMaxY - varMinY + varMargin
+               varMaxX - varMinX + varMargin2 ,
+               varMaxY - varMinY + varMargin2
             };
 
             const auto varEnd = mmmHasNode.end();
             for (auto varPos = mmmHasNode.begin(); varPos != varEnd; ) {
-                if (varPos->second->rect().intersects(varCheckedRect)) {
+                const QRectF varRectThis = varPos->second->rect();
+                if (varRectThis.intersects(varCheckedRect)) {
+                    if (varRectThis.contains(varCenterPoint)) {
+                        auto varColor = varPos->second->color();
+                        varPos->second->setColor(
+                            QColor::fromRgbF(
+                            1 - varColor.redF() ,
+                            1 - varColor.greenF() ,
+                            1 - varColor.blueF() ,
+                            1.0));
+                    }
                     ++varPos;
                     continue;
                 }
@@ -222,7 +248,7 @@ void BigScene2DViewer::runCommand(QString arg) {
 }
 
 void BigScene2DViewer::pppUpdate() {
-
+    this->update();
 }
 
 void BigScene2DViewer::pppSetCenterX(qreal v) {
@@ -270,12 +296,14 @@ QSGNode * BigScene2DViewer::updatePaintNode(
         varNode = sstd_new<Node>();
     }
 
-    QRectF varRect{ 0 , 0 , this->width() ,this->height() };
+    const QPointF varCenterPoint{ mmmCenterX,mmmCenterY };
+    const QRectF varRect{ 0 , 0 , this->width() ,this->height() };
     varNode->update(this->mmmThisMatrix, {
         varRect.topLeft()*mmmThisInvMatrix,
         varRect.topRight()*mmmThisInvMatrix,
         varRect.bottomRight()*mmmThisInvMatrix,
-        varRect.bottomLeft()*mmmThisInvMatrix });
+        varRect.bottomLeft()*mmmThisInvMatrix },
+        varCenterPoint*mmmThisInvMatrix);
 
     return varNode;
 
