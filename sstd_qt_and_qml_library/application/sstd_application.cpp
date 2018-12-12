@@ -1,5 +1,39 @@
 ﻿#include "sstd_application.hpp"
 #include <QtGui/qimage.h>
+#include <QtGui/qoffscreensurface.h>
+#include <QtGui/qopenglcontext.h>
+#include "../glew/sstd_glew_initialization.hpp"
+#include "../opengl_default_format/sstd_opengl_default_format.hpp"
+
+namespace {
+
+    class RunOnceApplicationConstruct;
+    inline void run_once_application_construct(RunOnceApplicationConstruct *);
+
+    class RunOnceApplicationConstruct {
+    public:
+        inline RunOnceApplicationConstruct() {
+            run_once_application_construct(this);
+        }
+        QOffscreenSurface surface;
+        QOpenGLContext contex;
+    private:
+        SSTD_DEFINE_STATIC_CLASS(RunOnceApplicationConstruct);
+    };
+
+    inline static void run_once_application_construct(RunOnceApplicationConstruct * arg) {
+        {
+            /*初始化glew*/
+            arg->surface.setFormat(sstd::getDefaultQSurfaceFormat());
+            arg->surface.create();
+            arg->contex.setFormat(sstd::getDefaultQSurfaceFormat());
+            arg->contex.create();
+            arg->contex.makeCurrent(&(arg->surface));
+            sstd::glew_initialize();
+        }
+    }
+
+}/**/
 
 namespace sstd {
 
@@ -11,6 +45,11 @@ namespace sstd {
                 /*强制加载QImage插件*/
                 QImage varImage{ QStringLiteral(":/qtandqmlglobal/image/foreceLoadQImage.png") };
                 (void)varImage;
+            }
+            {
+                /*never delete*/
+                static auto * varRunonceApplicationConstruct =
+                    sstd_new<RunOnceApplicationConstruct>();
             }
     }
 
@@ -30,7 +69,7 @@ namespace sstd {
                 mmmArgvCStyle.push_back(
                     const_cast<char *>(std::as_const(varI).c_str()));
             }
-            mmmArgvFinal =const_cast<char **>(
+            mmmArgvFinal = const_cast<char **>(
                 &(std::as_const(mmmArgvCStyle)[0]));
         }
         SSTD_DEFINE_STATIC_CLASS(_ApplicationArgsPrivate);
