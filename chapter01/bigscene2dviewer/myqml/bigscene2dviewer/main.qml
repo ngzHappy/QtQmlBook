@@ -2,7 +2,7 @@
 import QtQuick 2.9
 import sstd.bigscene2dviewer 1.0
 import QtQuick.Controls 1.6
-
+import QtGraphicalEffects 1.0
 
 Rectangle {
 
@@ -15,6 +15,9 @@ Rectangle {
         text : "controlCenterX : " + ids.controlCenterX
         anchors.left: parent.left
         font.pixelSize: 22
+        z : 10
+        font.bold: true
+        color: Qt.rgba(0.3,0.8,1,1)
     }
 
     Text{
@@ -22,6 +25,29 @@ Rectangle {
         text : "controlCenterY : " +ids.controlCenterY
         anchors.right: parent.right
         font.pixelSize: 22
+        z : 10.5
+        font.bold: true
+        color: Qt.rgba(0.3,0.8,1,1)
+    }
+
+    DropShadow{
+        anchors.fill: idControlCenterYTextView
+        horizontalOffset: 0.7
+        verticalOffset: 0.7
+        radius: 3
+        samples: 12
+        color: Qt.rgba(0.1,0.1,0.1,0.6)
+        source: idControlCenterYTextView
+    }
+
+    DropShadow{
+        anchors.fill: idControlCenterXTextView
+        horizontalOffset: 0.7
+        verticalOffset: 0.7
+        radius: 3
+        samples: 12
+        color: Qt.rgba(0.1,0.1,0.1,0.6)
+        source: idControlCenterXTextView
     }
 
     TextField {
