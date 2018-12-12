@@ -125,7 +125,7 @@ namespace this_file {
                 this_file::globalRectHeight +
                 this_file::globalRectWidth;
 
-            constexpr const auto varMargin2 = 
+            constexpr const auto varMargin2 =
                 2 * varMargin;
 
             const QRectF varCheckedRect{
@@ -321,6 +321,7 @@ void  BigScene2DViewer::rotateByAngle(qreal angle) {
 }
 
 void BigScene2DViewer::moveByX(qreal x) {
+    x *= -1 ;
     mmmThisMatrix.translate(
         x*mmmThisInvMatrix.m11(),
         x*mmmThisInvMatrix.m12());
@@ -328,6 +329,7 @@ void BigScene2DViewer::moveByX(qreal x) {
 }
 
 void BigScene2DViewer::moveByY(qreal y) {
+    y *= -1 ;
     mmmThisMatrix.translate(
         y*mmmThisInvMatrix.m21(),
         y*mmmThisInvMatrix.m22());
