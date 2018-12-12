@@ -4,12 +4,15 @@
 #include <QtGui/qopenglcontext.h>
 #include "../glew/sstd_glew_initialization.hpp"
 #include "../opengl_default_format/sstd_opengl_default_format.hpp"
+#include <string_view>
+using namespace std::string_view_literals;
 
 namespace {
 
     class RunOnceApplicationConstruct;
     inline void run_once_application_construct(RunOnceApplicationConstruct *);
 
+    /*用于Application仅构造一次*/
     class RunOnceApplicationConstruct {
     public:
         inline RunOnceApplicationConstruct() {
@@ -34,8 +37,13 @@ namespace {
             arg->contex.setFormat(sstd::getDefaultQSurfaceFormat());
             arg->contex.create();
             arg->contex.makeCurrent(&(arg->surface));
-            sstd::glew_initialize();
+            if (false == sstd::glew_initialize()) {
+                sstd_error(u8R"(can not construct glew!!!)"sv);
+                return;
+            }
         }
+        /*由于开启了OpenGL Contex资源共享，
+        可以在这里初始化OpenGL全局资源*/
     }
 
 }/**/
@@ -53,6 +61,10 @@ namespace sstd {
             }
     }
 
+    /*
+    在初始Application之前
+    将运行时参数拷贝一遍，
+    这样做可以自行增加和删除和修改参数*/
     class _ApplicationArgsPrivate {
     public:
         int mmmArgc{ 0 };
