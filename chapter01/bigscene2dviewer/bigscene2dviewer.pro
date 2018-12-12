@@ -1,9 +1,9 @@
 TEMPLATE = app
 
 CONFIG(debug,debug|release){
-    TARGET = bigscene_debug
+    TARGET = bigscene2dviewer_debug
 }else{
-    TARGET = bigscene
+    TARGET = bigscene2dviewer
 }
 
 #define out put dir
@@ -27,7 +27,7 @@ DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 
 DESTDIR = $${RootDestDir}
 
-SOURCES += $$PWD/main.cpp
+SOURCES += $$PWD/main.cpp  
 SOURCES += $$PWD/BigScene.cpp
 
 HEADERS += $$PWD/BigScene.hpp
@@ -46,7 +46,6 @@ lupdate_only{
 }
 
 DISTFILES += $$QMLSOURCES
-
 
 
 

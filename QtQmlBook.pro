@@ -35,7 +35,9 @@ app_bigscene.file = $$PWD/chapter01/bigscene/bigscene.pro
 app_bigscene.depends = sstd_qt_and_qml_library
 SUBDIRS += app_bigscene
 
-
+app_bigscene2dviewer.file = $$PWD/chapter01/bigscene2dviewer/bigscene2dviewer.pro
+app_bigscene2dviewer.depends = sstd_qt_and_qml_library
+SUBDIRS += app_bigscene2dviewer
 
 
 
