@@ -23,6 +23,11 @@ namespace {
 
     inline static void run_once_application_construct(RunOnceApplicationConstruct * arg) {
         {
+            /*强制加载QImage插件*/
+            QImage varImage{ QStringLiteral(":/qtandqmlglobal/image/foreceLoadQImage.png") };
+            (void)varImage;
+        }
+        {
             /*初始化glew*/
             arg->surface.setFormat(sstd::getDefaultQSurfaceFormat());
             arg->surface.create();
@@ -41,11 +46,6 @@ namespace sstd {
         Super(v.getArgC(), v.getArgV()),
         mmmArgs(v) {
         /*在QApplication构造之后构造*/
-            {
-                /*强制加载QImage插件*/
-                QImage varImage{ QStringLiteral(":/qtandqmlglobal/image/foreceLoadQImage.png") };
-                (void)varImage;
-            }
             {
                 /*never delete*/
                 static auto * varRunonceApplicationConstruct =
