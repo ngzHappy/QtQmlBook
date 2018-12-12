@@ -33,6 +33,8 @@ namespace this_file {
     public:
         RectNode(int nw, int nh) {
 
+            this->setFlag(QSGNode::OwnedByParent);
+
             this->setRect(
                 nw * globalRectWidth,
                 nh * globalRectHeight,

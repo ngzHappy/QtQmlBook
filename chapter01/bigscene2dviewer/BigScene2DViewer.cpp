@@ -1,4 +1,4 @@
-﻿#include "BigScene.hpp"
+﻿#include "BigScene2DViewer.hpp"
 
 namespace this_file {
 
@@ -9,16 +9,6 @@ namespace this_file {
     inline constexpr const static qreal globalSceneHeight = globalNumberRect * globalRectHeight;
     std::atomic< std::intmax_t > globalCount{ 0 };
 
-    class Node :
-        public QSGNode,
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Node) {
-    public:
-        inline Node(const QPointF &, const QPointF &, const QPointF &, const QPointF &);
-        inline void updateAll(const QPointF &, const QPointF &, const QPointF &, const QPointF &);
-        sstd::map< std::pair<int, int>, sstd::SimpleRectangleNode * > mmmHasNode;
-        SSTD_END_DEFINE_VIRTUAL_CLASS(Node);
-    };
-
     inline static int randomColor(int varK) {
         switch (varK & 3) {
         case 0:return (std::rand() & 127);
@@ -28,10 +18,12 @@ namespace this_file {
         return (std::rand() & 63);
     }
 
-    class RectNode : public sstd::SimpleRectangleNode ,
+    class RectNode : public sstd::SimpleRectangleNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RectNode){
     public:
         RectNode(int nw, int nh) {
+
+            this->setFlag(QSGNode::OwnedByParent);
 
             this->setRect(
                 nw * globalRectWidth,
@@ -58,207 +50,199 @@ namespace this_file {
         SSTD_END_DEFINE_VIRTUAL_CLASS(RectNode);
     };
 
-    void Node::updateAll(
-        const QPointF & a,
-        const QPointF & b,
-        const QPointF & c,
-        const QPointF & d) {
+    class Node :
+        public QSGTransformNode,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Node) {
+    public:
+        inline Node();
+        inline void update(const QMatrix &, const std::array<QPointF, 4> &);
+        inline void addNode(int, int);
+        inline void removeNode(RectNode *);
+    private:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(Node);
+    };
 
-        std::array<QPointF, 4> varRotatedRectangle{ a,b,c,d };
-        qreal varMinX, varMinY;
-        qreal varMaxX, varMaxY;
+    inline Node::Node() {
+        addNode(0, 0);
+    }
 
-        {
-            auto var = std::minmax_element(
-                varRotatedRectangle.begin(),
-                varRotatedRectangle.end(), [](const auto &l, const auto &r) {
-                return l.x() < r.x();
-            });
+    void Node::update(const QMatrix & varMatrix, const std::array<QPointF, 4> &) {
+        this->setMatrix(varMatrix);
+    }
 
-            varMaxX = var.second->x();
-            varMinX = var.first->x();
+    inline void Node::addNode(int argX, int argY) {
+        auto t = sstd_new< RectNode >(argX, argY);
+        t->setRect({ 0,0,100,100 });
+        this->appendChildNode(t);
+    }
 
-            var = std::minmax_element(
-                varRotatedRectangle.begin(),
-                varRotatedRectangle.end(), [](const auto &l, const auto &r) {
-                return l.y() < r.y();
-            });
-
-            varMaxY = var.second->y();
-            varMinY = var.first->y();
-
-        }
-
-        int varMinYN, varMaxYN, varMinXN, varMaxXN;
-
-        const constexpr auto varRH=1.0/this_file::globalRectHeight;
-        const constexpr auto varRW=1.0/this_file::globalRectWidth;
-
-        varMinYN = static_cast<int>( std::fma( varMinY , varRH ,0.5 ) ) ;
-        varMaxYN = static_cast<int>( std::fma( varMaxY , varRH ,0.5 ) ) ;
-        varMinXN = static_cast<int>( std::fma( varMinX , varRW ,0.5 ) ) ;
-        varMaxXN = static_cast<int>( std::fma( varMaxX , varRW ,0.5 ) ) ;
-
-        {
-            constexpr const auto varMargin = 5 +
-                this_file::globalRectHeight +
-                this_file::globalRectWidth;
-            const QRectF varCheckedRect{
-               varMinX - varMargin ,
-               varMinY - varMargin ,
-               varMaxX - varMinX + varMargin ,
-               varMaxY - varMinY + varMargin
-            };
-
-            const auto varEnd = mmmHasNode.end();
-            for (auto varPos = mmmHasNode.begin(); varPos != varEnd; ) {
-                if (varPos->second->rect().intersects(varCheckedRect)) {
-                    ++varPos;
-                    continue;
-                }
-                this->removeChildNode(varPos->second);
-                delete varPos->second;
-                varPos = mmmHasNode.erase(varPos);
-            }
-
-        }
-
-        for (int i = std::max(0, varMinXN - 1); i <= varMaxXN; ++i) {
-            for (int j = std::max(0, varMinYN - 1); j <= varMaxYN; ++j) {
-                if (mmmHasNode.count({ i, j })) {
-                    continue;
-                }
-                auto varElement = sstd_new<RectNode>(i, j);
-                mmmHasNode.emplace(std::pair<int, int>{ i, j }, varElement);
-                this->appendChildNode(varElement);
-            }
-        }
-
+    inline void Node::removeNode(RectNode *) {
 
     }
 
-    inline Node::Node(
-        const QPointF & a,
-        const QPointF & b,
-        const QPointF & c,
-        const QPointF & d) {
-        this->updateAll(a, b, c, d);
-        this->setFlag(QSGNode::OwnedByParent);
+}/****/
+
+void BigScene2DViewer::pppSetControlComponent(QQmlComponent * varComponent) {
+    assert(varComponent);
+    assert(this->mmmControl == nullptr);
+    assert(this->mmmControlObject == nullptr);
+    if (this->mmmControl == varComponent) {
+        return;
+    }
+    this->mmmControl = varComponent;
+
+    {
+        auto varContex = QQmlEngine::contextForObject(this);
+        mmmControlObject = sstd_runtime_cast<QQuickItem>(
+            mmmControl->beginCreate(varContex));
+        assert(mmmControlObject);
+        mmmControlObject->setParent(this);
+        mmmControlObject->setParentItem(this);
+        mmmControl->completeCreate();
     }
 
-}/*this_file*/
+    connect(mmmControlObject, &QQuickItem::xChanged,
+        this, [this]() { pppRawSetCenterX(); });
+    connect(mmmControlObject, &QQuickItem::yChanged,
+        this, [this]() { pppRawSetCenterY(); });
+    connect(mmmControlObject, &QQuickItem::widthChanged,
+        this, [this]() { pppRawSetCenterX(); });
+    connect(mmmControlObject, &QQuickItem::heightChanged,
+        this, [this]() { pppRawSetCenterY(); });
 
+    pppRawSetCenterX();
+    pppRawSetCenterY();
 
-BigScene::BigScene() {
+    this->pppControlComponentChanged();
+}
+
+void BigScene2DViewer::pppRawSetCenterX() {
+    const auto varX = mmmControlObject->mapToItem(this,
+        { 0,0 }).x();
+    const auto var = std::fma(
+        mmmControlObject->width(), 0.5, varX);
+    this->pppSetCenterX(var);
+}
+
+void BigScene2DViewer::pppRawSetCenterY() {
+    const auto varY = mmmControlObject->mapToItem(this,
+        { 0,0 }).y();
+    const auto var = std::fma(
+        mmmControlObject->height(), 0.5, varY);
+    this->pppSetCenterY(var);
+}
+
+void BigScene2DViewer::runCommand(QString arg) {
+    arg = arg.trimmed().toLower();
+    if (arg.startsWith('r')) {
+        this->rotateByAngle(arg.rightRef(arg.size() - 1).toDouble());
+    } else if (arg.startsWith('x')) {
+        this->moveByX(arg.rightRef(arg.size() - 1).toDouble());
+    } else if (arg.startsWith('s')) {
+        this->scaleByXY(arg.rightRef(arg.size() - 1).toDouble());
+    } else if (arg.startsWith('y')) {
+        this->moveByY(arg.rightRef(arg.size() - 1).toDouble());
+    } else if ( arg=='0' ) {
+        this->resetThisMatrix();
+    }
+}
+
+void BigScene2DViewer::pppUpdate() {
+
+}
+
+void BigScene2DViewer::pppSetCenterX(qreal v) {
+    if (v == mmmCenterX) {
+        return;
+    }
+    mmmCenterX = v;
+    pppCenterXUpdate();
+}
+
+void BigScene2DViewer::pppSetCenterY(qreal v) {
+    if (v == mmmCenterY) {
+        return;
+    }
+    mmmCenterY = v;
+    pppCenterYUpdate();
+}
+
+BigScene2DViewer::BigScene2DViewer() {
     this->setFlag(QQuickItem::ItemHasContents, true);
     using namespace this_file;
     this->setWidth(globalSceneWidth);
     this->setHeight(globalSceneHeight);
+    mmmUpdateTimer = this->sstd_create_data_in_this_class<QTimer>();
+    mmmUpdateTimer->setInterval(500ms);
+    connect(mmmUpdateTimer, &QTimer::timeout, this, [this]() {
+        this->pppUpdate();
+    });
+    mmmUpdateTimer->start();
 }
 
-QSGNode * BigScene::updatePaintNode(
+BigScene2DViewer::~BigScene2DViewer() {
+    mmmUpdateTimer->stop();
+}
+
+QSGNode * BigScene2DViewer::updatePaintNode(
     QSGNode *oldNode,
-    QQuickItem::UpdatePaintNodeData *) {
+    UpdatePaintNodeData *) {
 
-    auto varWindow = this->window();
-    if (varWindow == nullptr) {
-        return nullptr;
-    }
-
-    this_file::Node * varNode = static_cast<this_file::Node*>(oldNode);
-
-    QRectF varWindowScene{
-           mmmVisibleXPos , mmmVisibleYPos ,
-           mmmVisibleWidth ,mmmVisibleHeight };
+    using namespace this_file;
+    Node * varNode = static_cast<Node *>(oldNode);
 
     if (varNode == nullptr) {
-        return sstd_new<this_file::Node>(
-            varWindowScene.topLeft(),
-            varWindowScene.topRight(),
-            varWindowScene.bottomRight(),
-            varWindowScene.bottomLeft());
-
-    } else {
-        varNode->updateAll(
-            varWindowScene.topLeft(),
-            varWindowScene.topRight(),
-            varWindowScene.bottomRight(),
-            varWindowScene.bottomLeft());
+        varNode = sstd_new<Node>();
     }
+
+    varNode->update(this->mmmThisMatrix, {});
+
     return varNode;
+
 }
 
-qreal BigScene::getVisibleXPosition() const {
-    return mmmVisibleXPos;
+void  BigScene2DViewer::rotateByAngle(qreal) {
 }
 
-qreal BigScene::getVisibleYPosition() const {
-    return mmmVisibleYPos;
+void BigScene2DViewer::moveByX(qreal x) {
+    mmmThisMatrix = QMatrix{ 1,0,0,1,x,0 } * mmmThisMatrix;
+    pppUpdateMatrix();
 }
 
-qreal BigScene::getVisibleWidth()const {
-    return mmmVisibleWidth;
+void BigScene2DViewer::moveByY(qreal y) {
+    mmmThisMatrix = QMatrix{ 1,0,0,1,0,y } * mmmThisMatrix;
+    pppUpdateMatrix();
 }
 
-qreal BigScene::getVisibleHeight()const {
-    return mmmVisibleHeight;
+void BigScene2DViewer::scaleByXY(qreal) {
 }
 
-void BigScene::setVisibleXPosition(qreal v) {
-    if (std::isnan(v) || std::isinf(v)) {
-        return;
-    }
-    if (v == mmmVisibleXPos) {
-        return;
-    }
-    mmmVisibleXPos = v;
-    visibleXPositionChanged();
-    this->update();
+void BigScene2DViewer::resetThisMatrix() {
+    mmmThisMatrix = QMatrix{};
+    pppUpdateMatrix();
 }
 
-void BigScene::setVisibleYPosition(qreal v) {
-    if (std::isnan(v) || std::isinf(v)) {
-        return;
-    }
-    if (v == mmmVisibleYPos) {
-        return;
-    }
-    mmmVisibleYPos = v;
-    visibleYPositionChanged();
-    this->update();
-}
-
-void BigScene::setVisibleWidth(qreal v) {
-    if (std::isnan(v) || std::isinf(v)) {
-        return;
-    }
-    if (v == mmmVisibleWidth) {
-        return;
-    }
-    mmmVisibleWidth = v;
-    visibleWidthChanged();
-    this->update();
-}
-
-void BigScene::setVisibleHeight(qreal v) {
-    if (std::isnan(v) || std::isinf(v)) {
-        return;
-    }
-    if (v == mmmVisibleHeight) {
-        return;
-    }
-    mmmVisibleHeight = v;
-    visibleHeightChanged();
+void BigScene2DViewer::pppUpdateMatrix() {
+    mmmThisInvMatrix = std::as_const(mmmThisMatrix).inverted();
     this->update();
 }
 
 static inline void register_this() {
-    qmlRegisterType<BigScene>(
-        "sstd.bigscene",
+    qmlRegisterType<BigScene2DViewer>(
+        "sstd.bigscene2dviewer",
         1, 0,
-        "BigScene");
+        "BigScene2DViewer");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
+
+
+
+
+
+
+
+
+
 
 
 

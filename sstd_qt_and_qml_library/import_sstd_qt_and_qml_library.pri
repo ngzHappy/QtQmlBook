@@ -5,6 +5,8 @@ QT += quick
 QT += widgets
 QT += concurrent
 QT += quickwidgets
+QT += quickcontrols2
+
 
 INCLUDEPATH += $$PWD
 CONFIG(debug,debug|release){

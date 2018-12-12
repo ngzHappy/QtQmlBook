@@ -27,10 +27,10 @@ DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 
 DESTDIR = $${RootDestDir}
 
-SOURCES += $$PWD/main.cpp  
-SOURCES += $$PWD/BigScene.cpp
+SOURCES += $$PWD/main.cpp
+SOURCES += $$PWD/BigScene2DViewer.cpp
 
-HEADERS += $$PWD/BigScene.hpp
+HEADERS += $$PWD/BigScene2DViewer.hpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
@@ -39,7 +39,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/bigscene/main.qml
+QMLSOURCES += $$PWD/myqml/bigscene2dviewer/main.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
