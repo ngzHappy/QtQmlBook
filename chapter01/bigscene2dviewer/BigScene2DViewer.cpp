@@ -142,7 +142,7 @@ void BigScene2DViewer::runCommand(QString arg) {
         this->scaleByXY(arg.rightRef(arg.size() - 1).toDouble());
     } else if (arg.startsWith('y')) {
         this->moveByY(arg.rightRef(arg.size() - 1).toDouble());
-    } else if ( arg=='0' ) {
+    } else if (arg == '0') {
         this->resetThisMatrix();
     }
 }
@@ -201,20 +201,36 @@ QSGNode * BigScene2DViewer::updatePaintNode(
 
 }
 
-void  BigScene2DViewer::rotateByAngle(qreal) {
+void  BigScene2DViewer::rotateByAngle(qreal angle) {
+    QPointF varPoint{ mmmCenterX,mmmCenterY };
+    varPoint = mmmThisInvMatrix * varPoint;
+    auto varMatrix = mmmThisMatrix;
+    varMatrix.translate(varPoint.x(), varPoint.y());
+    varMatrix.rotate(angle);
+    varMatrix.translate(-varPoint.x(), -varPoint.y());
+    mmmThisMatrix = varMatrix;
+    pppUpdateMatrix();
 }
 
 void BigScene2DViewer::moveByX(qreal x) {
-    mmmThisMatrix = QMatrix{ 1,0,0,1,x,0 } * mmmThisMatrix;
+    mmmThisMatrix = QMatrix{ 1,0,0,1,x,0 } *mmmThisMatrix;
     pppUpdateMatrix();
 }
 
 void BigScene2DViewer::moveByY(qreal y) {
-    mmmThisMatrix = QMatrix{ 1,0,0,1,0,y } * mmmThisMatrix;
+    mmmThisMatrix = QMatrix{ 1,0,0,1,0,y } *mmmThisMatrix;
     pppUpdateMatrix();
 }
 
-void BigScene2DViewer::scaleByXY(qreal) {
+void BigScene2DViewer::scaleByXY(qreal s) {
+    QPointF varPoint{ mmmCenterX,mmmCenterY };
+    varPoint = mmmThisInvMatrix * varPoint;
+    auto varMatrix = mmmThisMatrix;
+    varMatrix.translate(varPoint.x(), varPoint.y());
+    varMatrix.scale(s, s);
+    varMatrix.translate(-varPoint.x(), -varPoint.y());
+    mmmThisMatrix = varMatrix;
+    pppUpdateMatrix();
 }
 
 void BigScene2DViewer::resetThisMatrix() {
