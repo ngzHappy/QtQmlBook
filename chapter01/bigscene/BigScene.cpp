@@ -16,7 +16,7 @@ namespace this_file {
     public:
         inline Node(const QPointF &, const QPointF &, const QPointF &, const QPointF &);
         inline void updateAll(const QPointF &, const QPointF &, const QPointF &, const QPointF &);
-        sstd::map< std::pair<int, int>, QSGSimpleRectNode * > mmmHasNode;
+        sstd::map< std::pair<int, int>, sstd::SimpleRectangleNode * > mmmHasNode;
         SSTD_END_DEFINE_VIRTUAL_CLASS(Node);
     };
 
@@ -29,7 +29,7 @@ namespace this_file {
         return (std::rand() & 63);
     }
 
-    class RectNode : public QSGSimpleRectNode,
+    class RectNode : public sstd::SimpleRectangleNode ,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(RectNode){
     public:
         RectNode(int nw, int nh) {
