@@ -1,5 +1,4 @@
 ﻿#include "BigScene.hpp"
-#include <set>
 
 namespace this_file {
 
@@ -8,7 +7,7 @@ namespace this_file {
     inline constexpr const static int globalNumberRect = 1024 * 1024;
     inline constexpr const static qreal globalSceneWidth = globalNumberRect * globalRectWidth;
     inline constexpr const static qreal globalSceneHeight = globalNumberRect * globalRectHeight;
-    std::intmax_t globalCount{ 0 };
+    std::atomic< std::intmax_t > globalCount{ 0 };
 
     class Node :
         public QSGNode,
