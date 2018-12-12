@@ -92,14 +92,17 @@ namespace this_file {
 
         int varMinYN, varMaxYN, varMinXN, varMaxXN;
 
-        std::remquo(varMinY, this_file::globalRectHeight, &varMinYN);
-        std::remquo(varMaxY, this_file::globalRectHeight, &varMaxYN);
-        std::remquo(varMinX, this_file::globalRectWidth, &varMinXN);
-        std::remquo(varMaxX, this_file::globalRectWidth, &varMaxXN);
+        const constexpr auto varRH=1.0/this_file::globalRectHeight;
+        const constexpr auto varRW=1.0/this_file::globalRectWidth;
+
+        varMinYN = static_cast<int>( std::fma( varMinY , varRH ,0.5 ) ) ;
+        varMaxYN = static_cast<int>( std::fma( varMaxY , varRH ,0.5 ) ) ;
+        varMinXN = static_cast<int>( std::fma( varMinX , varRW ,0.5 ) ) ;
+        varMaxXN = static_cast<int>( std::fma( varMaxX , varRW ,0.5 ) ) ;
 
         {
-            constexpr const auto varMargin = 5 + 
-                this_file::globalRectHeight + 
+            constexpr const auto varMargin = 5 +
+                this_file::globalRectHeight +
                 this_file::globalRectWidth;
             const QRectF varCheckedRect{
                varMinX - varMargin ,

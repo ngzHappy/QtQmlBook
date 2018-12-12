@@ -17,8 +17,8 @@ Rectangle {
         contentHeight: idb.height ;
         x : 0 ;
         y : 0 ;
-        rotation: 45
-        scale: 0.8
+        rotation: 0
+        scale: 1
         transformOrigin : Item.Center
         clip:true
         antialiasing: true
