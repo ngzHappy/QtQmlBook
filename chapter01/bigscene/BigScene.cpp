@@ -45,15 +45,15 @@ namespace this_file {
                 randomColor(nw),
                 randomColor(nh),
                 randomColor(nw + nh) , 255 });
-
+#if defined(_DEBUG)
             qDebug() << __func__ << ++globalCount;
-
+#endif
         }
 
         virtual ~RectNode() {
-
+#if defined(_DEBUG)
             qDebug() << __func__ << --globalCount;
-
+#endif
         }
 
     private:
