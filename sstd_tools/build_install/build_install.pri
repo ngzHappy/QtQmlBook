@@ -18,7 +18,9 @@ win32-msvc*{
 win32-msvc*{
     CONFIG+=suppress_vcproj_warnings
 }else{
-     QMAKE_CFLAGS += -std=c11
+    QMAKE_CFLAGS += -std=c11
+    QMAKE_CXXFLAGS += -Wno-unused-parameter
+    QMAKE_CXXFLAGS += -Wno-deprecated-declarations
 }
 
 INCLUDEPATH += $$PWD/boost_filesystem
