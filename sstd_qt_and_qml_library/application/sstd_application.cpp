@@ -5,6 +5,7 @@
 #include "../glew/sstd_glew_initialization.hpp"
 #include "../opengl_default_format/sstd_opengl_default_format.hpp"
 #include <string_view>
+#include <fstream>
 using namespace std::string_view_literals;
 
 namespace {
@@ -96,8 +97,63 @@ namespace sstd {
         return mmmData->mmmArgvFinal;
     }
 
-    ApplicationArgs::ApplicationArgs(int argc, char ** argv) {
+    namespace {
+        inline static void try_load_qml_app_style(
+            const char * argAppPath,
+            const std::string_view & arg) {
+
+            bool varHasFile;
+
+            sstd::string varAppFullPath{ arg };
+            {
+                std::ifstream varRead(
+                    varAppFullPath.c_str(),
+                    std::ios::in);
+                varHasFile = varRead.is_open();
+            }
+
+            if (false == varHasFile) {
+                varAppFullPath = argAppPath;
+                {
+                    auto varPos =
+                        varAppFullPath.find_last_of(u8R"(/\)"sv);
+                    if (varPos == std::string::npos) {
+                        return;
+                    }
+                    varAppFullPath.resize(varPos +
+                        (arg.find_first_of(u8R"(/\)"sv) != 0));
+                    varAppFullPath += arg;
+                }
+
+                {
+                    std::ifstream varRead(
+                        varAppFullPath.c_str(),
+                        std::ios::in);
+                    varHasFile = varRead.is_open();
+                }
+            }
+
+            if (false == varHasFile) {
+                sstd_log(arg);
+                return;
+            }
+
+            ::qputenv("QT_QUICK_CONTROLS_CONF",
+                QByteArray(varAppFullPath.c_str(),
+                    static_cast<int>(varAppFullPath.size())));
+
+        }
+    }
+
+    ApplicationArgs::ApplicationArgs(int argc, char ** argv,
+        std::string_view argQmlStyleName) {
         mmmData = sstd_make_shared<_ApplicationArgsPrivate>(argc, argv);
+        {
+            /*Supported Environment Variables in Qt Quick Controls 2*/
+            if (!argQmlStyleName.empty()) {
+                try_load_qml_app_style(argv[0], argQmlStyleName);
+            }
+        }
     }
 
 }/*namespace sstd*/

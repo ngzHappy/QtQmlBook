@@ -21,6 +21,12 @@ namespace sstd{
     EXPORT_SSTD_QT_AND_QML_LIBRARY QString getLocalFileFullFilePath(const QString &, const QString & = qApp->applicationDirPath());
 #endif
 
+#if defined(_DEBUG) && defined(CURRENT_DEBUG_PATH)
+    EXPORT_SSTD_QT_AND_QML_LIBRARY sstd::string getLocalFileFullFilePath(std::string_view, std::string_view = CURRENT_DEBUG_PATH);
+#else
+    EXPORT_SSTD_QT_AND_QML_LIBRARY sstd::string getLocalFileFullFilePath(std::string_view, std::string_view = {});
+#endif
+
 }/*namespace sstd*/
 
 

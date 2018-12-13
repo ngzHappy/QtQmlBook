@@ -10,7 +10,7 @@ namespace sstd {
     class _ApplicationArgsPrivate;
     class EXPORT_SSTD_QT_AND_QML_LIBRARY ApplicationArgs {
     public:
-        ApplicationArgs(int, char **);
+        ApplicationArgs(int, char **,std::string_view);
         inline ApplicationArgs(const ApplicationArgs &)=default;
         inline ApplicationArgs(ApplicationArgs &&) = default;
         inline ApplicationArgs&operator=(const ApplicationArgs &) = default;
@@ -30,7 +30,7 @@ namespace sstd {
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Application){
         Q_OBJECT
     public:
-        inline Application(int, char **);
+        inline Application(int, char **, std::string_view = {});
         Application(ApplicationArgs);
     private:
         ApplicationArgs mmmArgs;
@@ -39,8 +39,9 @@ namespace sstd {
         SSTD_END_DEFINE_VIRTUAL_CLASS(Application);
     };
 
-    inline Application::Application(int argc, char ** argv) :
-        Application(ApplicationArgs{ argc,argv }) {
+    inline Application::Application(int argc, char ** argv, 
+        std::string_view argQmlStyleName) :
+        Application(ApplicationArgs{ argc,argv,argQmlStyleName }) {
     }
 
 }/*namespace sstd*/
