@@ -29,7 +29,7 @@ namespace sstd {
         std::string_view varDir) {
 
         if (varName.empty()) {
-            return sstd::string{ varDir };
+            return { };
         }
 
         if (varDir.empty()) {
