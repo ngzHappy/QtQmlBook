@@ -15,7 +15,7 @@ CONFIG(debug,debug|release){
     LIBS +=-L$${RootDestDir} -lsstd_qt_and_qml_library
 }
 
-
+DEFINES *= SSTD_HAS_GLEW_APPLICATION_INITIALIZE  
 
 
 

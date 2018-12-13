@@ -109,7 +109,7 @@ namespace {
         auto varCallFunction = [this]() {
 
             /*初始化glew库*/
-            sstd::glew_initialize();
+            sstd_glew_initialize();
 
             /*初始化opengl program ...*/
 

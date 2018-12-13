@@ -7,9 +7,19 @@ namespace sstd {
 
 }/*namespace sstd*/
 
+#if defined(SSTD_HAS_GLEW_APPLICATION_INITIALIZE)
 
+#ifndef sstd_glew_initialize
+#define sstd_glew_initialize() static_assert(true)
+#endif
 
+#else
 
+#ifndef sstd_glew_initialize
+#define sstd_glew_initialize sstd::glew_initialize
+#endif
+
+#endif
 
 
 
