@@ -12,6 +12,7 @@
 #include <QtQml/QtQml>
 #include <QtCore/QtCore>
 #include <QtQuick/QtQuick>
+#include <QtQuickControls2/QtQuickControls2>
 
 #include "global/sstd_qt_and_qml_global.hpp"
 #include "application/sstd_application.hpp"

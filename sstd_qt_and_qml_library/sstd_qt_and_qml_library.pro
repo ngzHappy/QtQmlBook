@@ -7,6 +7,7 @@ QT += quick
 QT += widgets
 QT += concurrent
 QT += quickwidgets
+QT += quickcontrols2
 
 CONFIG(debug,debug|release){
     TARGET = sstd_qt_and_qml_libraryd
