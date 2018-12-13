@@ -10,7 +10,7 @@ using namespace std::string_view_literals;
 namespace {
 
     class RunOnceApplicationConstruct;
-    inline void run_once_application_construct(RunOnceApplicationConstruct *);
+    inline static void run_once_application_construct(RunOnceApplicationConstruct *);
 
     /*用于Application仅构造一次*/
     class RunOnceApplicationConstruct {
@@ -58,6 +58,7 @@ namespace sstd {
                 /*never delete*/
                 static auto * varRunonceApplicationConstruct =
                     sstd_new<RunOnceApplicationConstruct>();
+                (void)varRunonceApplicationConstruct;
             }
     }
 
