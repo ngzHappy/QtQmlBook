@@ -40,24 +40,9 @@ HEADERS += $$PWD/log/sstd_log.hpp
 SOURCES += $$PWD/intrusive_ptr/sstd_intrusive_ptr.hpp
 
 DESTDIR = $${RootDestDir}
-INCLUDEPATH += $$[QT_INSTALL_HEADERS]
 #qmake -query
+INCLUDEPATH += $$[QT_INSTALL_HEADERS]
 
-#change here ...
+#remove here if you can not build static jemalloc ...
+include($$PWD/_sstd_library_memory.pri)
 
-win32-g++*{#win32-g++*
-
-DEFINES *= _0_SSTD_HAS_JE_MALLLOC
-LIBS += -L$$PWD/memory/libs -ljemalloc_win64_mingw_730
-
-} else {#win32-g++*
-
-win32-msvc*{#win32-msvc*
-
-DEFINES *= _0_SSTD_HAS_JE_MALLLOC
-
-include($$PWD/memory/libs/jemalloc_msvc_64/jemalloc_msvc_64.pri)
-
-}#win32-msvc*
-
-}#win32-g++*
