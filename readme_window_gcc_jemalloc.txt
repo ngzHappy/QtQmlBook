@@ -1,6 +1,6 @@
 under windows use mingw-32 ,
 you should build static jemalloc yourself , 
-anc copy it to sstd_library/memory/libs/jemalloc_win64_mingw_730.a ,
+and copy it to sstd_library/memory/libs/jemalloc_win64_mingw_730.a ,
 or/and change sstd_library/_sstd_library_memory.pri
 
 win32-g++*{#win32-g++*
