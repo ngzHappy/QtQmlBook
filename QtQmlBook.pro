@@ -43,6 +43,9 @@ app_defaultstyle.file = $$PWD/chapter01/defaultstyle/defaultstyle.pro
 app_defaultstyle.depends = sstd_qt_and_qml_library
 SUBDIRS += app_defaultstyle
 
+app_minesweeping.file = $$PWD/chapter01/minesweeping/minesweeping.pro
+app_minesweeping.depends = sstd_qt_and_qml_library
+SUBDIRS += app_minesweeping
 
 
 
