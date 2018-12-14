@@ -6,6 +6,8 @@
 #include <variant>
 #include "../log/sstd_log.hpp"
 #include <string_view>
+#include <cassert>
+
 using namespace std::string_view_literals;
 
 namespace {
@@ -317,8 +319,11 @@ sstd_virtual_basic_state sstd_virtual_basic::ppp_construct_this_state() {
 void sstd_virtual_basic::ppp_destruct_this_state() {
     static sstd_virtual_basic_state varNull{ nullptr };
     sstd_virtual_basic_state * varOldState = nullptr;
-    mmm_this_state.
-        compare_exchange_strong(varOldState, &varNull);
+
+    while(!mmm_this_state.
+        compare_exchange_strong(varOldState, &varNull));
+    assert(mmm_this_state.load()== &varNull);
+    
     if (varOldState == nullptr) {
         return;
     }
