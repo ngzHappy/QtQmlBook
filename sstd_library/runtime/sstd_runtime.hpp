@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <mutex>
+#include <atomic>
 #include <cassert>
 #include <typeinfo>
 #include <typeindex>
@@ -47,14 +48,17 @@ public:
 };
 
 class sstd_virtual_basic;
-class  _1_SSTD_CORE_EXPORT sstd_virtual_basic_state {
-public:
+class _1_SSTD_CORE_EXPORT sstd_virtual_basic_state {
     std::shared_ptr<void> mmm_sstd_data;
+    friend class sstd_virtual_basic;
+public:
     void lock();
     void unlock();
     bool isDestoryed() const;
     sstd_virtual_basic * getPointer() const;
+private:
     sstd_virtual_basic_state(sstd_virtual_basic *);
+    sstd_virtual_basic_state(decltype(nullptr));
     _SSTD_MEMORY_1_DFINE
 };
 
@@ -80,7 +84,9 @@ private:
 class _1_SSTD_CORE_EXPORT sstd_virtual_basic :
     public _1_sstd_memory_dynamic_class_basic,
     public _data_sstd_virtual_basic {
-    sstd_virtual_basic_state mmm_this_state;
+    std::atomic< sstd_virtual_basic_state * > mmm_this_state;
+    sstd_virtual_basic_state ppp_construct_this_state();
+    void ppp_destruct_this_state();
 public:
     virtual ~sstd_virtual_basic();
     sstd_virtual_basic();
