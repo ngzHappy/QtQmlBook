@@ -317,11 +317,14 @@ sstd_virtual_basic_state sstd_virtual_basic::ppp_construct_this_state() {
 void sstd_virtual_basic::ppp_destruct_this_state() {
     static sstd_virtual_basic_state varNull{ nullptr };
     sstd_virtual_basic_state * varOldState = nullptr;
-    mmm_this_state.compare_exchange_strong(varOldState, &varNull);
+    while (!mmm_this_state.
+        compare_exchange_strong(varOldState, &varNull)) {
+    }
     if (varOldState == nullptr) {
         return;
     }
     if (varOldState == &varNull) {
+        sstd_log("thre is may be a memory leak!"sv);
         return;
     }
     auto varData = varOldState->mmm_sstd_data;
