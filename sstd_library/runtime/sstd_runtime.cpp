@@ -327,18 +327,27 @@ void sstd_virtual_basic::ppp_destruct_this_state() {
     if (varOldState == nullptr) {
         return;
     }
+
+#if defined(_DEBUG)
     if (varOldState == &varNull) {
         sstd_log("thre is may be a memory leak!"sv);
         return;
     }
+#endif
+
     auto varData = varOldState->mmm_sstd_data;
     auto varTypedData =
         std::static_pointer_cast<data_sstd_virtual_basic_state>(varData);
+
+    std::unique_lock varLock{ varTypedData->mutex };
+#if defined(_DEBUG)
     if (varTypedData) {
-        std::unique_lock varLock{ varTypedData->mutex };
+#endif
         varTypedData->isDestory = true;
         varTypedData->pointer = nullptr;
+#if defined(_DEBUG)
     }
+#endif
     delete varOldState;
 }
 
