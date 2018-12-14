@@ -9,7 +9,16 @@ Rectangle {
     color: Qt.rgba(0.3,0.3,0.38,1);
 
     MineSweeping{
-        anchors.fill: parent ;
+        anchors.centerIn: parent;
+        property double minWidthHeight: Math.min( parent.height , parent.width )
+        width: minWidthHeight * 0.8;
+        height: minWidthHeight * 0.8;
+
+        maskItem : Rectangle {
+            anchors.fill: parent ;
+            anchors.margins: 1 ;
+        }
+
     }
 
 

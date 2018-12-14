@@ -17,7 +17,7 @@ int main(int argc, char ** argv) {
             qWarning() << QStringLiteral("can not load : ") << varFullFileName;
             return -1;
         }
-    }
+    }  
     varWindow->show();
 
     return varApp->exec();

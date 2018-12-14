@@ -81,10 +81,10 @@ void MineSweepingLineNode::pppUpdateRect() {
     varPoint[1].set(
         static_cast<GLfloat>(mmmStartPoint.x() + dy),
         static_cast<GLfloat>(mmmStartPoint.y() - dx));
-    varPoint[2].set(
+    varPoint[3].set(
         static_cast<GLfloat>(mmmEndPoint.x() + dy),
         static_cast<GLfloat>(mmmEndPoint.y() - dx));
-    varPoint[3].set(
+    varPoint[2].set(
         static_cast<GLfloat>(mmmEndPoint.x() - dy),
         static_cast<GLfloat>(mmmEndPoint.y() + dx));
 
@@ -97,12 +97,13 @@ void MineSweepingLineNode::pppUpdateColor() {
 
 MineSweepingLineNode::MineSweepingLineNode() :
     mmmMaterial(),
-    mmmGeometry(QSGGeometry::defaultAttributes_Point2D(), 6) {
+    mmmGeometry(QSGGeometry::defaultAttributes_Point2D(), 4) {
     pppUpdateRect();
     pppUpdateColor();
     this->setMaterial(&mmmMaterial);
     this->setGeometry(&mmmGeometry);
     this->setFlag(QSGNode::OwnedByParent);
+    mmmGeometry.setDrawingMode(QSGGeometry::DrawTriangleStrip);
 }
 
 
