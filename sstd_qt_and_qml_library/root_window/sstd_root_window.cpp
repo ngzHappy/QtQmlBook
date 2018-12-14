@@ -43,6 +43,7 @@ namespace sstd::_private_sstd {
     _WindowPrivate::_WindowPrivate() {
         this->setClearColor(QColor(0, 0, 0, 255));
         this->setResizeMode(sstd::ResizeMode::SizeRootObjectToView);
+        this->setMinimumSize({128,128});
     }
 
     _WidgetPrivate::_WidgetPrivate() {
@@ -54,6 +55,7 @@ namespace sstd::_private_sstd {
             this->setPalette(varP);
             this->setAutoFillBackground(true);
         }
+        this->setMinimumSize({128,128});
     }
 
     sstd::LoadState _WidgetPrivate::status() const {
