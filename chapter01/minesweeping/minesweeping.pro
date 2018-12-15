@@ -47,6 +47,7 @@ export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/minesweeping/main.qml
 QMLSOURCES += $$PWD/myqml/minesweeping/Flag.qml
+QMLSOURCES += $$PWD/myqml/minesweeping/Error.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
