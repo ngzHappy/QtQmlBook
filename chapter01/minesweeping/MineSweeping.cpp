@@ -3,13 +3,35 @@
 
 namespace this_file {
 
+    class Node;
     class LayoutItem : public QQuickItem,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(LayoutItem) {
+        int const mmmRow;
+        int const mmmColumn;
+        Node * const mmmParent;
+        QQuickItem * mmmFlagItem{ nullptr };
+        QQuickItem * mmmMaskItem{ nullptr };
+    private:
+        using Super = QQuickItem;
     public:
-        LayoutItem() {
-            this->setWidth(10);
-            this->setHeight(10);
+        LayoutItem(int r, int c, Node * p) :
+            mmmRow(r),
+            mmmColumn(c),
+            mmmParent(p) {
+            this->setWidth(128);
+            this->setHeight(128);
+            this->setAcceptedMouseButtons(Qt::AllButtons);
         }
+        void setMask(QQuickItem * v) {
+            mmmMaskItem = v;
+        }
+        void setFlag(QQuickItem * v) {
+            mmmFlagItem = v;
+        }
+        inline void createFlag();
+    protected:
+        inline void mousePressEvent(QMouseEvent *event);
+    private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(LayoutItem);
     };
 
@@ -17,12 +39,22 @@ namespace this_file {
         public QSGNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Node) {
     public:
+        MineSweeping * const mmmMineSweeping;
+    public:
 
-        inline Node() {
+        inline Node(MineSweeping * v) :
+            mmmMineSweeping(v) {
             this->setFlag(QSGNode::OwnedByParent);
         }
 
         std::vector< LayoutItem * > mmmLayoutItem;
+
+        inline void clear_objects() {
+            for (auto i : mmmLayoutItem) {
+                delete i;
+            }
+            mmmLayoutItem.clear();
+        }
 
         inline void create_objects(
             int argRow,
@@ -30,13 +62,19 @@ namespace this_file {
             MineSweeping * argParent) {
             const auto varCount = argRow * argColumn;
             auto varContex = QQmlEngine::contextForObject(argParent);
-            for (auto i : mmmLayoutItem) {
-                delete i;
-            }
-            mmmLayoutItem.clear();
+            clear_objects();
             mmmLayoutItem.reserve(varCount);
+            int r = 0;
+            int c = 0;
             while (mmmLayoutItem.size() < varCount) {
-                auto varItem = sstd_new<LayoutItem>();
+                auto varItem = sstd_new<LayoutItem>(r, c, this);
+                {
+                    ++c;
+                    if (!(c < argColumn)) {
+                        c = 0;
+                        ++r;
+                    }
+                }
                 {/*创建layout item*/
                     varItem->setParent(argParent);
                     varItem->setParentItem(argParent);
@@ -51,6 +89,7 @@ namespace this_file {
                     varMaskItem->setParent(varItem);
                     varMaskItem->setParentItem(varItem);
                     varMaskComponent->completeCreate();
+                    varItem->setMask(varMaskItem);
                 }
             }
         }
@@ -80,7 +119,6 @@ namespace this_file {
                     ++i;
                 }
             }
-
 
         }
 
@@ -151,6 +189,33 @@ namespace this_file {
         SSTD_END_DEFINE_VIRTUAL_CLASS(Node);
     };
 
+    inline void  LayoutItem::createFlag() {
+        if (mmmFlagItem) {
+            return;
+        }
+        auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
+        auto varFlag = mmmParent->mmmMineSweeping->getFlagComponent();
+        assert(varFlag);
+        auto varFlagObject =
+            sstd_runtime_cast<QQuickItem>(
+                varFlag->beginCreate(varContex));
+        assert(varFlagObject);
+        varFlagObject->setParent(this);
+        varFlagObject->setParentItem(this);
+        varFlag->completeCreate();
+        this->setFlag(varFlagObject);
+        varFlagObject->setZ(1);
+    }
+
+    inline void LayoutItem::mousePressEvent(QMouseEvent *event) {
+        QQuickItem::mousePressEvent(event);
+
+        createFlag();
+
+       
+
+    }
+
 }/********/
 
 QSGNode * MineSweeping::updatePaintNode(
@@ -182,7 +247,7 @@ MineSweeping::MineSweeping() {
 
 QQuickItem * MineSweeping::getLayoutItem(int arg) {
     auto varNode = static_cast<this_file::Node*>(mmmCurrentNode);
-    return varNode->mmmLayoutItem[arg] ;
+    return varNode->mmmLayoutItem[arg];
 }
 
 void MineSweeping::pppSetMaskComponent(QQmlComponent * arg) {
@@ -191,11 +256,17 @@ void MineSweeping::pppSetMaskComponent(QQmlComponent * arg) {
     pppMaskComponentChanged();
 }
 
+void MineSweeping::pppSetFlagComponent(QQmlComponent * arg) {
+    assert(mmmFlagComponent == nullptr);
+    mmmFlagComponent = arg;
+    pppFlagComponentChanged();
+}
+
 void MineSweeping::pppSlotCreateObjets() {
     if (mmmMaskComponent == nullptr) {
         return;
     }
-    mmmCurrentNode = sstd_new<this_file::Node>();
+    mmmCurrentNode = sstd_new<this_file::Node>(this);
     auto varNode = static_cast<this_file::Node*>(mmmCurrentNode);
     varNode->rebuild_scene(mmmRowCout, mmmColumnCount, this->width(), this->height());
     varNode->create_objects(mmmRowCout, mmmColumnCount, this);
@@ -215,6 +286,14 @@ void MineSweeping::pppSetSceneSize(int arg) {
 void MineSweeping::componentComplete() {
     QQuickItem::componentComplete();
     pppSetSceneSize(10);
+}
+
+MineSweeping::~MineSweeping() {
+    if (mmmCurrentNode) {
+        if (mmmCurrentNode->parent() == nullptr) {
+            delete mmmCurrentNode;
+        }
+    }
 }
 
 static inline void register_this() {

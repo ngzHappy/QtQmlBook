@@ -9,14 +9,24 @@ Rectangle {
     color: Qt.rgba(0.3,0.3,0.38,1);
 
     MineSweeping{
+
         anchors.centerIn: parent;
-        property double minWidthHeight: Math.min( parent.height , parent.width )
+        property double minWidthHeight:
+            Math.min( parent.height , parent.width );
         width: minWidthHeight * 0.8;
         height: minWidthHeight * 0.8;
 
         maskItem : Rectangle {
-            anchors.fill: parent ;
-            anchors.margins: 1 ;
+            anchors.centerIn: parent
+            width: parent.width * 0.95
+            height: parent.height * 0.95
+            color: Qt.rgba(0.2,0.2,0.2,1);
+        }
+
+        flagItem : Flag{
+            anchors.centerIn: parent ;
+            width  : parent.width * 0.75 ;
+            height : parent.height * 0.75 ;
         }
 
     }

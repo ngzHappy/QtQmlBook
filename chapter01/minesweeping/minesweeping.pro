@@ -35,8 +35,8 @@ HEADERS += $$PWD/MineSweeping.hpp
 SOURCES += $$PWD/MineSweepingLineNode.cpp
 HEADERS += $$PWD/MineSweepingLineNode.hpp
 
-SOURCES += $$PWD/MineSweepingRectangleNode.cpp
-HEADERS += $$PWD/MineSweepingRectangleNode.hpp
+SOURCES += $$PWD/MineSweepingLine.cpp
+HEADERS += $$PWD/MineSweepingLine.hpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
@@ -46,6 +46,7 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/minesweeping/main.qml
+QMLSOURCES += $$PWD/myqml/minesweeping/Flag.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

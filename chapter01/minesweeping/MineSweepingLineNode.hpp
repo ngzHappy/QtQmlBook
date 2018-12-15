@@ -21,7 +21,7 @@ private:
     QColor mmmLineColor;
     QSGFlatColorMaterial mmmMaterial;
     QSGGeometry mmmGeometry;
-    bool mmmIsNull{false};
+    bool mmmIsNull{ false };
 private:
     void pppUpdateRect();
     void pppUpdateColor();
@@ -33,15 +33,15 @@ inline QPointF MineSweepingLineNode::getBeginPoint() const {
     return mmmStartPoint;
 }
 
-inline QPointF MineSweepingLineNode::getEndPoint() const{
+inline QPointF MineSweepingLineNode::getEndPoint() const {
     return mmmEndPoint;
 }
 
-inline qreal MineSweepingLineNode::getLineWidth() const{
+inline qreal MineSweepingLineNode::getLineWidth() const {
     return mmmLineWidth;
 }
 
-inline QColor MineSweepingLineNode::getLineColor() const{
+inline QColor MineSweepingLineNode::getLineColor() const {
     return mmmLineColor;
 }
 
