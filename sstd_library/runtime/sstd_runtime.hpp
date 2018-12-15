@@ -67,6 +67,7 @@ class _1_SSTD_CORE_EXPORT _data_sstd_virtual_basic {
 public:
     virtual ~_data_sstd_virtual_basic();
     _data_sstd_virtual_basic();
+    SSTD_DELETE_COPY_ASSIGN(_data_sstd_virtual_basic);
 public:
     template<typename T, typename ... Args>
     inline T * sstd_create_data_in_this_class(Args && ...);
@@ -87,6 +88,7 @@ class _1_SSTD_CORE_EXPORT sstd_virtual_basic :
     std::atomic< sstd_virtual_basic_state * > mmm_this_state;
     sstd_virtual_basic_state ppp_construct_this_state();
     void ppp_destruct_this_state();
+    SSTD_DELETE_COPY_ASSIGN(sstd_virtual_basic);
 public:
     virtual ~sstd_virtual_basic();
     sstd_virtual_basic();
