@@ -14,7 +14,7 @@ namespace this_file {
         QQuickItem * mmmErrorItem{ nullptr };
         QQuickItem * mmmMineItem{ nullptr };
         QQuickItem * mmmNumberItem{ nullptr };
-        QQmlProperty * mmmNumberPorperty{ nullptr };
+        QQmlProperty * mmmNumberTextPorperty{ nullptr };
     private:
         using Super = QQuickItem;
     public:
@@ -26,19 +26,19 @@ namespace this_file {
             this->setHeight(128);
             this->setAcceptedMouseButtons(Qt::AllButtons);
         }
-        void setMask(QQuickItem * v) {
+        inline void setMask(QQuickItem * v) {
             mmmMaskItem = v;
         }
-        void setFlag(QQuickItem * v) {
+        inline void setFlag(QQuickItem * v) {
             mmmFlagItem = v;
         }
-        void setError(QQuickItem * v) {
+        inline void setError(QQuickItem * v) {
             mmmErrorItem = v;
         }
-        void setMine(QQuickItem * v) {
+        inline void setMine(QQuickItem * v) {
             mmmMineItem = v;
         }
-        void setNumber(QQuickItem * v) {
+        inline void setNumber(QQuickItem * v) {
             mmmNumberItem = v;
         }
         inline void createFlag();
@@ -46,7 +46,7 @@ namespace this_file {
         inline void createNumber();
         inline void createMine();
     protected:
-        inline void mousePressEvent(QMouseEvent *event);
+        inline void mousePressEvent(QMouseEvent *event) override;
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(LayoutItem);
     };
@@ -73,15 +73,16 @@ namespace this_file {
         }
 
         inline void create_objects(
-            int argRow,
-            int argColumn,
+            std::size_t argRow,
+            std::size_t argColumn,
             MineSweeping * argParent) {
-            const auto varCount = argRow * argColumn;
+            const auto varCount = static_cast<std::size_t>(
+                        argRow * argColumn );
             auto varContex = QQmlEngine::contextForObject(argParent);
             clear_objects();
             mmmLayoutItem.reserve(varCount);
-            int r = 0;
-            int c = 0;
+            std::size_t r = 0;
+            std::size_t c = 0;
             while (mmmLayoutItem.size() < varCount) {
                 auto varItem = sstd_new<LayoutItem>(r, c, this);
                 {
@@ -111,19 +112,18 @@ namespace this_file {
         }
 
         inline void update_data(
-            int argRow,
-            int argColumn,
+            std::size_t argRow,
+            std::size_t argColumn,
             double argWidth,
-            double argHeight,
-            MineSweeping * argParent) {
+            double argHeight) {
 
             argWidth /= argColumn;
             argHeight /= argRow;
 
-            int i = 0;
-            for (int r = 0; r < argRow; ++r) {
+            std::size_t i = 0;
+            for (std::size_t r = 0; r < argRow; ++r) {
                 auto varRow = mmmRowLines[r];
-                for (int c = 0; c < argColumn; ++c) {
+                for (std::size_t c = 0; c < argColumn; ++c) {
                     auto varColumne = mmmColumnLines[c];
                     const auto & varItem = mmmLayoutItem[i];
                     const auto varCPoint = varColumne->getBeginPoint();
@@ -139,8 +139,8 @@ namespace this_file {
         }
 
         inline void rebuild_scene(
-            int argRow,
-            int argColumn,
+            std::size_t argRow,
+            std::size_t argColumn,
             double argWidth,
             double argHeight) {
 
@@ -168,8 +168,8 @@ namespace this_file {
         }
 
         inline void resize_lines(
-            int argRow,
-            int argColumn) {
+            std::size_t argRow,
+            std::size_t argColumn) {
 
             ++argColumn;
             ++argRow;
@@ -224,7 +224,7 @@ namespace this_file {
     }
 
     inline void LayoutItem::createError() {
-        if ( mmmErrorItem ) {
+        if (mmmErrorItem) {
             return;
         }
         auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
@@ -241,7 +241,7 @@ namespace this_file {
         varObject->setZ(10);
     }
     inline void LayoutItem::createNumber() {
-        if ( mmmNumberItem ) {
+        if (mmmNumberItem) {
             return;
         }
         auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
@@ -256,13 +256,13 @@ namespace this_file {
         varComponent->completeCreate();
         this->setNumber(varObject);
         varObject->setZ(0);
-        mmmNumberPorperty = 
+        mmmNumberTextPorperty =
             this->sstd_create_data_in_this_class<QQmlProperty>(
                 varObject,
                 QStringLiteral("text"));
     }
     inline void LayoutItem::createMine() {
-        if ( mmmMineItem ) {
+        if (mmmMineItem) {
             return;
         }
         auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
@@ -284,7 +284,7 @@ namespace this_file {
 
         createNumber();
         static int test = 1;
-        mmmNumberPorperty->write( test );
+        mmmNumberTextPorperty->write(test);
         ++test;
         if (test > 8) {
             test = 1;
@@ -307,8 +307,10 @@ QSGNode * MineSweeping::updatePaintNode(
     }
 
     if (mmmRowCout > 0) {
-        varNode->rebuild_scene(mmmRowCout, mmmColumnCount, this->width(), this->height());
-        varNode->update_data(mmmRowCout, mmmColumnCount, this->width(), this->height(), this);
+        const auto varRowCount = static_cast<std::size_t>(mmmRowCout);
+        const auto varColumnCount = static_cast<std::size_t>(mmmColumnCount);
+        varNode->rebuild_scene(varRowCount, varColumnCount, this->width(), this->height());
+        varNode->update_data(varRowCount, varColumnCount, this->width(), this->height());
     }
 
     return varNode;
@@ -323,7 +325,7 @@ MineSweeping::MineSweeping() {
 
 QQuickItem * MineSweeping::getLayoutItem(int arg) {
     auto varNode = static_cast<this_file::Node*>(mmmCurrentNode);
-    return varNode->mmmLayoutItem[arg];
+    return varNode->mmmLayoutItem[ static_cast<std::size_t>(arg) ];
 }
 
 void MineSweeping::pppSetMaskComponent(QQmlComponent * arg) {
@@ -362,9 +364,11 @@ void MineSweeping::pppSlotCreateObjets() {
     }
     mmmCurrentNode = sstd_new<this_file::Node>(this);
     auto varNode = static_cast<this_file::Node*>(mmmCurrentNode);
-    varNode->rebuild_scene(mmmRowCout, mmmColumnCount, this->width(), this->height());
-    varNode->create_objects(mmmRowCout, mmmColumnCount, this);
-    varNode->update_data(mmmRowCout, mmmColumnCount, this->width(), this->height(), this);
+    const auto varRowCount = static_cast<std::size_t>(mmmRowCout);
+    const auto varColumnCount = static_cast<std::size_t>(mmmColumnCount);
+    varNode->rebuild_scene(varRowCount, varColumnCount, this->width(), this->height());
+    varNode->create_objects(varRowCount, varColumnCount, this);
+    varNode->update_data(varRowCount, varColumnCount, this->width(), this->height() );
 }
 
 void MineSweeping::pppSetSceneSize(int arg) {
