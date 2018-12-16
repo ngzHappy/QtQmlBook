@@ -62,6 +62,9 @@ import QtQuick.Controls 1.6
 
 Item {
 
+    width : 512 ;
+    height : 512 ;
+
     Text {
         id : idText
         text : "今天"
@@ -79,8 +82,16 @@ Item {
 
 }
 )+++", QUrl{});
-            auto varObject = varComponent.create(&varContex);
-            delete varObject;
+            auto varObject = sstd_runtime_cast<QQuickItem>(
+                varComponent.create(&varContex) );
+            assert(varObject);
+            {
+                QQuickView varView;
+                assert(varView.rootObject());
+                varObject->setParent(varView.rootObject());
+                varObject->setParentItem(varView.rootObject());
+                varView.grabWindow();
+            }
         }
     }
 
