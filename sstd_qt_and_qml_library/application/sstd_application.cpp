@@ -30,7 +30,8 @@ namespace {
 
     inline static void run_once_application_construct(RunOnceApplicationConstruct * arg) {
         {
-            /*强制加载QImage插件*/
+            /*强制加载QImage插件
+            防止第一次加载速度过慢*/
             QImage varImage{ QStringLiteral(":/qtandqmlglobal/image/foreceLoadQImage.png") };
             (void)varImage;
         }
@@ -45,9 +46,9 @@ namespace {
                 sstd_error(u8R"(can not construct glew!!!)"sv);
                 return;
             }
+            /*由于开启了OpenGL Contex资源共享，
+            可以在这里初始化OpenGL全局资源*/
         }
-        /*由于开启了OpenGL Contex资源共享，
-        可以在这里初始化OpenGL全局资源*/
         {
             /*强制加载Qml相关组件,
             避免第一次加载速度过慢*/
@@ -67,7 +68,7 @@ Item {
         anchors.fill: parent
     }
 
-    DropShadow{
+    DropShadow {
         anchors.fill: idText
         source: idText
     }
