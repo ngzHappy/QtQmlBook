@@ -2,10 +2,13 @@
 #include <QtGui/qimage.h>
 #include <QtGui/qoffscreensurface.h>
 #include <QtGui/qopenglcontext.h>
+#include <QtQml/QtQml>
+#include <QtQuick/QtQuick>
 #include "../glew/sstd_glew_initialization.hpp"
 #include "../opengl_default_format/sstd_opengl_default_format.hpp"
 #include <string_view>
 #include <fstream>
+
 using namespace std::string_view_literals;
 
 namespace {
@@ -45,6 +48,39 @@ namespace {
         }
         /*由于开启了OpenGL Contex资源共享，
         可以在这里初始化OpenGL全局资源*/
+        {
+            /*强制加载Qml相关组件,
+            避免第一次加载速度过慢*/
+            QQmlEngine varEngine;
+            QQmlContext varContex{ &varEngine };
+            QQmlComponent varComponent{ &varEngine };
+            varComponent.setData(u8R"+++(
+import QtQuick 2.9
+import QtGraphicalEffects 1.0
+import QtQuick.Controls 1.6
+
+Item {
+
+    Text {
+        id : idText
+        text : "今天"
+        anchors.fill: parent
+    }
+
+    DropShadow{
+        anchors.fill: idText
+        source: idText
+    }
+
+    TextField {
+        text : "today"
+    }
+
+}
+)+++", QUrl{});
+            auto varObject = varComponent.create(&varContex);
+            delete varObject;
+        }
     }
 
 }/**/
