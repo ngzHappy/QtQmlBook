@@ -29,8 +29,25 @@ Rectangle {
             height : parent.height * 0.75 ;
         }
 
-    }
+        numberItem : Number{
+            anchors.centerIn: parent ;
+            width  : parent.width * 0.9 ;
+            height : parent.height * 0.9 ;
+        }
 
+        errorItem : Error{
+            anchors.centerIn: parent ;
+            width  : parent.width * 0.9 ;
+            height : parent.height * 0.9 ;
+        }
+
+        mineItem : Mine{
+            anchors.centerIn: parent ;
+            width  : parent.width * 0.9 ;
+            height : parent.height * 0.9 ;
+        }
+
+    }
 
 }/*~Rectangle*/
 

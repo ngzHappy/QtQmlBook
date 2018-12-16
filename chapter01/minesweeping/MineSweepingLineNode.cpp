@@ -4,17 +4,21 @@
 void MineSweepingLineNode::setBeginEndPoints(QPointF argS, QPointF argE) {
 
     auto varChanged{ false };
+
     if (argS != mmmStartPoint) {
         mmmStartPoint = argS;
         varChanged = true;
     }
+
     if (argE != mmmEndPoint) {
         mmmEndPoint = argE;
         varChanged = true;
     }
+
     if (false == varChanged) {
         return;
     }
+
     pppUpdateRect();
 
 }
@@ -60,10 +64,12 @@ void MineSweepingLineNode::pppUpdateRect() {
     }
 
     mmmIsNull = false;
+    auto varStarPoint=mmmStartPoint;
+    auto varEndPoint=mmmEndPoint;
     if (dx < 0) {
-        std::swap(mmmEndPoint, mmmStartPoint);
         dx *= -1;
         dy *= -1;
+        std::swap(varStarPoint,varEndPoint);
     }
 
     varLength = mmmLineWidth / varLength;
@@ -76,17 +82,17 @@ void MineSweepingLineNode::pppUpdateRect() {
 
     auto varPoint = mmmGeometry.vertexDataAsPoint2D();
     varPoint[0].set(
-        static_cast<GLfloat>(mmmStartPoint.x() - dy),
-        static_cast<GLfloat>(mmmStartPoint.y() + dx));
+        static_cast<GLfloat>(varStarPoint.x() - dy),
+        static_cast<GLfloat>(varStarPoint.y() + dx));
     varPoint[1].set(
-        static_cast<GLfloat>(mmmStartPoint.x() + dy),
-        static_cast<GLfloat>(mmmStartPoint.y() - dx));
+        static_cast<GLfloat>(varStarPoint.x() + dy),
+        static_cast<GLfloat>(varStarPoint.y() - dx));
     varPoint[3].set(
-        static_cast<GLfloat>(mmmEndPoint.x() + dy),
-        static_cast<GLfloat>(mmmEndPoint.y() - dx));
+        static_cast<GLfloat>(varEndPoint.x() + dy),
+        static_cast<GLfloat>(varEndPoint.y() - dx));
     varPoint[2].set(
-        static_cast<GLfloat>(mmmEndPoint.x() - dy),
-        static_cast<GLfloat>(mmmEndPoint.y() + dx));
+        static_cast<GLfloat>(varEndPoint.x() - dy),
+        static_cast<GLfloat>(varEndPoint.y() + dx));
 
 }
 

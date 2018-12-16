@@ -26,9 +26,9 @@ Item{
         lineWidth: parent.lineWidth ;
         lineColor : parent.lineColor ;
         function updatePoints(){
-            line0.endPoint =
-                    Qt.point( 0 , 0 ) ;
             line0.beginPoint =
+                    Qt.point( 0 , 0 ) ;
+            line0.endPoint =
                     Qt.point( root.width  ,
                               root.height ) ;
         }
@@ -40,10 +40,10 @@ Item{
         lineColor : parent.lineColor ;
         lineWidth: parent.lineWidth ;
         function updatePoints(){
-            line1.endPoint =
-                    Qt.point( root.width , 0 ) ;
             line1.beginPoint =
-                    Qt.point( 0 , root.height ) ;
+                     Qt.point( root.width , 0 );
+            line1.endPoint =
+                    Qt.point( 0 , root.height );
         }
         anchors.fill: root
     }

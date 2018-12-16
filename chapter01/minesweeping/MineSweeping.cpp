@@ -11,6 +11,10 @@ namespace this_file {
         Node * const mmmParent;
         QQuickItem * mmmFlagItem{ nullptr };
         QQuickItem * mmmMaskItem{ nullptr };
+        QQuickItem * mmmErrorItem{ nullptr };
+        QQuickItem * mmmMineItem{ nullptr };
+        QQuickItem * mmmNumberItem{ nullptr };
+        QQmlProperty * mmmNumberPorperty{ nullptr };
     private:
         using Super = QQuickItem;
     public:
@@ -28,7 +32,19 @@ namespace this_file {
         void setFlag(QQuickItem * v) {
             mmmFlagItem = v;
         }
+        void setError(QQuickItem * v) {
+            mmmErrorItem = v;
+        }
+        void setMine(QQuickItem * v) {
+            mmmMineItem = v;
+        }
+        void setNumber(QQuickItem * v) {
+            mmmNumberItem = v;
+        }
         inline void createFlag();
+        inline void createError();
+        inline void createNumber();
+        inline void createMine();
     protected:
         inline void mousePressEvent(QMouseEvent *event);
     private:
@@ -204,15 +220,75 @@ namespace this_file {
         varFlagObject->setParentItem(this);
         varFlag->completeCreate();
         this->setFlag(varFlagObject);
-        varFlagObject->setZ(1);
+        varFlagObject->setZ(9);
+    }
+
+    inline void LayoutItem::createError() {
+        if ( mmmErrorItem ) {
+            return;
+        }
+        auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
+        auto varComponent = mmmParent->mmmMineSweeping->getErrorComponent();
+        assert(varComponent);
+        auto varObject =
+            sstd_runtime_cast<QQuickItem>(
+                varComponent->beginCreate(varContex));
+        assert(varObject);
+        varObject->setParent(this);
+        varObject->setParentItem(this);
+        varComponent->completeCreate();
+        this->setError(varObject);
+        varObject->setZ(10);
+    }
+    inline void LayoutItem::createNumber() {
+        if ( mmmNumberItem ) {
+            return;
+        }
+        auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
+        auto varComponent = mmmParent->mmmMineSweeping->getNumberComponent();
+        assert(varComponent);
+        auto varObject =
+            sstd_runtime_cast<QQuickItem>(
+                varComponent->beginCreate(varContex));
+        assert(varObject);
+        varObject->setParent(this);
+        varObject->setParentItem(this);
+        varComponent->completeCreate();
+        this->setNumber(varObject);
+        varObject->setZ(0);
+        mmmNumberPorperty = 
+            this->sstd_create_data_in_this_class<QQmlProperty>(
+                varObject,
+                QStringLiteral("text"));
+    }
+    inline void LayoutItem::createMine() {
+        if ( mmmMineItem ) {
+            return;
+        }
+        auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
+        auto varComponent = mmmParent->mmmMineSweeping->getMineComponent();
+        assert(varComponent);
+        auto varObject =
+            sstd_runtime_cast<QQuickItem>(
+                varComponent->beginCreate(varContex));
+        assert(varObject);
+        varObject->setParent(this);
+        varObject->setParentItem(this);
+        varComponent->completeCreate();
+        this->setMine(varObject);
+        varObject->setZ(1);
     }
 
     inline void LayoutItem::mousePressEvent(QMouseEvent *event) {
         QQuickItem::mousePressEvent(event);
 
-        createFlag();
-
-       
+        createNumber();
+        static int test = 1;
+        mmmNumberPorperty->write( test );
+        ++test;
+        if (test > 8) {
+            test = 1;
+        }
 
     }
 
@@ -260,6 +336,24 @@ void MineSweeping::pppSetFlagComponent(QQmlComponent * arg) {
     assert(mmmFlagComponent == nullptr);
     mmmFlagComponent = arg;
     pppFlagComponentChanged();
+}
+
+void MineSweeping::pppSetNumberItem(QQmlComponent * arg) {
+    assert(mmmNumberItem == nullptr);
+    mmmNumberItem = arg;
+    pppNumberItemChanged();
+}
+
+void MineSweeping::pppSetErrorItem(QQmlComponent * arg) {
+    assert(mmmErrorItem == nullptr);
+    mmmErrorItem = arg;
+    pppErrorItemChanged();
+}
+
+void MineSweeping::pppSetMineItem(QQmlComponent * arg) {
+    assert(mmmMineItem == nullptr);
+    mmmMineItem = arg;
+    pppMineItemChanged();
 }
 
 void MineSweeping::pppSlotCreateObjets() {
