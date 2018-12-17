@@ -9,9 +9,33 @@ namespace this_file {
         Mask,
         Flag,
         Open,
-        Error,
+        Boom,
         AboutOpenMask,
     };
+
+    inline constexpr qreal getBoomZValue_() {
+        return 10;
+    }
+
+    inline constexpr qreal getFlagZValue_() {
+        return 5;
+    }
+
+    inline constexpr qreal getMaskZValue_() {
+        return 0;
+    }
+
+    inline constexpr qreal getErrorZValue_() {
+        return 30;
+    }
+
+    inline constexpr qreal getMineZValue_() {
+        return 20;
+    }
+
+    inline constexpr qreal getNumberZValue_() {
+        return 25;
+    }
 
     class Node;
     class LayoutItem : public QQuickItem,
@@ -19,6 +43,7 @@ namespace this_file {
         std::size_t const mmmRow/*当前行*/;
         std::size_t const mmmColumn/*当前列*/;
         Node * const mmmParent/*管理者*/;
+        QQuickItem * mmmBoomItem{ nullptr };
         QQuickItem * mmmFlagItem{ nullptr };
         QQuickItem * mmmMaskItem{ nullptr };
         QQuickItem * mmmErrorItem{ nullptr };
@@ -34,7 +59,7 @@ namespace this_file {
         static QMetaProperty mmmWidthProperty;
         static QMetaProperty mmmHeightProperty;
         inline const ItemState & getItemState() const {
-            return mmmState ;
+            return mmmState;
         }
         inline bool isMine() const {
             return mmmIsMine;
@@ -69,6 +94,9 @@ namespace this_file {
 
         inline void updateMineCount() {
             mmmNumberOfThis = 0;
+            if (mmmIsMine) {
+                return;
+            }
             if (mmmLeftItem&&mmmLeftItem->mmmIsMine) {
                 ++mmmNumberOfThis;
             }
@@ -167,16 +195,23 @@ namespace this_file {
         inline void setNumber(QQuickItem * v) {
             mmmNumberItem = v;
         }
+        inline void setBoom(QQuickItem * v) {
+            mmmBoomItem = v;
+        }
         inline void createFlag();
         inline void createError();
         inline void createNumber();
         inline void createNumber(int);
         inline void createMine();
+        inline void createBoom();
         inline void openItem();
         inline void openFlag();
         inline void gameOver();
         inline bool isGameOver() const;
         inline void rawOpen();
+        inline void hideFlag() {
+            mmmFlagItem->setVisible(false);
+        }
     protected:
         inline void mousePressEvent(QMouseEvent *event) override;
     private:
@@ -228,18 +263,32 @@ namespace this_file {
         inline void setGameOver() {
             mmmMineSweeping->setGameOver(true);
             for (auto i : mmmLayoutItem) {
-                if ( i->getItemState() == ItemState::Open ) {
+                if (i->getItemState() == ItemState::Open) {
                     continue;
-                } else if (i->getItemState() == ItemState::Mask ) {
-                    if ( i->isMine() ) {
-                        
+                } else if (i->getItemState() == ItemState::Mask) {
+                    if (i->isMine()) {
+                        i->rawOpen();
+                        i->createMine();
                         continue;
                     } else {
                         i->rawOpen();
                         continue;
                     }
-                } else if ( i->getItemState() == ItemState::Error ) {
-
+                } else if (i->getItemState() == ItemState::Boom) {
+                    i->rawOpen();
+                    i->createMine();
+                    i->createBoom();
+                    continue;
+                } else if (i->getItemState() == ItemState::Flag) {
+                    i->hideFlag();
+                    if (i->isMine()) {
+                        i->rawOpen();
+                        continue;
+                    } else {
+                        i->rawOpen();
+                        i->createError();
+                        continue;
+                    }
                 }
             }
         }
@@ -294,6 +343,7 @@ namespace this_file {
                     varMaskItem->setParentItem(varItem);
                     varMaskComponent->completeCreate();
                     varItem->setMask(varMaskItem);
+                    varMaskItem->setZ(getMaskZValue_());
                 }
             }
 
@@ -517,7 +567,7 @@ namespace this_file {
         varFlagObject->setParentItem(this);
         varFlag->completeCreate();
         this->setFlag(varFlagObject);
-        varFlagObject->setZ(9);
+        varFlagObject->setZ(getFlagZValue_());
     }
 
     inline void LayoutItem::createError() {
@@ -536,7 +586,7 @@ namespace this_file {
         varObject->setParentItem(this);
         varComponent->completeCreate();
         this->setError(varObject);
-        varObject->setZ(10);
+        varObject->setZ(getErrorZValue_());
     }
 
     inline void LayoutItem::createNumber() {
@@ -555,11 +605,30 @@ namespace this_file {
         varObject->setParentItem(this);
         varComponent->completeCreate();
         this->setNumber(varObject);
-        varObject->setZ(0);
+        varObject->setZ(getNumberZValue_());
         mmmNumberTextPorperty =
             this->sstd_create_data_in_this_class<QQmlProperty>(
                 varObject,
                 QStringLiteral("text"));
+    }
+
+    inline void LayoutItem::createBoom() {
+        if (mmmBoomItem) {
+            return;
+        }
+        mmmState = ItemState::Open;
+        auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
+        auto varComponent = mmmParent->mmmMineSweeping->getBoomComponent();
+        assert(varComponent);
+        auto varObject =
+            sstd_runtime_cast<QQuickItem>(
+                varComponent->beginCreate(varContex));
+        assert(varObject);
+        varObject->setParent(this);
+        varObject->setParentItem(this);
+        varComponent->completeCreate();
+        this->setBoom(varObject);
+        varObject->setZ(getBoomZValue_());
     }
 
     inline void LayoutItem::createMine() {
@@ -578,7 +647,7 @@ namespace this_file {
         varObject->setParentItem(this);
         varComponent->completeCreate();
         this->setMine(varObject);
-        varObject->setZ(1);
+        varObject->setZ(getMineZValue_());
     }
 
     inline void LayoutItem::createNumber(int n) {
@@ -617,7 +686,7 @@ namespace this_file {
 
         /*当前是雷*/
         if (mmmIsMine) {
-            this->mmmState = ItemState::Error;
+            this->mmmState = ItemState::Boom;
             this->gameOver();
             return;
         }
@@ -663,7 +732,7 @@ namespace this_file {
         /*打开网格...*/
         for (auto varItem : varAboutToOpen) {
             /*隐藏遮罩*/
-            this->rawOpen();
+            varItem->rawOpen();
         }
 
     }
@@ -672,9 +741,8 @@ namespace this_file {
         this->mmmMaskItem->setProperty("opacity", 0);
         if (this->mmmNumberOfThis) {
             this->createNumber(this->mmmNumberOfThis);
-        } else {
-            this->mmmState = ItemState::Open;
         }
+        this->mmmState = ItemState::Open;
     }
 
     inline void LayoutItem::mousePressEvent(QMouseEvent *event) {
@@ -758,6 +826,12 @@ void MineSweeping::pppSetMineItem(QQmlComponent * arg) {
     assert(mmmMineItem == nullptr);
     mmmMineItem = arg;
     pppMineItemChanged();
+}
+
+void MineSweeping::pppSetBoomItem(QQmlComponent * arg) {
+    assert(mmmBoomItem == nullptr);
+    mmmBoomItem = arg;
+    pppBoomChanged();
 }
 
 void MineSweeping::pppSlotCreateObjets() {

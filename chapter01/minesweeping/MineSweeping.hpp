@@ -6,6 +6,8 @@ class MineSweeping : public QQuickItem,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MineSweeping) {
     Q_OBJECT
 private:
+    Q_PROPERTY(QQmlComponent * boomItem READ pppGetBoomItem WRITE pppSetBoomItem NOTIFY pppBoomChanged)
+private:
     Q_PROPERTY(QQmlComponent * numberItem READ pppGetNumberItem WRITE pppSetNumberItem NOTIFY pppNumberItemChanged)
 private:
     Q_PROPERTY(QQmlComponent * errorItem READ pppGetErrorItem WRITE pppSetErrorItem NOTIFY pppErrorItemChanged)
@@ -25,6 +27,7 @@ public:
     inline QQmlComponent * getMineComponent() const;
     inline QQmlComponent * getErrorComponent() const;
     inline QQmlComponent * getNumberComponent() const;
+    inline QQmlComponent * getBoomComponent() const;
     Q_SLOT void setSizeScene(int row_size,int column_size, int mine_count);
     inline bool isGameOver() const;
     void setGameOver(bool);
@@ -37,21 +40,25 @@ private:
     QQmlComponent * mmmNumberItem{ nullptr };
     QQmlComponent * mmmErrorItem{ nullptr };
     QQmlComponent * mmmMineItem{nullptr};
+    QQmlComponent * mmmBoomItem{ nullptr };
     inline QQmlComponent * pppGetMaskComponent() const;
     inline QQmlComponent *pppGetNumberItem() const ;
     inline QQmlComponent *pppGetErrorItem() const;
     inline QQmlComponent *pppGetMineItem() const;
     inline QQmlComponent *pppGetFlagComponent() const;
+    inline QQmlComponent *pppGetBoomItem() const;
     void pppSetMaskComponent(QQmlComponent *);
     void pppSetFlagComponent(QQmlComponent *);
     void pppSetNumberItem(QQmlComponent *)  ;
     void pppSetErrorItem (QQmlComponent *)  ;
     void pppSetMineItem  (QQmlComponent *)  ;
+    void pppSetBoomItem(QQmlComponent *);
     Q_SIGNAL void pppMaskComponentChanged();
     Q_SIGNAL void pppFlagComponentChanged();
     Q_SIGNAL void pppMineItemChanged();
     Q_SIGNAL void pppErrorItemChanged();
     Q_SIGNAL void pppNumberItemChanged();
+    Q_SIGNAL void pppBoomChanged();
     Q_SLOT   void pppSlotCreateObjets();
     int mmmRowCout{ -1 };
     int mmmColumnCount{ -1 };
@@ -105,5 +112,13 @@ inline QQmlComponent * MineSweeping::getNumberComponent() const {
 
 inline bool MineSweeping::isGameOver() const {
     return mmmIsGameOver;
+}
+
+inline QQmlComponent *MineSweeping::pppGetBoomItem() const {
+    return mmmBoomItem;
+}
+
+inline QQmlComponent * MineSweeping::getBoomComponent() const {
+    return pppGetBoomItem();
 }
 

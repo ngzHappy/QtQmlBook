@@ -52,6 +52,12 @@ Rectangle {
             height : parent.height * 0.9 ;
         }
 
+        boomItem : Boom {
+            anchors.centerIn: parent ;
+            width  : parent.width * 0.9 ;
+            height : parent.height * 0.9 ;
+        }
+
     }
 
 }/*~Rectangle*/
