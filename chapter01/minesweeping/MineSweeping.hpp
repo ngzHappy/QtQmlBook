@@ -14,8 +14,6 @@ private:
 private:
     Q_PROPERTY(QQmlComponent * flagItem READ pppGetFlagComponent WRITE pppSetFlagComponent NOTIFY pppFlagComponentChanged)
 private:
-    Q_PROPERTY(int sceneSize READ pppGetSceneSize WRITE pppSetSceneSize NOTIFY pppSceneSizeChanged)
-private:
     Q_PROPERTY(QQmlComponent * maskItem READ pppGetMaskComponent WRITE pppSetMaskComponent NOTIFY pppMaskComponentChanged)
 public:
     MineSweeping();
@@ -27,6 +25,7 @@ public:
     inline QQmlComponent * getMineComponent() const;
     inline QQmlComponent * getErrorComponent() const;
     inline QQmlComponent * getNumberComponent() const;
+    Q_SLOT void setSizeScene( int row_size,int column_size, int mine_count);
 protected:
     QSGNode * updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *) override;
 private:
@@ -51,12 +50,10 @@ private:
     Q_SIGNAL void pppMineItemChanged();
     Q_SIGNAL void pppErrorItemChanged();
     Q_SIGNAL void pppNumberItemChanged();
-    Q_SIGNAL void pppSceneSizeChanged();
     Q_SLOT   void pppSlotCreateObjets();
     int mmmRowCout{ -1 };
     int mmmColumnCount{ -1 };
-    inline int pppGetSceneSize() const;
-    void pppSetSceneSize(int);
+    int mmmMineCount{ 1 };
 protected:
     void componentComplete() override;
 public:
@@ -69,10 +66,6 @@ inline QQmlComponent * MineSweeping::pppGetMaskComponent() const {
 
 inline QQmlComponent * MineSweeping::getMaskComponent() const {
     return pppGetMaskComponent();
-}
-
-inline int MineSweeping::pppGetSceneSize() const {
-    return mmmRowCout;
 }
 
 inline QQmlComponent * MineSweeping::pppGetFlagComponent() const {

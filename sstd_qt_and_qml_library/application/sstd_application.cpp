@@ -87,10 +87,10 @@ Item {
             assert(varObject);
             {
                 QQuickView varView;
-                assert(varView.rootObject());
-                varObject->setParent(varView.rootObject());
-                varObject->setParentItem(varView.rootObject());
-                varView.grabWindow();
+                varView.resize(512,512);
+                assert(varView.contentItem());
+                varObject->setParent(varView.contentItem());
+                varObject->setParentItem(varView.contentItem());
             }
         }
     }

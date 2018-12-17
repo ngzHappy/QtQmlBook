@@ -21,6 +21,11 @@ Rectangle {
             width: parent.width * 0.95
             height: parent.height * 0.95
             color: Qt.rgba(0.2,0.2,0.2,1);
+            Behavior on opacity{
+                NumberAnimation{
+                    duration: 1000
+                }
+            }
         }
 
         flagItem : Flag{
