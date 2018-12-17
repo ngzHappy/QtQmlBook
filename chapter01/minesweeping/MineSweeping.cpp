@@ -1,5 +1,7 @@
 ﻿#include "MineSweeping.hpp"
 #include "MineSweepingLineNode.hpp"
+#include <random>
+#include <algorithm>
 
 namespace this_file {
 
@@ -7,6 +9,7 @@ namespace this_file {
         Mask,
         Flag,
         Open,
+        Error,
         AboutOpenMask,
     };
 
@@ -30,6 +33,12 @@ namespace this_file {
         static QMetaProperty mmmYProperty;
         static QMetaProperty mmmWidthProperty;
         static QMetaProperty mmmHeightProperty;
+        inline const ItemState & getItemState() const {
+            return mmmState ;
+        }
+        inline bool isMine() const {
+            return mmmIsMine;
+        }
     private:
         LayoutItem * mmmLeftItem{ nullptr };
         LayoutItem * mmmRightItem{ nullptr };
@@ -42,6 +51,7 @@ namespace this_file {
     private:
         using Super = QQuickItem;
     public:
+
         LayoutItem(std::size_t r, std::size_t c, Node * p) :
             mmmRow(r),
             mmmColumn(c),
@@ -51,6 +61,38 @@ namespace this_file {
             this->setWidth(128);
             this->setHeight(128);
             this->setAcceptedMouseButtons(Qt::AllButtons);
+        }
+
+        inline void setToMine() {
+            mmmIsMine = true;
+        }
+
+        inline void updateMineCount() {
+            mmmNumberOfThis = 0;
+            if (mmmLeftItem&&mmmLeftItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
+            if (mmmRightItem&&mmmRightItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
+            if (mmmBottomItem&&mmmBottomItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
+            if (mmmTopItem&&mmmTopItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
+            if (mmmTopLeftItem&&mmmTopLeftItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
+            if (mmmBottomLeftItem&&mmmBottomLeftItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
+            if (mmmTopRightItem&&mmmTopRightItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
+            if (mmmBottomRightItem&&mmmBottomRightItem->mmmIsMine) {
+                ++mmmNumberOfThis;
+            }
         }
 
         inline LayoutItem * setAboutOpenMask() {
@@ -131,8 +173,10 @@ namespace this_file {
         inline void createNumber(int);
         inline void createMine();
         inline void openItem();
+        inline void openFlag();
         inline void gameOver();
         inline bool isGameOver() const;
+        inline void rawOpen();
     protected:
         inline void mousePressEvent(QMouseEvent *event) override;
     private:
@@ -176,6 +220,29 @@ namespace this_file {
         }
 
         std::vector< LayoutItem * > mmmLayoutItem;
+
+        inline bool isGameOver() {
+            return mmmMineSweeping->isGameOver();
+        }
+
+        inline void setGameOver() {
+            mmmMineSweeping->setGameOver(true);
+            for (auto i : mmmLayoutItem) {
+                if ( i->getItemState() == ItemState::Open ) {
+                    continue;
+                } else if (i->getItemState() == ItemState::Mask ) {
+                    if ( i->isMine() ) {
+                        
+                        continue;
+                    } else {
+                        i->rawOpen();
+                        continue;
+                    }
+                } else if ( i->getItemState() == ItemState::Error ) {
+
+                }
+            }
+        }
 
         inline void clear_objects() {
             for (auto i : mmmLayoutItem) {
@@ -288,7 +355,38 @@ namespace this_file {
 
             /*更新地图*/
             std::vector< std::uint8_t > varMap;
-            varMap.resize(varCount, static_cast<std::uint8_t>(0));
+            if (varCount == mmmMineCount) {
+                varMap.resize(varCount, static_cast<std::uint8_t>(1));
+            } else {
+                varMap.resize(varCount, static_cast<std::uint8_t>(0));
+                for (std::size_t i = 0; i < mmmMineCount; ++i) {
+                    varMap[i] = static_cast<std::uint8_t>(1);
+                }
+            }
+
+            /*地雷随机化*/
+            {
+                std::random_device varDevice;
+                std::mt19937 varGenerator(varDevice());
+                for (i = 0; i < 3; ++i) {
+                    std::shuffle(varMap.begin(), varMap.end(), varGenerator);
+                    std::shuffle(varMap.begin(), varMap.end(), varGenerator);
+                    std::shuffle(varMap.begin(), varMap.end(), varGenerator);
+                }
+            }
+
+            i = 0;
+
+            /*更新数据*/
+            for (; i < varCount; ++i) {
+                if (varMap[i]) {
+                    mmmLayoutItem[i]->setToMine();
+                }
+            }
+
+            for (auto varI : mmmLayoutItem) {
+                varI->updateMineCount();
+            }
 
         }
 
@@ -322,12 +420,15 @@ namespace this_file {
 
         std::size_t mmmRowSize{ 1 };
         std::size_t mmmColumnSize{ 1 };
+        std::size_t mmmMineCount{ 1 };
 
         void reset_size(
             std::size_t argRow,
-            std::size_t argColumn) {
+            std::size_t argColumn,
+            std::size_t argMineCount) {
             mmmRowSize = argRow;
             mmmColumnSize = argColumn;
+            mmmMineCount = argMineCount;
         }
 
         inline void rebuild_scene(
@@ -486,17 +587,28 @@ namespace this_file {
     }
 
     inline void LayoutItem::gameOver() {
+        mmmParent->setGameOver();
     }
+
     inline bool LayoutItem::isGameOver() const {
-        return false;
+        return mmmParent->isGameOver();
+    }
+
+    inline void LayoutItem::openFlag() {
+
+        if (mmmState == ItemState::Flag) {
+            this->mmmFlagItem->setVisible(false);
+            mmmState = ItemState::Mask;
+            return;
+        } else  if (mmmState == ItemState::Mask) {
+            this->createFlag();
+            this->mmmFlagItem->setVisible(true);
+            mmmState = ItemState::Flag;
+        }
+
     }
 
     inline void LayoutItem::openItem() {
-
-        /*游戏结束忽略此函数调用*/
-        if (isGameOver()) {
-            return;
-        }
 
         /*只处理遮罩*/
         if (mmmState != ItemState::Mask) {
@@ -505,6 +617,7 @@ namespace this_file {
 
         /*当前是雷*/
         if (mmmIsMine) {
+            this->mmmState = ItemState::Error;
             this->gameOver();
             return;
         }
@@ -549,23 +662,35 @@ namespace this_file {
 
         /*打开网格...*/
         for (auto varItem : varAboutToOpen) {
-
-            varItem->mmmMaskItem->setProperty("opacity", 0);
-            if (varItem->mmmNumberOfThis) {
-                varItem->createNumber(varItem->mmmNumberOfThis);
-            } else {
-                varItem->mmmState = ItemState::Open;
-            }
-
+            /*隐藏遮罩*/
+            this->rawOpen();
         }
 
+    }
 
+    inline void LayoutItem::rawOpen() {
+        this->mmmMaskItem->setProperty("opacity", 0);
+        if (this->mmmNumberOfThis) {
+            this->createNumber(this->mmmNumberOfThis);
+        } else {
+            this->mmmState = ItemState::Open;
+        }
     }
 
     inline void LayoutItem::mousePressEvent(QMouseEvent *event) {
         QQuickItem::mousePressEvent(event);
+
+        /*游戏结束忽略此函数调用*/
+        if (isGameOver()) {
+            return;
+        }
+
         if (event->buttons()&Qt::LeftButton) {
+            /*左键...*/
             this->openItem();
+        } else if (event->buttons()&Qt::RightButton) {
+            /*右键...*/
+            this->openFlag();
         }
     }
 
@@ -643,10 +768,18 @@ void MineSweeping::pppSlotCreateObjets() {
     auto varNode = static_cast<this_file::Node*>(mmmCurrentNode);
     const auto varRowCount = static_cast<std::size_t>(mmmRowCout);
     const auto varColumnCount = static_cast<std::size_t>(mmmColumnCount);
-    varNode->reset_size(varRowCount, varColumnCount);
+    varNode->reset_size(varRowCount, varColumnCount,
+        static_cast<std::size_t>(mmmMineCount));
     varNode->rebuild_scene(this->width(), this->height());
     varNode->create_objects_and_mask();
     varNode->update_data(this->width(), this->height());
+}
+
+void MineSweeping::setGameOver(bool arg) {
+    if (arg == mmmIsGameOver) {
+        return;
+    }
+    mmmIsGameOver = arg;
 }
 
 void MineSweeping::setSizeScene(int row_size, int column_size, int mine_count) {

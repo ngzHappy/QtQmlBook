@@ -25,7 +25,9 @@ public:
     inline QQmlComponent * getMineComponent() const;
     inline QQmlComponent * getErrorComponent() const;
     inline QQmlComponent * getNumberComponent() const;
-    Q_SLOT void setSizeScene( int row_size,int column_size, int mine_count);
+    Q_SLOT void setSizeScene(int row_size,int column_size, int mine_count);
+    inline bool isGameOver() const;
+    void setGameOver(bool);
 protected:
     QSGNode * updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *) override;
 private:
@@ -54,6 +56,7 @@ private:
     int mmmRowCout{ -1 };
     int mmmColumnCount{ -1 };
     int mmmMineCount{ 1 };
+    bool mmmIsGameOver{false};
 protected:
     void componentComplete() override;
 public:
@@ -100,4 +103,7 @@ inline QQmlComponent * MineSweeping::getNumberComponent() const {
     return pppGetNumberItem();
 }
 
+inline bool MineSweeping::isGameOver() const {
+    return mmmIsGameOver;
+}
 
