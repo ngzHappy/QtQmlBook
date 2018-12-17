@@ -47,7 +47,10 @@ namespace this_file {
         QQuickItem * mmmFlagItem{ nullptr };
         QQuickItem * mmmMaskItem{ nullptr };
         QQuickItem * mmmErrorItem{ nullptr };
-        QQuickItem * mmmMineItem{ nullptr };
+        union {
+            QQuickItem * mmmMineItem;
+            QQuickItem * mmmOkMineItem;
+        };
         QQuickItem * mmmNumberItem{ nullptr };
         QQmlProperty * mmmNumberTextPorperty{ nullptr };
         ItemState mmmState{ ItemState::Mask };
@@ -82,6 +85,7 @@ namespace this_file {
             mmmColumn(c),
             mmmParent(p) {
             mmmNumberOfThis = 0;
+            mmmMineItem = nullptr;
             mmmIsMine = false;
             this->setWidth(128);
             this->setHeight(128);
@@ -192,6 +196,9 @@ namespace this_file {
         inline void setMine(QQuickItem * v) {
             mmmMineItem = v;
         }
+        inline void setOkMine(QQuickItem * v) {
+            mmmOkMineItem = v;
+        }
         inline void setNumber(QQuickItem * v) {
             mmmNumberItem = v;
         }
@@ -203,6 +210,7 @@ namespace this_file {
         inline void createNumber();
         inline void createNumber(int);
         inline void createMine();
+        inline void createOkMine();
         inline void createBoom();
         inline void openItem();
         inline void openFlag();
@@ -283,6 +291,7 @@ namespace this_file {
                     i->hideFlag();
                     if (i->isMine()) {
                         i->rawOpen();
+                        i->createOkMine();
                         continue;
                     } else {
                         i->rawOpen();
@@ -631,6 +640,25 @@ namespace this_file {
         varObject->setZ(getBoomZValue_());
     }
 
+    inline void LayoutItem::createOkMine() {
+        if (mmmOkMineItem) {
+            return;
+        }
+        mmmState = ItemState::Open;
+        auto varContex = QQmlEngine::contextForObject(mmmParent->mmmMineSweeping);
+        auto varComponent = mmmParent->mmmMineSweeping->getOkMineComponent();
+        assert(varComponent);
+        auto varObject =
+            sstd_runtime_cast<QQuickItem>(
+                varComponent->beginCreate(varContex));
+        assert(varObject);
+        varObject->setParent(this);
+        varObject->setParentItem(this);
+        varComponent->completeCreate();
+        this->setOkMine(varObject);
+        varObject->setZ(getMineZValue_());
+    }
+
     inline void LayoutItem::createMine() {
         if (mmmMineItem) {
             return;
@@ -698,6 +726,12 @@ namespace this_file {
             varDoList.push_back(this);
             /*加入搜索队列...*/
             auto varPushBack = [&varDoList](LayoutItem * arg) {
+                if (arg == nullptr) {
+                    return;
+                }
+                if (arg->mmmState != ItemState::Mask) {
+                    return;
+                }
                 varDoList.push_back(arg);
             };
 
@@ -832,6 +866,12 @@ void MineSweeping::pppSetBoomItem(QQmlComponent * arg) {
     assert(mmmBoomItem == nullptr);
     mmmBoomItem = arg;
     pppBoomChanged();
+}
+
+void MineSweeping::pppSetOkMineItem(QQmlComponent * arg) {
+    assert(mmmOkMineItem == nullptr);
+    mmmOkMineItem = arg;
+    pppOkMineChanged();
 }
 
 void MineSweeping::pppSlotCreateObjets() {

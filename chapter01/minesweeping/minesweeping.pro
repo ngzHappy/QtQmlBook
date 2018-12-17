@@ -51,6 +51,7 @@ QMLSOURCES += $$PWD/myqml/minesweeping/Error.qml
 QMLSOURCES += $$PWD/myqml/minesweeping/Number.qml
 QMLSOURCES += $$PWD/myqml/minesweeping/Mine.qml
 QMLSOURCES += $$PWD/myqml/minesweeping/Boom.qml
+QMLSOURCES += $$PWD/myqml/minesweeping/OkMine.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
