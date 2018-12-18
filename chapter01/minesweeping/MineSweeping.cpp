@@ -203,24 +203,31 @@ namespace this_file {
         inline void setMask(QQuickItem * v) {
             mmmMaskItem = v;
         }
+
         inline void setFlag(QQuickItem * v) {
             mmmFlagItem = v;
         }
+
         inline void setError(QQuickItem * v) {
             mmmErrorItem = v;
         }
+
         inline void setMine(QQuickItem * v) {
             mmmMineItem = v;
         }
+
         inline void setOkMine(QQuickItem * v) {
             mmmOkMineItem = v;
         }
+
         inline void setNumber(QQuickItem * v) {
             mmmNumberItem = v;
         }
+
         inline void setBoom(QQuickItem * v) {
             mmmBoomItem = v;
         }
+
         inline void createFlag();
         inline void createError();
         inline void createNumber();

@@ -10,7 +10,7 @@ namespace sstd {
     }
 
     RunEvent::RunEvent() :
-        QEvent(getEventID()) {
+        QEvent(RunEvent::getEventID()) {
     }
 
 }/*namespace sstd*/
