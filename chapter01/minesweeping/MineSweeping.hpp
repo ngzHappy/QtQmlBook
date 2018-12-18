@@ -31,7 +31,7 @@ public:
     inline QQmlComponent * getNumberComponent() const;
     inline QQmlComponent * getBoomComponent() const;
     inline QQmlComponent * getOkMineComponent() const;
-    Q_SLOT void setSizeScene(int row_size,int column_size, int mine_count);
+    Q_SLOT void setSizeScene(int row_size, int column_size, int mine_count);
     inline bool isGameOver() const;
     void setGameOver(bool);
 protected:
@@ -42,11 +42,11 @@ private:
     QQmlComponent * mmmFlagComponent{ nullptr };
     QQmlComponent * mmmNumberItem{ nullptr };
     QQmlComponent * mmmErrorItem{ nullptr };
-    QQmlComponent * mmmMineItem{nullptr};
+    QQmlComponent * mmmMineItem{ nullptr };
     QQmlComponent * mmmBoomItem{ nullptr };
     QQmlComponent * mmmOkMineItem{ nullptr };
     inline QQmlComponent * pppGetMaskComponent() const;
-    inline QQmlComponent *pppGetNumberItem() const ;
+    inline QQmlComponent *pppGetNumberItem() const;
     inline QQmlComponent *pppGetErrorItem() const;
     inline QQmlComponent *pppGetMineItem() const;
     inline QQmlComponent *pppGetFlagComponent() const;
@@ -54,9 +54,9 @@ private:
     inline QQmlComponent *pppGetOkMineItemItem() const;
     void pppSetMaskComponent(QQmlComponent *);
     void pppSetFlagComponent(QQmlComponent *);
-    void pppSetNumberItem(QQmlComponent *)  ;
-    void pppSetErrorItem (QQmlComponent *)  ;
-    void pppSetMineItem  (QQmlComponent *)  ;
+    void pppSetNumberItem(QQmlComponent *);
+    void pppSetErrorItem(QQmlComponent *);
+    void pppSetMineItem(QQmlComponent *);
     void pppSetBoomItem(QQmlComponent *);
     void pppSetOkMineItem(QQmlComponent *);
     Q_SIGNAL void pppMaskComponentChanged();
@@ -70,14 +70,14 @@ private:
     int mmmRowCout{ -1 };
     int mmmColumnCount{ -1 };
     int mmmMineCount{ 1 };
-    bool mmmIsGameOver{false};
+    bool mmmIsGameOver{ false };
 protected:
     void componentComplete() override;
 public:
     SSTD_END_DEFINE_VIRTUAL_CLASS(MineSweeping);
 };
 
-inline QQmlComponent * MineSweeping::pppGetOkMineItemItem() const{
+inline QQmlComponent * MineSweeping::pppGetOkMineItemItem() const {
     return mmmOkMineItem;
 }
 

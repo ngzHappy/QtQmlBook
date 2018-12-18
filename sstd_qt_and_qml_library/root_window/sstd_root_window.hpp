@@ -3,6 +3,7 @@
 #include "../sstd_qt_and_qml_library.hpp"
 #include <QtQuick/qquickview.h>
 #include <QtQuickWidgets/qquickwidget.h>
+#include <QtWidgets/qopenglwidget.h>
 
 namespace sstd {
     Q_NAMESPACE
@@ -76,6 +77,7 @@ namespace sstd {
             Q_SLOT QQmlContext * getRootContext() const override;
             Q_SLOT QQuickItem * getRootObject() const override;
             _WindowPrivate();
+            using PureRootWindow = QOpenGLWindow;
         private:
             using Super = QQuickView;
         private:
@@ -105,6 +107,7 @@ namespace sstd {
             Q_SLOT QQmlContext * getRootContext() const override;
             Q_SLOT QQuickItem * getRootObject() const override;
             _WidgetPrivate();
+            using PureRootWindow = QOpenGLWidget;
         private:
             using Super = QQuickWidget;
         private:

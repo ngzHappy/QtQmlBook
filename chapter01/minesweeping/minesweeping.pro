@@ -32,6 +32,9 @@ SOURCES += $$PWD/main.cpp
 SOURCES += $$PWD/MineSweeping.cpp
 HEADERS += $$PWD/MineSweeping.hpp
 
+SOURCES += $$PWD/MineSweepingWindow.cpp
+HEADERS += $$PWD/MineSweepingWindow.hpp
+
 SOURCES += $$PWD/MineSweepingLineNode.cpp
 HEADERS += $$PWD/MineSweepingLineNode.hpp
 

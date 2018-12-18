@@ -901,6 +901,7 @@ void MineSweeping::setSizeScene(int row_size, int column_size, int mine_count) {
     mmmRowCout = row_size;
     mmmColumnCount = column_size;
     mmmMineCount = mine_count;
+    mmmIsGameOver = false;
     pppSlotCreateObjets();
 
 }
