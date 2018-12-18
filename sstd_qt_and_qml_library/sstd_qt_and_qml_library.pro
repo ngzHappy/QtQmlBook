@@ -54,6 +54,7 @@ HEADERS += $$PWD/direct_draw_image/sstd_direct_draw_image.hpp
 HEADERS += $$PWD/scene_node/sstd_simple_rectangle_node.hpp
 HEADERS += $$PWD/scene_node/sstd_scene_node.hpp
 HEADERS += $$PWD/root_window/sstd_private/sstd_qquickview_resize.hpp
+HEADERS += $$PWD/event/sstd_qrunevent.hpp
 
 SOURCES += $$PWD/application/sstd_application.cpp
 SOURCES += $$PWD/application/sstd_application_environment.cpp
@@ -72,6 +73,7 @@ SOURCES += $$PWD/glew/sstd_glew_utility.cpp
 SOURCES += $$PWD/direct_draw_image/sstd_direct_draw_image.cpp
 SOURCES += $$PWD/scene_node/sstd_simple_rectangle_node.cpp
 SOURCES += $$PWD/root_window/sstd_private/sstd_qquickview_resize.cpp
+SOURCES += $$PWD/event/sstd_qrunevent.cpp
 
 DEFINES *= GLEW_NO_GLU
 DEFINES *= GLEW_STATIC

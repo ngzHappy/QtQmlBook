@@ -38,7 +38,8 @@ namespace this_file {
     }
 
     class Node;
-    class LayoutItem : public QQuickItem,
+    class LayoutItem :
+        public QQuickItem,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(LayoutItem) {
         std::size_t const mmmRow/*当前行*/;
         std::size_t const mmmColumn/*当前列*/;
@@ -65,6 +66,23 @@ namespace this_file {
         inline bool isMine() const {
             return mmmIsMine;
         }
+
+        inline bool event(QEvent* ev) override {
+            if (ev->type() == sstd::RunEvent::getEventID()) {
+                static_cast<sstd::RunEvent*>(ev)->run();
+                return true;
+            }
+            return Super::event(ev);
+        }
+
+        template<typename TX>
+        inline void call_function(TX && argFunction) {
+            auto varEvent =
+                sstd::RunEvent::createRunEvent(
+                    std::forward<TX>(argFunction));
+            QCoreApplication::postEvent(this, varEvent);
+        }
+
     private:
         LayoutItem * mmmLeftItem{ nullptr };
         LayoutItem * mmmRightItem{ nullptr };
@@ -251,11 +269,28 @@ namespace this_file {
     }();
 
     class Node :
+        public QObject,
         public QSGNode,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Node) {
     public:
         MineSweeping * const mmmMineSweeping;
     public:
+
+        inline bool event(QEvent* ev) override {
+            if (ev->type() == sstd::RunEvent::getEventID()) {
+                static_cast<sstd::RunEvent*>(ev)->run();
+                return true;
+            }
+            return QObject::event(ev);
+        }
+
+        template<typename TX>
+        inline void call_function(TX && argFunction) {
+            auto varEvent =
+                sstd::RunEvent::createRunEvent(
+                    std::forward<TX>(argFunction));
+            QCoreApplication::postEvent(this, varEvent);
+        }
 
         inline Node(MineSweeping * v) :
             mmmMineSweeping(v) {
@@ -271,34 +306,37 @@ namespace this_file {
         inline void setGameOver() {
             mmmMineSweeping->setGameOver(true);
             for (auto i : mmmLayoutItem) {
-                if (i->getItemState() == ItemState::Open) {
-                    continue;
-                } else if (i->getItemState() == ItemState::Mask) {
-                    if (i->isMine()) {
+                auto varFunction = [i]() {
+                    if (i->getItemState() == ItemState::Open) {
+                        return;
+                    } else if (i->getItemState() == ItemState::Mask) {
+                        if (i->isMine()) {
+                            i->rawOpen();
+                            i->createMine();
+                            return;
+                        } else {
+                            i->rawOpen();
+                            return;
+                        }
+                    } else if (i->getItemState() == ItemState::Boom) {
                         i->rawOpen();
                         i->createMine();
-                        continue;
-                    } else {
-                        i->rawOpen();
-                        continue;
+                        i->createBoom();
+                        return;
+                    } else if (i->getItemState() == ItemState::Flag) {
+                        i->hideFlag();
+                        if (i->isMine()) {
+                            i->rawOpen();
+                            i->createOkMine();
+                            return;
+                        } else {
+                            i->rawOpen();
+                            i->createError();
+                            return;
+                        }
                     }
-                } else if (i->getItemState() == ItemState::Boom) {
-                    i->rawOpen();
-                    i->createMine();
-                    i->createBoom();
-                    continue;
-                } else if (i->getItemState() == ItemState::Flag) {
-                    i->hideFlag();
-                    if (i->isMine()) {
-                        i->rawOpen();
-                        i->createOkMine();
-                        continue;
-                    } else {
-                        i->rawOpen();
-                        i->createError();
-                        continue;
-                    }
-                }
+                };
+                i->call_function(std::move(varFunction));
             }
         }
 
@@ -310,16 +348,16 @@ namespace this_file {
         }
 
         inline std::size_t & add_one(
-                    std::size_t & a,
-                    const int & b){
-            if(b==0){
+            std::size_t & a,
+            const int & b) {
+            if (b == 0) {
                 return a;
             }
-            if(b>0){
-                assert(b==1);
+            if (b > 0) {
+                assert(b == 1);
                 return ++a;
             }
-            assert(b==-1);
+            assert(b == -1);
             return --a;
         }
 
@@ -379,8 +417,8 @@ namespace this_file {
                 if ((c == 0) && (dc < 0)) {
                     return nullptr;
                 }
-                add_one(r , dr);
-                add_one(c , dc);
+                add_one(r, dr);
+                add_one(c, dc);
                 if (r >= this->mmmRowSize) {
                     return nullptr;
                 }
@@ -437,12 +475,12 @@ namespace this_file {
                 }
             }
 
-            if( varCount > 8 ){
-                int varBegin =  0 ;
-                int varEnd = static_cast<int>( varCount - 1 ) ;
-                while ( varEnd > varBegin ) {
+            if (varCount > 8) {
+                int varBegin = 0;
+                int varEnd = static_cast<int>(varCount - 1);
+                while (varEnd > varBegin) {
                     std::swap(
-                        varMap[static_cast<std::size_t>(varEnd)], 
+                        varMap[static_cast<std::size_t>(varEnd)],
                         varMap[static_cast<std::size_t>(varBegin)]);
                     varBegin += 2;
                     varEnd -= 2;
@@ -493,10 +531,18 @@ namespace this_file {
                     const auto & varItem = mmmLayoutItem[i];
                     const auto varCPoint = varColumne->getBeginPoint();
                     const auto varRPoint = varRow->getBeginPoint();
-                    varItem->mmmXProperty.write(varItem, varCPoint.x());
-                    varItem->mmmYProperty.write(varItem, varRPoint.y());
-                    varItem->mmmWidthProperty.write(varItem, argWidth);
-                    varItem->mmmHeightProperty.write(varItem, argHeight);
+                    auto varFunction = [varItem,
+                        x = varCPoint.x(),
+                        y = varRPoint.y(),
+                        width = argWidth,
+                        height = argHeight
+                    ]() {
+                        varItem->mmmXProperty.write(varItem, x);
+                        varItem->mmmYProperty.write(varItem, y);
+                        varItem->mmmWidthProperty.write(varItem, width);
+                        varItem->mmmHeightProperty.write(varItem, height);
+                    };
+                    varItem->call_function(std::move(varFunction));
                     ++i;
                 }
             }
