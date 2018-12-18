@@ -1,6 +1,12 @@
 ﻿#pragma once
 
-#include "../sstd_qt_and_qml_library.hpp"
+#include <QtGui/QtGui>
+#include <QtQml/QtQml>
+#include <QtCore/QtCore>
+#include <QtQuick/QtQuick>
+#include <sstd_library.hpp>
+#include "sstd_private/sstd_qquickview_resize.hpp"
+#include "../global/sstd_qt_and_qml_global.hpp"
 #include <QtQuick/qquickview.h>
 #include <QtQuickWidgets/qquickwidget.h>
 #include <QtWidgets/qopenglwidget.h>
@@ -55,9 +61,9 @@ namespace sstd {
     namespace _private_sstd {
 
         class EXPORT_SSTD_QT_AND_QML_LIBRARY _WindowPrivate :
-            public QQuickView ,
+            public _sstd1::_3_private_api::ResizeQuickView,
             public AbstractRootWindow,
-            SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_WindowPrivate){
+            SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_WindowPrivate){
             Q_OBJECT
         public:
             Q_SLOT void setResizeMode(sstd::ResizeMode) override;
@@ -79,7 +85,7 @@ namespace sstd {
             _WindowPrivate();
             using PureRootWindow = QOpenGLWindow;
         private:
-            using Super = QQuickView;
+            using Super = _sstd1::_3_private_api::ResizeQuickView;
         private:
             SSTD_END_DEFINE_VIRTUAL_CLASS(_WindowPrivate);
         };
@@ -87,7 +93,7 @@ namespace sstd {
         class EXPORT_SSTD_QT_AND_QML_LIBRARY _WidgetPrivate :
             public QQuickWidget ,
             public AbstractRootWindow,
-            SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_WidgetPrivate){
+            SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_WidgetPrivate){
             Q_OBJECT
         public:
             Q_SLOT void setResizeMode(sstd::ResizeMode) override;
