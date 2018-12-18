@@ -20,28 +20,6 @@ namespace _sstd1 {
             ResizeQuickView();
             ~ResizeQuickView();
         private:
-            void pppDoResize();
-            QResizeEvent mmmResizeEventFinal;
-            QImage mmmResizeImage;
-            GLuint mmmGLProgram{ 0 };
-            GLuint mmmGLTexture{ 0 };
-            GLuint mmmGLVAO{ 0 };
-            GLuint mmmGLVAOB{ 0 };
-            GLuint mmmGLVAOBI{ 0 };
-            bool mmmIsImageChanged{ true };
-            bool mmmIsFirstResize{ true };
-            bool mmmIsResize{ false };
-            void pppBeginResize();
-            void pppUpdateImage();
-            void pppUpdateResize();
-            void pppShowResizeItem();
-            void resizeEvent(QResizeEvent *ev) override;
-            void showEvent(QShowEvent *) override;
-            QSize pppGetSize() const;
-            void pppCleanUpOpenGL();
-            void pppResizeOpenGL();
-            void pppRendingOpenGL();
-        private:
             using Super = QQuickView;
             friend class ResizeQuickViewPrivate;
         private:
