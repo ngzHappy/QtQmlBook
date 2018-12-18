@@ -42,7 +42,9 @@ namespace _sstd1::_3_private_api {
                     delete this;
                 } else if (mmmFinishedCount > mmmOnFinishedCount) {
                     /*预先resize...*/
-                    mmmSuper->pppUpdateResize();
+                    if ((mmmFinishedCount & 3) == 3) {
+                        mmmSuper->pppUpdateResize();
+                    }
                 }
             } else {
                 mmmLastSize = mmmSuper->pppGetSize();
