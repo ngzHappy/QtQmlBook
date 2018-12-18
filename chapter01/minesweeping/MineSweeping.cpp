@@ -56,13 +56,11 @@ namespace this_file {
         QQmlProperty * mmmNumberTextPorperty{ nullptr };
         ItemState mmmState{ ItemState::Mask };
     public:
-        static QMetaProperty mmmXProperty;
-        static QMetaProperty mmmYProperty;
-        static QMetaProperty mmmWidthProperty;
-        static QMetaProperty mmmHeightProperty;
+
         inline const ItemState & getItemState() const {
             return mmmState;
         }
+
         inline bool isMine() const {
             return mmmIsMine;
         }
@@ -80,7 +78,7 @@ namespace this_file {
             auto varEvent =
                 sstd::RunEvent::createRunEvent(
                     std::forward<TX>(argFunction));
-            QCoreApplication::postEvent(this, varEvent);
+            QCoreApplication::postEvent(this, varEvent, Qt::LowEventPriority);
         }
 
     private:
@@ -244,30 +242,6 @@ namespace this_file {
         SSTD_END_DEFINE_VIRTUAL_CLASS(LayoutItem);
     };
 
-    QMetaProperty LayoutItem::mmmXProperty = []() {
-        auto varIndex =
-            LayoutItem::staticMetaObject.indexOfProperty("x");
-        return  LayoutItem::staticMetaObject.property(varIndex);
-    }();
-
-    QMetaProperty LayoutItem::mmmYProperty = []() {
-        auto varIndex =
-            LayoutItem::staticMetaObject.indexOfProperty("y");
-        return  LayoutItem::staticMetaObject.property(varIndex);
-    }();
-
-    QMetaProperty LayoutItem::mmmWidthProperty = []() {
-        auto varIndex =
-            LayoutItem::staticMetaObject.indexOfProperty("width");
-        return  LayoutItem::staticMetaObject.property(varIndex);
-    }();
-
-    QMetaProperty LayoutItem::mmmHeightProperty = []() {
-        auto varIndex =
-            LayoutItem::staticMetaObject.indexOfProperty("height");
-        return  LayoutItem::staticMetaObject.property(varIndex);
-    }();
-
     class Node :
         public QObject,
         public QSGNode,
@@ -289,7 +263,7 @@ namespace this_file {
             auto varEvent =
                 sstd::RunEvent::createRunEvent(
                     std::forward<TX>(argFunction));
-            QCoreApplication::postEvent(this, varEvent);
+            QCoreApplication::postEvent(this, varEvent, Qt::LowEventPriority);
         }
 
         inline Node(MineSweeping * v) :
@@ -513,9 +487,20 @@ namespace this_file {
 
         }
 
+        double mmmDataWidth = -1;
+        double mmmDataHeight = -1;
         inline void update_data(
             double argWidth,
             double argHeight) {
+
+            if ((mmmIsSizeChanged == false) &&
+                (argWidth == mmmDataWidth) &&
+                (argHeight == mmmDataHeight)) {
+                return;
+            }
+            mmmIsSizeChanged = false;
+            mmmDataHeight = argHeight;
+            mmmDataWidth = argWidth;
 
             const auto & argRow = mmmRowSize;
             const auto & argColumn = mmmColumnSize;
@@ -535,10 +520,10 @@ namespace this_file {
                         width = argWidth,
                         height = argHeight
                     ]() {
-                        varItem->mmmXProperty.write(varItem, x);
-                        varItem->mmmYProperty.write(varItem, y);
-                        varItem->mmmWidthProperty.write(varItem, width);
-                        varItem->mmmHeightProperty.write(varItem, height);
+                        varItem->setX(x);
+                        varItem->setY(y);
+                        varItem->setWidth(width);
+                        varItem->setHeight(height);
                     };
                     varItem->call_function(std::move(varFunction));
                     ++i;
@@ -551,18 +536,31 @@ namespace this_file {
         std::size_t mmmColumnSize{ 1 };
         std::size_t mmmMineCount{ 1 };
 
+        bool mmmIsSizeChanged{ false };
         void reset_size(
             std::size_t argRow,
             std::size_t argColumn,
             std::size_t argMineCount) {
+            mmmIsSizeChanged = true;
             mmmRowSize = argRow;
             mmmColumnSize = argColumn;
             mmmMineCount = argMineCount;
         }
 
+        double mmmSceneWidth = -1;
+        double mmmSceneHeight = -1;
         inline void rebuild_scene(
             double argWidth,
             double argHeight) {
+
+            if ((mmmIsSizeChanged == false) &&
+                (argWidth == mmmSceneWidth) &&
+                (argHeight == mmmSceneHeight)) {
+                return;
+            }
+
+            mmmSceneWidth = argWidth;
+            mmmSceneHeight = argHeight;
 
             const auto & argRow = mmmRowSize;
             const auto & argColumn = mmmColumnSize;
