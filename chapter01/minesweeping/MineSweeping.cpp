@@ -78,7 +78,7 @@ namespace this_file {
             auto varEvent =
                 sstd::RunEvent::createRunEvent(
                     std::forward<TX>(argFunction));
-            QCoreApplication::postEvent(this, varEvent, Qt::LowEventPriority);
+            QCoreApplication::postEvent(this, varEvent, Qt::LowEventPriority - 12);
         }
 
     private:
@@ -270,7 +270,7 @@ namespace this_file {
             auto varEvent =
                 sstd::RunEvent::createRunEvent(
                     std::forward<TX>(argFunction));
-            QCoreApplication::postEvent(this, varEvent, Qt::LowEventPriority);
+            QCoreApplication::postEvent(this, varEvent, Qt::LowEventPriority - 12);
         }
 
         inline Node(MineSweeping * v) :
