@@ -20,8 +20,8 @@ namespace _sstd1::_3_private_api {
         ResizeQuickView * const mmmSuper;
         QSize mmmLastSize;
         int mmmFinishedCount{ 0 };
-        constexpr const static int mmmOnFinishedCount{ 16 };
         constexpr const static int mmmOnShowCount{ 18 };
+        constexpr const static int mmmOnFinishedCount{ 6 };
     public:
         inline ResizeQuickViewPrivate(ResizeQuickView * arg) :
             QTimer(arg),
@@ -170,9 +170,12 @@ void main(){
             glNamedBufferData(mmmGLVAOBI, sizeof(varIndex), varIndex.data(), GL_STATIC_DRAW);
         }
 
-        sstd::opengl_utility::updateTexture(
-            &mmmGLTexture,
-            mmmResizeImage);
+        if (mmmIsImageChanged) {
+            sstd::opengl_utility::updateTexture(
+                &mmmGLTexture,
+                mmmResizeImage);
+            mmmIsImageChanged = false;
+        }
 
         glUseProgram(mmmGLProgram);
         glBindVertexArray(mmmGLVAO);
@@ -222,14 +225,19 @@ void main(){
 
     void ResizeQuickView::pppBeginResize() {
         mmmIsResize = true;
+        pppUpdateImage();
+        sstd_new<ResizeQuickViewPrivate>(this);
+    }
+
+    void ResizeQuickView::pppUpdateImage() {
         if ((this->isActive()) && (this->rootObject())) {
             const QImage varImage =
                 this->grabWindow();
             mmmResizeImage =
                 varImage.convertToFormat(QImage::Format_RGBA64);
+            mmmIsImageChanged = true;
             this->rootObject()->setVisible(false);
         }
-        sstd_new<ResizeQuickViewPrivate>(this);
     }
 
     void ResizeQuickView::pppShowResizeItem() {

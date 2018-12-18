@@ -28,9 +28,11 @@ namespace _sstd1 {
             GLuint mmmGLVAO{ 0 };
             GLuint mmmGLVAOB{ 0 };
             GLuint mmmGLVAOBI{ 0 };
+            bool mmmIsImageChanged{ true };
             bool mmmIsFirstResize{ true };
             bool mmmIsResize{ false };
             void pppBeginResize();
+            void pppUpdateImage();
             void pppUpdateResize();
             void pppShowResizeItem();
             void resizeEvent(QResizeEvent *ev) override;
