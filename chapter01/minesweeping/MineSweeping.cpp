@@ -54,8 +54,6 @@ namespace this_file {
         QQuickItem * mmmNumberItem{ nullptr };
         QQmlProperty * mmmNumberTextPorperty{ nullptr };
         ItemState mmmState{ ItemState::Mask };
-        unsigned mmmNumberOfThis : 16;
-        unsigned mmmIsMine : 16;
     public:
         static QMetaProperty mmmXProperty;
         static QMetaProperty mmmYProperty;
@@ -76,6 +74,8 @@ namespace this_file {
         LayoutItem * mmmTopRightItem{ nullptr };
         LayoutItem * mmmBottomLeftItem{ nullptr };
         LayoutItem * mmmBottomRightItem{ nullptr };
+        unsigned mmmNumberOfThis : 16;
+        unsigned mmmIsMine : 16;
     private:
         using Super = QQuickItem;
     public:
@@ -309,6 +309,20 @@ namespace this_file {
             mmmLayoutItem.clear();
         }
 
+        inline std::size_t & add_one(
+                    std::size_t & a,
+                    const int & b){
+            if(b==0){
+                return a;
+            }
+            if(b>0){
+                assert(b==1);
+                return ++a;
+            }
+            assert(b==-1);
+            return --a;
+        }
+
         inline void create_objects_and_mask() {
 
             MineSweeping * argParent = mmmMineSweeping;
@@ -365,8 +379,8 @@ namespace this_file {
                 if ((c == 0) && (dc < 0)) {
                     return nullptr;
                 }
-                r += dr;
-                c += dc;
+                add_one(r , dr);
+                add_one(c , dc);
                 if (r >= this->mmmRowSize) {
                     return nullptr;
                 }
@@ -811,8 +825,6 @@ QSGNode * MineSweeping::updatePaintNode(
     }
 
     if (mmmRowCout > 0) {
-        const auto varRowCount = static_cast<std::size_t>(mmmRowCout);
-        const auto varColumnCount = static_cast<std::size_t>(mmmColumnCount);
         varNode->rebuild_scene(this->width(), this->height());
         varNode->update_data(this->width(), this->height());
     }

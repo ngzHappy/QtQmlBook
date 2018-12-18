@@ -23,7 +23,7 @@ Rectangle {
             color: Qt.rgba(0.2,0.2,0.2,1);
             Behavior on opacity{
                 NumberAnimation{
-                    duration: 555
+                    duration: 333
                 }
             }
         }

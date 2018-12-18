@@ -5,7 +5,7 @@
 #include <QtCore/QtCore>
 #include <QtQuick/QtQuick>
 #include <sstd_library.hpp>
-#include "../global/sstd_qt_and_qml_global.hpp"
+#include "../../global/sstd_qt_and_qml_global.hpp"
 
 namespace _sstd1 {
 
@@ -16,8 +16,6 @@ namespace _sstd1 {
             public QQuickView,
             SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(ResizeQuickView) {
             Q_OBJECT
-        private:
-        protected:
         public:
             ResizeQuickView();
             ~ResizeQuickView();
