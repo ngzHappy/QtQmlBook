@@ -525,15 +525,13 @@ namespace this_file {
 
             std::size_t i = 0;
             for (std::size_t r = 0; r < argRow; ++r) {
-                auto varRow = mmmRowLines[r];
+                auto varRowY = mmmRowLinesHeight[r];
                 for (std::size_t c = 0; c < argColumn; ++c) {
-                    auto varColumne = mmmColumnLines[c];
-                    const auto & varItem = mmmLayoutItem[i];
-                    const auto varCPoint = varColumne->getBeginPoint();
-                    const auto varRPoint = varRow->getBeginPoint();
+                    auto varItem = mmmLayoutItem[i];
+                    auto varColX = mmmColumnLinesWidth[c];
                     auto varFunction = [varItem,
-                        x = varCPoint.x(),
-                        y = varRPoint.y(),
+                        x = varColX,
+                        y = varRowY,
                         width = argWidth,
                         height = argHeight
                     ]() {
@@ -576,16 +574,44 @@ namespace this_file {
 
             {
                 double varHeight = 0;
+                auto varLineHeightPos = mmmRowLinesHeight.begin();
                 for (auto varI : mmmRowLines) {
-                    varI->setBeginEndPoints({ 0,varHeight }, { argWidth,varHeight });
+                    *varLineHeightPos = varHeight;
+                    ++varLineHeightPos;
+                    this->call_function([varI,
+                        varHeight,
+                        varWidth = argWidth,
+                        varState = varI->sstd_get_class_state()
+                    ]() {
+                        if (varState.isDestoryed()) {
+                            return;
+                        }
+                        varI->setBeginEndPoints(
+                            { 0,varHeight },
+                            { varWidth,varHeight });
+                    });
                     varHeight += varItemHeight;
                 }
             }
 
             {
                 double varWidth = 0;
+                auto varLineWidthPos = mmmColumnLinesWidth.begin();
                 for (auto varI : mmmColumnLines) {
-                    varI->setBeginEndPoints({ varWidth,0 }, { varWidth,argHeight });
+                    *varLineWidthPos = varWidth;
+                    ++varLineWidthPos;
+                    this->call_function([varI,
+                        varHeight = argHeight,
+                        varWidth,
+                        varState = varI->sstd_get_class_state()
+                    ]() {
+                        if (varState.isDestoryed()) {
+                            return;
+                        }
+                        varI->setBeginEndPoints(
+                            { varWidth,0 },
+                            { varWidth,varHeight });
+                    });
                     varWidth += varItemWidth;
                 }
             }
@@ -594,6 +620,8 @@ namespace this_file {
 
         sstd::vector< MineSweepingLineNode * > mmmRowLines;
         sstd::vector< MineSweepingLineNode * > mmmColumnLines;
+        sstd::vector< qreal > mmmRowLinesHeight;
+        sstd::vector< qreal > mmmColumnLinesWidth;
 
     private:
 
@@ -606,11 +634,13 @@ namespace this_file {
 
             while (mmmRowLines.size() > argRow) {
                 this->removeChildNode(*mmmRowLines.rbegin());
+                delete *mmmRowLines.rbegin();
                 mmmRowLines.pop_back();
             }
 
             while (mmmColumnLines.size() > argColumn) {
                 this->removeChildNode(*mmmColumnLines.rbegin());
+                delete *mmmRowLines.rbegin();
                 mmmColumnLines.pop_back();
             }
 
@@ -626,6 +656,10 @@ namespace this_file {
                 this->appendChildNode(var);
                 mmmColumnLines.push_back(var);
             }
+
+            mmmRowLinesHeight.resize(argRow);
+            mmmColumnLinesWidth.resize(argColumn);
+
         }
 
     private:
