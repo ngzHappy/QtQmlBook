@@ -437,6 +437,18 @@ namespace this_file {
                 }
             }
 
+            if( varCount > 8 ){
+                int varBegin =  0 ;
+                int varEnd = static_cast<int>( varCount - 1 ) ;
+                while ( varEnd > varBegin ) {
+                    std::swap(
+                        varMap[static_cast<std::size_t>(varEnd)], 
+                        varMap[static_cast<std::size_t>(varBegin)]);
+                    varBegin += 2;
+                    varEnd -= 2;
+                }
+            }
+
             /*地雷随机化*/
             {
                 std::random_device varDevice;
