@@ -1,4 +1,4 @@
-#include "MineSweepingWindow.hpp"
+ï»¿#include "MineSweepingWindow.hpp"
 
 namespace {
 
@@ -55,7 +55,7 @@ void MineSweepingWindow::resizeEvent(QResizeEvent * argEvent) {
         pppBeginResize();
         return;
     } else {
-        /*¹ıÂËĞ¡µÄÈÅ¶¯*/
+        /*è¿‡æ»¤å°çš„æ‰°åŠ¨*/
         if ((std::abs(varTargetSize.width() - mmmStartResizeSize.width()) < 15) &&
             (std::abs(varTargetSize.height() - mmmStartResizeSize.height()) < 15)) {
             mmmMineSweepingWindow->resize(varTargetSize);
