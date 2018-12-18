@@ -14,11 +14,13 @@ private:
     using Super = sstd::DefaultRoowWindow::PureRootWindow;
 protected:
     void resizeEvent(QResizeEvent *ev) override;
+    void showEvent(QShowEvent *) override;
     void initializeGL() override;
     void paintGL() override;
     void resizeGL(int w, int h) override;
 private:
     bool mmmIsResize{ false };
+    bool mmmIsFirstResizeShow{ true };
     QSize mmmStartResizeSize;
     sstd::DefaultRoowWindow * mmmMineSweepingWindow{ nullptr };
     void pppBeginResize();

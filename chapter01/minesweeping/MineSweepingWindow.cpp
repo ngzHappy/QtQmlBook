@@ -46,10 +46,20 @@ MineSweepingWindow::MineSweepingWindow() {
     this->resize(1024, 768);
 }
 
+void MineSweepingWindow::showEvent(QShowEvent * argEvent) {
+    mmmIsFirstResizeShow = true;
+    Super::showEvent(argEvent);
+}
+
 void MineSweepingWindow::resizeEvent(QResizeEvent * argEvent) {
     const auto varCurrentSize = this->size();
     const auto varTargetSize = argEvent->size();
     Super::resizeEvent(argEvent);
+    if (mmmIsFirstResizeShow) {
+        mmmIsFirstResizeShow = false;
+        mmmMineSweepingWindow->resize(varTargetSize);
+        return;
+    }
     if (false == mmmIsResize) {
         mmmStartResizeSize = varCurrentSize;
         pppBeginResize();
