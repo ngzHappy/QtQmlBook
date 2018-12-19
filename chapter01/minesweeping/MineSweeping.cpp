@@ -417,18 +417,15 @@ namespace this_file {
             for (r = 0; r < argRow; ++r) {
                 for (c = 0; c < argColumn; ++c, ++i) {
 
-                    LayoutItem * item = mmmLayoutItem[i];
-
-                    LayoutItem * topleft = getItem(r, c, -1, -1);
-                    LayoutItem * left = getItem(r, c, 0, -1);
-                    LayoutItem * bottomleft = getItem(r, c, 1, -1);
-
-                    LayoutItem * top = getItem(r, c, -1, 0);
-                    LayoutItem * bottom = getItem(r, c, 1, 0);
-
-                    LayoutItem * topright = getItem(r, c, -1, 1);
-                    LayoutItem * right = getItem(r, c, 0, 1);
-                    LayoutItem * bottomright = getItem(r, c, 1, 1);
+                    auto * item = mmmLayoutItem[i];
+                    auto * topleft = getItem(r, c, -1, -1);
+                    auto * left = getItem(r, c, 0, -1);
+                    auto * bottomleft = getItem(r, c, 1, -1);
+                    auto * top = getItem(r, c, -1, 0);
+                    auto * bottom = getItem(r, c, 1, 0);
+                    auto * topright = getItem(r, c, -1, 1);
+                    auto * right = getItem(r, c, 0, 1);
+                    auto * bottomright = getItem(r, c, 1, 1);
 
                     assert(item == getItem(r, c, 0, 0));
 
@@ -530,6 +527,7 @@ namespace this_file {
                         currentIndex = getSceneIndex()
                     ]() {
                         if (currentIndex != varItem->getSceneIndex()) {
+                            /*过滤无用计算*/
                             return;
                         }
                         varItem->setX(x);
@@ -603,6 +601,7 @@ namespace this_file {
                         this
                     ]() {
                         if (varSceneIndex != getSceneIndex()) {
+                            /*过滤无用计算*/
                             return;
                         }
                         if (varState.isDestoryed()) {
