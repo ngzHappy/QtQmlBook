@@ -243,6 +243,7 @@ namespace this_file {
         inline void hideFlag() {
             mmmFlagItem->setVisible(false);
         }
+        inline std::size_t getSceneIndex() const;
     protected:
         inline void mousePressEvent(QMouseEvent *event) override;
     private:
@@ -525,8 +526,12 @@ namespace this_file {
                         x = varColX,
                         y = varRowY,
                         width = argWidth,
-                        height = argHeight
+                        height = argHeight,
+                        currentIndex = getSceneIndex()
                     ]() {
+                        if (currentIndex != varItem->getSceneIndex()) {
+                            return;
+                        }
                         varItem->setX(x);
                         varItem->setY(y);
                         varItem->setWidth(width);
@@ -556,6 +561,12 @@ namespace this_file {
 
         double mmmSceneWidth = -1;
         double mmmSceneHeight = -1;
+        std::size_t mmmSceneIndex = 0 /*场景计数器*/;
+
+        inline std::size_t getSceneIndex() const {
+            return mmmSceneIndex;
+        }
+
         inline void rebuild_scene(
             double argWidth,
             double argHeight) {
@@ -566,6 +577,7 @@ namespace this_file {
                 return;
             }
 
+            ++mmmSceneIndex;
             mmmSceneWidth = argWidth;
             mmmSceneHeight = argHeight;
 
@@ -586,8 +598,13 @@ namespace this_file {
                     this->call_function([varI,
                         varHeight,
                         varWidth = argWidth,
-                        varState = varI->sstd_get_class_state()
+                        varState = varI->sstd_get_class_state(),
+                        varSceneIndex = getSceneIndex(),
+                        this
                     ]() {
+                        if (varSceneIndex != getSceneIndex()) {
+                            return;
+                        }
                         if (varState.isDestoryed()) {
                             return;
                         }
@@ -905,6 +922,10 @@ namespace this_file {
             /*右键...*/
             this->openFlag();
         }
+    }
+
+    inline std::size_t LayoutItem::getSceneIndex() const {
+        return mmmParent->getSceneIndex();
     }
 
 }/********/
