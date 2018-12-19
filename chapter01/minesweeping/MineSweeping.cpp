@@ -298,7 +298,7 @@ namespace this_file {
         inline void setGameOver() {
             mmmMineSweeping->setGameOver(true);
             std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
-                sstd::MultiRunEvent::createMultiRunEvent(this, -12) };
+                sstd::MultiRunEvent::createMultiRunEvent(this ,-12) };
             for (auto i : mmmLayoutItem) {
                 auto varFunction = [i]() {
                     if (i->getItemState() == ItemState::Open) {
@@ -528,7 +528,7 @@ namespace this_file {
 
             std::size_t i = 0;
             std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
-                sstd::MultiRunEvent::createMultiRunEvent(this, -12) };
+                sstd::MultiRunEvent::createMultiRunEvent(this ,-12) };
             for (std::size_t r = 0; r < argRow; ++r) {
                 auto varRowY = mmmRowLinesHeight[r];
                 for (std::size_t c = 0; c < argColumn; ++c) {
@@ -610,12 +610,10 @@ namespace this_file {
             {
                 double varHeight = 0;
                 auto varLineHeightPos = mmmRowLinesHeight.begin();
-                std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
-                    sstd::MultiRunEvent::createMultiRunEvent(this, -202) };
                 for (auto varI : mmmRowLines) {
                     *varLineHeightPos = varHeight;
                     ++varLineHeightPos;
-                    varMultiRun->appendFunction([varI,
+                    this->call_function([varI,
                         varHeight,
                         varWidth = argWidth,
                         varState = varI->sstd_get_class_state(),
@@ -635,25 +633,22 @@ namespace this_file {
                     });
                     varHeight += varItemHeight;
                 }
-                varMultiRun.release()->start();
             }
 
             {
                 double varWidth = 0;
                 auto varLineWidthPos = mmmColumnLinesWidth.begin();
-                std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
-                    sstd::MultiRunEvent::createMultiRunEvent(this, -102) };
                 for (auto varI : mmmColumnLines) {
                     *varLineWidthPos = varWidth;
                     ++varLineWidthPos;
-                    varMultiRun->appendFunction([varI,
+                    this->call_function([varI,
                         varHeight = argHeight,
                         varWidth,
                         varState = varI->sstd_get_class_state(),
                         varSceneIndex = mmmSceneIndex,
                         this
                     ]() {
-                        if (this->getSceneIndex()!=varSceneIndex) {
+                        if (this->getSceneIndex() != varSceneIndex) {
                             return;
                         }
                         if (varState.isDestoryed()) {
@@ -665,7 +660,6 @@ namespace this_file {
                     });
                     varWidth += varItemWidth;
                 }/*for...*/
-                varMultiRun.release()->start();
             }
 
         }

@@ -49,42 +49,112 @@ Rectangle {
                     duration: 333
                 }
             }
+            Behavior on width{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
+            Behavior on height{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
         }
 
         flagItem : Flag{
             anchors.centerIn: parent ;
             width  : parent.width * 0.75 ;
             height : parent.height * 0.75 ;
+            Behavior on width{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
+            Behavior on height{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
         }
 
         numberItem : Number{
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
+            Behavior on width{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
+            Behavior on height{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
         }
 
         errorItem : Error{
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
+            Behavior on width{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
+            Behavior on height{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
         }
 
         mineItem : Mine{
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
+            Behavior on width{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
+            Behavior on height{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
         }
 
         okMineItem : OkMine{
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
+            Behavior on width{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
+            Behavior on height{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
         }
 
         boomItem : Boom {
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
+            Behavior on width{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
+            Behavior on height{
+                NumberAnimation{
+                    duration: 33
+                }
+            }
         }
 
     }
