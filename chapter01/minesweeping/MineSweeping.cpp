@@ -477,10 +477,8 @@ namespace this_file {
                 }
             }
 
-            i = 0;
-
             /*更新数据*/
-            for (; i < varCount; ++i) {
+            for (i = 0; i < varCount; ++i) {
                 if (varMap[i]) {
                     mmmLayoutItem[i]->setToMine();
                 }

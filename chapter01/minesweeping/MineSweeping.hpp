@@ -2,7 +2,7 @@
 
 #include <sstd_qt_and_qml_library.hpp>
 
-class MineSweeping : 
+class MineSweeping :
     public QQuickItem,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MineSweeping) {
     Q_OBJECT

@@ -8,6 +8,20 @@ Rectangle {
     height: 480;
     color: Qt.rgba(0.3,0.3,0.38,1);
 
+    MineResetDialog{
+        id: idResetActionDialog ;
+    }
+
+    MineMenuBar{
+        id : idMenuBar
+        width: parent.width ;
+        anchors.top: parent.top ;
+        anchors.left: parent.left ;
+        onToResetAction: {
+            idResetActionDialog.open() ;
+        }
+    }
+
     MineSweeping{
 
         anchors.centerIn: parent;
@@ -20,7 +34,7 @@ Rectangle {
             anchors.centerIn: parent
             width: parent.width * 0.95
             height: parent.height * 0.95
-            color: Qt.rgba(0.2,0.2,0.2,1);
+            color: Qt.rgba(0.2,0.22,0.22,1);
             Behavior on opacity{
                 NumberAnimation{
                     duration: 333
@@ -62,10 +76,6 @@ Rectangle {
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
-        }
-
-        onIsGameOverChanged: {
-            console.log( isGameWin )
         }
 
     }
