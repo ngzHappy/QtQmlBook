@@ -610,10 +610,12 @@ namespace this_file {
             {
                 double varHeight = 0;
                 auto varLineHeightPos = mmmRowLinesHeight.begin();
+                auto varMultiRun =
+                    sstd::MultiRunEvent::createMultiRunEvent(this, -202);
                 for (auto varI : mmmRowLines) {
                     *varLineHeightPos = varHeight;
                     ++varLineHeightPos;
-                    this->call_function([varI,
+                    varMultiRun->appendFunction([varI,
                         varHeight,
                         varWidth = argWidth,
                         varState = varI->sstd_get_class_state(),
@@ -633,6 +635,7 @@ namespace this_file {
                     });
                     varHeight += varItemHeight;
                 }
+                varMultiRun->start();
             }
 
             {
