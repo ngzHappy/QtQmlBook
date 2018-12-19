@@ -53,7 +53,7 @@ namespace this_file {
             QQuickItem * mmmOkMineItem;
         };
         QQuickItem * mmmNumberItem{ nullptr };
-        std::unique_ptr< QQmlProperty > mmmNumberTextPorperty ;
+        std::unique_ptr< QQmlProperty > mmmNumberTextPorperty;
         ItemState mmmState{ ItemState::Mask };
     public:
 
@@ -297,6 +297,8 @@ namespace this_file {
 
         inline void setGameOver() {
             mmmMineSweeping->setGameOver(true);
+            auto varMultiRun =
+                sstd::MultiRunEvent::createMultiRunEvent(this);
             for (auto i : mmmLayoutItem) {
                 auto varFunction = [i]() {
                     if (i->getItemState() == ItemState::Open) {
@@ -328,8 +330,9 @@ namespace this_file {
                         }
                     }
                 };
-                i->call_function(std::move(varFunction));
+                varMultiRun->appendFunction(std::move(varFunction));
             }
+            varMultiRun->start();
         }
 
         inline void clear_objects() {
@@ -772,8 +775,8 @@ namespace this_file {
         this->setNumber(varObject);
         varObject->setZ(getNumberZValue_());
         mmmNumberTextPorperty = sstd_make_unique<QQmlProperty>(
-                varObject,
-                QStringLiteral("text"));
+            varObject,
+            QStringLiteral("text"));
     }
 
     inline void LayoutItem::createBoom() {

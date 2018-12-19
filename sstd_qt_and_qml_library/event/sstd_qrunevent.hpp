@@ -45,8 +45,23 @@ namespace sstd {
         template<typename Tx>
         inline static MultiRunEvent * createMultiRunEvent(
             QPointer<QObject> argTarget,
-            int argPriority = Qt::NormalEventPriority,
-            Tx&& argDoNotRunNext = []()->bool {return false; });
+            int argPriority ,
+            Tx&& argDoNotRunNext );
+        inline static MultiRunEvent * createMultiRunEvent(
+            QPointer<QObject> argTarget) {
+            return createMultiRunEvent(
+                argTarget, 
+                Qt::NormalEventPriority, 
+                []() ->bool {return false; });
+        }
+        inline static MultiRunEvent * createMultiRunEvent(
+            QPointer<QObject> argTarget,
+            int argP) {
+            return createMultiRunEvent(
+                argTarget,
+                argP,
+                []() ->bool {return false; });
+        }
         template<typename Tx>
         inline void appendFunction(Tx &&);
     private:
