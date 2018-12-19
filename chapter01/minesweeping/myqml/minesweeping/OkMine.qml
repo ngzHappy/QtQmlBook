@@ -5,15 +5,15 @@ import QtGraphicalEffects 1.0
 Item {
 
     Image {
-        id : image
+        id : idImage
         source: "Mine.png"
         anchors.fill: parent;
         fillMode: Image.Stretch
     }
 
     Colorize{
-        anchors.fill: image
-        source: image
+        anchors.fill: idImage
+        source: idImage
         hue: 0.35
         saturation: 1.5
         lightness: -0.2

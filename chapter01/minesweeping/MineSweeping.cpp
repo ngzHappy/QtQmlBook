@@ -713,12 +713,14 @@ namespace this_file {
             mmmRowLines.reserve(argRow);
             while (mmmRowLines.size() < argRow) {
                 auto var = sstd_new< MineSweepingLineNode >();
+                var->setLineColor(QColor(198,198,198,255));
                 this->appendChildNode(var);
                 mmmRowLines.push_back(var);
             }
             mmmColumnLines.reserve(argColumn);
             while (mmmColumnLines.size() < argColumn) {
                 auto var = sstd_new< MineSweepingLineNode >();
+                var->setLineColor(QColor(198, 198, 198, 255));
                 this->appendChildNode(var);
                 mmmColumnLines.push_back(var);
             }

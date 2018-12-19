@@ -1,12 +1,19 @@
 ﻿/*main.qml*/
 import QtQuick 2.9
 import sstd.minesweeping 1.0
+import QtQuick.Controls 2.12
 
-Rectangle {
+
+Pane {
+
+    padding: 0
+    topInset: 0
+    leftInset: 0
+    rightInset: 0
+    bottomInset: 0
 
     width: 640;
     height: 480;
-    color: Qt.rgba(0.3,0.3,0.38,1);
 
     MineResetDialog{
         id: idResetActionDialog ;
@@ -43,7 +50,7 @@ Rectangle {
             anchors.centerIn: parent       ;
             width: parent.width * 0.95     ;
             height: parent.height * 0.95   ;
-            color: Qt.rgba(0.2,0.22,0.22,1);
+            color: Qt.rgba( 0.45,0.46,0.47,0.5 ) ;
             Behavior on opacity{
                 NumberAnimation{
                     duration: 333
@@ -51,12 +58,12 @@ Rectangle {
             }
             Behavior on width{
                 NumberAnimation{
-                    duration: 33
+                    duration: 25
                 }
             }
             Behavior on height{
                 NumberAnimation{
-                    duration: 33
+                    duration: 25
                 }
             }
         }
