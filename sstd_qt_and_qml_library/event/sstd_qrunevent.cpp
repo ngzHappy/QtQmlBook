@@ -48,9 +48,9 @@ namespace sstd {
 
     void MultiRunEvent::run() {
         if (mmmData) {
-            if (false == doNotCallNext()) {
-                auto varTarget = mmmData->target.data();
-                if (varTarget) {
+            auto varTarget = mmmData->target.data();
+            if (varTarget) {
+                if (false == doNotCallNext()) {
                     if (mmmData->events.empty() == false) {
                         const auto varPriority = mmmData->priority;
                         auto varEvent = std::move(mmmData->events.front());

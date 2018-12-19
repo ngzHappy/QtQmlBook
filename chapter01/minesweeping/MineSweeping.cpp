@@ -298,7 +298,10 @@ namespace this_file {
         inline void setGameOver() {
             mmmMineSweeping->setGameOver(true);
             std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
-                sstd::MultiRunEvent::createMultiRunEvent(this ,-12) };
+                sstd::MultiRunEvent::createMultiRunEvent(this ,-12,
+                [this,currentIndex = getSceneIndex()]()->bool {
+                return currentIndex != getSceneIndex();
+            }) };
             for (auto i : mmmLayoutItem) {
                 auto varFunction = [i]() {
                     if (i->getItemState() == ItemState::Open) {
@@ -528,7 +531,10 @@ namespace this_file {
 
             std::size_t i = 0;
             std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
-                sstd::MultiRunEvent::createMultiRunEvent(this ,-12) };
+                sstd::MultiRunEvent::createMultiRunEvent(this ,-12,
+                [this,currentIndex = getSceneIndex()]()->bool {
+                return currentIndex != getSceneIndex();
+            }) };
             for (std::size_t r = 0; r < argRow; ++r) {
                 auto varRowY = mmmRowLinesHeight[r];
                 for (std::size_t c = 0; c < argColumn; ++c) {
@@ -713,7 +719,7 @@ namespace this_file {
             mmmRowLines.reserve(argRow);
             while (mmmRowLines.size() < argRow) {
                 auto var = sstd_new< MineSweepingLineNode >();
-                var->setLineColor(QColor(198,198,198,255));
+                var->setLineColor(QColor(198, 198, 198, 255));
                 this->appendChildNode(var);
                 mmmRowLines.push_back(var);
             }
