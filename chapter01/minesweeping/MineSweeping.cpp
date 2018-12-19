@@ -930,16 +930,12 @@ namespace this_file {
 }/********/
 
 QSGNode * MineSweeping::updatePaintNode(
-    QSGNode *oldNode,
+    QSGNode * ,
     QQuickItem::UpdatePaintNodeData *) {
     using namespace this_file;
 
-    Node * varNode;
-    if (oldNode == nullptr) {
-        varNode = static_cast<this_file::Node*>(mmmCurrentNode);
-    } else {
-        varNode = static_cast<Node*>(oldNode);
-    }
+    Node * varNode = 
+        static_cast<this_file::Node*>(mmmCurrentNode);
 
     if (mmmRowCout > 0) {
         varNode->rebuild_scene(this->width(), this->height());
@@ -1007,7 +1003,9 @@ void MineSweeping::pppSlotCreateObjets() {
     if (mmmMaskComponent == nullptr) {
         return;
     }
-    mmmCurrentNode = sstd_new<this_file::Node>(this);
+    if (mmmCurrentNode == nullptr) {
+        mmmCurrentNode = sstd_new<this_file::Node>(this);
+    }
     auto varNode = static_cast<this_file::Node*>(mmmCurrentNode);
     const auto varRowCount = static_cast<std::size_t>(mmmRowCout);
     const auto varColumnCount = static_cast<std::size_t>(mmmColumnCount);
@@ -1023,6 +1021,7 @@ void MineSweeping::setGameOver(bool arg) {
         return;
     }
     mmmIsGameOver = arg;
+    gameOverChanged();
 }
 
 void MineSweeping::setSizeScene(int row_size, int column_size, int mine_count) {
@@ -1030,7 +1029,7 @@ void MineSweeping::setSizeScene(int row_size, int column_size, int mine_count) {
     mmmRowCout = row_size;
     mmmColumnCount = column_size;
     mmmMineCount = mine_count;
-    mmmIsGameOver = false;
+    setGameOver(false);
     pppSlotCreateObjets();
 
 }

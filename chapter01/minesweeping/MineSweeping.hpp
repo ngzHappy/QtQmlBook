@@ -34,6 +34,7 @@ public:
     Q_SLOT void setSizeScene(int row_size, int column_size, int mine_count);
     inline bool isGameOver() const;
     void setGameOver(bool);
+    Q_SIGNAL void gameOverChanged();
 protected:
     QSGNode * updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *) override;
 private:
