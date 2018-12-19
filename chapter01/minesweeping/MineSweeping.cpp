@@ -506,6 +506,7 @@ namespace this_file {
 
         double mmmDataWidth = -1;
         double mmmDataHeight = -1;
+        /*重新布局layout item*/
         inline void update_data(
             double argWidth,
             double argHeight) {
@@ -526,18 +527,24 @@ namespace this_file {
             argHeight /= argRow;
 
             std::size_t i = 0;
+            auto varMultiRun =
+                sstd::MultiRunEvent::createMultiRunEvent(this);
             for (std::size_t r = 0; r < argRow; ++r) {
                 auto varRowY = mmmRowLinesHeight[r];
                 for (std::size_t c = 0; c < argColumn; ++c) {
                     auto varItem = mmmLayoutItem[i];
                     auto varColX = mmmColumnLinesWidth[c];
-                    auto varFunction = [varItem,
+                    auto varFunction = [varItem_ = QPointer<LayoutItem>(varItem),
                         x = varColX,
                         y = varRowY,
                         width = argWidth,
                         height = argHeight,
                         currentIndex = getSceneIndex()
                     ]() {
+                        auto varItem = varItem_.data();
+                        if (varItem == nullptr) {
+                            return;
+                        }
                         if (currentIndex != varItem->getSceneIndex()) {
                             /*过滤无用计算*/
                             return;
@@ -547,10 +554,11 @@ namespace this_file {
                         varItem->setWidth(width);
                         varItem->setHeight(height);
                     };
-                    varItem->call_function(std::move(varFunction));
+                    varMultiRun->appendFunction(std::move(varFunction));
                     ++i;
                 }
-            }
+            }/*for*/
+            varMultiRun->start();
 
         }
 
