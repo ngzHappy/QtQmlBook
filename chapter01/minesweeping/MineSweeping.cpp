@@ -639,6 +639,26 @@ namespace this_file {
 
         }
 
+        inline void check_win() {
+            auto varMineCount = this->mmmMineCount;
+            std::size_t varFlagCount = 0;
+            for (auto varItem : mmmLayoutItem) {
+                if (varItem->getItemState() == ItemState::Flag) {
+                    ++varFlagCount;
+                    if (varItem->isMine()) {
+                        --varMineCount;
+                    }
+                } else if (varItem->getItemState() != ItemState::Open) {
+                    return;
+                }
+            }
+            if ((varMineCount == 0) &&
+                (varFlagCount == this->mmmMineCount)) {
+                this->mmmMineSweeping->setGameWin(true);
+                this->mmmMineSweeping->setGameOver(true);
+            }
+        }
+
         sstd::vector< MineSweepingLineNode * > mmmRowLines;
         sstd::vector< MineSweepingLineNode * > mmmColumnLines;
         sstd::vector< qreal > mmmRowLinesHeight;
@@ -920,7 +940,13 @@ namespace this_file {
         } else if (event->buttons()&Qt::RightButton) {
             /*右键...*/
             this->openFlag();
+        } else {
+            return;
         }
+
+        /*查看是否赢了*/
+        this->mmmParent->check_win();
+
     }
 
     inline std::size_t LayoutItem::getSceneIndex() const {
@@ -930,11 +956,11 @@ namespace this_file {
 }/********/
 
 QSGNode * MineSweeping::updatePaintNode(
-    QSGNode * ,
+    QSGNode *,
     QQuickItem::UpdatePaintNodeData *) {
     using namespace this_file;
 
-    Node * varNode = 
+    Node * varNode =
         static_cast<this_file::Node*>(mmmCurrentNode);
 
     if (mmmRowCout > 0) {
@@ -1024,12 +1050,17 @@ void MineSweeping::setGameOver(bool arg) {
     gameOverChanged();
 }
 
+void MineSweeping::setGameWin(bool arg) {
+    mmmIsGameWin = arg;
+}
+
 void MineSweeping::setSizeScene(int row_size, int column_size, int mine_count) {
 
     mmmRowCout = row_size;
     mmmColumnCount = column_size;
     mmmMineCount = mine_count;
     setGameOver(false);
+    setGameWin(false);
     pppSlotCreateObjets();
 
 }

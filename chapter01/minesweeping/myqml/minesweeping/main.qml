@@ -64,6 +64,10 @@ Rectangle {
             height : parent.height * 0.9 ;
         }
 
+        onIsGameOverChanged: {
+            console.log( isGameWin )
+        }
+
     }
 
 }/*~Rectangle*/

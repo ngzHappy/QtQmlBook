@@ -6,6 +6,10 @@ class MineSweeping : public QQuickItem,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MineSweeping) {
     Q_OBJECT
 private:
+    Q_PROPERTY(bool isGameOver READ isGameOver NOTIFY gameOverChanged)
+private:
+    Q_PROPERTY(bool isGameWin READ isGameWin )
+private:
     Q_PROPERTY(QQmlComponent * okMineItem READ pppGetOkMineItemItem WRITE pppSetOkMineItem NOTIFY pppOkMineChanged)
 private:
     Q_PROPERTY(QQmlComponent * boomItem READ pppGetBoomItem WRITE pppSetBoomItem NOTIFY pppBoomChanged)
@@ -35,6 +39,8 @@ public:
     inline bool isGameOver() const;
     void setGameOver(bool);
     Q_SIGNAL void gameOverChanged();
+    inline bool isGameWin() const;
+    void setGameWin(bool);
 protected:
     QSGNode * updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *) override;
 private:
@@ -72,11 +78,16 @@ private:
     int mmmColumnCount{ -1 };
     int mmmMineCount{ 1 };
     bool mmmIsGameOver{ false };
+    bool mmmIsGameWin{ true };
 protected:
     void componentComplete() override;
 public:
     SSTD_END_DEFINE_VIRTUAL_CLASS(MineSweeping);
 };
+
+inline bool MineSweeping::isGameWin() const {
+    return mmmIsGameWin;
+}
 
 inline QQmlComponent * MineSweeping::pppGetOkMineItemItem() const {
     return mmmOkMineItem;
