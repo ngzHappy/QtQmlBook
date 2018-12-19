@@ -9,6 +9,7 @@ Item {
         source: "Mine.png"
         anchors.fill: parent;
         fillMode: Image.Stretch
+        cache: false
     }
 
     Colorize{
@@ -17,6 +18,7 @@ Item {
         hue: 0.35
         saturation: 1.5
         lightness: -0.2
+        cached: false
     }
 
 }

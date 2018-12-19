@@ -59,12 +59,18 @@ namespace this_file {
 
         inline void beforeDestory() {
             mmmNumberTextPorperty.reset();
-            delete mmmBoomItem; mmmBoomItem = nullptr;
-            delete mmmFlagItem; mmmFlagItem = nullptr;
-            delete mmmMaskItem; mmmMaskItem = nullptr;
-            delete mmmErrorItem; mmmErrorItem = nullptr;
-            delete mmmMineItem; mmmMineItem = nullptr;
-            delete mmmNumberItem; mmmNumberItem = nullptr;
+            delete mmmBoomItem; 
+            mmmBoomItem = nullptr;
+            delete mmmFlagItem; 
+            mmmFlagItem = nullptr;
+            delete mmmMaskItem; 
+            mmmMaskItem = nullptr;
+            delete mmmErrorItem; 
+            mmmErrorItem = nullptr;
+            delete mmmMineItem; 
+            mmmMineItem = nullptr;
+            delete mmmNumberItem; 
+            mmmNumberItem = nullptr;
         }
 
         inline const ItemState & getItemState() const {
@@ -299,33 +305,33 @@ namespace this_file {
             mmmMineSweeping->setGameOver(true);
             std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
                 sstd::MultiRunEvent::createMultiRunEvent(this ,-12) };
-            for (auto i : mmmLayoutItem) {
-                auto varFunction = [i]() {
-                    if (i->getItemState() == ItemState::Open) {
+            for (auto varItem : mmmLayoutItem) {
+                auto varFunction = [varItem]() {
+                    if (varItem->getItemState() == ItemState::Open) {
                         return;
-                    } else if (i->getItemState() == ItemState::Mask) {
-                        if (i->isMine()) {
-                            i->rawOpen();
-                            i->createMine();
+                    } else if (varItem->getItemState() == ItemState::Mask) {
+                        if (varItem->isMine()) {
+                            varItem->rawOpen();
+                            varItem->createMine();
                             return;
                         } else {
-                            i->rawOpen();
+                            varItem->rawOpen();
                             return;
                         }
-                    } else if (i->getItemState() == ItemState::Boom) {
-                        i->rawOpen();
-                        i->createMine();
-                        i->createBoom();
+                    } else if (varItem->getItemState() == ItemState::Boom) {
+                        varItem->rawOpen();
+                        varItem->createMine();
+                        varItem->createBoom();
                         return;
-                    } else if (i->getItemState() == ItemState::Flag) {
-                        i->hideFlag();
-                        if (i->isMine()) {
-                            i->rawOpen();
-                            i->createOkMine();
+                    } else if (varItem->getItemState() == ItemState::Flag) {
+                        varItem->hideFlag();
+                        if (varItem->isMine()) {
+                            varItem->rawOpen();
+                            varItem->createOkMine();
                             return;
                         } else {
-                            i->rawOpen();
-                            i->createError();
+                            varItem->rawOpen();
+                            varItem->createError();
                             return;
                         }
                     }

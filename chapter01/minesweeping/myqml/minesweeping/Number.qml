@@ -55,6 +55,7 @@ Item{
         samples: 16
         color: Qt.darker( idText.color )
         source: idText
+        cached: false
     }
 
 }
