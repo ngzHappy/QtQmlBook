@@ -17,7 +17,7 @@ namespace sstd {
     public:
         RunEvent();
     public:
-        static QEvent::Type  getEventID();
+        static QEvent::Type getEventID();
         template<typename Tx>
         inline static RunEvent * createRunEvent(Tx&&);
     private:
@@ -30,6 +30,10 @@ namespace sstd {
             QPointer< QObject > target;
             int priority = Qt::NormalEventPriority;
             sstd::list< std::unique_ptr< RunEvent > > events;
+            inline MultiRunEventData() = default;
+        private:
+            SSTD_DELETE_COPY_ASSIGN(MultiRunEventData);
+            SSTD_DEFINE_STATIC_CLASS(MultiRunEventData);
         };
     }/**/
 
@@ -75,7 +79,7 @@ namespace sstd {
     namespace _private_api_function {
 
         template<typename T>
-        class _RunEvent :
+        class _RunEvent final :
             public sstd::RunEvent,
             SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_RunEvent<T>){
             T mmmFunction;
@@ -95,7 +99,7 @@ namespace sstd {
         };
 
         template<typename T>
-        class _MultiRunEvent :
+        class _MultiRunEvent final :
             public sstd::MultiRunEvent,
             SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_MultiRunEvent<T>){
             T mmmDoNotCallNext;

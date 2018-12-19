@@ -136,7 +136,7 @@ namespace sstd {
     template<WindowType St>
     using RootWindow = typename _RootWindow<St>::type ;
 
-#if !defined(_DEBUG)/*选择使用QQuickWidget还是QQuickView作为显示窗口*/
+#if defined(_DEBUG)/*选择使用QQuickWidget还是QQuickView作为显示窗口*/
     using DefaultRoowWindow = RootWindow<sstd::WindowType::QtWidget> ;
 #else
     using DefaultRoowWindow = RootWindow<sstd::WindowType::QtQuickWindow> ;
