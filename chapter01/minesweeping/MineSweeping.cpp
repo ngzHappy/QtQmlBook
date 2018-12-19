@@ -298,7 +298,7 @@ namespace this_file {
         inline void setGameOver() {
             mmmMineSweeping->setGameOver(true);
             auto varMultiRun =
-                sstd::MultiRunEvent::createMultiRunEvent(this);
+                sstd::MultiRunEvent::createMultiRunEvent(this, -12);
             for (auto i : mmmLayoutItem) {
                 auto varFunction = [i]() {
                     if (i->getItemState() == ItemState::Open) {
@@ -528,7 +528,7 @@ namespace this_file {
 
             std::size_t i = 0;
             auto varMultiRun =
-                sstd::MultiRunEvent::createMultiRunEvent(this);
+                sstd::MultiRunEvent::createMultiRunEvent(this, -12);
             for (std::size_t r = 0; r < argRow; ++r) {
                 auto varRowY = mmmRowLinesHeight[r];
                 for (std::size_t c = 0; c < argColumn; ++c) {
@@ -638,14 +638,21 @@ namespace this_file {
             {
                 double varWidth = 0;
                 auto varLineWidthPos = mmmColumnLinesWidth.begin();
+                auto varMultiRun =
+                    sstd::MultiRunEvent::createMultiRunEvent(this, -102);
                 for (auto varI : mmmColumnLines) {
                     *varLineWidthPos = varWidth;
                     ++varLineWidthPos;
-                    this->call_function([varI,
+                    varMultiRun->appendFunction([varI,
                         varHeight = argHeight,
                         varWidth,
-                        varState = varI->sstd_get_class_state()
+                        varState = varI->sstd_get_class_state(),
+                        varSceneIndex = mmmSceneIndex,
+                        this
                     ]() {
+                        if (this->getSceneIndex()!=varSceneIndex) {
+                            return;
+                        }
                         if (varState.isDestoryed()) {
                             return;
                         }
@@ -654,7 +661,8 @@ namespace this_file {
                             { varWidth,varHeight });
                     });
                     varWidth += varItemWidth;
-                }
+                }/*for...*/
+                varMultiRun->start();
             }
 
         }
