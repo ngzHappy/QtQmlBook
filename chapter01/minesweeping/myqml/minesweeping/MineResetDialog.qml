@@ -1,5 +1,5 @@
 ﻿import QtQuick 2.9
-import QtQuick.Controls 2.3
+import QtQuick.Controls 2.5
 import QtQuick.Layouts 1.12
 
 Dialog{
@@ -9,6 +9,7 @@ Dialog{
     height: parent.height * 0.8 ;
     x : parent.width * 0.1 ;
     y : parent.height * 0.1 ;
+    signal resizeMine(int rowAndColumn,int mineSize);
 
     ColumnLayout {
 
@@ -38,7 +39,7 @@ Dialog{
             SpinBox{
                 id : idMine
                 from : 10
-                to : idColumn.value * idRow.value
+                to : idColumn.value * idColumn.value;
                 value: 10
                 Layout.fillWidth :true;
                 editable: true
@@ -50,6 +51,9 @@ Dialog{
             Button{
                 text: qsTr("确定")
                 onClicked: {
+                    idDialog.resizeMine(
+                                idColumn.value ,
+                                idMine.value);
                     idDialog.close() ;
                 }
                 Layout.fillWidth :true;

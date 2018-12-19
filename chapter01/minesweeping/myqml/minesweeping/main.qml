@@ -10,6 +10,13 @@ Rectangle {
 
     MineResetDialog{
         id: idResetActionDialog ;
+        /*(int rowAndColumn,int mineSize);*/
+        onResizeMine : {
+            idMineSweeping.setSizeScene(
+                        rowAndColumn,
+                        rowAndColumn,
+                        mineSize);
+        }
     }
 
     MineMenuBar{
@@ -23,6 +30,8 @@ Rectangle {
     }
 
     MineSweeping{
+
+        id : idMineSweeping
 
         anchors.centerIn: parent;
         property double minWidthHeight:

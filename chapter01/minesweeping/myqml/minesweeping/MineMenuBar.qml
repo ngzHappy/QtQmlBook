@@ -8,7 +8,7 @@ MenuBar {
         title: qsTr("菜单")
 
         MenuItem{
-            text: qsTr("菜单")
+            text: qsTr("重置")
             onTriggered:{
                 idRoot.toResetAction();
             }
