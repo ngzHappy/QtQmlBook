@@ -40,9 +40,9 @@ Rectangle {
         height: minWidthHeight * 0.8;
 
         maskItem : Rectangle {
-            anchors.centerIn: parent
-            width: parent.width * 0.95
-            height: parent.height * 0.95
+            anchors.centerIn: parent       ;
+            width: parent.width * 0.95     ;
+            height: parent.height * 0.95   ;
             color: Qt.rgba(0.2,0.22,0.22,1);
             Behavior on opacity{
                 NumberAnimation{

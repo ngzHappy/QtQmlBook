@@ -53,9 +53,19 @@ namespace this_file {
             QQuickItem * mmmOkMineItem;
         };
         QQuickItem * mmmNumberItem{ nullptr };
-        QQmlProperty * mmmNumberTextPorperty{ nullptr };
+        std::unique_ptr< QQmlProperty > mmmNumberTextPorperty ;
         ItemState mmmState{ ItemState::Mask };
     public:
+
+        inline void beforeDestory() {
+            mmmNumberTextPorperty.reset();
+            delete mmmBoomItem; mmmBoomItem = nullptr;
+            delete mmmFlagItem; mmmFlagItem = nullptr;
+            delete mmmMaskItem; mmmMaskItem = nullptr;
+            delete mmmErrorItem; mmmErrorItem = nullptr;
+            delete mmmMineItem; mmmMineItem = nullptr;
+            delete mmmNumberItem; mmmNumberItem = nullptr;
+        }
 
         inline const ItemState & getItemState() const {
             return mmmState;
@@ -324,6 +334,7 @@ namespace this_file {
 
         inline void clear_objects() {
             for (auto i : mmmLayoutItem) {
+                i->beforeDestory();
                 delete i;
             }
             mmmLayoutItem.clear();
@@ -679,7 +690,7 @@ namespace this_file {
 
             while (mmmColumnLines.size() > argColumn) {
                 this->removeChildNode(*mmmColumnLines.rbegin());
-                delete *mmmRowLines.rbegin();
+                delete *mmmColumnLines.rbegin();
                 mmmColumnLines.pop_back();
             }
 
@@ -760,8 +771,7 @@ namespace this_file {
         varComponent->completeCreate();
         this->setNumber(varObject);
         varObject->setZ(getNumberZValue_());
-        mmmNumberTextPorperty =
-            this->sstd_create_data_in_this_class<QQmlProperty>(
+        mmmNumberTextPorperty = sstd_make_unique<QQmlProperty>(
                 varObject,
                 QStringLiteral("text"));
     }
