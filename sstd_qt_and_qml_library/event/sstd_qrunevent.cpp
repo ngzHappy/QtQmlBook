@@ -60,7 +60,7 @@ namespace sstd {
                             /*post next event ...*/
                             QCoreApplication::postEvent(
                                 varTarget,
-                                sstd_new<MultiRunEvent>(std::move(this->mmmData)),
+                                this->clone().release(),
                                 varPriority);
                         }
                     }

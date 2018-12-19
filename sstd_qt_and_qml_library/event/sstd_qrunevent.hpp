@@ -36,12 +36,14 @@ namespace sstd {
     class EXPORT_SSTD_QT_AND_QML_LIBRARY MultiRunEvent :
         public RunEvent,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(MultiRunEvent) {
+    protected:
         std::unique_ptr<_private_api_function::MultiRunEventData> mmmData;
     public:
         MultiRunEvent(std::unique_ptr<_private_api_function::MultiRunEventData> &&);
         void append(RunEvent *);
         void start();
         virtual bool doNotCallNext() ;
+        virtual std::unique_ptr<MultiRunEvent> clone() = 0;
         template<typename Tx>
         inline static MultiRunEvent * createMultiRunEvent(
             QPointer<QObject> argTarget,
@@ -103,9 +105,14 @@ namespace sstd {
             }
         public:
             template<typename A, typename B>
-            _MultiRunEvent(A && a, B && b) :
+            inline _MultiRunEvent(A && a, B && b) :
                 MultiRunEvent(std::forward<A>(a)),
                 mmmDoNotCallNext(std::forward<B>(b)) {
+            }
+            inline std::unique_ptr<MultiRunEvent> clone() override {
+                return sstd_make_unique<_MultiRunEvent>(
+                    std::move(this->mmmData),
+                    std::move(mmmDoNotCallNext));
             }
         private:
             SSTD_END_DEFINE_VIRTUAL_CLASS(_MultiRunEvent);
