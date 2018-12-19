@@ -2,13 +2,20 @@
 
 #include <sstd_qt_and_qml_library.hpp>
 
-class MineSweeping : public QQuickItem,
+class MineSweeping : 
+    public QQuickItem,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MineSweeping) {
     Q_OBJECT
 private:
+    Q_PROPERTY(int rowSize READ getRowSize NOTIFY rowSizeChanged)
+private:
+    Q_PROPERTY(int columnSize READ getColumnSize NOTIFY columnSizeChanged)
+private:
+    Q_PROPERTY(int mineSize READ getMineSize NOTIFY mineSizeChanged)
+private:
     Q_PROPERTY(bool isGameOver READ isGameOver NOTIFY gameOverChanged)
 private:
-    Q_PROPERTY(bool isGameWin READ isGameWin )
+    Q_PROPERTY(bool isGameWin READ isGameWin)
 private:
     Q_PROPERTY(QQmlComponent * okMineItem READ pppGetOkMineItemItem WRITE pppSetOkMineItem NOTIFY pppOkMineChanged)
 private:
@@ -41,6 +48,12 @@ public:
     Q_SIGNAL void gameOverChanged();
     inline bool isGameWin() const;
     void setGameWin(bool);
+    inline int getRowSize() const;
+    inline int getColumnSize() const;
+    inline int getMineSize() const;
+    Q_SIGNAL void rowSizeChanged();
+    Q_SIGNAL void columnSizeChanged();
+    Q_SIGNAL void mineSizeChanged();
 protected:
     QSGNode * updatePaintNode(QSGNode *oldNode, QQuickItem::UpdatePaintNodeData *) override;
 private:
@@ -74,7 +87,7 @@ private:
     Q_SIGNAL void pppBoomChanged();
     Q_SIGNAL void pppOkMineChanged();
     Q_SLOT   void pppSlotCreateObjets();
-    int mmmRowCout{ -1 };
+    int mmmRowCount{ -1 };
     int mmmColumnCount{ -1 };
     int mmmMineCount{ 1 };
     bool mmmIsGameOver{ false };
@@ -84,6 +97,18 @@ protected:
 public:
     SSTD_END_DEFINE_VIRTUAL_CLASS(MineSweeping);
 };
+
+inline int MineSweeping::getRowSize() const {
+    return mmmRowCount;
+}
+
+inline int MineSweeping::getColumnSize() const {
+    return mmmColumnCount;
+}
+
+inline int MineSweeping::getMineSize() const {
+    return mmmMineCount;
+}
 
 inline bool MineSweeping::isGameWin() const {
     return mmmIsGameWin;

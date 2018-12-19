@@ -72,7 +72,7 @@ void MineSweepingLineNode::pppUpdateRect() {
         std::swap(varStarPoint, varEndPoint);
     }
 
-    varLength = mmmLineWidth / varLength;
+    varLength = 0.5 * mmmLineWidth / varLength;
     dx *= varLength;
     dy *= varLength;
 

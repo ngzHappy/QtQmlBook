@@ -963,7 +963,7 @@ QSGNode * MineSweeping::updatePaintNode(
     Node * varNode =
         static_cast<this_file::Node*>(mmmCurrentNode);
 
-    if (mmmRowCout > 0) {
+    if (mmmRowCount > 0) {
         varNode->rebuild_scene(this->width(), this->height());
         varNode->update_data(this->width(), this->height());
     }
@@ -1033,7 +1033,7 @@ void MineSweeping::pppSlotCreateObjets() {
         mmmCurrentNode = sstd_new<this_file::Node>(this);
     }
     auto varNode = static_cast<this_file::Node*>(mmmCurrentNode);
-    const auto varRowCount = static_cast<std::size_t>(mmmRowCout);
+    const auto varRowCount = static_cast<std::size_t>(mmmRowCount);
     const auto varColumnCount = static_cast<std::size_t>(mmmColumnCount);
     varNode->reset_size(varRowCount, varColumnCount,
         static_cast<std::size_t>(mmmMineCount));
@@ -1056,12 +1056,28 @@ void MineSweeping::setGameWin(bool arg) {
 
 void MineSweeping::setSizeScene(int row_size, int column_size, int mine_count) {
 
-    mmmRowCout = row_size;
+    const bool isRowChanged = (mmmRowCount != row_size);
+    const bool isColChanged = (mmmColumnCount != column_size);
+    const bool isMineChanged = (mmmMineCount != mine_count);
+
+    mmmRowCount = row_size;
     mmmColumnCount = column_size;
     mmmMineCount = mine_count;
     setGameOver(false);
     setGameWin(false);
     pppSlotCreateObjets();
+
+    if (isRowChanged) {
+        rowSizeChanged();
+    }
+
+    if (isColChanged) {
+        columnSizeChanged();
+    }
+
+    if (isMineChanged) {
+        mineSizeChanged();
+    }
 
 }
 
