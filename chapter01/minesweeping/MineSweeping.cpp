@@ -298,10 +298,7 @@ namespace this_file {
         inline void setGameOver() {
             mmmMineSweeping->setGameOver(true);
             std::unique_ptr<sstd::MultiRunEvent> varMultiRun{
-                sstd::MultiRunEvent::createMultiRunEvent(this ,-12,
-                [this,currentIndex = getSceneIndex()]()->bool {
-                return currentIndex != getSceneIndex();
-            }) };
+                sstd::MultiRunEvent::createMultiRunEvent(this ,-12) };
             for (auto i : mmmLayoutItem) {
                 auto varFunction = [i]() {
                     if (i->getItemState() == ItemState::Open) {
