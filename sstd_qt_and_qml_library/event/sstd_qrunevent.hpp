@@ -52,8 +52,8 @@ namespace sstd {
         inline static MultiRunEvent * createMultiRunEvent(
             QPointer<QObject> argTarget) {
             return createMultiRunEvent(
-                argTarget, 
-                Qt::NormalEventPriority, 
+                argTarget,
+                Qt::NormalEventPriority,
                 []() ->bool {return false; });
         }
         inline static MultiRunEvent * createMultiRunEvent(
@@ -129,7 +129,7 @@ namespace sstd {
     }
 
     template<typename Tx>
-    inline static MultiRunEvent * MultiRunEvent::createMultiRunEvent(
+    inline MultiRunEvent * MultiRunEvent::createMultiRunEvent(
         QPointer<QObject> argTarget,
         int argPriority,
         Tx&& argDoNotRunNext) {
