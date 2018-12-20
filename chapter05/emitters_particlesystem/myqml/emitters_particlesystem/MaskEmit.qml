@@ -20,7 +20,7 @@ DemoBasic {
             ImageParticle {
                 source: idItemRoot.imageName ;
                 system: idParticleSystem ;
-                groups: [ imageName ]
+                groups: [ idItemRoot.imageName ]
             }
 
             Emitter{
