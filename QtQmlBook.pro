@@ -51,4 +51,7 @@ app_firstparticlesystem.file = $$PWD/chapter05/firstparticlesystem/firstparticle
 app_firstparticlesystem.depends = sstd_qt_and_qml_library
 SUBDIRS += app_firstparticlesystem
 
+app_firstcanvas.file = $$PWD/chapter08/firstcanvas/firstcanvas.pro
+app_firstcanvas.depends = sstd_qt_and_qml_library
+SUBDIRS += app_firstcanvas
 

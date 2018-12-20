@@ -15,21 +15,33 @@ Rectangle {
 
     ItemParticle{
         system: idParticleSystem;
-        delegate: Rectangle{
-			border.width: 0 ;
-            antialiasing : true ;
-            color: Qt.rgba(
-                       Math.random()*0.5,
-                       Math.random()*0.5,
-                       Math.random()*0.5,
-                       1);
-            width: 10  ;
-            height: 10 ;
-            radius: 1  ;
+        delegate: Canvas{
+            width: 20  ;
+            height: 20 ;
+            renderTarget: Canvas.Image ;
+            renderStrategy: Canvas.Immediate ;
+            onPaint: {
+                var ctx = getContext("2d");
+                ctx.fillStyle = Qt.rgba(
+                            Math.random() * 0.5,
+                            Math.random() * 0.5,
+                            Math.random() * 0.5,
+                            1);
+                ctx.beginPath();
+                ctx.arc(10 , 10 ,
+                        10,
+                        0, Math.PI * 2 ,
+                        true );
+                ctx.closePath();
+                ctx.fill();
+            }
         }
     }
 
     Emitter{
+        emitRate : 100 ;
+        maximumEmitted : 1000 ;
+        lifeSpan : 2500;
         system: idParticleSystem ;
         anchors.fill: idParticleSystem;
     }
