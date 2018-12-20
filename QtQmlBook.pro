@@ -47,6 +47,8 @@ app_minesweeping.file = $$PWD/chapter01/minesweeping/minesweeping.pro
 app_minesweeping.depends = sstd_qt_and_qml_library
 SUBDIRS += app_minesweeping
 
-
+app_firstparticlesystem.file = $$PWD/chapter05/firstparticlesystem/firstparticlesystem.pro
+app_firstparticlesystem.depends = sstd_qt_and_qml_library
+SUBDIRS += app_firstparticlesystem
 
 
