@@ -104,9 +104,8 @@ namespace sstd {
         mmmArgs(v) {
         /*在QApplication构造之后构造*/
             {
-                /*never delete*/
-                static auto * varRunonceApplicationConstruct =
-                    sstd_new<RunOnceApplicationConstruct>();
+                static auto varRunonceApplicationConstruct =
+                    sstd_make_unique<RunOnceApplicationConstruct>();
                 (void)varRunonceApplicationConstruct;
             }
     }
