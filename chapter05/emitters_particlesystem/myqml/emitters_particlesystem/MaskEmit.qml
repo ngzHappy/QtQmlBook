@@ -4,39 +4,53 @@ import "GetImageSourceName.js" as GetImageSourceName
 
 DemoBasic {
 
-    property int imageIndex : 0
-
-    function getIndex(){
-        if( imageIndex>=63 ){
-            imageIndex=0;
-        }else{
-            ++imageIndex;
-        }
-        return imageIndex;
-    }
-
+    id : idRoot
     ParticleSystem{
         id : idParticleSystem ;
         anchors.fill: parent ;
     }
 
-    ImageParticle {
-        source: GetImageSourceName.
-        getImageSourceName( 0 ) ;
-        system: idParticleSystem ;
-    }
+    Component{
+        id : idShapedEmitter
+        Item{
+            id : idItemRoot
+            anchors.fill: parent
+            property string imageName : "" ;
 
-    Emitter{
-        size: 32
-        emitRate : 100 ;
-        maximumEmitted : 1000 ;
-        lifeSpan : 2500;
-        system: idParticleSystem ;
-        anchors.fill: idParticleSystem;
-        shape: MaskShape {
-            source : "images/z.png"
+            ImageParticle {
+                source: idItemRoot.imageName ;
+                system: idParticleSystem ;
+                groups: [ imageName ]
+            }
+
+            Emitter{
+                size: 32
+                emitRate : 10 ;
+                maximumEmitted : 10 ;
+                lifeSpan : 2500;
+                system: idParticleSystem ;
+                anchors.fill: parent;
+                shape: MaskShape {
+                    source : "images/z.png"
+                }
+                group: idItemRoot.imageName
+            }
+
         }
     }
+
+    Component.onCompleted: {
+        var varIndex = 0;
+        for(;varIndex < 64 ; ++varIndex ){
+            idShapedEmitter.createObject(
+                        idRoot,
+                        { "imageName" :
+                            GetImageSourceName.
+                            getImageSourceName(
+                                varIndex)  });
+        }
+    }
+
 
 }
 
