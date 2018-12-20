@@ -39,8 +39,13 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main.qml
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/MaskEmit.qml
 
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main.qml
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/DemoBasic.qml
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main_private/MainListItem.qml
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main_private/MainListModel.qml
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main_private/MainListView.qml
 lupdate_only{
     SOURCES += $$QMLSOURCES
 }
