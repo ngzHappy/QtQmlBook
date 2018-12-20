@@ -15,6 +15,7 @@ win32-msvc*{#win32-msvc*
 
     DEFINES *= _0_SSTD_HAS_TC_MALLOC
     LIBS    += -ltcmalloc_minimal
+    #sudo apt-get install libgoogle-perftools-dev
 
 } #win32-msvc*
 
