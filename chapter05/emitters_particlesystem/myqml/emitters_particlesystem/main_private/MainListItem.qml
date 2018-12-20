@@ -3,26 +3,32 @@ import QtQuick 2.11
 import QtQuick.Controls 2.3
 import myqml.emitters 1.0
 
-Button {
+Item{
 
-    id : _id_button
     height: 32 ;
-    text : programName ;
 
-    function loadSourceFunction(){
-        var obj = LocalQmlWindowCreator.createRootView(programName,Qt.resolvedUrl( programSource ) );
-        if(obj){
-            obj.show();
+    Button {
+
+        id : _id_button
+        width: parent.width - 2 ;
+        height: parent.height  -2 ;
+        anchors.centerIn: parent
+        text : programName ;
+
+        function loadSourceFunction(){
+            var obj = LocalQmlWindowCreator.createRootView(programName,Qt.resolvedUrl( programSource ) );
+            if(obj){
+                obj.show();
+            }
+        }/*loadSourceFunction*/
+
+        onClicked : {
+            loadSourceFunction();
         }
-    }/*loadSourceFunction*/
 
-    onClicked : {
-        loadSourceFunction();
-    }
+    }/*Button*/
 
-}/*Button*/
-
-
+}
 
 
 

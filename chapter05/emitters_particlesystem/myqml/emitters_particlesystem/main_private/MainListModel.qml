@@ -15,6 +15,11 @@ ListModel {
     }
 
     ListElement {
+        programName :  qsTr("加速度(AccelerationEmit.qml)") ;
+        programSource : "../AccelerationEmit.qml";
+    }
+
+    ListElement {
         programName :  qsTr("尾发射器(TrailEmit.qml)") ;
         programSource : "../TrailEmit.qml";
     }

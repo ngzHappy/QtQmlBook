@@ -3,6 +3,7 @@ import QtQuick.Particles 2.0
 
 DemoBasic {
 
+    id : idRoot ;
     ParticleSystem{
         id : idParticleSystem ;
         anchors.fill: parent  ;

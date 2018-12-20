@@ -41,6 +41,7 @@ export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/MaskEmit.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/VelocityOfEmit.qml
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/AccelerationEmit.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/TrailEmit.qml
 
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main.qml
