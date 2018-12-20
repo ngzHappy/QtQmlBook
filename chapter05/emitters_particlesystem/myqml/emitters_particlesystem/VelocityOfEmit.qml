@@ -31,7 +31,7 @@ DemoBasic {
         ImageParticle {
             source: "qrc:///particleresources/glowdot.png" ;
             system: idParticleSystem ;
-            groups: [ "AngleDirection" ]
+            groups: [ "TargetDirection" ]
         }
 
         ImageParticle {
