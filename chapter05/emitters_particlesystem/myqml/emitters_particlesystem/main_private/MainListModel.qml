@@ -9,7 +9,10 @@ ListModel {
         programSource : "../MaskEmit.qml";
     }
 
-
+    ListElement {
+        programName :  qsTr("速度(VelocityOfEmit.qml)") ;
+        programSource : "../VelocityOfEmit.qml";
+    }
 
 }
 
