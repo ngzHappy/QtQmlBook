@@ -14,5 +14,10 @@ ListModel {
         programSource : "../VelocityOfEmit.qml";
     }
 
+    ListElement {
+        programName :  qsTr("尾发射器(TrailEmit.qml)") ;
+        programSource : "../TrailEmit.qml";
+    }
+
 }
 
