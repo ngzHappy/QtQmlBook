@@ -5,9 +5,15 @@ import "GetImageSourceName.js" as GetImageSourceName
 DemoBasic {
 
     id : idRoot
+
     ParticleSystem{
         id : idParticleSystem ;
         anchors.fill: parent ;
+    }
+
+    MaskShape {
+        id : idMaskShape
+        source : "images/z.png"
     }
 
     Component{
@@ -30,9 +36,7 @@ DemoBasic {
                 lifeSpan : 2500;
                 system: idParticleSystem ;
                 anchors.fill: parent;
-                shape: MaskShape {
-                    source : "images/z.png"
-                }
+                shape: idMaskShape
                 group: idItemRoot.imageName
             }
 
