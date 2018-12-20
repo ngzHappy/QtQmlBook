@@ -5,7 +5,7 @@ ListModel {
 
     /****/
     ListElement {
-        programName :   qsTr("遮罩") + "(MaskEmit.qml)" ;
+        programName :  qsTr("遮罩(MaskEmit.qml)") ;
         programSource : "../MaskEmit.qml";
     }
 
