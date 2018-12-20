@@ -11,14 +11,16 @@ Rectangle {
     Canvas{
         anchors.fill: parent ;
         renderTarget: Canvas.Image ;
-        renderStrategy: Canvas.Immediate ;
+        renderStrategy: Canvas.Threaded ;
+        property color drawFillColor:
+            Qt.rgba(
+                Math.random() * 0.5,
+                Math.random() * 0.5,
+                Math.random() * 0.5,
+                1);
         onPaint: {
             var ctx = getContext("2d");
-            ctx.fillStyle = Qt.rgba(
-                        Math.random() * 0.5,
-                        Math.random() * 0.5,
-                        Math.random() * 0.5,
-                        1);
+            ctx.fillStyle = drawFillColor;
             ctx.beginPath();
             ctx.arc(idRoot.width * 0.5 ,
                     idRoot.height * 0.5 ,
