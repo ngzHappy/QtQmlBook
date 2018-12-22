@@ -29,6 +29,10 @@ DemoBasic {
         }
 
         Attractor {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.top: parent.top
+            height: parent.height*0.5
             system: idParticleSystem ;
             pointX : idParticleSystem.x +
                      idParticleSystem.width*0.5;
