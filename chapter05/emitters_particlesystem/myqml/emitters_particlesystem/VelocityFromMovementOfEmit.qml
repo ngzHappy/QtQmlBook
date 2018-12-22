@@ -27,8 +27,8 @@ DemoBasic {
         var varCos = Math.cos(varAngle) ;
         var varSin = Math.sin(varAngle) ;
         var varAns = Qt.point(
-                    0.5 + 0.45 * varCos ,
-                    0.5 + 0.45 * varSin );
+                    0.5 - 0.45 * varCos ,
+                    0.5 - 0.45 * varSin );
         pointCacheArray.push(varAns);
         return varAns ;
     }
