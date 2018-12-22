@@ -5,42 +5,42 @@ ListModel {
 
     /****/
     ListElement {
-        programName :  qsTr("遮罩(AffectorEffect.qml)") ;
-        programSource : "../AffectorEffect.qml";
-    }
-
-    ListElement {
-        programName :  qsTr("生命周期(AgeEffect.qml)") ;
+        programName :  qsTr("生命(AgeEffect.qml)") ;
         programSource : "../AgeEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("遮罩(GravityEffect.qml)") ;
+        programName :  qsTr("吸引(AttractorEffect.qml)") ;
+        programSource : "../AttractorEffect.qml";
+    }
+
+    ListElement {
+        programName :  qsTr("重力(GravityEffect.qml)") ;
         programSource : "../GravityEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("遮罩(FrictionEffect.qml)") ;
+        programName :  qsTr("摩擦(FrictionEffect.qml)") ;
         programSource : "../FrictionEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("遮罩(TurbulenceEffect.qml)") ;
+        programName :  qsTr("湍流(TurbulenceEffect.qml)") ;
         programSource : "../TurbulenceEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("遮罩(WanderEffect.qml)") ;
+        programName :  qsTr("漂移(WanderEffect.qml)") ;
         programSource : "../WanderEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("遮罩(SpriteGoalEffect.qml)") ;
+        programName :  qsTr("子目标(SpriteGoalEffect.qml)") ;
         programSource : "../SpriteGoalEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("遮罩(GroupGoalEffect.qml)") ;
+        programName :  qsTr("组目标(GroupGoalEffect.qml)") ;
         programSource : "../GroupGoalEffect.qml";
     }
 

@@ -39,7 +39,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/affectors_particlesystem/AffectorEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/AttractorEffect.qml
 QMLSOURCES += $$PWD/myqml/affectors_particlesystem/AgeEffect.qml
 QMLSOURCES += $$PWD/myqml/affectors_particlesystem/FrictionEffect.qml
 QMLSOURCES += $$PWD/myqml/affectors_particlesystem/GravityEffect.qml

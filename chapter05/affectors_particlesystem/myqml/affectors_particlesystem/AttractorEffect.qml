@@ -28,17 +28,18 @@ DemoBasic {
             }
         }
 
-        Age {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            anchors.top: parent.top
-            height: parent.height*0.5
-            system: idParticleSystem
-            once: true
-            lifeLeft: 1200/*剩余生命*/
-            advancePosition: false
+        Attractor {
+            system: idParticleSystem ;
+            pointX : idParticleSystem.x +
+                     idParticleSystem.width*0.5;
+            pointY : idParticleSystem.y +
+                     idParticleSystem.height * 0.4 ;
+            strength : 1.1 ;
+            affectedParameter : Attractor.Velocity ;
+            proportionalToDistance : Attractor.Linear ;
         }
 
     }
+
 
 }
