@@ -3,18 +3,62 @@ import QtQuick.Particles 2.0
 
 DemoBasic {
 
-    property int indexOfPoint : 0 ;
-
+    id : idRoot
+    property int indexOfPoint : 0       ;
+    property var pointCacheArray : null ;
     function getPointPosition( ){
-        switch(indexOfPoint++){
-        case 0 :return Qt.point(0,0);
+        var varMaxIndex = 256 ;
+        if( !pointCacheArray ){
+            pointCacheArray = new Array ;
         }
-        indexOfPoint=0;
-        return getPointPosition( );
+
+        var varIndex = indexOfPoint++ ;
+        if( varIndex > varMaxIndex ){
+            varIndex = 1;
+            indexOfPoint=2;
+        } else if( varIndex < 0 ){
+            varIndex = 0;
+            indexOfPoint=0;
+        }
+
+        if( pointCacheArray.length > varIndex ){
+            return pointCacheArray[varIndex];
+        }
+
+        var varIndexAngleStep = Math.PI / varMaxIndex * 2 ;
+        var varAngle =  varIndexAngleStep * varIndex ;
+        var varCos = Math.cos(varAngle) ;
+        var varSin = Math.sin(varAngle) ;
+        var varAns = Qt.point(
+                    0.5 + 0.45 * varCos ,
+                    0.5 + 0.45 * varSin );
+        pointCacheArray.push(varAns);
+        return varAns ;
     }
 
+    ParticleSystem{
+        id : idParticleSystem ;
+        anchors.fill: parent ;
 
+        Emitter{
+            id : idEmitter
+            size: 8
+            emitRate : 100 ;
+            maximumEmitted : 10000 ;
+            lifeSpan : 500 ;
+            system: idParticleSystem ;
+            velocity: AngleDirection{
+                magnitude: 16 ;
+                angleVariation: 360
+            }
+            velocityFromMovement: 1 ;
+        }
 
+        ImageParticle {
+            source: "qrc:///particleresources/star.png" ;
+            system: idParticleSystem ;
+        }
+    }
 
     Timer{
         interval: 200 ;
@@ -24,6 +68,10 @@ DemoBasic {
         onTriggered: {
             var varPoint =
                     getPointPosition();
+            idEmitter.x = idRoot.x +
+                    varPoint.x * idRoot.width ;
+            idEmitter.y = idRoot.y +
+                    varPoint.y * idRoot.height ;
         }
     }
 
