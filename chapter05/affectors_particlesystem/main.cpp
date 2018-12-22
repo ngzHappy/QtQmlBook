@@ -9,7 +9,7 @@ int main(int argc, char ** argv) {
     {
         /*获得Qml文件绝对路径*/
         auto varFullFileName = sstd::getLocalFileFullPath(
-            QStringLiteral("myqml/emitters_particlesystem/main.qml"));
+            QStringLiteral("myqml/affectors_particlesystem/main.qml"));
         /*加载Qml文件*/
         varWindow->load(varFullFileName);
         /*检查并报错*/

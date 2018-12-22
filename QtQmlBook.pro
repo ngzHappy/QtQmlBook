@@ -59,3 +59,7 @@ app_emitters_particlesystem.file = $$PWD/chapter05/emitters_particlesystem/emitt
 app_emitters_particlesystem.depends = sstd_qt_and_qml_library
 SUBDIRS += app_emitters_particlesystem
 
+app_affectors_particlesystem.file = $$PWD/chapter05/affectors_particlesystem/affectors_particlesystem.pro
+app_affectors_particlesystem.depends = sstd_qt_and_qml_library
+SUBDIRS += app_affectors_particlesystem
+
