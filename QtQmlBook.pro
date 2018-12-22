@@ -15,6 +15,10 @@ app_hellowworld.file = $$PWD/chapter01/hellowworld/hellowworld.pro
 app_hellowworld.depends = sstd_qt_and_qml_library
 SUBDIRS += app_hellowworld
 
+app_shadereffect.file = $$PWD/chapter01/shadereffect/shadereffect.pro
+app_shadereffect.depends = sstd_qt_and_qml_library
+SUBDIRS += app_shadereffect
+
 app_firstapplication.file = $$PWD/chapter01/firstapplication/firstapplication.pro
 app_firstapplication.depends = sstd_qt_and_qml_library
 SUBDIRS += app_firstapplication
