@@ -39,6 +39,14 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/AffectorEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/AgeEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/FrictionEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/GravityEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/GroupGoalEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/SpriteGoalEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/TurbulenceEffect.qml
+QMLSOURCES += $$PWD/myqml/affectors_particlesystem/WanderEffect.qml
 
 QMLSOURCES += $$PWD/myqml/affectors_particlesystem/main.qml
 QMLSOURCES += $$PWD/myqml/affectors_particlesystem/DemoBasic.qml
@@ -51,7 +59,7 @@ lupdate_only{
 }
 
 DISTFILES += $$QMLSOURCES
- 
+
 
 
 
