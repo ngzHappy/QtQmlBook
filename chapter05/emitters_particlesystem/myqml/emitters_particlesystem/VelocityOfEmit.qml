@@ -29,7 +29,7 @@ DemoBasic {
         }
 
         ImageParticle {
-            source: "qrc:///particleresources/glowdot.png" ;
+            source: "qrc:///particleresources/fuzzydot.png" ;
             system: idParticleSystem ;
             groups: [ "TargetDirection" ]
         }
