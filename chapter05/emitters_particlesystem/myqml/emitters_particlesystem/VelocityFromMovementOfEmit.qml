@@ -5,12 +5,9 @@ DemoBasic {
 
     id : idRoot
     property int indexOfPoint : 0       ;
-    property var pointCacheArray : null ;
+    property var pointCacheArray : [] ;
     function getPointPosition( ){
         var varMaxIndex = 256 ;
-        if( !pointCacheArray ){
-            pointCacheArray = new Array ;
-        }
 
         var varIndex = indexOfPoint++ ;
         if( varIndex > varMaxIndex ){
