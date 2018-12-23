@@ -7,7 +7,6 @@ QT += concurrent
 QT += quickwidgets
 QT += quickcontrols2
 
-
 INCLUDEPATH += $$PWD
 CONFIG(debug,debug|release){
     LIBS +=-L$${RootDestDir} -lsstd_qt_and_qml_libraryd
@@ -15,7 +14,7 @@ CONFIG(debug,debug|release){
     LIBS +=-L$${RootDestDir} -lsstd_qt_and_qml_library
 }
 
-DEFINES *= SSTD_HAS_GLEW_APPLICATION_INITIALIZE  
+DEFINES *= SSTD_HAS_GLEW_APPLICATION_INITIALIZE
 
 
 
