@@ -11,6 +11,8 @@ sstd_qt_and_qml_library.file = $$PWD/sstd_qt_and_qml_library/sstd_qt_and_qml_lib
 sstd_qt_and_qml_library.depends = sstd_library
 SUBDIRS += sstd_qt_and_qml_library
 
+##############01##############
+
 app_hellowworld.file = $$PWD/chapter01/hellowworld/hellowworld.pro
 app_hellowworld.depends = sstd_qt_and_qml_library
 SUBDIRS += app_hellowworld
@@ -55,13 +57,13 @@ app_minesweeping.file = $$PWD/chapter01/minesweeping/minesweeping.pro
 app_minesweeping.depends = sstd_qt_and_qml_library
 SUBDIRS += app_minesweeping
 
-app_firstparticlesystem.file = $$PWD/chapter05/firstparticlesystem/firstparticlesystem.pro
-app_firstparticlesystem.depends = sstd_qt_and_qml_library
-SUBDIRS += app_firstparticlesystem
+##############02##############
 
-app_firstcanvas.file = $$PWD/chapter08/firstcanvas/firstcanvas.pro
-app_firstcanvas.depends = sstd_qt_and_qml_library
-SUBDIRS += app_firstcanvas
+app_image_qmltype.file = $$PWD/chapter02/image_qmltype/image_qmltype.pro
+app_image_qmltype.depends = sstd_qt_and_qml_library
+SUBDIRS += app_image_qmltype
+
+##############05##############
 
 app_emitters_particlesystem.file = $$PWD/chapter05/emitters_particlesystem/emitters_particlesystem.pro
 app_emitters_particlesystem.depends = sstd_qt_and_qml_library
@@ -70,4 +72,14 @@ SUBDIRS += app_emitters_particlesystem
 app_affectors_particlesystem.file = $$PWD/chapter05/affectors_particlesystem/affectors_particlesystem.pro
 app_affectors_particlesystem.depends = sstd_qt_and_qml_library
 SUBDIRS += app_affectors_particlesystem
+
+app_firstparticlesystem.file = $$PWD/chapter05/firstparticlesystem/firstparticlesystem.pro
+app_firstparticlesystem.depends = sstd_qt_and_qml_library
+SUBDIRS += app_firstparticlesystem
+
+##############08##############
+
+app_firstcanvas.file = $$PWD/chapter08/firstcanvas/firstcanvas.pro
+app_firstcanvas.depends = sstd_qt_and_qml_library
+SUBDIRS += app_firstcanvas
 
