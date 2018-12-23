@@ -1,10 +1,5 @@
 ﻿#include "sstd_intrusive_ptr.hpp"
 
-
-inline std::intptr_t sstd_intrusive_ptr_basic::sstd_get_intrusive_ptr_count() const {
-    return mmmCount.load();
-}
-
 sstd_intrusive_ptr_basic::~sstd_intrusive_ptr_basic() {
 }
 
