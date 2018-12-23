@@ -5,27 +5,27 @@ ListModel {
 
     /****/
     ListElement {
-        programName :  qsTr("遮罩(MaskEmit.qml)") ;
+        programName :  QT_TR_NOOP("遮罩(MaskEmit.qml)") ;
         programSource : "../MaskEmit.qml";
     }
 
     ListElement {
-        programName :  qsTr("速度(VelocityOfEmit.qml)") ;
+        programName :  QT_TR_NOOP("速度(VelocityOfEmit.qml)") ;
         programSource : "../VelocityOfEmit.qml";
     }
 
     ListElement {
-        programName :  qsTr("加速度(AccelerationEmit.qml)") ;
+        programName :  QT_TR_NOOP("加速度(AccelerationEmit.qml)") ;
         programSource : "../AccelerationEmit.qml";
     }
 
     ListElement {
-        programName :  qsTr("随动速度(VelocityFromMovementOfEmit.qml)") ;
+        programName :  QT_TR_NOOP("随动速度(VelocityFromMovementOfEmit.qml)") ;
         programSource : "../VelocityFromMovementOfEmit.qml";
     }
 
     ListElement {
-        programName :  qsTr("尾发射器(TrailEmit.qml)") ;
+        programName :  QT_TR_NOOP("尾发射器(TrailEmit.qml)") ;
         programSource : "../TrailEmit.qml";
     }
 

@@ -5,42 +5,42 @@ ListModel {
 
     /****/
     ListElement {
-        programName :  qsTr("生命(AgeEffect.qml)") ;
+        programName :  QT_TR_NOOP("生命(AgeEffect.qml)") ;
         programSource : "../AgeEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("吸引(AttractorEffect.qml)") ;
+        programName :  QT_TR_NOOP("吸引(AttractorEffect.qml)") ;
         programSource : "../AttractorEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("重力(GravityEffect.qml)") ;
+        programName :  QT_TR_NOOP("重力(GravityEffect.qml)") ;
         programSource : "../GravityEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("摩擦(FrictionEffect.qml)") ;
+        programName :  QT_TR_NOOP("摩擦(FrictionEffect.qml)") ;
         programSource : "../FrictionEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("湍流(TurbulenceEffect.qml)") ;
+        programName :  QT_TR_NOOP("湍流(TurbulenceEffect.qml)") ;
         programSource : "../TurbulenceEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("漂移(WanderEffect.qml)") ;
+        programName :  QT_TR_NOOP("漂移(WanderEffect.qml)") ;
         programSource : "../WanderEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("组目标(GroupGoalEffect.qml)") ;
+        programName :  QT_TR_NOOP("组目标(GroupGoalEffect.qml)") ;
         programSource : "../GroupGoalEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("图片目标(SpriteGoalEffect.qml)") ;
+        programName :  QT_TR_NOOP("图片目标(SpriteGoalEffect.qml)") ;
         programSource : "../SpriteGoalEffect.qml";
     }
 
