@@ -26,7 +26,7 @@ public:
             std::shared_ptr<_FFMPEGOpenCloseThreadCaller> varCaller;
             {
                 std::unique_lock varLock{ mmmMutex };
-                mmmWait.wait_for(varLock, 100ms,/*quit wait ...*/varQuitWait);
+                mmmWait.wait_for(varLock, 10000ms,/*quit wait ...*/varQuitWait);
                 if (false == mmmFunctions.empty()) {
                     varCaller = std::move(mmmFunctions.front());
                     mmmFunctions.pop_front();
