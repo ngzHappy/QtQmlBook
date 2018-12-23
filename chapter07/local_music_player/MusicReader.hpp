@@ -6,7 +6,7 @@
 
 class _MusicReaderPrivate;
 class MusicReader :
-    public QObject  ,
+    public QObject,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MusicReader) {
     Q_OBJECT
 public:
