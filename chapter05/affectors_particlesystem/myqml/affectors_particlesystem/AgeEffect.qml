@@ -32,7 +32,7 @@ DemoBasic {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            height: parent.height*0.5
+            height: parent.height*0.4
             system: idParticleSystem
             once: true
             lifeLeft: 1200/*剩余生命*/

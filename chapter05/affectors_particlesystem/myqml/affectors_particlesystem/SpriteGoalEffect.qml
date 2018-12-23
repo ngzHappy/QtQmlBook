@@ -8,7 +8,23 @@ DemoBasic {
         anchors.fill: parent ;
 
         ImageParticle {
-            source: "qrc:///particleresources/glowdot.png" ;
+            groups : ["images"]
+            sprites:[
+                Sprite {
+                    name : "From" ;
+                    source : "qrc:///particleresources/glowdot.png" ;
+                    frameCount: 1 ;
+                    frameDuration : 1000 ;
+                    to: {"To":0, "From":1}
+                } ,
+                Sprite {
+                    name : "To" ;
+                    source : "qrc:///particleresources/star.png" ;
+                    frameCount: 1;
+                    frameDuration : 1000;
+                    to: {"To":1, "From":0}
+                }
+            ]
             system: idParticleSystem ;
         }
 
@@ -26,17 +42,18 @@ DemoBasic {
                 magnitude: idParticleSystem.width/5 ;
                 angleVariation: 360
             }
+            group: "images"
         }
 
-        Age {
+        SpriteGoal  {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            height: parent.height*0.5
-            system: idParticleSystem
-            once: true
-            lifeLeft: 1200/*剩余生命*/
-            advancePosition: false
+            height: parent.height*0.45
+            system: idParticleSystem ;
+            jump: true      ;
+            goalState: "To"  ;
+            groups: ["images"]
         }
 
     }

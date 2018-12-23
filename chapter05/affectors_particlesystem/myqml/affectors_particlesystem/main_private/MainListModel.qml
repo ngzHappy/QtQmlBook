@@ -35,13 +35,13 @@ ListModel {
     }
 
     ListElement {
-        programName :  qsTr("子目标(SpriteGoalEffect.qml)") ;
-        programSource : "../SpriteGoalEffect.qml";
+        programName :  qsTr("组目标(GroupGoalEffect.qml)") ;
+        programSource : "../GroupGoalEffect.qml";
     }
 
     ListElement {
-        programName :  qsTr("组目标(GroupGoalEffect.qml)") ;
-        programSource : "../GroupGoalEffect.qml";
+        programName :  qsTr("图片目标(SpriteGoalEffect.qml)") ;
+        programSource : "../SpriteGoalEffect.qml";
     }
 
 }

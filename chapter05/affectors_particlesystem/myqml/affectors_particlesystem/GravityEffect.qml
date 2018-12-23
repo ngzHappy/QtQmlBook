@@ -33,7 +33,7 @@ DemoBasic {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            height: parent.height*0.5
+            height: parent.height*0.45
             system: idParticleSystem
             magnitude: 100
             angle: -45
