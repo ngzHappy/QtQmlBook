@@ -26,7 +26,7 @@ namespace {
                 return;
             }
             mmmIsQuit.store(true);
-            wake_up();
+            this->wake_up();
             if (mmmThread.joinable()) {
                 mmmThread.join();
             }
@@ -78,11 +78,11 @@ namespace {
         packes_type::const_iterator mmmPos;
     public:
 
-        PackPool() {
+        inline PackPool() {
             mmmPos = mmmPacks.cbegin();
         }
 
-        sstd::intrusive_ptr< FFMPEGPack > getAPack() {
+        inline sstd::intrusive_ptr< FFMPEGPack > getAPack() {
 
             for (;;) {
 
@@ -151,10 +151,13 @@ namespace {
         public _ThreadDataBasic {
         sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
     public:
+
         inline void run() {
 
         }
+
     protected:
+
         inline bool hasData() const {
             return !mmmPacks.empty();
         }
