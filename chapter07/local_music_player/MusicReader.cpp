@@ -115,6 +115,7 @@ namespace {
                         varAns = sstd_new<FFMPEGPack>();
                         mmmPacks.emplace_back(varAns);
                     }
+                    mmmPos = --mmmPacks.end();
                     return varAns;
                 }
 
@@ -129,7 +130,7 @@ namespace {
     };
 
     class _PackThread :
-        protected _ThreadDataBasic {
+        public _ThreadDataBasic {
 
         sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
 
@@ -147,7 +148,7 @@ namespace {
     };
 
     class _AudioThread :
-        protected _ThreadDataBasic {
+        public _ThreadDataBasic {
         sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
     public:
         inline void run() {
