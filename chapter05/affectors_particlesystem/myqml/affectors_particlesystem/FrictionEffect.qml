@@ -28,15 +28,15 @@ DemoBasic {
             }
         }
 
-        Age {
+        Friction {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
             height: parent.height*0.5
             system: idParticleSystem
-            once: true
-            lifeLeft: 1200/*剩余生命*/
-            advancePosition: false
+            once: false
+            threshold :1 ;
+            factor: 0.3333
         }
 
     }

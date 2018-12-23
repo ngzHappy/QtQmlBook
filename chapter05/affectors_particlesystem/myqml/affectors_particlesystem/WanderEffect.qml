@@ -28,15 +28,18 @@ DemoBasic {
             }
         }
 
-        Age {
+        Wander {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
             height: parent.height*0.5
             system: idParticleSystem
-            once: true
-            lifeLeft: 1200/*剩余生命*/
-            advancePosition: false
+            once: false ;
+            id : idWander
+            affectedParameter : Wander.Position;
+            pace : 100 *(1+idWander.affectedParameter)
+            xVariance : 360
+            yVariance : 0
         }
 
     }
