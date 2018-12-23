@@ -13,7 +13,7 @@ private:
 };
 
 template<typename T>
-class _T_FFMPEGOpenCloseThreadCaller :
+class _T_FFMPEGOpenCloseThreadCaller final :
     public _FFMPEGOpenCloseThreadCaller,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_T_FFMPEGOpenCloseThreadCaller<T>) {
 public:

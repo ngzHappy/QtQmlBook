@@ -15,11 +15,13 @@ public:
     void sstd_intrusive_ptr_add_ref();
     void sstd_intrusive_ptr_release();
     inline std::intptr_t sstd_intrusive_ptr_count() const ;
-    inline friend void intrusive_ptr_release(sstd_intrusive_ptr_basic * a) {
-        a->sstd_intrusive_ptr_release();
+    inline friend void intrusive_ptr_release(const sstd_intrusive_ptr_basic * a) {
+        const_cast<sstd_intrusive_ptr_basic *>(a)
+            ->sstd_intrusive_ptr_release();
     }
-    inline friend void intrusive_ptr_add_ref(sstd_intrusive_ptr_basic * a) {
-        a->sstd_intrusive_ptr_add_ref();
+    inline friend void intrusive_ptr_add_ref(const sstd_intrusive_ptr_basic * a) {
+        const_cast<sstd_intrusive_ptr_basic *>(a)
+            ->sstd_intrusive_ptr_add_ref();
     }
     SSTD_END_DEFINE_VIRTUAL_CLASS(sstd_intrusive_ptr_basic);
 };

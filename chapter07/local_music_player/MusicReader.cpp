@@ -6,7 +6,7 @@
 namespace {
 
     template<typename T>
-    class Thread : public T {
+    class Thread final : public T {
         std::thread mmmThread;
         std::atomic_bool mmmIsQuit{ false };
     public:
@@ -238,7 +238,7 @@ void MusicReader::start(std::int64_t) {
 
 }
 
-std::shared_ptr< const MusicFrame > MusicReader::readNext() {
+sstd::intrusive_ptr< const MusicFrame > MusicReader::readNext() {
     return {};
 }
 

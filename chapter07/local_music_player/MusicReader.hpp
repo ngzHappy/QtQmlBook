@@ -21,7 +21,7 @@ public:
     /*开始读取*/
     void start(std::int64_t = 0/*音轨编号*/);
     /*获得下一段音频*/
-    std::shared_ptr< const MusicFrame > readNext();
+    sstd::intrusive_ptr< const MusicFrame > readNext();
     /*关闭*/
     void close();
 public:
