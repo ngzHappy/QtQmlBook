@@ -33,7 +33,9 @@ extern "C" {
 
 namespace {
 
-    class callpack_this_file_ffmpge_open_file {
+    class callpack_this_file_ffmpge_open_file :
+        public sstd_function_stack,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(callpack_this_file_ffmpge_open_file) {
         QByteArray mmmLocalFileName;
     public:
         inline callpack_this_file_ffmpge_open_file(const QString & arg) {
@@ -51,7 +53,7 @@ namespace {
         AVFormatContext * contex{ nullptr };
         bool isOk{ false };
     private:
-        SSTD_DEFINE_STATIC_CLASS(callpack_this_file_ffmpge_open_file);
+        SSTD_END_DEFINE_VIRTUAL_CLASS(callpack_this_file_ffmpge_open_file);
     };
 
     using av_error_tmp_buffer_type = std::array<char, 1024 * 1024>;
@@ -65,9 +67,9 @@ namespace {
     /*打开文档*/
     inline static bool this_file_ffmpge_open_file(
         const QString & arg,
-        AVFormatContext ** argContex ) {
+        AVFormatContext ** argContex) {
         FFMPEGOpenCloseThread varThread;
-        auto varCallPack = sstd_make_shared<
+        auto varCallPack = sstd_make_intrusive_ptr<
             callpack_this_file_ffmpge_open_file>(arg);
         varThread.call([varCallPack]() {
             auto varError = -1;
@@ -104,7 +106,7 @@ namespace {
 
             varCallPack->isOk = true;
 
-        }).wait() ;
+        }).wait();
 
         if (varCallPack->isOk) {
             *argContex = varCallPack->contex;
@@ -118,9 +120,10 @@ namespace {
     /*关闭文档*/
     inline static void this_file_ffmpge_open_file(AVFormatContext ** argContex) {
         FFMPEGOpenCloseThread varThread;
-        varThread.call([argContex]() {
-            ffmpeg::avformat_close_input(argContex); 
-        }).wait();
+        varThread.call([varContex = *argContex]() mutable {
+            ffmpeg::avformat_close_input(&varContex);
+        });
+        *argContex = nullptr;
     }
 
 

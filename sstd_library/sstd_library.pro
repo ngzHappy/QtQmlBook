@@ -30,6 +30,7 @@ SOURCES += $$PWD/runtime/sstd_private_runtime_cast_msvc.cpp
 SOURCES += $$PWD/runtime/sstd_runtime_dynamic_object.cpp
 SOURCES += $$PWD/log/sstd_log.cpp
 SOURCES += $$PWD/intrusive_ptr/sstd_intrusive_ptr.cpp
+SOURCES += $$PWD/function_stack/sstd_function_stack.cpp
 
 HEADERS += $$PWD/memory/sstd_memory.hpp
 HEADERS += $$PWD/runtime/sstd_runtime.hpp
@@ -37,7 +38,8 @@ HEADERS += $$PWD/container/sstd_container.hpp
 HEADERS += $$PWD/allocator/sstd_allocator.hpp
 HEADERS += $$PWD/new/sstd_new.hpp
 HEADERS += $$PWD/log/sstd_log.hpp
-SOURCES += $$PWD/intrusive_ptr/sstd_intrusive_ptr.hpp
+HEADERS += $$PWD/intrusive_ptr/sstd_intrusive_ptr.hpp
+HEADERS += $$PWD/function_stack/sstd_function_stack.hpp
 
 DESTDIR = $${RootDestDir}
 #qmake -query

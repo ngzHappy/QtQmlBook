@@ -36,7 +36,12 @@ namespace sstd {
 }/*sstd*/
 
 
-
+template<typename T,typename ... Args>
+inline sstd::intrusive_ptr<T> sstd_make_intrusive_ptr(Args && ... args) {
+    using U = std::remove_cv_t< std::remove_reference_t<T> >;
+    using ans_type = sstd::intrusive_ptr<T>;
+    return ans_type{ sstd_new<U>(std::forward<Args>(args)...) };
+}
 
 
 
