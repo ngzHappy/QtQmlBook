@@ -63,6 +63,10 @@ app_image_qmltype.file = $$PWD/chapter02/image_qmltype/image_qmltype.pro
 app_image_qmltype.depends = sstd_qt_and_qml_library
 SUBDIRS += app_image_qmltype
 
+app_rectangle_qmltype.file = $$PWD/chapter02/rectangle_qmltype/rectangle_qmltype.pro
+app_rectangle_qmltype.depends = sstd_qt_and_qml_library
+SUBDIRS += app_rectangle_qmltype
+
 ##############05##############
 
 app_emitters_particlesystem.file = $$PWD/chapter05/emitters_particlesystem/emitters_particlesystem.pro
