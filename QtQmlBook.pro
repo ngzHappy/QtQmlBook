@@ -67,6 +67,9 @@ app_rectangle_qmltype.file = $$PWD/chapter02/rectangle_qmltype/rectangle_qmltype
 app_rectangle_qmltype.depends = sstd_qt_and_qml_library
 SUBDIRS += app_rectangle_qmltype
 
+app_text_qmltype.file = $$PWD/chapter02/text_qmltype/text_qmltype.pro
+app_text_qmltype.depends = sstd_qt_and_qml_library
+SUBDIRS += app_text_qmltype
 ##############03##############
 
 ##############04##############
