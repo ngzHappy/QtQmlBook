@@ -43,6 +43,9 @@ HEADERS += $$PWD/MusicInformation.hpp
 SOURCES += $$PWD/MusicFrame.cpp
 HEADERS += $$PWD/MusicFrame.hpp
 
+SOURCES += $$PWD/FFMPEGOpenCloseThread.cpp
+HEADERS += $$PWD/FFMPEGOpenCloseThread.hpp
+
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
 }else{
