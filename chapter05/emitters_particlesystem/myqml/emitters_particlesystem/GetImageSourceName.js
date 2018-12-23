@@ -1,16 +1,16 @@
 ﻿
 function getImageSourceName(arg){
     switch(arg){
-    case 0 :return "images/00.png";
-    case 1 :return "images/01.png";
-    case 2 :return "images/02.png";
-    case 3 :return "images/03.png";
-    case 4 :return "images/04.png";
-    case 5 :return "images/05.png";
-    case 6 :return "images/06.png";
-    case 7 :return "images/07.png";
-    case 8 :return "images/08.png";
-    case 9 :return "images/09.png";
+    case 0  : return "images/00.png";
+    case 1  : return "images/01.png";
+    case 2  : return "images/02.png";
+    case 3  : return "images/03.png";
+    case 4  : return "images/04.png";
+    case 5  : return "images/05.png";
+    case 6  : return "images/06.png";
+    case 7  : return "images/07.png";
+    case 8  : return "images/08.png";
+    case 9  : return "images/09.png";
     case 10 : return "images/10.png";
     case 11 : return "images/11.png";
     case 12 : return "images/12.png";

@@ -16,7 +16,8 @@ Item{
         text : programName ;
 
         function loadSourceFunction(){
-            var obj = LocalQmlWindowCreator.createRootView(programName,Qt.resolvedUrl( programSource ) );
+            var obj = LocalQmlWindowCreator.createRootView(
+                programName,Qt.resolvedUrl( programSource ) );
             if(obj){
                 obj.show();
             }
