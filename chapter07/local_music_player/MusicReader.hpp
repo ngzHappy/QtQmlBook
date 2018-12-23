@@ -15,7 +15,7 @@ public:
     /*打开*/
     bool open(const QString &);
     /*获得媒体信息*/
-    std::shared_ptr< const MusicInformation > information() const;
+    sstd::intrusive_ptr< const MusicInformation > information() const;
     /*定位*/
     bool seek(std::int64_t /*ms*/);
     /*开始读取*/

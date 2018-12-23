@@ -212,7 +212,7 @@ bool MusicReader::open(const QString & arg) {
     return false;
 }
 
-std::shared_ptr< const MusicInformation >
+sstd::intrusive_ptr< const MusicInformation >
 MusicReader::information() const {
     return {};
 }
