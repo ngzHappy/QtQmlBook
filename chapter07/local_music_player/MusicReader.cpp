@@ -1,5 +1,6 @@
 ﻿#include "MusicReader.hpp"
 #include <mutex>
+#include <shared_mutex>
 #include <condition_variable>
 
 namespace {
@@ -64,32 +65,99 @@ namespace {
         }
     };
 
-    class _PackThread : 
-        protected _ThreadDataBasic {
-        
-    public:
-        inline void run() {
-
-        }
-        
-    protected:
-        inline bool hasData() const {
-            return false;
-        }
-       
+    class FFMPEGPack final :
+        public sstd_intrusive_ptr_basic,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(FFMPEGPack) {
+        SSTD_END_DEFINE_VIRTUAL_CLASS(FFMPEGPack);
     };
 
-    class _AudioThread : 
+    class PackPool final {
+        std::shared_mutex mmmMutex;
+        using packes_type = sstd::list< sstd::intrusive_ptr< FFMPEGPack > >;
+        packes_type mmmPacks;
+        packes_type::const_iterator mmmPos;
+    public:
+
+        PackPool() {
+            mmmPos = mmmPacks.cbegin();
+        }
+
+        sstd::intrusive_ptr< FFMPEGPack > getAPack() {
+
+            for (;;) {
+
+                std::size_t varPackSize = 1;
+                do {
+                    const auto varLastPos = mmmPos;
+                    std::shared_lock varLock{ mmmMutex };
+                    varPackSize = mmmPacks.size();
+                    if (varPackSize == 0) {
+                        break;
+                    }
+                    const auto varEnd = mmmPacks.cend();
+                    for (; mmmPos != varEnd; ++mmmPos) {
+                        if ((*mmmPos)->sstd_get_intrusive_ptr_count() == 1) {
+                            return *mmmPos++;
+                        }
+                    }
+                    mmmPos = mmmPacks.cbegin();
+                    for (; mmmPos != varLastPos; ++mmmPos) {
+                        if ((*mmmPos)->sstd_get_intrusive_ptr_count() == 1) {
+                            return *mmmPos++;
+                        }
+                    }
+                } while (false);
+
+                if (varPackSize < 256) {
+                    std::unique_lock varLock{ mmmMutex };
+                    FFMPEGPack * varAns;
+                    for (auto varI = 0; varI < 8; ++varI) {
+                        varAns = sstd_new<FFMPEGPack>();
+                        mmmPacks.emplace_back(varAns);
+                    }
+                    return varAns;
+                }
+
+                std::this_thread::sleep_for(1ms);
+
+            }
+
+        }
+
+    private:
+        SSTD_DEFINE_STATIC_CLASS(PackPool);
+    };
+
+    class _PackThread :
         protected _ThreadDataBasic {
+
+        sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
+
+    public:
+
+        inline void run() {
+
+        }
+
+    protected:
+        inline bool hasData() const {
+            return !mmmPacks.empty();
+        }
+
+    };
+
+    class _AudioThread :
+        protected _ThreadDataBasic {
+        sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
     public:
         inline void run() {
 
         }
     protected:
         inline bool hasData() const {
-            return false;
+            return !mmmPacks.empty();
         }
-      
+
     };
 
     using PackThread = Thread<_PackThread>;
