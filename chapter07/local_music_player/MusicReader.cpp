@@ -118,7 +118,7 @@ namespace {
     }
 
     /*关闭文档*/
-    inline static void this_file_ffmpge_open_file(AVFormatContext ** argContex) {
+    inline static void this_file_ffmpeg_close_file(AVFormatContext ** argContex) {
         FFMPEGOpenCloseThread varThread;
         varThread.call([varContex = *argContex]() mutable {
             ffmpeg::avformat_close_input(&varContex);
