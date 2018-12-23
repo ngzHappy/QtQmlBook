@@ -1,10 +1,11 @@
-﻿#include "LocalQmlWindowCreator.hpp"
+﻿#include "sstd_local_qml_window_creator.hpp"
+#include "../root_window/sstd_root_window.hpp"
 
 namespace {
     class CloseEventFilter :
         public QObject,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(CloseEventFilter) {
-        sstd::DefaultRoowWindow * mmmParent;
+        sstd::DefaultRoowWindow * mmmParent ;
     public:
         inline CloseEventFilter(sstd::DefaultRoowWindow * arg) :
             QObject(arg),
@@ -26,17 +27,18 @@ namespace {
     };
 }/*********/
 
-LocalQmlWindowCreator::LocalQmlWindowCreator() {
+_1_sstd_local_qml_window_creator::_1_sstd_local_qml_window_creator(){
+
 }
 
-LocalQmlWindowCreator * LocalQmlWindowCreator::instance() {
-    auto static varAns = sstd_make_unique<LocalQmlWindowCreator>();
+_1_sstd_local_qml_window_creator * _1_sstd_local_qml_window_creator::instance(){
+    auto static varAns = sstd_make_unique<_1_sstd_local_qml_window_creator>();
     return varAns.get();
 }
 
-QObject * LocalQmlWindowCreator::createRootView(
-    const QString & argName,
-    const QUrl & argLocalPath) const {
+QObject * _1_sstd_local_qml_window_creator::createRootView(
+        const QString & argName,
+        const QUrl & argLocalPath) const{
     auto varAns = sstd_new< sstd::DefaultRoowWindow >();
     varAns->load(argLocalPath);
     varAns->setTitle(argName);
@@ -44,12 +46,13 @@ QObject * LocalQmlWindowCreator::createRootView(
     return varAns;
 }
 
+
 static inline void registerThis() {
-    qmlRegisterSingletonType<LocalQmlWindowCreator>("myqml.emitters",
+    qmlRegisterSingletonType<_1_sstd_local_qml_window_creator>("sstd.quick",
         1, 0,
         "LocalQmlWindowCreator",
         [](QQmlEngine *engine, QJSEngine *scriptEngine)->QObject * {
-        auto varAns = LocalQmlWindowCreator::instance();
+        auto varAns = _1_sstd_local_qml_window_creator::instance();
         return varAns;
         (void)engine;
         (void)scriptEngine;

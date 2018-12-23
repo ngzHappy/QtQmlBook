@@ -1,7 +1,7 @@
 ﻿/*ListView 的代理*/
 import QtQuick 2.11
 import QtQuick.Controls 2.3
-import myqml.affectors 1.0
+import sstd.quick 1.0
 
 Item{
 

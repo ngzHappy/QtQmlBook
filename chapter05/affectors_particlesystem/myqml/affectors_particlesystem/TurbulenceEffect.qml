@@ -32,7 +32,7 @@ DemoBasic {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            height: parent.height*0.5
+            height: parent.height*0.4555
             system: idParticleSystem
             once: false
             strength: 64

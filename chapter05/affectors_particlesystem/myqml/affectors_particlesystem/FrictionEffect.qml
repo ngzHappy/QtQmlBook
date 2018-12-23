@@ -32,7 +32,7 @@ DemoBasic {
             anchors.left: parent.left
             anchors.right: parent.right
             anchors.top: parent.top
-            height: parent.height*0.45
+            height: parent.height*0.495
             system: idParticleSystem
             once: false
             threshold :1 ;
