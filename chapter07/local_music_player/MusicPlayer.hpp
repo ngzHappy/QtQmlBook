@@ -2,7 +2,8 @@
 
 #include <QtCore/qobject.h>
 
-class A : public QObject {
+class MusicPlayer :
+        public QObject {
     Q_OBJECT
 };
 

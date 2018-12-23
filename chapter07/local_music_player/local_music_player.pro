@@ -37,6 +37,12 @@ HEADERS += $$PWD/MusicReader.hpp
 SOURCES += $$PWD/MusicPlayer.cpp
 HEADERS += $$PWD/MusicPlayer.hpp
 
+SOURCES += $$PWD/MusicInformation.cpp
+HEADERS += $$PWD/MusicInformation.hpp
+
+SOURCES += $$PWD/MusicFrame.cpp
+HEADERS += $$PWD/MusicFrame.hpp
+
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
 }else{
