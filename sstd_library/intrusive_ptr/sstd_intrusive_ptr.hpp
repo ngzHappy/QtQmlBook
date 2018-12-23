@@ -12,7 +12,6 @@ class _1_SSTD_CORE_EXPORT sstd_intrusive_ptr_basic :
 public:
     virtual ~sstd_intrusive_ptr_basic();
     sstd_intrusive_ptr_basic();
-    inline std::intptr_t sstd_get_intrusive_ptr_count() const;
     void sstd_intrusive_ptr_add_ref();
     void sstd_intrusive_ptr_release();
     inline std::intptr_t sstd_intrusive_ptr_count() const ;

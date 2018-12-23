@@ -96,13 +96,13 @@ namespace {
                     }
                     const auto varEnd = mmmPacks.cend();
                     for (; mmmPos != varEnd; ++mmmPos) {
-                        if ((*mmmPos)->sstd_get_intrusive_ptr_count() == 1) {
+                        if ((*mmmPos)->sstd_intrusive_ptr_count() == 1) {
                             return *mmmPos++;
                         }
                     }
                     mmmPos = mmmPacks.cbegin();
                     for (; mmmPos != varLastPos; ++mmmPos) {
-                        if ((*mmmPos)->sstd_get_intrusive_ptr_count() == 1) {
+                        if ((*mmmPos)->sstd_intrusive_ptr_count() == 1) {
                             return *mmmPos++;
                         }
                     }
