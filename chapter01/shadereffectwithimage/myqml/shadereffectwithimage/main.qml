@@ -11,35 +11,44 @@ Rectangle {
         anchors.centerIn: parent    ;
         width: parent.width * 0.8   ;
         height: parent.height * 0.8 ;
+        Image{
+            id : idSourceImage;
+            source: "0000.jpg";
+            visible: false    ;
+        }
         ShaderEffect{
+            property variant source: idSourceImage
             anchors.fill: parent ;
             fragmentShader:"
 /*片段着色器*/
 #version 460
 
-in vec2  qt_TexCoord0/*纹理坐标*/  ;
-out vec4 fragColor   /*输出值*/    ;
+in vec2 qt_TexCoord0;
 
-uniform float qt_Opacity/*透明度*/ ;
+out vec4 fragColor;
+
+uniform sampler2D source;
+uniform float qt_Opacity;
 
 void main() {
-    vec4 varColor  = vec4( qt_TexCoord0.x ,  qt_TexCoord0.y , 0.5 , 1);
-    fragColor = varColor * qt_Opacity;
+    fragColor = texture(source, qt_TexCoord0) * qt_Opacity;
 }
 
 "
             vertexShader :"
-/*顶点着色器*/ 
+/*顶点着色器*/
 #version 460
 
-in vec4 qt_Vertex/*输入点坐标*/    ; 
-out vec2 qt_TexCoord0/*纹理坐标*/  ;
+in vec4 qt_Vertex;
+in vec2 qt_MultiTexCoord0;
 
-uniform mat4 qt_Matrix/*投影矩阵*/ ;
+out vec2 qt_TexCoord0;
+
+uniform mat4 qt_Matrix;
 
 void main() {
+    qt_TexCoord0 = qt_MultiTexCoord0;
     gl_Position = qt_Matrix * qt_Vertex;
-    qt_TexCoord0 = gl_Position.xy*0.5 + 0.5 ;
 }
 
 "
