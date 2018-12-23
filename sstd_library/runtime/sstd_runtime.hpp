@@ -496,6 +496,8 @@ template<typename T,
     const sstd_type_index & sstd_get_sstd_type_index() const noexcept override{ \
     return _sstd_this_type_::_sstd_get_sstd_type_index(); \
     } \
+    template<typename T_SSTD_X37627, typename ...T_SSTD_X37627_Args> \
+    friend inline T_SSTD_X37627 * ::sstd_new(T_SSTD_X37627_Args && ... args); \
     template<typename , bool > friend class ::sstd_runtime_basic; \
     template<typename , bool > friend class ::_3_sstd_runtime_basic; \
 static_assert(true,"")

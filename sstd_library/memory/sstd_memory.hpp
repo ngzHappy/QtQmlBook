@@ -82,9 +82,7 @@ public : \
     } \
     static inline void operator delete[](void* argA, std::align_val_t argB){ \
     return _1_sstd_memory_static_class_basic::operator delete[](argA,argB);\
-    } \
-    template<typename T_SSTD_X37627, typename ...T_SSTD_X37627_Args> \
-    friend inline T_SSTD_X37627 * ::sstd_new(T_SSTD_X37627_Args && ... args);
+    } 
 
 #endif 
 

@@ -1,7 +1,131 @@
 ﻿#include "MusicReader.hpp"
+#include "FFMPEGOpenCloseThread.hpp"
+
 #include <mutex>
 #include <shared_mutex>
 #include <condition_variable>
+
+extern "C" {
+#include <libavutil/avstring.h>
+#include <libavutil/eval.h>
+#include <libavutil/mathematics.h>
+#include <libavutil/pixdesc.h>
+#include <libavutil/imgutils.h>
+#include <libavutil/dict.h>
+#include <libavutil/parseutils.h>
+#include <libavutil/samplefmt.h>
+#include <libavutil/avassert.h>
+#include <libavutil/time.h>
+#include <libavformat/avformat.h>
+#include <libavdevice/avdevice.h>
+#include <libswscale/swscale.h>
+#include <libavutil/opt.h>
+#include <libavcodec/avfft.h>
+#include <libswresample/swresample.h>
+#include <libavfilter/avfilter.h>
+#include <libavfilter/buffersink.h>
+#include <libavfilter/buffersrc.h>
+}
+
+#ifndef ffmpeg
+#define ffmpeg
+#endif
+
+namespace {
+
+    class callpack_this_file_ffmpge_open_file {
+        QByteArray mmmLocalFileName;
+    public:
+        inline callpack_this_file_ffmpge_open_file(const QString & arg) {
+            mmmLocalFileName = arg.toLocal8Bit();
+        }
+        const auto & getLocalFileName() const {
+            return mmmLocalFileName;
+        }
+        ~callpack_this_file_ffmpge_open_file() {
+            if (isOk) {
+                return;
+            }
+            ffmpeg::avformat_close_input(&contex);
+        }
+        AVFormatContext * contex{ nullptr };
+        bool isOk{ false };
+    private:
+        SSTD_DEFINE_STATIC_CLASS(callpack_this_file_ffmpge_open_file);
+    };
+
+    using av_error_tmp_buffer_type = std::array<char, 1024 * 1024>;
+    inline static av_error_tmp_buffer_type & getStringTmpBuffer() {
+        static av_error_tmp_buffer_type varAns;
+        return varAns;
+    }
+
+    /*ffmpeg打开和关闭文档不是线程安全的，因而将其强制到一个线程...*/
+
+    /*打开文档*/
+    inline static bool this_file_ffmpge_open_file(
+        const QString & arg,
+        AVFormatContext ** argContex ) {
+        FFMPEGOpenCloseThread varThread;
+        auto varCallPack = sstd_make_shared<
+            callpack_this_file_ffmpge_open_file>(arg);
+        varThread.call([varCallPack]() {
+            auto varError = -1;
+
+            varError = ffmpeg::avformat_open_input(
+                &(varCallPack->contex),
+                varCallPack->getLocalFileName().constData(),
+                nullptr,
+                nullptr);
+
+            if ((varError != 0) || (varCallPack->contex == nullptr)) {
+                auto & varTmp = getStringTmpBuffer();
+                ffmpeg::av_strerror(
+                    varError,
+                    varTmp.data(),
+                    varTmp.size());
+                sstd_log(varTmp.data());
+                return;
+            }
+
+            varError = ffmpeg::avformat_find_stream_info(
+                varCallPack->contex,
+                nullptr);
+
+            if (varError != 0) {
+                auto & varTmp = getStringTmpBuffer();
+                ffmpeg::av_strerror(
+                    varError,
+                    varTmp.data(),
+                    varTmp.size());
+                sstd_log(varTmp.data());
+                return;
+            }
+
+            varCallPack->isOk = true;
+
+        }).wait() ;
+
+        if (varCallPack->isOk) {
+            *argContex = varCallPack->contex;
+            return true;
+        }
+
+        *argContex = nullptr;
+        return false;
+    }
+
+    /*关闭文档*/
+    inline static void this_file_ffmpge_open_file(AVFormatContext ** argContex) {
+        FFMPEGOpenCloseThread varThread;
+        varThread.call([argContex]() {
+            ffmpeg::avformat_close_input(argContex); 
+        }).wait();
+    }
+
+
+
+}/*namespace*/
 
 namespace {
 
