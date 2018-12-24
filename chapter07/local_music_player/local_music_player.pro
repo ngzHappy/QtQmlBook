@@ -43,6 +43,9 @@ HEADERS += $$PWD/MusicInformation.hpp
 SOURCES += $$PWD/MusicFrame.cpp
 HEADERS += $$PWD/MusicFrame.hpp
 
+SOURCES += $$PWD/MusicNumber.cpp
+HEADERS += $$PWD/MusicNumber.hpp
+
 SOURCES += $$PWD/FFMPEGOpenCloseThread.cpp
 HEADERS += $$PWD/FFMPEGOpenCloseThread.hpp
 

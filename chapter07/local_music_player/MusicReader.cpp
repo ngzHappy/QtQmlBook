@@ -87,7 +87,7 @@ namespace {
                     varTmp.data(),
                     varTmp.size());
                 sstd_log(varTmp.data());
-                return;
+                return ;
             }
 
             varError = ffmpeg::avformat_find_stream_info(
@@ -125,8 +125,6 @@ namespace {
         });
         *argContex = nullptr;
     }
-
-
 
 }/*namespace*/
 
@@ -344,7 +342,7 @@ MusicReader::information() const {
     return {};
 }
 
-bool MusicReader::seek(std::int64_t /*ms*/) {
+bool MusicReader::seek(MusicNumber /*ms*/) {
     return false;
 }
 
