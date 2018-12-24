@@ -222,6 +222,31 @@ namespace this_file {
         SSTD_END_DEFINE_VIRTUAL_CLASS(FFMPEGPack);
     };
 
+    class FFMPEGFrame final :
+        public sstd_intrusive_ptr_basic,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(FFMPEGFrame){
+        ffmpeg::AVFrame * mmmFrame{ nullptr };
+    public:
+        inline FFMPEGFrame() {
+            mmmFrame = ffmpeg::av_frame_alloc();
+        }
+        inline ~FFMPEGFrame() {
+            ffmpeg::av_frame_unref(mmmFrame);
+            ffmpeg::av_frame_free(&mmmFrame);
+        }
+        inline  ffmpeg::AVFrame  * get() const {
+            return mmmFrame;
+        }
+        inline  ffmpeg::AVFrame  * data() const {
+            return this->get();
+        }
+        inline operator ffmpeg::AVFrame *() const {
+            return this->get();
+        }
+    private:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(FFMPEGFrame);
+    };
+
     /*avpack对象池,
     因为某些解码器会对avpack做cache,
     导致在关闭文件前一些资源无法释放,
@@ -333,7 +358,6 @@ namespace this_file {
     using PackThread = Thread<_PackThread>;
     using AudioThread = Thread<_AudioThread>;
 
-
     class AudioFrames {
         sstd::list< sstd::intrusive_ptr< const MusicFrame > > mmmReadFrame;
         std::shared_mutex mmmMutex;
@@ -362,8 +386,44 @@ public:
     bool mmmIsFileOpen{ false };
     ffmpeg::AVFormatContext * mmmContex{ nullptr };
     class AudioStreamCodecInfo {
+        sstd::intrusive_ptr< FFMPEGFrame > frame;
+        ffmpeg::SwrContext * resample{nullptr};
     public:
         ffmpeg::AVCodecContext * contex{ nullptr };
+        inline FFMPEGFrame * getFrame() {
+            if (frame) {
+                return frame.get();
+            }
+            frame = sstd_make_intrusive_ptr<FFMPEGFrame>();
+            return frame.get();
+        }
+        inline ffmpeg::SwrContext * getReSample() {
+            if (resample) {
+                return resample;
+            }
+            resample = ffmpeg::swr_alloc_set_opts(
+                /*s*/nullptr,
+                /*双声道*/AV_CH_LAYOUT_STEREO,
+                /*signed 16*/AV_SAMPLE_FMT_S16,
+                contex->sample_rate,
+                contex->channel_layout,
+                contex->sample_fmt,
+                contex->sample_rate,
+                0,
+                nullptr
+            );
+            ffmpeg::swr_init(resample);
+            return resample;
+        }
+        inline AudioStreamCodecInfo() = default;
+        inline AudioStreamCodecInfo(ffmpeg::AVCodecContext * a) : 
+            contex(a) {
+        }
+        inline ~AudioStreamCodecInfo() {
+            if (resample) {
+                ffmpeg::swr_free(&resample);
+            }
+        }
     };
     AudioStreamCodecInfo * mmmCurrentStream{ nullptr };
     sstd::map< int, AudioStreamCodecInfo > mmmAudioStreamContex;
@@ -577,7 +637,53 @@ namespace this_file {
             mmmPacks.pop_front();
         }
 
+        auto varCodecContex = mmmPrivate->mmmCurrentStream->contex;
+
+        /*提交包*/
+        auto varError = ffmpeg::avcodec_send_packet(varCodecContex, varPack->data());
+        if (varError) {
+            return;
+        }
+
+        auto varFrame = 
+            mmmPrivate->
+            mmmCurrentStream->
+            getFrame()->data();
         
+        /*解包*/
+        varError = ffmpeg::avcodec_receive_frame(varCodecContex,varFrame);
+        if (varError) {
+            return;
+        }
+
+        auto varAns = sstd_make_intrusive_ptr< MusicFrame >();
+        varAns->data.resize( varFrame->nb_samples );
+
+        auto varReSampleContex =
+            mmmPrivate->
+            mmmCurrentStream
+            ->getReSample();
+
+        std::uint8_t * varDataRaw[1]{ reinterpret_cast<
+            std::uint8_t *>(varAns->data.data()) };
+
+        ffmpeg::swr_convert(
+            varReSampleContex,
+            varDataRaw,
+            varFrame->nb_samples,
+            const_cast<const uint8_t **>(varFrame->extended_data),
+            varFrame->nb_samples
+        );
+
+        {
+            MusicNumber varPts{
+                varCodecContex->time_base.num,
+                varCodecContex->time_base.den
+            };
+            varAns->pts = varPts * varFrame->pts;
+        }
+
+        mmmPrivate->mmmAudioFrames.appendData( std::move( varAns ) );
 
     }
 
