@@ -29,8 +29,9 @@ extern "C" {
 
 namespace {
     class InitFFMPEG {
-    public:
-        InitFFMPEG() {
+        friend class ::_FFMPEGOpenCloseThreadPrivate;
+    private:
+        inline InitFFMPEG() {
             ffmpeg::av_register_all();
             ffmpeg::avformat_network_init();
         }
@@ -52,7 +53,7 @@ public:
         });
     }
 
-    void run() {
+    inline void run() {
         auto varQuitWait = [this]() {
             if (mmmQuit.load()) {
                 return true;
@@ -75,7 +76,7 @@ public:
         }
     }
 
-    void post(std::shared_ptr<_FFMPEGOpenCloseThreadCaller> arg) {
+    inline void post(std::shared_ptr<_FFMPEGOpenCloseThreadCaller> arg) {
         {
             std::unique_lock varLock{ mmmMutex };
             mmmFunctions.push_back(std::move(arg));
@@ -83,7 +84,7 @@ public:
         mmmWait.notify_all();
     }
 
-    void run(std::shared_ptr<_FFMPEGOpenCloseThreadCaller> arg) {
+    inline void run(std::shared_ptr<_FFMPEGOpenCloseThreadCaller> arg) {
         if (std::this_thread::get_id() == mmmThread.get_id()) {
             arg->run();
             return;

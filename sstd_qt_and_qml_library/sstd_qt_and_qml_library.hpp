@@ -32,6 +32,11 @@
 using namespace std::chrono_literals;
 using namespace std::string_view_literals;
 
+inline QString operator""_qstr8(const char * a,std::size_t b) {
+    return QString::fromUtf8(a,static_cast<int>(b));
+}
 
-
+inline QByteArray operator""_qbya(const char * a, std::size_t b) {
+    return QByteArray{ a, static_cast<int>(b) };
+}
 

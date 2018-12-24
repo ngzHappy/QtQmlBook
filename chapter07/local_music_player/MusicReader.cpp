@@ -326,7 +326,7 @@ namespace this_file {
             call_this_once_run();
         }
 
-        _PackThread(_MusicReaderPrivate * arg) :
+        inline _PackThread(_MusicReaderPrivate * arg) :
             mmmPrivate(arg) {
         }
 
@@ -347,7 +347,7 @@ namespace this_file {
             call_this_once_run();
         }
 
-        _AudioThread(_MusicReaderPrivate * arg) :
+        inline _AudioThread(_MusicReaderPrivate * arg) :
             mmmPrivate(arg) {
         }
 
