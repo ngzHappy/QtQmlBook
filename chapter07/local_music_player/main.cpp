@@ -18,6 +18,7 @@ int main(int argc, char ** argv) {
             return -1;
         }
     }
+    varWindow->setMinimumSize({512,32});
     varWindow->show();
 
     return varApp->exec();
