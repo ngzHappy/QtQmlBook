@@ -232,8 +232,11 @@ namespace this_file {
             mmmFrame = ffmpeg::av_frame_alloc();
         }
         inline ~FFMPEGFrame() {
-            ffmpeg::av_frame_unref(mmmFrame);
+            this->unref();
             ffmpeg::av_frame_free(&mmmFrame);
+        }
+        inline void unref(){
+            ffmpeg::av_frame_unref(mmmFrame);
         }
         inline  ffmpeg::AVFrame  * get() const {
             return mmmFrame;
@@ -638,10 +641,12 @@ namespace this_file {
             mmmPacks.pop_front();
         }
 
-        auto varCodecContex = mmmPrivate->mmmCurrentStream->contex;
+        auto varCodecContex =
+                mmmPrivate->mmmCurrentStream->contex;
 
         /*提交包*/
-        auto varError = ffmpeg::avcodec_send_packet(varCodecContex, varPack->data());
+        auto varError =
+                ffmpeg::avcodec_send_packet(varCodecContex, varPack->data());
         if (varError) {
             return;
         }
@@ -652,7 +657,8 @@ namespace this_file {
             getFrame()->data();
 
         /*解包*/
-        varError = ffmpeg::avcodec_receive_frame(varCodecContex, varFrame);
+        varError = ffmpeg::avcodec_receive_frame(
+                    varCodecContex, varFrame);
         if (varError) {
             return;
         }
@@ -686,6 +692,9 @@ namespace this_file {
 
         mmmPrivate->mmmAudioFrames.appendData(std::move(varAns));
 
+        mmmPrivate->
+        mmmCurrentStream->
+        getFrame()->unref();
     }
 
     inline void _AudioThread::appendData(sstd::intrusive_ptr< FFMPEGPack > arg) {
@@ -729,4 +738,7 @@ namespace this_file {
 }/*this_file*/
 
 /**/
+//av_dict_get
+//av_dict_set
+//https://blog.csdn.net/weiyuefei/article/details/70171489
 
