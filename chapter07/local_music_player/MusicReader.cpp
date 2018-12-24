@@ -63,7 +63,6 @@ namespace {
     }
 
     /*ffmpeg打开和关闭文档不是线程安全的，因而将其强制到一个线程...*/
-
     /*打开文档*/
     inline static bool this_file_ffmpge_open_file(
         const QString & arg,
@@ -87,7 +86,7 @@ namespace {
                     varTmp.data(),
                     varTmp.size());
                 sstd_log(varTmp.data());
-                return ;
+                return;
             }
 
             varError = ffmpeg::avformat_find_stream_info(
@@ -106,7 +105,7 @@ namespace {
 
             varCallPack->isOk = true;
 
-        }).wait();
+        }).wait()/*打开文件时开启同步等待*/;
 
         if (varCallPack->isOk) {
             *argContex = varCallPack->contex;
@@ -122,8 +121,13 @@ namespace {
         FFMPEGOpenCloseThread varThread;
         varThread.call([varContex = *argContex]() mutable {
             ffmpeg::avformat_close_input(&varContex);
-        });
+        })/*关闭文件无需同步等待*/;
         *argContex = nullptr;
+    }
+
+    inline static sstd::intrusive_ptr< MusicInformation >
+        this_file_ffmpge_read_information(AVFormatContext * argContex) {
+
     }
 
 }/*namespace*/
@@ -299,6 +303,7 @@ class _MusicReaderPrivate {
     QString mmmLocalFileName;
     int mmmAudioStream{ -1 };
     bool mmmIsFileOpen{ false };
+    AVFormatContext * mmmContex{ nullptr };
 public:
     inline _MusicReaderPrivate(MusicReader * argParent) :
         mmmParent(argParent) {
@@ -311,15 +316,21 @@ public:
         if (argFileName.isEmpty()) {
             return false;
         }
-        mmmIsFileOpen = true;
-
+        mmmIsFileOpen =
+            this_file_ffmpge_open_file(argFileName, &mmmContex);
         return mmmIsFileOpen;
     }
 
-    inline ~_MusicReaderPrivate() {
+    inline void close() {
         if (mmmIsFileOpen == false) {
             return;
         }
+        this_file_ffmpeg_close_file(&mmmContex);
+        mmmIsFileOpen = false;
+    }
+
+    inline ~_MusicReaderPrivate() {
+        this->close();
     }
 
 private:
