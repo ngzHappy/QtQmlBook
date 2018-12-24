@@ -5,12 +5,17 @@
 
 class _MusicPlayerPrivate;
 class MusicPlayer :
-    public QObject , 
+    public QObject,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MusicPlayer){
     Q_OBJECT
 public:
     MusicPlayer();
     ~MusicPlayer();
+public:
+    Q_SLOT void startPlay();
+    Q_SLOT void pausePlay();
+    Q_SLOT void stopPlay();
+    Q_SLOT void continuePlay();
 private:
     _MusicPlayerPrivate * const mmmPrivate;
 private:

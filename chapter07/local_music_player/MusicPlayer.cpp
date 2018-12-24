@@ -13,9 +13,27 @@ MusicPlayer::MusicPlayer() :
     mmmPrivate(sstd_new<_MusicPlayerPrivate>(this)) {
 
 }
+
 MusicPlayer::~MusicPlayer() {
+    delete mmmPrivate;
+}
+
+void MusicPlayer::startPlay() {
 
 }
+
+void MusicPlayer::pausePlay() {
+
+}
+
+void MusicPlayer::stopPlay() {
+
+}
+
+void MusicPlayer::continuePlay() {
+
+}
+
 
 
 

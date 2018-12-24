@@ -7,7 +7,7 @@ class MusicNumber {
 public:
     std::int64_t num{ 0 };
     std::int64_t den{ 1'000'000 };
-    inline MusicNumber changeDen(std::int64_t v) const {
+    inline constexpr MusicNumber changeDen(std::int64_t v) const {
         if(v==den){
             return *this;
         }
@@ -46,11 +46,11 @@ inline MusicNumber operator-(const MusicNumber & l, const MusicNumber & r) {
     return { varNewLeft.num - varNewRight.num , varNewDen };
 }
 
-inline MusicNumber operator*(const MusicNumber & l, std::int64_t n) {
+inline constexpr MusicNumber operator*(const MusicNumber & l, std::int64_t n) {
     return { l.num * n , l.den };
 }
 
-inline MusicNumber operator/(const MusicNumber & l, std::int64_t n) {
+inline constexpr MusicNumber operator/(const MusicNumber & l, std::int64_t n) {
     return { l.num / n , l.den };
 }
 

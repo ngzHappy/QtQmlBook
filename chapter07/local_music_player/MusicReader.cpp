@@ -129,7 +129,7 @@ namespace this_file {
     template<typename T>
     class Thread final :
         public T,
-        public sstd_intrusive_ptr_basic ,
+        public sstd_intrusive_ptr_basic,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(Thread<T>) {
         std::thread mmmThread;
         std::atomic_bool mmmIsQuit{ false };
