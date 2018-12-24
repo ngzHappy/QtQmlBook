@@ -158,14 +158,18 @@ namespace this_file {
     private:
         inline void run_this() {
             while (false == mmmIsQuit.load()) {
-                std::unique_lock varLock{ this->getMutex() };
-                this->getWait().wait_for(varLock, 100ms, [this]() ->bool {
-                    if (mmmIsQuit.load()) {
-                        return true;
-                    }
-                    return this->hasData();
-                });
-                if (this->hasData()) {
+                bool varHasData = false;
+                {
+                    std::unique_lock varLock{ this->getMutex() };
+                    this->getWait().wait_for(varLock, 100ms, [this]() ->bool {
+                        if (mmmIsQuit.load()) {
+                            return true;
+                        }
+                        return this->needRunNext();
+                    });
+                    varHasData = this->hasData();
+                }
+                if (varHasData) {
                     this->run();
                 }
             }
@@ -299,15 +303,12 @@ namespace this_file {
     private:
         inline void call_this_once_run();
     protected:
-        inline bool hasData() const {
-            return true;
-        }
-
+        inline bool hasData() const;
+        inline bool needRunNext() const;
     };
 
     class _AudioThread :
         public _ThreadDataBasic {
-        std::shared_mutex mmmMutex1;
         sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
         _MusicReaderPrivate * const mmmPrivate;
     public:
@@ -322,11 +323,8 @@ namespace this_file {
     private:
         inline void call_this_once_run();
     protected:
-
-        inline bool hasData() const {
-            return !mmmPacks.empty();
-        }
-
+        inline bool hasData() const;
+        inline bool needRunNext() const;
     };
 
     using PackThread = Thread<_PackThread>;
@@ -346,6 +344,7 @@ namespace this_file {
         }
         inline void appendData(sstd::intrusive_ptr< const MusicFrame >);
         inline sstd::intrusive_ptr< const MusicFrame > popData();
+        inline void clear();
     };
 
 }/*namespace*/
@@ -368,11 +367,12 @@ public:
     sstd::intrusive_ptr< MusicInformation > mmmMusicInformation;
     sstd::intrusive_ptr< PackThread > mmmReadPackThread;
     sstd::intrusive_ptr< AudioThread > mmmAudioThread;
-
+    AudioFrames mmmAudioFrames;
 public:
 
     inline _MusicReaderPrivate(MusicReader * argParent) :
-        mmmParent(argParent) {
+        mmmParent(argParent),
+        mmmAudioFrames(this) {
     }
 
     inline bool isStarted() const {
@@ -464,6 +464,7 @@ public:
         if (mmmIsFileOpen == false) {
             return;
         }
+        mmmAudioFrames.clear();
         mmmAudioThread = {};
         mmmReadPackThread = {};
         this_file_ffmpeg_close_file(&mmmContex);
@@ -526,6 +527,22 @@ sstd::intrusive_ptr< const MusicFrame > MusicReader::readNext() {
 
 namespace this_file {
 
+    inline bool _PackThread::hasData() const {
+        return true;
+    }
+
+    inline bool _PackThread::needRunNext() const {
+        return mmmPrivate->mmmAudioFrames.needData();
+    }
+
+    inline bool _AudioThread::hasData() const {
+        return !this->mmmPacks.empty();
+    }
+
+    inline bool _AudioThread::needRunNext() const {
+        return mmmPrivate->mmmAudioFrames.needData();
+    }
+
     inline void _PackThread::call_this_once_run() {
         auto varContex = mmmPrivate->mmmContex;
         auto varPack = this->mmmPacksPool.getAPack();
@@ -547,13 +564,15 @@ namespace this_file {
 
         sstd::intrusive_ptr< FFMPEGPack > varPack;
         {
-            std::unique_lock varLock{ mmmMutex1 };
+            std::unique_lock varLock{ this->getMutex() };
             if (this->mmmPacks.empty()) {
                 return;
             }
             varPack = std::move(mmmPacks.front());
             mmmPacks.pop_front();
         }
+
+
 
     }
 
@@ -566,15 +585,25 @@ namespace this_file {
     inline sstd::intrusive_ptr< const MusicFrame > AudioFrames::popData() {
         {
             std::unique_lock varLock{ mmmMutex };
-            if ( mmmReadFrame.empty() ) {
+            if (mmmReadFrame.empty()) {
                 return {};
             }
-            std::move(mmmReadFrame.front());
+            return std::move(mmmReadFrame.front());
             mmmReadFrame.pop_front();
         }
         mmmPrivate->mmmReadPackThread->wake_up();
         mmmPrivate->mmmAudioThread->wake_up();
     }
+
+    inline void AudioFrames::clear() {
+        {
+            std::unique_lock varLock{ mmmMutex };
+            mmmReadFrame.clear();
+        }
+        mmmPrivate->mmmReadPackThread->wake_up();
+        mmmPrivate->mmmAudioThread->wake_up();
+    }
+
 
 }/*this_file*/
 
