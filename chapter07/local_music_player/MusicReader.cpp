@@ -33,6 +33,13 @@ extern "C" {
 
 namespace {
 
+    /*ffmpeg错误临时缓冲区*/
+    using av_error_tmp_buffer_type = std::array<char, 1024 * 1024>;
+    inline static av_error_tmp_buffer_type & getStringTmpBuffer() {
+        static av_error_tmp_buffer_type varAns;
+        return varAns;
+    }
+
     class callpack_this_file_ffmpge_open_file :
         public sstd_function_stack,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(callpack_this_file_ffmpge_open_file) {
@@ -50,23 +57,17 @@ namespace {
             }
             ffmpeg::avformat_close_input(&contex);
         }
-        AVFormatContext * contex{ nullptr };
+        ffmpeg::AVFormatContext * contex{ nullptr };
         bool isOk{ false };
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(callpack_this_file_ffmpge_open_file);
     };
 
-    using av_error_tmp_buffer_type = std::array<char, 1024 * 1024>;
-    inline static av_error_tmp_buffer_type & getStringTmpBuffer() {
-        static av_error_tmp_buffer_type varAns;
-        return varAns;
-    }
-
     /*ffmpeg打开和关闭文档不是线程安全的，因而将其强制到一个线程...*/
     /*打开文档*/
     inline static bool this_file_ffmpge_open_file(
         const QString & arg,
-        AVFormatContext ** argContex) {
+        ffmpeg::AVFormatContext ** argContex) {
         FFMPEGOpenCloseThread varThread;
         auto varCallPack = sstd_make_intrusive_ptr<
             callpack_this_file_ffmpge_open_file>(arg);
@@ -117,22 +118,13 @@ namespace {
     }
 
     /*关闭文档*/
-    inline static void this_file_ffmpeg_close_file(AVFormatContext ** argContex) {
+    inline static void this_file_ffmpeg_close_file(ffmpeg::AVFormatContext ** argContex) {
         FFMPEGOpenCloseThread varThread;
         varThread.call([varContex = *argContex]() mutable {
             ffmpeg::avformat_close_input(&varContex);
         })/*关闭文件无需同步等待*/;
         *argContex = nullptr;
     }
-
-    inline static sstd::intrusive_ptr< MusicInformation >
-        this_file_ffmpge_read_information(AVFormatContext * argContex) {
-
-    }
-
-}/*namespace*/
-
-namespace {
 
     template<typename T>
     class Thread final : public T {
@@ -197,9 +189,36 @@ namespace {
     class FFMPEGPack final :
         public sstd_intrusive_ptr_basic,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(FFMPEGPack) {
+        ffmpeg::AVPacket * mmmPacket{ nullptr };
+    public:
+        inline FFMPEGPack() {
+            mmmPacket = ffmpeg::av_packet_alloc();
+            ffmpeg::av_init_packet(mmmPacket);
+        }
+        inline void unref() {
+            ffmpeg::av_packet_unref(mmmPacket);
+        }
+        inline ~FFMPEGPack() {
+            this->unref();
+            ffmpeg::av_packet_free(&mmmPacket);
+        }
+        inline ffmpeg::AVPacket * get() const {
+            return mmmPacket;
+        }
+        inline ffmpeg::AVPacket * data() const {
+            return this->get();
+        }
+        inline operator ffmpeg::AVPacket *() const {
+            return this->get();
+        }
+    private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(FFMPEGPack);
     };
 
+    /*avpack对象池,
+    因为某些解码器会对avpack做cache,
+    导致在关闭文件前一些资源无法释放,
+    因而用对象池限制avpack数量*/
     class PackPool final {
         std::shared_mutex mmmMutex;
         using packes_type = sstd::list< sstd::intrusive_ptr< FFMPEGPack > >;
@@ -237,7 +256,7 @@ namespace {
                     }
                 } while (false);
 
-                if (varPackSize < 256) {
+                if (varPackSize < 256/*constexpr*/) {
                     std::unique_lock varLock{ mmmMutex };
                     FFMPEGPack * varAns;
                     for (auto varI = 0; varI < 8; ++varI) {
@@ -303,7 +322,12 @@ class _MusicReaderPrivate {
     QString mmmLocalFileName;
     int mmmAudioStream{ -1 };
     bool mmmIsFileOpen{ false };
-    AVFormatContext * mmmContex{ nullptr };
+    ffmpeg::AVFormatContext * mmmContex{ nullptr };
+    class AudioStreamCodecInfo {
+    public:
+        ffmpeg::AVCodecContext * contex{ nullptr };
+    };
+    sstd::map< unsigned int, AudioStreamCodecInfo > mmmAudioStreamContex;
 public:
     inline _MusicReaderPrivate(MusicReader * argParent) :
         mmmParent(argParent) {
@@ -318,7 +342,43 @@ public:
         }
         mmmIsFileOpen =
             this_file_ffmpge_open_file(argFileName, &mmmContex);
+        if (mmmIsFileOpen) {
+            mmmIsFileOpen = openStream();
+            if (false == mmmIsFileOpen) {
+                this->close();
+                return false;
+            }
+        }
         return mmmIsFileOpen;
+    }
+
+    inline bool openStream() {
+
+        for (
+            decltype(mmmContex->nb_streams) i = 0;
+            mmmContex->nb_streams;
+            ++i) {
+            /*获得解码环境*/
+            auto * codec_contex = mmmContex->streams[i]->codec;
+            /*找到解码器*/
+            auto varCodec = ffmpeg::avcodec_find_decoder(codec_contex->codec_id);
+            if (varCodec == nullptr) {
+                continue;
+            }
+            /*在当前环境打开解码器*/
+            if (ffmpeg::avcodec_open2(codec_contex, varCodec, nullptr) < 0) {
+                continue;
+            }
+            /*记录音频解码器*/
+            if (codec_contex->codec_type == AVMEDIA_TYPE_AUDIO) {
+                mmmAudioStreamContex.emplace(
+                    i,
+                    AudioStreamCodecInfo{ codec_contex });
+            }
+        }
+
+        return !mmmAudioStreamContex.empty();
+
     }
 
     inline void close() {

@@ -3,12 +3,13 @@ QT += multimedia
 
 #ffmpeg
 LIBS += -lavcodec
-LIBS += -lavformat
 LIBS += -lavdevice
 LIBS += -lavfilter
+LIBS += -lavformat
+LIBS += -lavutil
+LIBS += -lpostproc
+LIBS += -lswresample
 LIBS += -lswscale
-
-
 
 
 
