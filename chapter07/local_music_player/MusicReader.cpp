@@ -241,44 +241,40 @@ namespace this_file {
 
         inline sstd::intrusive_ptr< FFMPEGPack > getAPack() {
 
-            for (;;) {
-
-                std::size_t varPackSize = 1;
-                do {
-                    const auto varLastPos = mmmPos;
-                    std::shared_lock varLock{ mmmMutex };
-                    varPackSize = mmmPacks.size();
-                    if (varPackSize == 0) {
-                        break;
-                    }
-                    const auto varEnd = mmmPacks.cend();
-                    for (; mmmPos != varEnd; ++mmmPos) {
-                        if ((*mmmPos)->sstd_intrusive_ptr_count() == 1) {
-                            return *mmmPos++;
-                        }
-                    }
-                    mmmPos = mmmPacks.cbegin();
-                    for (; mmmPos != varLastPos; ++mmmPos) {
-                        if ((*mmmPos)->sstd_intrusive_ptr_count() == 1) {
-                            return *mmmPos++;
-                        }
-                    }
-                } while (false);
-
-                if (varPackSize < 256/*constexpr*/) {
-                    std::unique_lock varLock{ mmmMutex };
-                    FFMPEGPack * varAns;
-                    for (auto varI = 0; varI < 8; ++varI) {
-                        varAns = sstd_new<FFMPEGPack>();
-                        mmmPacks.emplace_back(varAns);
-                    }
-                    mmmPos = --mmmPacks.end();
-                    return varAns;
+            std::size_t varPackSize = 1;
+            do {
+                const auto varLastPos = mmmPos;
+                std::shared_lock varLock{ mmmMutex };
+                varPackSize = mmmPacks.size();
+                if (varPackSize == 0) {
+                    break;
                 }
+                const auto varEnd = mmmPacks.cend();
+                for (; mmmPos != varEnd; ++mmmPos) {
+                    if ((*mmmPos)->sstd_intrusive_ptr_count() == 1) {
+                        return *mmmPos++;
+                    }
+                }
+                mmmPos = mmmPacks.cbegin();
+                for (; mmmPos != varLastPos; ++mmmPos) {
+                    if ((*mmmPos)->sstd_intrusive_ptr_count() == 1) {
+                        return *mmmPos++;
+                    }
+                }
+            } while (false);
 
-                std::this_thread::sleep_for(1ms);
-
+            if (varPackSize < 256/*constexpr*/) {
+                std::unique_lock varLock{ mmmMutex };
+                FFMPEGPack * varAns;
+                for (auto varI = 0; varI < 8; ++varI) {
+                    varAns = sstd_new<FFMPEGPack>();
+                    mmmPacks.emplace_back(varAns);
+                }
+                mmmPos = --mmmPacks.end();
+                return varAns;
             }
+
+            return{};
 
         }
 
@@ -304,25 +300,27 @@ namespace this_file {
         inline void call_this_once_run();
     protected:
         inline bool hasData() const {
-            return false;
+            return true;
         }
 
     };
 
     class _AudioThread :
         public _ThreadDataBasic {
+        std::shared_mutex mmmMutex1;
         sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
         _MusicReaderPrivate * const mmmPrivate;
     public:
 
         inline void run() {
-
+            call_this_once_run();
         }
 
         _AudioThread(_MusicReaderPrivate * arg) :
             mmmPrivate(arg) {
         }
-
+    private:
+        inline void call_this_once_run();
     protected:
 
         inline bool hasData() const {
@@ -333,6 +331,22 @@ namespace this_file {
 
     using PackThread = Thread<_PackThread>;
     using AudioThread = Thread<_AudioThread>;
+
+
+    class AudioFrames {
+        sstd::list< sstd::intrusive_ptr< const MusicFrame > > mmmReadFrame;
+        std::shared_mutex mmmMutex;
+        _MusicReaderPrivate * const mmmPrivate;
+    public:
+        inline AudioFrames(_MusicReaderPrivate * arg) :mmmPrivate(arg) {
+        }
+        inline bool needData() {
+            std::shared_lock varLock{ mmmMutex };
+            return mmmReadFrame.size() < 16;
+        }
+        inline void appendData(sstd::intrusive_ptr< const MusicFrame >);
+        inline sstd::intrusive_ptr< const MusicFrame > popData();
+    };
 
 }/*namespace*/
 
@@ -354,6 +368,7 @@ public:
     sstd::intrusive_ptr< MusicInformation > mmmMusicInformation;
     sstd::intrusive_ptr< PackThread > mmmReadPackThread;
     sstd::intrusive_ptr< AudioThread > mmmAudioThread;
+
 public:
 
     inline _MusicReaderPrivate(MusicReader * argParent) :
@@ -510,9 +525,13 @@ sstd::intrusive_ptr< const MusicFrame > MusicReader::readNext() {
 }
 
 namespace this_file {
+
     inline void _PackThread::call_this_once_run() {
         auto varContex = mmmPrivate->mmmContex;
         auto varPack = this->mmmPacksPool.getAPack();
+        if (!varPack) {
+            return;
+        }
         bool isReadNoError = (ffmpeg::av_read_frame(varContex, varPack->data()) == 0);
         if (isReadNoError) {
             if (varPack->data()->stream_index == mmmPrivate->mmmAudioStream) {
@@ -523,6 +542,40 @@ namespace this_file {
             }
         }
     }
+
+    inline void _AudioThread::call_this_once_run() {
+
+        sstd::intrusive_ptr< FFMPEGPack > varPack;
+        {
+            std::unique_lock varLock{ mmmMutex1 };
+            if (this->mmmPacks.empty()) {
+                return;
+            }
+            varPack = std::move(mmmPacks.front());
+            mmmPacks.pop_front();
+        }
+
+    }
+
+
+    inline void AudioFrames::appendData(sstd::intrusive_ptr< const MusicFrame > arg) {
+        std::unique_lock varLock{ mmmMutex };
+        mmmReadFrame.push_back(arg);
+    }
+
+    inline sstd::intrusive_ptr< const MusicFrame > AudioFrames::popData() {
+        {
+            std::unique_lock varLock{ mmmMutex };
+            if ( mmmReadFrame.empty() ) {
+                return {};
+            }
+            std::move(mmmReadFrame.front());
+            mmmReadFrame.pop_front();
+        }
+        mmmPrivate->mmmReadPackThread->wake_up();
+        mmmPrivate->mmmAudioThread->wake_up();
+    }
+
 }/*this_file*/
 
 /**/
