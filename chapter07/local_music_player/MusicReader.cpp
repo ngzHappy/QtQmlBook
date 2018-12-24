@@ -156,6 +156,7 @@ namespace this_file {
                 mmmThread.join();
             }
         }
+
     private:
         inline void run_this() {
             while (false == mmmIsQuit.load()) {
@@ -235,7 +236,7 @@ namespace this_file {
             this->unref();
             ffmpeg::av_frame_free(&mmmFrame);
         }
-        inline void unref(){
+        inline void unref() {
             ffmpeg::av_frame_unref(mmmFrame);
         }
         inline  ffmpeg::AVFrame  * get() const {
@@ -490,12 +491,52 @@ public:
         mmmMusicInformation =
             sstd_make_intrusive_ptr<MusicInformation >();
         mmmMusicInformation->streamInfo.reserve(mmmAudioStreamContex.size());
+
         for (const auto & varInfor : mmmAudioStreamContex) {
             auto & info =
                 mmmMusicInformation->streamInfo.emplace_back();
             info.streamIndex = varInfor.first;
-
+            ffmpeg::AVDictionaryEntry *tag = nullptr;
+            auto varCodecMeta = mmmContex->streams[varInfor.first]->metadata;
+            if (varCodecMeta) {
+                while ((tag = ffmpeg::av_dict_get(varCodecMeta,
+                    "", tag, AV_DICT_IGNORE_SUFFIX))) {
+                    info.metaData.emplace(
+                        QString::fromUtf8(tag->key),
+                        QByteArray(tag->value)
+                    );
+                }
+            }
         }
+
+        {/*获得图片...*/
+            auto varStreamCount = mmmContex->nb_streams;
+            for (decltype(mmmContex->nb_streams)i = 0;
+                i < varStreamCount; ++i) {
+                if (mmmContex->streams[i]->disposition & AV_DISPOSITION_ATTACHED_PIC) {
+                    const auto & pkt = mmmContex->streams[i]->attached_pic;
+                    mmmMusicInformation->image =
+                        QImage::fromData((uchar*)pkt.data, pkt.size);
+                }
+            }
+        }
+
+        /*初始化metadata*/
+        if (mmmContex->metadata) {
+            ffmpeg::AVDictionaryEntry *tag = nullptr;
+            while ((tag = ffmpeg::av_dict_get(mmmContex->metadata,
+                "", tag, AV_DICT_IGNORE_SUFFIX))) {
+                mmmMusicInformation->metaData.emplace(
+                    QString::fromUtf8(tag->key),
+                    QByteArray(tag->value)
+                );
+            }
+        }
+
+        /*设置时长*/
+        mmmMusicInformation->duration = {
+            mmmContex->duration , AV_TIME_BASE
+        };
     }
 
     inline bool openStream() {
@@ -531,6 +572,8 @@ public:
         if (mmmIsFileOpen == false) {
             return;
         }
+        mmmAudioThread->quit();
+        mmmReadPackThread->quit();
         mmmAudioFrames.clear();
         mmmAudioThread = {};
         mmmReadPackThread = {};
@@ -564,7 +607,7 @@ bool MusicReader::open(const QString & arg) {
 
 sstd::intrusive_ptr< const MusicInformation >
 MusicReader::information() const {
-    return {};
+    return mmmPrivate->mmmMusicInformation;
 }
 
 bool MusicReader::seek(MusicNumber /*ms*/) {
@@ -642,11 +685,11 @@ namespace this_file {
         }
 
         auto varCodecContex =
-                mmmPrivate->mmmCurrentStream->contex;
+            mmmPrivate->mmmCurrentStream->contex;
 
         /*提交包*/
         auto varError =
-                ffmpeg::avcodec_send_packet(varCodecContex, varPack->data());
+            ffmpeg::avcodec_send_packet(varCodecContex, varPack->data());
         if (varError) {
             return;
         }
@@ -658,7 +701,7 @@ namespace this_file {
 
         /*解包*/
         varError = ffmpeg::avcodec_receive_frame(
-                    varCodecContex, varFrame);
+            varCodecContex, varFrame);
         if (varError) {
             return;
         }
@@ -693,8 +736,8 @@ namespace this_file {
         mmmPrivate->mmmAudioFrames.appendData(std::move(varAns));
 
         mmmPrivate->
-        mmmCurrentStream->
-        getFrame()->unref();
+            mmmCurrentStream->
+            getFrame()->unref();
     }
 
     inline void _AudioThread::appendData(sstd::intrusive_ptr< FFMPEGPack > arg) {
@@ -741,4 +784,16 @@ namespace this_file {
 //av_dict_get
 //av_dict_set
 //https://blog.csdn.net/weiyuefei/article/details/70171489
+//https://blog.csdn.net/douzhq/article/details/82932166
+
+
+
+
+
+
+
+
+
+
+
 

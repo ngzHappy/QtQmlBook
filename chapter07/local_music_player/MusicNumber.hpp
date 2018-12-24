@@ -8,15 +8,24 @@ public:
     std::int64_t num{ 0 };
     std::int64_t den{ 1'000'000 };
     inline constexpr MusicNumber changeDen(std::int64_t v) const {
-        if(v==den){
+        if (v == den) {
             return *this;
         }
-        if(v>den){
-            assert((v%den)==0);
-            return { (v/den) * num ,v };
+        if (v > den) {
+            assert((v%den) == 0);
+            return { (v / den) * num ,v };
         }
-        assert((den%v)==0);
-        return { num / (den / v ) , v };
+        assert((den%v) == 0);
+        return { num / (den / v) , v };
+    }
+    inline constexpr double getValue() const {
+        if (num == 0) {
+            return 0;
+        }
+        if (den == 0) {
+            return 0;
+        }
+        return double(num) / double(den);
     }
 private:
     SSTD_DEFINE_STATIC_CLASS(MusicNumber);

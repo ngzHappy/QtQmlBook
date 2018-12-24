@@ -7,7 +7,7 @@
 
 class _MusicReaderPrivate;
 class MusicReader :
-    public virtual sstd_intrusive_ptr_basic ,
+    public virtual sstd_intrusive_ptr_basic,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MusicReader) {
 public:
     MusicReader();

@@ -9,12 +9,13 @@ class MusicInformation :
 public:
     class StreamInfo {
     public:
-        int streamIndex{0};
-        QString streamName;
-
+        int streamIndex{ 0 };
+        sstd::map<QString, QByteArray> metaData;
     };
-    std::int64_t duration{ 0 };
+    MusicNumber duration;
     sstd::vector< StreamInfo > streamInfo;
+    sstd::map<QString, QByteArray> metaData;
+    QImage image;
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(MusicInformation);
 };
