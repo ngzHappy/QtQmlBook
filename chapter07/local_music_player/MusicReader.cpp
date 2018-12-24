@@ -387,7 +387,7 @@ public:
     ffmpeg::AVFormatContext * mmmContex{ nullptr };
     class AudioStreamCodecInfo {
         sstd::intrusive_ptr< FFMPEGFrame > frame;
-        ffmpeg::SwrContext * resample{nullptr};
+        ffmpeg::SwrContext * resample{ nullptr };
     public:
         ffmpeg::AVCodecContext * contex{ nullptr };
         inline FFMPEGFrame * getFrame() {
@@ -416,7 +416,7 @@ public:
             return resample;
         }
         inline AudioStreamCodecInfo() = default;
-        inline AudioStreamCodecInfo(ffmpeg::AVCodecContext * a) : 
+        inline AudioStreamCodecInfo(ffmpeg::AVCodecContext * a) :
             contex(a) {
         }
         inline ~AudioStreamCodecInfo() {
@@ -645,19 +645,19 @@ namespace this_file {
             return;
         }
 
-        auto varFrame = 
+        auto varFrame =
             mmmPrivate->
             mmmCurrentStream->
             getFrame()->data();
-        
+
         /*解包*/
-        varError = ffmpeg::avcodec_receive_frame(varCodecContex,varFrame);
+        varError = ffmpeg::avcodec_receive_frame(varCodecContex, varFrame);
         if (varError) {
             return;
         }
 
         auto varAns = sstd_make_intrusive_ptr< MusicFrame >();
-        varAns->data.resize( varFrame->nb_samples );
+        varAns->data.resize(varFrame->nb_samples);
 
         auto varReSampleContex =
             mmmPrivate->
@@ -683,7 +683,7 @@ namespace this_file {
             varAns->pts = varPts * varFrame->pts;
         }
 
-        mmmPrivate->mmmAudioFrames.appendData( std::move( varAns ) );
+        mmmPrivate->mmmAudioFrames.appendData(std::move(varAns));
 
     }
 

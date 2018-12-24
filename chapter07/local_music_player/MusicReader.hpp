@@ -7,9 +7,8 @@
 
 class _MusicReaderPrivate;
 class MusicReader :
-    public QObject,
+    public virtual sstd_intrusive_ptr_basic ,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MusicReader) {
-    Q_OBJECT
 public:
     MusicReader();
 public:
