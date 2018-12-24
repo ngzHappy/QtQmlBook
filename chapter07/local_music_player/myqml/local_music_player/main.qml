@@ -7,7 +7,7 @@ Rectangle {
 
     id : idRoot
     width: 640;
-    height: 48;
+    height: 64;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
     signal startPlay();
@@ -17,6 +17,7 @@ Rectangle {
 
     ColumnLayout {
        anchors.fill: parent;
+       anchors.margins: 8
 
         ProgressBar {
             id: idProgressBar
