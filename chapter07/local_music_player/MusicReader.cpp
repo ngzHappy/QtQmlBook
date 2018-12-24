@@ -31,7 +31,7 @@ extern "C" {
 #define ffmpeg
 #endif
 
-namespace {
+namespace this_file {
 
     /*ffmpeg错误临时缓冲区*/
     using av_error_tmp_buffer_type = std::array<char, 1024 * 1024>;
@@ -127,12 +127,15 @@ namespace {
     }
 
     template<typename T>
-    class Thread final : public T {
+    class Thread final :
+        public T,
+        public sstd_intrusive_ptr_basic {
         std::thread mmmThread;
         std::atomic_bool mmmIsQuit{ false };
     public:
 
-        inline Thread() {
+        template<typename ... U>
+        inline Thread(U && ... u) :T(std::forward<U>(u)...) {
             mmmThread = std::thread([this]() {
                 run_this();
             });
@@ -227,7 +230,13 @@ namespace {
     public:
 
         inline PackPool() {
-            mmmPos = mmmPacks.cbegin();
+            mmmPos = mmmPacks.cend();
+        }
+
+        inline void clear() {
+            std::unique_lock varLock{ mmmMutex };
+            mmmPacks.clear();
+            mmmPos = mmmPacks.cend();
         }
 
         inline sstd::intrusive_ptr< FFMPEGPack > getAPack() {
@@ -279,18 +288,23 @@ namespace {
 
     class _PackThread :
         public _ThreadDataBasic {
-
-        sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
-
+        PackPool mmmPacksPool;
+        _MusicReaderPrivate * const mmmPrivate;
     public:
 
         inline void run() {
-
+            call_this_once_run();
         }
 
+        _PackThread(_MusicReaderPrivate * arg) :
+            mmmPrivate(arg) {
+        }
+
+    private:
+        inline void call_this_once_run();
     protected:
         inline bool hasData() const {
-            return !mmmPacks.empty();
+            return false;
         }
 
     };
@@ -298,10 +312,15 @@ namespace {
     class _AudioThread :
         public _ThreadDataBasic {
         sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
+        _MusicReaderPrivate * const mmmPrivate;
     public:
 
         inline void run() {
 
+        }
+
+        _AudioThread(_MusicReaderPrivate * arg) :
+            mmmPrivate(arg) {
         }
 
     protected:
@@ -317,7 +336,10 @@ namespace {
 
 }/*namespace*/
 
+using namespace this_file;
+
 class _MusicReaderPrivate {
+public:
     MusicReader * const mmmParent;
     QString mmmLocalFileName;
     int mmmAudioStream{ -1 };
@@ -327,10 +349,39 @@ class _MusicReaderPrivate {
     public:
         ffmpeg::AVCodecContext * contex{ nullptr };
     };
-    sstd::map< unsigned int, AudioStreamCodecInfo > mmmAudioStreamContex;
+    AudioStreamCodecInfo * mmmCurrentStream{ nullptr };
+    sstd::map< int, AudioStreamCodecInfo > mmmAudioStreamContex;
+    sstd::intrusive_ptr< MusicInformation > mmmMusicInformation;
+    sstd::intrusive_ptr< PackThread > mmmReadPackThread;
+    sstd::intrusive_ptr< AudioThread > mmmAudioThread;
 public:
+
     inline _MusicReaderPrivate(MusicReader * argParent) :
         mmmParent(argParent) {
+    }
+
+    inline bool isStarted() const {
+        if (mmmAudioStream > -1) {
+            return true;
+        }
+        return false;
+    }
+
+    inline bool start(int varIndex) {
+        if (isStarted()) {
+            return false;
+        }
+        auto varInfo = mmmAudioStreamContex.find(varIndex);
+        if (varInfo != mmmAudioStreamContex.end()) {
+            mmmCurrentStream = &(varInfo->second);
+            mmmAudioStream = varIndex;
+            mmmAudioThread =
+                sstd_make_intrusive_ptr<AudioThread>(this);
+            mmmReadPackThread =
+                sstd_make_intrusive_ptr<PackThread>(this);
+            return true;
+        }
+        return false;
     }
 
     inline bool open(const QString & argFileName) {
@@ -348,8 +399,21 @@ public:
                 this->close();
                 return false;
             }
+            buildStreamInfo();
         }
         return mmmIsFileOpen;
+    }
+
+    inline void buildStreamInfo() {
+        mmmMusicInformation =
+            sstd_make_intrusive_ptr<MusicInformation >();
+        mmmMusicInformation->streamInfo.reserve(mmmAudioStreamContex.size());
+        for (const auto & varInfor : mmmAudioStreamContex) {
+            auto & info =
+                mmmMusicInformation->streamInfo.emplace_back();
+            info.streamIndex = varInfor.first;
+
+        }
     }
 
     inline bool openStream() {
@@ -372,7 +436,7 @@ public:
             /*记录音频解码器*/
             if (codec_contex->codec_type == AVMEDIA_TYPE_AUDIO) {
                 mmmAudioStreamContex.emplace(
-                    i,
+                    static_cast<int>(i),
                     AudioStreamCodecInfo{ codec_contex });
             }
         }
@@ -385,7 +449,14 @@ public:
         if (mmmIsFileOpen == false) {
             return;
         }
+        mmmAudioThread = {};
+        mmmReadPackThread = {};
         this_file_ffmpeg_close_file(&mmmContex);
+        mmmAudioStream = -1;
+        mmmAudioStreamContex.clear();
+        mmmLocalFileName = QString{};
+        mmmMusicInformation = {};
+        mmmCurrentStream = nullptr;
         mmmIsFileOpen = false;
     }
 
@@ -437,6 +508,22 @@ void MusicReader::start(std::int64_t) {
 sstd::intrusive_ptr< const MusicFrame > MusicReader::readNext() {
     return {};
 }
+
+namespace this_file {
+    inline void _PackThread::call_this_once_run() {
+        auto varContex = mmmPrivate->mmmContex;
+        auto varPack = this->mmmPacksPool.getAPack();
+        bool isReadNoError = (ffmpeg::av_read_frame(varContex, varPack->data()) == 0);
+        if (isReadNoError) {
+            if (varPack->data()->stream_index == mmmPrivate->mmmAudioStream) {
+
+            } else {
+                /*标记为不使用*/
+                varPack->unref();
+            }
+        }
+    }
+}/*this_file*/
 
 /**/
 
