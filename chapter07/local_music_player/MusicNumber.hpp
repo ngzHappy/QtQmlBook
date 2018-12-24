@@ -8,13 +8,15 @@ public:
     std::int64_t num{ 0 };
     std::int64_t den{ 1'000'000 };
     inline MusicNumber changeDen(std::int64_t v) const {
-        if(v>=den){
+        if(v==den){
+            return *this;
+        }
+        if(v>den){
             assert((v%den)==0);
             return { (v/den) * num ,v };
-        }else{
-            assert((den%v)==0);
-            return { num / (den / v ) , v };
         }
+        assert((den%v)==0);
+        return { num / (den / v ) , v };
     }
 private:
     SSTD_DEFINE_STATIC_CLASS(MusicNumber);
