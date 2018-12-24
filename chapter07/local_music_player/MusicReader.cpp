@@ -129,7 +129,8 @@ namespace this_file {
     template<typename T>
     class Thread final :
         public T,
-        public sstd_intrusive_ptr_basic {
+        public sstd_intrusive_ptr_basic ,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(Thread<T>) {
         std::thread mmmThread;
         std::atomic_bool mmmIsQuit{ false };
     public:
@@ -175,7 +176,7 @@ namespace this_file {
             }
         }
     private:
-        SSTD_DEFINE_STATIC_CLASS(Thread);
+        SSTD_END_DEFINE_VIRTUAL_CLASS(Thread);
     };
 
     class _ThreadDataBasic {
@@ -580,7 +581,7 @@ void MusicReader::close() {
     pppDestoryThisPrivate();
 }
 
-void MusicReader::start(std::int64_t arg) {
+void MusicReader::start(int arg) {
     mmmPrivate->start(arg);
 }
 

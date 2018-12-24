@@ -19,7 +19,7 @@ public:
     /*定位*/
     bool seek(MusicNumber);
     /*开始读取*/
-    void start(std::int64_t = 0/*音轨编号*/);
+    void start(int = 0/*音轨编号*/);
     /*获得下一段音频*/
     sstd::intrusive_ptr< const MusicFrame > readNext();
     /*关闭*/
