@@ -13,7 +13,7 @@ public:
     MusicPlayer();
     ~MusicPlayer();
 public:
-    Q_SLOT bool open(const QString &);
+    Q_SLOT bool openFile(const QUrl &);
     Q_SLOT void startPlay();
     Q_SLOT void pausePlay();
     Q_SLOT void stopPlay();

@@ -6,7 +6,7 @@ public:
     inline _MusicPlayerPrivate(MusicPlayer * arg) :
         mmmParent(arg) {
     }
-
+    sstd::intrusive_ptr< MusicReader > mmmMusicReader;
 };
 
 MusicPlayer::MusicPlayer() :
@@ -34,7 +34,19 @@ void MusicPlayer::continuePlay() {
 
 }
 
-bool MusicPlayer::open(const QString &) {
+bool MusicPlayer::openFile(const QUrl & arg) {
+    if (mmmPrivate->mmmMusicReader) {
+        sstd_log("close the file first ..."sv);
+        return false;
+    }
+    auto varReader =
+        sstd_make_intrusive_ptr<MusicReader>();
+    if (varReader->open( arg.toLocalFile() )) {
+        mmmPrivate->mmmMusicReader 
+            = std::move(varReader);
+        return true;
+    }
+    sstd_log("open file faild!"sv);
     return false;
 }
 

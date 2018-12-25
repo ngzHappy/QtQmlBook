@@ -2,6 +2,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.12
+import QtQuick.Dialogs 1.3
 import sstd.audio 1.0
 
 Rectangle {
@@ -13,6 +14,20 @@ Rectangle {
 
     MusicPlayer{
         id : idMusicPlayer
+    }
+
+    FileDialog {
+        id: idFileDialog
+        title: qsTr( "选择媒体文件" )
+        selectExisting : true
+        selectFolder : false
+        selectMultiple : false
+        onAccepted: {
+            idMusicPlayer.openFile( fileUrl );
+        }
+        onRejected: {
+        }
+        //nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
     }
 
     ColumnLayout {
@@ -59,6 +74,9 @@ Rectangle {
                 id: idOpenButton
                 text: qsTr("打开")
                 Layout.fillWidth: true
+                onClicked : {
+                    idFileDialog.visible = true
+                }
             }
 
         }
