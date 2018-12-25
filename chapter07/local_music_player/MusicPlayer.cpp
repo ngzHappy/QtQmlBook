@@ -75,6 +75,7 @@ namespace this_file {
         inline qint64 writeData(const char *, qint64) override {
             return 0;
         }
+        std::size_t audio_index_flag{ 0 };
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(AudioStream);
     };
@@ -93,9 +94,11 @@ public:
     sstd::intrusive_ptr< AudioPlayer > mmmAudioPlayer;
     sstd::intrusive_ptr< AudioStream > mmmAudioStream;
     sstd::vector< MusicFrame::AudioDataItem  > mmmLastData;
+    qreal mmmVolume{ 1 };
+    std::atomic< std::size_t > mmmAudioIndexFlag{ 0 };
     bool mmmIsEndl{ true };
-    inline void pppPlayEndl() {
-        mmmParent->pppPlayEndl();
+    inline void pppPlayEndl(std::size_t arg) {
+        mmmParent->pppPlayEndl(arg);
     }
 };
 
@@ -143,7 +146,13 @@ void MusicPlayer::startPlay(int argIndex) {
             sstd_log("close the file first"sv);
             return;
         }
+        {
+            auto varIndex = ++(mmmPrivate->mmmAudioIndexFlag);
+            mmmPrivate->mmmAudioStream->audio_index_flag = varIndex;
+        }
         mmmPrivate->mmmMusicReader->start(argIndex);
+        mmmPrivate->mmmAudioPlayer->setVolume(
+            mmmPrivate->mmmVolume);
         mmmPrivate->mmmAudioPlayer->start(
             mmmPrivate->mmmAudioStream.get());
         return;
@@ -158,20 +167,17 @@ void MusicPlayer::pausePlay() {
 }
 
 void MusicPlayer::stopPlay() {
+    ++(mmmPrivate->mmmAudioIndexFlag);
     mmmPrivate->mmmIsEndl = true;
     if (mmmPrivate->mmmAudioPlayer) {
         mmmPrivate->mmmAudioPlayer->stop();
     }
-    if (mmmPrivate->mmmAudioStream) {
-        mmmPrivate->mmmAudioStream = {};
-    }
-    if (mmmPrivate->mmmAudioPlayer) {
-        mmmPrivate->mmmAudioPlayer = {};
-    }
     if (mmmPrivate->mmmMusicReader) {
         mmmPrivate->mmmMusicReader->close();
-        mmmPrivate->mmmMusicReader = {};
     }
+    mmmPrivate->mmmAudioStream = {};
+    mmmPrivate->mmmAudioPlayer = {};
+    mmmPrivate->mmmMusicReader = {};
     mmmPrivate->mmmLastData.clear();
 }
 
@@ -198,7 +204,12 @@ bool MusicPlayer::openFile(const QUrl & arg) {
     return false;
 }
 
-void MusicPlayer::pppPlayEndl() {
+void MusicPlayer::pppPlayEndl(std::size_t arg) {
+    QTimer::singleShot(0, this, [this, varIndex = arg]() {
+        if (mmmPrivate->mmmAudioIndexFlag.load() == varIndex) {
+            this->stopPlay();
+        }
+    });
 }
 
 QString MusicPlayer::fullFileInfo() const {
@@ -270,6 +281,34 @@ QString MusicPlayer::fullFileInfo() const {
     return {};
 }
 
+qreal MusicPlayer::getVolume() const {
+    return mmmPrivate->mmmVolume;
+}
+
+void MusicPlayer::setVolume(qreal arg) {
+    if (arg > 1) {
+        arg = 1;
+        goto goto_set_value;
+    }
+    if (arg < 0) {
+        arg = 0;
+        goto goto_set_value;
+    }
+    if (std::isnan(arg)) {
+        return;
+    }
+goto_set_value:
+    if (arg == getVolume()) {
+        return;
+    }
+    if (mmmPrivate->mmmAudioPlayer) {
+        mmmPrivate->mmmAudioPlayer->setVolume(arg);
+    }
+    mmmPrivate->mmmVolume = arg;
+    volumeChanged();
+}
+
+
 static inline void registerThis() {
     qmlRegisterType<MusicPlayer>(
         "sstd.audio",
@@ -334,7 +373,7 @@ namespace this_file {
 
         if (mmmSuper->mmmLastData.empty()) {
             if (this->mmmIsEndl) {
-                mmmSuper->pppPlayEndl();
+                mmmSuper->pppPlayEndl(this->audio_index_flag);
             }
             return 0;
         }
@@ -372,7 +411,6 @@ namespace this_file {
     }
 
 }
-
 
 
 

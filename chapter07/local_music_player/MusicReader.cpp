@@ -158,9 +158,6 @@ namespace this_file {
         }
 
         inline void quit() {
-            if (mmmIsQuit.load()) {
-                return;
-            }
             mmmIsQuit.store(true);
             this->wake_up();
             if (mmmThread.joinable()) {
@@ -656,12 +653,15 @@ bool MusicReader::seek(MusicNumber /*ms*/) {
 }
 
 void MusicReader::pppDestoryThisPrivate() {
-    delete mmmPrivate;
+    auto var = mmmPrivate;
     mmmPrivate = nullptr;
+    delete var;
 }
 
 MusicReader::~MusicReader() {
-    pppDestoryThisPrivate();
+    if (mmmPrivate) {
+        pppDestoryThisPrivate();
+    }
 }
 
 void MusicReader::close() {

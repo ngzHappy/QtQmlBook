@@ -14,6 +14,7 @@ Rectangle {
 
     MusicPlayer{
         id : idMusicPlayer
+        volume : 0.1
     }
 
     FileDialog {
