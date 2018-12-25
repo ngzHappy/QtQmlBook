@@ -543,7 +543,7 @@ public:
 
         for (
             decltype(mmmContex->nb_streams) i = 0;
-            mmmContex->nb_streams;
+            i < mmmContex->nb_streams;
             ++i) {
             /*获得解码环境*/
             auto * codec_contex = mmmContex->streams[i]->codec;
@@ -572,8 +572,8 @@ public:
         if (mmmIsFileOpen == false) {
             return;
         }
-        mmmAudioThread->quit();
-        mmmReadPackThread->quit();
+        if (mmmAudioThread)mmmAudioThread->quit();
+        if (mmmReadPackThread)mmmReadPackThread->quit();
         mmmAudioFrames.clear();
         mmmAudioThread = {};
         mmmReadPackThread = {};
@@ -763,8 +763,10 @@ namespace this_file {
             varAns = std::move(mmmReadFrame.front());
             mmmReadFrame.pop_front();
         }
-        mmmPrivate->mmmReadPackThread->wake_up();
-        mmmPrivate->mmmAudioThread->wake_up();
+        if (mmmPrivate->mmmReadPackThread)
+            mmmPrivate->mmmReadPackThread->wake_up();
+        if (mmmPrivate->mmmAudioThread)
+            mmmPrivate->mmmAudioThread->wake_up();
         return std::move(varAns);
     }
 
@@ -773,8 +775,10 @@ namespace this_file {
             std::unique_lock varLock{ mmmMutex };
             mmmReadFrame.clear();
         }
-        mmmPrivate->mmmReadPackThread->wake_up();
-        mmmPrivate->mmmAudioThread->wake_up();
+        if (mmmPrivate->mmmReadPackThread)
+            mmmPrivate->mmmReadPackThread->wake_up();
+        if (mmmPrivate->mmmAudioThread)
+            mmmPrivate->mmmAudioThread->wake_up();
     }
 
 

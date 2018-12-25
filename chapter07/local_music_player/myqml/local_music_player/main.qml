@@ -9,7 +9,7 @@ Rectangle {
 
     id : idRoot
     width: 640;
-    height: 64;
+    height: 640;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
     MusicPlayer{
@@ -23,11 +23,20 @@ Rectangle {
         selectFolder : false
         selectMultiple : false
         onAccepted: {
-            idMusicPlayer.openFile( fileUrl );
+            if( !idMusicPlayer.openFile( fileUrl ) ){
+                idTextArea.text = qsTr("打开文件失败：")
+                    + fileUrl.toLocaleString() ;
+            }else{
+                idTextArea.text =
+                        idMusicPlayer.fullFileInfo();
+            }
         }
         onRejected: {
         }
         //nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
+        Component.onCompleted: {
+            idFileDialog.folder = Qt.resolvedUrl("TestAudio");
+        }
     }
 
     ColumnLayout {
@@ -80,6 +89,38 @@ Rectangle {
             }
 
         }
+
+        Flickable {
+
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+
+            id: idFlick
+
+            width: 300; height: 200;
+            contentWidth: idTextArea.paintedWidth
+            contentHeight: idTextArea.paintedHeight
+            clip: true
+
+            function ensureVisible(r) {
+                if (contentX >= r.x)
+                    contentX = r.x;
+                else if (contentX+width <= r.x+r.width)
+                    contentX = r.x+r.width-width;
+                if (contentY >= r.y)
+                    contentY = r.y;
+                else if (contentY+height <= r.y+r.height)
+                    contentY = r.y+r.height-height;
+            }
+
+            TextArea{
+                id : idTextArea
+                mouseSelectionMode :TextEdit.SelectCharacters
+                selectByMouse : true
+            }
+
+        }
+
     }
 
 

@@ -58,7 +58,8 @@ QString MusicPlayer::fullFileInfo() const {
         QTextStream varStream{ &varAns };
 
         const static auto varOP =
-            QStringLiteral(R"(---------------------------
+            QStringLiteral(R"(
+---------------------------
 )");
 
         varStream
@@ -71,7 +72,11 @@ QString MusicPlayer::fullFileInfo() const {
         varStream << endl;
 
         for (const auto & varI : varInformation->metaData) {
-            varStream << varI.first << varI.second << endl;
+            varStream 
+                << varI.first 
+                << QChar('\t') 
+                << varI.second 
+                << endl;
         }
 
         varStream << varOP;
@@ -80,19 +85,25 @@ QString MusicPlayer::fullFileInfo() const {
         varStream << endl;
         for (const auto & varI : varInformation->streamInfo) {
             varStream << u8R"(音轨编号：)"_qstr8;
+            varStream << QChar('\t');
             varStream << varI.streamIndex;
             varStream << endl;
             for (const auto & varJ : varI.metaData) {
-                varStream << varJ.first << varJ.second << endl;
+                varStream 
+                    << varJ.first 
+                    << QChar('\t')
+                    << varJ.second 
+                    << endl;
             }
             varStream << varOP;
         }
 
-        varStream << varOP;
-
         varStream << u8R"(音频封面：)"_qstr8;
         varStream << endl;
-        varStream << varInformation->image.width() << varInformation->image.height();
+        varStream 
+            << varInformation->image.width() 
+            << QChar('\t') 
+            << varInformation->image.height();
 
         return std::move(varAns);
     }

@@ -12,7 +12,7 @@ class MusicReader :
 public:
     MusicReader();
 public:
-    /*打开*/
+    /*打开文件并读取元信息*/
     bool open(const QString &);
     /*获得媒体信息*/
     sstd::intrusive_ptr< const MusicInformation > information() const;
