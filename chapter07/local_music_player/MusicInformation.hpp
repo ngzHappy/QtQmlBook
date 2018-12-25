@@ -9,8 +9,8 @@ class MusicInformation :
 public:
     class StreamInfo {
     public:
-        int streamIndex{ 0 };
-        int sample_rate{ 44100 };
+        int streamIndex{ -1 };
+        int sample_rate{ -44100 };
         sstd::map<QString, QByteArray> metaData;
     };
     MusicNumber duration;

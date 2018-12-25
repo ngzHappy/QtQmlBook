@@ -3,7 +3,7 @@ TEMPLATE = app
 CONFIG(debug,debug|release){
     TARGET = local_music_player_debug
 }else{
-    TARGET = local_music_player_qmltype
+    TARGET = local_music_player
 }
 
 #define out put dir
