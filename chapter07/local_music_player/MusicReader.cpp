@@ -251,10 +251,10 @@ namespace this_file {
         inline void unref() {
             ffmpeg::av_frame_unref(mmmFrame);
         }
-        inline  ffmpeg::AVFrame  * get() const {
+        inline ffmpeg::AVFrame  * get() const {
             return mmmFrame;
         }
-        inline  ffmpeg::AVFrame  * data() const {
+        inline ffmpeg::AVFrame  * data() const {
             return this->get();
         }
         inline operator ffmpeg::AVFrame *() const {
@@ -273,9 +273,13 @@ namespace this_file {
         using packes_type = sstd::list< sstd::intrusive_ptr< FFMPEGPack > >;
         packes_type mmmPacks;
         packes_type::const_iterator mmmPos;
+        constexpr const static int mmmPackConstSize{ 128 };
     public:
 
         inline PackPool() {
+            for (int i = 0; i < mmmPackConstSize;++i ) {
+                mmmPacks.emplace_back(sstd_new<FFMPEGPack>());
+            }
             mmmPos = mmmPacks.cend();
         }
 
@@ -309,7 +313,7 @@ namespace this_file {
                 }
             } while (false);
 
-            if (varPackSize < 256/*constexpr*/) {
+            if (varPackSize < mmmPackConstSize/*constexpr*/) {
                 std::unique_lock varLock{ mmmMutex };
                 FFMPEGPack * varAns;
                 for (auto varI = 0; varI < 8; ++varI) {
@@ -320,6 +324,7 @@ namespace this_file {
                 return varAns;
             }
 
+            std::this_thread::sleep_for(1us);
             return{};
 
         }
@@ -730,7 +735,7 @@ namespace this_file {
                     ->mmmAudioThread
                     ->appendData(std::move(varPack));
             } else {
-                /*标记为不使用*/
+                /*mark not used...*/
                 varPack->unref();
             }
         }
@@ -756,6 +761,17 @@ namespace this_file {
             return;
         }
 
+        /*包删除器*/
+        class PackLock {
+            FFMPEGPack * const pack;
+        public:
+            inline PackLock(FFMPEGPack * arg):pack(arg) {
+            }
+            inline ~PackLock() {
+                pack->unref();
+            }
+        } varPackLock{ varPack.get() };
+
         auto varCodecContex =
             mmmPrivate->mmmCurrentStream->contex;
 
@@ -767,10 +783,22 @@ namespace this_file {
         }
 
         /*准备Frame*/
-        auto varFrame =
+        auto varFFMPEGFrame =
             mmmPrivate->
             mmmCurrentStream->
-            getFrame()->data();
+            getFrame() ;
+        auto varFrame = varFFMPEGFrame->data();
+
+        /*帧删除器*/
+        class FrameLock {
+            FFMPEGFrame * const frame;
+        public:
+            inline FrameLock(FFMPEGFrame * arg) : frame(arg) {
+            }
+            inline ~FrameLock() {
+                frame->unref();
+            }
+        } varFrameLock{ varFFMPEGFrame  };
 
         /*解包*/
         varError = ffmpeg::avcodec_receive_frame(
@@ -790,6 +818,7 @@ namespace this_file {
         std::uint8_t * varDataRaw[1]{ reinterpret_cast<
             std::uint8_t *>(varAns->data.data()) };
 
+        /*重采样*/
         ffmpeg::swr_convert(
             varReSampleContex,
             varDataRaw,
@@ -808,9 +837,6 @@ namespace this_file {
 
         mmmPrivate->mmmAudioFrames.appendData(std::move(varAns));
 
-        mmmPrivate->
-            mmmCurrentStream->
-            getFrame()->unref();
     }
 
     inline void _AudioThread::appendData(sstd::intrusive_ptr< FFMPEGPack > arg) {
