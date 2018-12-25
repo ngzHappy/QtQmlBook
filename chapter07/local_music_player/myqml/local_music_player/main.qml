@@ -2,6 +2,7 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.12
+import sstd.audio 1.0
 
 Rectangle {
 
@@ -10,10 +11,9 @@ Rectangle {
     height: 64;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
-    signal startPlay();
-    signal stopPlay();
-    signal pausePlay();
-    signal continuePlay();
+    MusicPlayer{
+        id : idMusicPlayer
+    }
 
     ColumnLayout {
        anchors.fill: parent;
@@ -31,28 +31,28 @@ Rectangle {
                 id: idStartButton
                 text: qsTr("开始")
                 Layout.fillWidth: true
-                onClicked: idRoot.startPlay();
+                onClicked: idMusicPlayer.startPlay();
             }
 
             Button {
                 id: idPauseButton
                 text: qsTr("暂停")
                 Layout.fillWidth: true
-                onClicked: idRoot.pausePlay();
+                onClicked: idMusicPlayer.pausePlay();
             }
 
             Button {
                 id: idContinueButton
                 text: qsTr("继续")
                 Layout.fillWidth: true
-                onClicked: idRoot.continuePlay();
+                onClicked: idMusicPlayer.continuePlay();
             }
 
             Button {
                 id: idStopButton
                 text: qsTr("停止")
                 Layout.fillWidth: true
-                onClicked: idRoot.stopPlay();
+                onClicked: idMusicPlayer.stopPlay();
             }
 
             Button {

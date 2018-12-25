@@ -34,7 +34,17 @@ void MusicPlayer::continuePlay() {
 
 }
 
+bool MusicPlayer::open(const QString &) {
+    return false;
+}
 
+static inline void registerThis() {
+    qmlRegisterType<MusicPlayer>(
+        "sstd.audio",
+        1, 0,
+        "MusicPlayer");
+}
+Q_COREAPP_STARTUP_FUNCTION(registerThis)
 
 
 

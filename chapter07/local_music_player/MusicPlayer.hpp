@@ -2,6 +2,7 @@
 
 #include <sstd_qt_and_qml_library.hpp>
 #include "MusicReader.hpp"
+ 
 
 class _MusicPlayerPrivate;
 class MusicPlayer :
@@ -12,6 +13,7 @@ public:
     MusicPlayer();
     ~MusicPlayer();
 public:
+    Q_SLOT bool open(const QString &);
     Q_SLOT void startPlay();
     Q_SLOT void pausePlay();
     Q_SLOT void stopPlay();
