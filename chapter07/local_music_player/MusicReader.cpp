@@ -416,6 +416,7 @@ public:
     class AudioStreamCodecInfo {
         sstd::intrusive_ptr< FFMPEGFrame > frame;
         ffmpeg::SwrContext * resample{ nullptr };
+        SSTD_DELETE_COPY_ASSIGN(AudioStreamCodecInfo);
     public:
         ffmpeg::AVCodecContext * contex{ nullptr };
         inline FFMPEGFrame * getFrame() {
@@ -451,6 +452,7 @@ public:
             if (resample) {
                 ffmpeg::swr_free(&resample);
             }
+            ffmpeg::avcodec_free_context(&contex);
         }
     };
     AudioStreamCodecInfo * mmmCurrentStream{ nullptr };
@@ -584,21 +586,29 @@ public:
             i < mmmContex->nb_streams;
             ++i) {
             /*获得解码环境*/
-            auto * codec_contex = mmmContex->streams[i]->codec;
+            auto * codec_contex = ffmpeg::avcodec_alloc_context3(nullptr);;
+            if (ffmpeg::avcodec_parameters_to_context(
+                codec_contex,
+                mmmContex->streams[i]->codecpar)<0) {
+                ffmpeg::avcodec_free_context(&codec_contex);
+                continue;
+            }
             /*找到解码器*/
             auto varCodec = ffmpeg::avcodec_find_decoder(codec_contex->codec_id);
             if (varCodec == nullptr) {
+                ffmpeg::avcodec_free_context(&codec_contex);
                 continue;
             }
             /*在当前环境打开解码器*/
             if (ffmpeg::avcodec_open2(codec_contex, varCodec, nullptr) < 0) {
+                ffmpeg::avcodec_free_context(&codec_contex);
                 continue;
             }
             /*记录音频解码器*/
             if (codec_contex->codec_type == AVMEDIA_TYPE_AUDIO) {
                 mmmAudioStreamContex.emplace(
                     static_cast<int>(i),
-                    AudioStreamCodecInfo{ codec_contex });
+                    codec_contex);
             }
         }
 
@@ -645,13 +655,13 @@ public:
             return false;
         }
 
-        static_assert(AV_TIME_BASE==1'000'000);
+        static_assert(AV_TIME_BASE == 1'000'000);
         arg = arg.changeDen(AV_TIME_BASE);
-        return (ffmpeg::av_seek_frame( 
+        return (ffmpeg::av_seek_frame(
             mmmContex,
-            -1, 
-            arg.num , 
-            AVSEEK_FLAG_ANY))>=0;
+            -1,
+            arg.num,
+            AVSEEK_FLAG_ANY)) >= 0;
 
     }
 
