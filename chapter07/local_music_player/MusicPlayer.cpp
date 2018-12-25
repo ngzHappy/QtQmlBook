@@ -63,8 +63,6 @@ namespace this_file {
         public QIODevice,
         public sstd_intrusive_ptr_basic,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(AudioStream){
-        _MusicPlayerPrivate *mmmSuper;
-        bool mmmIsEndl{ false };
     public:
         inline void construct(_MusicPlayerPrivate * arg) {
             mmmSuper = arg;
@@ -76,6 +74,9 @@ namespace this_file {
             return 0;
         }
         std::size_t audio_index_flag{ 0 };
+    private:
+        _MusicPlayerPrivate *mmmSuper;
+        bool mmmIsEndl{ false };
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(AudioStream);
     };
@@ -194,7 +195,7 @@ void MusicPlayer::stopPlay() {
     mmmPrivate->mmmAudioPlayer = {};
     mmmPrivate->mmmMusicReader = {};
     mmmPrivate->mmmLastData.clear();
-    mmmPrivate->mmmFileName = {};
+    mmmPrivate->mmmFileName = QUrl{};
     mmmPrivate->mmmDuration = 0.1;
     mmmPrivate->mmmStartTime = 0;
 }
@@ -431,7 +432,8 @@ namespace this_file {
         }
 
         {
-            auto varOutMax = maxSize / varItemSize;
+            auto varOutMax = maxSize /
+                    static_cast<qint64>(varItemSize);
             while (mmmSuper->mmmLastData.size() < varOutMax) {
                 auto varNext = mmmSuper->mmmMusicReader->readNext();
                 if (varNext && (!varNext->data.empty())) {
