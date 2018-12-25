@@ -5,16 +5,15 @@ import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.3
 import sstd.audio 1.0
 
-Rectangle {
+Pane {
 
-    id : idRoot
-    width: 640;
+    id : idRoot;
+    width: 640 ;
     height: 640;
-    color: Qt.rgba(0.8,0.8,0.8,1);
 
     MusicPlayer{
-        id : idMusicPlayer  ;
-        volume : 0.1        ;
+        id : idMusicPlayer       ;
+        volume : idVolume.value  ;
     }
 
     FileDialog {
@@ -147,12 +146,21 @@ Rectangle {
                 mouseSelectionMode :TextEdit.SelectCharacters
                 selectByMouse : true
                 readOnly: true
+                width: parent.width
             }
 
         }
 
     }
 
+    Slider{
+        id : idVolume
+        orientation   : Qt.Vertical
+        height        : parent.height *0.75 ;
+        anchors.right : parent.right;
+        anchors.verticalCenter:  parent.verticalCenter
+        value: 0.5
+    }
 
 }/*~Rectangle*/
 
