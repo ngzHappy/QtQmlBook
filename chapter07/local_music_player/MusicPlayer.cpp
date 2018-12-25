@@ -3,6 +3,11 @@
 
 namespace this_file {
 
+    template<typename T>
+    constexpr const static T defaultBufferSize = 1024 * 1024 * 10;
+    template<typename T>
+    constexpr const static T maxBufferSize = 1024 * 1024 * 20;
+
     /*构造QAudioFormat*/
     inline QAudioFormat getAudioFormat(int rate = 44100) {
         /****************************************************************/
@@ -89,6 +94,7 @@ class _MusicPlayerPrivate {
 public:
     inline _MusicPlayerPrivate(MusicPlayer * arg) :
         mmmParent(arg) {
+        mmmLastData.reserve(defaultBufferSize<std::size_t>);
     }
     MusicPlayer * const mmmParent;
     QUrl mmmFileName;
@@ -198,6 +204,7 @@ void MusicPlayer::stopPlay() {
     mmmPrivate->mmmFileName = QUrl{};
     mmmPrivate->mmmDuration = 0.1;
     mmmPrivate->mmmStartTime = 0;
+    mmmPrivate->mmmLastData.reserve(defaultBufferSize<std::size_t>);
 }
 
 void MusicPlayer::continuePlay() {
@@ -405,7 +412,7 @@ namespace this_file {
         }
 
         /*调整缓冲区大小，释放无用内存*/
-        if (mmmSuper->mmmLastData.capacity() > (1024 * 1024)) {
+        if (mmmSuper->mmmLastData.capacity() > (maxBufferSize<std::size_t>)) {
             mmmSuper->mmmLastData.shrink_to_fit();
         }
 

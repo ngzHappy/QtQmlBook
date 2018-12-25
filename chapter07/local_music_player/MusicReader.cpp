@@ -425,7 +425,7 @@ public:
             frame = sstd_make_intrusive_ptr<FFMPEGFrame>();
             return frame.get();
         }
-        inline ffmpeg::SwrContext * getReSample() {
+        inline ffmpeg::SwrContext * & getReSample() {
             if (resample) {
                 return resample;
             }
@@ -836,7 +836,7 @@ namespace this_file {
         auto varAns = sstd_make_intrusive_ptr< MusicFrame >();
         varAns->data.resize(varFrame->nb_samples);
 
-        auto varReSampleContex =
+        auto & varReSampleContex =
             mmmPrivate->
             mmmCurrentStream
             ->getReSample();
@@ -852,6 +852,7 @@ namespace this_file {
             const_cast<const uint8_t **>(varFrame->extended_data),
             varFrame->nb_samples
         );
+        ffmpeg::swr_free(&varReSampleContex);
 
         {/*设置PTS*/
             MusicNumber varPts{
