@@ -34,6 +34,11 @@ namespace {
         inline InitFFMPEG() {
             ffmpeg::av_register_all();
             ffmpeg::avformat_network_init();
+#if defined(_DEBUG)
+#else
+            /*完全关闭ffmpeg日志系统*/
+            ffmpeg::av_log_set_level(AV_LOG_QUIET);
+#endif
         }
     };
 }/*namespace*/

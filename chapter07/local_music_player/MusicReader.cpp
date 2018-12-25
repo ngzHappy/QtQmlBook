@@ -277,7 +277,7 @@ namespace this_file {
     public:
 
         inline PackPool() {
-            for (int i = 0; i < mmmPackConstSize;++i ) {
+            for (int i = 0; i < mmmPackConstSize; ++i) {
                 mmmPacks.emplace_back(sstd_new<FFMPEGPack>());
             }
             mmmPos = mmmPacks.cend();
@@ -633,6 +633,28 @@ public:
         this->close();
     }
 
+    inline bool seek(MusicNumber arg) {
+
+        if (mmmIsFileOpen == false) {
+            sstd_log("file not open can not seek!"sv);
+            return false;
+        }
+
+        if (isStarted()) {
+            sstd_log("can not seek file have started!"sv);
+            return false;
+        }
+
+        static_assert(AV_TIME_BASE==1'000'000);
+        arg = arg.changeDen(AV_TIME_BASE);
+        return (ffmpeg::av_seek_frame( 
+            mmmContex,
+            -1, 
+            arg.num , 
+            AVSEEK_FLAG_ANY))>=0;
+
+    }
+
 private:
     SSTD_DEFINE_STATIC_CLASS(_MusicReaderPrivate);
 };
@@ -653,7 +675,10 @@ MusicReader::information() const {
     return mmmPrivate->mmmMusicInformation;
 }
 
-bool MusicReader::seek(MusicNumber /*ms*/) {
+bool MusicReader::seek(MusicNumber arg) {
+    if (mmmPrivate) {
+        return mmmPrivate->seek(arg);
+    }
     return false;
 }
 
@@ -753,6 +778,7 @@ namespace this_file {
             mmmPacks.pop_front();
         } while (false);
 
+        /*pack 为空表示读到最后一个包*/
         if (!varPack) {
             if (mmmPrivate->mmmIsFileEndl.load()) {
                 mmmPrivate->mmmAudioFrames.appendData(getEndlMusicFrame());
@@ -765,7 +791,7 @@ namespace this_file {
         class PackLock {
             FFMPEGPack * const pack;
         public:
-            inline PackLock(FFMPEGPack * arg):pack(arg) {
+            inline PackLock(FFMPEGPack * arg) :pack(arg) {
             }
             inline ~PackLock() {
                 pack->unref();
@@ -786,7 +812,7 @@ namespace this_file {
         auto varFFMPEGFrame =
             mmmPrivate->
             mmmCurrentStream->
-            getFrame() ;
+            getFrame();
         auto varFrame = varFFMPEGFrame->data();
 
         /*帧删除器*/
@@ -798,7 +824,7 @@ namespace this_file {
             inline ~FrameLock() {
                 frame->unref();
             }
-        } varFrameLock{ varFFMPEGFrame  };
+        } varFrameLock{ varFFMPEGFrame };
 
         /*解包*/
         varError = ffmpeg::avcodec_receive_frame(

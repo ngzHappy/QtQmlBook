@@ -90,11 +90,14 @@ public:
         mmmParent(arg) {
     }
     MusicPlayer * const mmmParent;
+    QUrl mmmFileName;
     sstd::intrusive_ptr< MusicReader > mmmMusicReader;
     sstd::intrusive_ptr< AudioPlayer > mmmAudioPlayer;
     sstd::intrusive_ptr< AudioStream > mmmAudioStream;
     sstd::vector< MusicFrame::AudioDataItem  > mmmLastData;
     qreal mmmVolume{ 1 };
+    qreal mmmDuration{ 0.1 };
+    qreal mmmStartTime{ 0 };
     std::atomic< std::size_t > mmmAudioIndexFlag{ 0 };
     bool mmmIsEndl{ true };
     inline void pppPlayEndl(std::size_t arg) {
@@ -151,8 +154,20 @@ void MusicPlayer::startPlay(int argIndex) {
             mmmPrivate->mmmAudioStream->audio_index_flag = varIndex;
         }
         mmmPrivate->mmmMusicReader->start(argIndex);
+        {/*利用第一帧更新数据*/
+            auto varFirstData =
+                mmmPrivate->mmmMusicReader->readNext();
+            if (varFirstData) {
+                mmmPrivate->mmmStartTime =
+                    varFirstData->pts.getValue();
+                mmmPrivate->mmmLastData =
+                    std::move(varFirstData->data);
+            }
+        }
+        /*设置音量*/
         mmmPrivate->mmmAudioPlayer->setVolume(
             mmmPrivate->mmmVolume);
+        /*开始播放*/
         mmmPrivate->mmmAudioPlayer->start(
             mmmPrivate->mmmAudioStream.get());
         return;
@@ -179,6 +194,9 @@ void MusicPlayer::stopPlay() {
     mmmPrivate->mmmAudioPlayer = {};
     mmmPrivate->mmmMusicReader = {};
     mmmPrivate->mmmLastData.clear();
+    mmmPrivate->mmmFileName = {};
+    mmmPrivate->mmmDuration = 0.1;
+    mmmPrivate->mmmStartTime = 0;
 }
 
 void MusicPlayer::continuePlay() {
@@ -198,6 +216,12 @@ bool MusicPlayer::openFile(const QUrl & arg) {
         mmmPrivate->mmmMusicReader
             = std::move(varReader);
         mmmPrivate->mmmIsEndl = false;
+        mmmPrivate->mmmDuration =
+            mmmPrivate
+            ->mmmMusicReader
+            ->information()
+            ->duration.getValue();
+        durationChanged();
         return true;
     }
     sstd_log("open file faild!"sv);
@@ -210,6 +234,23 @@ void MusicPlayer::pppPlayEndl(std::size_t arg) {
             this->stopPlay();
         }
     });
+}
+
+MusicPlayer::StatePlayer MusicPlayer::getState() const {
+    if (mmmPrivate->mmmMusicReader) {
+        if (mmmPrivate->mmmAudioPlayer) {
+            switch (mmmPrivate->mmmAudioPlayer->state()) {
+            case QAudio::ActiveState:return StatePlayer::Play;
+            case QAudio::SuspendedState:return StatePlayer::Pause;
+            case QAudio::StoppedState:return StatePlayer::Close;
+            case QAudio::IdleState:return StatePlayer::Play;
+            case QAudio::InterruptedState:return StatePlayer::Pause;
+            }
+        } else {
+            return StatePlayer::Open;
+        }
+    }
+    return StatePlayer::Close;
 }
 
 QString MusicPlayer::fullFileInfo() const {
@@ -281,6 +322,10 @@ QString MusicPlayer::fullFileInfo() const {
     return {};
 }
 
+qreal MusicPlayer::getDuration() const {
+    return mmmPrivate->mmmDuration;
+}
+
 qreal MusicPlayer::getVolume() const {
     return mmmPrivate->mmmVolume;
 }
@@ -306,6 +351,40 @@ goto_set_value:
     }
     mmmPrivate->mmmVolume = arg;
     volumeChanged();
+}
+
+void MusicPlayer::seekPlay(qint64/*ms*/ arg) {
+
+    /*opened but not play...*/
+    if (mmmPrivate->mmmMusicReader) {
+        if (!mmmPrivate->mmmAudioPlayer) {
+            const auto varUS =
+                static_cast<std::int64_t>(arg) * 1000;
+            if (mmmPrivate->mmmMusicReader->seek({ varUS , 1'000'000 })) {
+                mmmPrivate->mmmStartTime = arg / 1000.0;
+            }
+            return;
+        }
+    } else {
+        sstd_log("can not seek file not opened!"sv);
+        return;
+    }
+
+    sstd_log("can not seek file when playing !"sv);
+
+}
+
+double MusicPlayer::currentTime() {
+    if (mmmPrivate->mmmMusicReader) {
+        if (!mmmPrivate->mmmAudioPlayer) {
+            return mmmPrivate->mmmStartTime;
+        } else {
+            return
+                mmmPrivate->mmmStartTime +
+                mmmPrivate->mmmAudioPlayer->processedUSecs() / 1'000'000.0;
+        }
+    }
+    return 0;
 }
 
 
@@ -411,7 +490,6 @@ namespace this_file {
     }
 
 }
-
 
 
 

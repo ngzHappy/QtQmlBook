@@ -13,8 +13,8 @@ Rectangle {
     color: Qt.rgba(0.8,0.8,0.8,1);
 
     MusicPlayer{
-        id : idMusicPlayer
-        volume : 0.1
+        id : idMusicPlayer  ;
+        volume : 0.1        ;
     }
 
     FileDialog {
@@ -40,14 +40,42 @@ Rectangle {
         }
     }
 
+    Timer{
+        interval : 1000;
+        repeat : true;
+        triggeredOnStart : false;
+        running: true;
+        onTriggered: {
+            if(idMusicPlayer.getState()===MusicPlayer.Play){
+                idProgressBar.value =
+                    idMusicPlayer.currentTime()/idMusicPlayer.duration;
+            }else if(idMusicPlayer.getState()===MusicPlayer.Close){
+                idProgressBar.value=0;
+            }
+        }
+    }
+
     ColumnLayout {
        anchors.fill: parent;
        anchors.margins: 8
 
         ProgressBar {
             id: idProgressBar
-            value: 0.5
+            value: 0.0
             Layout.fillWidth: true
+            MouseArea{
+                anchors.fill: parent ;
+                acceptedButtons: Qt.LeftButton
+                onClicked: {
+                    if(idMusicPlayer.getState()===MusicPlayer.Open){
+                        idProgressBar.value =  mouse.x / width ;
+                        idMusicPlayer.seekPlay(
+                                    1000*
+                                    idProgressBar.value*
+                                    idMusicPlayer.duration );
+                    }
+                }
+            }
         }
 
         RowLayout {
