@@ -181,6 +181,10 @@ namespace this_file {
                         return this->needRunNext();
                     });
                     varHasData = this->hasData() && this->needRunNext();
+                    if (this->logical_quit()) {
+                        mmmIsQuit.store(true);
+                        return;
+                    }
                 }
                 if (varHasData) {
                     this->run();
@@ -346,12 +350,14 @@ namespace this_file {
     protected:
         inline bool hasData() const;
         inline bool needRunNext() const;
+        inline bool logical_quit();
     };
 
     class _AudioThread :
         public _ThreadDataBasic {
         sstd::list< sstd::intrusive_ptr< FFMPEGPack > > mmmPacks;
         _MusicReaderPrivate * const mmmPrivate;
+        std::atomic<bool> mmmAudioThreadQuit{ false };
     public:
 
         inline void run() {
@@ -369,6 +375,7 @@ namespace this_file {
     protected:
         inline bool hasData() const;
         inline bool needRunNext() const;
+        inline bool logical_quit();
     };
 
     using PackThread = Thread<_PackThread>;
@@ -617,6 +624,7 @@ public:
         mmmMusicInformation = {};
         this_file_ffmpeg_close_file(&mmmContex);
         mmmCurrentStream = nullptr;
+        mmmIsFileEndl.store(false);
     }
 
     inline ~_MusicReaderPrivate() {
@@ -676,6 +684,14 @@ sstd::intrusive_ptr< const MusicFrame > MusicReader::readNext() {
 
 namespace this_file {
 
+    inline bool _PackThread::logical_quit() {
+        return mmmPrivate->mmmIsFileEndl.load();
+    }
+
+    inline bool _AudioThread::logical_quit() {
+        return mmmAudioThreadQuit.load();
+    }
+
     inline bool _PackThread::hasData() const {
         return mmmPrivate->mmmIsFileEndl.load() == false;
     }
@@ -729,8 +745,9 @@ namespace this_file {
         } while (false);
 
         if (!varPack) {
-            if ( mmmPrivate->mmmIsFileEndl.load() ) {
-                mmmPrivate->mmmAudioFrames.appendData( getEndlMusicFrame() );
+            if (mmmPrivate->mmmIsFileEndl.load()) {
+                mmmPrivate->mmmAudioFrames.appendData(getEndlMusicFrame());
+                this->mmmAudioThreadQuit.store(true);
             }
             return;
         }

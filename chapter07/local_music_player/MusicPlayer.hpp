@@ -21,6 +21,8 @@ public:
     Q_SLOT QString fullFileInfo() const;
 private:
     _MusicPlayerPrivate * const mmmPrivate;
+    void pppPlayEndl();
+    friend class ::_MusicPlayerPrivate;
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(MusicPlayer);
 };

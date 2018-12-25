@@ -64,6 +64,7 @@ namespace this_file {
         public sstd_intrusive_ptr_basic,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(AudioStream){
         _MusicPlayerPrivate *mmmSuper;
+        bool mmmIsEndl{ false };
     public:
         inline void construct(_MusicPlayerPrivate * arg) {
             mmmSuper = arg;
@@ -83,16 +84,19 @@ namespace this_file {
 using namespace this_file;
 
 class _MusicPlayerPrivate {
-    MusicPlayer * const mmmParent;
 public:
     inline _MusicPlayerPrivate(MusicPlayer * arg) :
         mmmParent(arg) {
     }
+    MusicPlayer * const mmmParent;
     sstd::intrusive_ptr< MusicReader > mmmMusicReader;
     sstd::intrusive_ptr< AudioPlayer > mmmAudioPlayer;
     sstd::intrusive_ptr< AudioStream > mmmAudioStream;
     sstd::vector< MusicFrame::AudioDataItem  > mmmLastData;
     bool mmmIsEndl{ true };
+    inline void pppPlayEndl() {
+        mmmParent->pppPlayEndl();
+    }
 };
 
 MusicPlayer::MusicPlayer() :
@@ -192,6 +196,9 @@ bool MusicPlayer::openFile(const QUrl & arg) {
     }
     sstd_log("open file faild!"sv);
     return false;
+}
+
+void MusicPlayer::pppPlayEndl() {
 }
 
 QString MusicPlayer::fullFileInfo() const {
@@ -315,12 +322,20 @@ namespace this_file {
                         varNext->data.begin(),
                         varNext->data.end());
                 } else {
+                    if (varNext) {
+                        if (varNext->isEndl) {
+                            this->mmmIsEndl = true;
+                        }
+                    }
                     break;
                 }
             }
         }
 
         if (mmmSuper->mmmLastData.empty()) {
+            if (this->mmmIsEndl) {
+                mmmSuper->pppPlayEndl();
+            }
             return 0;
         }
 
@@ -345,8 +360,13 @@ namespace this_file {
     }
 
     inline qint64 AudioStream::bytesAvailable() const {
+        using item_type = MusicFrame::AudioDataItem;
+        constexpr const auto varItemSize = static_cast<qint64>(sizeof(item_type));
         if (mmmSuper->mmmIsEndl) {
-            return 0;
+            auto varAns = static_cast<qint64>(
+                mmmSuper->mmmLastData.size())*
+                varItemSize;
+            return varAns;
         }
         return (1024 * 1024);
     }
