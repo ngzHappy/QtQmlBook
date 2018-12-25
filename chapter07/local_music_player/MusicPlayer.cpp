@@ -63,12 +63,12 @@ QString MusicPlayer::fullFileInfo() const {
 )");
 
         varStream
-            << u8R"(时长：)"_qstr8
+            << QStringLiteral(R"(时长：)")
             << varInformation->duration.getValue();
 
         varStream << varOP;
 
-        varStream << u8R"(音频信息：)"_qstr8;
+        varStream << QStringLiteral(R"(音频信息：)");
         varStream << endl;
 
         for (const auto & varI : varInformation->metaData) {
@@ -81,10 +81,10 @@ QString MusicPlayer::fullFileInfo() const {
 
         varStream << varOP;
 
-        varStream << u8R"(音轨信息：)"_qstr8;
+        varStream << QStringLiteral(R"(音轨信息：)");
         varStream << endl;
         for (const auto & varI : varInformation->streamInfo) {
-            varStream << u8R"(音轨编号：)"_qstr8;
+            varStream << QStringLiteral(R"(音轨编号：)");
             varStream << QChar('\t');
             varStream << varI.streamIndex;
             varStream << endl;
@@ -98,11 +98,13 @@ QString MusicPlayer::fullFileInfo() const {
             varStream << varOP;
         }
 
-        varStream << u8R"(音频封面：)"_qstr8;
+        varStream << QStringLiteral(R"(音频封面：)");
         varStream << endl;
         varStream
+            << QStringLiteral(R"(w:)")
             << varInformation->image.width()
             << QChar('\t')
+            << QStringLiteral(R"(h:)")
             << varInformation->image.height();
 
         return std::move(varAns);
