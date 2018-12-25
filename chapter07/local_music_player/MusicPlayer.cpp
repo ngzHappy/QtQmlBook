@@ -41,13 +41,62 @@ bool MusicPlayer::openFile(const QUrl & arg) {
     }
     auto varReader =
         sstd_make_intrusive_ptr<MusicReader>();
-    if (varReader->open( arg.toLocalFile() )) {
-        mmmPrivate->mmmMusicReader 
+    if (varReader->open(arg.toLocalFile())) {
+        mmmPrivate->mmmMusicReader
             = std::move(varReader);
         return true;
     }
     sstd_log("open file faild!"sv);
     return false;
+}
+
+QString MusicPlayer::fullFileInfo() const {
+    if (mmmPrivate->mmmMusicReader) {
+        auto varInformation =
+            mmmPrivate->mmmMusicReader->information();
+        QString varAns;
+        QTextStream varStream{ &varAns };
+
+        const static auto varOP =
+            QStringLiteral(R"(---------------------------
+)");
+
+        varStream
+            << u8R"(时长：)"_qstr8
+            << varInformation->duration.getValue();
+
+        varStream << varOP;
+
+        varStream << u8R"(音频信息：)"_qstr8;
+        varStream << endl;
+
+        for (const auto & varI : varInformation->metaData) {
+            varStream << varI.first << varI.second << endl;
+        }
+
+        varStream << varOP;
+
+        varStream << u8R"(音轨信息：)"_qstr8;
+        varStream << endl;
+        for (const auto & varI : varInformation->streamInfo) {
+            varStream << u8R"(音轨编号：)"_qstr8;
+            varStream << varI.streamIndex;
+            varStream << endl;
+            for (const auto & varJ : varI.metaData) {
+                varStream << varJ.first << varJ.second << endl;
+            }
+            varStream << varOP;
+        }
+
+        varStream << varOP;
+
+        varStream << u8R"(音频封面：)"_qstr8;
+        varStream << endl;
+        varStream << varInformation->image.width() << varInformation->image.height();
+
+        return std::move(varAns);
+    }
+    return {};
 }
 
 static inline void registerThis() {

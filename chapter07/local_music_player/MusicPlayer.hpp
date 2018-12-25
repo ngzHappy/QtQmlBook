@@ -18,6 +18,7 @@ public:
     Q_SLOT void pausePlay();
     Q_SLOT void stopPlay();
     Q_SLOT void continuePlay();
+    Q_SLOT QString fullFileInfo() const;
 private:
     _MusicPlayerPrivate * const mmmPrivate;
 private:
