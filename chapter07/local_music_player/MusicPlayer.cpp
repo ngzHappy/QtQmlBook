@@ -47,7 +47,8 @@ namespace this_file {
     /*音频输出设备*/
     class AudioPlayer :
         public QAudioOutput,
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(AudioPlayer) {
+        public sstd_intrusive_ptr_basic,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(AudioPlayer) {
     public:
         inline AudioPlayer(int rate) :
             QAudioOutput(
@@ -60,7 +61,8 @@ namespace this_file {
 
     class AudioStream :
         public QIODevice,
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(AudioStream){
+        public sstd_intrusive_ptr_basic,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(AudioStream){
         _MusicPlayerPrivate *mmmSuper;
     public:
         inline void construct(_MusicPlayerPrivate * arg) {
@@ -69,12 +71,16 @@ namespace this_file {
         }
         inline qint64 readData(char *data, qint64 maxSize) override;
         inline qint64 bytesAvailable() const override;
+        inline qint64 writeData(const char *, qint64) override {
+            return 0;
+        }
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(AudioStream);
     };
 
 }/*this_file*/
 
+using namespace this_file;
 
 class _MusicPlayerPrivate {
     MusicPlayer * const mmmParent;
@@ -83,6 +89,8 @@ public:
         mmmParent(arg) {
     }
     sstd::intrusive_ptr< MusicReader > mmmMusicReader;
+    sstd::intrusive_ptr< AudioPlayer > mmmAudioPlayer;
+    sstd::intrusive_ptr< AudioStream > mmmAudioStream;
     sstd::vector< MusicFrame::AudioDataItem  > mmmLastData;
     bool mmmIsEndl{ true };
 };
@@ -93,23 +101,80 @@ MusicPlayer::MusicPlayer() :
 }
 
 MusicPlayer::~MusicPlayer() {
+    this->stopPlay();
     delete mmmPrivate;
 }
 
-void MusicPlayer::startPlay() {
-
+void MusicPlayer::startPlay(int argIndex) {
+    int varSampleRate{ -44100 };
+    if (mmmPrivate->mmmMusicReader) {
+        auto varInfor =
+            mmmPrivate->mmmMusicReader->information();
+        if (varInfor->streamInfo.empty()) {
+            sstd_log("threre is no audio info!"sv);
+            return;
+        }
+        if (argIndex < 0) {
+            auto varPos = varInfor->streamInfo.begin();
+            argIndex = varPos->streamIndex;
+            varSampleRate = varPos->sample_rate;
+        } else {
+            for (const auto & varI : varInfor->streamInfo) {
+                if (varI.streamIndex == argIndex) {
+                    varSampleRate = varI.sample_rate;
+                }
+            }
+        }
+        if (varSampleRate < 0) {
+            sstd_log("can not find audio stream index"sv);
+            return;
+        }
+        if (!mmmPrivate->mmmAudioPlayer) {
+            mmmPrivate->mmmAudioPlayer =
+                sstd_make_intrusive_ptr<AudioPlayer>(varSampleRate);
+            mmmPrivate->mmmAudioStream =
+                sstd_make_intrusive_ptr<AudioStream>();
+            mmmPrivate->mmmAudioStream->construct(mmmPrivate);
+        } else {
+            sstd_log("close the file first"sv);
+            return;
+        }
+        mmmPrivate->mmmMusicReader->start(argIndex);
+        mmmPrivate->mmmAudioPlayer->start(
+            mmmPrivate->mmmAudioStream.get());
+        return;
+    }
+    sstd_log("open the file first ..."sv);
 }
 
 void MusicPlayer::pausePlay() {
-
+    if (mmmPrivate->mmmAudioPlayer) {
+        mmmPrivate->mmmAudioPlayer->suspend();
+    }
 }
 
 void MusicPlayer::stopPlay() {
-
+    mmmPrivate->mmmIsEndl = true;
+    if (mmmPrivate->mmmAudioPlayer) {
+        mmmPrivate->mmmAudioPlayer->stop();
+    }
+    if (mmmPrivate->mmmAudioStream) {
+        mmmPrivate->mmmAudioStream = {};
+    }
+    if (mmmPrivate->mmmAudioPlayer) {
+        mmmPrivate->mmmAudioPlayer = {};
+    }
+    if (mmmPrivate->mmmMusicReader) {
+        mmmPrivate->mmmMusicReader->close();
+        mmmPrivate->mmmMusicReader = {};
+    }
+    mmmPrivate->mmmLastData.clear();
 }
 
 void MusicPlayer::continuePlay() {
-
+    if (mmmPrivate->mmmAudioPlayer) {
+        mmmPrivate->mmmAudioPlayer->resume();
+    }
 }
 
 bool MusicPlayer::openFile(const QUrl & arg) {
@@ -143,7 +208,8 @@ QString MusicPlayer::fullFileInfo() const {
 
         varStream
             << QStringLiteral(R"(时长：)")
-            << varInformation->duration.getValue();
+            << varInformation->duration.getValue()
+            << QStringLiteral(R"(秒)");
 
         varStream << varOP;
 
@@ -163,9 +229,15 @@ QString MusicPlayer::fullFileInfo() const {
         varStream << QStringLiteral(R"(音轨信息：)");
         varStream << endl;
         for (const auto & varI : varInformation->streamInfo) {
+            varStream << endl;
+            varStream << endl;
             varStream << QStringLiteral(R"(音轨编号：)");
             varStream << QChar('\t');
             varStream << varI.streamIndex;
+            varStream << endl;
+            varStream << QStringLiteral(R"(采样频率：)");
+            varStream << QChar('\t');
+            varStream << varI.sample_rate;
             varStream << endl;
             for (const auto & varJ : varI.metaData) {
                 varStream
@@ -198,8 +270,6 @@ static inline void registerThis() {
         "MusicPlayer");
 }
 Q_COREAPP_STARTUP_FUNCTION(registerThis)
-
-
 
 namespace this_file {
 

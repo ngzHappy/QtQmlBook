@@ -55,7 +55,7 @@ Rectangle {
                 id: idStartButton
                 text: qsTr("开始")
                 Layout.fillWidth: true
-                onClicked: idMusicPlayer.startPlay();
+                onClicked: idMusicPlayer.startPlay(-1);
             }
 
             Button {
@@ -117,6 +117,7 @@ Rectangle {
                 id : idTextArea
                 mouseSelectionMode :TextEdit.SelectCharacters
                 selectByMouse : true
+                readOnly: true
             }
 
         }

@@ -511,8 +511,10 @@ public:
             auto & info =
                 mmmMusicInformation->streamInfo.emplace_back();
             info.streamIndex = varInfor.first;
+            auto varStream = mmmContex->streams[varInfor.first];
+            info.sample_rate = varStream->codecpar->sample_rate;
             ffmpeg::AVDictionaryEntry *tag = nullptr;
-            auto varCodecMeta = mmmContex->streams[varInfor.first]->metadata;
+            auto varCodecMeta = varStream->metadata;
             if (varCodecMeta) {
                 while ((tag = ffmpeg::av_dict_get(varCodecMeta,
                     "", tag, AV_DICT_IGNORE_SUFFIX))) {
