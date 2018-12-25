@@ -434,7 +434,9 @@ namespace this_file {
         {
             auto varOutMax = maxSize /
                     static_cast<qint64>(varItemSize);
-            while (mmmSuper->mmmLastData.size() < varOutMax) {
+            while (
+                static_cast<qint64>(mmmSuper->mmmLastData.size())
+                < varOutMax) {
                 auto varNext = mmmSuper->mmmMusicReader->readNext();
                 if (varNext && (!varNext->data.empty())) {
                     mmmSuper->mmmLastData.insert(
