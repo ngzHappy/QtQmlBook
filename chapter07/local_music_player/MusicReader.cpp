@@ -370,6 +370,10 @@ namespace this_file {
     public:
         inline AudioFrames(_MusicReaderPrivate * arg) :mmmPrivate(arg) {
         }
+        inline bool hasData() {
+            std::shared_lock varLock{ mmmMutex };
+            return !mmmReadFrame.empty();
+        }
         inline bool needData() {
             std::shared_lock varLock{ mmmMutex };
             return mmmReadFrame.size() < 16;
@@ -462,6 +466,17 @@ public:
                 sstd_make_intrusive_ptr<AudioThread>(this);
             mmmReadPackThread =
                 sstd_make_intrusive_ptr<PackThread>(this);
+            
+            {
+                /*wait for the first data ...*/
+                std::int_fast32_t varWaitCount = 1024;
+                while (--varWaitCount > 0) {
+                    if (mmmAudioFrames.hasData()) {
+                        return true;
+                    }
+                }
+            }
+
             return true;
         }
         return false;
@@ -572,8 +587,12 @@ public:
         if (mmmIsFileOpen == false) {
             return;
         }
-        if (mmmAudioThread)mmmAudioThread->quit();
-        if (mmmReadPackThread)mmmReadPackThread->quit();
+        if (mmmAudioThread) {
+            mmmAudioThread->quit();
+        }
+        if (mmmReadPackThread) {
+            mmmReadPackThread->quit();
+        }
         mmmAudioFrames.clear();
         mmmAudioThread = {};
         mmmReadPackThread = {};
@@ -694,6 +713,7 @@ namespace this_file {
             return;
         }
 
+        /*准备Frame*/
         auto varFrame =
             mmmPrivate->
             mmmCurrentStream->
@@ -725,7 +745,7 @@ namespace this_file {
             varFrame->nb_samples
         );
 
-        {
+        {/*设置PTS*/
             MusicNumber varPts{
                 varCodecContex->time_base.num,
                 varCodecContex->time_base.den
@@ -763,10 +783,12 @@ namespace this_file {
             varAns = std::move(mmmReadFrame.front());
             mmmReadFrame.pop_front();
         }
-        if (mmmPrivate->mmmReadPackThread)
+        if (mmmPrivate->mmmReadPackThread) {
             mmmPrivate->mmmReadPackThread->wake_up();
-        if (mmmPrivate->mmmAudioThread)
+        }
+        if (mmmPrivate->mmmAudioThread) {
             mmmPrivate->mmmAudioThread->wake_up();
+        }
         return std::move(varAns);
     }
 
