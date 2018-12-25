@@ -40,6 +40,17 @@ namespace this_file {
         return varAns;
     }
 
+    inline sstd::intrusive_ptr<MusicFrame> _getEndlMusicFrame() {
+        auto varAns = sstd_make_intrusive_ptr<MusicFrame>();
+        varAns->isEndl = true;
+        return std::move(varAns);
+    }
+
+    inline sstd::intrusive_ptr<MusicFrame> getEndlMusicFrame() {
+        const static auto varAns = _getEndlMusicFrame();
+        return varAns;
+    }
+
     class callpack_this_file_ffmpge_open_file :
         public sstd_function_stack,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(callpack_this_file_ffmpge_open_file) {
@@ -304,7 +315,7 @@ namespace this_file {
                     varAns = sstd_new<FFMPEGPack>();
                     mmmPacks.emplace_back(varAns);
                 }
-                mmmPos = --mmmPacks.end();
+                mmmPos = mmmPacks.begin();
                 return varAns;
             }
 
@@ -392,7 +403,6 @@ public:
     MusicReader * const mmmParent;
     QString mmmLocalFileName;
     int mmmAudioStream{ -1 };
-    bool mmmIsFileOpen{ false };
     ffmpeg::AVFormatContext * mmmContex{ nullptr };
     class AudioStreamCodecInfo {
         sstd::intrusive_ptr< FFMPEGFrame > frame;
@@ -440,6 +450,8 @@ public:
     sstd::intrusive_ptr< PackThread > mmmReadPackThread;
     sstd::intrusive_ptr< AudioThread > mmmAudioThread;
     AudioFrames mmmAudioFrames;
+    bool mmmIsFileOpen{ false };
+    std::atomic< bool > mmmIsFileEndl{ false };
 public:
 
     inline _MusicReaderPrivate(MusicReader * argParent) :
@@ -466,7 +478,7 @@ public:
                 sstd_make_intrusive_ptr<AudioThread>(this);
             mmmReadPackThread =
                 sstd_make_intrusive_ptr<PackThread>(this);
-            
+
             {
                 /*wait for the first data ...*/
                 std::int_fast32_t varWaitCount = 1024;
@@ -589,6 +601,7 @@ public:
         if (mmmIsFileOpen == false) {
             return;
         }
+        mmmIsFileOpen = false;
         if (mmmAudioThread) {
             mmmAudioThread->quit();
         }
@@ -604,7 +617,6 @@ public:
         mmmMusicInformation = {};
         this_file_ffmpeg_close_file(&mmmContex);
         mmmCurrentStream = nullptr;
-        mmmIsFileOpen = false;
     }
 
     inline ~_MusicReaderPrivate() {
@@ -653,13 +665,19 @@ void MusicReader::start(int arg) {
 }
 
 sstd::intrusive_ptr< const MusicFrame > MusicReader::readNext() {
+    if (mmmPrivate == nullptr) {
+        return {};
+    }
+    if (mmmPrivate->mmmIsFileOpen == false) {
+        return {};
+    }
     return this->mmmPrivate->mmmAudioFrames.popData();
 }
 
 namespace this_file {
 
     inline bool _PackThread::hasData() const {
-        return true;
+        return mmmPrivate->mmmIsFileEndl.load() == false;
     }
 
     inline bool _PackThread::needRunNext() const {
@@ -680,7 +698,12 @@ namespace this_file {
         if (!varPack) {
             return;
         }
-        bool isReadNoError = (ffmpeg::av_read_frame(varContex, varPack->data()) == 0);
+        const auto varErrorCode = ffmpeg::av_read_frame(varContex, varPack->data());
+        if (varErrorCode == AVERROR_EOF) {
+            mmmPrivate->mmmIsFileEndl.store(true);
+            return;
+        }
+        bool isReadNoError = (varErrorCode == 0);
         if (isReadNoError) {
             if (varPack->data()->stream_index == mmmPrivate->mmmAudioStream) {
                 mmmPrivate
@@ -696,13 +719,20 @@ namespace this_file {
     inline void _AudioThread::call_this_once_run() {
 
         sstd::intrusive_ptr< FFMPEGPack > varPack;
-        {
+        do {
             std::unique_lock varLock{ this->getMutex() };
             if (this->mmmPacks.empty()) {
-                return;
+                break;
             }
             varPack = std::move(mmmPacks.front());
             mmmPacks.pop_front();
+        } while (false);
+
+        if (!varPack) {
+            if ( mmmPrivate->mmmIsFileEndl.load() ) {
+                mmmPrivate->mmmAudioFrames.appendData( getEndlMusicFrame() );
+            }
+            return;
         }
 
         auto varCodecContex =
@@ -777,14 +807,14 @@ namespace this_file {
 
     inline sstd::intrusive_ptr< const MusicFrame > AudioFrames::popData() {
         sstd::intrusive_ptr< const MusicFrame > varAns;
-        {
+        do {
             std::unique_lock varLock{ mmmMutex };
             if (mmmReadFrame.empty()) {
-                return std::move(varAns);
+                break;
             }
             varAns = std::move(mmmReadFrame.front());
             mmmReadFrame.pop_front();
-        }
+        } while (false);
         if (mmmPrivate->mmmReadPackThread) {
             mmmPrivate->mmmReadPackThread->wake_up();
         }
@@ -799,10 +829,12 @@ namespace this_file {
             std::unique_lock varLock{ mmmMutex };
             mmmReadFrame.clear();
         }
-        if (mmmPrivate->mmmReadPackThread)
+        if (mmmPrivate->mmmReadPackThread) {
             mmmPrivate->mmmReadPackThread->wake_up();
-        if (mmmPrivate->mmmAudioThread)
+        }
+        if (mmmPrivate->mmmAudioThread) {
             mmmPrivate->mmmAudioThread->wake_up();
+        }
     }
 
 
