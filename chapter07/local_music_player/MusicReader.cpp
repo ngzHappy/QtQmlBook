@@ -815,54 +815,57 @@ namespace this_file {
             getFrame();
         auto varFrame = varFFMPEGFrame->data();
 
-        /*帧删除器*/
-        class FrameLock {
-            FFMPEGFrame * const frame;
-        public:
-            inline FrameLock(FFMPEGFrame * arg) : frame(arg) {
+        while (true) {
+
+            /*帧删除器*/
+            class FrameLock {
+                FFMPEGFrame * const frame;
+            public:
+                inline FrameLock(FFMPEGFrame * arg) : frame(arg) {
+                }
+                inline ~FrameLock() {
+                    frame->unref();
+                }
+            } varFrameLock{ varFFMPEGFrame };
+
+            /*解包*/
+            varError = ffmpeg::avcodec_receive_frame(
+                varCodecContex, varFrame);
+            if (varError) {
+                return;
             }
-            inline ~FrameLock() {
-                frame->unref();
+
+            auto varAns = sstd_make_intrusive_ptr< MusicFrame >();
+            varAns->data.resize(varFrame->nb_samples);
+
+            auto & varReSampleContex =
+                mmmPrivate->
+                mmmCurrentStream
+                ->getReSample();
+
+            std::uint8_t * varDataRaw[1]{ reinterpret_cast<
+                std::uint8_t *>(varAns->data.data()) };
+
+            /*重采样*/
+            ffmpeg::swr_convert(
+                varReSampleContex,
+                varDataRaw,
+                varFrame->nb_samples,
+                const_cast<const uint8_t **>(varFrame->extended_data),
+                varFrame->nb_samples
+            );
+            ffmpeg::swr_free(&varReSampleContex);
+
+            {/*设置PTS*/
+                MusicNumber varPts{
+                    varCodecContex->time_base.num,
+                    varCodecContex->time_base.den
+                };
+                varAns->pts = varPts * varFrame->pts;
             }
-        } varFrameLock{ varFFMPEGFrame };
 
-        /*解包*/
-        varError = ffmpeg::avcodec_receive_frame(
-            varCodecContex, varFrame);
-        if (varError) {
-            return;
+            mmmPrivate->mmmAudioFrames.appendData(std::move(varAns));
         }
-
-        auto varAns = sstd_make_intrusive_ptr< MusicFrame >();
-        varAns->data.resize(varFrame->nb_samples);
-
-        auto & varReSampleContex =
-            mmmPrivate->
-            mmmCurrentStream
-            ->getReSample();
-
-        std::uint8_t * varDataRaw[1]{ reinterpret_cast<
-            std::uint8_t *>(varAns->data.data()) };
-
-        /*重采样*/
-        ffmpeg::swr_convert(
-            varReSampleContex,
-            varDataRaw,
-            varFrame->nb_samples,
-            const_cast<const uint8_t **>(varFrame->extended_data),
-            varFrame->nb_samples
-        );
-        ffmpeg::swr_free(&varReSampleContex);
-
-        {/*设置PTS*/
-            MusicNumber varPts{
-                varCodecContex->time_base.num,
-                varCodecContex->time_base.den
-            };
-            varAns->pts = varPts * varFrame->pts;
-        }
-
-        mmmPrivate->mmmAudioFrames.appendData(std::move(varAns));
 
     }
 
