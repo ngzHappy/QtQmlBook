@@ -717,9 +717,13 @@ namespace this_file {
         const auto varErrorCode = ffmpeg::av_read_frame(varContex, varPack->data());
         if (varErrorCode == AVERROR_EOF) {
             mmmPrivate->mmmIsFileEndl.store(true);
+            mmmPrivate
+                ->mmmAudioThread
+                ->appendData({});
             return;
         }
-        bool isReadNoError = (varErrorCode == 0);
+
+        const bool isReadNoError = (varErrorCode == 0);
         if (isReadNoError) {
             if (varPack->data()->stream_index == mmmPrivate->mmmAudioStream) {
                 mmmPrivate
@@ -738,7 +742,7 @@ namespace this_file {
         do {
             std::unique_lock varLock{ this->getMutex() };
             if (this->mmmPacks.empty()) {
-                break;
+                return;
             }
             varPack = std::move(mmmPacks.front());
             mmmPacks.pop_front();
