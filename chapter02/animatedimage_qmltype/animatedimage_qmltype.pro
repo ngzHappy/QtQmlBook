@@ -36,7 +36,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/image_qmltype/main.qml
+QMLSOURCES += $$PWD/myqml/animatedimage_qmltype/main.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
