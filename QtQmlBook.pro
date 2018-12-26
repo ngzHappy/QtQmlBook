@@ -67,10 +67,6 @@ app_animatedimage_qmltype.file = $$PWD/chapter02/animatedimage_qmltype/animatedi
 app_animatedimage_qmltype.depends = sstd_qt_and_qml_library
 SUBDIRS += app_animatedimage_qmltype
 
-app_sprite_qmltype.file = $$PWD/chapter02/sprite_qmltype/sprite_qmltype.pro
-app_sprite_qmltype.depends = sstd_qt_and_qml_library
-SUBDIRS += app_sprite_qmltype
-
 app_animatedsprite_qmltype.file = $$PWD/chapter02/animatedsprite_qmltype/animatedsprite_qmltype.pro
 app_animatedsprite_qmltype.depends = sstd_qt_and_qml_library
 SUBDIRS += app_animatedsprite_qmltype

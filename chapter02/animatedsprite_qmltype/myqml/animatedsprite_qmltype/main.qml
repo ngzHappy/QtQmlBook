@@ -19,6 +19,7 @@ Rectangle {
         interpolate: false
         loops : AnimatedSprite.Infinite
         source: "bear_brown.png"
+        antialiasing: true
     }
 
     AnimatedSprite {
@@ -31,6 +32,7 @@ Rectangle {
         loops :s1.loops
         source: "bear_eyes_brown.png"
         onSourceChanged: { currentFrame = s1.currentFrame }
+        antialiasing: true
     }
 
     AnimatedSprite {
@@ -43,6 +45,7 @@ Rectangle {
         loops :s1.loops
         source: "bear_fur_orange.png"
         onSourceChanged: { currentFrame = s1.currentFrame }
+        antialiasing: true
     }
 
     Timer{
