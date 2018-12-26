@@ -111,3 +111,9 @@ app_firstcanvas.file = $$PWD/chapter08/firstcanvas/firstcanvas.pro
 app_firstcanvas.depends = sstd_qt_and_qml_library
 SUBDIRS += app_firstcanvas
 
+##############09##############
+
+##############10##############
+
+
+
