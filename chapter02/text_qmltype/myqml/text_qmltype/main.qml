@@ -106,7 +106,7 @@ void main() {
             antialiasing: true
             text: "Hello World!"
             font.pointSize: 64
-            color: Qt.rgba( 0.0 , 0.0, 0.0 , 1.0 )
+            color: Qt.rgba( 0.0358 , 0.0358, 0.0358 , 1.0 )
             layer.enabled: true
             layer.samplerName: "source"
             layer.effect: ShaderEffect {
@@ -124,12 +124,18 @@ void main() {
     vec4 varColor =
         texture(source, qt_TexCoord0) * qt_Opacity;
 
-    if(varColor.a > 0.75 ){
+    bool varJudge = ( ( varColor.x + varColor.y + varColor.z )>0.075 ) ;
+    if( !varJudge ){
+        fragColor = vec4( 0 , 0 , 0 , 0 );
+        return;
+    }
+
+    if( varColor.a > 0.75 ){
         fragColor.r = clamp( 1.0 - qt_TexCoord0.x * qt_TexCoord0.x , 0 , 1 ) ;
         fragColor.g = clamp( 1.0 - qt_TexCoord0.y * qt_TexCoord0.y , 0 , 1 );
         fragColor.b = 0.0                  ;
         fragColor.a = 1                    ;
-    } else if(varColor.a > 0.5 ) {
+    } else if( varColor.a > 0.5 ) {
         fragColor.r = clamp( 1.0 - qt_TexCoord0.x * qt_TexCoord0.x , 0 , 1 ) ;
         fragColor.g = clamp( 1.0 - qt_TexCoord0.y                  , 0 , 1 );
         fragColor.b = 0.0                  ;
