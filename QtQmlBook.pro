@@ -71,6 +71,10 @@ app_sprite_qmltype.file = $$PWD/chapter02/sprite_qmltype/sprite_qmltype.pro
 app_sprite_qmltype.depends = sstd_qt_and_qml_library
 SUBDIRS += app_sprite_qmltype
 
+app_animatedsprite_qmltype.file = $$PWD/chapter02/animatedsprite_qmltype/animatedsprite_qmltype.pro
+app_animatedsprite_qmltype.depends = sstd_qt_and_qml_library
+SUBDIRS += app_animatedsprite_qmltype
+
 app_borderimage_qmltype.file = $$PWD/chapter02/borderimage_qmltype/borderimage_qmltype.pro
 app_borderimage_qmltypee.depends = sstd_qt_and_qml_library
 SUBDIRS += app_borderimage_qmltype
@@ -82,6 +86,7 @@ SUBDIRS += app_rectangle_qmltype
 app_text_qmltype.file = $$PWD/chapter02/text_qmltype/text_qmltype.pro
 app_text_qmltype.depends = sstd_qt_and_qml_library
 SUBDIRS += app_text_qmltype
+
 ##############03##############
 
 ##############04##############
