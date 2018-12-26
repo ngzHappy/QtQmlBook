@@ -16,6 +16,17 @@ Pane {
         volume : idVolume.value  ;
     }
 
+    function openPlayerFile(fileUrl){
+        idUrl.text = fileUrl ;
+        if( !idMusicPlayer.openFile( fileUrl ) ){
+            idTextArea.text = qsTr("打开文件失败：")
+                + fileUrl  ;
+        }else{
+            idTextArea.text =
+                    idMusicPlayer.fullFileInfo();
+        }
+    }
+
     FileDialog {
         id: idFileDialog
         title: qsTr( "选择媒体文件" )
@@ -23,13 +34,7 @@ Pane {
         selectFolder : false
         selectMultiple : false
         onAccepted: {
-            if( !idMusicPlayer.openFile( fileUrl ) ){
-                idTextArea.text = qsTr("打开文件失败：")
-                    + fileUrl.toLocaleString() ;
-            }else{
-                idTextArea.text =
-                        idMusicPlayer.fullFileInfo();
-            }
+            openPlayerFile( fileUrl.toLocaleString() );
         }
         onRejected: {
         }
@@ -77,6 +82,12 @@ Pane {
             }
         }
 
+        TextField{
+            Layout.fillWidth: true
+            id : idUrl
+
+        }
+
         RowLayout {
 
             Button {
@@ -112,7 +123,11 @@ Pane {
                 text: qsTr("打开")
                 Layout.fillWidth: true
                 onClicked : {
-                    idFileDialog.visible = true
+                    if( idUrl.text.length < 1  ){
+                        idFileDialog.visible = true
+                    } else{
+                        idRoot.openPlayerFile( idUrl.text );
+                    }
                 }
             }
 

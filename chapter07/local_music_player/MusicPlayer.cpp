@@ -69,10 +69,7 @@ namespace this_file {
         public sstd_intrusive_ptr_basic,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(AudioStream){
     public:
-        inline void construct(_MusicPlayerPrivate * arg) {
-            mmmSuper = arg;
-            this->open(QIODevice::ReadOnly);
-        }
+        inline void construct(_MusicPlayerPrivate * arg);
         inline qint64 readData(char *data, qint64 maxSize) override;
         inline qint64 bytesAvailable() const override;
         inline qint64 writeData(const char *, qint64) override {
@@ -96,8 +93,10 @@ public:
         mmmParent(arg) {
         mmmLastData.reserve(defaultBufferSize<std::size_t>);
     }
+    inline ~_MusicPlayerPrivate() {
+    }
     MusicPlayer * const mmmParent;
-    QUrl mmmFileName;
+    QString mmmFileName;
     sstd::intrusive_ptr< MusicReader > mmmMusicReader;
     sstd::intrusive_ptr< AudioPlayer > mmmAudioPlayer;
     sstd::intrusive_ptr< AudioStream > mmmAudioStream;
@@ -201,7 +200,7 @@ void MusicPlayer::stopPlay() {
     mmmPrivate->mmmAudioPlayer = {};
     mmmPrivate->mmmMusicReader = {};
     mmmPrivate->mmmLastData.clear();
-    mmmPrivate->mmmFileName = QUrl{};
+    mmmPrivate->mmmFileName = QString{};
     mmmPrivate->mmmDuration = 0.1;
     mmmPrivate->mmmStartTime = 0;
     mmmPrivate->mmmLastData.reserve(defaultBufferSize<std::size_t>);
@@ -213,14 +212,28 @@ void MusicPlayer::continuePlay() {
     }
 }
 
-bool MusicPlayer::openFile(const QUrl & arg) {
+/* remove file:// or file:///  */
+inline static QString reformatFileName(QString arg) {
+    arg.replace(QChar('\\'), QChar('/'));
+    if (std::as_const(arg).startsWith(QStringLiteral("file:///"))) {
+        if (std::as_const(arg).count(QStringLiteral(":/")) > 1) {
+            arg.remove(0, 8);
+        } else {
+            arg.remove(0, 7);
+        }
+    }
+    return std::move(arg);
+}
+
+bool MusicPlayer::openFile(const QString & arg) {
     if (mmmPrivate->mmmMusicReader) {
         sstd_log("close the file first ..."sv);
         return false;
     }
     auto varReader =
         sstd_make_intrusive_ptr<MusicReader>();
-    if (varReader->open(arg.toLocalFile())) {
+    const QString varFileName = reformatFileName(arg);
+    if (varReader->open(varFileName)) {
         mmmPrivate->mmmMusicReader
             = std::move(varReader);
         mmmPrivate->mmmIsEndl = false;
@@ -229,6 +242,7 @@ bool MusicPlayer::openFile(const QUrl & arg) {
             ->mmmMusicReader
             ->information()
             ->duration.getValue();
+        mmmPrivate->mmmFileName = varFileName;
         durationChanged();
         return true;
     }
@@ -407,6 +421,7 @@ Q_COREAPP_STARTUP_FUNCTION(registerThis)
 namespace this_file {
 
     inline qint64 AudioStream::readData(char *data, qint64 maxSize) {
+
         if (!mmmSuper->mmmMusicReader) {
             return 0;
         }
@@ -440,7 +455,7 @@ namespace this_file {
 
         {
             auto varOutMax = maxSize /
-                    static_cast<qint64>(varItemSize);
+                static_cast<qint64>(varItemSize);
             while (
                 static_cast<qint64>(mmmSuper->mmmLastData.size())
                 < varOutMax) {
@@ -498,6 +513,11 @@ namespace this_file {
             return varAns;
         }
         return (1024 * 1024);
+    }
+
+    inline void AudioStream::construct(_MusicPlayerPrivate * arg) {
+        mmmSuper = arg;
+        this->open(QIODevice::ReadOnly);
     }
 
 }

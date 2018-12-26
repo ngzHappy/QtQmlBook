@@ -25,7 +25,7 @@ public:
     MusicPlayer();
     ~MusicPlayer();
 public:
-    Q_SLOT bool openFile(const QUrl &);
+    Q_SLOT bool openFile(const QString &);
     Q_SLOT void seekPlay(qint64/*ms*/);
     Q_SLOT void startPlay(int/*index*/ = -1);
     Q_SLOT void pausePlay();
