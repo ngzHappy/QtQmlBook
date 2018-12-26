@@ -74,11 +74,7 @@ void main() {
         fragColor.b = 0.0            ;
         fragColor.a = 1              ;
     } else {
-        fragColor = vec4( 
-            0 , 
-            0 , 
-            0 , 
-            0 );
+        fragColor = vec4( 0 , 0 , 0 , 0 );
     }
 
 }
@@ -110,8 +106,9 @@ void main() {
             antialiasing: true
             text: "Hello World!"
             font.pointSize: 64
-            color: "red"
+            color: Qt.rgba( 0.0 , 0.0, 0.0 , 1.0 )
             layer.enabled: true
+            layer.samplerName: "source"
             layer.effect: ShaderEffect {
                 fragmentShader: "
 /*片段着色器*/
@@ -127,11 +124,21 @@ void main() {
     vec4 varColor =
         texture(source, qt_TexCoord0) * qt_Opacity;
 
-    if(varColor.a > 0.25 ){
+    if(varColor.a > 0.75 ){
         fragColor.r = clamp( 1.0 - qt_TexCoord0.x * qt_TexCoord0.x , 0 , 1 ) ;
         fragColor.g = clamp( 1.0 - qt_TexCoord0.y * qt_TexCoord0.y , 0 , 1 );
         fragColor.b = 0.0                  ;
         fragColor.a = 1                    ;
+    } else if(varColor.a > 0.5 ) {
+        fragColor.r = clamp( 1.0 - qt_TexCoord0.x * qt_TexCoord0.x , 0 , 1 ) ;
+        fragColor.g = clamp( 1.0 - qt_TexCoord0.y                  , 0 , 1 );
+        fragColor.b = 0.0                  ;
+        fragColor.a = 0.95                 ;
+    } else if( varColor.a > 0.25 ) {
+        fragColor.r = clamp( 1.0 - qt_TexCoord0.x                  , 0 , 1 ) ;
+        fragColor.g = clamp( 1.0 - qt_TexCoord0.y                  , 0 , 1 );
+        fragColor.b = 0.0                  ;
+        fragColor.a = 0.90                 ;
     } else {
         fragColor = vec4( 0 , 0 , 0 , 0 );
     }
@@ -152,7 +159,7 @@ uniform mat4 qt_Matrix;
 
 void main() {
     qt_TexCoord0 = qt_MultiTexCoord0;
-    gl_Position = qt_Matrix * qt_Vertex;
+    gl_Position =  qt_Matrix * qt_Vertex;
 }
 
 "
