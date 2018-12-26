@@ -6,14 +6,14 @@ Rectangle {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+    color: Qt.rgba(0.5,0.5,0.5,1);
 
     Column{
 
         Text{
             id : idText
             text: "Hello World!"
-            font.pointSize: 24
+            font.pointSize: 64
             color: "red"
         }
 
@@ -46,6 +46,7 @@ Rectangle {
                 hideSource  : false
                 samples     : 4
                 format      : ShaderEffectSource.RGBA
+                visible     : false
             }
 
             ShaderEffect{
@@ -67,13 +68,17 @@ void main() {
     vec4 varColor =
         texture(source, qt_TexCoord0) * qt_Opacity;
 
-    if(varColor.a > 0.1 ){
+    if(varColor.a > 0.25 ){
         fragColor.r = qt_TexCoord0.x ;
         fragColor.g = qt_TexCoord0.y ;
         fragColor.b = 0.0            ;
-        fragColor.a = varColor.a     ;
+        fragColor.a = 1              ;
     } else {
-        fragColor = vec4( 0 , 0 , 0 , 0 );
+        fragColor = vec4( 
+            0 , 
+            0 , 
+            0 , 
+            0 );
     }
 
 }
@@ -102,6 +107,7 @@ void main() {
 
         Text{
             id : idTextLayer
+            antialiasing: true
             text: "Hello World!"
             font.pointSize: 64
             color: "red"
@@ -122,10 +128,10 @@ void main() {
         texture(source, qt_TexCoord0) * qt_Opacity;
 
     if(varColor.a > 0.25 ){
-        fragColor.r = 1.0 - qt_TexCoord0.x ;
-        fragColor.g = 1.0 - qt_TexCoord0.y ;
+        fragColor.r = clamp( 1.0 - qt_TexCoord0.x * qt_TexCoord0.x , 0 , 1 ) ;
+        fragColor.g = clamp( 1.0 - qt_TexCoord0.y * qt_TexCoord0.y , 0 , 1 );
         fragColor.b = 0.0                  ;
-        fragColor.a = varColor.a           ;
+        fragColor.a = 1                    ;
     } else {
         fragColor = vec4( 0 , 0 , 0 , 0 );
     }
