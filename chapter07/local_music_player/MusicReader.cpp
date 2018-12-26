@@ -85,11 +85,16 @@ namespace this_file {
         varThread.call([varCallPack]() {
             auto varError = -1;
 
+            AVDictionary* opts = nullptr;
+            ffmpeg::av_dict_set(&opts,  "timeout", "3000000", 0)/*udp,http*/;
+            ffmpeg::av_dict_set(&opts, "stimeout", "3000000", 0)/*rtsp*/;
             varError = ffmpeg::avformat_open_input(
                 &(varCallPack->contex),
                 varCallPack->getLocalFileName().constData(),
                 nullptr,
-                nullptr);
+                &opts);
+
+            ffmpeg::av_dict_free(&opts);
 
             if ((varError != 0) || (varCallPack->contex == nullptr)) {
                 auto & varTmp = getStringTmpBuffer();
