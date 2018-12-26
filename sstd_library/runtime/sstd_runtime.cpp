@@ -456,3 +456,25 @@ _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const sstd_type_index & 
 _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *) {
 }
 
+#if defined(_DEBUG)
+#include <cstdlib>
+static inline void static_test() {
+
+    /*this function will never called*/
+
+    class AClass {
+    private:
+        SSTD_DEFINE_STATIC_CLASS(AClass);
+    };
+
+    class BClass : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(BClass) {
+    private:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(BClass);
+    };
+
+    assert(false);
+    ::atexit(&static_test);
+
+}
+#endif
+
