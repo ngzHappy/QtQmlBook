@@ -32,7 +32,7 @@ namespace {
         friend class ::_FFMPEGOpenCloseThreadPrivate;
     private:
         inline InitFFMPEG() {
-            ffmpeg::av_register_all();
+            /* ffmpeg::av_register_all(); */
             ffmpeg::avformat_network_init();
 #if defined(_DEBUG)
 #else
@@ -44,13 +44,12 @@ namespace {
 }/*namespace*/
 
 class _FFMPEGOpenCloseThreadPrivate {
-    static InitFFMPEG mmmInit;
 public:
     std::thread mmmThread;
-    std::atomic<bool> mmmQuit{ false };
-    std::mutex mmmMutex;
     sstd::list< std::shared_ptr<_FFMPEGOpenCloseThreadCaller> > mmmFunctions;
     std::condition_variable mmmWait;
+    std::mutex mmmMutex;
+    std::atomic<bool> mmmQuit{ false };
 
     inline _FFMPEGOpenCloseThreadPrivate() {
         mmmThread = std::thread([this]() {
@@ -104,7 +103,9 @@ public:
             mmmThread.join();
         }
     }
-
+private:
+    static InitFFMPEG mmmInit;
+private:
     SSTD_DEFINE_STATIC_CLASS(_FFMPEGOpenCloseThreadPrivate);
 };
 
