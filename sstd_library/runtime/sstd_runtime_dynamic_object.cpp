@@ -12,7 +12,7 @@ namespace {
         NamedData() : data_index(nullptr, &nullptr_id) {
         }
     private:
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     class RuntimeData :
@@ -52,7 +52,7 @@ namespace {
         }
 
     private:
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
 }/**/

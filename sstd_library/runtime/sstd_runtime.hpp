@@ -32,7 +32,7 @@ _1_SSTD_CORE_EXPORT void _sstd_add_runtime_dynamic_cast(const void *);
 class _1_SSTD_CORE_EXPORT _wrap_data_sstd_virtual_basic {
 public:
     virtual ~_wrap_data_sstd_virtual_basic();
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 class _1_SSTD_CORE_EXPORT _named_wrap_data_sstd_virtual_basic :
@@ -44,7 +44,7 @@ public:
     std::string_view setName(const std::string_view &);
     void setData(const std::pair<void *, sstd_type_index > &);
     const std::pair<void *, sstd_type_index > * getData() const;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 class sstd_virtual_basic;
@@ -63,7 +63,7 @@ private:
     template<typename T_SSTD_X37627, typename ...T_SSTD_X37627_Args>
     friend inline T_SSTD_X37627 * ::sstd_new(T_SSTD_X37627_Args && ... args);
 private:
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 class _1_SSTD_CORE_EXPORT _data_sstd_virtual_basic {
@@ -83,7 +83,7 @@ private:
     void _append(_wrap_data_sstd_virtual_basic *);
     void _append(std::string_view, _named_wrap_data_sstd_virtual_basic *);
     const std::pair<void *, sstd_type_index> * _find(std::string_view) const;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 class _1_SSTD_CORE_EXPORT sstd_virtual_basic :
@@ -108,7 +108,7 @@ public:
     inline T * sstd_create_named_data_in_this_class_thread_safe(std::string_view, Args && ...);
     template<typename T>
     inline T * sstd_find_named_data_in_this_class_thread_safe(std::string_view) const;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 class _1_SSTD_CORE_EXPORT _1_sstd_runtime_static_basic {
@@ -126,14 +126,14 @@ public:
     const _1_sstd_runtime_static_basic *mmmUnique;
     void * mmmCached{ nullptr };
     unsigned char mmmIsDynamic/*0 not dynamic,1 is dynamic 2 unknow*/;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 template<typename T>
 class _2_1_sstd_runtime_static_basic {
 public:
     inline _2_1_sstd_runtime_static_basic();
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 template<typename Tt>
@@ -147,7 +147,7 @@ public:
     inline _2_sstd_runtime_static_basic();
 private:
     const static _2_1_sstd_runtime_static_basic<Tt> mmmDataRegisterBases;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 class _1_SSTD_CORE_EXPORT sstd_type_index {
@@ -219,7 +219,7 @@ public:
     }
 protected:
     const _1_sstd_runtime_static_basic * mmmData;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 namespace std {
@@ -229,7 +229,7 @@ namespace std {
         inline std::size_t operator()(const sstd_type_index & a) const {
             return a.hash_code();
         }
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 }/*std*/
 
@@ -261,7 +261,7 @@ namespace abi_sstd_get_sstd_index_private {
                 typeid(arg) };
             return sstd_type_index(varAns.mmmUnique);
         }
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T >
@@ -271,7 +271,7 @@ namespace abi_sstd_get_sstd_index_private {
         inline static sstd_type_index get_index(const U & arg) {
             return arg.sstd_get_sstd_type_index();
         }
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T >
@@ -281,43 +281,43 @@ namespace abi_sstd_get_sstd_index_private {
         inline static sstd_type_index get_index(const U & arg) {
             return arg->sstd_get_sstd_type_index();
         }
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T, typename = void >
     class is_by_value : public std::false_type {
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T>
     class is_by_value<T, std::void_t<
         decltype(std::declval<T>().sstd_get_sstd_type_index())
     > > : public std::true_type {
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T, typename = void >
     class is_by_pointer : public std::false_type {
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T>
     class is_by_pointer<T, std::void_t<
         decltype(std::declval<T>()->sstd_get_sstd_type_index())
     > > : public std::true_type {
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T, typename = void >
     class get_void_helper : public std::false_type {
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T>
     class get_void_helper<T, std::void_t<
         decltype(std::declval<T>()->sstd_get_this_void())
     > > : public std::true_type {
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T, bool = std::is_polymorphic_v<T>>
@@ -331,7 +331,7 @@ namespace abi_sstd_get_sstd_index_private {
                 return dynamic_cast<const void *>(arg);
             }
         }
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
     template<typename T >
@@ -345,7 +345,7 @@ namespace abi_sstd_get_sstd_index_private {
                 return arg;
             }
         }
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
 }/****/
@@ -414,7 +414,7 @@ template<typename Tt,
             const static _2_sstd_runtime_static_basic<sstd_this_type> var;
             return var.sstd_get_sstd_type_index();
         }
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
 };
 
 template<typename Tt>
@@ -443,7 +443,7 @@ protected:
             const_cast<_3_sstd_runtime_basic *>(this));
     }
     virtual ~_3_sstd_runtime_basic() = default;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 template<typename T,
@@ -455,12 +455,28 @@ template<typename T,
         using sstd_super_ = _3_sstd_runtime_basic<T, IsVirtual>;
     public:
         using sstd_this_type = typename sstd_super_::sstd_this_type;
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
 };
+
+
+#if defined(_MSC_VER)
+
+#ifndef _0_SSTD_SUPER_PUBLIC
+#define _0_SSTD_SUPER_PUBLIC private
+#endif
+
+#else
+
+#ifndef _0_SSTD_SUPER_PUBLIC
+#define _0_SSTD_SUPER_PUBLIC /**/public
+#endif
+
+#endif
+
 
 #ifndef SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE
 #define SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_SSTD_T_) \
-    private sstd_runtime_basic<_SSTD_T_ , true>
+    _0_SSTD_SUPER_PUBLIC sstd_runtime_basic<_SSTD_T_ , true>
 /**************************************************/
 #endif
 
@@ -477,7 +493,10 @@ template<typename T,
     using _sstd_this_type_ = sstd_runtime_basic<_SSTD_T_ , _SSTD_B_> ; \
     public : \
     using sstd_this_type = typename _sstd_this_type_::sstd_this_type ; \
-    _SSTD_MEMORY_1_DFINE
+    static constexpr inline std::size_t __0_sstd_get_size_of_this() {  \
+        return sizeof(sstd_this_type);/*used for remove warning*/ \
+    } \
+    _1_SSTD_MEMORY_1_DEFINE
 /**************************************************/
 #endif
 
@@ -650,7 +669,7 @@ namespace _1_private_sstd_class_wrap_2 {
             mmmElement{ std::forward<A0>(a0), std::forward<Args>(args)... } {
         }
     private:
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 
 }/****/

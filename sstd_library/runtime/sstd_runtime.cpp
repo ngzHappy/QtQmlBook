@@ -16,7 +16,7 @@ namespace {
         std::recursive_mutex mutex;
         bool isDestory{ false };
         sstd_virtual_basic * pointer{ nullptr };
-        _SSTD_MEMORY_1_DFINE
+        _1_SSTD_MEMORY_1_DEFINE
     };
 }
 
@@ -323,7 +323,7 @@ void sstd_virtual_basic::ppp_destruct_this_state() {
     while(!mmm_this_state.
         compare_exchange_strong(varOldState, &varNull));
     assert(mmm_this_state.load()== &varNull);
-    
+
     if (varOldState == nullptr) {
         return;
     }
@@ -465,15 +465,18 @@ static inline void static_test() {
     class AClass {
     private:
         SSTD_DEFINE_STATIC_CLASS(AClass);
-    };
+    } aClass;
 
     class BClass : SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(BClass) {
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(BClass);
-    };
+    } bClass;
 
     assert(false);
+    assert(sizeof(AClass) == sizeof(BClass));
     ::atexit(&static_test);
+    (void)aClass;
+    (void)bClass;
 
 }
 #endif

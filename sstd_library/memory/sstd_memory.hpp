@@ -44,8 +44,8 @@ public:
 
 template<typename T_SSTD_X37627, typename ...T_SSTD_X37627_Args> \
 inline T_SSTD_X37627 * sstd_new(T_SSTD_X37627_Args && ... args);
-#ifndef _SSTD_MEMORY_1_DFINE
-#define _SSTD_MEMORY_1_DFINE \
+#ifndef _1_SSTD_MEMORY_1_DEFINE
+#define _1_SSTD_MEMORY_1_DEFINE \
 public : \
     static inline void* operator new  (std::size_t argA, void* argB) noexcept { \
     return _1_sstd_memory_static_class_basic::operator new(argA,argB); \
@@ -82,9 +82,9 @@ public : \
     } \
     static inline void operator delete[](void* argA, std::align_val_t argB){ \
     return _1_sstd_memory_static_class_basic::operator delete[](argA,argB);\
-    } 
+    }
 
-#endif 
+#endif
 
 inline constexpr _1_sstd_memory_static_class_basic::_1_sstd_memory_static_class_basic() noexcept {
 }
@@ -97,7 +97,7 @@ public:
     inline _1_sstd_memory_dynamic_class_basic(_1_sstd_memory_dynamic_class_basic &&) = default;
     inline _1_sstd_memory_dynamic_class_basic&operator=(const _1_sstd_memory_dynamic_class_basic &) = default;
     inline _1_sstd_memory_dynamic_class_basic&operator=(_1_sstd_memory_dynamic_class_basic &&) = default;
-    _SSTD_MEMORY_1_DFINE
+    _1_SSTD_MEMORY_1_DEFINE
 };
 
 #ifndef SSTD_DELETE_COPY_ASSIGN
