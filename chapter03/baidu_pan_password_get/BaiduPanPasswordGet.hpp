@@ -32,7 +32,8 @@ public:
     Q_SIGNAL void passWordChanged();
 public:
     Q_SLOT void start();
-    Q_SIGNAL void finished(QString/*password*/, ReturnState/*error code*/);
+    Q_SLOT QString errorCodeString(ReturnState);
+    Q_SIGNAL void finished(QString argUrl,QString argPassWord, ReturnState argErrorCode);
 private:
     friend class ::_BaiduPanPasswordGetPrivate;
     _BaiduPanPasswordGetPrivate * thisp{ nullptr };

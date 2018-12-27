@@ -7,7 +7,9 @@ class BaiduPanPack :
     public QObject {
     Q_OBJECT
 public:
-    Q_SIGNAL void finished(QString/*password*/,
+    Q_SIGNAL void finished(
+        QString/*url*/,
+        QString/*password*/,
         BaiduPanPasswordGet::ReturnState/*error code*/);
 };
 

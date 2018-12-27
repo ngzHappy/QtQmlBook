@@ -43,12 +43,11 @@ class _NetworkAccessManager final :
 public:
 
     _NetworkAccessManager() {
+        this->setProxy(QNetworkProxy::NoProxy);
     }
 
     ~_NetworkAccessManager() {
     }
-
-
 
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(_NetworkAccessManager);
@@ -141,17 +140,12 @@ public:
         varRequest.setRawHeader(getUserAgent().first, getUserAgent().second);
         auto varReply = varNetworkAccessManager->get(varRequest);
 
-        /*保证包在reply之后删除*/
-        QObject::connect(
-            varReply, &QObject::destroyed,
-            varCallPack.get(), [varCallPack]() {
-            QTimer::singleShot(0, varCallPack.get(),
-                [varCallPack]() {}); });
-
         varReply->connect(
             varReply, &QNetworkReply::finished,
             varReply, [varCallPack, varReply]() {
             varReply->deleteLater();
+            /*保证包在reply之后删除*/
+            QTimer::singleShot(0, varCallPack.get(), [varCallPack]() {});
 
             {/*查询是否成功...*/
                 auto varCookieJar =
@@ -173,6 +167,7 @@ public:
                         break;
                     }
                     varCallPack->finished(
+                        varCallPack->url,
                         varCallPack->passWord,
                         BaiduPanPasswordGet::Unknow);
                     return;
@@ -209,17 +204,12 @@ public:
                 ->networkAccessManager
                 ->post(varRequest, varPostData);
 
-            /*保证包在reply之后删除*/
-            QObject::connect(
-                varReply, &QObject::destroyed,
-                varCallPack.get(), [varCallPack]() {
-                QTimer::singleShot(0, varCallPack.get(),
-                    [varCallPack]() {}); });
-
             varReply->connect(
                 varReply, &QNetworkReply::finished,
                 varReply, [varCallPack, varReply]() {
                 varReply->deleteLater();
+                /*保证包在reply之后删除*/
+                QTimer::singleShot(0, varCallPack.get(), [varCallPack]() {});
 
                 const auto varAns = QStringLiteral("var jf = function() {  var ansx = ") +
                     QString::fromLatin1(varReply->readAll())
@@ -228,15 +218,19 @@ public:
                     varCallPack->jsEngine.evaluate(varAns);
 
                 if (varValue.isError()) {
-                    varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Unknow);
+                    varCallPack->finished(
+                        varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Unknow);
                 } else {
                     auto varError = varValue.toInt();
                     if (varError == 0) {
-                        varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Ok);
+                        varCallPack->finished(
+                            varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Ok);
                     } else if (varError == -9) {
-                        varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Error);
+                        varCallPack->finished(
+                            varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Error);
                     } else {
-                        varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Unknow);
+                        varCallPack->finished(
+                            varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Unknow);
                     }
                 }
 
@@ -288,6 +282,18 @@ void BaiduPanPasswordGet::start() {
     thisp->start();
 }
 
+QString BaiduPanPasswordGet::errorCodeString(ReturnState arg) {
+    switch (arg) {
+    case BaiduPanPasswordGet::Ok:
+        return QStringLiteral("Ok");
+    case BaiduPanPasswordGet::Error:
+        return QStringLiteral("Error");
+    case BaiduPanPasswordGet::Unknow:
+        return QStringLiteral("Unknow");
+    default:
+        return QStringLiteral("Null");
+    }
+}
 
 static inline void register_this() {
     qmlRegisterType<BaiduPanPasswordGet>(

@@ -10,12 +10,6 @@ Pane {
     width: 640;
     height: 480;
 
-    BaiduPanPasswordGet{
-        id : idPassWordGet
-        url : idUrl.text
-        passWord: idPassWord.text
-    }
-
     ColumnLayout{
         anchors.fill: parent;
 
@@ -71,14 +65,46 @@ Pane {
             }
         }
 
-        TextArea{
-            Layout.fillWidth: true;
-            Layout.fillHeight: true;
-            readOnly: true
-            selectByMouse: true
+        Flickable {
+            id : idLogScrollView
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            contentWidth: idLog.width
+            contentHeight: idLog.height
+            clip: true
+            TextArea{
+                id : idLog
+                readOnly: true
+                selectByMouse: true
+            }
+
         }
 
     }/*ColumnLayout*/
+
+    BaiduPanPasswordGet{
+        id : idPassWordGet
+        url : idUrl.text
+        passWord: idPassWord.text
+        onFinished: {
+            /*argUrl argPassWord argErrorCode*/
+            idLog.append(
+                        argUrl +
+                        " : " +
+                        argPassWord +
+                        " : " +
+                        errorCodeString(argErrorCode) +
+                        "\n");
+
+            if(idLogScrollView.contentHeight<idLogScrollView.height){
+                idLogScrollView.contentY = 0;
+            }else{
+                idLogScrollView.contentY =
+                        idLogScrollView.contentHeight -
+                        idLogScrollView.height;
+            }
+        }
+    }
 
 }/*~Rectangle*/
 

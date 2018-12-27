@@ -22,7 +22,10 @@ include($$PWD/../../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
 }
 
 win32-msvc*{
-    CONFIG += console
+    CONFIG(debug,debug|release){
+        CONFIG += console
+    }else{
+    }
 }
 
 DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
