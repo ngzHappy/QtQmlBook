@@ -1,9 +1,9 @@
 TEMPLATE = app
 
 CONFIG(debug,debug|release){
-    TARGET = music_player_debug
+    TARGET = local_video_player_debug
 }else{
-    TARGET = music_player
+    TARGET = local_video_player
 }
 
 #define out put dir
@@ -38,7 +38,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/music_player/main.qml
+QMLSOURCES += $$PWD/myqml/local_video_player/main.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
