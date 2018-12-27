@@ -1,5 +1,7 @@
 TEMPLATE = app
 
+QT += charts
+
 CONFIG(debug,debug|release){
     TARGET = firstchart_debug
 }else{
