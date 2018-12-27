@@ -1,7 +1,7 @@
 ﻿#include "BaiduPanPasswordGet.hpp"
 #include "NetworkAccessManager.hpp"
 
-inline const static QString loginIdJS = QStringLiteral( R"_js__(
+inline const static QString loginIdJS = QStringLiteral(R"_js__(
 
 var u = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/~！@#￥%……&" ;
 var l = String.fromCharCode ;
@@ -30,9 +30,7 @@ var p = function () {
     return m(g((new Date).getTime()))
 } ;
 
-p();
-
-)_js__" ) ;
+)_js__");
 
 class _NetworkAccessManager final :
     public NetworkAccessManager,
@@ -67,12 +65,16 @@ public:
     QJSEngine jsEngine;
 public:
     inline CallPack() {
+        jsEngine.evaluate(loginIdJS);
     }
     ~CallPack() {
     }
 
     inline QByteArray getLoginID() {
-        return jsEngine.evaluate(loginIdJS).toString().toUtf8();
+        return jsEngine
+            .evaluate(QStringLiteral("p()"))
+            .toString()
+            .toUtf8();
     }
 
 private:
