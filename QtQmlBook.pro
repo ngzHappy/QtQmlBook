@@ -111,6 +111,10 @@ app_firstcanvas.file = $$PWD/chapter08/firstcanvas/firstcanvas.pro
 app_firstcanvas.depends = sstd_qt_and_qml_library
 SUBDIRS += app_firstcanvas
 
+app_firstchart.file = $$PWD/chapter08/firstchart/firstchart.pro
+app_firstchart.depends = sstd_qt_and_qml_library
+SUBDIRS += app_firstchart
+
 ##############09##############
 
 ##############10##############
