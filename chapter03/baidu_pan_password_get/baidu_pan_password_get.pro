@@ -31,6 +31,8 @@ DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
 
+HEADERS += $$PWD/BaiduPanPack.hpp
+
 SOURCES += $$PWD/BaiduPanPasswordGet.cpp
 HEADERS += $$PWD/BaiduPanPasswordGet.hpp
 

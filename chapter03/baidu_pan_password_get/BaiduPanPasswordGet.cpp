@@ -1,5 +1,6 @@
 ﻿#include "BaiduPanPasswordGet.hpp"
 #include "NetworkAccessManager.hpp"
+#include "BaiduPanPack.hpp"
 
 inline const static QString loginIdJS = QStringLiteral(R"_js__(
 
@@ -32,6 +33,10 @@ var p = function () {
 
 )_js__");
 
+inline static QByteArray getCurrentTime() {
+    return QByteArray::number(QDateTime::currentMSecsSinceEpoch());
+}
+
 class _NetworkAccessManager final :
     public NetworkAccessManager,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_NetworkAccessManager) {
@@ -57,36 +62,55 @@ inline static const std::pair<QByteArray, QByteArray>& getUserAgent() {
     return varAns;
 }
 
-class CallPack :
+class _CallPack :
+    public BaiduPanPack,
     public sstd_intrusive_ptr_basic,
-    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(CallPack) {
+    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_CallPack) {
 public:
+    const QString url;
+    const QString passWord;
     sstd::intrusive_ptr< _NetworkAccessManager > networkAccessManager;
-    QJSEngine jsEngine;
+    QJSEngine  jsEngine;
+    QByteArray baiduIDValue;
 public:
-    inline CallPack() {
+    inline _CallPack(const QString &u, const QString &p) :
+        url(u),
+        passWord(p) {
         jsEngine.evaluate(loginIdJS);
     }
-    ~CallPack() {
+
+    ~_CallPack() {
     }
 
     inline QByteArray getLoginID() {
         return jsEngine
-            .evaluate(QStringLiteral("p()"))
+            .evaluate(QStringLiteral("p(\"")
+                + QString::fromLatin1(baiduIDValue)
+                + QStringLiteral("\")"))
             .toString()
             .toUtf8();
     }
 
+    void setBaiduIDValue(const QByteArray & arg) {
+        baiduIDValue = arg;
+    }
+
 private:
-    SSTD_END_DEFINE_VIRTUAL_CLASS(CallPack);
+    SSTD_END_DEFINE_VIRTUAL_CLASS(_CallPack);
+};
+
+class GetCookieAllJarFunction : public QNetworkCookieJar {
+public:
+    inline static auto getFunction() {
+        return &QNetworkCookieJar::allCookies;
+    }
 };
 
 class _BaiduPanPasswordGetPrivate {
 public:
-    QUrl url;
+    QString url;
     QString passWord;
     BaiduPanPasswordGet * const super;
-
 
     inline _BaiduPanPasswordGetPrivate(BaiduPanPasswordGet * arg)
         :super(arg) {
@@ -99,21 +123,124 @@ public:
 
     void start() {
 
+        const static auto varBaiduID = "BAIDUID"_qbya;
+
         sstd::intrusive_ptr< _NetworkAccessManager > varNetworkAccessManager
             = sstd_make_intrusive_ptr< _NetworkAccessManager >();
         auto varCallPack =
-            sstd_make_intrusive_ptr<CallPack>();
+            sstd_make_intrusive_ptr<_CallPack>(url, passWord);
         varCallPack->networkAccessManager = varNetworkAccessManager;
+
+        QObject::connect(
+            varCallPack.get(), &_CallPack::finished,
+            super, &BaiduPanPasswordGet::finished,
+            Qt::QueuedConnection);
 
         QNetworkRequest varRequest{};
         varRequest.setUrl(url);
         varRequest.setRawHeader(getUserAgent().first, getUserAgent().second);
         auto varReply = varNetworkAccessManager->get(varRequest);
 
+        /*保证包在reply之后删除*/
+        QObject::connect(
+            varReply, &QObject::destroyed,
+            varCallPack.get(), [varCallPack]() {
+            QTimer::singleShot(0, varCallPack.get(),
+                [varCallPack]() {}); });
+
         varReply->connect(
             varReply, &QNetworkReply::finished,
             varReply, [varCallPack, varReply]() {
             varReply->deleteLater();
+
+            {/*查询是否成功...*/
+                auto varCookieJar =
+                    varCallPack->networkAccessManager->cookieJar();
+
+                const auto varCookies =
+                    (varCookieJar->*GetCookieAllJarFunction::getFunction())();
+
+                do {
+                    bool isNotNull = false;
+                    for (const auto & varC : varCookies) {
+                        if (varC.name() == varBaiduID) {
+                            varCallPack->setBaiduIDValue(varC.value());
+                            isNotNull = true;
+                            break;
+                        }
+                    }
+                    if (isNotNull) {
+                        break;
+                    }
+                    varCallPack->finished(
+                        varCallPack->passWord,
+                        BaiduPanPasswordGet::Unknow);
+                    return;
+                } while (false);
+            }
+
+            auto varUrl = varCallPack->url;
+            varUrl.replace(
+                QStringLiteral("/init?"),
+                QStringLiteral("/verify?"));
+
+            auto varPostData = "&t="_qbya + getCurrentTime();
+            varPostData += "&channel=chunlei"
+                "&web=1"
+                "&app_id=250528"
+                "&bdstoken=null"
+                "&logid="_qbya;
+            varPostData += varCallPack->getLoginID();
+            varPostData += "&clienttype=0"_qbya;
+            varPostData += "&pwd="_qbya + varCallPack->passWord.toLatin1();
+
+            QNetworkRequest varRequest{};
+            varRequest.setUrl(varUrl);
+            varRequest.setRawHeader(getUserAgent().first, getUserAgent().second);
+            varRequest.setRawHeader(
+                u8R"(Content-Type)"_qbya,
+                u8R"(application/x-www-form-urlencoded; charset=UTF-8)"_qbya);
+            varRequest.setRawHeader(
+                u8R"(Referer)"_qbya,
+                varCallPack->url.toUtf8());
+
+            auto varReply =
+                varCallPack
+                ->networkAccessManager
+                ->post(varRequest, varPostData);
+
+            /*保证包在reply之后删除*/
+            QObject::connect(
+                varReply, &QObject::destroyed,
+                varCallPack.get(), [varCallPack]() {
+                QTimer::singleShot(0, varCallPack.get(),
+                    [varCallPack]() {}); });
+
+            varReply->connect(
+                varReply, &QNetworkReply::finished,
+                varReply, [varCallPack, varReply]() {
+                varReply->deleteLater();
+
+                const auto varAns = QStringLiteral("var jf = function() {  var ansx = ") +
+                    QString::fromLatin1(varReply->readAll())
+                    + QStringLiteral(";return ansx.errno ; } ; jf() ");
+                auto varValue =
+                    varCallPack->jsEngine.evaluate(varAns);
+
+                if (varValue.isError()) {
+                    varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Unknow);
+                } else {
+                    auto varError = varValue.toInt();
+                    if (varError == 0) {
+                        varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Ok);
+                    } else if (varError == -9) {
+                        varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Error);
+                    } else {
+                        varCallPack->finished(varCallPack->passWord, BaiduPanPasswordGet::Unknow);
+                    }
+                }
+
+            });
 
         });
 
@@ -130,11 +257,11 @@ BaiduPanPasswordGet::~BaiduPanPasswordGet() {
     delete thisp;
 }
 
-QUrl BaiduPanPasswordGet::getUrl() const {
+QString BaiduPanPasswordGet::getUrl() const {
     return thisp->url;
 }
 
-void BaiduPanPasswordGet::setUrl(const QUrl & arg) {
+void BaiduPanPasswordGet::setUrl(const QString & arg) {
     if (arg == thisp->url) {
         return;
     }
@@ -150,10 +277,22 @@ void BaiduPanPasswordGet::setPassWord(const QString & arg) {
     if (arg == thisp->passWord) {
         return;
     }
+    if (arg.isEmpty()) {
+        return;
+    }
     thisp->passWord = arg;
     passWordChanged();
 }
 
 void BaiduPanPasswordGet::start() {
+    thisp->start();
 }
 
+
+static inline void register_this() {
+    qmlRegisterType<BaiduPanPasswordGet>(
+        "myqml.baidu",
+        1, 0,
+        "BaiduPanPasswordGet");
+}
+Q_COREAPP_STARTUP_FUNCTION(register_this)

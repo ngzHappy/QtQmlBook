@@ -10,7 +10,7 @@ class BaiduPanPasswordGet :
 private:
     Q_PROPERTY(QString passWord READ getPassWord WRITE setPassWord NOTIFY passWordChanged)
 private:
-    Q_PROPERTY(QUrl url READ getUrl WRITE setUrl NOTIFY urlChanged)
+    Q_PROPERTY(QString url READ getUrl WRITE setUrl NOTIFY urlChanged)
 public:
     enum ReturnState {
         Ok,
@@ -23,8 +23,8 @@ public:
     BaiduPanPasswordGet();
     ~BaiduPanPasswordGet();
 public:
-    QUrl getUrl() const;
-    void setUrl(const QUrl &);
+    QString getUrl() const;
+    void setUrl(const QString &);
     Q_SIGNAL void urlChanged();
 public:
     QString getPassWord() const;

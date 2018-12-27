@@ -2,12 +2,19 @@
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.12
+import myqml.baidu 1.0
 
 Pane {
 
     id : idRoot
     width: 640;
     height: 480;
+
+    BaiduPanPasswordGet{
+        id : idPassWordGet
+        url : idUrl.text
+        passWord: idPassWord.text
+    }
 
     ColumnLayout{
         anchors.fill: parent;
@@ -26,6 +33,7 @@ Pane {
                 Layout.fillWidth: true
                 readOnly : false
                 selectByMouse: true
+                text : "https://pan.baidu.com/share/init?surl=34r85fxwJxxiuQ-aSqVS-g"
                 id: idUrl
             }
 
@@ -42,6 +50,7 @@ Pane {
 
             TextField {
                 Layout.fillWidth: true
+                text : "1234"
                 readOnly : false
                 selectByMouse: true
                 id: idPassWord
@@ -56,6 +65,9 @@ Pane {
             Button {
                 id: idRun
                 text: qsTr("执行")
+                onClicked: {
+                    idPassWordGet.start();
+                }
             }
         }
 
