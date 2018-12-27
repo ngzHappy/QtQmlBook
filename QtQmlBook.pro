@@ -85,6 +85,10 @@ SUBDIRS += app_text_qmltype
 
 ##############03##############
 
+app_first_cplusplus_extern.file = $$PWD/chapter03/first_cplusplus_extern/first_cplusplus_extern.pro
+app_first_cplusplus_extern.depends = sstd_qt_and_qml_library
+SUBDIRS += app_first_cplusplus_extern
+
 ##############04##############
 
 ##############05##############
