@@ -85,6 +85,10 @@ SUBDIRS += app_text_qmltype
 
 ##############03##############
 
+app_baidu_pan_password_get.file = $$PWD/chapter03/baidu_pan_password_get/baidu_pan_password_get.pro
+app_baidu_pan_password_get.depends = sstd_qt_and_qml_library
+SUBDIRS += app_baidu_pan_password_get
+
 app_first_cplusplus_extern.file = $$PWD/chapter03/first_cplusplus_extern/first_cplusplus_extern.pro
 app_first_cplusplus_extern.depends = sstd_qt_and_qml_library
 SUBDIRS += app_first_cplusplus_extern
