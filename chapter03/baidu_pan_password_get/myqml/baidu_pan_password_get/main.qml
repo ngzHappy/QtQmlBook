@@ -150,6 +150,9 @@ Pane {
         triggeredOnStart : false
         onTriggered: {
 
+            if(idPassWordReader.isEndl()){
+                return;
+            }
             if(idPassWordGet.tryCount<64) {
                 idPassWord.text = idPassWordReader.getNext();
                 idPassWordGet.start();
