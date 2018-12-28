@@ -61,6 +61,16 @@ inline static const std::pair<QByteArray, QByteArray>& getUserAgent() {
     return varAns;
 }
 
+class GetCookieAllJarFunction : public QNetworkCookieJar {
+public:
+    inline static auto getFunction() {
+        return &QNetworkCookieJar::allCookies;
+    }
+    inline static auto getSetAllCookie() {
+        return &QNetworkCookieJar::setAllCookies;
+    }
+};
+
 class _CallPack :
     public BaiduPanPack,
     public sstd_intrusive_ptr_basic,
@@ -94,86 +104,35 @@ public:
         baiduIDValue = arg;
     }
 
-private:
-    SSTD_END_DEFINE_VIRTUAL_CLASS(_CallPack);
-};
-
-class GetCookieAllJarFunction : public QNetworkCookieJar {
-public:
-    inline static auto getFunction() {
-        return &QNetworkCookieJar::allCookies;
+    void okFinished() {
+        finished(url, passWord, BaiduPanPasswordGet::Ok);
     }
-    inline static auto getSetAllCookie() {
-        return &QNetworkCookieJar::setAllCookies;
-    }
-};
 
-class _NetWorkPool {
-    sstd::list< sstd::intrusive_ptr<_NetworkAccessManager> > data;
-public:
-    inline _NetWorkPool() {
-        for (int i = 0; i < 128;++i ) {
-            data.push_back( sstd_make_intrusive_ptr<_NetworkAccessManager>() );
+    void errorFinished() {
+        finished(url, passWord, BaiduPanPasswordGet::Error);
+    }
+
+    int retryCount = 16;
+    inline void unknowFinished() {
+        if (--retryCount > 0) {
+            auto varCookieJar = networkAccessManager->cookieJar();
+            (varCookieJar->*GetCookieAllJarFunction::getSetAllCookie())({});
+            this->restart();
+            return;
+        } else {
+            qDebug() << passWord << "???";
+            finished(url, passWord, BaiduPanPasswordGet::Unknow);
+            return;
         }
     }
 
-    inline sstd::intrusive_ptr<_NetworkAccessManager> get() {
-        for ( auto & varI : data ) {
-            if (varI->sstd_intrusive_ptr_count()==1) {
-                auto varCookieJar = varI->cookieJar();
-                (varCookieJar->*GetCookieAllJarFunction::getSetAllCookie())({});
-                return varI;
-            }
-        }
-        return sstd_make_intrusive_ptr<_NetworkAccessManager>();
-    }
-
-    inline ~_NetWorkPool() {
-
-    }
-
-};
-
-class _BaiduPanPasswordGetPrivate :
-    public QObject,
-    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_BaiduPanPasswordGetPrivate) {
-public:
-    QString url;
-    QString passWord;
-    BaiduPanPasswordGet * const super;
-    _NetWorkPool netWorkPool;
-
-    inline _BaiduPanPasswordGetPrivate(BaiduPanPasswordGet * arg)
-        :super(arg) {
-
-    }
-
-    inline ~_BaiduPanPasswordGetPrivate() {
-
-    }
-
-    void start() {
-
+    inline void restart() {
+        sstd::intrusive_ptr<_CallPack> varCallPack = this;
         const static auto varBaiduID = "BAIDUID"_qbya;
-
-        sstd::intrusive_ptr< _NetworkAccessManager > varNetworkAccessManager
-            = netWorkPool.get() ;
-
-        this->createATry();
-
-        auto varCallPack =
-            sstd_make_intrusive_ptr<_CallPack>(url, passWord);
-        varCallPack->networkAccessManager = varNetworkAccessManager;
-
-        QObject::connect(
-            varCallPack.get(), &_CallPack::finished,
-            super, &BaiduPanPasswordGet::_finished,
-            Qt::QueuedConnection);
-
         QNetworkRequest varRequest{};
         varRequest.setUrl(url);
         varRequest.setRawHeader(getUserAgent().first, getUserAgent().second);
-        auto varReply = varNetworkAccessManager->get(varRequest);
+        auto varReply = varCallPack->networkAccessManager->get(varRequest);
 
         varReply->connect(
             varReply, &QNetworkReply::finished,
@@ -201,11 +160,8 @@ public:
                     if (isNotNull) {
                         break;
                     }
-                    qDebug() << QStringLiteral("return is error!@3") ;
-                    varCallPack->finished(
-                        varCallPack->url,
-                        varCallPack->passWord,
-                        BaiduPanPasswordGet::Unknow);
+                    //qDebug() << QStringLiteral("return is error!@3");
+                    varCallPack->unknowFinished();
                     return;
                 } while (false);
             }
@@ -246,7 +202,7 @@ public:
                 varReply->deleteLater();
                 /*保证包在reply之后删除*/
                 QTimer::singleShot(0, varCallPack.get(), [varCallPack]() {});
-                const auto varReturnData =QString::fromLatin1(varReply->readAll());
+                const auto varReturnData = QString::fromLatin1(varReply->readAll());
                 const auto varAns = QStringLiteral("var jf = function() {  var ansx = ") +
                     varReturnData
                     + QStringLiteral(";return ansx.errno ; } ; jf() ");
@@ -254,29 +210,91 @@ public:
                     varCallPack->jsEngine.evaluate(varAns);
 
                 if (varValue.isError()) {
-                    qDebug()
-                            << QStringLiteral("return is error!@1")
-                            << varReturnData;
-                    varCallPack->finished(
-                        varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Unknow);
+                    //qDebug() << QStringLiteral("return is error!@1");
+                    varCallPack->unknowFinished();
                 } else {
                     auto varError = varValue.toInt();
                     if (varError == 0) {
-                        varCallPack->finished(
-                            varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Ok);
+                        varCallPack->okFinished();
                     } else if (varError == -9) {
-                        varCallPack->finished(
-                            varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Error);
+                        varCallPack->errorFinished();
                     } else {
-                        qDebug() << QStringLiteral("return is error!@2") ;
-                        varCallPack->finished(
-                            varCallPack->url, varCallPack->passWord, BaiduPanPasswordGet::Unknow);
+                        //qDebug() << QStringLiteral("return is error!@2");
+                        varCallPack->unknowFinished();
                     }
                 }
 
             });
 
         });
+
+    }
+
+private:
+    SSTD_END_DEFINE_VIRTUAL_CLASS(_CallPack);
+};
+
+class _NetWorkPool {
+    sstd::list< sstd::intrusive_ptr<_NetworkAccessManager> > data;
+public:
+    inline _NetWorkPool() {
+        for (int i = 0; i < 70; ++i) {
+            data.push_back(sstd_make_intrusive_ptr<_NetworkAccessManager>());
+        }
+    }
+
+    inline sstd::intrusive_ptr<_NetworkAccessManager> get() {
+        for (auto & varI : data) {
+            if (varI->sstd_intrusive_ptr_count() == 1) {
+                auto varCookieJar = varI->cookieJar();
+                (varCookieJar->*GetCookieAllJarFunction::getSetAllCookie())({});
+                return varI;
+            }
+        }
+        return sstd_make_intrusive_ptr<_NetworkAccessManager>();
+    }
+
+    inline ~_NetWorkPool() {
+
+    }
+
+};
+
+class _BaiduPanPasswordGetPrivate :
+    public QObject,
+    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_BaiduPanPasswordGetPrivate) {
+public:
+    QString url;
+    QString passWord;
+    BaiduPanPasswordGet * const super;
+    _NetWorkPool netWorkPool;
+
+    inline _BaiduPanPasswordGetPrivate(BaiduPanPasswordGet * arg)
+        :super(arg) {
+
+    }
+
+    inline ~_BaiduPanPasswordGetPrivate() {
+
+    }
+
+    void start() {
+
+        sstd::intrusive_ptr< _NetworkAccessManager > varNetworkAccessManager
+            = netWorkPool.get();
+
+        auto varCallPack =
+            sstd_make_intrusive_ptr<_CallPack>(url, passWord);
+        varCallPack->networkAccessManager = varNetworkAccessManager;
+
+        this->createATry();
+
+        QObject::connect(
+            varCallPack.get(), &_CallPack::finished,
+            super, &BaiduPanPasswordGet::_finished,
+            Qt::QueuedConnection);
+
+        varCallPack->restart();
 
     }
 
@@ -349,11 +367,11 @@ QString BaiduPanPasswordGet::errorCodeString(ReturnState arg) {
 }
 
 void BaiduPanPasswordGet::_finished(
-    QString argUrl, 
-    QString argPassWord, 
+    QString argUrl,
+    QString argPassWord,
     ReturnState argErrorCode) {
     this->thisp->destoryATry();
-    this->finished(std::move(argUrl),std::move(argPassWord),argErrorCode);
+    this->finished(std::move(argUrl), std::move(argPassWord), argErrorCode);
 }
 
 int BaiduPanPasswordGet::getTryCount() const {
