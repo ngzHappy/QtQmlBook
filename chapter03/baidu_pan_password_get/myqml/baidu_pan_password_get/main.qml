@@ -144,7 +144,7 @@ Pane {
 
     Timer{
         id : idRunControl
-        interval : 1
+        interval : 2211
         repeat : true
         running : false
         triggeredOnStart : false
@@ -153,9 +153,13 @@ Pane {
             if(idPassWordReader.isEndl()){
                 return;
             }
-            if(idPassWordGet.tryCount<64) {
-                idPassWord.text = idPassWordReader.getNext();
-                idPassWordGet.start();
+
+            /*每2s提交10个测试，防止封IP*/
+            for(var i =0;i<10;++i){
+                if(idPassWordGet.tryCount<64) {
+                    idPassWord.text = idPassWordReader.getNext();
+                    idPassWordGet.start();
+                }
             }
 
         }
