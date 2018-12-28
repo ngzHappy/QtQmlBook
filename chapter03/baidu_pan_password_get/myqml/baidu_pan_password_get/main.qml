@@ -19,7 +19,7 @@ Pane {
                 id: idLabel1
                 wrapMode : Text.WordWrap
                 text: qsTr("资源地址")
-                width: Math.max( idLabel1.contentWidth,idLabel2.contentWidth )
+                width: Math.max( idLabel1.contentWidth,idLabel2.contentWidth ,idLabel3.contentWidth)
                 Layout.minimumWidth: idLabel1.width
             }
 
@@ -52,6 +52,25 @@ Pane {
 
         }
 
+        RowLayout {
+
+            Label {
+                id: idLabel3
+                wrapMode : Text.WordWrap
+                text: qsTr("正确密码")
+                Layout.minimumWidth: idLabel1.width
+            }
+
+            TextField {
+                Layout.fillWidth: true
+                readOnly : false
+                selectByMouse: true
+                text : ""
+                id: idOkUrl
+            }
+
+        }
+
         RowLayout{
             Item{
                 Layout.fillWidth: true
@@ -60,7 +79,8 @@ Pane {
                 id: idRun
                 text: qsTr("执行")
                 onClicked: {
-                    idPassWordGet.start();
+                    idOkUrl.text="";
+                    idRunControl.running=!idRunControl.running;
                 }
             }
         }
@@ -72,7 +92,7 @@ Pane {
             contentWidth: idLog.width
             contentHeight: idLog.height
             clip: true
-            TextArea{
+            TextArea {
                 id : idLog
                 readOnly: true
                 selectByMouse: true
@@ -81,6 +101,10 @@ Pane {
         }
 
     }/*ColumnLayout*/
+
+    BaiduPanPasswordReader{
+        id : idPassWordReader
+    }
 
     BaiduPanPasswordGet{
         id : idPassWordGet
@@ -96,17 +120,47 @@ Pane {
                         errorCodeString(argErrorCode) +
                         "\n");
 
-            if(idLogScrollView.contentHeight<idLogScrollView.height){
-                idLogScrollView.contentY = 0;
-            }else{
-                idLogScrollView.contentY =
-                        idLogScrollView.contentHeight -
-                        idLogScrollView.height;
+            //if(idLogScrollView.contentHeight<idLogScrollView.height){
+            //    idLogScrollView.contentY = 0;
+            //}else{
+            //    idLogScrollView.contentY =
+            //            idLogScrollView.contentHeight -
+            //            idLogScrollView.height;
+            //}
+
+            if(argErrorCode == BaiduPanPasswordGet.Ok){
+                idRunControl.running =false ;
+                idOkUrl.text = argPassWord;
             }
+
+        }
+    }
+
+    Component.onCompleted: {
+        idPassWordReader
+        .setMaximumBlockCount(idLog.textDocument);
+    }
+
+    Timer{
+        id : idRunControl
+        interval : 1
+        repeat : true
+        running : false
+        triggeredOnStart : false
+        onTriggered: {
+
+            if(idPassWordGet.tryCount<64) {
+                idPassWord.text = idPassWordReader.getNext();
+                idPassWordGet.start();
+            }
+
         }
     }
 
 }/*~Rectangle*/
 
 
+//X-Forwarded-For: 162.150.10.16
+//Proxy-Client-IP
+//WL-Proxy-Client-IP
 

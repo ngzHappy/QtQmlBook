@@ -42,11 +42,11 @@ class _NetworkAccessManager final :
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_NetworkAccessManager) {
 public:
 
-    _NetworkAccessManager() {
+    inline _NetworkAccessManager() {
         this->setProxy(QNetworkProxy::NoProxy);
     }
 
-    ~_NetworkAccessManager() {
+    inline ~_NetworkAccessManager() {
     }
 
 private:
@@ -105,7 +105,9 @@ public:
     }
 };
 
-class _BaiduPanPasswordGetPrivate {
+class _BaiduPanPasswordGetPrivate :
+    public QObject,
+    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_BaiduPanPasswordGetPrivate) {
 public:
     QString url;
     QString passWord;
@@ -126,6 +128,11 @@ public:
 
         sstd::intrusive_ptr< _NetworkAccessManager > varNetworkAccessManager
             = sstd_make_intrusive_ptr< _NetworkAccessManager >();
+
+        this->createATry();
+        QObject::connect(varNetworkAccessManager.get(), &_NetworkAccessManager::destroyed,
+            this, &_BaiduPanPasswordGetPrivate::destoryATry);
+
         auto varCallPack =
             sstd_make_intrusive_ptr<_CallPack>(url, passWord);
         varCallPack->networkAccessManager = varNetworkAccessManager;
@@ -240,6 +247,19 @@ public:
 
     }
 
+    std::atomic<int> tryCount{ 0 };
+    inline void createATry() {
+        ++tryCount;
+        super->tryCountChanged();
+    }
+
+    inline void destoryATry() {
+        --tryCount;
+        super->tryCountChanged();
+    }
+
+private:
+    SSTD_END_DEFINE_VIRTUAL_CLASS(_BaiduPanPasswordGetPrivate);
 };
 
 BaiduPanPasswordGet::BaiduPanPasswordGet() {
@@ -293,6 +313,10 @@ QString BaiduPanPasswordGet::errorCodeString(ReturnState arg) {
     default:
         return QStringLiteral("Null");
     }
+}
+
+int BaiduPanPasswordGet::getTryCount() const {
+    return thisp->tryCount.load();
 }
 
 static inline void register_this() {

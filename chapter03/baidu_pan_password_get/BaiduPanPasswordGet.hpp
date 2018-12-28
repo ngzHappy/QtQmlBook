@@ -8,6 +8,8 @@ class BaiduPanPasswordGet :
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(BaiduPanPasswordGet) {
     Q_OBJECT
 private:
+    Q_PROPERTY(int tryCount READ getTryCount NOTIFY tryCountChanged)
+private:
     Q_PROPERTY(QString passWord READ getPassWord WRITE setPassWord NOTIFY passWordChanged)
 private:
     Q_PROPERTY(QString url READ getUrl WRITE setUrl NOTIFY urlChanged)
@@ -33,7 +35,10 @@ public:
 public:
     Q_SLOT void start();
     Q_SLOT QString errorCodeString(ReturnState);
-    Q_SIGNAL void finished(QString argUrl,QString argPassWord, ReturnState argErrorCode);
+    Q_SIGNAL void finished(QString argUrl, QString argPassWord, ReturnState argErrorCode);
+public:
+    int getTryCount() const;
+    Q_SIGNAL void tryCountChanged();
 private:
     friend class ::_BaiduPanPasswordGetPrivate;
     _BaiduPanPasswordGetPrivate * thisp{ nullptr };
