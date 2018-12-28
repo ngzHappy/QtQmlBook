@@ -144,7 +144,7 @@ Pane {
 
     Timer{
         id : idRunControl
-        interval : 1
+        interval : 1000
         repeat : true
         running : false
         triggeredOnStart : false
