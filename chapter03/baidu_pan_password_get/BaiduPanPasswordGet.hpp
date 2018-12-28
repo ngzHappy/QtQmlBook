@@ -42,6 +42,7 @@ public:
 private:
     friend class ::_BaiduPanPasswordGetPrivate;
     _BaiduPanPasswordGetPrivate * thisp{ nullptr };
+    void _finished(QString argUrl, QString argPassWord, ReturnState argErrorCode);
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(BaiduPanPasswordGet);
 };

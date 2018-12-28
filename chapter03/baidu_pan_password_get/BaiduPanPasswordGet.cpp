@@ -160,8 +160,6 @@ public:
             = netWorkPool.get() ;
 
         this->createATry();
-        QObject::connect(varNetworkAccessManager.get(), &_NetworkAccessManager::destroyed,
-            this, &_BaiduPanPasswordGetPrivate::destoryATry);
 
         auto varCallPack =
             sstd_make_intrusive_ptr<_CallPack>(url, passWord);
@@ -169,7 +167,7 @@ public:
 
         QObject::connect(
             varCallPack.get(), &_CallPack::finished,
-            super, &BaiduPanPasswordGet::finished,
+            super, &BaiduPanPasswordGet::_finished,
             Qt::QueuedConnection);
 
         QNetworkRequest varRequest{};
@@ -348,6 +346,14 @@ QString BaiduPanPasswordGet::errorCodeString(ReturnState arg) {
     default:
         return QStringLiteral("Null");
     }
+}
+
+void BaiduPanPasswordGet::_finished(
+    QString argUrl, 
+    QString argPassWord, 
+    ReturnState argErrorCode) {
+    this->thisp->destoryATry();
+    this->finished(std::move(argUrl),std::move(argPassWord),argErrorCode);
 }
 
 int BaiduPanPasswordGet::getTryCount() const {
