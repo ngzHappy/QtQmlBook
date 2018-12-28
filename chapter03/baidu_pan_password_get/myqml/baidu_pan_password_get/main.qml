@@ -80,6 +80,7 @@ Pane {
                 text: qsTr("执行")
                 onClicked: {
                     idOkUrl.text="";
+                    idPassWordReader.moveToStart();
                     idRunControl.running=!idRunControl.running;
                 }
             }
