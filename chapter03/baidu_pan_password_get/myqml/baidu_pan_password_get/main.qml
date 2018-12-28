@@ -77,6 +77,8 @@ Pane {
             }
             SpinBox{
                 id : idFileIndex
+                editable: true
+                wheelEnabled: true
                 from     : 0
                 to       : 167
                 stepSize : 1
