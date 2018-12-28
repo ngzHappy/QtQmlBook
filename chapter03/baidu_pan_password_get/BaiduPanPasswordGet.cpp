@@ -213,15 +213,19 @@ public:
                 if (varValue.isError()) {
                     //qDebug() << QStringLiteral("return is error!@1");
                     varCallPack->unknowFinished();
+                    return;
                 } else {
                     auto varError = varValue.toInt();
                     if (varError == 0) {
                         varCallPack->okFinished();
+                        return ;
                     } else if (varError == -9) {
                         varCallPack->errorFinished();
+                        return;
                     } else {
                         //qDebug() << QStringLiteral("return is error!@2");
                         varCallPack->unknowFinished();
+                        return;
                     }
                 }
 
