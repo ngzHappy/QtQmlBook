@@ -5,6 +5,8 @@
 #include <type_traits>
 #include <random>
 #include <algorithm>
+#include <sstream>
+#include <iomanip>
 
 using char_type = char;
 
@@ -111,13 +113,21 @@ inline bool compare_a_key(const key_type & l, const key_type & r) {
     const auto rightNumberWeight = number_weight(r);
 
     return (leftNumberWeight < rightNumberWeight);
-     
+
+}
+
+inline static std::string number_to_string(int arg) {
+    std::stringstream varStream;
+    varStream << std::setw(8) << std::setfill('0') << arg;
+    std::string varAns;
+    varStream >> varAns;
+    return std::move(varAns);
 }
 
 int main(int argc, char ** argv) {
 
     KeyNumber varKeyGet;
-    std::ofstream varStream("keys.txt", std::ios::binary);
+
     std::vector< key_type > varAllKeys;
     varAllKeys.reserve(varKeyGet.total_size());
 
@@ -128,8 +138,21 @@ int main(int argc, char ** argv) {
     std::shuffle(varAllKeys.begin(), varAllKeys.end(), std::mt19937{});
     std::sort(varAllKeys.begin(), varAllKeys.end(), compare_a_key);
 
-    for (const auto & varAKey : varAllKeys) {
-        out_put(varStream, varAKey);
+    auto varPos = varAllKeys.cbegin();
+    const auto varEnd = varAllKeys.cend();
+    int varFileIndex = 0;
+    while (varPos != varEnd) {
+        std::string varFileName{ number_to_string(varFileIndex++) };
+        std::ofstream varStream(varFileName + "keys.txt", std::ios::binary);
+        for (int varFileIndex1 = 0; varFileIndex1 < 10'000; ++varFileIndex1) {
+            if (varPos != varEnd) {
+                const auto & varAKey = *varPos;
+                out_put(varStream, varAKey);
+                ++varPos;
+            } else {
+                break;
+            }
+        }
     }
 
 }

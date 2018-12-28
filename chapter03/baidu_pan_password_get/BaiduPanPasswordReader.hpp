@@ -9,6 +9,7 @@ class BaiduPanPasswordReader :
 public:
     BaiduPanPasswordReader();
 public:
+    Q_SLOT void openFile(int);
     Q_SLOT void moveToStart();
     Q_SLOT QString getNext();
     Q_SLOT bool isEndl() const;

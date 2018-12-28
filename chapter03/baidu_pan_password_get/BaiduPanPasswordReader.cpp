@@ -8,9 +8,9 @@ public:
     QFile logFile;
     std::optional< QTextStream > logFileStream;
 public:
-    inline _BaiduPanPasswordReader() {
+    inline _BaiduPanPasswordReader(int argInput) {
         const auto varFileName = sstd::getLocalFileFullFilePath(
-            QStringLiteral("myqml/baidu_pan_password_get/keys.txt"));
+            QString("myqml/baidu_pan_password_get/%1keys.txt").arg(argInput, 8, 10, QChar('0')));
         logFile.setFileName(varFileName);
         if (false == logFile.open(QIODevice::Text | QIODevice::ReadOnly)) {
             return;
@@ -30,7 +30,7 @@ inline static _BaiduPanPasswordReader * get_thisp(T && arg) {
 }
 
 BaiduPanPasswordReader::BaiduPanPasswordReader() {
-    thisp = sstd_make_intrusive_ptr<_BaiduPanPasswordReader>();
+    thisp = sstd_make_intrusive_ptr<_BaiduPanPasswordReader>(0);
 
 }
 
@@ -62,6 +62,10 @@ void BaiduPanPasswordReader::setMaximumBlockCount(QQuickTextDocument * arg) {
     if (varDocument) {
         varDocument->setMaximumBlockCount(128);
     }
+}
+
+void BaiduPanPasswordReader::openFile(int arg){
+    thisp = sstd_make_intrusive_ptr<_BaiduPanPasswordReader>(arg);
 }
 
 static inline void register_this() {

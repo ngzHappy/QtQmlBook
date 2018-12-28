@@ -75,11 +75,19 @@ Pane {
             Item{
                 Layout.fillWidth: true
             }
+            SpinBox{
+                id : idFileIndex
+                from     : 0
+                to       : 167
+                stepSize : 1
+                enabled: !idRunControl.running
+            }
             Button {
                 id: idRun
                 text: qsTr("执行")
                 onClicked: {
                     idOkUrl.text="";
+                    idPassWordReader.openFile(idFileIndex.value);
                     idPassWordReader.moveToStart();
                     idRunControl.running=!idRunControl.running;
                 }
@@ -153,22 +161,23 @@ Pane {
 
     Timer{
         id : idRunControl
-        interval : 2211
+        interval : 10
         repeat : true
         running : false
         triggeredOnStart : false
         onTriggered: {
 
             if(idPassWordReader.isEndl()){
+                running =false;
                 return;
             }
 
-            /*每2s提交10个测试，防止封IP*/
+            /*每10ms提交10个测试*/
             for(var i =0;i<10;++i){
                 if(idPassWordGet.tryCount<64) {
                     idPassWord.text = idPassWordReader.getNext();
                     idPassWordGet.start();
-                }
+                }else{break;}
             }
 
         }
