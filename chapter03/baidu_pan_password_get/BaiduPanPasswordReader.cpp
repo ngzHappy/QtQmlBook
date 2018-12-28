@@ -60,7 +60,7 @@ bool BaiduPanPasswordReader::isEndl() const {
 void BaiduPanPasswordReader::setMaximumBlockCount(QQuickTextDocument * arg) {
     auto varDocument = arg->textDocument();
     if (varDocument) {
-        varDocument->setMaximumBlockCount(16);
+        varDocument->setMaximumBlockCount(128);
     }
 }
 
