@@ -24,7 +24,7 @@
 #pragma warning(disable:4251)
 #endif
 
-
+class sstd_friend_class;
 
 
 

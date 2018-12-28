@@ -519,6 +519,7 @@ template<typename T,
     const sstd_type_index & sstd_get_sstd_type_index() const noexcept override{ \
     return _sstd_this_type_::_sstd_get_sstd_type_index(); \
     } \
+    friend class ::sstd_friend_class ; \
 static_assert(true,"")
 /**************************************************/
 #endif
@@ -551,6 +552,7 @@ static_assert(true,"")
     static inline const sstd_type_index & sstd_get_sstd_type_index() noexcept { \
              return _sstd_this_type_::sstd_get_sstd_type_index(); \
     } \
+    friend class ::sstd_friend_class ; \
 static_assert(true,"")
 /**************************************************/
 #endif
