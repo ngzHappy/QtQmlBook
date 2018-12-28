@@ -505,19 +505,19 @@ template<typename T,
     _1_SSTD_END_DEFINE_CLASS(true,_SSTD_T_) \
     public : \
     inline bool sstd_is_polymorphic() const noexcept override { \
-    return _sstd_this_type_::_sstd_is_polymorphic(); \
+        return _sstd_this_type_::_sstd_is_polymorphic(); \
     }\
     inline const std::type_info & sstd_get_type_info()const noexcept override { \
-    return _sstd_this_type_::_sstd_get_type_info(); \
+        return _sstd_this_type_::_sstd_get_type_info(); \
     } \
     inline const std::type_index & sstd_get_type_index()const noexcept override { \
-    return _sstd_this_type_::_sstd_get_type_index(); \
+        return _sstd_this_type_::_sstd_get_type_index(); \
     } \
     void * sstd_get_this_void() const noexcept override { \
-    return _sstd_this_type_::_sstd_get_this_void(); \
+        return _sstd_this_type_::_sstd_get_this_void(); \
     } \
     const sstd_type_index & sstd_get_sstd_type_index() const noexcept override{ \
-    return _sstd_this_type_::_sstd_get_sstd_type_index(); \
+        return _sstd_this_type_::_sstd_get_sstd_type_index(); \
     } \
     friend class ::sstd_friend_class ; \
 static_assert(true,"")
@@ -538,19 +538,19 @@ static_assert(true,"")
     _1_SSTD_END_DEFINE_CLASS(false,_SSTD_T_) \
     public : \
     inline static bool sstd_is_polymorphic() noexcept { \
-    return _sstd_this_type_::sstd_is_polymorphic(); \
+        return _sstd_this_type_::sstd_is_polymorphic(); \
     } \
     inline static const std::type_info & sstd_get_type_info() noexcept { \
-    return _sstd_this_type_::sstd_get_type_info(); \
+        return _sstd_this_type_::sstd_get_type_info(); \
     } \
     inline static const std::type_index & sstd_get_type_index() noexcept { \
-    return _sstd_this_type_::sstd_get_type_index(); \
+        return _sstd_this_type_::sstd_get_type_index(); \
     } \
     inline constexpr void * sstd_get_this_void() const noexcept { \
-    return const_cast<sstd_this_type *>(this); \
+        return const_cast<sstd_this_type *>(this); \
     } \
     static inline const sstd_type_index & sstd_get_sstd_type_index() noexcept { \
-             return _sstd_this_type_::sstd_get_sstd_type_index(); \
+        return _sstd_this_type_::sstd_get_sstd_type_index(); \
     } \
     friend class ::sstd_friend_class ; \
 static_assert(true,"")
