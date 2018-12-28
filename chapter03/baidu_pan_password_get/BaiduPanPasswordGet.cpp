@@ -121,7 +121,7 @@ public:
             this->restart();
             return;
         } else {
-            qDebug() << passWord << "???";
+            //qDebug() << passWord << "???";
             finished(url, passWord, BaiduPanPasswordGet::Unknow);
             return;
         }
