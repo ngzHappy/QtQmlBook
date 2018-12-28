@@ -121,7 +121,7 @@ Pane {
             errorCodeString(argErrorCode) +
             "\n";
             logStrings.push(logString);
-            while( logStrings.length > 36 ){
+            while( logStrings.length > 16 ){
                 logStrings.shift();
             }
             logString = "";
