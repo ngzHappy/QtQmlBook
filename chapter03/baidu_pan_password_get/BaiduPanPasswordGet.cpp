@@ -331,6 +331,9 @@ void BaiduPanPasswordGet::setUrl(const QString & arg) {
     if (arg == thisp->url) {
         return;
     }
+    if (arg.indexOf(QStringLiteral("/init?"))<1) {
+        return;
+    }
     thisp->url = arg;
     urlChanged();
 }
