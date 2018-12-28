@@ -43,6 +43,7 @@ class _NetworkAccessManager final :
 public:
 
     inline _NetworkAccessManager() {
+        /*请在这里设置代理...*/
         this->setProxy(QNetworkProxy::NoProxy);
     }
 
@@ -61,7 +62,7 @@ inline static const std::pair<QByteArray, QByteArray>& getUserAgent() {
     return varAns;
 }
 
-class GetCookieAllJarFunction : public QNetworkCookieJar {
+class QNetworkCookieJarPrivate : public QNetworkCookieJar {
 public:
     inline static auto getFunction() {
         return &QNetworkCookieJar::allCookies;
@@ -116,7 +117,7 @@ public:
     inline void unknowFinished() {
         if (--retryCount > 0) {
             auto varCookieJar = networkAccessManager->cookieJar();
-            (varCookieJar->*GetCookieAllJarFunction::getSetAllCookie())({});
+            (varCookieJar->*QNetworkCookieJarPrivate::getSetAllCookie())({});
             this->restart();
             return;
         } else {
@@ -146,7 +147,7 @@ public:
                     varCallPack->networkAccessManager->cookieJar();
 
                 const auto varCookies =
-                    (varCookieJar->*GetCookieAllJarFunction::getFunction())();
+                    (varCookieJar->*QNetworkCookieJarPrivate::getFunction())();
 
                 do {
                     bool isNotNull = false;
@@ -247,7 +248,7 @@ public:
         for (auto & varI : data) {
             if (varI->sstd_intrusive_ptr_count() == 1) {
                 auto varCookieJar = varI->cookieJar();
-                (varCookieJar->*GetCookieAllJarFunction::getSetAllCookie())({});
+                (varCookieJar->*QNetworkCookieJarPrivate::getSetAllCookie())({});
                 return varI;
             }
         }

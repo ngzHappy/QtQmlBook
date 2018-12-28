@@ -111,15 +111,24 @@ Pane {
         id : idPassWordGet
         url : idUrl.text
         passWord: idPassWord.text
+        property var logStrings : []
         onFinished: {
             /*argUrl argPassWord argErrorCode*/
-            idLog.append(
-                        argUrl +
-                        " : " +
-                        argPassWord +
-                        " : " +
-                        errorCodeString(argErrorCode) +
-                        "\n");
+            var logString = argUrl +
+            " : " +
+            argPassWord +
+            " : " +
+            errorCodeString(argErrorCode) +
+            "\n";
+            logStrings.push(logString);
+            while( logStrings.length > 10 ){
+                logStrings.shift();
+            }
+            logString = "";
+            for(var i in logStrings ){
+                logString += logStrings[i];
+            }
+            idLog.text = logString ;
 
             //if(idLogScrollView.contentHeight<idLogScrollView.height){
             //    idLogScrollView.contentY = 0;
