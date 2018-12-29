@@ -22,6 +22,7 @@ Controls2.Pane {
         Controls2.SpinBox{
             id : c2
             wheelEnabled: true
+            editable: true
             Layout.alignment: Qt.AlignHCenter
         }
 
