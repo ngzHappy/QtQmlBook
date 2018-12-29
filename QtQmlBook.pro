@@ -125,6 +125,10 @@ SUBDIRS += app_firstchart
 
 ##############09##############
 
+app_first_control_1.file = $$PWD/chapter09/first_control_1/first_control_1.pro
+app_first_control_1.depends = sstd_qt_and_qml_library
+SUBDIRS += app_first_control_1
+
 ##############10##############
 
 
