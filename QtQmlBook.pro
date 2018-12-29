@@ -83,6 +83,10 @@ app_text_qmltype.file = $$PWD/chapter02/text_qmltype/text_qmltype.pro
 app_text_qmltype.depends = sstd_qt_and_qml_library
 SUBDIRS += app_text_qmltype
 
+app_enum_qml.file = $$PWD/chapter02/enum_qml/enum_qml.pro
+app_enum_qml.depends = sstd_qt_and_qml_library
+SUBDIRS += app_enum_qml
+
 ##############03##############
 
 app_baidu_pan_password_get.file = $$PWD/chapter03/baidu_pan_password_get/baidu_pan_password_get.pro
