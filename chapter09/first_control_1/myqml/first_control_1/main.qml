@@ -4,12 +4,11 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4 as Controls1
 import QtQuick.Controls 2.12 as Controls2
 
-Rectangle {
+Controls2.Pane {
 
     id : idRoot
-    width: 128;
+    width: 256;
     height: 128;
-    color: Qt.rgba(0.5,0.5,0.5,1);
 
     ColumnLayout{
         anchors.fill: parent;

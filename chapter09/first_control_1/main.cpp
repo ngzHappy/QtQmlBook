@@ -3,7 +3,9 @@
 int main(int argc, char ** argv) {
 
     /*初始化程序*/
-    auto varApp = sstd_make_unique< sstd::Application >(argc, argv);
+    auto varApp = sstd_make_unique< sstd::Application >(argc, argv,
+        sstd::getLocalFileFullFilePath(
+            "/myqml/first_control_1_qtquickcontrols2.conf"sv));
     /*初始化Qml/Quick引擎*/
     auto varWindow = sstd_make_unique< sstd::DefaultRoowWindow >();
     {
