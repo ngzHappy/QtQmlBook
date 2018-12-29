@@ -18,7 +18,26 @@ Rectangle {
 
     property int enumValue : Main.Enum1.Value0
     Timer{
-
+        interval : 1000
+        repeat : true
+        running : true
+        triggeredOnStart : true
+        onTriggered: {
+            switch(enumValue){
+            case Main.Enum1.Value0:
+                idRoot.color = Qt.rgba(0.8,0.4,0.8,1);
+                enumValue=Main.Enum1.Value1;
+                break;
+            case Main.Enum1.Value1:
+                idRoot.color = Qt.rgba(0.4,0.8,0.8,1);
+                enumValue=Main.Enum1.Value2;
+                break;
+            case Main.Enum1.Value2:
+                idRoot.color = Qt.rgba(0.0,0.8,0.0,1);
+                enumValue=Main.Enum1.Value0;
+                break;
+            }
+        }
     }
 
 
