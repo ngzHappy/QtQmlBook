@@ -1,5 +1,6 @@
 ﻿/*main.qml*/
 import QtQuick 2.9
+import sstd.externbycplusplus 1.0
 
 Rectangle {
 
@@ -8,6 +9,17 @@ Rectangle {
     height: 480;
     color: Qt.rgba(0.5,0.5,0.5,1);
 
+    ExternByCplusplus{
+        id : idData
+    }
+
+    Text{
+        text : idData.data
+        font.pixelSize: 64
+        anchors.centerIn: parent
+        verticalAlignment : Text.AlignVCenter
+        horizontalAlignment:Text.AlignHCenter
+    }
 
 }/*~Rectangle*/
 
