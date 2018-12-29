@@ -56,8 +56,8 @@ private:
 
 inline static const std::pair<QByteArray, QByteArray>& getUserAgent() {
     const static std::pair<QByteArray, QByteArray> varAns{
-        "User-Agent"_qbya,
-        "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"_qbya,
+        QByteArrayLiteral("User-Agent"),
+        QByteArrayLiteral("Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36"),
     };
     return varAns;
 }
@@ -172,24 +172,24 @@ public:
                 QStringLiteral("/init?"),
                 QStringLiteral("/verify?"));
 
-            auto varPostData = "&t="_qbya + getCurrentTime();
-            varPostData += "&channel=chunlei"
+            auto varPostData = QByteArrayLiteral("&t=") + getCurrentTime();
+            varPostData += QByteArrayLiteral("&channel=chunlei"
                 "&web=1"
                 "&app_id=250528"
                 "&bdstoken=null"
-                "&logid="_qbya;
+                "&logid=") ;
             varPostData += varCallPack->getLoginID();
-            varPostData += "&clienttype=0"_qbya;
-            varPostData += "&pwd="_qbya + varCallPack->passWord.toLatin1();
+            varPostData += QByteArrayLiteral("&clienttype=0");
+            varPostData += QByteArrayLiteral("&pwd=") + varCallPack->passWord.toLatin1();
 
             QNetworkRequest varRequest{};
             varRequest.setUrl(varUrl);
             varRequest.setRawHeader(getUserAgent().first, getUserAgent().second);
             varRequest.setRawHeader(
-                u8R"(Content-Type)"_qbya,
-                u8R"(application/x-www-form-urlencoded; charset=UTF-8)"_qbya);
+                QByteArrayLiteral(u8R"(Content-Type)"),
+                QByteArrayLiteral(u8R"(application/x-www-form-urlencoded; charset=UTF-8)"));
             varRequest.setRawHeader(
-                u8R"(Referer)"_qbya,
+                QByteArrayLiteral(u8R"(Referer)"),
                 varCallPack->url.toUtf8());
 
             auto varReply =
