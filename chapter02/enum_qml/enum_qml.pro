@@ -36,7 +36,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/enum_qml/main.qml
+QMLSOURCES += $$PWD/myqml/enum_qml/Main.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

@@ -9,7 +9,7 @@ int main(int argc, char ** argv) {
     {
         /*获得Qml文件绝对路径*/
         auto varFullFileName = sstd::getLocalFileFullPath(
-            QStringLiteral("myqml/enum_qml/main.qml"));
+            QStringLiteral("myqml/enum_qml/Main.qml"));
         /*加载Qml文件*/
         varWindow->load(varFullFileName);
         /*检查并报错*/
