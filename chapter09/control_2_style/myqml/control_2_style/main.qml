@@ -1,27 +1,29 @@
 ﻿/*main.qml*/
 import QtQuick 2.9
-import QtQuick.Controls 2.12 as Controls2
-import QtQuick.Controls.Material 2.12 as Style2
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 
-Controls2.Pane {
+Pane {
 
     id : idRoot
-    width: 256;
-    height: 128;
+    width: 512;
+    height: 512;
 
-    Controls2.SpinBox {
+    SpinBox {
         id : idSpinBox
         onValueChanged: {
             if(value&1){
-                idRoot.Style2.Material.theme=Style2.Material.Dark
+                idRoot.Material.theme=Material.Dark
             }else{
-                idRoot.Style2.Material.theme=Style2.Material.Light
+                idRoot.Material.theme=Material.Light
             }
         }
+        ToolTip.visible: hovered
+        ToolTip.text: qsTr("Good!")
     }
 
     Component.onCompleted: {
-        idSpinBox.value = 3 ;
+        idSpinBox.value = 2 ;
     }
 
 }
