@@ -101,6 +101,10 @@ app_first_cplusplus_extern.file = $$PWD/chapter03/first_cplusplus_extern/first_c
 app_first_cplusplus_extern.depends = sstd_qt_and_qml_library
 SUBDIRS += app_first_cplusplus_extern
 
+app_first_plugin_import.file = $$PWD/chapter03/first_plugin_import/first_plugin_import.pro
+app_first_plugin_import.depends = sstd_qml_control
+SUBDIRS += app_first_plugin_import
+
 ##############04##############
 
 ##############05##############
