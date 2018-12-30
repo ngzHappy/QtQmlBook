@@ -137,6 +137,10 @@ app_control_1_user_define_style.file = $$PWD/chapter09/control_1_user_define_sty
 app_control_1_user_define_style.depends = sstd_qt_and_qml_library
 SUBDIRS += app_control_1_user_define_style
 
+app_control_2_user_define_style.file = $$PWD/chapter09/control_2_user_define_style/control_2_user_define_style.pro
+app_control_2_user_define_style.depends = sstd_qt_and_qml_library
+SUBDIRS += app_control_2_user_define_style
+
 ##############10##############
 
 
