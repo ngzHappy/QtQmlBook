@@ -11,6 +11,7 @@ Controls2.Pane {
     height: 128;
 
     ColumnLayout{
+
         anchors.fill: parent;
 
         Controls1.SpinBox{

@@ -1,8 +1,6 @@
 ﻿/*main.qml*/
 import QtQuick 2.9
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 1.4 as Controls1
-import QtQuick.Controls.Styles 1.4 as Controls1Style
+import QtQuick.Controls 2.12 as Controls2
 
 Rectangle {
 
@@ -11,17 +9,29 @@ Rectangle {
     height: 128;
     color: Qt.rgba(0.5,0.5,0.5,1)
 
-    Controls1.SpinBox{
+    Controls2.SpinBox {
+        id: control
+        value: 50
+        editable: true
 
-        style: Controls1Style.SpinBoxStyle{
-            background: Rectangle {
-                implicitWidth: 100
-                implicitHeight: 20
-                border.color: "gray"
-                color : Qt.rgba(0.3,0.8,0.9,1)
-                radius: 2
-            }
+        contentItem: TextInput {
+            z: 2
+            text: control.textFromValue(control.value, control.locale)
+
+            font: control.font
+            color: Qt.rgba(0.1,0.1,0.1,1)
+            selectionColor: "#21be2b"
+            selectedTextColor: Qt.rgba(0.9,0.9,0.9,1)
+            horizontalAlignment: Qt.AlignHCenter
+            verticalAlignment: Qt.AlignVCenter
+
+            readOnly: !control.editable
+            validator: control.validator
+            inputMethodHints: Qt.ImhFormattedNumbersOnly
+            selectByMouse: true
         }
+
+        palette.base : Qt.rgba(0.8,0.1,0.1,1)
 
     }
 
