@@ -8,6 +8,7 @@
 #include "../opengl_default_format/sstd_opengl_default_format.hpp"
 #include <string_view>
 #include <fstream>
+#include <QtQuickControls2/QtQuickControls2>
 
 using namespace std::string_view_literals;
 
@@ -29,6 +30,10 @@ namespace {
     };
 
     inline static void run_once_application_construct(RunOnceApplicationConstruct * arg) {
+        {
+            const QDir varDir{ qApp->applicationDirPath() };
+            QQuickStyle::addStylePath( varDir.absoluteFilePath(QStringLiteral("sstd/qml/control")) );
+        }
         {
             /*强制加载QImage插件
             防止第一次加载速度过慢*/
