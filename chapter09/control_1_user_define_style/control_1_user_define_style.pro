@@ -1,9 +1,9 @@
 TEMPLATE = app
 
 CONFIG(debug,debug|release){
-    TARGET = first_control_1_user_define_style_debug
+    TARGET = control_1_user_define_style_debug
 }else{
-    TARGET = first_control_1_user_define_style
+    TARGET = control_1_user_define_style
 }
 
 #define out put dir
@@ -36,7 +36,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/first_control_1_user_define_style/main.qml
+QMLSOURCES += $$PWD/myqml/control_1_user_define_style/main.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
