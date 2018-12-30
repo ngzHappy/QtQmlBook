@@ -57,6 +57,9 @@ T.SpinBox {
     leftPadding: (control.mirrored ? (up.indicator ? up.indicator.width : 0) : (down.indicator ? down.indicator.width : 0))
     rightPadding: (control.mirrored ? (down.indicator ? down.indicator.width : 0) : (up.indicator ? up.indicator.width : 0))
 
+    editable : true
+    wheelEnabled : true
+
     validator: IntValidator {
         locale: control.locale.name
         bottom: Math.min(control.from, control.to)
