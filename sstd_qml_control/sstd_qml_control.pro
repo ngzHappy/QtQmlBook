@@ -41,6 +41,13 @@ SOURCES += $$PWD/TestData.cpp
 
 DISTFILES = $$PWD/sstd/qml/control/qmldir
 
+QMLSOURCES += $$PWD/sstd/qml/control/TestText.qml
+
+lupdate_only{
+    SOURCES += $$QMLSOURCES
+}
+
+DISTFILES += $$QMLSOURCES
 
 
 

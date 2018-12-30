@@ -13,7 +13,7 @@ Rectangle {
         id : idData
     }
 
-    Text{
+    TestText{
         text : idData.data
         font.pixelSize: 64
         anchors.centerIn: parent

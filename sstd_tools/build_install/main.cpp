@@ -59,12 +59,12 @@ private:
 
 //#define INSTALL_LOG_DEBUG 1
 #if defined(_DEBUG)
-#define PASS_DEBUG 1
+#define PASS_DEBUG 0
 #endif
 
 int main(int argc, char ** argv) try {
 
-#if defined(PASS_DEBUG)
+#if PASS_DEBUG
     /*在debug模式下跳过动作*/
     return 0;
 #endif
@@ -111,7 +111,7 @@ int main(int argc, char ** argv) try {
 inline void Duty::copy() const {
     for (const auto & varItem : items) {
         const auto varCI = _p_get_dir_copy_information(
-            this->fromDir, 
+            this->fromDir,
             this->fromDir / varItem.copyDir);
         _p_create_dirs(varCI);
         _p_copy_files(varCI);
@@ -146,7 +146,7 @@ inline void  Duty::_p_create_dirs(const CopyInformation & items) const {
 }
 
 inline Duty::CopyInformation Duty::_p_get_dir_copy_information(
-    const boost::filesystem::path & root, 
+    const boost::filesystem::path & root,
     const boost::filesystem::path & arg) try {
     class FileItem {
     public:
