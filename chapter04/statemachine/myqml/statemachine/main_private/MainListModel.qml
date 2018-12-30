@@ -5,8 +5,8 @@ ListModel {
 
     /****/
     ListElement {
-        programName :  QT_TR_NOOP("DemoPropertyAnimation") ;
-        programSource : "../DemoPropertyAnimation.qml";
+        programName :  QT_TR_NOOP("DemoParallelStateAnimation") ;
+        programSource : "../DemoParallelStateAnimation.qml";
     }
 
     /****/
