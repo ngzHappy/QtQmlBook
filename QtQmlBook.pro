@@ -133,6 +133,10 @@ app_first_control_1.file = $$PWD/chapter09/first_control_1/first_control_1.pro
 app_first_control_1.depends = sstd_qt_and_qml_library
 SUBDIRS += app_first_control_1
 
+app_first_control_1_user_define_style.file = $$PWD/chapter09/first_control_1_user_define_style/first_control_1_user_define_style.pro
+app_first_control_1_user_define_style.depends = sstd_qt_and_qml_library
+SUBDIRS += app_first_control_1_user_define_style
+
 ##############10##############
 
 
