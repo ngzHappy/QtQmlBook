@@ -11,6 +11,10 @@ sstd_qt_and_qml_library.file = $$PWD/sstd_qt_and_qml_library/sstd_qt_and_qml_lib
 sstd_qt_and_qml_library.depends = sstd_library
 SUBDIRS += sstd_qt_and_qml_library
 
+sstd_qml_control.file = $$PWD/sstd_qml_control/sstd_qml_control.pro
+sstd_qml_control.depends = sstd_qt_and_qml_library
+SUBDIRS += sstd_qml_control
+
 ##############01##############
 
 app_hellowworld.file = $$PWD/chapter01/hellowworld/hellowworld.pro
