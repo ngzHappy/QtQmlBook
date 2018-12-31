@@ -28,6 +28,8 @@ SOURCES += $$PWD/TheBookSources/output_main_index.cpp
 HEADERS += $$PWD/TheBookSources/OutPutStream.hpp
 SOURCES += $$PWD/TheBookSources/OutPutStream.cpp
 
+HEADERS += $$PWD/TheBookSources/TexBuilder.hpp
+SOURCES += $$PWD/TheBookSources/TexBuilder.cpp
 
 DEFINES *= THE_PROJECT_PWD_DIR=\\\"$${PWD}\\\"
 
