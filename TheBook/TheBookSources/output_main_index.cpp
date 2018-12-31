@@ -12,7 +12,15 @@ extern void output_main_index() try {
     varStream.setGenerateByteOrderMark(true);
 
     outputHeader(varStream);
-       
+
+    varStream << qsl(R"(\documentclass[hyperref,UTF8]{ctexbook})") << endl ;
+
+    varStream << qsl(R"(\begin{document})") << endl;
+
+    varStream << qsl(R"(Hellow World!)") <<endl;
+
+    varStream << qsl(R"(\end{document})") << endl;
+
     varStream << endl;
 
 } catch( ... ) {
