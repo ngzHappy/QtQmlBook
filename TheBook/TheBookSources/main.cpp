@@ -2,7 +2,7 @@
 #include "MainWindow.hpp"
 #include "output_main_index.hpp"
 
-int main(int argc,char ** argv){
+int main(int argc,char ** argv) try {
     QApplication varApplication{argc,argv};
 
     MainWindow varMainWindow;
@@ -12,6 +12,9 @@ int main(int argc,char ** argv){
     varMainWindow.show();
 
     return varApplication.exec();
+
+} catch (...) {
+    return -1;
 }
 
 
