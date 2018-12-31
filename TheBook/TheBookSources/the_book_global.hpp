@@ -33,6 +33,10 @@ inline static void theBookThrow(
 #define qsl QStringLiteral
 #endif
 
+#ifndef qbl
+#define qbl QByteArrayLiteral
+#endif
+
 #ifndef the_book_throw
 #define the_book_throw(...) theBookThrow( __VA_ARGS__ , __FILE__,__func__,__LINE__ )
 #endif

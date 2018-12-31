@@ -7,6 +7,12 @@ extern void output_main_index() try {
         the_book_throw("can not open file main_index.tex"sv);
     }
 
+    QTextStream varStream{ &varFile };
+    varStream.setCodec( QTextCodec::codecForName(qbl("utf-8")) );
+    varStream.setGenerateByteOrderMark(true);
+
+    varStream << qsl(R"()")<<endl;
+
 } catch( ... ) {
     throw;
 }
