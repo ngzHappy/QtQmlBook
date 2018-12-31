@@ -14,9 +14,10 @@ win32-msvc*{
     CONFIG += c++17
 }
 
+DESTDIR = $$PWD/bin/final
 
-
-
+HEADERS += $$PWD/TheBookSources/the_book_global.hpp
+SOURCES += $$PWD/TheBookSources/main.cpp
 
 
 
