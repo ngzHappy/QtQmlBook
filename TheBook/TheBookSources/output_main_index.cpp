@@ -12,12 +12,14 @@ extern void output_main_index() try {
     varStream.setGenerateByteOrderMark(true);
 
     outputHeader(varStream);
-
-
-
+       
     varStream << endl;
 
 } catch( ... ) {
     throw;
 }
+
+
+
+
 

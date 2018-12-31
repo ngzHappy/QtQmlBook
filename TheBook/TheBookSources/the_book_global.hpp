@@ -16,16 +16,16 @@
 using namespace std::string_view_literals;
 using namespace std::chrono_literals;
 
-static inline QString getOutPutFileFullPath(const QString & arg){
+static inline QString getOutPutFileFullPath(const QString & arg) {
     const static QDir varDir{ THE_PROJECT_PWD_DIR };
     return varDir.absoluteFilePath(arg);
 }
 
 inline static void theBookThrow(
-        const std::string_view &,
-        const std::string_view &,
-        const std::string_view &,
-        int){
+    const std::string_view &,
+    const std::string_view &,
+    const std::string_view &,
+    int) {
     throw QStringLiteral("some error!");
 }
 
@@ -41,28 +41,29 @@ inline static void theBookThrow(
 #define the_book_throw(...) theBookThrow( __VA_ARGS__ , __FILE__,__func__,__LINE__ )
 #endif
 
-template <typename T,typename = void>
-inline static void outputHeader(T && o ){
-    o << qsl(R"(%使用xelatex编译)")<<endl;
-    o << qsl(R"(%版权所有，翻版必究)")<<endl;
+template <typename T, typename = void>
+inline static void outputHeader(T && o) {
+
+    o << qsl(R"(%使用xelatex编译)") << endl;
+    o << qsl(R"(%版权所有，翻版必究)") << endl;
 
     {
         const static auto varCurrnetData = QDate::currentDate();
-        o << qsl(R"( )") << varCurrnetData.year()  << qsl(R"( 年)")  ;
-        o << qsl(R"( )") << varCurrnetData.month() << qsl(R"( 月)")  ;
-        o << qsl(R"( )") << varCurrnetData.day() << qsl(R"( 日)")  ;
+        o << qsl(R"(%)") << varCurrnetData.year() << qsl(R"( 年)");
+        o << qsl(R"( )") << varCurrnetData.month() << qsl(R"( 月)");
+        o << qsl(R"( )") << varCurrnetData.day() << qsl(R"( 日)");
     }
 
     {
         const static auto varCurrentTime = QTime::currentTime();
-        o << qsl(R"( )") << varCurrnetData.year()  << qsl(R"( )")  ;
-        o << qsl(R"( )") << varCurrnetData.month() << qsl(R"( 月)")  ;
-        o << qsl(R"( )") << varCurrnetData.day() << qsl(R"( 日)")  ;
+        o << qsl(R"( )") << varCurrentTime.hour() << qsl(R"( 时)");
+        o << qsl(R"( )") << varCurrentTime.minute() << qsl(R"( 分)");
+        o << qsl(R"( )") << varCurrentTime.second() << qsl(R"( 秒)");
     }
 
-    o << endl ;
-    o << endl ;
-    o << endl ;
+    o << endl;
+    o << endl;
+    o << endl;
 
 }
 
