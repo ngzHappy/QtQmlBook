@@ -19,7 +19,8 @@ DESTDIR = $$PWD/bin/final
 HEADERS += $$PWD/TheBookSources/the_book_global.hpp
 SOURCES += $$PWD/TheBookSources/main.cpp
 
-
+HEADERS += $$PWD/TheBookSources/MainWindow.hpp
+SOURCES += $$PWD/TheBookSources/MainWindow.cpp
 
 
 
