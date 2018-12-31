@@ -41,11 +41,12 @@ inline static void theBookThrow(
 #define the_book_throw(...) theBookThrow( __VA_ARGS__ , __FILE__,__func__,__LINE__ )
 #endif
 
-template <typename T, typename = void>
+template<typename T>
 inline static void outputHeader(T && o) {
 
     o << qsl(R"(%使用xelatex编译)") << endl;
     o << qsl(R"(%版权所有，翻版必究)") << endl;
+    o << qsl(R"(%本文件由程序自动生成，任何修改将被覆盖)") << endl;
 
     {
         const static auto varCurrnetData = QDate::currentDate();

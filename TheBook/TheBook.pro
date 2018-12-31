@@ -25,9 +25,8 @@ SOURCES += $$PWD/TheBookSources/MainWindow.cpp
 HEADERS += $$PWD/TheBookSources/output_main_index.hpp
 SOURCES += $$PWD/TheBookSources/output_main_index.cpp
 
-
-
-
+HEADERS += $$PWD/TheBookSources/OutPutStream.hpp
+SOURCES += $$PWD/TheBookSources/OutPutStream.cpp
 
 
 DEFINES *= THE_PROJECT_PWD_DIR=\\\"$${PWD}\\\"
