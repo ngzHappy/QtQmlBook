@@ -11,13 +11,14 @@ extern void output_main_index() try {
     varStream.setCodec( QTextCodec::codecForName(qbl("utf-8")) );
     varStream.setGenerateByteOrderMark(true);
 
+    /*输出文件信息*/
     outputHeader(varStream);
 
     varStream << qsl(R"(\documentclass[hyperref,UTF8]{ctexbook})") << endl ;
 
     varStream << qsl(R"(\begin{document})") << endl;
 
-    varStream << qsl(R"(Hellow World!)") <<endl;
+
 
     varStream << qsl(R"(\end{document})") << endl;
 
