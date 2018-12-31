@@ -65,6 +65,11 @@ namespace sstd {
 
     }
 
+    EXPORT_SSTD_QT_AND_QML_LIBRARY QString getLocalPathFromApp(const QString & arg) {
+        const static QDir varDir{ qApp->applicationDirPath() };
+        return varDir.absoluteFilePath(arg);
+    }
+
 }
 
 
