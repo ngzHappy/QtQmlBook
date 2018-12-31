@@ -3,6 +3,7 @@ cd /D "E:/QtQmlBookMsvc"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlBook.pro"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlMultimedia.pro"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlBookTest.pro"
+qmake -r -tp vc "E:/QtQmlBook/TheBook/TheBook.pro"
 cmd
 
 
