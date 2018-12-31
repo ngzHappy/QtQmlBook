@@ -72,13 +72,43 @@ inline static void output_setup_general_packages() {
 
 }
 
+/*设置输出pdf格式*/
 inline static void out_put_setup_hyperref() {
+
+    QFile varFile{ getOutPutFileFullPath(qsl("setup_hyperref.tex")) };
+    if (varFile.open(QIODevice::WriteOnly) == false) {
+        the_book_throw("can not open file setup_hyperref.tex"sv);
+    }
+    OutPutFileStream varStream{ &varFile };
+
+    varStream << qsl(R"__1__(
+
+%设置输出pdf格式
+\usepackage[
+    colorlinks=true ,
+    %bookmarks=true,
+    %bookmarksopen=false,
+    %pdfpagemode=FullScreen,
+    %pdfstartview=Fit,
+    bookmarksnumbered=true,
+    pdftitle={Qml} ,       %标题
+    pdfauthor={Qml} ,      %作者
+    pdfsubject={Qml} ,     %主题
+    pdfkeywords={Qml} ,    %关键字
+    linkcolor=colortextthisproject
+]{hyperref}  
+
+
+)__1__");
+
 }
 
+/*输出主文件目录*/
 extern void output_main_index() try {
 
     output_setup_page_geometry_a4();
     output_setup_general_packages();
+    out_put_setup_hyperref();
 
     QFile varFile{ getOutPutFileFullPath(qsl("main_index.tex")) };
     if (varFile.open(QIODevice::WriteOnly) == false) {
