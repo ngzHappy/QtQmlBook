@@ -11,7 +11,11 @@ extern void output_main_index() try {
     varStream.setCodec( QTextCodec::codecForName(qbl("utf-8")) );
     varStream.setGenerateByteOrderMark(true);
 
-    varStream << qsl(R"()")<<endl;
+    outputHeader(varStream);
+
+
+
+    varStream << endl;
 
 } catch( ... ) {
     throw;
