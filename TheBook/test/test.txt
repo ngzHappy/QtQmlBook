@@ -1,4 +1,5 @@
-﻿sfgergersg:tex_raw[==[abc]==]fdsa:tex_raw[==[def]==]fdasfsdaf
+﻿:the_book_text[[sfgergersg]]
+:the_book_text[[sfg:the_book_text[[fsdf]]erg:the_book_text[[fsdf]]ersg]]:tex_raw[==[abc]==]fdsa:tex_raw[==[def]==]fdasfsdaf
 
 :tex_raw[==[abc]==]:tex_raw[==[abc]==]
 

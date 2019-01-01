@@ -6,14 +6,14 @@
 
 keys :
 
-章
-:the_book_chapter[ $data$ ]
-
 原样输出
 :tex_raw[==[ $data$ ]==]
 
+章
+:the_book_chapter[ $data$ ]
+
 文本(进行特殊字符转换)
-:text[ $data$ ]
+:the_book_text[ $data$ ]
 
 */
 
