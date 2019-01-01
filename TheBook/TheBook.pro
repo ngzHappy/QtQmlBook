@@ -41,7 +41,16 @@ DEFINES *= THE_PROJECT_PWD_DIR=\\\"$${PWD}\\\"
 
 DISTFILES += $$PWD/test/test_00.txt
 
-
+DISTFILES += $$PWD/chapter01/chapter01.txt
+DISTFILES += $$PWD/chapter02/chapter02.txt
+DISTFILES += $$PWD/chapter03/chapter03.txt
+DISTFILES += $$PWD/chapter04/chapter04.txt
+DISTFILES += $$PWD/chapter05/chapter05.txt
+DISTFILES += $$PWD/chapter06/chapter06.txt
+DISTFILES += $$PWD/chapter07/chapter07.txt
+DISTFILES += $$PWD/chapter08/chapter08.txt
+DISTFILES += $$PWD/chapter09/chapter09.txt
+DISTFILES += $$PWD/chapter10/chapter10.txt
 
 
 

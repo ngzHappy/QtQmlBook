@@ -65,6 +65,7 @@ public:
             TypeFunctionStart,
             TypeFunctionEnd,
             TypeFunctionName,
+            TypeTextString,
         };
 
         using item_list = std::list< std::shared_ptr<Item> >;
@@ -133,7 +134,7 @@ public:
             :FunctionOp(deepthx, p, std::move(s)) {
         }
         virtual Type getType() const override {
-            return Type::TypeFunctionName;
+            return Type::TypeTextString ;
         }
         bool toRawString(item_list_pos * arg) override {
             *arg = this->pos;
@@ -147,7 +148,7 @@ public:
     public:
         const QString data;
         inline RawString(QString arg, item_list_pos p, std::shared_ptr<ParseState> s) :
-            data(std::move(arg)), Item(p, std::move(s)) {
+             Item(p, std::move(s)) ,data(std::move(arg)) {
         }
         virtual Type getType() const override {
             return Type::TypeRawString;
@@ -162,14 +163,14 @@ public:
     class ProgramString :
         public Item {
     public:
-        const QString data;
+        QString data;
         int callDeepth{ 0 };
 
         inline ProgramString(
             QString arg,
             item_list_pos p,
             std::shared_ptr<ParseState> s) :
-            data(std::move(arg)), Item(p, std::move(s)) {
+             Item(p, std::move(s)),data(std::move(arg)) {
         }
 
         virtual Type getType() const {
@@ -191,6 +192,7 @@ public:
     public:
         Item::item_list data;
         int line_number{ 0 };
+        int current_deepth{-1};
     };
     std::shared_ptr<ParseState> currentParseState;
 
@@ -409,6 +411,7 @@ public:
         return true;
     }
 
+    /*标记[[,]]*/
     inline int _parse_op(std::shared_ptr<ParseState> varState) {
 
         auto & varData = varState->data;
@@ -428,6 +431,7 @@ public:
                     static_cast<ProgramString *>(varItemRaw.get());
 
                 auto varString = varProgram->data;
+                assert(false == varString.isEmpty());
 
                 const static auto varLeftExp = QRegularExpression(qsl(R"(\s\[=*\[)"));
                 const static auto varRightExp = QRegularExpression(qsl(R"(\s\]=*\])"));
@@ -555,20 +559,51 @@ public:
             return varMaxDeepth;
     }
 
+    inline Item::item_list_pos insertKey(
+            const FunctionKeys  & varKey ,
+            Item::item_list_pos   varPos ){
+        /*整个表*/
+        auto & varData = currentParseState->data;
 
+        auto varAns = varData.emplace(varPos);
+
+        if( varKey.name == qsl(":the_book_chapter") ){
+
+        }else if(varKey.name == qsl(":the_book_text")){
+            auto varValue =
+                std::make_shared< KeyTextSring >(0,
+                                                 varAns,
+                                                 currentParseState);
+            *varAns = varValue;
+        }
+
+        return varAns ;
+
+    }
 
     /*构建表(处理函数深度)*/
     inline bool parse_call_deepth(std::shared_ptr<ParseState> varState) {
 
         /*标记 [[ , ]]....*/
-        _parse_op(varState);
-        /*TODO*/
-return true;
-        auto & varData = varState->data;
-        auto varPos = varData.begin();
+        const auto varMaxDeepth = _parse_op(varState);
 
+        /*最大函数调用深度*/
+        varState->current_deepth = varMaxDeepth;
+
+        if(varMaxDeepth == 0){
+            return true;
+        }
+
+        /*标记函数*/
+
+        /*整个表*/
+        auto & varData = varState->data;
+        /*当前位置*/
+        auto varPos = varData.cbegin();
+        /*遍历整个表*/
         while (varPos != varData.cend()) {
 
+            /*当前元素*/
             auto varItemRaw = *varPos;
 
             /*已经处理过...*/
@@ -577,28 +612,98 @@ return true;
                 continue;
             }
 
+            /*当前元素*/
             auto varProgram =
                 static_cast<ProgramString *>(varItemRaw.get());
 
-            int varIndex = std::numeric_limits<int>::max();
+            /*搜索当前key的起始位置...*/
+            int varIndex ;
 
+            do {
+
+            varIndex = std::numeric_limits<int>::max();
+            std::optional< FunctionKeys > varKey;
+
+            /*本行keys计数器*/
+            int varKeyCount= 0;
+            /*搜索最左边的key*/
             for (const auto & varI : *keys_set()) {
-                auto varThisKeyIndex = varProgram->data.indexOf(varI.name);
+                auto varThisKeyIndex =
+                        varProgram->data.indexOf(varI.name);
                 if (varThisKeyIndex < 0) {
-                    continue;
+                    continue ;
                 }
-                varIndex = std::min(varIndex, varThisKeyIndex);
+                ++varKeyCount;
+                if(varIndex>varThisKeyIndex){
+                    varIndex = varThisKeyIndex ;
+                }
+                if(varKey){
+                    varKey.reset();
+                }
+                varKey.emplace(varI);
             }
 
             /*没有key...*/
             if (varIndex == std::numeric_limits<int>::max()) {
                 ++varPos;
-                continue;
+                break ;
             }
 
+            /*TODO:find right deepth...*/
 
+            if(varKey->argc > 0 ){
+                assert(varKeyCount==1);
+                Item::item_list_pos varNewPos;
+                if(varIndex){/*插入左边的内容*/
+                    auto v = varData.emplace(varPos);
+                    auto varItem =
+                            std::make_shared< ProgramString >(
+                                varProgram->data.left(varIndex) ,
+                                v,
+                                varState);
+                    *v = varItem ;
+                }
+                /*插入key...*/
+                varNewPos =
+                        this->insertKey( *varKey , varPos );
+                /*删除当前位置*/
+                varData.erase(varPos);
+                varPos = varNewPos;
+                break ;
+            }else{
+                Item::item_list_pos varNewPos;
+                if(varIndex){/*插入左边的内容*/
+                    auto v = varData.emplace(varPos);
+                    auto varItem =
+                            std::make_shared< ProgramString >(
+                                varProgram->data.left(varIndex) ,
+                                v,
+                                varState);
+                    *v = varItem ;
+                }
+                /*插入key...*/
+                varNewPos =
+                        this->insertKey( *varKey , varPos );
+                /*删除无用数据*/
+                auto varDataString = varProgram->data;
+                const auto varNewSize =
+                        varDataString.size() -
+                        varIndex -
+                        varKey->name.size();
+                assert(varNewSize>=0);
+                varDataString = varDataString.right( varNewSize );
+                if(varDataString.isEmpty()){
+                    /*删除空节点*/
+                    varData.erase( varPos );
+                    varPos = varNewPos;
+                    break;
+                }else{
+                    /*继续搜索...*/
+                    varProgram->data = varDataString ;
+                }
+            }
 
-
+            } while( varIndex!=std::numeric_limits<int>::max() );
 
         }
 
@@ -608,7 +713,7 @@ return true;
     /*一个简单的parse
     第一遍扫描提取所有tex_raw
     第二次扫描函数执行深度
-    按照深度进行转换
+    第三步按照深度执行函数
     */
     inline bool parse() {
         auto varParseState = std::make_shared<ParseState>();
