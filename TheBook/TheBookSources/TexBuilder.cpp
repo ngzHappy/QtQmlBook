@@ -383,10 +383,11 @@ public:
         return true;
     }
 
-    inline void _parse_op(std::shared_ptr<ParseState> varState) {
+    inline int _parse_op(std::shared_ptr<ParseState> varState) {
 
         auto & varData = varState->data;
         auto varPos = varData.cbegin();
+        int varMaxDeepth = 0;
 
         int varStartOpCount = 0;
         int varEndOpCount = 0;
@@ -474,6 +475,7 @@ public:
                                     varStartOpCount = varDeepth;
                                     varEndOpCount = 0;
                                 }
+                                varMaxDeepth = std::max(varMaxDeepth, varDeepth);
                             } else {
                                 auto v = varData.emplace(varPos);
                                 auto varDeepth = varStartOpCount - varEndOpCount;
@@ -523,6 +525,8 @@ public:
             } else {
                 ++varPos;
             }
+
+            return varMaxDeepth;
 
         }
 
