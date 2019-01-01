@@ -551,11 +551,8 @@ public:
             } else {
                 ++varPos;
             }
-
-            return varMaxDeepth;
-
         }
-
+            return varMaxDeepth;
     }
 
 
@@ -565,7 +562,8 @@ public:
 
         /*标记 [[ , ]]....*/
         _parse_op(varState);
-
+        /*TODO*/
+return true;
         auto & varData = varState->data;
         auto varPos = varData.begin();
 
