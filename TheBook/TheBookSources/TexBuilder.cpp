@@ -88,6 +88,10 @@ public:
             line_number = state->line_number;
         }
 
+        inline void clear(){
+            state.reset() ;
+        }
+
     };
 
     class FunctionOp :
@@ -221,6 +225,9 @@ public:
         }
 
         if( currentParseState ){
+            for(auto & varI:currentParseState->data){
+                varI->clear();
+            }
             currentParseState->data.clear();
             currentParseState.reset() ;
         }
