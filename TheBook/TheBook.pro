@@ -39,7 +39,7 @@ SOURCES += $$PWD/TheBookSources/TexBuilder.cpp
 
 DEFINES *= THE_PROJECT_PWD_DIR=\\\"$${PWD}\\\"
 
-DISTFILES += $$PWD/test/test_00.txt
+DISTFILES += $$PWD/test/test_0000.txt
 
 DISTFILES += $$PWD/chapter01/chapter01.txt
 DISTFILES += $$PWD/chapter02/chapter02.txt

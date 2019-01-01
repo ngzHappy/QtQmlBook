@@ -561,6 +561,7 @@ public:
 
     inline Item::item_list_pos insertKey(
             const FunctionKeys  & varKey ,
+            int varDeepth,
             Item::item_list_pos   varPos ){
         /*整个表*/
         auto & varData = currentParseState->data;
@@ -571,7 +572,7 @@ public:
 
         }else if(varKey.name == qsl(":the_book_text")){
             auto varValue =
-                std::make_shared< KeyTextSring >(0,
+                std::make_shared< KeyTextSring >(varDeepth,
                                                  varAns,
                                                  currentParseState);
             *varAns = varValue;
@@ -579,6 +580,26 @@ public:
 
         return varAns ;
 
+    }
+
+    inline int get_function_deepth(  Item::item_list_pos arg ){
+        /*整个表*/
+        auto & varData = currentParseState->data;
+        auto varEnd = std::make_reverse_iterator( varData.cbegin() );
+        auto varBegin = std::make_reverse_iterator( arg );
+        for(;varBegin!=varEnd;++varBegin){
+            bool isFunctionOP = false;
+            if(varBegin->get()->getType() == Item::Type::TypeFunctionEnd ){
+                isFunctionOP=true;
+            }else if(varBegin->get()->getType() == Item::Type::TypeFunctionStart ){
+                 isFunctionOP=true;
+            }
+            auto varItem = static_cast<FunctionOp *>(varBegin->get());
+            if(isFunctionOP){
+                return varItem->deepth ;
+            }
+        }
+        return 1;
     }
 
     /*构建表(处理函数深度)*/
@@ -649,7 +670,8 @@ public:
                 break ;
             }
 
-            /*TODO:find right deepth...*/
+            const auto varCurrentFunctionDeepth =
+             get_function_deepth(varPos);
 
             if(varKey->argc > 0 ){
                 assert(varKeyCount==1);
@@ -665,7 +687,7 @@ public:
                 }
                 /*插入key...*/
                 varNewPos =
-                        this->insertKey( *varKey , varPos );
+                        this->insertKey( *varKey ,varCurrentFunctionDeepth , varPos );
                 /*删除当前位置*/
                 varData.erase(varPos);
                 varPos = varNewPos;
@@ -683,7 +705,7 @@ public:
                 }
                 /*插入key...*/
                 varNewPos =
-                        this->insertKey( *varKey , varPos );
+                        this->insertKey( *varKey  ,varCurrentFunctionDeepth, varPos );
                 /*删除无用数据*/
                 auto varDataString = varProgram->data;
                 const auto varNewSize =
@@ -710,6 +732,10 @@ public:
         return true;
     }
 
+    inline bool call_all_functions(){
+        return true;
+    }
+
     /*一个简单的parse
     第一遍扫描提取所有tex_raw
     第二次扫描函数执行深度
@@ -722,6 +748,9 @@ public:
             return false;
         }
         if (false == parse_call_deepth(varParseState)) {
+            return false;
+        }
+        if(false == call_all_functions()){
             return false;
         }
         bool isAllRaw = false;
