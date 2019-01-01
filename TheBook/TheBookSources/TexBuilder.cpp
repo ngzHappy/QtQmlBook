@@ -50,7 +50,7 @@ public:
         return true;
     }
 
-
+    class ParseState;
     class Item :
         public std::enable_shared_from_this<Item> {
     public:
@@ -60,16 +60,18 @@ public:
             TypeProgramString,
         };
 
-        virtual ~Item() = default;
-        virtual Type getType() const = 0;
-        virtual void toRawString() = 0;
-
         using item_list = std::list< std::shared_ptr<Item> >;
         using item_list_pos = item_list::const_iterator;
-
         item_list_pos pos;
+        std::shared_ptr<ParseState> state;
 
-        inline Item(item_list_pos p) : pos(p) {
+        virtual ~Item() = default;
+        virtual Type getType() const = 0;
+        virtual bool toRawString(item_list_pos * next) = 0;
+
+        inline Item(item_list_pos p, std::shared_ptr<ParseState> s) :
+            pos(p),
+            state(std::move(s)) {
         }
 
     };
@@ -78,14 +80,16 @@ public:
         public Item {
     public:
         const QString data;
-        inline RawString(QString arg, item_list_pos p) :
-            data(std::move(arg)), Item(p) {
+        inline RawString(QString arg, item_list_pos p, std::shared_ptr<ParseState> s) :
+            data(std::move(arg)), Item(p, std::move(s)) {
         }
         virtual Type getType() const override {
             return Type::TypeRawString;
         }
-        void toRawString() override {
-            return;
+        bool toRawString(item_list_pos * arg) override {
+            *arg = this->pos;
+            ++(*arg);
+            return true;
         }
     };
 
@@ -93,21 +97,33 @@ public:
         public Item {
     public:
         const QString data;
-        inline ProgramString(QString arg, item_list_pos p) :
-            data(std::move(arg)), Item(p) {
+
+        inline ProgramString(
+            QString arg,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s) :
+            data(std::move(arg)), Item(p, std::move(s)) {
         }
+
         virtual Type getType() const {
             return Type::TypeProgramString;
         }
-        void toRawString() override {
-            //...
-            return;
+
+        bool toRawString(item_list_pos * arg) override {
+            /*TODO:*/
+            auto v = state->data.emplace(this->pos);
+            *v = std::make_shared<RawString>("---"+data+"---", v, state);
+            state->data.erase(this->pos);
+            *arg = v;
+            return true;
         }
+
     };
 
     class ParseState {
     public:
         Item::item_list data;
+        int line_number{0};
     };
     std::shared_ptr<ParseState> currentParseState;
 
@@ -118,6 +134,8 @@ public:
         std::optional<const QString> varOp;
         while (false == varStream.atEnd()) {
             varLine = varStream.readLine();
+            ++(varState->line_number);
+            pass_next_l:
             if (varOp) {/*find end of tex_raw ... */
                 auto varIndex = varLine.indexOf(*varOp);
                 if (varIndex > -1) {
@@ -125,39 +143,38 @@ public:
                         if (varIndex) {
                             auto v = varState->data.emplace(varState->data.end());
                             auto varData =
-                                std::make_shared<RawString>(varLine.left(varIndex), v);
+                                std::make_shared<RawString>(varLine.left(varIndex), v, varState);
                             *v = varData;
                         }
                     }
+                    auto varOpSize = varOp->size();
+                    varOp.reset();
                     {/*将右边部分加入列表*/
-                        varIndex = varLine.size() - varIndex - varOp->size();
-                        if (varIndex > 0) {
-                            /*将当前行加入列表...*/
-                            auto v = varState->data.emplace(varState->data.end());
-                            auto varData =
-                                std::make_shared<ProgramString>(varLine.right(
-                                    varIndex), v);
-                            *v = varData;
+                        auto varSize = varLine.size();
+                        varSize -=  varIndex + varOpSize;
+                        if (varSize > 0) {
+                            varLine = varLine.right(varSize);
+                            goto pass_next_l;
                         }
                     }
                     {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v);
+                            std::make_shared<RawString>(qsl("\n"), v, varState);
                         *v = varData;
                     }
-                    varOp.reset();
+                    
                 } else {/*将当前行加入raw string*/
                     {/*将当前行加入列表...*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(varLine, v);
+                            std::make_shared<RawString>(varLine, v, varState);
                         *v = varData;
                     }
                     {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v);
+                            std::make_shared<RawString>(qsl("\n"), v, varState);
                         *v = varData;
                     }
                 }
@@ -170,7 +187,7 @@ public:
                     if (varIndex > 0) {/*将:raw_tex[===[左边的值加入列表*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<ProgramString>(varLine.left(varIndex), v);
+                            std::make_shared<ProgramString>(varLine.left(varIndex), v, varState);
                         *v = varData;
                     }
 
@@ -180,6 +197,7 @@ public:
                             if (varPos >= varLine.size()) {
                                 while (false == varStream.atEnd()) {
                                     varLine = varStream.readLine();
+                                    ++(varState->line_number);
                                     if (varLine.trimmed().isEmpty()) {/*删除空行*/
                                         /*bad format ??? */
                                         continue;
@@ -216,6 +234,7 @@ public:
                         } else {
                             if (std::as_const(varLine)[varPos] == QChar('=')) {
                                 ++varEqCount;
+                                ++varPos;
                             } else {
                                 return false;
                             }
@@ -232,36 +251,29 @@ public:
                     if ((++varPos) >= varLine.size()) {
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v);
+                            std::make_shared<RawString>(qsl("\n"), v, varState);
                         *v = varData;
                     } else {/*将剩余部分加入列表*/
-                        {/*将当前行加入列表...*/
-                            auto v = varState->data.emplace(varState->data.end());
-                            auto varData =
-                                std::make_shared<RawString>(varLine.right(
-                                    varLine.size() - varPos), v);
-                            *v = varData;
-                        }
-                        {/*加入换行符*/
-                            auto v = varState->data.emplace(varState->data.end());
-                            auto varData =
-                                std::make_shared<RawString>(qsl("\n"), v);
-                            *v = varData;
-                        }
+
+                        const auto varNewSize = varLine.size() - varPos;
+                        varLine = varLine.right(varNewSize);
+                        assert(varLine.size()==varNewSize);
+                        goto pass_next_l;
+
                     }
 
 
                 } else {
-                    {/*将当前行加入列表...*/
+                    if (false == varLine.isEmpty()) {/*将当前行加入列表...*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<ProgramString>(varLine, v);
+                            std::make_shared<ProgramString>(varLine, v, varState);
                         *v = varData;
                     }
                     {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v);
+                            std::make_shared<RawString>(qsl("\n"), v, varState);
                         *v = varData;
                     }
                 }
@@ -288,12 +300,15 @@ public:
         bool isAllRaw = false;
         while (false == isAllRaw) {
             isAllRaw = true;
-            for (auto & varI : (varParseState->data)) {
-                if (varI->getType() == Item::Type::TypeRawString) {
-                    continue;
+            auto varPos = varParseState->data.cbegin();
+            while (varPos != varParseState->data.cend()) {
+                auto varI = *varPos;
+                if (varI->getType() != Item::Type::TypeRawString) {
+                    isAllRaw = false;
                 }
-                isAllRaw = false;
-                varI->toRawString();
+                if (varI->toRawString(&varPos) == false) {
+                    return false;
+                }
             }
         }
         return true;
@@ -302,7 +317,8 @@ public:
     inline void write_output() {
         auto & varStream = *outputStream;
         for (const auto & varI : currentParseState->data) {
-            varStream << static_cast<const RawString *>(varI.get())->data;
+            varStream << static_cast<const RawString *>(
+                varI.get())->data;
         }
     }
 
@@ -352,7 +368,7 @@ bool TexBuilder::convert() {
 
     thisp->write_output();
 
-    return false;
+    return true;
 }
 
 

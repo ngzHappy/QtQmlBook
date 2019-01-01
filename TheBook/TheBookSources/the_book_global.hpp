@@ -12,6 +12,7 @@
 #include <chrono>
 #include <string>
 #include <string_view>
+#include <cassert>
 
 using namespace std::string_view_literals;
 using namespace std::chrono_literals;

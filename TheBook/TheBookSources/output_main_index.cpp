@@ -1,5 +1,6 @@
 ﻿#include "output_main_index.hpp"
 #include "OutPutStream.hpp"
+#include "TexBuilder.hpp"
 
 /*设置页面*/
 inline void output_setup_page_geometry_a4() {
@@ -109,6 +110,15 @@ extern void output_main_index() try {
     output_setup_page_geometry_a4();
     output_setup_general_packages();
     out_put_setup_hyperref();
+
+#ifdef _DEBUG
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("test/test.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("test/test.tex")));
+        assert(varBuilder->convert());
+    }
+#endif
 
     QFile varFile{ getOutPutFileFullPath(qsl("main_index.tex")) };
     if (varFile.open(QIODevice::WriteOnly) == false) {
