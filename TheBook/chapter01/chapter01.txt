@@ -1,7 +1,11 @@
 ﻿
 :the_book_chapter[=[这是测试1]=]
 
-
+:tex_raw[[
+    OK!
+]]:text[
+today is a fun day!
+]
 
 
 

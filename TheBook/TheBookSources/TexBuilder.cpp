@@ -148,15 +148,13 @@ public:
                     }
                     varOp.reset();
                 } else {/*将当前行加入raw string*/
-                    /*将当前行加入列表...*/
-                    {
+                    {/*将当前行加入列表...*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
                             std::make_shared<RawString>(varLine, v);
                         *v = varData;
                     }
-                    /*加入换行符*/
-                    {
+                    {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
                             std::make_shared<RawString>(qsl("\n"), v);
@@ -237,16 +235,14 @@ public:
                             std::make_shared<RawString>(qsl("\n"), v);
                         *v = varData;
                     } else {/*将剩余部分加入列表*/
-                        /*将当前行加入列表...*/
-                        {
+                        {/*将当前行加入列表...*/
                             auto v = varState->data.emplace(varState->data.end());
                             auto varData =
                                 std::make_shared<RawString>(varLine.right(
                                     varLine.size() - varPos), v);
                             *v = varData;
                         }
-                        /*加入换行符*/
-                        {
+                        {/*加入换行符*/
                             auto v = varState->data.emplace(varState->data.end());
                             auto varData =
                                 std::make_shared<RawString>(qsl("\n"), v);
@@ -256,15 +252,13 @@ public:
 
 
                 } else {
-                    /*将当前行加入列表...*/
-                    {
+                    {/*将当前行加入列表...*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
                             std::make_shared<ProgramString>(varLine, v);
                         *v = varData;
                     }
-                    /*加入换行符*/
-                    {
+                    {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
                             std::make_shared<RawString>(qsl("\n"), v);
