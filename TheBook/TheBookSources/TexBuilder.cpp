@@ -69,6 +69,7 @@ public:
 
         using item_list = std::list< std::shared_ptr<Item> >;
         using item_list_pos = item_list::const_iterator;
+
         item_list_pos pos;
         std::shared_ptr<ParseState> state;
         int line_number{ 1 };
@@ -192,6 +193,31 @@ public:
         int line_number{ 0 };
     };
     std::shared_ptr<ParseState> currentParseState;
+
+    inline void clean(){
+
+        if(inputStream){
+            inputStream.reset();
+        }
+
+        if(outputStream){
+            outputStream.reset();
+        }
+
+        if(inputFile){
+            inputFile.reset();
+        }
+
+        if(outputFile){
+            outputFile.reset();
+        }
+
+        if( currentParseState ){
+            currentParseState->data.clear();
+            currentParseState.reset() ;
+        }
+
+    }
 
     class FunctionKeys {
     public:
@@ -652,6 +678,21 @@ QString TexBuilder::getOutputFileName() const {
 
 bool TexBuilder::convert() {
 
+    class CleanLock{
+        TexBuilderPrivate * const data;
+    private:
+    public:
+        inline CleanLock(TexBuilderPrivate * a):data(a){
+            this->clean();
+        }
+        inline ~CleanLock(){
+            this->clean();
+        }
+        inline void clean(){
+            data->clean();
+        }
+    } varLock{thisp} ;
+
     if (false == thisp->openInput()) {
         return false;
     }
@@ -663,6 +704,8 @@ bool TexBuilder::convert() {
     if (false == thisp->parse()) {
         return false;
     }
+
+
 
     thisp->write_output();
 

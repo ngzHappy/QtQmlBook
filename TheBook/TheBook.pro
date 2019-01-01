@@ -4,6 +4,12 @@ QT += core
 QT += gui
 QT += widgets
 
+CONFIG(debug,debug|release){
+    DEFINES *= _DEBUG
+    SOURCES += $$PWD/TheBookSources/Test.cpp
+}else{
+}
+
 win32-msvc*{
     CONFIG += console
 }

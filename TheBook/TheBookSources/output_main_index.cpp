@@ -97,12 +97,16 @@ inline static void out_put_setup_hyperref() {
     pdfsubject={Qml} ,     %主题
     pdfkeywords={Qml} ,    %关键字
     linkcolor=colortextthisproject
-]{hyperref}  
+]{hyperref}
 
 
 )__1__");
 
 }
+
+#ifdef _DEBUG
+   extern void test_this();
+#endif
 
 /*输出主文件目录*/
 extern void output_main_index() try {
@@ -112,12 +116,7 @@ extern void output_main_index() try {
     out_put_setup_hyperref();
 
 #ifdef _DEBUG
-    {
-        auto varBuilder = std::make_shared<TexBuilder>();
-        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("test/test.txt")));
-        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("test/test.tex")));
-        assert(varBuilder->convert());
-    }
+   test_this();
 #endif
 
     QFile varFile{ getOutPutFileFullPath(qsl("main_index.tex")) };
