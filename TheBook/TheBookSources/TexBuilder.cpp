@@ -613,6 +613,64 @@ public:
         return (varLeftCount-varRightCount);
     }
 
+    /*获得argc...*/
+    inline std::vector< std::pair< Item::item_list_pos,Item::item_list_pos > >
+    getCallArgs(  Item::item_list_pos  argPos , int  argc,bool * ans){
+
+        if(argc<1){
+            *ans = true;
+            return{};
+        }
+
+        const auto & varData =
+        currentParseState->data;
+
+        auto varEnd =varData.cend();
+
+        auto varPos = argPos ;
+        ++varPos;
+
+        std::vector< std::pair< Item::item_list_pos,Item::item_list_pos > > varAns;
+
+        auto argci = argc;
+        while (argci>0) {
+            --argci;
+
+            std::pair< Item::item_list_pos,Item::item_list_pos >
+                    varItem;
+            bool isSetBegin=false;
+            for(;varPos!= varEnd ; ++varPos ){
+                if( varPos->get()->getType() == Item::Type::TypeFunctionStart ){
+                    isSetBegin=true;
+                    varItem.first = varPos;
+                }else if(varPos->get()->getType() == Item::Type::TypeFunctionEnd ) {
+                    varItem.second = varPos;
+                    varAns.push_back( varItem );
+                    ++varPos;
+                    if(false==isSetBegin){
+                        *ans=false;
+                        return std::move(varAns);
+                    }
+                    break;
+                }
+            }
+
+        }
+
+    *ans = (argc == static_cast<int>( varAns.size()));
+
+    return std::move(varAns);
+
+    }
+
+    inline std::vector<QString> argc_to_string(
+            const std::vector<
+            std::pair< Item::item_list_pos,
+            Item::item_list_pos > > & args){
+return {};
+    }
+
+
     /*构建表(处理函数深度)*/
     inline bool parse_call_deepth(std::shared_ptr<ParseState> varState) {
 
