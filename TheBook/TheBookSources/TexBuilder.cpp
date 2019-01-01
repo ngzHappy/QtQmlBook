@@ -78,6 +78,9 @@ public:
         virtual ~Item() = default;
         virtual Type getType() const = 0;
         virtual bool toRawString(item_list_pos * next) = 0;
+        virtual bool isKeyFunction() const {
+            return false;
+        }
 
         inline Item(item_list_pos p, std::shared_ptr<ParseState> s) :
             pos(p),
@@ -140,6 +143,9 @@ public:
             *arg = this->pos;
             ++(*arg);
             return true;
+        }
+        bool isKeyFunction() const override {
+             return true ;
         }
     };
 
@@ -587,19 +593,17 @@ public:
         auto & varData = currentParseState->data;
         auto varEnd = std::make_reverse_iterator( varData.cbegin() );
         auto varBegin = std::make_reverse_iterator( arg );
+        int varLeftCount =0 ;
+        int varRightCount = 0;
         for(;varBegin!=varEnd;++varBegin){
-            bool isFunctionOP = false;
             if(varBegin->get()->getType() == Item::Type::TypeFunctionEnd ){
-                isFunctionOP=true;
+                ++varLeftCount ;
             }else if(varBegin->get()->getType() == Item::Type::TypeFunctionStart ){
-                 isFunctionOP=true;
-            }
-            auto varItem = static_cast<FunctionOp *>(varBegin->get());
-            if(isFunctionOP){
-                return varItem->deepth ;
+                ++varRightCount ;
             }
         }
-        return 1;
+        assert(varLeftCount>=varRightCount);
+        return (varLeftCount-varRightCount);
     }
 
     /*构建表(处理函数深度)*/
@@ -732,7 +736,32 @@ public:
         return true;
     }
 
-    inline bool call_all_functions(){
+    inline bool call_all_functions(std::shared_ptr<ParseState> varState){
+        if(varState->current_deepth<1){
+            return true;
+        }
+        /*整个表*/
+        auto & varData = varState->data;
+        auto varPos = varData.cbegin();
+        auto varCurrentDeepth = varState->current_deepth;
+        do{
+        while(varPos!=varData.cend()){
+            if(varPos->get()->isKeyFunction()){
+                auto varItem = *varPos;
+                auto varCurrentDeepth1 =
+                static_cast< FunctionOp * >(varItem.get())->deepth;
+                assert( varCurrentDeepth >= varCurrentDeepth1 );
+                if(varCurrentDeepth == varCurrentDeepth1){
+                    if(false == varItem->toRawString( &varPos )){
+                        return false;
+                    }
+                }
+            }else{
+                ++varPos;
+            }
+        }
+        }while((--varCurrentDeepth)>-1);
+
         return true;
     }
 
@@ -740,6 +769,7 @@ public:
     第一遍扫描提取所有tex_raw
     第二次扫描函数执行深度
     第三步按照深度执行函数
+    其余则为the_book_text
     */
     inline bool parse() {
         auto varParseState = std::make_shared<ParseState>();
@@ -750,7 +780,7 @@ public:
         if (false == parse_call_deepth(varParseState)) {
             return false;
         }
-        if(false == call_all_functions()){
+        if(false == call_all_functions(varParseState)){
             return false;
         }
         bool isAllRaw = false;
