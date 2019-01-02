@@ -283,15 +283,31 @@ public:
     class KeyTextSring :
         public FunctionOp {
     public:
-        inline KeyTextSring(int deepthx, item_list_pos p, std::shared_ptr<ParseState> s)
+        inline KeyTextSring(
+            int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
             :FunctionOp(deepthx, p, std::move(s)) {
         }
         virtual Type getType() const override {
             return Type::TypeTextString;
         }
         bool toRawString(item_list_pos * arg) override {
-            *arg = this->pos;
-            ++(*arg);
+            /*将ans插入表*/
+            auto v = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgs = argc_to_string(varArgs1);
+            /*将args转换为string*/
+            *v = std::make_shared<RawString>(varArgs[0], v, state);
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgs1[0].second);
+            /*更新表数据*/
+            *arg = v;
             return true;
         }
         bool isKeyFunction() const override {
@@ -334,9 +350,9 @@ public:
         }
 
         bool toRawString(item_list_pos * arg) override {
-            /*TODO:*/
             auto v = state->data.emplace(this->pos);
-            *v = std::make_shared<RawString>("---" + data + "---", v, state);
+            *v = std::make_shared<RawString>(
+                plainStringToTexString(data), v, state);
             state->data.erase(this->pos);
             *arg = v;
             return true;
@@ -760,8 +776,12 @@ public:
     }
 
     /*获得argc...*/
-    inline std::vector< std::pair< Item::item_list_pos, Item::item_list_pos > >
-        getCallArgs(Item::item_list_pos  argPos, int  argc, bool * ans) {
+    static inline std::vector< std::pair< Item::item_list_pos, Item::item_list_pos > >
+        getCallArgs(
+            Item::item_list_pos argPos,
+            int  argc,
+            bool * ans,
+            std::shared_ptr<ParseState> currentParseState) {
 
         if (argc < 1) {
             *ans = true;
@@ -809,7 +829,7 @@ public:
 
     }
 
-    inline std::vector<QString> argc_to_string(
+    static inline std::vector<QString> argc_to_string(
         const std::vector<
         std::pair< Item::item_list_pos,
         Item::item_list_pos > > & args) {
@@ -997,6 +1017,7 @@ public:
     第一遍扫描提取所有tex_raw
     第二次扫描函数执行深度
     第三步按照深度执行函数
+    第四步将其余节点转换为tex_raw
     其余则为the_book_text
     */
     inline bool parse() {
@@ -1068,6 +1089,7 @@ QString TexBuilder::getOutputFileName() const {
 
 bool TexBuilder::convert() {
 
+    /*由于shared_ptr循环引用，所以手动删除数据*/
     class CleanLock {
         TexBuilderPrivate * const data;
     private:
@@ -1083,20 +1105,22 @@ bool TexBuilder::convert() {
         }
     } varLock{ thisp };
 
+    /*打开输入文件*/
     if (false == thisp->openInput()) {
         return false;
     }
 
+    /*打开输出文件*/
     if (false == thisp->openOutput()) {
         return false;
     }
 
+    /*进行转换*/
     if (false == thisp->parse()) {
         return false;
     }
 
-
-
+    /*输出结果*/
     thisp->write_output();
 
     return true;
