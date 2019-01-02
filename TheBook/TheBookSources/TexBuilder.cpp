@@ -37,7 +37,7 @@ inline static std::string _replace_all(const std::string_view arg) {
         }
     };
 
-    //regex : ^ $ \ . * + ? ( ) [ ] { } |
+    /* regex : ^ $ \ . * + ? ( ) [ ] { } | */
     const static std::vector< ReplaceItem > varReplaceDutys = []() {
         std::vector< ReplaceItem > ans;
         ans.emplace_back(std::regex(u8R"(~)", std::regex_constants::ECMAScript | std::regex_constants::optimize), std::string(u8R"(\~{})"sv));
@@ -65,9 +65,11 @@ inline static std::string _replace_all(const std::string_view arg) {
     public:
         std::string_view data;
         bool is_replace = false;
-        Replace(std::string_view a, bool b) :data(a), is_replace(b) {
+        inline Replace(std::string_view a, bool b) :
+            data(a), 
+            is_replace(b) {
         }
-        Replace() = default;
+        inline Replace() = default;
     };
     std::vector<Replace> tmpReplacesInput;
     std::vector<Replace> tmpReplaces;
