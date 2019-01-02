@@ -229,6 +229,7 @@ public:
             TypeFunctionEnd,
             TypeFunctionName,
             TypeTextString,
+            TypeChapterString,
         };
 
         using item_list = std::list< std::shared_ptr<Item> >;
@@ -300,15 +301,18 @@ public:
     class KeyTextSring :
         public FunctionOp {
     public:
+
         inline KeyTextSring(
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
             :FunctionOp(deepthx, p, std::move(s)) {
         }
+
         virtual Type getType() const override {
             return Type::TypeTextString;
         }
+
         bool toRawString(item_list_pos * arg) override {
             /*将ans插入表*/
             auto v = state->data.emplace(this->pos);
@@ -327,10 +331,111 @@ public:
             *arg = v;
             return true;
         }
+
         bool isKeyFunction() const override {
             return true;
         }
+
     };
+ 
+    class KeyForewordString :
+        public FunctionOp {
+        using ThisType = KeyForewordString;
+    public:
+
+        inline ThisType(
+            int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        virtual Type getType() const override {
+            return Type::TypeChapterString;
+        }
+
+        bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto v = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgs = argc_to_string(varArgs1);
+            /*将args转换为string*/
+            {
+                auto varString = varArgs[0];
+                varString = qsl(R"(
+
+)") + varString + qsl(R"(
+
+)");
+                *v = std::make_shared<RawString>(varString, v, state);
+            }
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgs1[0].second);
+            /*更新表数据*/
+            *arg = v;
+            return true;
+        }
+
+        bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
+
+    class KeyChapterString :
+        public FunctionOp {
+        using ThisType = KeyChapterString;
+    public:
+
+        inline ThisType(
+            int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        virtual Type getType() const override {
+            return Type::TypeChapterString;
+        }
+
+        bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto v = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgs = argc_to_string(varArgs1);
+            /*将args转换为string*/
+            {
+                auto varString = varArgs[0];
+                varString = qsl(R"(
+
+)") + varString + qsl(R"(
+
+)");
+                *v = std::make_shared<RawString>(varString, v, state);
+            }
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgs1[0].second);
+            /*更新表数据*/
+            *arg = v;
+            return true;
+        }
+
+        bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
+
 
     class RawString :
         public Item {
@@ -765,14 +870,14 @@ public:
         if (varKey.name == theBookChapter()) {
             /*TODO:*/
             auto varValue =
-                std::make_shared< KeyTextSring >(varDeepth,
+                std::make_shared< KeyChapterString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
         } else if (varKey.name == theBookForeword()) {
             /*TODO:*/
             auto varValue =
-                std::make_shared< KeyTextSring >(varDeepth,
+                std::make_shared< KeyForewordString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
