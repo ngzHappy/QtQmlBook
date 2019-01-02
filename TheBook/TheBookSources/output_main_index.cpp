@@ -279,11 +279,8 @@ extern void output_main_index() try {
 \begin{document}
 
 \maketitle                        %生成封面
+\tableofcontents                  %生成目录
 
-%%%%%%%%%%                        %生成目录
-\tableofcontents
-\cleardoublepage
-%%%%%%%%%%%                       %生成目录
 
 \input{foreword/foreword.tex}     %前言
 \input{chapter01/chapter01.tex}   %第一章
