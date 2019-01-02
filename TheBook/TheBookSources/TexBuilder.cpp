@@ -813,7 +813,24 @@ public:
         const std::vector<
         std::pair< Item::item_list_pos,
         Item::item_list_pos > > & args) {
-        return {};
+        std::vector<QString> varAns;
+        varAns.resize(args.size());
+        std::size_t i = 0;
+        for (; i < args.size(); ++i) {
+            auto varItem = args[i];
+            auto & varAnsI = varAns[i];
+            auto varPos = varItem.first;
+            for (; varPos != varItem.second; ++varPos) {
+                if (varPos->get()->getType() == Item::Type::TypeRawString) {
+                    varAnsI +=
+                        static_cast<RawString *>(varPos->get())->data;
+                } else if (varPos->get()->getType() == Item::Type::TypeProgramString) {
+                    varAnsI += plainStringToTexString(
+                        static_cast<ProgramString *>(varPos->get())->data);
+                }
+            }
+        }
+        return std::move(varAns);
     }
 
 
