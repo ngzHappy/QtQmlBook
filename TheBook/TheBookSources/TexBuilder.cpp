@@ -604,7 +604,8 @@ public:
 
         while (varPos != varData.cend()) {
 
-            if (varPos->get()->getType() == Item::Type::TypeProgramString) {
+            const auto varCurrentType2 = varPos->get()->getType();
+            if (varCurrentType2 == Item::Type::TypeProgramString) {
 
                 auto varItemRaw = *varPos;
                 auto varProgram =
@@ -613,8 +614,8 @@ public:
                 auto varString = varProgram->data;
                 assert(false == varString.isEmpty());
 
-                const static auto varLeftExp = QRegularExpression(qsl(R"(\s\[=*\[)"));
-                const static auto varRightExp = QRegularExpression(qsl(R"(\s\]=*\])"));
+                const static auto varLeftExp = QRegularExpression(qsl(R"(\s*\[=*\[)"));
+                const static auto varRightExp = QRegularExpression(qsl(R"(\s*\]=*\])"));
 
                 bool hasOp = false;
 
@@ -749,8 +750,13 @@ public:
         auto varAns = varData.emplace(varPos);
 
         if (varKey.name == theBookChapter()) {
-
-        } else if (varKey.name == theBookChapter()) {
+            /*TODO:*/
+            auto varValue =
+                std::make_shared< KeyTextSring >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (varKey.name == theBookText()) {
             auto varValue =
                 std::make_shared< KeyTextSring >(varDeepth,
                     varAns,
@@ -758,6 +764,7 @@ public:
             *varAns = varValue;
         }
 
+        assert(*varAns);
         return varAns;
 
     }
@@ -771,9 +778,9 @@ public:
         int varRightCount = 0;
         for (; varBegin != varEnd; ++varBegin) {
             if (varBegin->get()->getType() == Item::Type::TypeFunctionEnd) {
-                ++varLeftCount;
-            } else if (varBegin->get()->getType() == Item::Type::TypeFunctionStart) {
                 ++varRightCount;
+            } else if (varBegin->get()->getType() == Item::Type::TypeFunctionStart) {
+                ++varLeftCount;
             }
         }
         assert(varLeftCount >= varRightCount);
@@ -998,6 +1005,7 @@ public:
         auto varPos = varData.cbegin();
         auto varCurrentDeepth = varState->current_deepth;
         do {
+            varPos = varData.cbegin();
             while (varPos != varData.cend()) {
                 if (varPos->get()->isKeyFunction()) {
                     auto varItem = *varPos;
@@ -1008,6 +1016,8 @@ public:
                         if (false == varItem->toRawString(&varPos)) {
                             return false;
                         }
+                    } else {
+                        ++varPos;
                     }
                 } else {
                     ++varPos;
@@ -1043,11 +1053,14 @@ public:
             auto varPos = varParseState->data.cbegin();
             while (varPos != varParseState->data.cend()) {
                 auto varI = *varPos;
-                if (varI->getType() != Item::Type::TypeRawString) {
+                const auto varCurrentType1 = varI->getType();
+                if (varCurrentType1 != Item::Type::TypeRawString) {
                     isAllRaw = false;
-                }
-                if (varI->toRawString(&varPos) == false) {
-                    return false;
+                    if (varI->toRawString(&varPos) == false) {
+                        return false;
+                    }
+                } else {
+                    ++varPos;
                 }
             }
         }
