@@ -1,0 +1,5 @@
+﻿:tex_raw:[==[%测试一行内多个tex_raw]==]
+aa:tex_raw:[==[啊abc蛤]==]bb:tex_raw:[==[道abc二]==]cc
+
+
+
