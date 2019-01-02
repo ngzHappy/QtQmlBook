@@ -31,8 +31,8 @@ static inline void test_0200() {
     assert(varBuilder->convert());
 }
 
-//#define ENABLE_TEST_00
-//#define ENABLE_TEST_01
+#define ENABLE_TEST_00
+#define ENABLE_TEST_01
 #define ENABLE_TEST_02
 
 extern void test_this() {

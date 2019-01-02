@@ -7,13 +7,16 @@
 keys :
 
 原样输出
-:tex_raw[==[ $data$ ]==]
+:tex_raw:[==[ $data$ ]==]
+
+前言
+:the_book_foreword:[ $data$ ]
 
 章
-:the_book_chapter[ $data$ ]
+:the_book_chapter:[ $data$ ]
 
 文本(进行特殊字符转换)
-:the_book_text[ $data$ ]
+:the_book_text:[ $data$ ]
 
 */
 

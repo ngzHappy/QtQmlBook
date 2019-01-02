@@ -8,6 +8,11 @@
 #include <regex>
 #include <string>
 
+/******
+_keys_set()
+_insertKey()
+*****/
+
 static inline const QString & texRaw() {
     const static auto varAns = qsl(":tex_raw:");
     return varAns;
@@ -20,6 +25,11 @@ static inline const QString & theBookChapter() {
 
 static inline const QString & theBookText() {
     const static auto varAns = qsl(":the_book_text:");
+    return varAns;
+}
+
+static inline const QString & theBookForeword() {
+    const static auto varAns = qsl(":the_book_foreword:");
     return varAns;
 }
 
@@ -424,6 +434,7 @@ public:
         auto varAns = std::make_shared<std::set<FunctionKeys>>();
         varAns->emplace(theBookChapter(), 1);
         varAns->emplace(theBookText(), 1);
+        varAns->emplace(theBookForeword(), 1);
         return std::move(varAns);
     }
 
@@ -742,7 +753,7 @@ public:
         return varMaxDeepth;
     }
 
-    inline Item::item_list_pos insertKey(
+    inline Item::item_list_pos _insertKey(
         const FunctionKeys  & varKey,
         int varDeepth,
         Item::item_list_pos   varPos) {
@@ -752,6 +763,13 @@ public:
         auto varAns = varData.emplace(varPos);
 
         if (varKey.name == theBookChapter()) {
+            /*TODO:*/
+            auto varValue =
+                std::make_shared< KeyTextSring >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (varKey.name == theBookForeword()) {
             /*TODO:*/
             auto varValue =
                 std::make_shared< KeyTextSring >(varDeepth,
@@ -953,7 +971,7 @@ public:
                     }
                     /*插入key...*/
                     varNewPos =
-                        this->insertKey(*varKey, varCurrentFunctionDeepth, varPos);
+                        this->_insertKey(*varKey, varCurrentFunctionDeepth, varPos);
                     /*删除当前位置*/
                     varData.erase(varPos);
                     varPos = varNewPos;
@@ -971,7 +989,7 @@ public:
                     }
                     /*插入key...*/
                     varNewPos =
-                        this->insertKey(*varKey, varCurrentFunctionDeepth, varPos);
+                        this->_insertKey(*varKey, varCurrentFunctionDeepth, varPos);
                     /*删除无用数据*/
                     auto varDataString = varProgram->data;
                     const auto varNewSize =
