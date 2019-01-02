@@ -11,10 +11,11 @@ inline void output_setup_page_geometry_a4() {
     OutPutFileStream varStream{ &varFile };
 
     varStream << qsl(R"__1__(
-
+\let\counterwithout\relax
+\let\counterwithin\relax
 \usepackage{xcolor}        %导入包xcolor
 \usepackage[
-a4paper,
+a4paper ,
 left=2.8cm,                %靠近装订线的边距
 right=1.5cm,               %远离装订线的边距
 top=1.5cm,
@@ -96,7 +97,7 @@ inline static void out_put_setup_hyperref() {
     pdfauthor={Qml} ,      %作者
     pdfsubject={Qml} ,     %主题
     pdfkeywords={Qml} ,    %关键字
-    %linkcolor=colortextthisproject
+    linkcolor=colortextthisproject
 ]{hyperref}
 
 
