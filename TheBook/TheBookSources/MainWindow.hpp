@@ -8,6 +8,8 @@ private:
 public:
     MainWindow();
     ~MainWindow();
+public:
+    void rebuild();
 private:
 };
 

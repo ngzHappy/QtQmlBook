@@ -155,9 +155,11 @@ static inline QString plainStringToTexString(const QString & arg) {
     std::string varString;
     {   /*转换为UTF8编码*/
         const auto argInput = arg.toUtf8();
+        /*替换特殊字符*/
         varString = _replace_all({ argInput.constData(),
              static_cast<std::size_t>(argInput.size()) });
     }
+    /*转换成QString*/
     return QString::fromUtf8(varString.c_str(),
         static_cast<int>(varString.size()));
 }
