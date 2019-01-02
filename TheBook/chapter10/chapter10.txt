@@ -1,5 +1,5 @@
 ﻿
-:the_book_chapter[==[这是测试10]==]
+:the_book_chapter:[==[这是测试10]==]
 
 
 
