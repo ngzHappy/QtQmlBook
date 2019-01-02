@@ -368,9 +368,12 @@ public:
             {
                 auto varString = varArgs[0];
                 varString = qsl(R"(
-
+\cleardoublepage                              %增加空白页
+\setcounter{secnumdepth}{-2}                  %暂停编号，但加入目录
+\chapter{
 )") + varString + qsl(R"(
-
+}
+\setcounter{secnumdepth}{3}                   %恢复编号
 )");
                 *v = std::make_shared<RawString>(varString, v, state);
             }
@@ -417,9 +420,10 @@ public:
             {
                 auto varString = varArgs[0];
                 varString = qsl(R"(
-
+\cleardoublepage
+\chapter{
 )") + varString + qsl(R"(
-
+}
 )");
                 *v = std::make_shared<RawString>(varString, v, state);
             }

@@ -15,8 +15,8 @@ inline void output_setup_page_geometry_a4() {
 \usepackage{xcolor}        %导入包xcolor
 \usepackage[
 a4paper,
-left=0.8cm,                %靠近装订线的边距
-right=0.8cm,               %远离装订线的边距
+left=2.1cm,                %靠近装订线的边距
+right=1.5cm,               %远离装订线的边距
 top=1.3cm,
 bottom=1cm,
 headheight=1.3cm,
@@ -269,10 +269,16 @@ extern void output_main_index() try {
 \input{setup_general_packages}                        %导入常用包，设置颜色
 \input{setup_hyperref}                                %设置超链接，控制pdf元数据
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%常量
+
+\title{Qt Quick入门精选}                              %书籍名称
+\author{Good Luck}                                    %作者名
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
+\maketitle                        %生成封面
 
 \input{foreword/foreword.tex}     %前言
 \input{chapter01/chapter01.tex}   %第一章
