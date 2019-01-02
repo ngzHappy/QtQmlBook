@@ -615,7 +615,7 @@ public:
                 assert(false == varString.isEmpty());
 
                 const static auto varLeftExp = QRegularExpression(qsl(R"(\s*\[=*\[)"));
-                const static auto varRightExp = QRegularExpression(qsl(R"(\s*\]=*\])"));
+                const static auto varRightExp = QRegularExpression(qsl(R"(\]=*\])"));
 
                 bool hasOp = false;
 

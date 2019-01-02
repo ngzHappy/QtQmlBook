@@ -1,5 +1,5 @@
 ﻿:tex_raw:[[%测试the_book_text]]
-:the_book_text:[[今天:the_book_text:[[是]]个好天气]]
+:the_book_text:[[今天:the_book_text:[[ 是 ]]个好天气]]
 
 
 
