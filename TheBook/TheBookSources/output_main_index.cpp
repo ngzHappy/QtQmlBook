@@ -18,8 +18,8 @@ inline void output_setup_page_geometry_a4() {
 a4paper ,
 left=2.8cm,                %靠近装订线的边距
 right=1.5cm,               %远离装订线的边距
-top=1.5cm,
-bottom=1.5cm,
+top=2.0cm,
+bottom=1.8cm,
 headheight=1.3cm,
 headsep=0.1cm,
 marginparsep=0.1cm,
@@ -262,7 +262,7 @@ extern void output_main_index() try {
 
     varStream << qsl(R"___1_(
 
-\documentclass[hyperref,UTF8]{ctexbook}
+\documentclass[12pt,hyperref,UTF8]{ctexbook}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

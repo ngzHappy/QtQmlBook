@@ -1,5 +1,23 @@
 TEMPLATE = app
 
+win32-msvc*{
+
+CONFIG(debug,debug|release){
+    TARGET = the_book_msvc_debug
+}else{
+    TARGET = the_book_msvc
+}
+
+}else{
+
+CONFIG(debug,debug|release){
+    TARGET = the_book_debug
+}else{
+    TARGET = the_book
+}
+
+}
+
 QT += core
 QT += gui
 QT += widgets

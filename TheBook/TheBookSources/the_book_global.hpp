@@ -49,6 +49,8 @@ inline static void outputHeader(T && o) {
     o << qsl(R"(%版权所有，翻版必究)") << endl;
     o << qsl(R"(%本文件由程序自动生成，任何修改将被覆盖)") << endl;
 
+#ifdef _DEBUG
+#else
     {
         const static auto varCurrnetData = QDate::currentDate();
         o << qsl(R"(%)") << varCurrnetData.year() << qsl(R"( 年)");
@@ -62,6 +64,7 @@ inline static void outputHeader(T && o) {
         o << qsl(R"( )") << varCurrentTime.minute() << qsl(R"( 分)");
         o << qsl(R"( )") << varCurrentTime.second() << qsl(R"( 秒)");
     }
+#endif
 
     o << endl;
     o << endl;
