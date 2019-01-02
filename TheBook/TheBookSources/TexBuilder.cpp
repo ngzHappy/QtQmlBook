@@ -66,7 +66,7 @@ inline static std::string _replace_all(const std::string_view arg) {
         std::string_view data;
         bool is_replace = false;
         inline Replace(std::string_view a, bool b) :
-            data(a), 
+            data(a),
             is_replace(b) {
         }
         inline Replace() = default;
