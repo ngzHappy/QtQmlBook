@@ -7,7 +7,17 @@
 #include <limits>
 
 static inline const QString & texRaw() {
-    const static auto varAns = QStringLiteral(":tex_raw");
+    const static auto varAns = qsl(":tex_raw:");
+    return varAns;
+}
+
+static inline const QString & theBookChapter() {
+    const static auto varAns = qsl(":the_book_chapter:");
+    return varAns;
+}
+
+static inline const QString & theBookText() {
+    const static auto varAns = qsl(":the_book_text:");
     return varAns;
 }
 
@@ -88,8 +98,8 @@ public:
             line_number = state->line_number;
         }
 
-        inline void clear(){
-            state.reset() ;
+        inline void clear() {
+            state.reset();
         }
 
     };
@@ -141,7 +151,7 @@ public:
             :FunctionOp(deepthx, p, std::move(s)) {
         }
         virtual Type getType() const override {
-            return Type::TypeTextString ;
+            return Type::TypeTextString;
         }
         bool toRawString(item_list_pos * arg) override {
             *arg = this->pos;
@@ -149,7 +159,7 @@ public:
             return true;
         }
         bool isKeyFunction() const override {
-             return true ;
+            return true;
         }
     };
 
@@ -158,7 +168,7 @@ public:
     public:
         const QString data;
         inline RawString(QString arg, item_list_pos p, std::shared_ptr<ParseState> s) :
-             Item(p, std::move(s)) ,data(std::move(arg)) {
+            Item(p, std::move(s)), data(std::move(arg)) {
         }
         virtual Type getType() const override {
             return Type::TypeRawString;
@@ -180,7 +190,7 @@ public:
             QString arg,
             item_list_pos p,
             std::shared_ptr<ParseState> s) :
-             Item(p, std::move(s)),data(std::move(arg)) {
+            Item(p, std::move(s)), data(std::move(arg)) {
         }
 
         virtual Type getType() const {
@@ -202,34 +212,34 @@ public:
     public:
         Item::item_list data;
         int line_number{ 0 };
-        int current_deepth{-1};
+        int current_deepth{ -1 };
     };
     std::shared_ptr<ParseState> currentParseState;
 
-    inline void clean(){
+    inline void clean() {
 
-        if(inputStream){
+        if (inputStream) {
             inputStream.reset();
         }
 
-        if(outputStream){
+        if (outputStream) {
             outputStream.reset();
         }
 
-        if(inputFile){
+        if (inputFile) {
             inputFile.reset();
         }
 
-        if(outputFile){
+        if (outputFile) {
             outputFile.reset();
         }
 
-        if( currentParseState ){
-            for(auto & varI:currentParseState->data){
+        if (currentParseState) {
+            for (auto & varI : currentParseState->data) {
                 varI->clear();
             }
             currentParseState->data.clear();
-            currentParseState.reset() ;
+            currentParseState.reset();
         }
 
     }
@@ -253,8 +263,8 @@ public:
 
     static inline std::shared_ptr< std::set<FunctionKeys> > _keys_set() {
         auto varAns = std::make_shared<std::set<FunctionKeys>>();
-        varAns->emplace(qsl(":the_book_chapter"), 1);
-        varAns->emplace(qsl(":the_book_text"), 1);
+        varAns->emplace(theBookChapter(), 1);
+        varAns->emplace(theBookText(), 1);
         return std::move(varAns);
     }
 
@@ -569,86 +579,86 @@ public:
                 ++varPos;
             }
         }
-            return varMaxDeepth;
+        return varMaxDeepth;
     }
 
     inline Item::item_list_pos insertKey(
-            const FunctionKeys  & varKey ,
-            int varDeepth,
-            Item::item_list_pos   varPos ){
+        const FunctionKeys  & varKey,
+        int varDeepth,
+        Item::item_list_pos   varPos) {
         /*整个表*/
         auto & varData = currentParseState->data;
 
         auto varAns = varData.emplace(varPos);
 
-        if( varKey.name == qsl(":the_book_chapter") ){
+        if (varKey.name == theBookChapter() ) {
 
-        }else if(varKey.name == qsl(":the_book_text")){
+        } else if (varKey.name == theBookChapter() ) {
             auto varValue =
                 std::make_shared< KeyTextSring >(varDeepth,
-                                                 varAns,
-                                                 currentParseState);
+                    varAns,
+                    currentParseState);
             *varAns = varValue;
         }
 
-        return varAns ;
+        return varAns;
 
     }
 
-    inline int get_function_deepth(  Item::item_list_pos arg ){
+    inline int get_function_deepth(Item::item_list_pos arg) {
         /*整个表*/
         auto & varData = currentParseState->data;
-        auto varEnd = std::make_reverse_iterator( varData.cbegin() );
-        auto varBegin = std::make_reverse_iterator( arg );
-        int varLeftCount =0 ;
+        auto varEnd = std::make_reverse_iterator(varData.cbegin());
+        auto varBegin = std::make_reverse_iterator(arg);
+        int varLeftCount = 0;
         int varRightCount = 0;
-        for(;varBegin!=varEnd;++varBegin){
-            if(varBegin->get()->getType() == Item::Type::TypeFunctionEnd ){
-                ++varLeftCount ;
-            }else if(varBegin->get()->getType() == Item::Type::TypeFunctionStart ){
-                ++varRightCount ;
+        for (; varBegin != varEnd; ++varBegin) {
+            if (varBegin->get()->getType() == Item::Type::TypeFunctionEnd) {
+                ++varLeftCount;
+            } else if (varBegin->get()->getType() == Item::Type::TypeFunctionStart) {
+                ++varRightCount;
             }
         }
-        assert(varLeftCount>=varRightCount);
-        return (varLeftCount-varRightCount);
+        assert(varLeftCount >= varRightCount);
+        return (varLeftCount - varRightCount);
     }
 
     /*获得argc...*/
-    inline std::vector< std::pair< Item::item_list_pos,Item::item_list_pos > >
-    getCallArgs(  Item::item_list_pos  argPos , int  argc,bool * ans){
+    inline std::vector< std::pair< Item::item_list_pos, Item::item_list_pos > >
+        getCallArgs(Item::item_list_pos  argPos, int  argc, bool * ans) {
 
-        if(argc<1){
+        if (argc < 1) {
             *ans = true;
             return{};
         }
 
         const auto & varData =
-        currentParseState->data;
+            currentParseState->data;
 
-        auto varEnd =varData.cend();
+        auto varEnd = varData.cend();
 
-        auto varPos = argPos ;
+        auto varPos = argPos;
         ++varPos;
 
-        std::vector< std::pair< Item::item_list_pos,Item::item_list_pos > > varAns;
+        std::vector< std::pair< Item::item_list_pos, Item::item_list_pos > > varAns;
 
         auto argci = argc;
-        while (argci>0) {
+        while (argci > 0) {
             --argci;
 
-            std::pair< Item::item_list_pos,Item::item_list_pos >
-                    varItem;
-            bool isSetBegin=false;
-            for(;varPos!= varEnd ; ++varPos ){
-                if( varPos->get()->getType() == Item::Type::TypeFunctionStart ){
-                    isSetBegin=true;
+            std::pair< Item::item_list_pos, Item::item_list_pos >
+                varItem;
+            bool isSetBegin = false;
+            for (; varPos != varEnd; ++varPos) {
+                if (varPos->get()->getType() == Item::Type::TypeFunctionStart) {
+                    isSetBegin = true;
                     varItem.first = varPos;
-                }else if(varPos->get()->getType() == Item::Type::TypeFunctionEnd ) {
+                } else if (varPos->get()->getType() == Item::Type::TypeFunctionEnd) {
                     varItem.second = varPos;
-                    varAns.push_back( varItem );
+                    varAns.push_back(varItem);
                     ++varPos;
-                    if(false==isSetBegin){
-                        *ans=false;
+                    if (false == isSetBegin) {
+                        *ans = false;
                         return std::move(varAns);
                     }
                     break;
@@ -657,17 +667,17 @@ public:
 
         }
 
-    *ans = (argc == static_cast<int>( varAns.size()));
+        *ans = (argc == static_cast<int>(varAns.size()));
 
-    return std::move(varAns);
+        return std::move(varAns);
 
     }
 
     inline std::vector<QString> argc_to_string(
-            const std::vector<
-            std::pair< Item::item_list_pos,
-            Item::item_list_pos > > & args){
-return {};
+        const std::vector<
+        std::pair< Item::item_list_pos,
+        Item::item_list_pos > > & args) {
+        return {};
     }
 
 
@@ -680,7 +690,7 @@ return {};
         /*最大函数调用深度*/
         varState->current_deepth = varMaxDeepth;
 
-        if(varMaxDeepth == 0){
+        if (varMaxDeepth == 0) {
             return true;
         }
 
@@ -707,125 +717,125 @@ return {};
                 static_cast<ProgramString *>(varItemRaw.get());
 
             /*搜索当前key的起始位置...*/
-            int varIndex ;
+            int varIndex;
 
             do {
 
-            varIndex = std::numeric_limits<int>::max();
-            std::optional< FunctionKeys > varKey;
+                varIndex = std::numeric_limits<int>::max();
+                std::optional< FunctionKeys > varKey;
 
-            /*本行keys计数器*/
-            int varKeyCount= 0;
-            /*搜索最左边的key*/
-            for (const auto & varI : *keys_set()) {
-                auto varThisKeyIndex =
+                /*本行keys计数器*/
+                int varKeyCount = 0;
+                /*搜索最左边的key*/
+                for (const auto & varI : *keys_set()) {
+                    auto varThisKeyIndex =
                         varProgram->data.indexOf(varI.name);
-                if (varThisKeyIndex < 0) {
-                    continue ;
+                    if (varThisKeyIndex < 0) {
+                        continue;
+                    }
+                    ++varKeyCount;
+                    if (varIndex > varThisKeyIndex) {
+                        varIndex = varThisKeyIndex;
+                    }
+                    if (varKey) {
+                        varKey.reset();
+                    }
+                    varKey.emplace(varI);
                 }
-                ++varKeyCount;
-                if(varIndex>varThisKeyIndex){
-                    varIndex = varThisKeyIndex ;
+
+                /*没有key...*/
+                if (varIndex == std::numeric_limits<int>::max()) {
+                    ++varPos;
+                    break;
                 }
-                if(varKey){
-                    varKey.reset();
-                }
-                varKey.emplace(varI);
-            }
 
-            /*没有key...*/
-            if (varIndex == std::numeric_limits<int>::max()) {
-                ++varPos;
-                break ;
-            }
+                const auto varCurrentFunctionDeepth =
+                    get_function_deepth(varPos);
 
-            const auto varCurrentFunctionDeepth =
-             get_function_deepth(varPos);
-
-            if(varKey->argc > 0 ){
-                assert(varKeyCount==1);
-                Item::item_list_pos varNewPos;
-                if(varIndex){/*插入左边的内容*/
-                    auto v = varData.emplace(varPos);
-                    auto varItem =
+                if (varKey->argc > 0) {
+                    assert(varKeyCount == 1);
+                    Item::item_list_pos varNewPos;
+                    if (varIndex) {/*插入左边的内容*/
+                        auto v = varData.emplace(varPos);
+                        auto varItem =
                             std::make_shared< ProgramString >(
-                                varProgram->data.left(varIndex) ,
+                                varProgram->data.left(varIndex),
                                 v,
                                 varState);
-                    *v = varItem ;
-                }
-                /*插入key...*/
-                varNewPos =
-                        this->insertKey( *varKey ,varCurrentFunctionDeepth , varPos );
-                /*删除当前位置*/
-                varData.erase(varPos);
-                varPos = varNewPos;
-                break ;
-            }else{
-                Item::item_list_pos varNewPos;
-                if(varIndex){/*插入左边的内容*/
-                    auto v = varData.emplace(varPos);
-                    auto varItem =
+                        *v = varItem;
+                    }
+                    /*插入key...*/
+                    varNewPos =
+                        this->insertKey(*varKey, varCurrentFunctionDeepth, varPos);
+                    /*删除当前位置*/
+                    varData.erase(varPos);
+                    varPos = varNewPos;
+                    break;
+                } else {
+                    Item::item_list_pos varNewPos;
+                    if (varIndex) {/*插入左边的内容*/
+                        auto v = varData.emplace(varPos);
+                        auto varItem =
                             std::make_shared< ProgramString >(
-                                varProgram->data.left(varIndex) ,
+                                varProgram->data.left(varIndex),
                                 v,
                                 varState);
-                    *v = varItem ;
-                }
-                /*插入key...*/
-                varNewPos =
-                        this->insertKey( *varKey  ,varCurrentFunctionDeepth, varPos );
-                /*删除无用数据*/
-                auto varDataString = varProgram->data;
-                const auto varNewSize =
+                        *v = varItem;
+                    }
+                    /*插入key...*/
+                    varNewPos =
+                        this->insertKey(*varKey, varCurrentFunctionDeepth, varPos);
+                    /*删除无用数据*/
+                    auto varDataString = varProgram->data;
+                    const auto varNewSize =
                         varDataString.size() -
                         varIndex -
                         varKey->name.size();
-                assert(varNewSize>=0);
-                varDataString = varDataString.right( varNewSize );
-                if(varDataString.isEmpty()){
-                    /*删除空节点*/
-                    varData.erase( varPos );
-                    varPos = varNewPos;
-                    break;
-                }else{
-                    /*继续搜索...*/
-                    varProgram->data = varDataString ;
+                    assert(varNewSize >= 0);
+                    varDataString = varDataString.right(varNewSize);
+                    if (varDataString.isEmpty()) {
+                        /*删除空节点*/
+                        varData.erase(varPos);
+                        varPos = varNewPos;
+                        break;
+                    } else {
+                        /*继续搜索...*/
+                        varProgram->data = varDataString;
+                    }
                 }
-            }
 
-            } while( varIndex!=std::numeric_limits<int>::max() );
+            } while (varIndex != std::numeric_limits<int>::max());
 
         }
 
         return true;
     }
 
-    inline bool call_all_functions(std::shared_ptr<ParseState> varState){
-        if(varState->current_deepth<1){
+    inline bool call_all_functions(std::shared_ptr<ParseState> varState) {
+        if (varState->current_deepth < 1) {
             return true;
         }
         /*整个表*/
         auto & varData = varState->data;
         auto varPos = varData.cbegin();
         auto varCurrentDeepth = varState->current_deepth;
-        do{
-        while(varPos!=varData.cend()){
-            if(varPos->get()->isKeyFunction()){
-                auto varItem = *varPos;
-                auto varCurrentDeepth1 =
-                static_cast< FunctionOp * >(varItem.get())->deepth;
-                assert( varCurrentDeepth >= varCurrentDeepth1 );
-                if(varCurrentDeepth == varCurrentDeepth1){
-                    if(false == varItem->toRawString( &varPos )){
-                        return false;
+        do {
+            while (varPos != varData.cend()) {
+                if (varPos->get()->isKeyFunction()) {
+                    auto varItem = *varPos;
+                    auto varCurrentDeepth1 =
+                        static_cast<FunctionOp *>(varItem.get())->deepth;
+                    assert(varCurrentDeepth >= varCurrentDeepth1);
+                    if (varCurrentDeepth == varCurrentDeepth1) {
+                        if (false == varItem->toRawString(&varPos)) {
+                            return false;
+                        }
                     }
+                } else {
+                    ++varPos;
                 }
-            }else{
-                ++varPos;
             }
-        }
-        }while((--varCurrentDeepth)>-1);
+        } while ((--varCurrentDeepth) > -1);
 
         return true;
     }
@@ -845,7 +855,7 @@ return {};
         if (false == parse_call_deepth(varParseState)) {
             return false;
         }
-        if(false == call_all_functions(varParseState)){
+        if (false == call_all_functions(varParseState)) {
             return false;
         }
         bool isAllRaw = false;
@@ -905,20 +915,20 @@ QString TexBuilder::getOutputFileName() const {
 
 bool TexBuilder::convert() {
 
-    class CleanLock{
+    class CleanLock {
         TexBuilderPrivate * const data;
     private:
     public:
-        inline CleanLock(TexBuilderPrivate * a):data(a){
+        inline CleanLock(TexBuilderPrivate * a) :data(a) {
             this->clean();
         }
-        inline ~CleanLock(){
+        inline ~CleanLock() {
             this->clean();
         }
-        inline void clean(){
+        inline void clean() {
             data->clean();
         }
-    } varLock{thisp} ;
+    } varLock{ thisp };
 
     if (false == thisp->openInput()) {
         return false;
