@@ -3,7 +3,6 @@ main_index.synctex.gz
 *.out
 *.log
 *.aux
-*.tex
 *.pdf
 
 

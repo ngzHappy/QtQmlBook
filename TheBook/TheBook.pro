@@ -45,6 +45,11 @@ DISTFILES += $$PWD/test/test_0100.txt
 DISTFILES += $$PWD/test/test_0101.txt
 DISTFILES += $$PWD/test/test_0200.txt
 
+DISTFILES += $$PWD/test/test_0000.tex
+DISTFILES += $$PWD/test/test_0100.tex
+DISTFILES += $$PWD/test/test_0101.tex
+DISTFILES += $$PWD/test/test_0200.tex
+
 DISTFILES += $$PWD/foreword/foreword.txt
 DISTFILES += $$PWD/chapter01/chapter01.txt
 DISTFILES += $$PWD/chapter02/chapter02.txt
@@ -57,12 +62,22 @@ DISTFILES += $$PWD/chapter08/chapter08.txt
 DISTFILES += $$PWD/chapter09/chapter09.txt
 DISTFILES += $$PWD/chapter10/chapter10.txt
 
+DISTFILES += $$PWD/foreword/foreword.tex
+DISTFILES += $$PWD/chapter01/chapter01.tex
+DISTFILES += $$PWD/chapter02/chapter02.tex
+DISTFILES += $$PWD/chapter03/chapter03.tex
+DISTFILES += $$PWD/chapter04/chapter04.tex
+DISTFILES += $$PWD/chapter05/chapter05.tex
+DISTFILES += $$PWD/chapter06/chapter06.tex
+DISTFILES += $$PWD/chapter07/chapter07.tex
+DISTFILES += $$PWD/chapter08/chapter08.tex
+DISTFILES += $$PWD/chapter09/chapter09.tex
+DISTFILES += $$PWD/chapter10/chapter10.tex
 
-
-
-
-
-
+DISTFILES += $$PWD/main_index.tex
+DISTFILES += $$PWD/setup_general_packages.tex
+DISTFILES += $$PWD/setup_hyperref.tex
+DISTFILES += $$PWD/setup_page_geometry_a4.tex
 
 
 

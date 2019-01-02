@@ -274,17 +274,17 @@ extern void output_main_index() try {
 \begin{document}
 
 
-\input{foreword/foreword.tex}
-\input{chapter01/chapter01.tex}
-\input{chapter02/chapter02.tex}
-\input{chapter03/chapter03.tex}
-\input{chapter04/chapter04.tex}
-\input{chapter05/chapter05.tex}
-\input{chapter06/chapter06.tex}
-\input{chapter07/chapter07.tex}
-\input{chapter08/chapter08.tex}
-\input{chapter09/chapter09.tex}
-\input{chapter10/chapter10.tex}
+\input{foreword/foreword.tex}     %前言
+\input{chapter01/chapter01.tex}   %第一章
+\input{chapter02/chapter02.tex}   %第二章
+\input{chapter03/chapter03.tex}   %第三章
+\input{chapter04/chapter04.tex}   %第四章
+\input{chapter05/chapter05.tex}   %第五章
+\input{chapter06/chapter06.tex}   %第六章
+\input{chapter07/chapter07.tex}   %第七章
+\input{chapter08/chapter08.tex}   %第八章
+\input{chapter09/chapter09.tex}   %第九章
+\input{chapter10/chapter10.tex}   %第十章
 
 
 \end{document}
