@@ -15,10 +15,10 @@ inline void output_setup_page_geometry_a4() {
 \usepackage{xcolor}        %导入包xcolor
 \usepackage[
 a4paper,
-left=2.1cm,                %靠近装订线的边距
+left=2.8cm,                %靠近装订线的边距
 right=1.5cm,               %远离装订线的边距
-top=1.3cm,
-bottom=1cm,
+top=1.5cm,
+bottom=1.5cm,
 headheight=1.3cm,
 headsep=0.1cm,
 marginparsep=0.1cm,
@@ -96,7 +96,7 @@ inline static void out_put_setup_hyperref() {
     pdfauthor={Qml} ,      %作者
     pdfsubject={Qml} ,     %主题
     pdfkeywords={Qml} ,    %关键字
-    linkcolor=colortextthisproject
+    %linkcolor=colortextthisproject
 ]{hyperref}
 
 
