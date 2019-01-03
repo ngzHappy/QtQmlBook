@@ -74,6 +74,25 @@ marginparwidth=0.1cm
     linkcolor=colortextthisproject
 ]{hyperref}
 
+\usepackage{fontspec}
+\definecolor{sourcegrayone}{rgb}{0.9,0.9,0.85}  %源代码背景颜色
+\newfontfamily\sourcefontone{Consolas}          %源代码字体
+
+%源代码默认样式
+\lstset{
+language=C,
+basicstyle=\footnotesize\sourcefontone ,
+stringstyle=\footnotesize\sourcefontone ,
+keywordstyle=\footnotesize\sourcefontone ,
+commentstyle=\footnotesize\sourcefontone ,
+identifierstyle=\footnotesize\sourcefontone ,
+numbers=left, 
+numberstyle=\tiny,
+frame=trbl,
+backgroundcolor=\color{sourcegrayone},
+showstringspaces=true
+} 
+
 %设置常量
 \title{Qt Quick全面导引}                              %书籍名称
 \author{Good Luck}                              %作者名
