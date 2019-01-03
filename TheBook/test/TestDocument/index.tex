@@ -80,12 +80,25 @@ marginparwidth=0.1cm
 
 
 
+\pagestyle{empty}                 %关闭页眉页脚
 \maketitle                        %生成封面
+
+\cleardoublepage
+\pagestyle{headings}              %开启页眉页脚
+\pagenumbering{roman}             %重新开始页码编号
 \tableofcontents                  %生成目录
 
 \cleardoublepage
+%
+%    arabic - 阿拉伯数字
+%    roman - 小写的罗马数字
+%    Roman - 大写的罗马数字
+%    alph - 小写的字符形式
+%    Alph -大写的字符形式
+%
+\pagenumbering{arabic}  %重新开始页码编号
 \chapter{chapter 1}
-
+%P129
 \section{section 1}
 
 \subsection{subsection 1}
