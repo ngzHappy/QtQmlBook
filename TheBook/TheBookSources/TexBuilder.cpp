@@ -1431,7 +1431,9 @@ bool TexBuilder::convert() {
 }
 
 
-
+extern QString theBookPlainTextToTexText(const QString & arg) {
+    return plainStringToTexString(arg);
+}
 
 
 
