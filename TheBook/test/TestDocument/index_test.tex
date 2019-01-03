@@ -22,7 +22,7 @@ marginparwidth=0.1cm
 
  %导入常用包
 \usepackage{graphicx}
-\usepackage{float}
+%\usepackage{float}
 \usepackage{amsmath}
 \usepackage{cite}
 \usepackage{caption}
@@ -32,12 +32,24 @@ marginparwidth=0.1cm
 \usepackage{tocbibind}  %设置目录
 \usepackage{tocloft}
 \usepackage{multicol}
-\usepackage{listings}%引入程序代码
+
+\usepackage{amsthm}
+\usepackage{xltxtra}
+\usepackage{listings}
+
+\usepackage{fontspec}
+%\setmainfont{Times New Roman}
+%\usepackage{newtxtext, newtxmath}
+%\setsansfont{Times New Roman}
+%\setmonofont{Times New Roman}
+%\usepackage{txfonts}
+
+%\setCJKmainfont{Times New Roman}
 
 %%常见符号
-\usepackage{wasysym}    %
-\usepackage{textcomp}   %
-\usepackage{pifont}     %
+%\usepackage{wasysym}    %
+%\usepackage{textcomp}   %
+%\usepackage{pifont}     %
 
 \usepackage{color}
 \definecolor{colorbackgroundthisproject}{rgb}{1,1,1} %页面背景颜色
@@ -48,7 +60,7 @@ marginparwidth=0.1cm
 \color{colortextthisproject}
 
 \usepackage{xhfill}
-\usepackage{times}
+%\usepackage{times}
 
 
 %设置输出pdf格式
@@ -68,6 +80,15 @@ marginparwidth=0.1cm
 
 
 
+\usepackage{listings}%引入程序代码
+
+\lstset{
+language=C,
+basicstyle=\footnotesize\ttfamily,
+stringstyle=\footnotesize\ttfamily,
+showstringspaces=true
+} 
+
 
 \title{这是一本书}                              %书籍名称
 \author{Good Luck}                              %作者名
@@ -76,6 +97,8 @@ marginparwidth=0.1cm
 %P135
 \CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
+ 
+ 
 
 \begin{document}
 
@@ -89,7 +112,7 @@ marginparwidth=0.1cm
 \pagenumbering{roman}             %重新开始页码编号
 \tableofcontents                  %生成目录
 
-\mainmatter
+%\mainmatter
 \cleardoublepage
 %
 %    arabic - 阿拉伯数字
@@ -106,7 +129,25 @@ marginparwidth=0.1cm
 
 \subsection{subsection 1}
 
+
+QQQQQQQQQQQQQ
 在文字录入\footnote{jjjjjx 141656}比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+{
+test \itshape test \ttfamily test \upshape test
+}
+
+  
+\begin{lstlisting} 
+#include <iostream> 
+using namespace std;
+ int main() { 
+     cout<<"h ello"<<endl;
+     foo<int>();
+     return 0;
+} 
+\end{lstlisting}
+ 
 
 在文字录入A\ref{testsection}A\pageref{testsection}A比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
 
