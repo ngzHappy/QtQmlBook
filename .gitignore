@@ -11,3 +11,4 @@ QtQmlBookTest.pro.user
 QtQmlMultimedia.pro.user
 build-TheBook-*
 *.fdb_latexmk
+*.synctex(busy)
