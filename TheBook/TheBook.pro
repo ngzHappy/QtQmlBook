@@ -47,6 +47,9 @@ SOURCES += $$PWD/TheBookSources/main.cpp
 HEADERS += $$PWD/TheBookSources/MainWindow.hpp
 SOURCES += $$PWD/TheBookSources/MainWindow.cpp
 
+HEADERS += $$PWD/TheBookSources/GetTheBookConstexpr.hpp
+SOURCES += $$PWD/TheBookSources/GetTheBookConstexpr.cpp
+
 HEADERS += $$PWD/TheBookSources/output_main_index.hpp
 SOURCES += $$PWD/TheBookSources/output_main_index.cpp
 
@@ -57,6 +60,8 @@ HEADERS += $$PWD/TheBookSources/TexBuilder.hpp
 SOURCES += $$PWD/TheBookSources/TexBuilder.cpp
 
 DEFINES *= THE_PROJECT_PWD_DIR=\\\"$${PWD}\\\"
+
+DISTFILES += $$PWD/TheBookSources/the_book_constexpr.txt
 
 DISTFILES += $$PWD/test/test_0000.txt
 DISTFILES += $$PWD/test/test_0100.txt

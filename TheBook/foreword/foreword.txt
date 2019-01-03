@@ -1,6 +1,6 @@
 ﻿
 
-:the_book_foreword:[=[前言]=]
+:the_book_foreword:[=[c000020]=]
 
 :tex_raw:[[%简单介绍Qt...]]
 Qt往往被认为是一套跨平台的图形界面开发架构。

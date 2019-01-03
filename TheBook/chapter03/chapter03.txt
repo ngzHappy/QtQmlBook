@@ -1,5 +1,5 @@
 ﻿
-:the_book_chapter:[==[从C++扩展Qt Quick]==]
+:the_book_chapter:[==[c000012]==]
 
 
 

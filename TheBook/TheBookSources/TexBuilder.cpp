@@ -1,5 +1,6 @@
 ﻿#include "TexBuilder.hpp"
 #include "OutPutStream.hpp"
+#include "GetTheBookConstexpr.hpp"
 #include <optional>
 #include <list>
 #include <set>
@@ -230,6 +231,7 @@ public:
             TypeFunctionName,
             TypeTextString,
             TypeChapterString,
+            TypeForwordString,
         };
 
         using item_list = std::list< std::shared_ptr<Item> >;
@@ -337,7 +339,7 @@ public:
         }
 
     };
- 
+
     class KeyForewordString :
         public FunctionOp {
         using ThisType = KeyForewordString;
@@ -351,7 +353,7 @@ public:
         }
 
         virtual Type getType() const override {
-            return Type::TypeChapterString;
+            return Type::TypeForwordString;
         }
 
         bool toRawString(item_list_pos * arg) override {
@@ -366,13 +368,22 @@ public:
             auto varArgs = argc_to_string(varArgs1);
             /*将args转换为string*/
             {
+                const GetTheBookConstexpr varConstexpr;
                 auto varString = varArgs[0];
+                const auto varKeyLabel = varString.trimmed();
+                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs1.size() != 1) {
+                    return false;
+                }
                 varString = qsl(R"(
 \cleardoublepage                              %增加空白页
 \setcounter{secnumdepth}{-2}                  %暂停编号，但加入目录
 \chapter{
-)") + varString + qsl(R"(
-}
+)") + varArgs1[0]
++ qsl(R"(
+}\label{)")
++ varKeyLabel
++ qsl(R"(}
 \setcounter{secnumdepth}{3}                   %恢复编号
 )");
                 *v = std::make_shared<RawString>(varString, v, state);
@@ -418,12 +429,19 @@ public:
             auto varArgs = argc_to_string(varArgs1);
             /*将args转换为string*/
             {
+                const GetTheBookConstexpr varConstexpr;
                 auto varString = varArgs[0];
+                const auto varKeyLabel = varString.trimmed();
+                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs1.size() != 1) {
+                    return false;
+                }
                 varString = qsl(R"(
 \cleardoublepage
 \chapter{
-)") + varString + qsl(R"(
-}
+)") + varArgs1[0] + qsl(R"(
+}\label{)") + varKeyLabel
++ qsl(R"(}
 )");
                 *v = std::make_shared<RawString>(varString, v, state);
             }
@@ -514,7 +532,9 @@ public:
 
         if (currentParseState) {
             for (auto & varI : currentParseState->data) {
-                varI->clear();
+                if (varI) {
+                    varI->clear();
+                }
             }
             currentParseState->data.clear();
             currentParseState.reset();

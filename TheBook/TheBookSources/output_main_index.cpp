@@ -159,7 +159,6 @@ extern void output_main_index() try {
     output_chapter_09();
     output_chapter_10();
 
-
 } catch (...) {
     throw;
 }
