@@ -65,22 +65,22 @@ Qt 3D和Qt Quick是两个几乎不关联的模块，
 本书并不介绍Qt 3D。
 
 本书
-第一章带领读者纵览整个Qt Quick，
+第:tex_raw:[[ \ref{c000010} ]]章带领读者纵览整个Qt Quick，
 对于Qt Quick不太熟悉的读者可能读起来有些吃力。
-对于第一章，阅读起来有些困难的地方直接跳过即可。
+对于第:tex_raw:[[ \ref{c000010} ]]章，阅读起来有些困难的地方直接跳过即可。
 
 本书
-第二章介绍Qt Qml基础语法以及Qt Quick基本元素，
-第三章介绍如何使用C++扩展Qt Quick，
-第九章介绍Qt Quick基础控件，
+第:tex_raw:[[ \ref{c000011} ]]章介绍Qt Qml基础语法以及Qt Quick基本元素，
+第:tex_raw:[[ \ref{c000012} ]]章介绍如何使用C++扩展Qt Quick，
+第:tex_raw:[[ \ref{c000018} ]]章介绍Qt Quick基础控件，
 这三章是主干章节。
 
-第四章介绍Qt Quick动画和状态机，
-第五章介绍Qt Quick粒子系统，
-第六章介绍一些常见特效，
-第八章介绍Qt Quick的图文表模块，
-第十章介绍Qt Quick的模型视图模块。
-第七章本书介绍如何结合FFMPEG构建多媒体模块。
+第:tex_raw:[[ \ref{c000013} ]]章介绍Qt Quick动画和状态机，
+第:tex_raw:[[ \ref{c000014} ]]章介绍Qt Quick粒子系统，
+第:tex_raw:[[ \ref{c000015} ]]章介绍一些常见特效，
+第:tex_raw:[[ \ref{c000017} ]]章介绍Qt Quick的图文表模块，
+第:tex_raw:[[ \ref{c000019} ]]章介绍Qt Quick的模型视图模块。
+第:tex_raw:[[ \ref{c000016} ]]章本书介绍如何结合FFMPEG构建多媒体模块。
 这些章节各有主题，读者根据需要选读即可。
 
 
