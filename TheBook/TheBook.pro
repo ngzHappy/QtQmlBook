@@ -75,6 +75,9 @@ DISTFILES += $$PWD/test/test_0200.tex
 
 DISTFILES += $$PWD/foreword/foreword.txt
 DISTFILES += $$PWD/chapter01/chapter01.txt
+DISTFILES += $$PWD/chapter01/section01_chapter01.txt
+DISTFILES += $$PWD/chapter01/setup_dev_env_on_linux.txt
+DISTFILES += $$PWD/chapter01/setup_dev_env_on_windows.txt
 DISTFILES += $$PWD/chapter02/chapter02.txt
 DISTFILES += $$PWD/chapter03/chapter03.txt
 DISTFILES += $$PWD/chapter04/chapter04.txt
@@ -87,6 +90,9 @@ DISTFILES += $$PWD/chapter10/chapter10.txt
 
 DISTFILES += $$PWD/foreword/foreword.tex
 DISTFILES += $$PWD/chapter01/chapter01.tex
+DISTFILES += $$PWD/chapter01/section01_chapter01.tex
+DISTFILES += $$PWD/chapter01/setup_dev_env_on_linux.tex
+DISTFILES += $$PWD/chapter01/setup_dev_env_on_windows.tex
 DISTFILES += $$PWD/chapter02/chapter02.tex
 DISTFILES += $$PWD/chapter03/chapter03.tex
 DISTFILES += $$PWD/chapter04/chapter04.tex

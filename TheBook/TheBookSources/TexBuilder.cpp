@@ -24,6 +24,16 @@ static inline const QString & theBookChapter() {
     return varAns;
 }
 
+static inline const QString & theBookSection() {
+    const static auto varAns = qsl(":the_book_section:");
+    return varAns;
+}
+
+static inline const QString & theBookSubSection() {
+    const static auto varAns = qsl(":the_book_subsection:");
+    return varAns;
+}
+
 static inline const QString & theBookText() {
     const static auto varAns = qsl(":the_book_text:");
     return varAns;
@@ -232,6 +242,8 @@ public:
             TypeTextString,
             TypeChapterString,
             TypeForwordString,
+            TypeSectionString,
+            TypeSubSectionString,
         };
 
         using item_list = std::list< std::shared_ptr<Item> >;
@@ -458,6 +470,117 @@ public:
 
     };
 
+    class KeySectionString :
+        public FunctionOp {
+        using ThisType = KeySectionString;
+    public:
+
+        inline ThisType(
+            int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        virtual Type getType() const override {
+            return Type::TypeSectionString;
+        }
+
+        bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto v = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgs = argc_to_string(varArgs1);
+            /*将args转换为string*/
+            {
+                const GetTheBookConstexpr varConstexpr;
+                auto varString = varArgs[0];
+                const auto varKeyLabel = varString.trimmed();
+                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs1.size() != 1) {
+                    return false;
+                }
+                varString = qsl(R"(
+\section{
+)") + varArgs1[0] + qsl(R"(
+}\label{)") + varKeyLabel
++ qsl(R"(}
+)");
+                *v = std::make_shared<RawString>(varString, v, state);
+            }
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgs1[0].second);
+            /*更新表数据*/
+            *arg = v;
+            return true;
+        }
+
+        bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
+
+    class KeySubSectionString :
+        public FunctionOp {
+        using ThisType = KeySubSectionString;
+    public:
+
+        inline ThisType(
+            int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        virtual Type getType() const override {
+            return Type::TypeSubSectionString;
+        }
+
+        bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto v = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgs = argc_to_string(varArgs1);
+            /*将args转换为string*/
+            {
+                const GetTheBookConstexpr varConstexpr;
+                auto varString = varArgs[0];
+                const auto varKeyLabel = varString.trimmed();
+                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs1.size() != 1) {
+                    return false;
+                }
+                varString = qsl(R"(
+\subsection{
+)") + varArgs1[0] + qsl(R"(
+}\label{)") + varKeyLabel
++ qsl(R"(}
+)");
+                *v = std::make_shared<RawString>(varString, v, state);
+            }
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgs1[0].second);
+            /*更新表数据*/
+            *arg = v;
+            return true;
+        }
+
+        bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
 
     class RawString :
         public Item {
@@ -564,6 +687,8 @@ public:
         varAns->emplace(theBookChapter(), 1);
         varAns->emplace(theBookText(), 1);
         varAns->emplace(theBookForeword(), 1);
+        varAns->emplace(theBookSection(), 1);
+        varAns->emplace(theBookSubSection(), 1);
         return std::move(varAns);
     }
 
@@ -892,16 +1017,26 @@ public:
         auto varAns = varData.emplace(varPos);
 
         if (varKey.name == theBookChapter()) {
-            /*TODO:*/
             auto varValue =
                 std::make_shared< KeyChapterString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
         } else if (varKey.name == theBookForeword()) {
-            /*TODO:*/
             auto varValue =
                 std::make_shared< KeyForewordString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (theBookSection() == varKey.name) {
+            auto varValue =
+                std::make_shared< KeySectionString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (theBookSubSection() == varKey.name) {
+            auto varValue =
+                std::make_shared< KeySubSectionString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
@@ -1203,6 +1338,8 @@ public:
             while (varPos != varParseState->data.cend()) {
                 auto varI = *varPos;
                 const auto varCurrentType1 = varI->getType();
+                assert(varCurrentType1 != Item::Type::TypeFunctionEnd);
+                assert(varCurrentType1 != Item::Type::TypeFunctionStart);
                 if (varCurrentType1 != Item::Type::TypeRawString) {
                     isAllRaw = false;
                     if (varI->toRawString(&varPos) == false) {

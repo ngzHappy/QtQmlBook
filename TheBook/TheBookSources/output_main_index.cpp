@@ -22,6 +22,30 @@ inline static void output_chapter_01() {
             the_book_throw(u8R"(chapter01/chapter01.tex)"sv);
         }
     }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/section01_chapter01.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/section01_chapter01.tex")));
+        if (false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/section01_chapter01.tex)"sv);
+        }
+    }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_linux.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_linux.tex")));
+        if (false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/setup_dev_env_on_linux.tex)"sv);
+        }
+    }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_windows.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_windows.tex")));
+        if (false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/setup_dev_env_on_windows.tex)"sv);
+        }
+    }
 }
 
 inline static void output_chapter_02() {
