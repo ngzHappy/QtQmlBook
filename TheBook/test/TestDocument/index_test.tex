@@ -44,7 +44,7 @@ marginparwidth=0.1cm
 %\setsansfont{Times New Roman}
 %\setmonofont{Times New Roman}
 %\usepackage{txfonts}
-
+\newfontfamily\unicodefont{Times New Roman}
 %\setCJKmainfont{Times New Roman}
 
 %%常见符号
@@ -61,7 +61,7 @@ marginparwidth=0.1cm
 \color{colortextthisproject}
 
 \usepackage{xhfill}
-%\usepackage{times}
+\usepackage{times}
 
 
 %设置输出pdf格式
@@ -83,10 +83,12 @@ marginparwidth=0.1cm
 
 \usepackage{listings}%引入程序代码
 
+%http://blog.sina.com.cn/s/blog_5e16f1770100kv5t.html
 \lstset{
 language=C,
-basicstyle=\footnotesize\ttfamily,
-stringstyle=\footnotesize\ttfamily,
+basicstyle=\footnotesize\unicodefont,
+stringstyle=\footnotesize\unicodefont ,
+keywordstyle=\footnotesize\unicodefont ,
 showstringspaces=true
 } 
 
