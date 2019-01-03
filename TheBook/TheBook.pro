@@ -93,9 +93,7 @@ DISTFILES += $$PWD/chapter09/chapter09.tex
 DISTFILES += $$PWD/chapter10/chapter10.tex
 
 DISTFILES += $$PWD/main_index.tex
-DISTFILES += $$PWD/setup_general_packages.tex
-DISTFILES += $$PWD/setup_hyperref.tex
-DISTFILES += $$PWD/setup_page_geometry_a4.tex
+DISTFILES += $$PWD/main_index.txt
 
 
 

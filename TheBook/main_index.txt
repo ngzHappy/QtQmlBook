@@ -1,13 +1,7 @@
-﻿%使用xelatex编译
-%版权所有，翻版必究
-%本文件由程序自动生成，任何修改将被覆盖
+﻿
+:tex_raw:[[%主文档]]
 
-
-
-
-%主文档
-
-
+:tex_raw:[==========[
 
 \documentclass[12pt,hyperref,UTF8]{ctexbook}%使用大号字体
 
@@ -127,18 +121,8 @@ marginparwidth=0.1cm
 
 \end{document}
 
+]==========]
 
-
-
-
-
-
-
-
-
-%使用xelatex编译
-%版权所有，翻版必究
-%本文件由程序自动生成，任何修改将被覆盖
 
 
 
