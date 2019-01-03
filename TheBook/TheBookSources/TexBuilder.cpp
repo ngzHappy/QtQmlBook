@@ -194,7 +194,7 @@ public:
     std::optional< QFile > inputFile;
     std::optional< QFile > outputFile;
 
-    std::optional< QTextStream > inputStream;
+    std::optional< InputStream > inputStream;
     std::optional< OutPutFileStream > outputStream;
 
     inline bool openInput() {

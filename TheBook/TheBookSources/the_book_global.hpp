@@ -14,6 +14,8 @@
 #include <string_view>
 #include <cassert>
 
+#include "InputStream.hpp"
+
 using namespace std::string_view_literals;
 using namespace std::chrono_literals;
 

@@ -41,6 +41,8 @@ win32-msvc*{
 
 DESTDIR = $$PWD/bin/final
 
+HEADERS += $$PWD/TheBookSources/InputStream.hpp
+
 HEADERS += $$PWD/TheBookSources/the_book_global.hpp
 SOURCES += $$PWD/TheBookSources/main.cpp
 

@@ -9,7 +9,7 @@ inline static GetTheBookConstexpr::data_type _get_data() {
     if (false == varFile.open(QIODevice::ReadOnly)) {
         the_book_throw("can not open the file"sv);
     }
-    QTextStream varStream{ &varFile };
+    InputStream varStream{ &varFile };
 
     while (false == varStream.atEnd()) {
         auto const varLine =
