@@ -12,6 +12,24 @@
 
 using namespace std::string_view_literals;
 
+#ifdef _DEBUG
+/*debug 模式下copy sstd control files*/
+#include "../dir/sstd_copy_dir.hpp"
+#include <mutex>
+inline static void copy_sstd_control_once() {
+    static std::once_flag copy_once_flag;
+    std::call_once(copy_once_flag, []() {
+        const QDir varFromDirRoot{ MocFromDir };
+        const QDir varToDirRoot{ MocToDir };
+        sstd::copyDir(
+            varFromDirRoot.absoluteFilePath(QStringLiteral(
+                "../sstd_qml_control/sstd")),
+            varToDirRoot.absoluteFilePath(QStringLiteral(
+                "sstd")));
+    });
+}
+#endif
+
 namespace {
 
     class RunOnceApplicationConstruct;
@@ -32,7 +50,7 @@ namespace {
     inline static void run_once_application_construct(RunOnceApplicationConstruct * arg) {
         {
             const QDir varDir{ qApp->applicationDirPath() };
-            QQuickStyle::addStylePath( varDir.absoluteFilePath(QStringLiteral("sstd/qml/control")) );
+            QQuickStyle::addStylePath(varDir.absoluteFilePath(QStringLiteral("sstd/qml/control")));
         }
         {
             /*强制加载QImage插件
@@ -88,11 +106,11 @@ Item {
 }
 )+++", QUrl{});
             auto varObject = sstd_runtime_cast<QQuickItem>(
-                varComponent.create(&varContex) );
+                varComponent.create(&varContex));
             assert(varObject);
             {
                 QQuickView varView;
-                varView.resize(512,512);
+                varView.resize(512, 512);
                 assert(varView.contentItem());
                 varObject->setParent(varView.contentItem());
                 varObject->setParentItem(varView.contentItem());
@@ -207,6 +225,10 @@ namespace sstd {
                 try_load_qml_app_style(argv[0], argQmlStyleName);
             }
         }
+#ifdef  _DEBUG
+        copy_sstd_control_once();
+#endif //  _DEBUG
+
     }
 
 }/*namespace sstd*/

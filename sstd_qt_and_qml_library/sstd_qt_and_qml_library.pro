@@ -95,5 +95,6 @@ LIBS+=-lXmu -lXi -lGL -lXext -lX11
 
 RESOURCES += $$PWD/resource/sstd_qt_and_qml_library.qrc
 
-
+DEFINES += MocFromDir=\\\"$${PWD}\\\"
+DEFINES += MocToDir=\\\"$${RootDestDir}\\\"
 

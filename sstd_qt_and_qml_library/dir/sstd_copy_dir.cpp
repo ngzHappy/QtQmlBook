@@ -30,9 +30,13 @@ namespace sstd {
             std::filesystem::copy(
                 varFrom,
                 varTo,
+                copy_options::recursive |
                 copy_options::overwrite_existing);
             return true;
-        } catch (...) {
+        } catch (const filesystem_error & varException) {
+            const sstd::string varErrorString
+                = varException.what();
+            qDebug() << varErrorString.c_str();
             return false;
         }
 
