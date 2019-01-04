@@ -17,7 +17,10 @@
     \catcode`\$=3
     \tikzpicture[remember picture,overlay] % thumb index
     \ifodd\value{page}
-    \node[fill=gray,text=black,anchor=north east,xshift=2mm,
+    \node[fill=gray,
+    text=black,
+    anchor=north east,
+    xshift=2mm,
     yshift=-22mm-\arabic{chapter}*20mm,
     shape=semicircle,shape border rotate=90,
     minimum height=10mm,minimum width=5mm,
@@ -25,7 +28,10 @@
     at (current page.north east)
     {\llap{\arabic{chapter}\hspace{1mm}}};
     \else
-    \node[fill=gray,text=black,anchor=north west,xshift=-2mm,
+    \node[fill=gray,
+    text=black,
+    anchor=north west,
+    xshift=-2mm,
     yshift=-22mm-\arabic{chapter}*20mm,
     shape=semicircle,shape border rotate=270,
     minimum height=10mm,minimum width=5mm,
@@ -45,10 +51,10 @@
     \renewcommand\headrulewidth{10.0pt}       % 页眉横线
     \renewcommand\footrulewidth{0pt}
     
-    \fancyhead[OC]{\kaishu{\leftmark}}       % 页眉章标题
-    \fancyhead[EC]{\kaishu{\@title}}         % 页眉文章题目
+    \fancyhead[OC]{ }       % 页眉章标题
+    \fancyhead[EC]{ }         % 页眉文章题目
     \fancyhead[OR,EL]{\thepage}             % 页眉编号
-    \fancyfoot[l]{\thumb}                   % 将拇指放到没有被使用的页眉或页脚处
+    \fancyfoot[r]{\thumb}                   % 将拇指放到没有被使用的页眉或页脚处
 }
  
 
@@ -56,14 +62,7 @@
 \begin{document}
 
 \mainmatter
-  \fancyhf{}
-    \renewcommand\headrulewidth{1.0pt}       % 页眉横线
-    \renewcommand\footrulewidth{0pt}
-    
-    \fancyhead[OC]{\kaishu{\leftmark}}       % 页眉章标题
-    \fancyhead[EC]{\kaishu{1}}         % 页眉文章题目
-    \fancyhead[OR,EL]{\thepage}             % 页眉编号
-    \fancyfoot[r]{\thumb}                   % 将拇指放到没有被使用的页眉或页脚处
+\pagestyle{mainFancy}              % 将拇指放到没有被使用的页眉或页脚处
  
 
 \chapter{chapter 2}
