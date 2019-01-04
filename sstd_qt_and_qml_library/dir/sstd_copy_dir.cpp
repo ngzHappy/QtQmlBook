@@ -270,12 +270,12 @@ namespace _this_file_private {
                         }
 
                     } while (true);
-        }
-    }
+                }
+            }
 
             fs::copy_file(a, b, fs::copy_options::overwrite_existing);
 
-} else {
+        } else {
             fs::copy(a, b);
         }
 
