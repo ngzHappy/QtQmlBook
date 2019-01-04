@@ -123,6 +123,7 @@ inline void Duty::copy() const {
 /*创建目录*/
 inline void  Duty::_p_create_dirs(const CopyInformation & items) const {
     for (const auto & i : items.dirs) {
+        bool isNeedCreate = true;
         try {
             const auto varPath = toDir / i;
             do {
@@ -137,11 +138,13 @@ inline void  Duty::_p_create_dirs(const CopyInformation & items) const {
                     const auto varRPath = boost::filesystem::canonical(varPath);
                     if (varRPath.filename() != varPath.filename()) {
                         boost::filesystem::rename(varRPath, varPath);
-                        return;
                     }
+                    isNeedCreate = false;
                 }
             } while (false);
-            boost::filesystem::create_directories(varPath);
+            if (isNeedCreate) {
+                boost::filesystem::create_directories(varPath);
+            }
         } catch (...) {
         }
     }
@@ -174,8 +177,7 @@ inline Duty::CopyInformation Duty::_p_get_dir_copy_information(
         boost::filesystem::recursive_directory_iterator varRDI(item.path);
         for (const auto & varI : varRDI) {
             if (boost::filesystem::is_directory(varI.status())) {
-                const auto & varPath = items.emplace_back(varI.path());
-                ans.dirs.push_back(boost::filesystem::relative(varPath.path, root));
+                ans.dirs.push_back(boost::filesystem::relative(varI.path(), root));
             } else {
                 ans.files.push_back(boost::filesystem::relative(varI.path(), root));
             }
@@ -315,7 +317,10 @@ inline void Duty::_p_copy_a_file(const boost::filesystem::path & a, const boost:
 }
 
 /*copy file*/
-inline void Duty::__p_copy_a_file(const boost::filesystem::path & a, const boost::filesystem::path & b) try {
+inline void Duty::__p_copy_a_file(
+    const boost::filesystem::path & a, 
+    const boost::filesystem::path & b) try {
+
     const auto varBStates = boost::filesystem::status(b);
     if (boost::filesystem::exists(varBStates)) {
 
@@ -337,17 +342,14 @@ inline void Duty::__p_copy_a_file(const boost::filesystem::path & a, const boost
             }
         }
 
-        boost::filesystem::ifstream varFrom{ a,std::ios::binary };
-        boost::filesystem::ifstream varTo{ b,std::ios::binary };
-
         if (boost::filesystem::file_size(b) == boost::filesystem::file_size(a)) {
+
+            boost::filesystem::ifstream varFrom{ a,std::ios::binary };
+            boost::filesystem::ifstream varTo{ b,std::ios::binary };
 
             constexpr const static int Size = 1024;
             alignas(void *) char blockA[Size];
             alignas(void *) char blockB[Size];
-
-            boost::filesystem::ifstream varFrom(a, std::ios::binary);
-            boost::filesystem::ifstream varTo(b, std::ios::binary);
 
             do {
                 varFrom.read(blockA, Size);

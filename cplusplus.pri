@@ -4,12 +4,13 @@ win32-msvc*{
     QMAKE_CXXFLAGS += /std:c++latest
 }else{
     CONFIG += c++17
+    LIBS += -lstdc++fs
 }
 
 win32-msvc*{
     CONFIG+=suppress_vcproj_warnings
 }else{
-     QMAKE_CFLAGS += -std=c11
+    QMAKE_CFLAGS += -std=c11
 }
 
 #boost environment
