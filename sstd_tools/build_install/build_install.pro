@@ -14,8 +14,8 @@ CONFIG(debug,debug|release){
 
 DESTDIR = $${RootDestDir}
 
-DEFINES += FromDir=\\\"$$PWD\\\"
-DEFINES += ToDir=\\\"$$DESTDIR\\\"
+DEFINES += FromDir=\\\"$${PWD}\\\"
+DEFINES += ToDir=\\\"$${DESTDIR}\\\"
 
 
 

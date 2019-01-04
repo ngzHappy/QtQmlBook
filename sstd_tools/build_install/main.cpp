@@ -59,7 +59,9 @@ private:
 
 //#define INSTALL_LOG_DEBUG 1
 #if defined(_DEBUG)
-#define PASS_DEBUG 0
+#define PASS_DEBUG (1u)
+#else
+#define PASS_DEBUG (0u)
 #endif
 
 int main(int argc, char ** argv) try {

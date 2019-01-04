@@ -31,6 +31,9 @@ include($$PWD/../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
 
 DESTDIR = $${RootDestDir}/sstd/qml/control
 
+DEFINES += MocFromDir=\\\"$${PWD}\\\"
+DEFINES += MocToDir=\\\"$${RootDestDir}\\\"
+
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${RootDestDir}/build_install_debug $$PWD "sstd"
 }else{
