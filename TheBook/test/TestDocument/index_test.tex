@@ -16,8 +16,8 @@ top=2.0cm,
 bottom=2.0cm,
 headheight=1.3cm,
 headsep=0.5cm,
-marginparsep=0.1cm,
-marginparwidth=0.1cm
+marginparsep=2.0cm,
+marginparwidth=2.0cm
 ]{geometry}                %导入包geometry
 
  %导入常用包
@@ -110,21 +110,82 @@ showstringspaces=true
 \CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
  
+\RequirePackage{fancyhdr}
+\RequirePackage{zhnumber}
+                
+\RequirePackage{titlesec, titletoc}
+\RequirePackage{tikz,pgf}
+\usetikzlibrary{shapes,calc}
+% 参考：http://www.latexstudio.net/archives/8967.html
+% 拇指
+\newcommand\thumb{%
+    %\if@mainmatter
+    \begingroup
+    \catcode`\$=3
+    \tikzpicture[remember picture,overlay] % thumb index
+    \ifodd\value{page}
+    \node[fill=gray,text=black,anchor=north east,xshift=2mm,
+    yshift=-22mm-\arabic{chapter}*20mm,
+    shape=semicircle,shape border rotate=90,
+    minimum height=10mm,minimum width=5mm,
+    font=\normalfont\sffamily\bfseries\Huge]
+    at (current page.north east)
+    {\llap{\arabic{chapter}\hspace{1mm}}};
+    \else
+    \node[fill=gray,text=black,anchor=north west,xshift=-2mm,
+    yshift=-22mm-\arabic{chapter}*20mm,
+    shape=semicircle,shape border rotate=270,
+    minimum height=10mm,minimum width=5mm,
+    font=\normalfont\sffamily\bfseries\Huge]
+    at (current page.north west)
+    {\rlap{\hspace{1mm}\arabic{chapter}}};
+    \fi
+    \endtikzpicture
+    \endgroup
+    %\fi
+}
+
+
+\fancypagestyle{mainFancy}{
+    \fancyhf{}
+    \renewcommand\headrulewidth{.5pt}       % 页眉横线
+    \renewcommand\footrulewidth{0pt}
+    
+    \fancyhead[OC]{}       % 页眉章标题
+    \fancyhead[EC]{}         % 页眉文章题目
+    \fancyhead[OR,EL]{\thepage}                 % 页眉编号
+    \fancyfoot[r]{\thumb} % 将拇指放到没有被使用的页眉或页脚处
+}
  
 
 \begin{document}
 
 
 \frontmatter
-\pagestyle{empty}                 %关闭页眉页脚
+%\pagestyle{empty}                 %关闭页眉页脚
 \maketitle                        %生成封面
 
 \cleardoublepage
-\pagestyle{headings}              %开启页眉页脚
+%\pagestyle{headings}              %开启页眉页脚
+
+
+ 
+
 \pagenumbering{roman}             %重新开始页码编号
 \tableofcontents                  %生成目录
 
 \mainmatter
+
+\pagestyle{fancy}
+    \fancyhf{}
+    \renewcommand\headrulewidth{.5pt}       % 页眉横线
+    \renewcommand\footrulewidth{0pt}
+    
+    \fancyhead[OC]{}       % 页眉章标题
+    \fancyhead[EC]{}         % 页眉文章题目
+    \fancyhead[OR,EL]{\thepage}                 % 页眉编号
+    \fancyfoot[r]{\thumb} % 将拇指放到没有被使用的页眉或页脚处
+
 \cleardoublepage
 %
 %    arabic - 阿拉伯数字
