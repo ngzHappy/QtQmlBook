@@ -107,7 +107,7 @@ showstringspaces=true
 
 %设置ctex
 %P135
-\CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
+%\CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
  
 \RequirePackage{fancyhdr}
@@ -157,6 +157,14 @@ showstringspaces=true
     \fancyfoot[r]{\thumb} % 将拇指放到没有被使用的页眉或页脚处
 }
  
+\makeatletter
+\renewcommand{\numberline}[1]{%
+\settowidth\@tempdimb{#1\hspace{0.5em}}%
+\ifdim\@tempdima<\@tempdimb%
+  \@tempdima=\@tempdimb%
+\fi%
+\hb@xt@\@tempdima{\@cftbsnum #1\@cftasnum\hfil}\@cftasnumb}
+\makeatother
 
 \begin{document}
 
@@ -166,25 +174,18 @@ showstringspaces=true
 \maketitle                        %生成封面
 
 \cleardoublepage
-%\pagestyle{headings}              %开启页眉页脚
 
-
- 
-
+\pagestyle{headings}              %开启页眉页脚
 \pagenumbering{roman}             %重新开始页码编号
+
 \tableofcontents                  %生成目录
+ 
+ 
 
 \mainmatter
 
-\pagestyle{fancy}
-    \fancyhf{}
-    \renewcommand\headrulewidth{.5pt}       % 页眉横线
-    \renewcommand\footrulewidth{0pt}
-    
-    \fancyhead[OC]{}       % 页眉章标题
-    \fancyhead[EC]{}         % 页眉文章题目
-    \fancyhead[OR,EL]{\thepage}                 % 页眉编号
-    \fancyfoot[r]{\thumb} % 将拇指放到没有被使用的页眉或页脚处
+\pagestyle{mainFancy}
+ 
 
 \cleardoublepage
 %
