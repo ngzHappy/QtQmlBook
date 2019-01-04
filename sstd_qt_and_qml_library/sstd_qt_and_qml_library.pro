@@ -79,6 +79,9 @@ SOURCES += $$PWD/root_window/sstd_private/sstd_qquickwidget_resize.cpp
 SOURCES += $$PWD/event/sstd_qrunevent.cpp
 SOURCES += $$PWD/local_qml_window_creator/sstd_local_qml_window_creator.cpp
 
+HEADERS += $$PWD/dir/sstd_copy_dir.hpp
+SOURCES += $$PWD/dir/sstd_copy_dir.cpp
+
 DEFINES *= GLEW_NO_GLU
 DEFINES *= GLEW_STATIC
 
