@@ -6,6 +6,7 @@
 #include <QtQuick/QtQuick>
 #include <sstd_library.hpp>
 #include "sstd_private/sstd_qquickview_resize.hpp"
+#include "sstd_private/sstd_qquickwidget_resize.hpp"
 #include "../global/sstd_qt_and_qml_global.hpp"
 #include <QtQuick/qquickview.h>
 #include <QtQuickWidgets/qquickwidget.h>
@@ -91,7 +92,7 @@ namespace sstd {
         };
 
         class EXPORT_SSTD_QT_AND_QML_LIBRARY _WidgetPrivate :
-            public QQuickWidget ,
+            public _sstd1::_3_private_api::ResizeQuickWiget ,
             public AbstractRootWindow,
             SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_WidgetPrivate){
             Q_OBJECT
@@ -115,7 +116,7 @@ namespace sstd {
             _WidgetPrivate();
             using PureRootWindow = QOpenGLWidget;
         private:
-            using Super = QQuickWidget;
+            using Super = _sstd1::_3_private_api::ResizeQuickWiget ;
         private:
             SSTD_END_DEFINE_VIRTUAL_CLASS(_WidgetPrivate);
         };

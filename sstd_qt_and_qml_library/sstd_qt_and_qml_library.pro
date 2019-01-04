@@ -54,6 +54,7 @@ HEADERS += $$PWD/direct_draw_image/sstd_direct_draw_image.hpp
 HEADERS += $$PWD/scene_node/sstd_simple_rectangle_node.hpp
 HEADERS += $$PWD/scene_node/sstd_scene_node.hpp
 HEADERS += $$PWD/root_window/sstd_private/sstd_qquickview_resize.hpp
+HEADERS += $$PWD/root_window/sstd_private/sstd_qquickwidget_resize.hpp
 HEADERS += $$PWD/event/sstd_qrunevent.hpp
 HEADERS += $$PWD/local_qml_window_creator/sstd_local_qml_window_creator.hpp
 
@@ -74,6 +75,7 @@ SOURCES += $$PWD/glew/sstd_glew_utility.cpp
 SOURCES += $$PWD/direct_draw_image/sstd_direct_draw_image.cpp
 SOURCES += $$PWD/scene_node/sstd_simple_rectangle_node.cpp
 SOURCES += $$PWD/root_window/sstd_private/sstd_qquickview_resize.cpp
+SOURCES += $$PWD/root_window/sstd_private/sstd_qquickwidget_resize.cpp
 SOURCES += $$PWD/event/sstd_qrunevent.cpp
 SOURCES += $$PWD/local_qml_window_creator/sstd_local_qml_window_creator.cpp
 
