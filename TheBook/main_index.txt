@@ -81,12 +81,12 @@ stringstyle=\small\sourcefontone ,
 keywordstyle=\small\sourcefontone ,
 commentstyle=\small\sourcefontone ,
 identifierstyle=\small\sourcefontone ,
-numbers=left, 
-numberstyle=\footnotesize,
+numbers=left,
+numberstyle=\footnotesize , %设置字号
 frame=single,
 backgroundcolor=\color{sourcegrayone},
 showstringspaces=true
-} 
+}
 
 %设置常量
 \title{Qt Quick全面导引}                              %书籍名称
@@ -96,6 +96,19 @@ showstringspaces=true
 %@P135
 \CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%解决BUG
+\makeatletter
+\renewcommand{\numberline}[1]{%
+\settowidth\@tempdimb{#1\hspace{0.5em}}%
+\ifdim\@tempdima<\@tempdimb%
+\@tempdima=\@tempdimb%
+\fi%
+\hb@xt@\@tempdima{\@cftbsnum #1\@cftasnum\hfil}\@cftasnumb}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{document}
 
@@ -140,6 +153,8 @@ showstringspaces=true
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
+
+%http://www.ctex.org/documents/latex/graphics/node2.html
 
 ]==========]
 

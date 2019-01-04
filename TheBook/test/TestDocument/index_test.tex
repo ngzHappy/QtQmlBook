@@ -107,7 +107,7 @@ showstringspaces=true
 
 %设置ctex
 %P135
-%\CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
+\CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
  
 \RequirePackage{fancyhdr}
@@ -156,7 +156,8 @@ showstringspaces=true
     \fancyhead[OR,EL]{\thepage}                 % 页眉编号
     \fancyfoot[r]{\thumb} % 将拇指放到没有被使用的页眉或页脚处
 }
- 
+
+ %解决BUG
 \makeatletter
 \renewcommand{\numberline}[1]{%
 \settowidth\@tempdimb{#1\hspace{0.5em}}%
