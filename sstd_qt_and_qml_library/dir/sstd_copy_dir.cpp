@@ -147,6 +147,9 @@ namespace _this_file_private {
                     var.push_back(varI);
                 }
             }
+            if (var.empty()) {
+                return{};
+            }
             while (var.size() > n) {
                 var.pop_front();
             }
@@ -267,21 +270,21 @@ namespace _this_file_private {
                         }
 
                     } while (true);
-                }
-            }
+        }
+    }
 
             fs::copy_file(a, b, fs::copy_options::overwrite_existing);
 
-    } else {
+} else {
             fs::copy(a, b);
         }
 
         return true;
-} catch (...) {
-    return false;
-}
+    } catch (...) {
+        return false;
+    }
 
-        }/**/
+}/**/
 
 
 namespace sstd {
