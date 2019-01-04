@@ -318,7 +318,7 @@ inline void Duty::_p_copy_a_file(const boost::filesystem::path & a, const boost:
 
 /*copy file*/
 inline void Duty::__p_copy_a_file(
-    const boost::filesystem::path & a, 
+    const boost::filesystem::path & a,
     const boost::filesystem::path & b) try {
 
     const auto varBStates = boost::filesystem::status(b);
@@ -367,7 +367,7 @@ inline void Duty::__p_copy_a_file(
                     return;
                 }
 
-                if (std::memcmp(blockA, blockB, varNext0) != 0) {
+                if (::memcmp(blockA, blockB, varNext0) != 0) {
                     break;
                 }
 

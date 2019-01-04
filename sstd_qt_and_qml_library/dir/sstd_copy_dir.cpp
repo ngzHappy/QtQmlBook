@@ -8,7 +8,8 @@
 namespace fs = std::filesystem;
 #else
 #include <experimental/filesystem>
-namespace fas = std::experimental::filesystem;
+namespace fs = std::experimental::filesystem;
+#define EXPERIMENTAL_FILESYSTEM (1u)
 #endif
 
 namespace _this_file_private {
@@ -44,7 +45,7 @@ namespace _this_file_private {
     public:
         fs::path toDir;
         fs::path fromDir;
-        inline bool copy() ;
+        inline bool copy();
     private:
         class CopyInformation {
         public:
@@ -135,15 +136,48 @@ namespace _this_file_private {
         items.emplace_back(root);
         Duty::CopyInformation ans;
 
+        /*获得相对路径，鉴于某些版本的filesystem没有这个功能*/
+        auto getRelative = [](const fs::path & arg, std::size_t n)->fs::path {
+            ++n;
+            sstd::list<decltype(arg.begin())> var;
+            {
+                auto varI = arg.begin();
+                auto varE = arg.end();
+                for (; varI != varE; ++varI) {
+                    var.push_back(varI);
+                }
+            }
+            while (var.size() > n) {
+                var.pop_front();
+            }
+            if (var.empty()) {
+                return{};
+            }
+            fs::path varAns = *(var.front());
+            var.pop_front();
+            while (false == var.empty()) {
+                varAns /= *(var.front());
+                var.pop_front();
+            }
+            return std::move(varAns);
+        };
+
         while (false == items.empty()) {
             FileItem item = items.front();
             items.pop_front();
             fs::recursive_directory_iterator varRDI(item.path);
-            for (const auto & varI : varRDI) {
+            fs::recursive_directory_iterator varEnd;
+            for (; varRDI != varEnd; ++varRDI) {
+                assert(varRDI.depth() >= 0);
+                const auto varDeepth =
+                    static_cast<std::size_t>(varRDI.depth());
+                const auto & varI = *varRDI;
                 if (is_directory(varI.status())) {
-                    ans.dirs.push_back(relative(varI.path(), root));
+                    ans.dirs.push_back(getRelative(
+                        fs::canonical(varI.path()), varDeepth));
                 } else {
-                    ans.files.push_back(relative(varI.path(), root));
+                    ans.files.push_back(getRelative(
+                        fs::canonical(varI.path()), varDeepth));
                 }
             }
         }
@@ -201,9 +235,13 @@ namespace _this_file_private {
             {/*不相信时间戳，直接比较内容...*/
                 if (fs::file_size(b) == fs::file_size(a)) {
 
+#if defined(EXPERIMENTAL_FILESYSTEM)
+                    std::ifstream varFrom(a.string(), std::ios::binary);
+                    std::ifstream varTo(b.string(), std::ios::binary);
+#else
                     std::ifstream varFrom{ a,std::ios::binary };
                     std::ifstream varTo{ b,std::ios::binary };
-
+#endif
                     constexpr const static int Size = 1024;
                     alignas(void *) char blockA[Size];
                     alignas(void *) char blockB[Size];
@@ -224,7 +262,7 @@ namespace _this_file_private {
                             return true;
                         }
 
-                        if (std::memcmp(blockA, blockB, varNext0) != 0) {
+                        if (::memcmp(blockA, blockB, varNext0) != 0) {
                             break;
                         }
 
@@ -234,16 +272,16 @@ namespace _this_file_private {
 
             fs::copy_file(a, b, fs::copy_options::overwrite_existing);
 
-        } else {
+    } else {
             fs::copy(a, b);
         }
 
         return true;
-    } catch (...) {
-        return false;
-    }
+} catch (...) {
+    return false;
+}
 
-}/**/
+        }/**/
 
 
 namespace sstd {
