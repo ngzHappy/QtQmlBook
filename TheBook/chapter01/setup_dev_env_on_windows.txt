@@ -34,7 +34,7 @@ Qt选择5.12.0或以上版本。
 本书建议最小安装如:tex_raw:[[\figurename\;\ref{p000001}]]。
 :the_book_image:[[p000001]]
 
-:the_book_subsubsection:[[ss000110]]
+:the_book_subsubsection:[[ss000210]]
 读者只需要到:tex_raw:[[ \url{https://www.boost.org
 }]]下载最新Boost稳定版。解压缩，将“boost”文件夹复制到Qt Include路径即可。
 比如，
