@@ -34,6 +34,11 @@ static inline const QString & theBookSubSection() {
     return varAns;
 }
 
+static inline const QString & theBookSubSubSection() {
+    const static auto varAns = qsl(":the_book_subsubsection:");
+    return varAns;
+}
+
 static inline const QString & theBookText() {
     const static auto varAns = qsl(":the_book_text:");
     return varAns;
@@ -78,7 +83,7 @@ inline static std::string _replace_all(const std::string_view arg) {
         ans.emplace_back(std::regex(u8R"(\{)", varRegexOption), std::string(u8R"(\{)"sv));
         ans.emplace_back(std::regex(u8R"(\})", varRegexOption), std::string(u8R"(\})"sv));
         ans.emplace_back(std::regex(u8R"(_)", varRegexOption), std::string(u8R"(\_)"sv));
-        ans.emplace_back(std::regex(u8R"(\\)", varRegexOption), std::string(u8R"(\\)"sv));
+        ans.emplace_back(std::regex(u8R"(\\)", varRegexOption), std::string(u8R"(\textbackslash{})"sv));
         ans.emplace_back(std::regex(u8R"(°)", varRegexOption), std::string(u8R"(\textdegree{})"sv));
         ans.emplace_back(std::regex(u8R"(×)", varRegexOption), std::string(u8R"(\texttimes{})"sv));
         ans.emplace_back(std::regex(u8R"(♀)", varRegexOption), std::string(u8R"(\male{})"sv));
@@ -249,6 +254,7 @@ public:
             TypeForwordString,
             TypeSectionString,
             TypeSubSectionString,
+            TypeSubSubSectionString,
             TypeImageString,
         };
 
@@ -657,6 +663,62 @@ public:
 
     };
 
+    class KeySubSubSectionString :
+        public FunctionOp {
+        using ThisType = KeySubSubSectionString;
+    public:
+
+        inline KeySubSubSectionString(
+            int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        virtual Type getType() const override {
+            return Type::TypeSubSubSectionString;
+        }
+
+        bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto v = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgs = argc_to_string(varArgs1);
+            /*将args转换为string*/
+            {
+                const GetTheBookConstexpr varConstexpr;
+                auto varString = varArgs[0];
+                const auto varKeyLabel = varString.trimmed();
+                auto varArgs2 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 1) {
+                    return false;
+                }
+                varString = qsl(R"(
+\subsubsection{
+)") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
+}\label{)") + varKeyLabel
++ qsl(R"(}
+)");
+                *v = std::make_shared<RawString>(varString, v, state);
+            }
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgs1[0].second);
+            /*更新表数据*/
+            *arg = v;
+            return true;
+        }
+
+        bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
+
     class RawString :
         public Item {
     public:
@@ -765,6 +827,7 @@ public:
         varAns->emplace(theBookSection(), 1);
         varAns->emplace(theBookSubSection(), 1);
         varAns->emplace(theBookImage(), 1);
+        varAns->emplace(theBookSubSubSection(), 1);
         return std::move(varAns);
     }
 
@@ -1113,6 +1176,12 @@ public:
         } else if (theBookSubSection() == varKey.name) {
             auto varValue =
                 std::make_shared< KeySubSectionString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (theBookSubSubSection() == varKey.name) {
+            auto varValue =
+                std::make_shared< KeySubSubSectionString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;

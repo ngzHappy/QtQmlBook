@@ -8,6 +8,8 @@
 c000010::::Qt Quick全面介绍
 s100110::::搭建开发环境
 s000110::::在Windows平台下搭建开发环境
+ss000110::::在Windows下安装Qt
+ss000210::::在Windows下安装Boost
 s000210::::在Linux平台下搭建开发环境
 c000011::::Qt Quick基础
 c000012::::从C++扩展Qt Quick
@@ -22,6 +24,7 @@ c000020::::前言
 
 %图片路径
 p000000::::Qt在线安装包下载路径::::chapter01/windows_download_here.png::::[ht]::::[scale=0.95]
+p000001::::Qt在线安装建议选择安装组件::::chapter01/windows_qt_online_install.png::::[ht]::::[width=\textwidth]
 
 %源代码路径
 
