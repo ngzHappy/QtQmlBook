@@ -456,16 +456,16 @@ public:
                     varString.trimmed();
                 auto varArgs2 =
                     varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 2) {
+                if (varArgs2.size() != 4) {
                     return false;
                 }
 
                 varString = qsl(R"(
-\begin{figure}[ht] %浮动体 here and top ...
-)");
+\begin{figure}%1 %浮动体 here and top ...
+)").arg(varArgs2[2]);
                 varString += qsl(R"(\centering %中心对齐
 )");
-                varString += qsl(R"(\includegraphics{)");
+                varString += qsl(R"(\includegraphics%1{)").arg(varArgs2[3]);
                 varString += varArgs2[1];
                 varString += qsl(R"(} %图片路径
 \caption{)");

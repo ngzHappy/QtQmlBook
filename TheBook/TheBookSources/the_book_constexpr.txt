@@ -21,7 +21,7 @@ c000019::::模型视图
 c000020::::前言
 
 %图片路径
-p000000::::Qt在线安装包下载路径::::chapter01/windows_download_here.png
+p000000::::Qt在线安装包下载路径::::chapter01/windows_download_here.png::::[ht]::::[scale=0.95]
 
 %源代码路径
 
