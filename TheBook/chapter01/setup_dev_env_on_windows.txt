@@ -35,14 +35,28 @@ Qt选择5.12.0或以上版本。
 :the_book_image:[[p000001]]
 
 :the_book_subsubsection:[[ss000210]]
-读者只需要到:tex_raw:[[ \url{https://www.boost.org
+读者只需要到Boost官网:tex_raw:[[ \url{https://www.boost.org/
 }]]下载最新Boost稳定版。解压缩，将“boost”文件夹复制到Qt Include路径即可。
 比如，
 用户的Qt Include路径为:tex_raw:[[\\]]
 “C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include”，
-复制完之后，
+复制完boost之后，
 应当存在路径:tex_raw:[[\\]]
 “C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include\boost”。
 当然，读者也可以采用“mklink”建立链接代替拷贝。
+
+:the_book_subsubsection:[[ss000310]]
+
+:tex_raw:[[%TODO:]]
+由于Windows平台下不存在类似于Linux平台
+
+
+
+
+
+
+
+
+
 
 

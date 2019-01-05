@@ -8,9 +8,12 @@
 c000010::::Qt Quick全面介绍
 s100110::::搭建开发环境
 s000110::::在Windows平台下搭建开发环境
-ss000110::::在Windows下安装Qt
-ss000210::::在Windows下安装Boost
+ss000110::::在Windows平台下安装Qt
+ss000210::::在Windows平台下安装Boost
+ss000310::::在Windows平台下MinGW配置jemalloc
 s000210::::在Linux平台下搭建开发环境
+ss000410::::在Linux平台下安装Qt
+ss000510::::在Linux平台下安装Boost
 c000011::::Qt Quick基础
 c000012::::从C++扩展Qt Quick
 c000013::::状态机及动画
