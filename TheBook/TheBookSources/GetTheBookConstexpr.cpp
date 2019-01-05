@@ -30,9 +30,6 @@ inline static GetTheBookConstexpr::data_type _get_data() {
 
         auto varKey = varParts[0];
         std::vector<QString> varValues{ ++varParts.cbegin(),varParts.cend() };
-        for (auto & varI : varValues) {
-            varI = theBookPlainTextToTexText(varI);
-        }
         varAns->emplace(std::move(varKey), std::move(varValues));
     }
 

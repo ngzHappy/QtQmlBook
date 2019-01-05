@@ -383,15 +383,15 @@ public:
                 const GetTheBookConstexpr varConstexpr;
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
-                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs1.size() != 1) {
+                auto varArgs2 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(
 \cleardoublepage                              %增加空白页
 \setcounter{secnumdepth}{-2}                  %暂停编号，但加入目录
 \chapter{
-)") + varArgs1[0]
+)") + theBookPlainTextToTexText( varArgs2[0] )
 + qsl(R"(
 }\label{)")
 + varKeyLabel
@@ -444,14 +444,14 @@ public:
                 const GetTheBookConstexpr varConstexpr;
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
-                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs1.size() != 1) {
+                auto varArgs2 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(
 \cleardoublepage
 \chapter{
-)") + varArgs1[0] + qsl(R"(
+)") + theBookPlainTextToTexText( varArgs2[0] ) + qsl(R"(
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
@@ -501,13 +501,13 @@ public:
                 const GetTheBookConstexpr varConstexpr;
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
-                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs1.size() != 1) {
+                auto varArgs2 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(
 \section{
-)") + varArgs1[0] + qsl(R"(
+)") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
@@ -557,13 +557,13 @@ public:
                 const GetTheBookConstexpr varConstexpr;
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
-                auto varArgs1 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs1.size() != 1) {
+                auto varArgs2 = varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(
 \subsection{
-)") + varArgs1[0] + qsl(R"(
+)") +theBookPlainTextToTexText( varArgs2[0] ) + qsl(R"(
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");

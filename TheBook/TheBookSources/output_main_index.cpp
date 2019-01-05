@@ -158,7 +158,6 @@ inline static void output_main_index_this() {
     }
 }
 
-
 #ifdef _DEBUG
 extern void test_this();
 #endif
