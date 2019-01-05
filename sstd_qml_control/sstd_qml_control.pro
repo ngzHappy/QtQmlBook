@@ -8,11 +8,7 @@ QT += quick_private
 QT += widgets_private
 QT += quickcontrols2_private
 
-CONFIG(debug,debug|release){
-    TARGET = sstd_qml_controld
-}else{
-    TARGET = sstd_qml_control
-}
+TARGET = $$qtLibraryTarget(sstd_qml_control)
 
 DEFINES *= _1_SSTD_QML_CONTROL
 
