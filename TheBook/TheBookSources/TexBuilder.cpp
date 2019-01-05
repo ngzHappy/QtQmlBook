@@ -357,7 +357,7 @@ public:
         using ThisType = KeyForewordString;
     public:
 
-        inline ThisType(
+        inline KeyForewordString(
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
@@ -418,7 +418,7 @@ public:
         using ThisType = KeyChapterString;
     public:
 
-        inline ThisType(
+        inline KeyChapterString(
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
@@ -475,7 +475,7 @@ public:
         using ThisType = KeySectionString;
     public:
 
-        inline ThisType(
+        inline KeySectionString(
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
@@ -531,7 +531,7 @@ public:
         using ThisType = KeySubSectionString;
     public:
 
-        inline ThisType(
+        inline KeySubSectionString(
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
