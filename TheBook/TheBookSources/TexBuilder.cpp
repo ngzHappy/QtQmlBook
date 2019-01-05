@@ -463,17 +463,17 @@ public:
                 varString = qsl(R"(
 \begin{figure}[ht] %浮动体 here and top ...
 )");
-                varString += qsl(R"(\centering        %中心对齐
+                varString += qsl(R"(\centering %中心对齐
 )");
                 varString += qsl(R"(\includegraphics{)");
                 varString += varArgs2[1];
-                varString += qsl(R"(}%图片路径
+                varString += qsl(R"(} %图片路径
 \caption{)");
                 varString += theBookPlainTextToTexText(varArgs2[0]);
-                varString += qsl(R"(}%标题
+                varString += qsl(R"(} %标题
 \label{)");
                 varString += varKeyLabel;
-                varString += qsl(R"(}%索引
+                varString += qsl(R"(} %索引
 \end{figure}
 )");
                 *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);

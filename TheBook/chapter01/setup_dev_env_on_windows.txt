@@ -3,17 +3,18 @@
 
 :the_book_subsection:[[s000110]]
 
-读者可以到:tex_raw:[[ \url{]]http://download.qt.io/archive/qt:tex_raw:[[}]]
+读者可以到:tex_raw:[[ \url{http://download.qt.io/archive/
+}]]
 下载最新的Qt运行环境。
 然而，遗憾的是，从Qt 5.12.0开始从此网址下载的Qt Windows开发环境并不完整。
 :tex_raw:[[%介绍如何下载在线安装包...]]
-读者不得不访问Qt官网:tex_raw:[[ \url{]]https://www.qt.io
-:tex_raw:[[}]]，
+读者不得不访问Qt官网:tex_raw:[[ \url{https://www.qt.io
+}]]，
 注册Qt帐号，然后按照流程下载在线安装包。
 不得不说，这很浪费时间。
 幸运的是，目前Qt网站有一个漏洞。读者可以直接访问
-:tex_raw:[[ \url{]]https://www.qt.io/download-thank-you
-:tex_raw:[[}]]，点击“here”下载在线安装包。
+:tex_raw:[[ \url{https://www.qt.io/download-thank-you
+}]]，点击“here”下载在线安装包。如:tex_raw:[[\figurename\;\ref{p000000}]]。
 :the_book_image:[[p000000]]
 
 
