@@ -65,7 +65,10 @@ marginparwidth=0.1cm
     pdfauthor={Qml} ,      %作者
     pdfsubject={Qml} ,     %主题
     pdfkeywords={Qml} ,    %关键字
-    linkcolor=colortextthisproject
+    linkcolor=colortextthisproject , 
+    anchorcolor=colortextthisproject , 
+    citecolor=colortextthisproject ,
+    urlcolor=colortextthisproject 
 ]{hyperref}
 
 \usepackage{fontspec}

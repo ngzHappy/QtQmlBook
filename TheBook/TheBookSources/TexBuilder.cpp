@@ -44,6 +44,11 @@ static inline const QString & theBookForeword() {
     return varAns;
 }
 
+static inline const QString & theBookImage() {
+    const static auto varAns = qsl(":the_book_image:");
+    return varAns;
+}
+
 /*将替换latex特殊字符*/
 inline static std::string _replace_all(const std::string_view arg) {
 
@@ -244,6 +249,7 @@ public:
             TypeForwordString,
             TypeSectionString,
             TypeSubSectionString,
+            TypeImageString,
         };
 
         using item_list = std::list< std::shared_ptr<Item> >;
@@ -391,7 +397,7 @@ public:
 \cleardoublepage                              %增加空白页
 \setcounter{secnumdepth}{-2}                  %暂停编号，但加入目录
 \chapter{
-)") + theBookPlainTextToTexText( varArgs2[0] )
+)") + theBookPlainTextToTexText(varArgs2[0])
 + qsl(R"(
 }\label{)")
 + varKeyLabel
@@ -408,6 +414,75 @@ public:
         }
 
         bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
+
+    class KeyImageString : public FunctionOp {
+    public:
+        inline KeyImageString(int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        Type getType() const override {
+            return Type::TypeImageString;
+        }
+
+        bool isKeyFunction() const override {
+            return true;
+        }
+
+        bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto varAnsPos = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgsKeyPart =
+                getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgsKey =
+                argc_to_string(varArgsKeyPart);
+
+            /*将args转换为string*/
+            {
+                const GetTheBookConstexpr varConstexpr;
+                auto varString = varArgsKey[0];
+                const auto varKeyLabel =
+                    varString.trimmed();
+                auto varArgs2 =
+                    varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 2) {
+                    return false;
+                }
+
+                varString = qsl(R"(
+\begin{figure}[ht] %浮动体 here and top ...
+)");
+                varString += qsl(R"(\centering        %中心对齐
+)");
+                varString += qsl(R"(\includegraphics{)");
+                varString += varArgs2[1];
+                varString += qsl(R"(}%图片路径
+\caption{)");
+                varString += theBookPlainTextToTexText(varArgs2[0]);
+                varString += qsl(R"(}%标题
+\label{)");
+                varString += varKeyLabel;
+                varString += qsl(R"(}%索引
+\end{figure}
+)");
+                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+            }
+
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            /*更新表数据*/
+            *arg = varAnsPos;
             return true;
         }
 
@@ -451,7 +526,7 @@ public:
                 varString = qsl(R"(
 \cleardoublepage
 \chapter{
-)") + theBookPlainTextToTexText( varArgs2[0] ) + qsl(R"(
+)") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
@@ -563,7 +638,7 @@ public:
                 }
                 varString = qsl(R"(
 \subsection{
-)") +theBookPlainTextToTexText( varArgs2[0] ) + qsl(R"(
+)") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
@@ -689,6 +764,7 @@ public:
         varAns->emplace(theBookForeword(), 1);
         varAns->emplace(theBookSection(), 1);
         varAns->emplace(theBookSubSection(), 1);
+        varAns->emplace(theBookImage(), 1);
         return std::move(varAns);
     }
 
@@ -1037,6 +1113,12 @@ public:
         } else if (theBookSubSection() == varKey.name) {
             auto varValue =
                 std::make_shared< KeySubSectionString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (theBookImage() == varKey.name) {
+            auto varValue =
+                std::make_shared< KeyImageString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
