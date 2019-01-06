@@ -54,6 +54,11 @@ static inline const QString & theBookImage() {
     return varAns;
 }
 
+static inline const QString & theBookReadFileSouce() {
+    const static auto varAns = qsl("the_book_file");
+    return varAns;
+}
+
 /*将替换latex特殊字符*/
 inline static std::string _replace_all(const std::string_view arg) {
 
@@ -255,6 +260,7 @@ public:
             TypeSectionString,
             TypeSubSectionString,
             TypeSubSubSectionString,
+            TypeFileSourceString,
             TypeImageString,
         };
 
@@ -420,6 +426,67 @@ public:
         }
 
         bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
+
+    class KeyFileSouce : public FunctionOp {
+    public:
+
+        inline bool isKeyFunction() const override {
+            return true;
+        }
+
+        inline Type getType() const override {
+            return Type::TypeFileSourceString;
+        }
+
+        inline KeyFileSouce(int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        inline bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto varAnsPos = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgsKeyPart =
+                getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgsKey =
+                argc_to_string(varArgsKeyPart);
+
+            /*将args转换为string*/
+            {
+                const GetTheBookConstexpr varConstexpr;
+                auto varString = varArgsKey[0];
+                const auto varKeyLabel =
+                    varString.trimmed();
+                auto varArgs2 =
+                    varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 4) {
+                    return false;
+                }
+
+                /***********************************************/
+
+
+
+
+                /***********************************************/
+
+                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+            }
+
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            /*更新表数据*/
+            *arg = varAnsPos;
             return true;
         }
 
@@ -828,6 +895,7 @@ public:
         varAns->emplace(theBookSubSection(), 1);
         varAns->emplace(theBookImage(), 1);
         varAns->emplace(theBookSubSubSection(), 1);
+        varAns->emplace(theBookReadFileSouce(), 1);
         return std::move(varAns);
     }
 
@@ -1188,6 +1256,12 @@ public:
         } else if (theBookImage() == varKey.name) {
             auto varValue =
                 std::make_shared< KeyImageString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (theBookReadFileSouce() == varKey.name) {
+            auto varValue =
+                std::make_shared< KeyFileSouce >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
