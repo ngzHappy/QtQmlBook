@@ -78,9 +78,10 @@ title=\lstlistingname\ \thelstlisting
 #include <iostream>
 
 int main(int , char **) {
-    std::cout << HELLOW " World! "
-              << NUMBER
-              <<std::endl;
+    if constexpr(NUMBER) {
+        std::cout << HELLOW " World! "
+                  << std::endl;
+    }
 }
 \end{lstlisting}          %抄录环境
 
@@ -93,8 +94,91 @@ int main(int , char **) {
 
 
 \subsubsection{
-使用qmake编译期编译
+qmake高级用法
 }\label{ss000810}
+
+
+\begin{lstlisting}[label=f000004, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+TEMPLATE = subdirs
+
+CONFIG += ordered
+
+new_moc.file = $$PWD/new_moc/new_moc.pro
+SUBDIRS += new_moc
+
+before_run.file = $$PWD/before_run/before_run.pro
+SUBDIRS += before_run
+
+after_run.file = $$PWD/after_run/after_run.pro
+SUBDIRS += after_run
+
+the_run.file = $$PWD/the_run/the_run.pro
+SUBDIRS += the_run
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000005, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+QT -= gui
+QT -= core
+
+CONFIG += console
+
+CONFIG(debug,debug|release){
+    TARGET = the_run_debug
+}else{
+    TARGET = the_run
+}
+
+TEMPLATE = app
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+    LIBS += -lstdc++fs
+}
+
+SOURCES += $$PWD/main.cpp
+DESTDIR =  $$PWD/../bin
+
+DEFINES += QT_DEPRECATED_WARNINGS
+
+#when before build new_moc will call ...
+new_moc.dependency_type = TYPE_C
+new_moc.variable_out = SOURCES
+new_moc.output  = moc_new_${QMAKE_FILE_BASE}.cpp
+CONFIG(debug,debug|release){
+new_moc.commands = \
+$${DESTDIR}/new_moc_debug ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
+}else{
+new_moc.commands = \
+$${DESTDIR}/new_moc ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
+}
+NEW_MOC_HEADERS = test2.hpp test1.hpp
+new_moc.input = NEW_MOC_HEADERS
+QMAKE_EXTRA_COMPILERS += new_moc
+
+#when link started before_run will call ...
+CONFIG(debug,debug|release){
+    QMAKE_PRE_LINK += $${DESTDIR}/before_run_debug $$PWD
+}else{
+    QMAKE_PRE_LINK += $${DESTDIR}/before_run $$PWD
+}
+export(QMAKE_PRE_LINK)
+
+#when link finished after_run will call ...
+CONFIG(debug,debug|release){
+    QMAKE_POST_LINK += $${DESTDIR}/after_run_debug $$PWD
+}else{
+    QMAKE_POST_LINK += $${DESTDIR}/after_run $$PWD
+}
+export(QMAKE_POST_LINK)
+\end{lstlisting}          %抄录环境
 
 
 

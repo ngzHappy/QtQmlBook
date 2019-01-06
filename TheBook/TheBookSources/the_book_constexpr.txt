@@ -54,6 +54,8 @@ f000000::::chapter01/files/test.hpp::::]
 f000001::::chapter01/files/test.hpp::::]
 f000002::::chapter01/files/hellow_world.pro::::]
 f000003::::chapter01/files/hellow_world.cpp::::]
+f000004::::chapter01/files/advance_use_qmake/advance_use_qmake.pro::::]
+f000005::::chapter01/files/advance_use_qmake/the_run/the_run.pro::::]
 %表名称
 
 
