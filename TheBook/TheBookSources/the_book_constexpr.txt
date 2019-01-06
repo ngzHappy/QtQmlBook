@@ -26,8 +26,8 @@ c000019::::模型视图
 c000020::::前言
 
 %图片路径
-p000000::::Qt在线安装包下载路径::::chapter01/windows_download_here.png::::[ht]::::[scale=0.95]
-p000001::::Qt在线安装建议选择安装组件::::chapter01/windows_qt_online_install.png::::[ht]::::[width=\textwidth]
+p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[ht]::::[scale=0.95]
+p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[ht]::::[width=\textwidth]
 
 %源代码路径
 
