@@ -1,5 +1,6 @@
 ﻿#include "TexBuilder.hpp"
 #include "OutPutStream.hpp"
+#include "ReadSource.hpp"
 #include "GetTheBookConstexpr.hpp"
 #include <optional>
 #include <list>
@@ -55,7 +56,7 @@ static inline const QString & theBookImage() {
 }
 
 static inline const QString & theBookReadFileSouce() {
-    const static auto varAns = qsl("the_book_file");
+    const static auto varAns = qsl(":the_book_file:");
     return varAns;
 }
 
@@ -469,15 +470,25 @@ public:
                     varString.trimmed();
                 auto varArgs2 =
                     varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 4) {
+                if (varArgs2.size() != 2) {
                     return false;
                 }
 
                 /***********************************************/
 
-
-
-
+                varString = qsl(R"(\begin{lstlisting}[label=%1 
+%2
+)").arg(varKeyLabel).arg(varArgs2[1]);
+                {
+                    const auto varSources =
+                        readFileSource(getOutPutFileFullPath(varArgs2[0]) );
+                    for (const auto & varLine : varSources) {
+                        varString += varLine;
+                        varString += QChar('\n');
+                    }
+                }
+                varString += qsl(R"(\end{lstlisting}          %抄录环境
+)");
                 /***********************************************/
 
                 *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);

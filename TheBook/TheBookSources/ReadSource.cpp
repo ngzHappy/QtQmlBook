@@ -63,11 +63,29 @@ namespace this_file {
                 varI.data = QString(varLeftSpaceSize, QChar(' '))
                     + varI.data;
             }
+            /*删除头空行*/
+            while (false == lines.empty()) {
+                if (lines.cbegin()->data.isEmpty()) {
+                    lines.pop_front();
+                } else {
+                    break;
+                }
+            }
+            /*删除尾空行*/
+            while(false ==lines.empty()){
+                if (lines.crbegin()->data.isEmpty()) {
+                    lines.pop_back();
+                } else {
+                    break;
+                }
+            }
         }
+
         inline std::vector<QString> read() {
             readfile();
             return { lines.cbegin(),lines.cend() };
         }
+
     };
 
 }/******/

@@ -88,7 +88,7 @@ numbers=left,
 numberstyle=\footnotesize , %设置字号
 frame=single,
 backgroundcolor=\color{sourcegrayone},
-showstringspaces=true
+showstringspaces=false
 }
 
 %设置常量

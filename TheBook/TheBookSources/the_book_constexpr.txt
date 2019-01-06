@@ -30,6 +30,7 @@ p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_he
 p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[ht]::::[width=\textwidth]
 
 %源代码路径
+f000000::::chapter01/files/test.hpp::::]
 
 %表名称
 
