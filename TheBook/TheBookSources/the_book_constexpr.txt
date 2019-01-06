@@ -18,6 +18,11 @@ ss000410::::在Linux平台下安装Qt
 ss000510::::在Linux平台下安装Boost
 %第2节
 s100310::::qmake入门
+ss000610::::使用qmake构建Hellow World！
+ss000710::::使用qmake创建动态链接库
+ss000810::::使用qmake编译期编译
+ss000910::::qmake杂项
+
 %第3节
 s100210::::第一个程序
 %第二章
@@ -47,6 +52,8 @@ p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
 f000001::::chapter01/files/test.hpp::::]
+f000002::::chapter01/files/hellow_world.pro::::]
+f000003::::chapter01/files/hellow_world.cpp::::]
 %表名称
 
 

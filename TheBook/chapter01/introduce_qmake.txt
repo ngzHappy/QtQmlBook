@@ -17,9 +17,23 @@ qmake比cmake更加专注。
 就可以使用qmake搭建出复杂的程序架构。
 
 
+:the_book_subsubsection:[[ss000610]]
+读者新建一个目录:tex_raw:[[\footnote{]]
+本书所有目录都要求不包含空格和中文，以后不再赘述。
+:tex_raw:[[}]]，
+在此文件夹下新建一个“hellow_world.pro”文件，输入文件内容如
+:tex_raw:[[\lstlistingname\ \ref{f000002}]]。
+在此文件夹下建立“main.cpp”文件，输入内容如
+:tex_raw:[[\lstlistingname\ \ref{f000003}]]。
 
+:the_book_file:[[f000002]]
+:the_book_file:[[f000003]]
 
+:the_book_subsubsection:[[ss000710]]
 
+:the_book_subsubsection:[[ss000810]]
+
+:the_book_subsubsection:[[ss000910]]
 
 
 
