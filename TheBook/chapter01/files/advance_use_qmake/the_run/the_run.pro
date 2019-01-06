@@ -26,6 +26,8 @@ DESTDIR =  $$PWD/../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 
 #when before build new_moc will call ...
+new_moc.dependency_type = TYPE_C
+new_moc.variable_out = SOURCES
 new_moc.output  = moc_new_${QMAKE_FILE_BASE}.cpp
 CONFIG(debug,debug|release){
 new_moc.commands = \
@@ -34,8 +36,10 @@ $${DESTDIR}/new_moc_debug ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
 new_moc.commands = \
 $${DESTDIR}/new_moc ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
 }
-new_moc.input = test2.hpp test1.hpp
+NEW_MOC_HEADERS = test2.hpp test1.hpp
+new_moc.input = NEW_MOC_HEADERS
 QMAKE_EXTRA_COMPILERS += new_moc
+
 
 #when link started before_run will call ...
 CONFIG(debug,debug|release){

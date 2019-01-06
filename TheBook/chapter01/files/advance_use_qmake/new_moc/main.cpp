@@ -12,7 +12,11 @@ namespace fs = std::experimental::filesystem;
 int main(int,char ** argv){
     std::ifstream varInput{  argv[1] };
     std::ofstream varOutput{ argv[2] };
-
+    varOutput<<"/*****************************/";
+    varOutput<<std::endl;
+    varOutput<<"inline static int a = 1 ; ";
+    varOutput<<std::endl;
+    return 0;
 }
 
 
