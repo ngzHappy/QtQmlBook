@@ -19,8 +19,6 @@ win32-msvc*{
 }
 
 SOURCES += $$PWD/main.cpp
-HEADERS += $$PWD/test2.hpp
-HEADERS += $$PWD/test1.hpp
 DESTDIR =  $$PWD/../bin
 
 DEFINES += QT_DEPRECATED_WARNINGS
