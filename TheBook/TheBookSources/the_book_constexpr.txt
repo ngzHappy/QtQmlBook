@@ -20,7 +20,7 @@ ss000510::::在Linux平台下安装Boost
 s100310::::qmake入门
 ss000610::::使用qmake构建Hellow World！
 ss000710::::使用qmake创建动态链接库
-ss000810::::使用qmake编译期编译
+ss000810::::qmake高级用法
 ss000910::::qmake杂项
 
 %第3节

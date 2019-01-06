@@ -432,7 +432,7 @@ public:
 
     };
 
-    class KeyFileSouce : public FunctionOp {
+    class KeyFileSouceString : public FunctionOp {
     public:
 
         inline bool isKeyFunction() const override {
@@ -443,7 +443,7 @@ public:
             return Type::TypeFileSourceString;
         }
 
-        inline KeyFileSouce(int deepthx,
+        inline KeyFileSouceString(int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
             :FunctionOp(deepthx, p, std::move(s)) {
@@ -1274,7 +1274,7 @@ title=\lstlistingname\ \thelstlisting
             *varAns = varValue;
         } else if (theBookReadFileSouce() == varKey.name) {
             auto varValue =
-                std::make_shared< KeyFileSouce >(varDeepth,
+                std::make_shared< KeyFileSouceString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
