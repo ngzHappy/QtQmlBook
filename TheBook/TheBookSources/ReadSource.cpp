@@ -44,12 +44,15 @@ namespace this_file {
                         break;
                     }
                 }
-                varMinLeftSpace =
-                    std::min(varMinLeftSpace, varSpaceLeftOfThisLine);
+                auto varTrimmedLine = varLine.trimmed();
+                if (!varTrimmedLine.isEmpty()) {
+                    varMinLeftSpace =
+                        std::min(varMinLeftSpace, varSpaceLeftOfThisLine);
+                }
                 lines.emplace_back(
                     ++varLineNumber,
                     varSpaceLeftOfThisLine,
-                    varLine.trimmed());
+                    varTrimmedLine);
             }
             /*调整左侧空格*/
             for (auto & varI : lines) {
