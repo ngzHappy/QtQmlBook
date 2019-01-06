@@ -2,6 +2,9 @@ TEMPLATE = subdirs
 
 CONFIG += ordered
 
+new_moc.file = $$PWD/new_moc/new_moc.pro
+SUBDIRS += new_moc
+
 before_run.file = $$PWD/before_run/before_run.pro
 SUBDIRS += before_run
 
