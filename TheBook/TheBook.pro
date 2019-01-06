@@ -49,6 +49,9 @@ SOURCES += $$PWD/TheBookSources/main.cpp
 HEADERS += $$PWD/TheBookSources/MainWindow.hpp
 SOURCES += $$PWD/TheBookSources/MainWindow.cpp
 
+HEADERS += $$PWD/TheBookSources/ReadSource.hpp
+SOURCES += $$PWD/TheBookSources/ReadSource.cpp
+
 HEADERS += $$PWD/TheBookSources/GetTheBookConstexpr.hpp
 SOURCES += $$PWD/TheBookSources/GetTheBookConstexpr.cpp
 
