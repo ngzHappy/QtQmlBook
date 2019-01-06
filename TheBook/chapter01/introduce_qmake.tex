@@ -35,14 +35,14 @@ qmake比cmake更加专注。
 读者新建一个目录\footnote{
 本书所有目录都要求不包含空格和中文，以后不再赘述。
 }，
-新建一个“hellow\_world.pro”文件，输入文件内容如
+在此文件夹下新建一个“hellow\_world.pro”文件，输入文件内容如
 \lstlistingname\ \ref{f000002}。
-在文件夹下建立“main.cpp”文件，输入内容如
+在此文件夹下建立“main.cpp”文件，输入内容如
 \lstlistingname\ \ref{f000003}。
 
 \begin{lstlisting}[label=f000002, 
 caption=GoodLuck,
-title=\ \lstlistingname\ \thelstlisting
+title=\lstlistingname\ \thelstlisting
 ]
 QT -= gui
 QT -= core
@@ -66,18 +66,21 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD
 
+DEFINES *= NUMBER=1
 DEFINES *= HELLOW=\\\"Hellow\\\"
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 
 \begin{lstlisting}[label=f000003, 
 caption=GoodLuck,
-title=\ \lstlistingname\ \thelstlisting
+title=\lstlistingname\ \thelstlisting
 ]
 #include <iostream>
 
 int main(int , char **) {
-    std::cout << HELLOW " World!" <<std::endl;
+    std::cout << HELLOW " World! "
+              << NUMBER
+              <<std::endl;
 }
 \end{lstlisting}          %抄录环境
 

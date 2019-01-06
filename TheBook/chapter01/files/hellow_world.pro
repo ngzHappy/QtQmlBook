@@ -20,6 +20,7 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD
 
+DEFINES *= NUMBER=1
 DEFINES *= HELLOW=\\\"Hellow\\\"
 DEFINES += QT_DEPRECATED_WARNINGS
 

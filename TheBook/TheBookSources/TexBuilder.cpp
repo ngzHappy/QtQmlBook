@@ -478,7 +478,7 @@ public:
 
                 varString = qsl(R"(\begin{lstlisting}[label=%1, 
 caption=GoodLuck,
-title=\ \lstlistingname\ \thelstlisting
+title=\lstlistingname\ \thelstlisting
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
