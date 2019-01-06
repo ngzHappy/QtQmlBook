@@ -7,6 +7,7 @@ CONFIG(debug,debug|release){
     TARGET = new_moc_debug
 }else{
     TARGET = new_moc
+    LIBS += -lstdc++fs
 }
 
 TEMPLATE = app

@@ -7,6 +7,7 @@ CONFIG(debug,debug|release){
     TARGET = before_run_debug
 }else{
     TARGET = before_run
+    LIBS += -lstdc++fs
 }
 
 TEMPLATE = app

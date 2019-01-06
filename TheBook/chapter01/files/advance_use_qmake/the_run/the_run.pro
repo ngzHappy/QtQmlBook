@@ -7,6 +7,7 @@ CONFIG(debug,debug|release){
     TARGET = the_run_debug
 }else{
     TARGET = the_run
+    LIBS += -lstdc++fs
 }
 
 TEMPLATE = app
@@ -18,15 +19,23 @@ win32-msvc*{
 }
 
 SOURCES += $$PWD/main.cpp
+HEADERS += $$PWD/test2.hpp
+HEADERS += $$PWD/test1.hpp
 DESTDIR =  $$PWD/../bin
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
 #when before build new_moc will call ...
-#new_moc.output  = moc_${QMAKE_FILE_BASE}.cpp
-#new_moc.commands = moc ${QMAKE_FILE_NAME} -o ${QMAKE_FILE_OUT}
-#new_moc.input = NEW_HEADERS
-#QMAKE_EXTRA_COMPILERS += new_moc
+new_moc.output  = moc_new_${QMAKE_FILE_BASE}.cpp
+CONFIG(debug,debug|release){
+new_moc.commands = \
+$${DESTDIR}/new_moc_debug ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
+}else{
+new_moc.commands = \
+$${DESTDIR}/new_moc ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
+}
+new_moc.input = test2.hpp test1.hpp
+QMAKE_EXTRA_COMPILERS += new_moc
 
 #when link started before_run will call ...
 CONFIG(debug,debug|release){
