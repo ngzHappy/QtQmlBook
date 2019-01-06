@@ -7,6 +7,7 @@
 %......
 
 \input{chapter01/section01_chapter01.tex}
+\input{chapter01/introduce_qmake.tex}
 \input{chapter01/first_application.tex}
 
 ]===]

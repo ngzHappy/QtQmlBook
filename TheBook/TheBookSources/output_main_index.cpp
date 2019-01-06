@@ -48,6 +48,14 @@ inline static void output_chapter_01() {
     }
     {
         auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/introduce_qmake.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/introduce_qmake.tex")));
+        if (false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/introduce_qmake.tex)"sv);
+        }
+    }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/first_application.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/first_application.tex")));
         if (false == varBuilder->convert()) {
