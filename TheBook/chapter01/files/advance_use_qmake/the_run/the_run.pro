@@ -7,7 +7,6 @@ CONFIG(debug,debug|release){
     TARGET = the_run_debug
 }else{
     TARGET = the_run
-    LIBS += -lstdc++fs
 }
 
 TEMPLATE = app
@@ -16,6 +15,7 @@ win32-msvc*{
     QMAKE_CXXFLAGS += /std:c++latest
 }else{
     CONFIG += c++17
+    LIBS += -lstdc++fs
 }
 
 SOURCES += $$PWD/main.cpp
@@ -40,7 +40,6 @@ NEW_MOC_HEADERS = test2.hpp test1.hpp
 new_moc.input = NEW_MOC_HEADERS
 QMAKE_EXTRA_COMPILERS += new_moc
 
-
 #when link started before_run will call ...
 CONFIG(debug,debug|release){
     QMAKE_PRE_LINK += $${DESTDIR}/before_run_debug $$PWD
@@ -57,7 +56,6 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-
-
+#qmake Variable Reference
 
 
