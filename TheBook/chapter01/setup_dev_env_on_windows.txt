@@ -68,7 +68,11 @@ C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include\boost
 当使用MSVC编译器的时候，本书直接嵌入jemalloc源代码，
 因而读者不必特别操心。
 但是，当在Windows下使用MinGW编译器时，
-读者需要自己静态编译jemalloc。
+读者需要自己静态编译jemalloc:tex_raw:[[\footnote{]]
+如果读者使用MinGW 7.3 64 bit
+本书已经将对应版本的jemalloc编译好了，
+读者不需要再次编译。
+:tex_raw:[[}]]。
 并将编译结果放置到：
 :tex_raw:[[\begin{littlelongworld}]]
 QtQmlBook\sstd_library\memory\libs
