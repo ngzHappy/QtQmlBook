@@ -46,6 +46,14 @@ inline static void output_chapter_01() {
             the_book_throw(u8R"(chapter01/setup_dev_env_on_windows.tex)"sv);
         }
     }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/first_application.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/first_application.tex")));
+        if (false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/first_application.tex)"sv);
+        }
+    }
 }
 
 inline static void output_chapter_02() {
