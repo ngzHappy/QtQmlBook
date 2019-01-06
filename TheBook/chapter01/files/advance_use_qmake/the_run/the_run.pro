@@ -54,6 +54,6 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-#qmake Variable Reference
+
 
 
