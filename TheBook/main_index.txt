@@ -73,7 +73,7 @@ marginparwidth=0.1cm
 
 \usepackage{fontspec}
 \definecolor{sourcegrayone}{rgb}{0.95,0.95,0.96}  %源代码背景颜色
-\newfontfamily\sourcefontone{Consolas}          %源代码字体
+\newfontfamily\sourcefontone{Consolas}            %源代码字体
 \renewcommand\lstlistingname{程序}
 %源代码默认样式
 \lstset{
@@ -100,7 +100,7 @@ showstringspaces=false
 
 %设置常量
 \title{Qt Quick全面导引}                              %书籍名称
-\author{Good Luck}                              %作者名
+\author{Good Luck}                                   %作者名
 
 %设置ctex
 %@P135
@@ -111,13 +111,15 @@ showstringspaces=false
 { \\[0.25cm] }
 { \\[0.25cm] }
 
+\newcommand\treeIndexNumberName{目录树}
 \newcommand\theTreeIndexNumber{}
 \newcounter{treeIndexNumber}[chapter]
 %\stepcounter{treeIndexNumber}
-\renewcommand\theTreeIndexNumber{目录树\ \thechapter.\arabic{treeIndexNumber}}
+%\refstepcounter{treeIndexNumber}
+\renewcommand\theTreeIndexNumber{\treeIndexNumberName\ \thechapter.\arabic{treeIndexNumber}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%解决BUG
+%解决目录字体重叠BUG
 \makeatletter
 \renewcommand{\numberline}[1]{%
 \settowidth\@tempdimb{#1\hspace{0.5em}}%

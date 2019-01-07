@@ -1,3 +1,4 @@
+#import_library.pro
 TEMPLATE = subdirs
 
 CONFIG += ordered

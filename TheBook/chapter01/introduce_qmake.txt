@@ -57,13 +57,13 @@ qmake比cmake更加专注。
 :tex_raw:[[\item ]]“$$”代表当qmake运行时，变量的字面值；
 :tex_raw:[[\item ]]“$”代表当qmake生成Makefile后，变量的字面值；
 :tex_raw:[[\item ]]“#”代表注释；
-:tex_raw:[[\item ]]“SOURCES”代表需要编译的C/C++源代码对象；
-:tex_raw:[[\item ]]“HEADERS”代表C/C++头文件对象；
-:tex_raw:[[\item ]]“DEFINES”代表C/C++宏对象；
+:tex_raw:[[\item ]]“SOURCES”代表需要编译的C/C++源代码变量；
+:tex_raw:[[\item ]]“HEADERS”代表C/C++头文件变量；
+:tex_raw:[[\item ]]“DEFINES”代表C/C++宏变量；
 :tex_raw:[[\item ]]“TARGET”代表输出对象名称；
 :tex_raw:[[\item ]]“CONFIG”用来加入和检查Qt中预定义的编译选项；
 :tex_raw:[[\item ]]“QMAKE_CXXFLAGS”代表qmake生成Makefile时需要加入的编译器参数；
-:tex_raw:[[\item ]]“TEMPLATE”决定此项目的模板类型，本案例是使用应用程序模板（app）后续章节会介绍更多模板；
+:tex_raw:[[\item ]]“TEMPLATE”决定此项目的模板类型，本案例是使用应用程序模板“app”后续章节会介绍更多模板；
 :tex_raw:[[\end{itemize}]]
 
 第6~10行和14~18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
@@ -76,18 +76,59 @@ qmake比cmake更加专注。
 
 
 
-:tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
+:tex_raw:[[%
+%\renewcommand\theTreeIndexNumber{\treeIndexNumberName\ \thechapter.\arabic{treeIndexNumber}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000710]]
+
+绝大多数项目的项目结构都很复杂，从这一节开始读者要开始接受这一事实。
+本节示例的项目结构如:tex_raw:[[\treeIndexNumberName\ \thechapter.\ref{d000001}]]
+所示。
 
 :the_book_tree_file:[[d000001]]
 
+先来看看“import_library.pro”文件，
+如:tex_raw:[[\lstlistingname\ \ref{f000010}]]所示。
+
+此文件启用了一个新的模版，“subdirs”。
+
+“subdirs”模版可以将一些列孤立的工程组织起来:tex_raw:[[\footnote{]]
+最好不要嵌套引用subdirs，某些IDE并不支持。
+:tex_raw:[[}]]，
+并要求它们按照一定先后顺序编译。
+比如本节采用的“CONFIG += ordered”就要求项目按照定义顺序编译。
+
 :the_book_file:[[f000010]]
+
+再来看看“the_app.pro”文件，
+如:tex_raw:[[\lstlistingname\ \ref{f000016}]] 所示。它采用了“app”模版。
+比起上一节，它多了一些新的知识点。
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第21~23行更改了在非Windows平台下程序的链接参数，
+它要求程序运行时将其所在目录加入动态库搜索路径；
+:tex_raw:[[\item ]]第28行将另一个文件引入此文件，它和C/C++的“#include”工作原理一致；
+:tex_raw:[[\end{itemize}]]
+
+:the_book_file:[[f000016]]
+
+接下来是“import_test_library.pri”文件，
+如:tex_raw:[[\lstlistingname\ \ref{f000011}]] 所示。
+它也引入了一些新的知识。
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第2行使用“INCLUDEPATH”变量将当前目录加入C/C++包含路径搜索路径；
+:tex_raw:[[\item ]]第3~7使用“LIBS”变量导入C/C++链接库，
+“-L”后面是库所在路径，
+“-l”后面紧跟库的名称；
+:tex_raw:[[\end{itemize}]]
 :the_book_file:[[f000011]]
+
+
+
 :the_book_file:[[f000012]]
 :the_book_file:[[f000013]]
 :the_book_file:[[f000014]]
 :the_book_file:[[f000015]]
-:the_book_file:[[f000016]]
+
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000810]]

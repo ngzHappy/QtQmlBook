@@ -541,8 +541,8 @@ title=\lstlistingname\ \thelstlisting
 
                 /***********************************************/
 
-                varString = qsl(R"(\stepcounter{treeIndexNumber}%增加目录树编号
-\begin{lstlisting}[label=%1,
+                varString = qsl(R"(\refstepcounter{treeIndexNumber}\label{%1}    %增加目录树编号
+\begin{lstlisting}[caption=GoodLuck,
 numbers=none,
 title=\theTreeIndexNumber
 %2
