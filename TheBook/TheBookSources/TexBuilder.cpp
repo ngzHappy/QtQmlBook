@@ -481,7 +481,8 @@ public:
 
                 /***********************************************/
 
-                varString = qsl(R"(\begin{lstlisting}[label=%1,
+                varString = qsl(R"(%\begin{spacing}{1.0}
+\begin{lstlisting}[label=%1,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 %2
@@ -495,6 +496,7 @@ title=\lstlistingname\ \thelstlisting
                     }
                 }
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
+%\end{spacing}
 )");
                 /***********************************************/
 
@@ -541,7 +543,8 @@ title=\lstlistingname\ \thelstlisting
 
                 /***********************************************/
 
-                varString = qsl(R"(\refstepcounter{treeIndexNumber}\label{%1}    %增加目录树编号
+                varString = qsl(R"(%\begin{spacing}{1.0}
+\refstepcounter{treeIndexNumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
 title=\theTreeIndexNumber
@@ -556,6 +559,7 @@ title=\theTreeIndexNumber
                     }
                 }
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
+%\end{spacing}
 )");
                 /***********************************************/
 
