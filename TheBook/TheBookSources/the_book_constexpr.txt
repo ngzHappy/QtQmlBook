@@ -56,6 +56,16 @@ f000002::::chapter01/files/hellow_world.pro::::]
 f000003::::chapter01/files/hellow_world.cpp::::]
 f000004::::chapter01/files/advance_use_qmake/advance_use_qmake.pro::::]
 f000005::::chapter01/files/advance_use_qmake/the_run/the_run.pro::::]
+f00000a::::chapter01/files/advance_use_qmake/the_run/main.cpp::::]
+f000006::::chapter01/files/advance_use_qmake/after_run/after_run.pro::::]
+f000007::::chapter01/files/advance_use_qmake/after_run/main.cpp::::]
+f000008::::chapter01/files/advance_use_qmake/before_run/before_run.pro::::]
+f000009::::chapter01/files/advance_use_qmake/before_run/main.cpp::::]
+f00000b::::chapter01/files/advance_use_qmake/new_moc/new_moc.pro::::]
+f00000c::::chapter01/files/advance_use_qmake/new_moc/main.cpp::::]
+
+
+
 
 %表名称
 

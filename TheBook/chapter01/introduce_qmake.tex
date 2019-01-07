@@ -26,7 +26,7 @@ qmake比cmake更加专注。
 读者会发现只需要学习可怜的一点内容，
 就可以使用qmake搭建出复杂的程序架构。
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{
 使用qmake构建Hellow World！
@@ -86,12 +86,14 @@ int main(int , char **) {
 \end{lstlisting}          %抄录环境
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{
 使用qmake创建动态链接库
 }\label{ss000710}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{
 qmake高级用法
@@ -116,7 +118,6 @@ title=\theTreeIndexNumber
 │   └── new_moc.pro
 └── the_run
     ├── main.cpp
-    ├── readme.txt
     ├── test1.hpp
     ├── test2.hpp
     └── the_run.pro
@@ -205,7 +206,255 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 \end{lstlisting}          %抄录环境
 
+\begin{lstlisting}[label=f00000a, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+#include <iostream>
 
+int main(int, char **) {
+    std::cout << "the_run" << std::endl;
+    return 0;
+}
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000006, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+QT -= gui
+QT -= core
+
+CONFIG += console
+
+CONFIG(debug,debug|release){
+    TARGET = after_run_debug
+}else{
+    TARGET = after_run
+}
+
+TEMPLATE = app
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+    LIBS += -lstdc++fs
+}
+
+SOURCES += $$PWD/main.cpp
+DESTDIR =  $$PWD/../bin
+
+DEFINES += QT_DEPRECATED_WARNINGS
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000007, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+
+#include <iostream>
+#include <fstream>
+#include <chrono>
+
+class OStream :public std::ofstream {
+    using Super = std::ofstream;
+public:
+    template<typename T,
+        typename = std::enable_if_t<
+        std::is_constructible_v<Super, T && > > >
+        inline OStream(T && arg) :
+        Super(std::forward<T>(arg)) {
+    }
+    template<typename T,
+        typename = void,
+        typename = std::enable_if_t<
+        !std::is_constructible_v<Super, T && > > >
+        inline OStream(T && arg) :
+        Super(std::forward<T>(arg).string()) {
+    }
+};
+
+int main(int argc, char ** argv) {
+    std::cout << "before_run : "
+        << argc << std::endl;
+    if (argc < 2) {
+        return -1;
+    }
+    fs::path varPath{ argv[1] };
+    OStream stream{ varPath / "after_run.txt" };
+    stream << std::chrono::
+        high_resolution_clock::now()
+        .time_since_epoch().count();
+    stream << std::endl;
+    return 0;
+}
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000008, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+QT -= gui
+QT -= core
+
+CONFIG += console
+
+CONFIG(debug,debug|release){
+    TARGET = before_run_debug
+}else{
+    TARGET = before_run
+}
+
+TEMPLATE = app
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+    LIBS += -lstdc++fs
+}
+
+SOURCES += $$PWD/main.cpp
+DESTDIR =  $$PWD/../bin
+
+DEFINES += QT_DEPRECATED_WARNINGS
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000009, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+
+#include <iostream>
+#include <fstream>
+#include <chrono>
+
+class OStream :public std::ofstream {
+    using Super = std::ofstream;
+public:
+    template<typename T,
+        typename = std::enable_if_t<
+        std::is_constructible_v<Super, T && > > >
+        inline OStream(T && arg) :
+        Super(std::forward<T>(arg)) {
+    }
+    template<typename T,
+        typename = void,
+        typename = std::enable_if_t<
+        !std::is_constructible_v<Super, T && > > >
+        inline OStream(T && arg) :
+        Super(std::forward<T>(arg).string()) {
+    }
+};
+
+int main(int argc, char ** argv) {
+    std::cout << "before_run : "
+        << argc << std::endl;
+    if (argc < 2) {
+        return -1;
+    }
+    fs::path varPath{ argv[1] };
+    OStream stream{ varPath / "before_run.txt" };
+    stream << std::chrono::
+        high_resolution_clock::now()
+        .time_since_epoch().count();
+    stream << std::endl;
+    return 0;
+}
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f00000b, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+QT -= gui
+QT -= core
+
+CONFIG += console
+
+CONFIG(debug,debug|release){
+    TARGET = new_moc_debug
+}else{
+    TARGET = new_moc
+}
+
+TEMPLATE = app
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+    LIBS += -lstdc++fs
+}
+
+SOURCES += $$PWD/main.cpp
+DESTDIR =  $$PWD/../bin
+
+DEFINES += QT_DEPRECATED_WARNINGS
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f00000c, 
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#include <iostream>
+#include <fstream>
+
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+
+int main(int argc, char ** argv) {
+    std::cout << "new_moc : "
+        << argc << std::endl;
+    if (argc < 3) {
+        return -1;
+    }
+    std::ifstream varInput{ argv[1] };
+    std::ofstream varOutput{ argv[2] };
+    varOutput << "/*****************************/";
+    varOutput << std::endl;
+    varOutput << "#include \"";
+    varOutput << argv[1];
+    varOutput << "\"";
+    varOutput << std::endl;
+    varOutput << u8R"(inline static int a = [](){
+               std::cout << "Good Luck!" <<std::endl;
+               return 12;
+               }() ; )";
+    varOutput << std::endl;
+    return 0;
+}
+\end{lstlisting}          %抄录环境
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{
 qmake杂项
