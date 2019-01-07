@@ -12,7 +12,6 @@
 │   └── new_moc.pro
 └── the_run
     ├── main.cpp
-    ├── readme.txt
     ├── test1.hpp
     ├── test2.hpp
     └── the_run.pro
