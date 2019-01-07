@@ -63,7 +63,7 @@ f000008::::chapter01/files/advance_use_qmake/before_run/before_run.pro::::]
 f000009::::chapter01/files/advance_use_qmake/before_run/main.cpp::::]
 f00000b::::chapter01/files/advance_use_qmake/new_moc/new_moc.pro::::]
 f00000c::::chapter01/files/advance_use_qmake/new_moc/main.cpp::::]
-
+f00000d::::chapter01/files/advance_use_qmake/message.test.pro.txt::::]
 
 
 

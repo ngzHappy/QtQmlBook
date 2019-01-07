@@ -50,18 +50,29 @@ qmake比cmake更加专注。
 不难发现qmake的语法十分简单：
 :tex_raw:[[\begin{itemize}]]
 :tex_raw:[[\item ]]“=”代表赋值；
-:tex_raw:[[\item ]]“+=”代表向对象中增加元素；
-:tex_raw:[[\item ]]“-=”代表从对象中删除元素；
-:tex_raw:[[\item ]]“*=”代表如果对象中不存在则加入元素否则忽略；
-:tex_raw:[[\item ]]“$$”代表将对象转换为字面值；
+:tex_raw:[[\item ]]“+=”代表向变量中增加元素；
+:tex_raw:[[\item ]]“-=”代表从变量中删除元素；
+:tex_raw:[[\item ]]“*=”代表如果变量中不存在则加入元素否则忽略；
+:tex_raw:[[\item ]]“~=”代表替换变量中的值；
+:tex_raw:[[\item ]]“$$”代表当qmake运行时，变量的字面值；
+:tex_raw:[[\item ]]“$”代表当qmake生成Makefile后，变量的字面值；
+:tex_raw:[[\item ]]“#”代表注释；
 :tex_raw:[[\item ]]“SOURCES”代表需要编译的C/C++源代码对象；
 :tex_raw:[[\item ]]“HEADERS”代表C/C++头文件对象；
 :tex_raw:[[\item ]]“DEFINES”代表C/C++宏对象；
 :tex_raw:[[\item ]]“TARGET”代表输出对象名称；
 :tex_raw:[[\item ]]“CONFIG”用来加入和检查Qt中预定义的编译选项；
-:tex_raw:[[\item ]]“QMAKE_CXXFLAGS”代表qmake生成MakeFile时需要加入的编译期参数；
+:tex_raw:[[\item ]]“QMAKE_CXXFLAGS”代表qmake生成Makefile时需要加入的编译器参数；
 :tex_raw:[[\item ]]“TEMPLATE”决定此项目的模板类型，本案例是使用应用程序模板（app）后续章节会介绍更多模板；
 :tex_raw:[[\end{itemize}]]
+
+第6~10行和14~18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
+读者可以尝试一下向文件“hellow_world.pro”文件最后
+加入:tex_raw:[[\lstlistingname\ \ref{f00000d}]]，
+分别去掉:tex_raw:[[\lstlistingname\ \ref{f00000d}]]第一行和
+保留第一行qtcreator的“概要信息”输出什么。
+:the_book_file:[[f00000d]]
+
 
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
