@@ -1,0 +1,18 @@
+ 
+.
+├── advance_use_qmake.pro
+├── after_run
+│   ├── after_run.pro
+│   └── main.cpp
+├── before_run
+│   ├── before_run.pro
+│   └── main.cpp
+├── new_moc
+│   ├── main.cpp
+│   └── new_moc.pro
+└── the_run
+    ├── main.cpp
+    ├── readme.txt
+    ├── test1.hpp
+    ├── test2.hpp
+    └── the_run.pro
