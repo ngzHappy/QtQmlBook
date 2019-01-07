@@ -79,6 +79,16 @@ qmake比cmake更加专注。
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000710]]
 
+:the_book_tree_file:[[d000001]]
+
+:the_book_file:[[f000010]]
+:the_book_file:[[f000011]]
+:the_book_file:[[f000012]]
+:the_book_file:[[f000013]]
+:the_book_file:[[f000014]]
+:the_book_file:[[f000015]]
+:the_book_file:[[f000016]]
+
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000810]]
 

@@ -127,7 +127,8 @@ int main(int , char **) {
 读者可以尝试一下向文件“hellow\underline{\hspace{0.5em}}world.pro”文件最后
 加入\lstlistingname\ \ref{f00000d}，
 分别去掉\lstlistingname\ \ref{f00000d}第一行和
-保留第一行qtcreator的“概要信息”输出什么。
+保留第一行，
+观察qtcreator的“概要信息”输出什么。
 \begin{lstlisting}[label=f00000d,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -148,6 +149,175 @@ mydebug{
 \subsubsection{
 使用qmake创建动态链接库
 }\label{ss000710}
+
+
+\stepcounter{treeIndexNumber}%增加目录树编号
+\begin{lstlisting}[label=d000001,
+numbers=none,
+title=\theTreeIndexNumber
+]
+.
+├── import_library.pro
+├── test_library
+│   ├── import_test_library.pri
+│   ├── TestLibrary.cpp
+│   ├── TestLibrary.hpp
+│   └── test_library.pro
+└── the_app
+    ├── main.cpp
+    └── the_app.pro
+\end{lstlisting}          %抄录环境
+
+
+\begin{lstlisting}[label=f000010,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+TEMPLATE = subdirs
+
+CONFIG += ordered
+
+test_library.file = $$PWD/test_library/test_library.pro
+SUBDIRS += test_library
+
+the_app.file = $$PWD/the_app/the_app.pro
+SUBDIRS += the_app
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000011,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#import_test_library.pri
+INCLUDEPATH += $$PWD
+CONFIG(debug,debug|release){
+    LIBS += -L$$PWD/../bin -ltest_libraryd
+}else{
+    LIBS += -L$$PWD/../bin -ltest_library
+}
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000012,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#test_library.pro
+QT += gui
+QT += core
+
+CONFIG += console
+
+CONFIG(debug,debug|release){
+    TARGET = test_libraryd
+}else{
+    TARGET = test_library
+}
+
+TEMPLATE = lib
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+}
+
+!win32 {
+    QMAKE_LFLAGS += -Wl,-rpath .
+}
+
+SOURCES += $$PWD/TestLibrary.cpp
+HEADERS += $$PWD/TestLibrary.hpp
+
+DESTDIR =  $$PWD/../bin
+DEFINES *= D_TEST_LIBRARY
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000013,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#include "TestLibrary.hpp"
+#include <iostream>
+
+TestClass::TestClass() {
+}
+
+TestClass::~TestClass() {
+}
+
+void TestClass::foo() {
+    std::cout << __func__ << std::endl;
+}
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000014,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#pragma once
+
+#include <QtCore/qglobal.h>
+
+#ifndef D_TEST_LIBRARY
+#define TEST_LIBRARY_EXPORT Q_DECL_IMPORT
+#else
+#define TEST_LIBRARY_EXPORT Q_DECL_EXPORT
+#endif
+
+class TEST_LIBRARY_EXPORT TestClass {
+public:
+    TestClass();
+    ~TestClass();
+    void foo();
+};
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000015,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#include <TestLibrary.hpp>
+
+int main(int, char **) {
+    TestClass varClass;
+    varClass.foo();
+    return 0;
+}
+\end{lstlisting}          %抄录环境
+
+\begin{lstlisting}[label=f000016,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#the_app.pro
+QT += gui
+QT += core
+
+CONFIG += console
+
+CONFIG(debug,debug|release){
+    TARGET = the_app_debug
+}else{
+    TARGET = the_app
+}
+
+TEMPLATE = app
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+}
+
+!win32 {
+    QMAKE_LFLAGS += -Wl,-rpath .
+}
+
+DESTDIR =  $$PWD/../bin
+
+SOURCES += $$PWD/main.cpp
+include($$PWD/../test_library/import_test_library.pri)
+\end{lstlisting}          %抄录环境
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

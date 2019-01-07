@@ -64,14 +64,20 @@ f000009::::chapter01/files/advance_use_qmake/before_run/main.cpp::::]
 f00000b::::chapter01/files/advance_use_qmake/new_moc/new_moc.pro::::]
 f00000c::::chapter01/files/advance_use_qmake/new_moc/main.cpp::::]
 f00000d::::chapter01/files/advance_use_qmake/message.test.pro.txt::::]
-
-
+%%%%%%%%%
+f000010::::chapter01/files/import_library/import_library.pro::::]
+f000011::::chapter01/files/import_library/test_library/import_test_library.pri::::]
+f000012::::chapter01/files/import_library/test_library/test_library.pro::::]
+f000013::::chapter01/files/import_library/test_library/TestLibrary.cpp::::]
+f000014::::chapter01/files/import_library/test_library/TestLibrary.hpp::::]
+f000015::::chapter01/files/import_library/the_app/main.cpp::::]
+f000016::::chapter01/files/import_library/the_app/the_app.pro::::]
 
 %表名称
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
-
+d000001::::chapter01/files/import_library/tree.txt::::]
 
 
 
