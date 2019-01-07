@@ -1,0 +1,7 @@
+ 
+CONFIG += mydebug
+mydebug{
+    message("find my debug")
+}else{
+    message("can not find my debug")
+}

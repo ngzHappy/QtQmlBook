@@ -1,0 +1,13 @@
+ 
+.
+├── import_library.pro
+├── test_library
+│   ├── import_test_library.pri
+│   ├── TestLibrary.cpp
+│   ├── TestLibrary.hpp
+│   └── test_library.pro
+└── the_app
+    ├── main.cpp
+    └── the_app.pro
+
+    
