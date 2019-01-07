@@ -401,6 +401,29 @@ qmake高级用法
 }\label{ss000810}
 
 
+qmake远比读者想象的要复杂的多，
+本节向读者展示一些常见功能如何使用qmake实现。
+
+
+\begin{figure}[ht] %浮动体 here and top ...
+\centering %中心对齐
+\includegraphics[width=\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
+\caption{qmake与C/C++编译链接节点} %标题
+\label{p000002} %索引
+\end{figure}
+
+
+如\figurename\;\ref{p000002}。
+一个C/C++程序编译至少可以抽象出三个节点，
+源代码编译前，
+链接前以及链接后。
+这三个时刻分别对应于qmake变量：
+QMAKE\underline{\hspace{0.5em}}EXTRA\underline{\hspace{0.5em}}COMPILERS，
+QMAKE\underline{\hspace{0.5em}}PRE\underline{\hspace{0.5em}}LINK以及
+QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK。
+
+使用这三个控制变量，用户可以在这三个时刻执行自定义命令。
+
 %\begin{spacing}{1.0}
 \refstepcounter{treeIndexNumber}\label{d000000}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
