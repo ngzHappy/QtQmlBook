@@ -72,12 +72,12 @@ Qt选择5.12.0或以上版本。
 比如，
 用户的Qt Include路径为：
 \begin{littlelongworld}
-C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash{}msvc2017\_64\textbackslash{}include
+C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash{}msvc2017\underline{\hspace{0.5em}}64\textbackslash{}include
 \end{littlelongworld}
 复制完boost之后，
 应当存在路径：
 \begin{littlelongworld}
-C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash{}msvc2017\_64\textbackslash{}include\textbackslash{}boost
+C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash{}msvc2017\underline{\hspace{0.5em}}64\textbackslash{}include\textbackslash{}boost
 \end{littlelongworld}
 \hspace*{\parindent}当然，读者也可以采用“mklink”建立链接代替拷贝。
 
@@ -93,7 +93,7 @@ C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash
 一般而言，使用tcmalloc或jemalloc可以有效避免内存碎片问题。
 
 在Linux平台或类似平台下，
-可以使用“LD\_PRELOAD”或类似的技术轻松的覆盖动态链接库中的函数。
+可以使用“LD\underline{\hspace{0.5em}}PRELOAD”或类似的技术轻松的覆盖动态链接库中的函数。
 因而，在Linux平台下，使用tcmalloc或jemalloc替换C库中的内存分配函数是简易的。
 
 而在Windows平台下，
@@ -111,14 +111,14 @@ C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash
 }。
 并将编译结果放置到：
 \begin{littlelongworld}
-QtQmlBook\textbackslash{}sstd\_library\textbackslash{}memory\textbackslash{}libs
+QtQmlBook\textbackslash{}sstd\underline{\hspace{0.5em}}library\textbackslash{}memory\textbackslash{}libs
 \end{littlelongworld}
 文件夹下。
-并将文件重命名为“jemalloc\_win64\_mingw\_730.a”。
+并将文件重命名为“jemalloc\underline{\hspace{0.5em}}win64\underline{\hspace{0.5em}}mingw\underline{\hspace{0.5em}}730.a”。
 如果读者实在无法静态编译jemalloc，
 读者可以找到：
 \begin{littlelongworld}
-QtQmlBook\textbackslash{}sstd\_library\textbackslash{}\_sstd\_library\_memory.pri
+QtQmlBook\textbackslash{}sstd\underline{\hspace{0.5em}}library\textbackslash{}\underline{\hspace{0.5em}}sstd\underline{\hspace{0.5em}}library\underline{\hspace{0.5em}}memory.pri
 \end{littlelongworld}
 并将此文件内容清空。
 

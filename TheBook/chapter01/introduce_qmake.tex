@@ -35,12 +35,12 @@ qmake比cmake更加专注。
 读者新建一个目录\footnote{
 本书所有目录都要求不包含空格和中文，以后不再赘述。
 }，
-在此文件夹下新建一个“hellow\_world.pro”文件，输入文件内容如
+在此文件夹下新建一个“hellow\underline{\hspace{0.5em}}world.pro”文件，输入文件内容如
 \lstlistingname\ \ref{f000002}。
 在此文件夹下建立“main.cpp”文件，输入内容如
 \lstlistingname\ \ref{f000003}。
 
-\begin{lstlisting}[label=f000002, 
+\begin{lstlisting}[label=f000002,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -71,7 +71,7 @@ DEFINES *= HELLOW=\\\"Hellow\\\"
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f000003, 
+\begin{lstlisting}[label=f000003,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -84,6 +84,25 @@ int main(int , char **) {
     }
 }
 \end{lstlisting}          %抄录环境
+
+
+使用QtCreator打开“hellow\underline{\hspace{0.5em}}world.pro”，
+运行此项目。
+
+现在来分析一下\lstlistingname\ \ref{f000002}：
+\begin{itemize}
+\item 第1\~{}2行表示不使用Qt库；
+\item 第4行表示这是一个控制台应用程序；
+\item 第6\~{}10行表示在debug模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world\underline{\hspace{0.5em}}debug”，
+在release模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world”；
+\item 第12行表示输出的是一个应用程序；
+\item 第14\~{}18行表示使用C++17标准；
+\item 第20行将“main.cpp”加入编译过程；
+\item 第21行规定输出目录就是当前“pro”文件所在目录；
+\item 第23行定义了一个叫“NUMBER”的宏，宏的值是一个数字；
+\item 第24行定义了一个叫“HELLOW”的宏，宏的值是一个字符串；
+\item 第25行定义了一个叫“QT\underline{\hspace{0.5em}}DEPRECATED\underline{\hspace{0.5em}}WARNINGS”的宏，这个宏没有定义值；
+\end{itemize}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -101,7 +120,7 @@ qmake高级用法
 
 
 \stepcounter{treeIndexNumber}%增加目录树编号
-\begin{lstlisting}[label=d000000, 
+\begin{lstlisting}[label=d000000,
 numbers=none,
 title=\theTreeIndexNumber
 ]
@@ -124,7 +143,7 @@ title=\theTreeIndexNumber
 \end{lstlisting}          %抄录环境
 
 
-\begin{lstlisting}[label=f000004, 
+\begin{lstlisting}[label=f000004,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -145,7 +164,7 @@ the_run.file = $$PWD/the_run/the_run.pro
 SUBDIRS += the_run
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f000005, 
+\begin{lstlisting}[label=f000005,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -206,7 +225,7 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f00000a, 
+\begin{lstlisting}[label=f00000a,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -225,7 +244,7 @@ int main(int, char **) {
 }
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f000006, 
+\begin{lstlisting}[label=f000006,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -255,7 +274,7 @@ DESTDIR =  $$PWD/../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f000007, 
+\begin{lstlisting}[label=f000007,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -305,7 +324,7 @@ int main(int argc, char ** argv) {
 }
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f000008, 
+\begin{lstlisting}[label=f000008,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -335,7 +354,7 @@ DESTDIR =  $$PWD/../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f000009, 
+\begin{lstlisting}[label=f000009,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -385,7 +404,7 @@ int main(int argc, char ** argv) {
 }
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f00000b, 
+\begin{lstlisting}[label=f00000b,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
@@ -415,7 +434,7 @@ DESTDIR =  $$PWD/../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 
-\begin{lstlisting}[label=f00000c, 
+\begin{lstlisting}[label=f00000c,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]

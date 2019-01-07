@@ -93,7 +93,7 @@ inline static std::string _replace_all(const std::string_view arg) {
         ans.emplace_back(std::regex(u8R"(&)", varRegexOption), std::string(u8R"(\&)"sv));
         ans.emplace_back(std::regex(u8R"(\{)", varRegexOption), std::string(u8R"(\{)"sv));
         ans.emplace_back(std::regex(u8R"(\})", varRegexOption), std::string(u8R"(\})"sv));
-        ans.emplace_back(std::regex(u8R"(_)", varRegexOption), std::string(u8R"(\_)"sv));
+        ans.emplace_back(std::regex(u8R"(_)", varRegexOption), std::string(u8R"(\underline{\hspace{0.5em}})"sv));
         ans.emplace_back(std::regex(u8R"(\\)", varRegexOption), std::string(u8R"(\textbackslash{})"sv));
         ans.emplace_back(std::regex(u8R"(°)", varRegexOption), std::string(u8R"(\textdegree{})"sv));
         ans.emplace_back(std::regex(u8R"(×)", varRegexOption), std::string(u8R"(\texttimes{})"sv));
@@ -481,7 +481,7 @@ public:
 
                 /***********************************************/
 
-                varString = qsl(R"(\begin{lstlisting}[label=%1, 
+                varString = qsl(R"(\begin{lstlisting}[label=%1,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 %2
@@ -542,7 +542,7 @@ title=\lstlistingname\ \thelstlisting
                 /***********************************************/
 
                 varString = qsl(R"(\stepcounter{treeIndexNumber}%增加目录树编号
-\begin{lstlisting}[label=%1, 
+\begin{lstlisting}[label=%1,
 numbers=none,
 title=\theTreeIndexNumber
 %2
