@@ -180,7 +180,7 @@ title=\theTreeIndexNumber
 
 此文件启用了一个新的模版，“subdirs”。
 
-“subdirs”模版可以将一些列孤立的工程组织起来\footnote{
+“subdirs”模版可以将一系列孤立的工程组织起来\footnote{
 最好不要嵌套引用subdirs，某些IDE并不支持。
 }，
 并要求它们按照一定先后顺序编译。
@@ -270,8 +270,6 @@ CONFIG(debug,debug|release){
 \end{lstlisting}          %抄录环境
 
 
-
-
 \begin{lstlisting}[label=f000012,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -306,25 +304,19 @@ HEADERS += $$PWD/TestLibrary.hpp
 DESTDIR =  $$PWD/../bin
 DEFINES *= D_TEST_LIBRARY
 \end{lstlisting}          %抄录环境
+%test_library.pro
 
-\begin{lstlisting}[label=f000013,
-caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
-]
-#include "TestLibrary.hpp"
-#include <iostream>
 
-TestClass::TestClass() {
-}
-
-TestClass::~TestClass() {
-}
-
-void TestClass::foo() {
-    std::cout << __func__ << std::endl;
-}
-\end{lstlisting}          %抄录环境
-
+剩下的是
+“TestLibrary.hpp”
+（如\lstlistingname\ \ref{f000014}），
+“TestLibrary.cpp”
+（如\lstlistingname\ \ref{f000013}）
+和
+“main.cpp”
+（如\lstlistingname\ \ref{f000015}
+。
+都是标准C++，本书不再赘述。
 \begin{lstlisting}[label=f000014,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -346,7 +338,25 @@ public:
     void foo();
 };
 \end{lstlisting}          %抄录环境
+%TestLibrary.hpp
+\begin{lstlisting}[label=f000013,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#include "TestLibrary.hpp"
+#include <iostream>
 
+TestClass::TestClass() {
+}
+
+TestClass::~TestClass() {
+}
+
+void TestClass::foo() {
+    std::cout << __func__ << std::endl;
+}
+\end{lstlisting}          %抄录环境
+%TestLibrary.cpp
 \begin{lstlisting}[label=f000015,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -359,7 +369,7 @@ int main(int, char **) {
     return 0;
 }
 \end{lstlisting}          %抄录环境
-
+%main.cpp
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

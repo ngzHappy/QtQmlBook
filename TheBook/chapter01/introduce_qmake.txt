@@ -92,7 +92,7 @@ qmake比cmake更加专注。
 
 此文件启用了一个新的模版，“subdirs”。
 
-“subdirs”模版可以将一些列孤立的工程组织起来:tex_raw:[[\footnote{]]
+“subdirs”模版可以将一系列孤立的工程组织起来:tex_raw:[[\footnote{]]
 最好不要嵌套引用subdirs，某些IDE并不支持。
 :tex_raw:[[}]]，
 并要求它们按照一定先后顺序编译。
@@ -122,12 +122,22 @@ qmake比cmake更加专注。
 :tex_raw:[[\end{itemize}]]
 :the_book_file:[[f000011]]
 
+:the_book_file:[[f000012]]:tex_raw:[[%test_library.pro]]
 
 
-:the_book_file:[[f000012]]
-:the_book_file:[[f000013]]
-:the_book_file:[[f000014]]
-:the_book_file:[[f000015]]
+剩下的是
+“TestLibrary.hpp”
+（如:tex_raw:[[\lstlistingname\ \ref{f000014}]]），
+“TestLibrary.cpp”
+（如:tex_raw:[[\lstlistingname\ \ref{f000013}]]）
+和
+“main.cpp”
+（如:tex_raw:[[\lstlistingname\ \ref{f000015}]]
+。
+都是标准C++，本书不再赘述。
+:the_book_file:[[f000014]]:tex_raw:[[%TestLibrary.hpp]]
+:the_book_file:[[f000013]]:tex_raw:[[%TestLibrary.cpp]]
+:the_book_file:[[f000015]]:tex_raw:[[%main.cpp]]
 
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
