@@ -60,6 +60,11 @@ static inline const QString & theBookReadFileSouce() {
     return varAns;
 }
 
+static inline const QString & theBookReadTreeFileSouce() {
+    const static auto varAns = qsl(":the_book_tree_file:");
+    return varAns;
+}
+
 /*将替换latex特殊字符*/
 inline static std::string _replace_all(const std::string_view arg) {
 
@@ -483,7 +488,7 @@ title=\lstlistingname\ \thelstlisting
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
                     const auto varSources =
-                        readFileSource(getOutPutFileFullPath(varArgs2[0]) );
+                        readFileSource(getOutPutFileFullPath(varArgs2[0]));
                     for (const auto & varLine : varSources) {
                         varString += varLine;
                         varString += QChar('\n');
@@ -503,6 +508,66 @@ title=\lstlistingname\ \thelstlisting
             return true;
         }
 
+    };
+
+    class KeyTreeFileSouceString :
+        public KeyFileSouceString {
+    public:
+        using KeyFileSouceString::KeyFileSouceString;
+        inline bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto varAnsPos = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgsKeyPart =
+                getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgsKey =
+                argc_to_string(varArgsKeyPart);
+
+            /*将args转换为string*/
+            {
+                const GetTheBookConstexpr varConstexpr;
+                auto varString = varArgsKey[0];
+                const auto varKeyLabel =
+                    varString.trimmed();
+                auto varArgs2 =
+                    varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 2) {
+                    return false;
+                }
+
+                /***********************************************/
+
+                varString = qsl(R"(\stepcounter{treeIndexNumber}%增加目录树编号
+\begin{lstlisting}[label=%1, 
+numbers=none,
+title=\theTreeIndexNumber
+%2
+)").arg(varKeyLabel).arg(varArgs2[1]);
+                {
+                    const auto varSources =
+                        readFileSource(getOutPutFileFullPath(varArgs2[0]));
+                    for (const auto & varLine : varSources) {
+                        varString += varLine;
+                        varString += QChar('\n');
+                    }
+                }
+                varString += qsl(R"(\end{lstlisting}          %抄录环境
+)");
+                /***********************************************/
+
+                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+            }
+
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            /*更新表数据*/
+            *arg = varAnsPos;
+            return true;
+        }
     };
 
     class KeyImageString : public FunctionOp {
@@ -909,6 +974,7 @@ title=\lstlistingname\ \thelstlisting
         varAns->emplace(theBookImage(), 1);
         varAns->emplace(theBookSubSubSection(), 1);
         varAns->emplace(theBookReadFileSouce(), 1);
+        varAns->emplace(theBookReadTreeFileSouce(), 1);
         return std::move(varAns);
     }
 
@@ -1275,6 +1341,12 @@ title=\lstlistingname\ \thelstlisting
         } else if (theBookReadFileSouce() == varKey.name) {
             auto varValue =
                 std::make_shared< KeyFileSouceString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (theBookReadTreeFileSouce() == varKey.name) {
+            auto varValue =
+                std::make_shared< KeyTreeFileSouceString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;

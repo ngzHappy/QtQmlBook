@@ -104,6 +104,11 @@ showstringspaces=false
 { \\[0.25cm] }
 { \\[0.25cm] }
 
+\newcommand\theTreeIndexNumber{}
+\newcounter{treeIndexNumber}[chapter]
+%\stepcounter{treeIndexNumber}
+\renewcommand\theTreeIndexNumber{目录树\ \thechapter.\arabic{treeIndexNumber}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %解决BUG
 \makeatletter
