@@ -70,7 +70,8 @@ qmake比cmake更加专注。
 读者可以尝试一下向文件“hellow_world.pro”文件最后
 加入:tex_raw:[[\lstlistingname\ \ref{f00000d}]]，
 分别去掉:tex_raw:[[\lstlistingname\ \ref{f00000d}]]第一行和
-保留第一行qtcreator的“概要信息”输出什么。
+保留第一行，
+观察qtcreator的“概要信息”输出什么。
 :the_book_file:[[f00000d]]
 
 
