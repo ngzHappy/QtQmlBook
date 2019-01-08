@@ -95,12 +95,12 @@ int main(int , char **) {
 
 现在来分析一下\lstlistingname\ \ref{f000002}：
 \begin{itemize}
-\item 第1{\sourcefonttwo\~{}}2行表示不使用Qt库；
+\item 第1\raisebox{0.2ex}{\sourcefonttwo\~{}}2行表示不使用Qt库；
 \item 第4行表示这是一个控制台应用程序；
-\item 第6{\sourcefonttwo\~{}}10行表示在debug模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world\underline{\hspace{0.5em}}debug”，
+\item 第6\raisebox{0.2ex}{\sourcefonttwo\~{}}10行表示在debug模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world\underline{\hspace{0.5em}}debug”，
 在release模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world”；
 \item 第12行表示输出的是一个应用程序；
-\item 第14{\sourcefonttwo\~{}}18行表示使用C{\sourcefonttwo{}+}{\sourcefonttwo{}+} 17标准；
+\item 第14\raisebox{0.2ex}{\sourcefonttwo\~{}}18行表示使用C{\sourcefonttwo{}+}{\sourcefonttwo{}+} 17标准；
 \item 第20行将“main.cpp”加入编译过程；
 \item 第21行规定输出目录就是当前“pro”文件所在目录；
 \item 第23行定义了一个叫“NUMBER”的宏，宏的值是一个数字；
@@ -114,7 +114,7 @@ int main(int , char **) {
 \item “{\sourcefonttwo{}+}{\sourcefonttwo{}=}”代表向变量中增加元素；
 \item “\hspace{0.05em}\rule[0.7ex]{0.4em}{0.6pt}\hspace{0.05em}{\sourcefonttwo{}=}”代表从变量中删除元素；
 \item “\raisebox{-0.3ex}{\sourcefonttwo{}*}{\sourcefonttwo{}=}”代表如果变量中不存在则加入元素否则忽略；
-\item “{\sourcefonttwo\~{}}{\sourcefonttwo{}=}”代表替换变量中的值；
+\item “\raisebox{0.2ex}{\sourcefonttwo\~{}}{\sourcefonttwo{}=}”代表替换变量中的值；
 \item “{\sourcefonttwo\$}{\sourcefonttwo\$}”代表当qmake运行时，变量的字面值；
 \item “{\sourcefonttwo\$}”代表当qmake生成Makefile后，变量的字面值；
 \item “{\sourcefonttwo\#}”代表注释；
@@ -128,7 +128,7 @@ int main(int , char **) {
 顾名思义此模板的目标是生成应用程序。后续章节会介绍更多模板；
 \end{itemize}
 
-第6{\sourcefonttwo\~{}}10行和14{\sourcefonttwo\~{}}18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
+第6\raisebox{0.2ex}{\sourcefonttwo\~{}}10行和14\raisebox{0.2ex}{\sourcefonttwo\~{}}18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
 读者可以尝试一下向文件“hellow\underline{\hspace{0.5em}}world.pro”文件最后
 加入\lstlistingname\ \ref{f00000d}，
 分别去掉\lstlistingname\ \ref{f00000d}第一行和
@@ -219,7 +219,7 @@ SUBDIRS += the_app
 如\lstlistingname\ \ref{f000016} 所示。它采用了“app”模版。
 比起上一节，它多了一些新的知识点。
 \begin{itemize}
-\item 第21{\sourcefonttwo\~{}}23行更改了在非Windows平台下程序的链接参数，
+\item 第21\raisebox{0.2ex}{\sourcefonttwo\~{}}23行更改了在非Windows平台下程序的链接参数，
 它要求程序运行时将其所在目录加入动态库搜索路径；
 \item 第28行将另一个文件引入此文件，它和C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}的“{\sourcefonttwo\#}include”工作原理一致；
 \end{itemize}
@@ -266,7 +266,7 @@ include($$PWD/../test_library/import_test_library.pri)
 它也引入了一些新的知识。
 \begin{itemize}
 \item 第2行使用“INCLUDEPATH”变量将当前目录加入C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}包含路径搜索路径；
-\item 第3{\sourcefonttwo\~{}}7使用“LIBS”变量导入C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}链接库，
+\item 第3\raisebox{0.2ex}{\sourcefonttwo\~{}}7使用“LIBS”变量导入C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}链接库，
 “\hspace{0.05em}\rule[0.7ex]{0.4em}{0.6pt}\hspace{0.05em}L”后面是库所在路径，
 “\hspace{0.05em}\rule[0.7ex]{0.4em}{0.6pt}\hspace{0.05em}l”后面紧跟库的名称；
 \end{itemize}
@@ -507,21 +507,21 @@ SUBDIRS += the_run
 %##########################################################
 
 \begin{itemize}
-\item 第28{\sourcefonttwo\~{}}41行展示了如何使用
+\item 第28\raisebox{0.2ex}{\sourcefonttwo\~{}}41行展示了如何使用
 “QMAKE\underline{\hspace{0.5em}}EXTRA\underline{\hspace{0.5em}}COMPILERS”。
 
 “QMAKE\underline{\hspace{0.5em}}EXTRA\underline{\hspace{0.5em}}COMPILERS”往往用于自定义一种“编译时编译”规则，
 实际上Qt的moc就是这么实现的。
 读者可以用此技术实现自定义代码生成器，
 不过这需要读者有编译原理相关知识。
-\item 第44{\sourcefonttwo\~{}}49行展示了如何使用
+\item 第44\raisebox{0.2ex}{\sourcefonttwo\~{}}49行展示了如何使用
 “QMAKE\underline{\hspace{0.5em}}PRE\underline{\hspace{0.5em}}LINK”。
 
 实际上，对于一般用户，
 “QMAKE\underline{\hspace{0.5em}}PRE\underline{\hspace{0.5em}}LINK”并不常用。
 除非读者要实现类似
 将其它编译器编译的二进制文件加入本次编译过程的功能。
-\item 第52{\sourcefonttwo\~{}}57行展示了如何使用
+\item 第52\raisebox{0.2ex}{\sourcefonttwo\~{}}57行展示了如何使用
 “QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”。
 
 “QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”往往用来
