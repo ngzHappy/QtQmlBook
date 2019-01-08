@@ -503,6 +503,39 @@ SUBDIRS += the_run
 
 主要分析一下“the\underline{\hspace{0.5em}}run.pro”
 （如\lstlistingname\ \ref{f000005}）。
+
+%##########################################################
+
+\begin{itemize}
+\item 第28\~{}41行展示了如何使用
+“QMAKE\underline{\hspace{0.5em}}EXTRA\underline{\hspace{0.5em}}COMPILERS”。
+
+“QMAKE\underline{\hspace{0.5em}}EXTRA\underline{\hspace{0.5em}}COMPILERS”往往用于自定义一种“编译时编译”规则，
+实际上Qt的moc就是这么实现的。
+读者可以用此技术实现自定义代码生成器，
+不过这需要读者有编译原理相关知识。
+\item 第44\~{}49行展示了如何使用
+“QMAKE\underline{\hspace{0.5em}}PRE\underline{\hspace{0.5em}}LINK”。
+
+实际上，对于一般用户，
+“QMAKE\underline{\hspace{0.5em}}PRE\underline{\hspace{0.5em}}LINK”并不常用。
+除非读者要实现分布式编译或类似要求。
+\item 第52\~{}57行展示了如何使用
+“QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”。
+
+“QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”往往用来
+自定义“make install”。虽然qmake有默认的“make install”规则。
+不过，本书并不准备介绍。因为，
+一个实际应用程序的“make install”往往不是简单的拷贝，
+而是需要对文件进行加密、压缩或者对文件进行语法检查等额外的任务。
+而利用C++ 17的filesystem模块自己实现一个单纯的拷贝程序并不复杂。
+因而，本书介绍更加通用的“QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”，
+而不介绍qmake的专用语法。
+\end{itemize}
+
+%##########################################################
+
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000005,
 caption=GoodLuck,
