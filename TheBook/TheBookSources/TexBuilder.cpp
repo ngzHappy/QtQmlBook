@@ -1179,15 +1179,19 @@ title=\treeindexnumbernameone \thetreeindexnumber
                 do {
                     auto varLeftIndex = varString.indexOf(varLeftExp);
                     auto varRightIndex = varString.indexOf(varRightExp);
+           
                     if ((varLeftIndex < 0) && (varRightIndex < 0)) {
+                        /*没有[[或]]*/
                         hasOp = false;
                         if (varString.isEmpty() && varNewPos) {
+                            /*字符串为空...*/
                             varData.erase(varPos);
                             varPos = *varNewPos;
                         } else {
                             if (varProgram->data != varString) {
-                                varData.erase(varPos);
+                                /*如果字符串改变了,加入新的搜索节点*/
                                 auto v = varData.emplace(varPos);
+                                varData.erase(varPos);
                                 *v = std::make_shared< ProgramString >(varString,
                                     v,
                                     varState);
@@ -1197,6 +1201,8 @@ title=\treeindexnumbernameone \thetreeindexnumber
                             }
                         }
                     } else {
+
+                        /*分辨是[[还是]]*/
                         hasOp = true;
                         bool isLeft = false;
                         int varIndex = -1;
