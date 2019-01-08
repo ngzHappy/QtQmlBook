@@ -1,0 +1,34 @@
+\documentclass[12pt,hyperref,UTF8]{ctexbook}
+
+\begin{document}
+
+\newcounter{treeindexnumber}[chapter]
+\renewcommand{\thetreeindexnumber}{
+    \thechapter.\arabic{treeindexnumber}
+}
+
+\chapter{good 1}
+
+\refstepcounter{treeindexnumber}\label{aabbccdd}
+\ref{aabbccdd}
+
+\chapter{good 2}
+
+\chapter{good 3}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

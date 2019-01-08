@@ -544,10 +544,10 @@ title=\lstlistingname\ \thelstlisting
                 /***********************************************/
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
-\refstepcounter{treeIndexNumber}\label{%1}    %增加目录树编号
+\refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
-title=\theTreeIndexNumber
+title=\treeindexnumbernameone \thetreeindexnumber
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {

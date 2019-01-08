@@ -111,12 +111,14 @@ showstringspaces=false
 { \\[0.25cm] }
 { \\[0.25cm] }
 
-\newcommand\treeIndexNumberName{目录树}
-\newcommand\theTreeIndexNumber{}
-\newcounter{treeIndexNumber}[chapter]
-%\stepcounter{treeIndexNumber}
-%\refstepcounter{treeIndexNumber}
-\renewcommand\theTreeIndexNumber{\treeIndexNumberName\ \thechapter.\arabic{treeIndexNumber}}
+\newcommand\treeindexnumbernameone{目录树}
+%\newcommand\theTreeIndexNumber{}
+\newcounter{treeindexnumber}[chapter]
+%\stepcounter{treeindexnumber}
+%\refstepcounter{treeindexnumber}
+\renewcommand\thetreeindexnumber{
+    \thechapter.\arabic{treeindexnumber}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %解决目录字体重叠BUG

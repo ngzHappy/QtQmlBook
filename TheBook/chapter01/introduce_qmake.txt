@@ -77,12 +77,12 @@ qmake比cmake更加专注。
 
 
 :tex_raw:[[%
-%\renewcommand\theTreeIndexNumber{\treeIndexNumberName\ \thechapter.\arabic{treeIndexNumber}}
+% 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000710]]
 
 绝大多数项目的项目结构都很复杂，从这一节开始读者要开始接受这一事实。
-本节示例的项目结构如:tex_raw:[[\treeIndexNumberName\ \thechapter.\ref{d000001}]]
+本节示例的项目结构如:tex_raw:[[\treeindexnumbernameone\ \ref{d000001}]]
 所示。
 
 :the_book_tree_file:[[d000001]]
@@ -148,7 +148,7 @@ qmake远比读者想象的要复杂的多，
 
 :the_book_image:[[p000002]]
 
-如:tex_raw:[[\figurename\;\ref{p000002}]]
+如:tex_raw:[[\figurename\ \ref{p000002}]]
 一个C/C++程序编译至少可以抽象出三个节点，
 源代码编译前，
 链接前以及链接后。

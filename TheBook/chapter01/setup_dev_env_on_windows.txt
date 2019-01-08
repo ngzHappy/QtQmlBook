@@ -16,7 +16,7 @@
 不得不说，这对初学者很不友好。
 幸运的是，目前Qt网站有一个漏洞。读者可以直接访问
 :tex_raw:[[ \url{https://www.qt.io/download-thank-you
-}]]，点击“here”下载在线安装包。如:tex_raw:[[\figurename\;\ref{p000000}]]。
+}]]，点击“here”下载在线安装包。如:tex_raw:[[\figurename\ \ref{p000000}]]。
 :the_book_image:[[p000000]]
 以管理员身份运行在线安装包，
 选择安装路径时请不要选择包含空格和中文字符的路径。
@@ -31,7 +31,7 @@ Qt选择5.12.0或以上版本。
 安装的时候最好选择安装“Sources”、“Qt Charts”、“Qt WebEngine”以及
 “Qt Debug Information Files”这些模块。
 在“Tools”选项下组好安装“CDB”以及对应的“MinGW”。
-本书建议最小安装如:tex_raw:[[\figurename\;\ref{p000001}]]。
+本书建议最小安装如:tex_raw:[[\figurename\ \ref{p000001}]]。
 :the_book_image:[[p000001]]
 
 :the_book_subsubsection:[[ss000210]]
