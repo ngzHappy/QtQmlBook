@@ -435,6 +435,10 @@ QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK。
 
 使用这三个控制变量，用户可以在这三个时刻执行自定义命令。
 
+本节代码树如
+\treeindexnumbernameone\ \ref{d000000}
+所示。
+
 %\begin{spacing}{1.0}
 \refstepcounter{treeindexnumber}\label{d000000}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
@@ -459,7 +463,16 @@ title=\treeindexnumbernameone \thetreeindexnumber
     └── the_run.pro
 \end{lstlisting}          %抄录环境
 %\end{spacing}
+ %tree.txt
 
+本节示例向读者展示：
+\begin{itemize}
+\item 在编译开始前，调动“new\underline{\hspace{0.5em}}moc”自动生成cpp文件并加入编译过程；
+\item 在连接前调用“before\underline{\hspace{0.5em}}run”，“before\underline{\hspace{0.5em}}run”程序
+向“the\underline{\hspace{0.5em}}run”文件夹下建立一个“before\underline{\hspace{0.5em}}run.txt”；
+\item 在连接完成后调用“after\underline{\hspace{0.5em}}run”，“after\underline{\hspace{0.5em}}run”程序向
+向“the\underline{\hspace{0.5em}}run”文件夹下建立一个“after\underline{\hspace{0.5em}}run.txt”；
+\end{itemize}
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000004,
@@ -484,6 +497,8 @@ the_run.file = $$PWD/the_run/the_run.pro
 SUBDIRS += the_run
 \end{lstlisting}          %抄录环境
 %\end{spacing}
+ %advance_use_qmake.pro
+
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000005,
@@ -549,7 +564,7 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %the_run.pro
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f00000a,
 caption=GoodLuck,
@@ -571,7 +586,7 @@ int main(int, char **) {
 }
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %the_run/main.cpp
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000006,
 caption=GoodLuck,
@@ -604,7 +619,7 @@ DESTDIR =  $$PWD/../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %after_run.pro
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000007,
 caption=GoodLuck,
@@ -659,7 +674,7 @@ int main(int argc, char ** argv) {
 }
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %after_run/main.cpp
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000008,
 caption=GoodLuck,
@@ -692,7 +707,7 @@ DESTDIR =  $$PWD/../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %before_run.pro
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000009,
 caption=GoodLuck,
@@ -747,7 +762,7 @@ int main(int argc, char ** argv) {
 }
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %before_run/main.cpp
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f00000b,
 caption=GoodLuck,
@@ -780,7 +795,7 @@ DESTDIR =  $$PWD/../bin
 DEFINES += QT_DEPRECATED_WARNINGS
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %new_moc.pro
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f00000c,
 caption=GoodLuck,
@@ -822,7 +837,7 @@ int main(int argc, char ** argv) {
 }
 \end{lstlisting}          %抄录环境
 %\end{spacing}
-
+ %new_moc/main.cpp
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

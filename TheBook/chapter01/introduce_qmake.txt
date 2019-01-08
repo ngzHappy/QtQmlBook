@@ -167,17 +167,32 @@ QMAKE_POST_LINK。
 
 使用这三个控制变量，用户可以在这三个时刻执行自定义命令。
 
-:the_book_tree_file:[[d000000]]
+本节代码树如
+:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
+所示。
 
-:the_book_file:[[f000004]]
-:the_book_file:[[f000005]]
-:the_book_file:[[f00000a]]
-:the_book_file:[[f000006]]
-:the_book_file:[[f000007]]
-:the_book_file:[[f000008]]
-:the_book_file:[[f000009]]
-:the_book_file:[[f00000b]]
-:the_book_file:[[f00000c]]
+:the_book_tree_file:[[d000000]] :tex_raw:[[%tree.txt]]
+
+本节示例向读者展示：
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]在编译开始前，调动“new_moc”自动生成cpp文件并加入编译过程；
+:tex_raw:[[\item ]]在连接前调用“before_run”，“before_run”程序
+向“the_run”文件夹下建立一个“before_run.txt”；
+:tex_raw:[[\item ]]在连接完成后调用“after_run”，“after_run”程序向
+向“the_run”文件夹下建立一个“after_run.txt”；
+:tex_raw:[[\end{itemize}]]
+
+:the_book_file:[[f000004]] :tex_raw:[[%advance_use_qmake.pro]]
+
+
+:the_book_file:[[f000005]] :tex_raw:[[%the_run.pro]]
+:the_book_file:[[f00000a]] :tex_raw:[[%the_run/main.cpp]]
+:the_book_file:[[f000006]] :tex_raw:[[%after_run.pro]]
+:the_book_file:[[f000007]] :tex_raw:[[%after_run/main.cpp]]
+:the_book_file:[[f000008]] :tex_raw:[[%before_run.pro]]
+:the_book_file:[[f000009]] :tex_raw:[[%before_run/main.cpp]]
+:the_book_file:[[f00000b]] :tex_raw:[[%new_moc.pro]]
+:the_book_file:[[f00000c]] :tex_raw:[[%new_moc/main.cpp]]
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000910]]
