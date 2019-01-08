@@ -65,7 +65,8 @@ qmake比cmake更加专注。
 :tex_raw:[[\item ]]“TARGET”代表输出对象名称；
 :tex_raw:[[\item ]]“CONFIG”用来加入和检查Qt中预定义的编译选项；
 :tex_raw:[[\item ]]“QMAKE_CXXFLAGS”代表qmake生成Makefile时需要加入的编译器参数；
-:tex_raw:[[\item ]]“TEMPLATE”决定此项目的模板类型，本案例是使用应用程序模板“app”后续章节会介绍更多模板；
+:tex_raw:[[\item ]]“TEMPLATE”决定此项目的模板类型，本案例是使用应用程序模板“app”，
+顾名思义此模板的目标是生成应用程序。后续章节会介绍更多模板；
 :tex_raw:[[\end{itemize}]]
 
 第6~10行和14~18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
@@ -124,6 +125,11 @@ qmake比cmake更加专注。
 :tex_raw:[[\end{itemize}]]
 :the_book_file:[[f000011]]
 
+然后，我么来看一下如何使用qmake定义一个动态链接库。
+一切与定义应用程序没什么不同，只是将
+“TEMPLATE = app”改成了
+“TEMPLATE = lib”，如:tex_raw:[[\lstlistingname\ \ref{f000012}]] 第13行所示。
+
 :the_book_file:[[f000012]]:tex_raw:[[%test_library.pro]]
 
 
@@ -134,9 +140,9 @@ qmake比cmake更加专注。
 （如:tex_raw:[[\lstlistingname\ \ref{f000013}]]）
 和
 “main.cpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f000015}]]
+（如:tex_raw:[[\lstlistingname\ \ref{f000015}]]）
 。
-都是标准C++，本书不再赘述。
+都是标准C++，本书不赘述。
 :the_book_file:[[f000014]]:tex_raw:[[%TestLibrary.hpp]]
 :the_book_file:[[f000013]]:tex_raw:[[%TestLibrary.cpp]]
 :the_book_file:[[f000015]]:tex_raw:[[%main.cpp]]

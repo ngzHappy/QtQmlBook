@@ -126,7 +126,8 @@ int main(int , char **) {
 \item “TARGET”代表输出对象名称；
 \item “CONFIG”用来加入和检查Qt中预定义的编译选项；
 \item “QMAKE\underline{\hspace{0.5em}}CXXFLAGS”代表qmake生成Makefile时需要加入的编译器参数；
-\item “TEMPLATE”决定此项目的模板类型，本案例是使用应用程序模板“app”后续章节会介绍更多模板；
+\item “TEMPLATE”决定此项目的模板类型，本案例是使用应用程序模板“app”，
+顾名思义此模板的目标是生成应用程序。后续章节会介绍更多模板；
 \end{itemize}
 
 第6\~{}10行和14\~{}18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
@@ -286,6 +287,11 @@ CONFIG(debug,debug|release){
 %\end{spacing}
 
 
+然后，我么来看一下如何使用qmake定义一个动态链接库。
+一切与定义应用程序没什么不同，只是将
+“TEMPLATE = app”改成了
+“TEMPLATE = lib”，如\lstlistingname\ \ref{f000012} 第13行所示。
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000012,
 caption=GoodLuck,
@@ -332,14 +338,15 @@ DEFINES *= D_TEST_LIBRARY
 （如\lstlistingname\ \ref{f000013}）
 和
 “main.cpp”
-（如\lstlistingname\ \ref{f000015}
+（如\lstlistingname\ \ref{f000015}）
 。
-都是标准C++，本书不再赘述。
+都是标准C++，本书不赘述。
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000014,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+/*TestLibrary.hpp*/
 #pragma once
 
 #include <QtCore/qglobal.h>
@@ -364,6 +371,7 @@ public:
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+/*TestLibrary.cpp*/
 #include "TestLibrary.hpp"
 #include <iostream>
 
@@ -384,6 +392,7 @@ void TestClass::foo() {
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+/*main.cpp*/
 #include <TestLibrary.hpp>
 
 int main(int, char **) {
@@ -410,7 +419,7 @@ qmake远比读者想象的要复杂的多，
 \begin{figure}[ht] %浮动体 here and top ...
 \centering %中心对齐
 \includegraphics[width=\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
-\caption{qmake与C/C++编译链接节点} %标题
+\caption{qmake对C/C++编译链接过程控制点} %标题
 \label{p000002} %索引
 \end{figure}
 
@@ -457,6 +466,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+#advance_use_qmake.pro
 TEMPLATE = subdirs
 
 CONFIG += ordered
@@ -480,6 +490,7 @@ SUBDIRS += the_run
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+#the_run.pro
 QT -= gui
 QT -= core
 
@@ -507,7 +518,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 #when before build new_moc will call ...
 new_moc.dependency_type = TYPE_C
-new_moc.variable_out = SOURCES
+new_moc.variable_out =    SOURCES
 new_moc.output  = moc_new_${QMAKE_FILE_BASE}.cpp
 CONFIG(debug,debug|release){
 new_moc.commands = \
@@ -519,6 +530,7 @@ $${DESTDIR}/new_moc ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
 NEW_MOC_HEADERS = test2.hpp test1.hpp
 new_moc.input = NEW_MOC_HEADERS
 QMAKE_EXTRA_COMPILERS += new_moc
+export(QMAKE_EXTRA_COMPILERS)
 
 #when link started before_run will call ...
 CONFIG(debug,debug|release){
@@ -543,6 +555,7 @@ export(QMAKE_POST_LINK)
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+/*main.cpp*/
 #if __has_include(<filesystem>)
 #include <filesystem>
 namespace fs = std::filesystem;
@@ -564,6 +577,7 @@ int main(int, char **) {
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+#after_run.pro
 QT -= gui
 QT -= core
 
@@ -596,6 +610,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+/*main.cpp*/
 #if __has_include(<filesystem>)
 #include <filesystem>
 namespace fs = std::filesystem;
@@ -608,7 +623,7 @@ namespace fs = std::experimental::filesystem;
 #include <fstream>
 #include <chrono>
 
-class OStream :public std::ofstream {
+class OStream final : public std::ofstream {
     using Super = std::ofstream;
 public:
     template<typename T,
@@ -626,8 +641,10 @@ public:
     }
 };
 
+/* 在特定文件夹下建立一个after_run.txt
+ * 并输出程序运行时时间戳 */
 int main(int argc, char ** argv) {
-    std::cout << "before_run : "
+    std::cout << "after_run : "
         << argc << std::endl;
     if (argc < 2) {
         return -1;
@@ -648,6 +665,7 @@ int main(int argc, char ** argv) {
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+#before_run.pro
 QT -= gui
 QT -= core
 
@@ -680,6 +698,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+/*main.cpp*/
 #if __has_include(<filesystem>)
 #include <filesystem>
 namespace fs = std::filesystem;
@@ -692,7 +711,7 @@ namespace fs = std::experimental::filesystem;
 #include <fstream>
 #include <chrono>
 
-class OStream :public std::ofstream {
+class OStream final : public std::ofstream {
     using Super = std::ofstream;
 public:
     template<typename T,
@@ -710,6 +729,8 @@ public:
     }
 };
 
+/* 在特定文件夹下建立一个before_run.txt
+ * 并输出程序运行时时间戳 */
 int main(int argc, char ** argv) {
     std::cout << "before_run : "
         << argc << std::endl;
@@ -732,6 +753,7 @@ int main(int argc, char ** argv) {
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+#new_moc.pro
 QT -= gui
 QT -= core
 
@@ -764,6 +786,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
+/*main.cpp*/
 #include <iostream>
 #include <fstream>
 
@@ -775,6 +798,7 @@ namespace fs = std::filesystem;
 namespace fs = std::experimental::filesystem;
 #endif
 
+/*生成一个用于测试的.cpp,用于在控制台输出“Good Luck！”*/
 int main(int argc, char ** argv) {
     std::cout << "new_moc : "
         << argc << std::endl;

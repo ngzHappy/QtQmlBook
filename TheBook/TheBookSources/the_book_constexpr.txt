@@ -48,7 +48,7 @@ c000020::::前言
 %图片路径
 p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[ht]::::[scale=0.95]
 p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[ht]::::[width=\textwidth]
-p000002::::qmake与C/C++编译链接节点::::chapter01/images/advance_use_qmake.png::::[ht]::::[width=\textwidth]
+p000002::::qmake对C/C++编译链接过程控制点::::chapter01/images/advance_use_qmake.png::::[ht]::::[width=\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]

@@ -1,4 +1,5 @@
-﻿#include <TestLibrary.hpp>
+﻿/*main.cpp*/
+#include <TestLibrary.hpp>
 
 int main(int, char **) {
     TestClass varClass;

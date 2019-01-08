@@ -1,3 +1,4 @@
+#advance_use_qmake.pro
 TEMPLATE = subdirs
 
 CONFIG += ordered

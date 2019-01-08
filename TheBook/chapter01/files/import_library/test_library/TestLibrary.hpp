@@ -1,4 +1,5 @@
-﻿#pragma once
+﻿/*TestLibrary.hpp*/
+#pragma once
 
 #include <QtCore/qglobal.h>
 

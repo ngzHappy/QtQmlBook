@@ -1,4 +1,5 @@
-﻿#include "TestLibrary.hpp"
+﻿/*TestLibrary.cpp*/
+#include "TestLibrary.hpp"
 #include <iostream>
 
 TestClass::TestClass() {

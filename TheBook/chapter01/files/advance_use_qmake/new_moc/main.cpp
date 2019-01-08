@@ -1,4 +1,5 @@
-﻿#include <iostream>
+﻿/*main.cpp*/
+#include <iostream>
 #include <fstream>
 
 #if __has_include(<filesystem>)
@@ -9,6 +10,7 @@ namespace fs = std::filesystem;
 namespace fs = std::experimental::filesystem;
 #endif
 
+/*生成一个用于测试的.cpp,用于在控制台输出“Good Luck！”*/
 int main(int argc, char ** argv) {
     std::cout << "new_moc : "
         << argc << std::endl;

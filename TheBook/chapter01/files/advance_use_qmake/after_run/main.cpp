@@ -1,4 +1,5 @@
-﻿#if __has_include(<filesystem>)
+﻿/*main.cpp*/
+#if __has_include(<filesystem>)
 #include <filesystem>
 namespace fs = std::filesystem;
 #else
@@ -10,7 +11,7 @@ namespace fs = std::experimental::filesystem;
 #include <fstream>
 #include <chrono>
 
-class OStream :public std::ofstream {
+class OStream final : public std::ofstream {
     using Super = std::ofstream;
 public:
     template<typename T,
@@ -28,8 +29,10 @@ public:
     }
 };
 
+/* 在特定文件夹下建立一个after_run.txt
+ * 并输出程序运行时时间戳 */
 int main(int argc, char ** argv) {
-    std::cout << "before_run : "
+    std::cout << "after_run : "
         << argc << std::endl;
     if (argc < 2) {
         return -1;

@@ -1,3 +1,4 @@
+#new_moc.pro
 QT -= gui
 QT -= core
 

@@ -1,3 +1,4 @@
+#before_run.pro
 QT -= gui
 QT -= core
 
