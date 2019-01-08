@@ -435,9 +435,10 @@ QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK。
 
 使用这三个控制变量，用户可以在这三个时刻执行自定义命令。
 
-本节代码树如
-\treeindexnumbernameone\ \ref{d000000}
-所示。
+本节代码树
+如\treeindexnumbernameone\ \ref{d000000}所示，
+“advance\underline{\hspace{0.5em}}use\underline{\hspace{0.5em}}qmake.pro”文件
+如\lstlistingname\ \ref{f000004}所示。
 
 %\begin{spacing}{1.0}
 \refstepcounter{treeindexnumber}\label{d000000}    %增加目录树编号
@@ -465,15 +466,6 @@ title=\treeindexnumbernameone \thetreeindexnumber
 %\end{spacing}
  %tree.txt
 
-本节示例向读者展示：
-\begin{itemize}
-\item 在编译开始前，调动“new\underline{\hspace{0.5em}}moc”自动生成cpp文件并加入编译过程；
-\item 在连接前调用“before\underline{\hspace{0.5em}}run”，“before\underline{\hspace{0.5em}}run”程序
-向“the\underline{\hspace{0.5em}}run”文件夹下建立一个“before\underline{\hspace{0.5em}}run.txt”；
-\item 在连接完成后调用“after\underline{\hspace{0.5em}}run”，“after\underline{\hspace{0.5em}}run”程序向
-向“the\underline{\hspace{0.5em}}run”文件夹下建立一个“after\underline{\hspace{0.5em}}run.txt”；
-\end{itemize}
-
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000004,
 caption=GoodLuck,
@@ -498,6 +490,16 @@ SUBDIRS += the_run
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %advance_use_qmake.pro
+
+本案例向读者展示：
+\begin{enumerate}
+\item 在编译开始前，qmake调用“程序new\underline{\hspace{0.5em}}moc”自动生成cpp文件并加入编译过程；
+\item 在连接前qmake调用“程序before\underline{\hspace{0.5em}}run”，“程序before\underline{\hspace{0.5em}}run”
+向“the\underline{\hspace{0.5em}}run文件夹”下建立一个“before\underline{\hspace{0.5em}}run.txt文件”；
+\item 在连接完成后qmake调用“程序after\underline{\hspace{0.5em}}run”，“程序after\underline{\hspace{0.5em}}run”
+向“the\underline{\hspace{0.5em}}run”文件夹下建立一个“after\underline{\hspace{0.5em}}run.txt文件”；
+\end{enumerate}
+
 
 
 %\begin{spacing}{1.0}

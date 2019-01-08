@@ -167,22 +167,24 @@ QMAKE_POST_LINK。
 
 使用这三个控制变量，用户可以在这三个时刻执行自定义命令。
 
-本节代码树如
-:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
-所示。
+本节代码树
+如:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]所示，
+“advance_use_qmake.pro”文件
+如:tex_raw:[[\lstlistingname\ \ref{f000004}]]所示。
 
 :the_book_tree_file:[[d000000]] :tex_raw:[[%tree.txt]]
 
-本节示例向读者展示：
-:tex_raw:[[\begin{itemize}]]
-:tex_raw:[[\item ]]在编译开始前，调动“new_moc”自动生成cpp文件并加入编译过程；
-:tex_raw:[[\item ]]在连接前调用“before_run”，“before_run”程序
-向“the_run”文件夹下建立一个“before_run.txt”；
-:tex_raw:[[\item ]]在连接完成后调用“after_run”，“after_run”程序向
-向“the_run”文件夹下建立一个“after_run.txt”；
-:tex_raw:[[\end{itemize}]]
-
 :the_book_file:[[f000004]] :tex_raw:[[%advance_use_qmake.pro]]
+
+本案例向读者展示：
+:tex_raw:[[\begin{enumerate}]]
+:tex_raw:[[\item ]]在编译开始前，qmake调用“程序new_moc”自动生成cpp文件并加入编译过程；
+:tex_raw:[[\item ]]在连接前qmake调用“程序before_run”，“程序before_run”
+向“the_run文件夹”下建立一个“before_run.txt文件”；
+:tex_raw:[[\item ]]在连接完成后qmake调用“程序after_run”，“程序after_run”
+向“the_run”文件夹下建立一个“after_run.txt文件”；
+:tex_raw:[[\end{enumerate}]]
+
 
 
 :the_book_file:[[f000005]] :tex_raw:[[%the_run.pro]]
