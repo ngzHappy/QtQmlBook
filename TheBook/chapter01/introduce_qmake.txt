@@ -39,7 +39,7 @@ qmake比cmake更加专注。
 :tex_raw:[[\item ]]第6~10行表示在debug模式下输出目标名称是“hellow_world_debug”，
 在release模式下输出目标名称是“hellow_world”；
 :tex_raw:[[\item ]]第12行表示输出的是一个应用程序；
-:tex_raw:[[\item ]]第14~18行表示使用C++17标准；
+:tex_raw:[[\item ]]第14~18行表示使用C++ 17标准；
 :tex_raw:[[\item ]]第20行将“main.cpp”加入编译过程；
 :tex_raw:[[\item ]]第21行规定输出目录就是当前“pro”文件所在目录；
 :tex_raw:[[\item ]]第23行定义了一个叫“NUMBER”的宏，宏的值是一个数字；

@@ -89,7 +89,7 @@ inline static std::string _replace_all(const std::string_view arg) {
         ans.emplace_back(std::regex(u8R"(\*)", varRegexOption), std::string(u8R"({\sourcefontone{}*})"sv));
         ans.emplace_back(std::regex(u8R"(-)", varRegexOption), std::string(u8R"({\sourcefontone{}-})"sv));
         ans.emplace_back(std::regex(u8R"(=)", varRegexOption), std::string(u8R"({\sourcefontone{}=})"sv));
-        ans.emplace_back(std::regex(u8R"(/)", varRegexOption), std::string(u8R"({\sourcefontone{}/})"sv));
+        //ans.emplace_back(std::regex(u8R"(/)", varRegexOption), std::string(u8R"({\sourcefontone{}/})"sv));
         ans.emplace_back(std::regex(u8R"(~)", varRegexOption), std::string(u8R"({\sourcefontone\~{}})"sv));
         ans.emplace_back(std::regex(u8R"(#)", varRegexOption), std::string(u8R"({\sourcefontone\#})"sv));
         ans.emplace_back(std::regex(u8R"(\$)", varRegexOption), std::string(u8R"({\sourcefontone\$})"sv));

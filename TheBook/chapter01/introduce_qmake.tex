@@ -100,7 +100,7 @@ int main(int , char **) {
 \item 第6{\sourcefontone\~{}}10行表示在debug模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world\underline{\hspace{0.5em}}debug”，
 在release模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world”；
 \item 第12行表示输出的是一个应用程序；
-\item 第14{\sourcefontone\~{}}18行表示使用C{\sourcefontone{}+}{\sourcefontone{}+}17标准；
+\item 第14{\sourcefontone\~{}}18行表示使用C{\sourcefontone{}+}{\sourcefontone{}+} 17标准；
 \item 第20行将“main.cpp”加入编译过程；
 \item 第21行规定输出目录就是当前“pro”文件所在目录；
 \item 第23行定义了一个叫“NUMBER”的宏，宏的值是一个数字；
@@ -118,9 +118,9 @@ int main(int , char **) {
 \item “{\sourcefontone\$}{\sourcefontone\$}”代表当qmake运行时，变量的字面值；
 \item “{\sourcefontone\$}”代表当qmake生成Makefile后，变量的字面值；
 \item “{\sourcefontone\#}”代表注释；
-\item “SOURCES”代表需要编译的C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}源代码变量；
-\item “HEADERS”代表C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}头文件变量；
-\item “DEFINES”代表C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}宏变量；
+\item “SOURCES”代表需要编译的C/C{\sourcefontone{}+}{\sourcefontone{}+}源代码变量；
+\item “HEADERS”代表C/C{\sourcefontone{}+}{\sourcefontone{}+}头文件变量；
+\item “DEFINES”代表C/C{\sourcefontone{}+}{\sourcefontone{}+}宏变量；
 \item “TARGET”代表输出对象名称；
 \item “CONFIG”用来加入和检查Qt中预定义的编译选项；
 \item “QMAKE\underline{\hspace{0.5em}}CXXFLAGS”代表qmake生成Makefile时需要加入的编译器参数；
@@ -221,7 +221,7 @@ SUBDIRS += the_app
 \begin{itemize}
 \item 第21{\sourcefontone\~{}}23行更改了在非Windows平台下程序的链接参数，
 它要求程序运行时将其所在目录加入动态库搜索路径；
-\item 第28行将另一个文件引入此文件，它和C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}的“{\sourcefontone\#}include”工作原理一致；
+\item 第28行将另一个文件引入此文件，它和C/C{\sourcefontone{}+}{\sourcefontone{}+}的“{\sourcefontone\#}include”工作原理一致；
 \end{itemize}
 
 %\begin{spacing}{1.0}
@@ -265,8 +265,8 @@ include($$PWD/../test_library/import_test_library.pri)
 如\lstlistingname\ \ref{f000011} 所示。
 它也引入了一些新的知识。
 \begin{itemize}
-\item 第2行使用“INCLUDEPATH”变量将当前目录加入C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}包含路径搜索路径；
-\item 第3{\sourcefontone\~{}}7使用“LIBS”变量导入C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}链接库，
+\item 第2行使用“INCLUDEPATH”变量将当前目录加入C/C{\sourcefontone{}+}{\sourcefontone{}+}包含路径搜索路径；
+\item 第3{\sourcefontone\~{}}7使用“LIBS”变量导入C/C{\sourcefontone{}+}{\sourcefontone{}+}链接库，
 “{\sourcefontone{}-}L”后面是库所在路径，
 “{\sourcefontone{}-}l”后面紧跟库的名称；
 \end{itemize}
@@ -418,13 +418,13 @@ qmake远比读者想象的要复杂的多，
 \begin{figure}[ht] %浮动体 here and top ...
 \centering %中心对齐
 \includegraphics[width=\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
-\caption{qmake对C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}编译链接过程控制点} %标题
+\caption{qmake对C/C{\sourcefontone{}+}{\sourcefontone{}+}编译链接过程控制点} %标题
 \label{p000002} %索引
 \end{figure}
 
 
 如\figurename\ \ref{p000002}
-一个C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}程序编译至少可以抽象出三个节点，
+一个C/C{\sourcefontone{}+}{\sourcefontone{}+}程序编译至少可以抽象出三个节点，
 源代码编译前，
 链接前以及链接后。
 这三个时刻分别对应于qmake变量：
@@ -608,18 +608,18 @@ export(QMAKE_POST_LINK)
 其余的，
 “before\underline{\hspace{0.5em}}run.pro”
 （如\lstlistingname\ \ref{f000008}）
-、“before\underline{\hspace{0.5em}}run{\sourcefontone{}/}main.cpp”
+、“before\underline{\hspace{0.5em}}run/main.cpp”
 （如\lstlistingname\ \ref{f000009}）
 、“after\underline{\hspace{0.5em}}run.pro”
 （如\lstlistingname\ \ref{f000006}）
-、“after\underline{\hspace{0.5em}}run{\sourcefontone{}/}main.cpp”
+、“after\underline{\hspace{0.5em}}run/main.cpp”
 （如\lstlistingname\ \ref{f000007}）
 、“new\underline{\hspace{0.5em}}moc.pro”
 （如\lstlistingname\ \ref{f00000b}）
-、“new\underline{\hspace{0.5em}}moc{\sourcefontone{}/}main.cpp”
+、“new\underline{\hspace{0.5em}}moc/main.cpp”
 （如\lstlistingname\ \ref{f00000c}）
 和
-“the\underline{\hspace{0.5em}}run{\sourcefontone{}/}main.cpp”
+“the\underline{\hspace{0.5em}}run/main.cpp”
 （如\lstlistingname\ \ref{f00000a}）
 没有新知识点，本书不赘述。
 
