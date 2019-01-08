@@ -118,7 +118,7 @@ qmake比cmake更加专注。
 它也引入了一些新的知识。
 :tex_raw:[[\begin{itemize}]]
 :tex_raw:[[\item ]]第2行使用“INCLUDEPATH”变量将当前目录加入C/C++包含路径搜索路径；
-:tex_raw:[[\item ]]第3~7使用“LIBS”变量导入C/C++链接库，
+:tex_raw:[[\item ]]第3~7行使用“LIBS”变量导入C/C++链接库，
 “-L”后面是库所在路径，
 “-l”后面紧跟库的名称；
 :tex_raw:[[\end{itemize}]]
