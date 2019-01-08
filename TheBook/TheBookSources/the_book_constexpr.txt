@@ -21,7 +21,7 @@ s100310::::qmake入门
 ss000610::::使用qmake构建Hellow World！
 ss000710::::使用qmake创建动态链接库
 ss000810::::qmake高级用法
-ss000910::::qmake杂项
+ss000910::::qmake生成Visual Studio工程
 
 %第3节
 s100210::::第一个程序
@@ -73,6 +73,8 @@ f000013::::chapter01/files/import_library/test_library/TestLibrary.cpp::::]
 f000014::::chapter01/files/import_library/test_library/TestLibrary.hpp::::]
 f000015::::chapter01/files/import_library/the_app/main.cpp::::]
 f000016::::chapter01/files/import_library/the_app/the_app.pro::::]
+
+f000017::::chapter01/files/qtenv2.windows.bat.txt::::]
 
 %表名称
 

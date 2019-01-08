@@ -904,13 +904,47 @@ int main(int, char **) {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsubsection{
-qmake杂项
+qmake生成Visual Studio工程
 }\label{ss000910}
 
+使用qmake生成Visual Studio工程十分简单，
+其核心指令只有一条：
+
+    \begin{center}
+        \sourcefontone{}qmake -r -tp vc <工程名称> 
+    \end{center}
+
+在Windows平台下读者如果想在命令行下运行此命令需要设置
+好运行环境。
 
 
+读者可以在Qt安装目录下找到“qtenv2.bat”文件。其中一个合法路径是：
+\begin{littlelongworld}
+"C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash{}msvc2017\underline{\hspace{0.5em}}64\textbackslash{}bin\textbackslash{}qtenv2.bat"
+\end{littlelongworld}
 
+读者要修改“qtenv2.bat”文件。
+32位开发环境将“vcvarsall.bat”或
+64位开发环境将“vcvar64.bat”引入并执行。
 
+如\lstlistingname\ \ref{f000017}
+第5行所示：
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000017,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+@echo off
+echo Setting up environment for Qt usage...
+set PATH=C:\Qt1\5.12.0\msvc2017_64\bin;%PATH%
+cd /D C:\Qt1\5.12.0\msvc2017_64
+call "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
+echo Remember to call vcvarsall.bat to complete environment setup!
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %qtenv2.windows.bat.txt
+以后读者在Windows平台下运行“qtenv2.bat”就
+可以得到一个完整的运行环境了。
 
 
 

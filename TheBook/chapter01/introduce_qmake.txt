@@ -258,8 +258,29 @@ QMAKE_POST_LINK。
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000910]]
+使用qmake生成Visual Studio工程十分简单，
+其核心指令只有一条：
+
+:tex_raw:[[    \begin{center}]]
+:tex_raw:[[        \sourcefontone{}]]qmake -r -tp vc <工程名称> 
+:tex_raw:[[    \end{center}]]
+
+在Windows平台下读者如果想在命令行下运行此命令需要设置
+好运行环境。
 
 
+读者可以在Qt安装目录下找到“qtenv2.bat”文件。其中一个合法路径是：
+:tex_raw:[[\begin{littlelongworld}]]
+"C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\bin\qtenv2.bat"
+:tex_raw:[[\end{littlelongworld}]]
 
+读者要修改“qtenv2.bat”文件。
+32位开发环境将“vcvarsall.bat”或
+64位开发环境将“vcvar64.bat”引入并执行。
 
+如:tex_raw:[[\lstlistingname\ \ref{f000017}]]
+第5行所示：
+:the_book_file:[[f000017]] :tex_raw:[[%qtenv2.windows.bat.txt]]
+以后读者在Windows平台下运行“qtenv2.bat”就
+可以得到一个完整的运行环境了。
 

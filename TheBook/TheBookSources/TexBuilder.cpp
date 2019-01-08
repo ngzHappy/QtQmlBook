@@ -420,7 +420,7 @@ public:
 }\label{)")
 + varKeyLabel
 + qsl(R"(}
-\setcounter{secnumdepth}{3}                   %恢复编号
+\setcounter{secnumdepth}{4}                   %恢复编号，目录深度为4
 )");
                 *v = std::make_shared<RawString>(varString, v, state);
             }
