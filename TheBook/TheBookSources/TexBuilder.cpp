@@ -86,7 +86,7 @@ inline static std::string _replace_all(const std::string_view arg) {
             std::regex_constants::optimize;
         std::vector< ReplaceItem > ans;
         ans.emplace_back(std::regex(u8R"(~)", varRegexOption), std::string(u8R"(\~{})"sv));
-        ans.emplace_back(std::regex(u8R"(#)", varRegexOption), std::string(u8R"(\#)"sv));
+        ans.emplace_back(std::regex(u8R"(#)", varRegexOption), std::string(u8R"({\sourcefontone\#})"sv));
         ans.emplace_back(std::regex(u8R"(\$)", varRegexOption), std::string(u8R"(\$)"sv));
         ans.emplace_back(std::regex(u8R"(%)", varRegexOption), std::string(u8R"(\%)"sv));
         ans.emplace_back(std::regex(u8R"(\^)", varRegexOption), std::string(u8R"(\^{})"sv));

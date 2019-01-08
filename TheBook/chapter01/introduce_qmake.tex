@@ -117,7 +117,7 @@ int main(int , char **) {
 \item “\~{}=”代表替换变量中的值；
 \item “\$\$”代表当qmake运行时，变量的字面值；
 \item “\$”代表当qmake生成Makefile后，变量的字面值；
-\item “\#”代表注释；
+\item “{\sourcefontone\#}”代表注释；
 \item “SOURCES”代表需要编译的C/C++源代码变量；
 \item “HEADERS”代表C/C++头文件变量；
 \item “DEFINES”代表C/C++宏变量；
@@ -221,7 +221,7 @@ SUBDIRS += the_app
 \begin{itemize}
 \item 第21\~{}23行更改了在非Windows平台下程序的链接参数，
 它要求程序运行时将其所在目录加入动态库搜索路径；
-\item 第28行将另一个文件引入此文件，它和C/C++的“\#include”工作原理一致；
+\item 第28行将另一个文件引入此文件，它和C/C++的“{\sourcefontone\#}include”工作原理一致；
 \end{itemize}
 
 %\begin{spacing}{1.0}
