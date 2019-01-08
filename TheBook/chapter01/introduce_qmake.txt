@@ -168,9 +168,11 @@ QMAKE_POST_LINK。
 使用这三个控制变量，用户可以在这三个时刻执行自定义命令。
 
 本节代码树
-如:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]所示，
+如:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
+所示，
 “advance_use_qmake.pro”文件
-如:tex_raw:[[\lstlistingname\ \ref{f000004}]]所示。
+如:tex_raw:[[\lstlistingname\ \ref{f000004}]]
+所示。
 
 :the_book_tree_file:[[d000000]] :tex_raw:[[%tree.txt]]
 
