@@ -74,6 +74,8 @@ marginparwidth=0.1cm
 \usepackage{fontspec}
 \definecolor{sourcegrayone}{rgb}{0.95,0.95,0.96}  %源代码背景颜色
 \newfontfamily\sourcefontone{Consolas}            %源代码字体
+%sudo apt-get install ttf-mscorefonts-installer   %linux安装字体
+\newfontfamily\sourcefonttwo{Times New Roman}     %正文特殊符号字体
 \renewcommand\lstlistingname{程序}
 %源代码默认样式
 \lstset{
