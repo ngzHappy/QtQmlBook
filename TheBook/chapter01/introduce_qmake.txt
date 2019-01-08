@@ -1,6 +1,4 @@
-﻿
-
-:tex_raw:[[%]]
+﻿:tex_raw:[[%Gook Luck！]]
 
 :the_book_subsection:[[s100310]]
 
@@ -91,7 +89,8 @@ qmake比cmake更加专注。
 :the_book_tree_file:[[d000001]]
 
 先来看看“import_library.pro”文件，
-如:tex_raw:[[\lstlistingname\ \ref{f000010}]]所示。
+如:tex_raw:[[\lstlistingname\ \ref{f000010}]]
+所示。
 
 此文件启用了一个新的模版，“subdirs”。
 

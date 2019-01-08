@@ -29,10 +29,10 @@ new_moc.dependency_type = TYPE_C
 new_moc.variable_out =    SOURCES
 new_moc.output  = moc_new_${QMAKE_FILE_BASE}.cpp
 CONFIG(debug,debug|release){
-new_moc.commands = \
+    new_moc.commands = \
 $${DESTDIR}/new_moc_debug ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
 }else{
-new_moc.commands = \
+    new_moc.commands = \
 $${DESTDIR}/new_moc ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
 }
 NEW_MOC_HEADERS = test2.hpp test1.hpp

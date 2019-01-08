@@ -4,9 +4,7 @@
 
 
 
-
-
-%
+%Gook Luck！
 
 
 \subsection{
@@ -187,7 +185,8 @@ title=\treeindexnumbernameone \thetreeindexnumber
 
 
 先来看看“import\underline{\hspace{0.5em}}library.pro”文件，
-如\lstlistingname\ \ref{f000010}所示。
+如\lstlistingname\ \ref{f000010}
+所示。
 
 此文件启用了一个新的模版，“subdirs”。
 
@@ -540,10 +539,10 @@ new_moc.dependency_type = TYPE_C
 new_moc.variable_out =    SOURCES
 new_moc.output  = moc_new_${QMAKE_FILE_BASE}.cpp
 CONFIG(debug,debug|release){
-new_moc.commands = \
+    new_moc.commands = \
 $${DESTDIR}/new_moc_debug ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
 }else{
-new_moc.commands = \
+    new_moc.commands = \
 $${DESTDIR}/new_moc ${QMAKE_FILE_NAME} ${QMAKE_FILE_OUT}
 }
 NEW_MOC_HEADERS = test2.hpp test1.hpp
