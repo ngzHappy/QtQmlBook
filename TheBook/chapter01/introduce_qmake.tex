@@ -95,12 +95,12 @@ int main(int , char **) {
 
 现在来分析一下\lstlistingname\ \ref{f000002}：
 \begin{itemize}
-\item 第1\~{}2行表示不使用Qt库；
+\item 第1{\sourcefontone\~{}}2行表示不使用Qt库；
 \item 第4行表示这是一个控制台应用程序；
-\item 第6\~{}10行表示在debug模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world\underline{\hspace{0.5em}}debug”，
+\item 第6{\sourcefontone\~{}}10行表示在debug模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world\underline{\hspace{0.5em}}debug”，
 在release模式下输出目标名称是“hellow\underline{\hspace{0.5em}}world”；
 \item 第12行表示输出的是一个应用程序；
-\item 第14\~{}18行表示使用C++17标准；
+\item 第14{\sourcefontone\~{}}18行表示使用C{\sourcefontone{}+}{\sourcefontone{}+}17标准；
 \item 第20行将“main.cpp”加入编译过程；
 \item 第21行规定输出目录就是当前“pro”文件所在目录；
 \item 第23行定义了一个叫“NUMBER”的宏，宏的值是一个数字；
@@ -110,17 +110,17 @@ int main(int , char **) {
 
 不难发现qmake的语法十分简单：
 \begin{itemize}
-\item “=”代表赋值；
-\item “+=”代表向变量中增加元素；
-\item “-=”代表从变量中删除元素；
-\item “*=”代表如果变量中不存在则加入元素否则忽略；
-\item “\~{}=”代表替换变量中的值；
-\item “\$\$”代表当qmake运行时，变量的字面值；
-\item “\$”代表当qmake生成Makefile后，变量的字面值；
+\item “{\sourcefontone{}=}”代表赋值；
+\item “{\sourcefontone{}+}{\sourcefontone{}=}”代表向变量中增加元素；
+\item “{\sourcefontone{}-}{\sourcefontone{}=}”代表从变量中删除元素；
+\item “{\sourcefontone{}*}{\sourcefontone{}=}”代表如果变量中不存在则加入元素否则忽略；
+\item “{\sourcefontone\~{}}{\sourcefontone{}=}”代表替换变量中的值；
+\item “{\sourcefontone\$}{\sourcefontone\$}”代表当qmake运行时，变量的字面值；
+\item “{\sourcefontone\$}”代表当qmake生成Makefile后，变量的字面值；
 \item “{\sourcefontone\#}”代表注释；
-\item “SOURCES”代表需要编译的C/C++源代码变量；
-\item “HEADERS”代表C/C++头文件变量；
-\item “DEFINES”代表C/C++宏变量；
+\item “SOURCES”代表需要编译的C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}源代码变量；
+\item “HEADERS”代表C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}头文件变量；
+\item “DEFINES”代表C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}宏变量；
 \item “TARGET”代表输出对象名称；
 \item “CONFIG”用来加入和检查Qt中预定义的编译选项；
 \item “QMAKE\underline{\hspace{0.5em}}CXXFLAGS”代表qmake生成Makefile时需要加入的编译器参数；
@@ -128,7 +128,7 @@ int main(int , char **) {
 顾名思义此模板的目标是生成应用程序。后续章节会介绍更多模板；
 \end{itemize}
 
-第6\~{}10行和14\~{}18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
+第6{\sourcefontone\~{}}10行和14{\sourcefontone\~{}}18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
 读者可以尝试一下向文件“hellow\underline{\hspace{0.5em}}world.pro”文件最后
 加入\lstlistingname\ \ref{f00000d}，
 分别去掉\lstlistingname\ \ref{f00000d}第一行和
@@ -194,7 +194,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
 最好不要嵌套引用subdirs，某些IDE并不支持。
 }，
 并要求它们按照一定先后顺序编译。
-比如本节采用的“CONFIG += ordered”就要求项目按照定义顺序编译。
+比如本节采用的“CONFIG {\sourcefontone{}+}{\sourcefontone{}=} ordered”就要求项目按照定义顺序编译。
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000010,
@@ -219,9 +219,9 @@ SUBDIRS += the_app
 如\lstlistingname\ \ref{f000016} 所示。它采用了“app”模版。
 比起上一节，它多了一些新的知识点。
 \begin{itemize}
-\item 第21\~{}23行更改了在非Windows平台下程序的链接参数，
+\item 第21{\sourcefontone\~{}}23行更改了在非Windows平台下程序的链接参数，
 它要求程序运行时将其所在目录加入动态库搜索路径；
-\item 第28行将另一个文件引入此文件，它和C/C++的“{\sourcefontone\#}include”工作原理一致；
+\item 第28行将另一个文件引入此文件，它和C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}的“{\sourcefontone\#}include”工作原理一致；
 \end{itemize}
 
 %\begin{spacing}{1.0}
@@ -265,10 +265,10 @@ include($$PWD/../test_library/import_test_library.pri)
 如\lstlistingname\ \ref{f000011} 所示。
 它也引入了一些新的知识。
 \begin{itemize}
-\item 第2行使用“INCLUDEPATH”变量将当前目录加入C/C++包含路径搜索路径；
-\item 第3\~{}7使用“LIBS”变量导入C/C++链接库，
-“-L”后面是库所在路径，
-“-l”后面紧跟库的名称；
+\item 第2行使用“INCLUDEPATH”变量将当前目录加入C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}包含路径搜索路径；
+\item 第3{\sourcefontone\~{}}7使用“LIBS”变量导入C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}链接库，
+“{\sourcefontone{}-}L”后面是库所在路径，
+“{\sourcefontone{}-}l”后面紧跟库的名称；
 \end{itemize}
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000011,
@@ -288,8 +288,8 @@ CONFIG(debug,debug|release){
 
 然后，我么来看一下如何使用qmake定义一个动态链接库。
 一切与定义应用程序没什么不同，只是将
-“TEMPLATE = app”改成了
-“TEMPLATE = lib”，如\lstlistingname\ \ref{f000012} 第13行所示。
+“TEMPLATE {\sourcefontone{}=} app”改成了
+“TEMPLATE {\sourcefontone{}=} lib”，如\lstlistingname\ \ref{f000012} 第13行所示。
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000012,
@@ -339,7 +339,7 @@ DEFINES *= D_TEST_LIBRARY
 “main.cpp”
 （如\lstlistingname\ \ref{f000015}）
 。
-都是标准C++，本书不赘述。
+都是标准C{\sourcefontone{}+}{\sourcefontone{}+}，本书不赘述。
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000014,
 caption=GoodLuck,
@@ -418,13 +418,13 @@ qmake远比读者想象的要复杂的多，
 \begin{figure}[ht] %浮动体 here and top ...
 \centering %中心对齐
 \includegraphics[width=\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
-\caption{qmake对C/C++编译链接过程控制点} %标题
+\caption{qmake对C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}编译链接过程控制点} %标题
 \label{p000002} %索引
 \end{figure}
 
 
 如\figurename\ \ref{p000002}
-一个C/C++程序编译至少可以抽象出三个节点，
+一个C{\sourcefontone{}/}C{\sourcefontone{}+}{\sourcefontone{}+}程序编译至少可以抽象出三个节点，
 源代码编译前，
 链接前以及链接后。
 这三个时刻分别对应于qmake变量：
@@ -507,21 +507,21 @@ SUBDIRS += the_run
 %##########################################################
 
 \begin{itemize}
-\item 第28\~{}41行展示了如何使用
+\item 第28{\sourcefontone\~{}}41行展示了如何使用
 “QMAKE\underline{\hspace{0.5em}}EXTRA\underline{\hspace{0.5em}}COMPILERS”。
 
 “QMAKE\underline{\hspace{0.5em}}EXTRA\underline{\hspace{0.5em}}COMPILERS”往往用于自定义一种“编译时编译”规则，
 实际上Qt的moc就是这么实现的。
 读者可以用此技术实现自定义代码生成器，
 不过这需要读者有编译原理相关知识。
-\item 第44\~{}49行展示了如何使用
+\item 第44{\sourcefontone\~{}}49行展示了如何使用
 “QMAKE\underline{\hspace{0.5em}}PRE\underline{\hspace{0.5em}}LINK”。
 
 实际上，对于一般用户，
 “QMAKE\underline{\hspace{0.5em}}PRE\underline{\hspace{0.5em}}LINK”并不常用。
 除非读者要实现类似
 将其它编译器编译的二进制文件加入本次编译过程的功能。
-\item 第52\~{}57行展示了如何使用
+\item 第52{\sourcefontone\~{}}57行展示了如何使用
 “QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”。
 
 “QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”往往用来
@@ -529,7 +529,7 @@ SUBDIRS += the_run
 不过，本书并不准备介绍。因为，
 一个实际应用程序的“make install”往往不是简单的拷贝，
 而是需要对文件进行加密、压缩或者对文件进行语法检查等额外的任务。
-而利用C++ 17的filesystem模块自己实现一个单纯的拷贝程序并不复杂。
+而利用C{\sourcefontone{}+}{\sourcefontone{}+} 17的filesystem模块自己实现一个单纯的拷贝程序并不复杂。
 因而，本书介绍更加通用的“QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK”，
 而不介绍qmake的专用语法。
 \end{itemize}
@@ -608,18 +608,18 @@ export(QMAKE_POST_LINK)
 其余的，
 “before\underline{\hspace{0.5em}}run.pro”
 （如\lstlistingname\ \ref{f000008}）
-、“before\underline{\hspace{0.5em}}run/main.cpp”
+、“before\underline{\hspace{0.5em}}run{\sourcefontone{}/}main.cpp”
 （如\lstlistingname\ \ref{f000009}）
 、“after\underline{\hspace{0.5em}}run.pro”
 （如\lstlistingname\ \ref{f000006}）
-、“after\underline{\hspace{0.5em}}run/main.cpp”
+、“after\underline{\hspace{0.5em}}run{\sourcefontone{}/}main.cpp”
 （如\lstlistingname\ \ref{f000007}）
 、“new\underline{\hspace{0.5em}}moc.pro”
 （如\lstlistingname\ \ref{f00000b}）
-、“new\underline{\hspace{0.5em}}moc/main.cpp”
+、“new\underline{\hspace{0.5em}}moc{\sourcefontone{}/}main.cpp”
 （如\lstlistingname\ \ref{f00000c}）
 和
-“the\underline{\hspace{0.5em}}run/main.cpp”
+“the\underline{\hspace{0.5em}}run{\sourcefontone{}/}main.cpp”
 （如\lstlistingname\ \ref{f00000a}）
 没有新知识点，本书不赘述。
 
@@ -911,7 +911,7 @@ qmake生成Visual Studio工程
 其核心指令只有一条：
 
     \begin{center}
-        \sourcefontone{}qmake -r -tp vc <工程名称> 
+        \sourcefontone{}qmake {\sourcefontone{}-}r {\sourcefontone{}-}tp vc <工程名称> 
     \end{center}
 
 在Windows平台下读者如果想在命令行下运行此命令需要设置
