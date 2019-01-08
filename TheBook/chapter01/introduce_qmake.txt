@@ -180,9 +180,9 @@ QMAKE_POST_LINK。
 本案例向读者展示：
 :tex_raw:[[\begin{enumerate}]]
 :tex_raw:[[\item ]]在编译开始前，qmake调用“程序new_moc”自动生成cpp文件并加入编译过程；
-:tex_raw:[[\item ]]在连接前qmake调用“程序before_run”，“程序before_run”
+:tex_raw:[[\item ]]在链接前qmake调用“程序before_run”，“程序before_run”
 向“the_run文件夹”下建立一个“before_run.txt文件”；
-:tex_raw:[[\item ]]在连接完成后qmake调用“程序after_run”，“程序after_run”
+:tex_raw:[[\item ]]在链接完成后qmake调用“程序after_run”，“程序after_run”
 向“the_run”文件夹下建立一个“after_run.txt文件”；
 :tex_raw:[[\end{enumerate}]]
 
