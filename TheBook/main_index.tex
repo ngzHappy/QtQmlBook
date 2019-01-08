@@ -80,6 +80,7 @@ marginparwidth=0.1cm
 \usepackage{fontspec}
 \definecolor{sourcegrayone}{rgb}{0.95,0.95,0.96}  %源代码背景颜色
 \newfontfamily\sourcefontone{Consolas}            %源代码字体
+\newfontfamily\sourcefontthree{DejaVu Sans Mono}  %源代码字体
 %sudo apt-get install ttf-mscorefonts-installer   %linux安装字体
 \newfontfamily\sourcefonttwo{Times New Roman}     %正文特殊符号字体
 \renewcommand\lstlistingname{程序}
@@ -87,11 +88,11 @@ marginparwidth=0.1cm
 \lstset{
 language=C,
 breaklines=true,
-basicstyle=     \footnotesize\sourcefontone , %设置字号，字体
-stringstyle=    \footnotesize\sourcefontone , %设置字号，字体
-keywordstyle=   \footnotesize\sourcefontone , %设置字号，字体
-commentstyle=   \footnotesize\sourcefontone , %设置字号，字体
-identifierstyle=\footnotesize\sourcefontone , %设置字号，字体
+basicstyle=     \footnotesize\sourcefontthree , %设置字号，字体
+stringstyle=    \footnotesize\sourcefontthree , %设置字号，字体
+keywordstyle=   \footnotesize\sourcefontthree , %设置字号，字体
+commentstyle=   \footnotesize\sourcefontthree , %设置字号，字体
+identifierstyle=\footnotesize\sourcefontthree , %设置字号，字体
 numbers=left,
 numberstyle=    \scriptsize\sourcefontone   , %设置字号，字体
 frame=single,
