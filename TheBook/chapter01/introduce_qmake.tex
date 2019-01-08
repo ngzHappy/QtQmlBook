@@ -501,8 +501,8 @@ SUBDIRS += the_run
 向“the\underline{\hspace{0.5em}}run”文件夹下建立一个“after\underline{\hspace{0.5em}}run.txt文件”；
 \end{enumerate}
 
-
-
+主要分析一下“the\underline{\hspace{0.5em}}run.pro”
+（如\lstlistingname\ \ref{f000005}）。
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000005,
 caption=GoodLuck,
@@ -568,116 +568,27 @@ export(QMAKE_POST_LINK)
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %the_run.pro
-%\begin{spacing}{1.0}
-\begin{lstlisting}[label=f00000a,
-caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
-]
-/*main.cpp*/
-#if __has_include(<filesystem>)
-#include <filesystem>
-namespace fs = std::filesystem;
-#else
-#include <experimental/filesystem>
-namespace fs = std::experimental::filesystem;
-#endif
-#include <iostream>
 
-int main(int, char **) {
-    std::cout << "the_run" << std::endl;
-    return 0;
-}
-\end{lstlisting}          %抄录环境
-%\end{spacing}
- %the_run/main.cpp
-%\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000006,
-caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
-]
-#after_run.pro
-QT -= gui
-QT -= core
 
-CONFIG += console
 
-CONFIG(debug,debug|release){
-    TARGET = after_run_debug
-}else{
-    TARGET = after_run
-}
+其余的，
+“before\underline{\hspace{0.5em}}run.pro”
+（如\lstlistingname\ \ref{f000008}）
+、“before\underline{\hspace{0.5em}}run/main.cpp”
+（如\lstlistingname\ \ref{f000009}）
+、“after\underline{\hspace{0.5em}}run.pro”
+（如\lstlistingname\ \ref{f000006}）
+、“after\underline{\hspace{0.5em}}run/main.cpp”
+（如\lstlistingname\ \ref{f000007}）
+、“new\underline{\hspace{0.5em}}moc.pro”
+（如\lstlistingname\ \ref{f00000b}）
+、“new\underline{\hspace{0.5em}}moc/main.cpp”
+（如\lstlistingname\ \ref{f00000c}）
+和
+“the\underline{\hspace{0.5em}}run/main.cpp”
+（如\lstlistingname\ \ref{f00000a}）
+没有新知识点，本书不赘述。
 
-TEMPLATE = app
-
-win32-msvc*{
-    QMAKE_CXXFLAGS += /std:c++latest
-}else{
-    CONFIG += c++17
-    LIBS += -lstdc++fs
-}
-
-SOURCES += $$PWD/main.cpp
-DESTDIR =  $$PWD/../bin
-
-DEFINES += QT_DEPRECATED_WARNINGS
-\end{lstlisting}          %抄录环境
-%\end{spacing}
- %after_run.pro
-%\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000007,
-caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
-]
-/*main.cpp*/
-#if __has_include(<filesystem>)
-#include <filesystem>
-namespace fs = std::filesystem;
-#else
-#include <experimental/filesystem>
-namespace fs = std::experimental::filesystem;
-#endif
-
-#include <iostream>
-#include <fstream>
-#include <chrono>
-
-class OStream final : public std::ofstream {
-    using Super = std::ofstream;
-public:
-    template<typename T,
-        typename = std::enable_if_t<
-        std::is_constructible_v<Super, T && > > >
-        inline OStream(T && arg) :
-        Super(std::forward<T>(arg)) {
-    }
-    template<typename T,
-        typename = void,
-        typename = std::enable_if_t<
-        !std::is_constructible_v<Super, T && > > >
-        inline OStream(T && arg) :
-        Super(std::forward<T>(arg).string()) {
-    }
-};
-
-/* 在特定文件夹下建立一个after_run.txt
- * 并输出程序运行时时间戳 */
-int main(int argc, char ** argv) {
-    std::cout << "after_run : "
-        << argc << std::endl;
-    if (argc < 2) {
-        return -1;
-    }
-    fs::path varPath{ argv[1] };
-    OStream stream{ varPath / "after_run.txt" };
-    stream << std::chrono::
-        high_resolution_clock::now()
-        .time_since_epoch().count();
-    stream << std::endl;
-    return 0;
-}
-\end{lstlisting}          %抄录环境
-%\end{spacing}
- %after_run/main.cpp
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000008,
 caption=GoodLuck,
@@ -766,6 +677,96 @@ int main(int argc, char ** argv) {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %before_run/main.cpp
+
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000006,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+#after_run.pro
+QT -= gui
+QT -= core
+
+CONFIG += console
+
+CONFIG(debug,debug|release){
+    TARGET = after_run_debug
+}else{
+    TARGET = after_run
+}
+
+TEMPLATE = app
+
+win32-msvc*{
+    QMAKE_CXXFLAGS += /std:c++latest
+}else{
+    CONFIG += c++17
+    LIBS += -lstdc++fs
+}
+
+SOURCES += $$PWD/main.cpp
+DESTDIR =  $$PWD/../bin
+
+DEFINES += QT_DEPRECATED_WARNINGS
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %after_run.pro
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000007,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+/*main.cpp*/
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+
+#include <iostream>
+#include <fstream>
+#include <chrono>
+
+class OStream final : public std::ofstream {
+    using Super = std::ofstream;
+public:
+    template<typename T,
+        typename = std::enable_if_t<
+        std::is_constructible_v<Super, T && > > >
+        inline OStream(T && arg) :
+        Super(std::forward<T>(arg)) {
+    }
+    template<typename T,
+        typename = void,
+        typename = std::enable_if_t<
+        !std::is_constructible_v<Super, T && > > >
+        inline OStream(T && arg) :
+        Super(std::forward<T>(arg).string()) {
+    }
+};
+
+/* 在特定文件夹下建立一个after_run.txt
+ * 并输出程序运行时时间戳 */
+int main(int argc, char ** argv) {
+    std::cout << "after_run : "
+        << argc << std::endl;
+    if (argc < 2) {
+        return -1;
+    }
+    fs::path varPath{ argv[1] };
+    OStream stream{ varPath / "after_run.txt" };
+    stream << std::chrono::
+        high_resolution_clock::now()
+        .time_since_epoch().count();
+    stream << std::endl;
+    return 0;
+}
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %after_run/main.cpp
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f00000b,
 caption=GoodLuck,
@@ -841,6 +842,30 @@ int main(int argc, char ** argv) {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %new_moc/main.cpp
+
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f00000a,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+/*main.cpp*/
+#if __has_include(<filesystem>)
+#include <filesystem>
+namespace fs = std::filesystem;
+#else
+#include <experimental/filesystem>
+namespace fs = std::experimental::filesystem;
+#endif
+#include <iostream>
+
+int main(int, char **) {
+    std::cout << "the_run" << std::endl;
+    return 0;
+}
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %the_run/main.cpp
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 

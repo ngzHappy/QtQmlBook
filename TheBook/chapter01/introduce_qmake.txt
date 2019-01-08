@@ -186,16 +186,41 @@ QMAKE_POST_LINK。
 向“the_run”文件夹下建立一个“after_run.txt文件”；
 :tex_raw:[[\end{enumerate}]]
 
-
-
+主要分析一下“the_run.pro”
+（如:tex_raw:[[\lstlistingname\ \ref{f000005}]]）。
 :the_book_file:[[f000005]] :tex_raw:[[%the_run.pro]]
-:the_book_file:[[f00000a]] :tex_raw:[[%the_run/main.cpp]]
-:the_book_file:[[f000006]] :tex_raw:[[%after_run.pro]]
-:the_book_file:[[f000007]] :tex_raw:[[%after_run/main.cpp]]
+
+
+
+其余的，
+“before_run.pro”
+（如:tex_raw:[[\lstlistingname\ \ref{f000008}]]）
+、“before_run/main.cpp”
+（如:tex_raw:[[\lstlistingname\ \ref{f000009}]]）
+、“after_run.pro”
+（如:tex_raw:[[\lstlistingname\ \ref{f000006}]]）
+、“after_run/main.cpp”
+（如:tex_raw:[[\lstlistingname\ \ref{f000007}]]）
+、“new_moc.pro”
+（如:tex_raw:[[\lstlistingname\ \ref{f00000b}]]）
+、“new_moc/main.cpp”
+（如:tex_raw:[[\lstlistingname\ \ref{f00000c}]]）
+和
+“the_run/main.cpp”
+（如:tex_raw:[[\lstlistingname\ \ref{f00000a}]]）
+没有新知识点，本书不赘述。
+
 :the_book_file:[[f000008]] :tex_raw:[[%before_run.pro]]
 :the_book_file:[[f000009]] :tex_raw:[[%before_run/main.cpp]]
+
+:the_book_file:[[f000006]] :tex_raw:[[%after_run.pro]]
+:the_book_file:[[f000007]] :tex_raw:[[%after_run/main.cpp]]
+
 :the_book_file:[[f00000b]] :tex_raw:[[%new_moc.pro]]
 :the_book_file:[[f00000c]] :tex_raw:[[%new_moc/main.cpp]]
+
+:the_book_file:[[f00000a]] :tex_raw:[[%the_run/main.cpp]]
+
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000910]]
