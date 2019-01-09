@@ -29,7 +29,7 @@ qmake比cmake更加专注。
 :the_book_file:[[f000002]]
 :the_book_file:[[f000003]]
 
-使用QtCreator打开“hellow_world.pro”，
+使用Qt Creator打开“hellow_world.pro”，
 运行此项目。
 
 现在来分析一下:tex_raw:[[\lstlistingname\ \ref{f000002}]]：
@@ -72,7 +72,7 @@ qmake比cmake更加专注。
 加入:tex_raw:[[\lstlistingname\ \ref{f00000d}]]，
 分别去掉:tex_raw:[[\lstlistingname\ \ref{f00000d}]]第一行和
 保留第一行，
-观察qtcreator的“概要信息”输出什么。
+观察Qt Creator的“概要信息”输出什么。
 :the_book_file:[[f00000d]]
 
 
@@ -281,6 +281,56 @@ QMAKE_POST_LINK。
 如:tex_raw:[[\lstlistingname\ \ref{f000017}]]
 第5行所示：
 :the_book_file:[[f000017]] :tex_raw:[[%qtenv2.windows.bat.txt]]
+
 以后读者在Windows平台下运行“qtenv2.bat”就
 可以得到一个完整的运行环境了。
+
+:the_book_subsubsection:[[ss000a10]]
+
+本书所介绍的知识已经足够帮助读者搭建绝大多数
+大型复杂应用程序。
+但软件项目如此复杂，
+读者可能需要更进一步的知识才能解决手头的问题。
+
+Qt的帮助系统一向被认为是各个软件项目中最好的之一。
+读者只需要打开Qt Creator，
+在帮助的索引搜索栏里面输入“qmake”，一切读者需要的信息就出现了。
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]qmake的所有控制变量
+
+要获得qmake的所有控制变量帮助信息，只需要单击
+“qmake Variable Reference”即可，
+如:tex_raw:[[\figurename\ \ref{p000003}]]。
+
+:the_book_image:[[p000003]]
+
+:tex_raw:[[\item ]]qmake控制台运行参数
+
+要获得qmake的所有控制台运行参数相关信息，只需要单击
+“Running qmake”即可，
+如:tex_raw:[[\figurename\ \ref{p000004}]]。
+:the_book_image:[[p000004]]
+
+:tex_raw:[[\item ]]qmake的完整语法
+
+要完整的了解qmake的所有语法，只需要单击
+“qmake Language”即可，
+如:tex_raw:[[\figurename\ \ref{p000005}]]。
+:the_book_image:[[p000005]]
+
+:tex_raw:[[\end{itemize}]]
+
+
+
+
+
+
+
+
+
+
+
+
 

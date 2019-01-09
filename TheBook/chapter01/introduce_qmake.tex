@@ -90,7 +90,7 @@ int main(int , char **) {
 %\end{spacing}
 
 
-使用QtCreator打开“hellow\underline{\hspace{0.5em}}world.pro”，
+使用Qt Creator打开“hellow\underline{\hspace{0.5em}}world.pro”，
 运行此项目。
 
 现在来分析一下\lstlistingname\ \ref{f000002}：
@@ -133,7 +133,7 @@ int main(int , char **) {
 加入\lstlistingname\ \ref{f00000d}，
 分别去掉\lstlistingname\ \ref{f00000d}第一行和
 保留第一行，
-观察qtcreator的“概要信息”输出什么。
+观察Qt Creator的“概要信息”输出什么。
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f00000d,
 caption=GoodLuck,
@@ -417,7 +417,7 @@ qmake远比读者想象的要复杂的多，
 
 \begin{figure}[ht] %浮动体 here and top ...
 \centering %中心对齐
-\includegraphics[width=\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
+\includegraphics[width=0.95\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
 \caption{qmake对C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}编译链接过程控制点} %标题
 \label{p000002} %索引
 \end{figure}
@@ -943,8 +943,83 @@ echo Remember to call vcvarsall.bat to complete environment setup!
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %qtenv2.windows.bat.txt
+
 以后读者在Windows平台下运行“qtenv2.bat”就
 可以得到一个完整的运行环境了。
+
+
+\subsubsection{
+获得更多qmake帮助
+}\label{ss000a10}
+
+
+本书所介绍的知识已经足够帮助读者搭建绝大多数
+大型复杂应用程序。
+但软件项目如此复杂，
+读者可能需要更进一步的知识才能解决手头的问题。
+
+Qt的帮助系统一向被认为是各个软件项目中最好的之一。
+读者只需要打开Qt Creator，
+在帮助的索引搜索栏里面输入“qmake”，一切读者需要的信息就出现了。
+
+\begin{itemize}
+
+\item qmake的所有控制变量
+
+要获得qmake的所有控制变量帮助信息，只需要单击
+“qmake Variable Reference”即可，
+如\figurename\ \ref{p000003}。
+
+
+\begin{figure}[!ht] %浮动体 here and top ...
+\centering %中心对齐
+\includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_1.png} %图片路径
+\caption{qmake Variable Reference} %标题
+\label{p000003} %索引
+\end{figure}
+
+
+\item qmake控制台运行参数
+
+要获得qmake的所有控制台运行参数相关信息，只需要单击
+“Running qmake”即可，
+如\figurename\ \ref{p000004}。
+
+\begin{figure}[!ht] %浮动体 here and top ...
+\centering %中心对齐
+\includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_2.png} %图片路径
+\caption{Running qmake} %标题
+\label{p000004} %索引
+\end{figure}
+
+
+\item qmake的完整语法
+
+要完整的了解qmake的所有语法，只需要单击
+“qmake Language”即可，
+如\figurename\ \ref{p000005}。
+
+\begin{figure}[!ht] %浮动体 here and top ...
+\centering %中心对齐
+\includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_3.png} %图片路径
+\caption{qmake Language} %标题
+\label{p000005} %索引
+\end{figure}
+
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

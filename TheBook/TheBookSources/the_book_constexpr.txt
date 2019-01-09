@@ -22,6 +22,7 @@ ss000610::::使用qmake构建Hellow World！
 ss000710::::使用qmake创建动态链接库
 ss000810::::qmake高级用法
 ss000910::::qmake生成Visual Studio工程
+ss000a10::::获得更多qmake帮助
 
 %第3节
 s100210::::第一个程序
@@ -47,8 +48,11 @@ c000020::::前言
 
 %图片路径
 p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[ht]::::[scale=0.95]
-p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[ht]::::[width=\textwidth]
-p000002::::qmake对C/C++编译链接过程控制点::::chapter01/images/advance_use_qmake.png::::[ht]::::[width=\textwidth]
+p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[ht]::::[width=0.95\textwidth]
+p000002::::qmake对C/C++编译链接过程控制点::::chapter01/images/advance_use_qmake.png::::[ht]::::[width=0.95\textwidth]
+p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[!ht]::::[width=0.95\textwidth]
+p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[!ht]::::[width=0.95\textwidth]
+p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[!ht]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
