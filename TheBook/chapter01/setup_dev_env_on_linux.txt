@@ -10,17 +10,24 @@ Linux有众多发行版，
 :the_book_subsubsection:[[ss000410]]
 
 
-如:tex_raw:[[\commandnumbernameone\ \ref{command000000}]]，所示。
+如:tex_raw:[[\commandnumbernameone\ \ref{command000000}]]，所示：
 
 :tex_raw:[[\begin{itemize}]]
 :tex_raw:[[\item ]]第1行命令用于安装基本C++开发环境；
 :tex_raw:[[\item ]]第2行命令用于安装OpenGL环境；
 :tex_raw:[[\end{itemize}]]
 
-
-
 :the_book_command_file:[[command000000]]
 
+读者可以参照:tex_raw:[[\ \ref{ss000110}]]
+节相关内容下载最新的Qt开发包并安装，如:tex_raw:[[\commandnumbernameone\ \ref{command000001}]]所示：
+
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第1行命令用于赋予Qt安装包执行权限；
+:tex_raw:[[\item ]]第2行运行安装包；
+:tex_raw:[[\end{itemize}]]
+
+:the_book_command_file:[[command000001]]
 
 在不同Linux发行版本这些命令有所不同，
 即使是同一发行版本，
@@ -28,10 +35,6 @@ Linux有众多发行版，
 
 读者可以访问:tex_raw:[[\ \url{https://wiki.qt.io/Main}]]
 获得更加详细的帮助。
-
-读者可以参照:tex_raw:[[\ \ref{ss000110}]]
-节相关内容下载最新的Qt开发包。
-
 
 
 

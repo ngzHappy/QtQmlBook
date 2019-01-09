@@ -86,6 +86,7 @@ d000001::::chapter01/files/import_library/tree.txt::::]
 
 %命令行
 command000000::::chapter01/files/command.install.linux.qt.txt::::]
+command000001::::chapter01/files/command.install.linux.qt.1.txt::::]
 
 %表名称
 
