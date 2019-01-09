@@ -1,1 +1,27 @@
-﻿AABBBCC
+﻿sudo apt-get install build-essential
+sudo apt-get install libgl1-mesa-dev
+
+https://blog.csdn.net/kunkliu/article/details/78872077
+
+https://blog.csdn.net/u013934107/article/details/80712418
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
