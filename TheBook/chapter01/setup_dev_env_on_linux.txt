@@ -3,7 +3,12 @@
 
 :the_book_subsection:[[s000210]]
 
+Linux有众多发行版，本书只以Ubuntu发行版为例。
+
 :the_book_subsubsection:[[ss000410]]
+
+
+:the_book_command_file:[[command000000]]
 
 
 

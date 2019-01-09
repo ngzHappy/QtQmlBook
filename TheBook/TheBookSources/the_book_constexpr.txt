@@ -80,11 +80,18 @@ f000016::::chapter01/files/import_library/the_app/the_app.pro::::]
 
 f000017::::chapter01/files/qtenv2.windows.bat.txt::::]
 
-%表名称
-
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
 d000001::::chapter01/files/import_library/tree.txt::::]
+
+%命令行
+command000000::::chapter01/files/command.install.linux.qt.txt::::]
+
+%表名称
+
+
+
+
 
 
 

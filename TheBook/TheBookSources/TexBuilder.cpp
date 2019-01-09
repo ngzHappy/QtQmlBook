@@ -65,6 +65,11 @@ static inline const QString & theBookReadTreeFileSouce() {
     return varAns;
 }
 
+static inline const QString & theBookReadCommandFileSouce() {
+    const static auto varAns = qsl(":the_book_command_file:");
+    return varAns;
+}
+
 /*将替换latex特殊字符*/
 inline static std::string _replace_all(const std::string_view arg) {
 
@@ -579,6 +584,68 @@ title=\treeindexnumbernameone \thetreeindexnumber
         }
     };
 
+    class KeyCommandFileSouceString :
+        public KeyFileSouceString {
+    public:
+        using KeyFileSouceString::KeyFileSouceString;
+        inline bool toRawString(item_list_pos * arg) override {
+            /*将ans插入表*/
+            auto varAnsPos = state->data.emplace(this->pos);
+            bool isOk = false;
+            /*获得args*/
+            auto varArgsKeyPart =
+                getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+            auto varArgsKey =
+                argc_to_string(varArgsKeyPart);
+
+            /*将args转换为string*/
+            {
+                const GetTheBookConstexpr varConstexpr;
+                auto varString = varArgsKey[0];
+                const auto varKeyLabel =
+                    varString.trimmed();
+                auto varArgs2 =
+                    varConstexpr.getValues(varKeyLabel);
+                if (varArgs2.size() != 2) {
+                    return false;
+                }
+
+                /***********************************************/
+
+                varString = qsl(R"(%\begin{spacing}{1.0}
+\refstepcounter{commandnumber}\label{%1}    %增加目录树编号
+\begin{lstlisting}[caption=GoodLuck,
+title=\commandnumbernameone \thecommandnumber
+%2
+)").arg(varKeyLabel).arg(varArgs2[1]);
+                {
+                    const auto varSources =
+                        readFileSource(getOutPutFileFullPath(varArgs2[0]));
+                    for (const auto & varLine : varSources) {
+                        //varString += qsl(">> ");
+                        varString += varLine;
+                        varString += QChar('\n');
+                    }
+                }
+                varString += qsl(R"(\end{lstlisting}          %抄录环境
+%\end{spacing}
+)");
+                /***********************************************/
+
+                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+            }
+
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            /*更新表数据*/
+            *arg = varAnsPos;
+            return true;
+        }
+    };
+
     class KeyImageString : public FunctionOp {
     public:
         inline KeyImageString(int deepthx,
@@ -984,6 +1051,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
         varAns->emplace(theBookSubSubSection(), 1);
         varAns->emplace(theBookReadFileSouce(), 1);
         varAns->emplace(theBookReadTreeFileSouce(), 1);
+        varAns->emplace(theBookReadCommandFileSouce(), 1);
         return std::move(varAns);
     }
 
@@ -1184,7 +1252,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
                 do {
                     auto varLeftIndex = varString.indexOf(varLeftExp);
                     auto varRightIndex = varString.indexOf(varRightExp);
-           
+
                     if ((varLeftIndex < 0) && (varRightIndex < 0)) {
                         /*没有[[或]]*/
                         hasOp = false;
@@ -1317,7 +1385,13 @@ title=\treeindexnumbernameone \thetreeindexnumber
 
         auto varAns = varData.emplace(varPos);
 
-        if (varKey.name == theBookChapter()) {
+        if (varKey.name == theBookReadCommandFileSouce()) {
+            auto varValue =
+                std::make_shared< KeyCommandFileSouceString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (varKey.name == theBookChapter()) {
             auto varValue =
                 std::make_shared< KeyChapterString >(varDeepth,
                     varAns,

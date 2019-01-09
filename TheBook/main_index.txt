@@ -123,6 +123,12 @@ showstringspaces=false
     \thechapter.\arabic{treeindexnumber}
 }
 
+\newcommand\commandnumbernameone{命令行}
+\newcounter{commandnumber}[chapter]
+\renewcommand\thecommandnumber{
+    \thechapter.\arabic{commandnumber}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %解决目录字体重叠BUG
 \makeatletter
