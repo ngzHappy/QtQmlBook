@@ -4,6 +4,40 @@
 :the_book_subsection:[[s100210]]
 
 
+读者可以使用Qt Creator打开“QtQmlBook.pro”。
+在Windows平台下，读者
+也可以修改“build_msvc.bat”，从而使用Visual Studio。
+
+如:tex_raw:[[\lstlistingname\ \ref{f000018}]] ：
+
+
+:the_book_file:[[f000018]]
+
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]第1行用于设置Qt运行环境；
+:tex_raw:[[\item ]]第2行用于设置Visual Studio工程文件输出目录；
+:tex_raw:[[\item ]]第3~6行用于指明将哪些qmake项目转为Visual Studio项目；
+
+:tex_raw:[[\end{itemize}]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

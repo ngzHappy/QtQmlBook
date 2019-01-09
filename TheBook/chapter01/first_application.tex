@@ -14,6 +14,54 @@
 
 
 
+读者可以使用Qt Creator打开“QtQmlBook.pro”。
+在Windows平台下，读者
+也可以修改“build\underline{\hspace{0.5em}}msvc.bat”，从而使用Visual Studio。
+
+如\lstlistingname\ \ref{f000018} ：
+
+
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000018,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+call "C:/Qt/Qt5.12.0/5.12.0/msvc2017_64/bin/qtenv2.bat"
+cd /D "E:/QtQmlBookMsvc"
+qmake -r -tp vc "E:/QtQmlBook/QtQmlBook.pro"
+qmake -r -tp vc "E:/QtQmlBook/QtQmlMultimedia.pro"
+qmake -r -tp vc "E:/QtQmlBook/QtQmlBookTest.pro"
+qmake -r -tp vc "E:/QtQmlBook/TheBook/TheBook.pro"
+cmd
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+
+
+
+\begin{itemize}
+
+\item 第1行用于设置Qt运行环境；
+\item 第2行用于设置Visual Studio工程文件输出目录；
+\item 第3\raisebox{0.16ex}{\sourcefonttwo\~{}}6行用于指明将哪些qmake项目转为Visual Studio项目；
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

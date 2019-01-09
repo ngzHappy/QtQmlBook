@@ -50,9 +50,9 @@ c000020::::前言
 p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[ht]::::[scale=0.95]
 p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[ht]::::[width=0.95\textwidth]
 p000002::::qmake对C/C++编译链接过程控制点::::chapter01/images/advance_use_qmake.png::::[ht]::::[width=0.95\textwidth]
-p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[!ht]::::[width=0.95\textwidth]
-p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[!ht]::::[width=0.95\textwidth]
-p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[!ht]::::[width=0.95\textwidth]
+p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[ht]::::[width=0.95\textwidth]
+p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[ht]::::[width=0.95\textwidth]
+p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[ht]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
@@ -79,6 +79,8 @@ f000015::::chapter01/files/import_library/the_app/main.cpp::::]
 f000016::::chapter01/files/import_library/the_app/the_app.pro::::]
 
 f000017::::chapter01/files/qtenv2.windows.bat.txt::::]
+
+f000018::::../build_msvc.bat::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
