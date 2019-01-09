@@ -262,7 +262,7 @@ QMAKE_POST_LINK。
 其核心指令只有一条：
 
 :tex_raw:[[    \begin{center}]]
-:tex_raw:[[        \sourcefontone{}]]qmake :tex_raw:[[-]]r :tex_raw:[[-]]tp vc <工程名称> 
+:tex_raw:[[        \sourcefontone{}qmake -r -tp vc <工程名称>]]
 :tex_raw:[[    \end{center}]]
 
 在Windows平台下读者如果想在命令行下运行此命令需要设置
