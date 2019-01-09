@@ -1,3 +1,4 @@
+#firstapplication.pro
 TEMPLATE = app
 
 CONFIG(debug,debug|release){

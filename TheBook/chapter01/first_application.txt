@@ -22,11 +22,12 @@
 
 :tex_raw:[[\end{itemize}]]
 
+运行完上述命令后，读者即可使用Visual Studio打
+开“QtQmlBook.sln”
 
+本节示例代码位于文件夹“QtQmlBook/chapter01/firstapplication”下。
 
-
-
-
+:the_book_file:[[f000019]]
 
 
 
