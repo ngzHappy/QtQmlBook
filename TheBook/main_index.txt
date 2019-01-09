@@ -53,6 +53,8 @@ marginparwidth=0.1cm
 \usepackage{xhfill}
 %\usepackage{times} do not use this pack ...
 
+\usepackage{placeins}
+
 %设置输出pdf格式
 \usepackage[
     colorlinks=true ,

@@ -750,7 +750,7 @@ title=\commandnumbernameone \thecommandnumber
                 if (varArgs2.size() != 1) {
                     return false;
                 }
-                varString = qsl(R"(
+                varString = qsl(R"(%\FloatBarrier
 \cleardoublepage
 \chapter{
 )") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
@@ -807,7 +807,7 @@ title=\commandnumbernameone \thecommandnumber
                 if (varArgs2.size() != 1) {
                     return false;
                 }
-                varString = qsl(R"(
+                varString = qsl(R"(\FloatBarrier
 \section{
 )") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
 }\label{)") + varKeyLabel
@@ -863,7 +863,7 @@ title=\commandnumbernameone \thecommandnumber
                 if (varArgs2.size() != 1) {
                     return false;
                 }
-                varString = qsl(R"(
+                varString = qsl(R"(\FloatBarrier
 \subsection{
 )") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
 }\label{)") + varKeyLabel
@@ -919,7 +919,7 @@ title=\commandnumbernameone \thecommandnumber
                 if (varArgs2.size() != 1) {
                     return false;
                 }
-                varString = qsl(R"(
+                varString = qsl(R"(\FloatBarrier
 \subsubsection{
 )") + theBookPlainTextToTexText(varArgs2[0]) + qsl(R"(
 }\label{)") + varKeyLabel
