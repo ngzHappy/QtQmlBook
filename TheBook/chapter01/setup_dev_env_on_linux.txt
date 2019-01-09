@@ -38,10 +38,21 @@ Linux有众多发行版，
 
 
 
+
 :the_book_subsubsection:[[ss000510]]
 
 
+在Linux下安装Boost极其简单，只需要执
+行:tex_raw:[[\commandnumbernameone\ \ref{command000002}]]即可。
 
+:the_book_command_file:[[command000002]]
+
+:tex_raw:[[
+%不过相对于Windows平台 ，
+%Linux这种直接使用全局库
+%反而比Windows下直接拷贝
+%隐含了更多问题。
+]]
 
 
 

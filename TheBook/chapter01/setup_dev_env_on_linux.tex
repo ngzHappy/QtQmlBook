@@ -71,12 +71,31 @@ chmod +x qt-opensource-linux-x64-5.12.0.run
 
 
 
+
 \subsubsection{
 在Linux平台下安装Boost
 }\label{ss000510}
 
 
 
+在Linux下安装Boost极其简单，只需要执
+行\commandnumbernameone\ \ref{command000002}即可。
+
+%\begin{spacing}{1.0}
+\refstepcounter{commandnumber}\label{command000002}    %增加目录树编号
+\begin{lstlisting}[caption=GoodLuck,
+title=\commandnumbernameone \thecommandnumber
+]
+sudo apt-get install libboost-all-dev
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+
+
+
+%不过相对于Windows平台 ，
+%Linux这种直接使用全局库
+%反而比Windows下直接拷贝
+%隐含了更多问题。
 
 
 
