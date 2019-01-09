@@ -908,11 +908,18 @@ qmake生成Visual Studio工程
 }\label{ss000910}
 
 使用qmake生成Visual Studio工程十分简单，
-其核心指令只有一条：
+其核心指令只有一条，
+如\commandnumbernameone\ \ref{command000003}：
 
-    \begin{center}
-        \sourcefontone{}qmake -r -tp vc <工程名称>
-    \end{center}
+%\begin{spacing}{1.0}
+\refstepcounter{commandnumber}\label{command000003}    %增加目录树编号
+\begin{lstlisting}[caption=GoodLuck,
+title=\commandnumbernameone \thecommandnumber
+]
+qmake -r -tp vc < 工程名称 >
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+
 
 在Windows平台下读者如果想在命令行下运行此命令需要设置
 好运行环境。

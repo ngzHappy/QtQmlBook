@@ -90,6 +90,7 @@ d000001::::chapter01/files/import_library/tree.txt::::]
 command000000::::chapter01/files/command.install.linux.qt.txt::::]
 command000001::::chapter01/files/command.install.linux.qt.1.txt::::]
 command000002::::chapter01/files/command.install.linux.qt.2.txt::::]
+command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 
 %表名称
 

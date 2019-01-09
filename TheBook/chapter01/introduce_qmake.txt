@@ -259,11 +259,10 @@ QMAKE_POST_LINK。
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
 :the_book_subsubsection:[[ss000910]]
 使用qmake生成Visual Studio工程十分简单，
-其核心指令只有一条：
+其核心指令只有一条，
+如:tex_raw:[[\commandnumbernameone\ \ref{command000003}]]：
 
-:tex_raw:[[    \begin{center}]]
-:tex_raw:[[        \sourcefontone{}qmake -r -tp vc <工程名称>]]
-:tex_raw:[[    \end{center}]]
+:the_book_command_file:[[command000003]]
 
 在Windows平台下读者如果想在命令行下运行此命令需要设置
 好运行环境。
