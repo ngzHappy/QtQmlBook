@@ -39,6 +39,8 @@ win32-msvc*{
     CONFIG += c++17
 }
 
+SOURCES += $$PWD/TheBookSources/license.cpp
+
 DESTDIR = $$PWD/bin/final
 
 HEADERS += $$PWD/TheBookSources/InputStream.hpp
