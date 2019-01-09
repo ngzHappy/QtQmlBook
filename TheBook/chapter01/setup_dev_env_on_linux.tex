@@ -13,12 +13,23 @@
 }\label{s000210}
 
 
-Linux有众多发行版，本书只以Ubuntu发行版为例。
+Linux有众多发行版，
+如果读者是首次在Linux平台下搭建Qt开发环境，建
+议读者使用Ubuntu等使用者较多的版本。
 
 
 \subsubsection{
 在Linux平台下安装Qt
 }\label{ss000410}
+
+
+
+如\commandnumbernameone\ \ref{command000000}，所示。
+
+\begin{itemize}
+\item 第1行命令用于安装基本C{\sourcefonttwo{}+}{\sourcefonttwo{}+}开发环境；
+\item 第2行命令用于安装OpenGL环境；
+\end{itemize}
 
 
 
@@ -29,12 +40,20 @@ title=\commandnumbernameone \thecommandnumber
 ]
 sudo apt-get install build-essential
 sudo apt-get install libgl1-mesa-dev
-
-https://blog.csdn.net/kunkliu/article/details/78872077
-
-https://blog.csdn.net/u013934107/article/details/80712418
 \end{lstlisting}          %抄录环境
 %\end{spacing}
+
+
+
+在不同Linux发行版本这些命令有所不同，
+即使是同一发行版本，
+随着时间推移命令也会有所变化。
+
+读者可以访问\ \url{https://wiki.qt.io/Main}
+获得更加详细的帮助。
+
+读者可以参照\ \ref{ss000110}
+节相关内容下载最新的Qt开发包。
 
 
 

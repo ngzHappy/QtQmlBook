@@ -3,12 +3,35 @@
 
 :the_book_subsection:[[s000210]]
 
-Linux有众多发行版，本书只以Ubuntu发行版为例。
+Linux有众多发行版，
+如果读者是首次在Linux平台下搭建Qt开发环境，建
+议读者使用Ubuntu等使用者较多的版本。
 
 :the_book_subsubsection:[[ss000410]]
 
 
+如:tex_raw:[[\commandnumbernameone\ \ref{command000000}]]，所示。
+
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第1行命令用于安装基本C++开发环境；
+:tex_raw:[[\item ]]第2行命令用于安装OpenGL环境；
+:tex_raw:[[\end{itemize}]]
+
+
+
 :the_book_command_file:[[command000000]]
+
+
+在不同Linux发行版本这些命令有所不同，
+即使是同一发行版本，
+随着时间推移命令也会有所变化。
+
+读者可以访问:tex_raw:[[\ \url{https://wiki.qt.io/Main}]]
+获得更加详细的帮助。
+
+读者可以参照:tex_raw:[[\ \ref{ss000110}]]
+节相关内容下载最新的Qt开发包。
+
 
 
 
