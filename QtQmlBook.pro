@@ -131,6 +131,10 @@ SUBDIRS += app_firstparticlesystem
 
 ##############06##############
 
+app_firsteffect.file = $$PWD/chapter06/firsteffect/firsteffect.pro
+app_firsteffect.dpends = sstd_qt_and_qml_library
+SUBDIRS += app_firsteffect
+
 ##############07##############
 
 ##############08##############
