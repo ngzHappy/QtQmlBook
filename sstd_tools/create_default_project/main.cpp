@@ -12,6 +12,11 @@ namespace fs = std::experimental::filesystem;
 #include <string>
 using namespace std::string_literals;
 
+inline const std::string & bom(){
+    const static std::string varAns = "\xEF\xBB\xBF"s;
+    return varAns;
+}
+
 inline std::string replace(
         const std::string & argInput,
         const std::string & argKey,
@@ -86,7 +91,7 @@ int main(int argc, char ** argv) {
 )_1_2_"s,
                     "#outputdirname#"s,
                     fileName);
-        varOutPutStream << varAns ;
+        varOutPutStream << bom() << varAns ;
     }
     inline void create_pro(const fs::path & arg){
         OutPutStream varOutPutStream{ arg / ( fileName + ".pro"s) };
@@ -163,7 +168,7 @@ Rectangle {
 )_1_2_"s,
                                     "#outputdirname#"s,
                                     fileName);
-        varOutPutStream << varAns;
+        varOutPutStream << bom() << varAns;
     }
     inline int exec(){
         fs::path varOutPutDir{ fileName };
