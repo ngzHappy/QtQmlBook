@@ -1,4 +1,4 @@
-/*recursiveblur_effect/main.cpp*/
+﻿/*recursiveblur_effect/main.cpp*/
 #include <sstd_qt_and_qml_library.hpp>
 
 int main(int argc, char ** argv) {

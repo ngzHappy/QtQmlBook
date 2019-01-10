@@ -1,4 +1,4 @@
-
+﻿
 /*opacitymask_effect/main.qml*/
 import QtQuick 2.9
 import QtGraphicalEffects 1.12

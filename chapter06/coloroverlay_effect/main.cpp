@@ -1,4 +1,4 @@
-/*coloroverlay_effect/main.cpp*/
+﻿/*coloroverlay_effect/main.cpp*/
 #include <sstd_qt_and_qml_library.hpp>
 
 int main(int argc, char ** argv) {
