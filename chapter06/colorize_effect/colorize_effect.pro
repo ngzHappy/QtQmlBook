@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/colorize_effect/main.qml
+QMLSOURCES += $$PWD/myqml/colorize_effect/ColorizeControl.qml
+QMLSOURCES += $$PWD/myqml/colorize_effect/SliderControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
