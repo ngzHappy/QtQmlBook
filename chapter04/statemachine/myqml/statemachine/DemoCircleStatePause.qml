@@ -1,22 +1,23 @@
-﻿import QtQuick 2.11
-import QtQuick.Controls 1.4
+﻿import QtQuick 2.9
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import QtQml.StateMachine 1.11 as QSM
 
 DemoBasic{
 
-    Row{
+    RowLayout {
         anchors.top: parent.top;
         anchors.left: parent.left;
         width: parent.width;
         Button{
             id : _id_pause_button;
-            width: parent.width*0.5;
             text: qsTr("暂停");
+            Layout.fillWidth: true
         }
         Button{
             id : _id_continue_button;
-            width: parent.width*0.5;
             text: qsTr("继续");
+            Layout.fillWidth: true
         }
     }
 
@@ -98,7 +99,7 @@ DemoBasic{
 
     }
 
-    
+
 }
 
 /**

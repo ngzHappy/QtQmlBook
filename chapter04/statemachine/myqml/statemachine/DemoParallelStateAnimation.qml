@@ -1,22 +1,23 @@
-﻿import QtQuick 2.11
-import QtQuick.Controls 1.4
+﻿import QtQuick 2.9
+import QtQuick.Controls 2.12
+import QtQuick.Layouts 1.12
 import QtQml.StateMachine 1.11 as QSM
 
 DemoBasic {
 
-    Row{
+    RowLayout {
         anchors.top: parent.top;
         anchors.left: parent.left;
         width: parent.width;
         Button{
             id : _id_change_background_color;
-            width: parent.width*0.5;
             text: qsTr("更改背景颜色");
+            Layout.fillWidth: true
         }
         Button{
             id : _id_change_border_color;
-            width: parent.width*0.5;
             text: qsTr("更改边界颜色");
+            Layout.fillWidth: true
         }
     }
 
