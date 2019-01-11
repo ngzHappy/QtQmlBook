@@ -29,26 +29,33 @@ Pane {
                  title: "Five ways this tip will save your life"
              }
          }
-         delegate: SwipeDelegate {
 
-             id: swipeDelegate
-             text: model.sender + " - " + model.title
+         delegate : SwipeDelegate {
+
+             id: idSwipeDelegate
              width: parent.width
+
+             Text {
+                 verticalAlignment : Text.AlignVCenter
+                 horizontalAlignment:Text.AlignHCenter
+                 anchors.fill: parent
+                 text:  model.sender + " - " + model.title
+             }
 
              ListView.onRemove: SequentialAnimation {
                  PropertyAction {
-                     target: swipeDelegate
+                     target: idSwipeDelegate
                      property: "ListView.delayRemove"
                      value: true
                  }
                  NumberAnimation {
-                     target: swipeDelegate
+                     target: idSwipeDelegate
                      property: "height"
                      to: 0
                      easing.type: Easing.InOutQuad
                  }
                  PropertyAction {
-                     target: swipeDelegate
+                     target: idSwipeDelegate
                      property: "ListView.delayRemove"
                      value: false
                  }
@@ -70,6 +77,7 @@ Pane {
                                 Qt.darker("tomato", 1.1) : "tomato"
                  }
              }
+
          }
      }
 
