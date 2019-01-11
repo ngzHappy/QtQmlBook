@@ -13,10 +13,13 @@ Rectangle {
 
     Image{
         anchors.fill: parent;
+        source: "grass.jpg"
+        fillMode: Image.Tile
     }
 
     Image{
-        anchors.fill: parent;
+        anchors.centerIn: parent;
+        source: "bear.png"
     }
 
     Blend{
