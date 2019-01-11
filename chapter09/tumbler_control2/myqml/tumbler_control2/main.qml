@@ -7,6 +7,16 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    Tumbler{
+        model: 128
+        visibleItemCount : 7
+        anchors.centerIn: parent
+        height: parent.height
+        onCurrentIndexChanged: {
+            console.log( currentIndex )
+        }
+    }
+
 }
 
