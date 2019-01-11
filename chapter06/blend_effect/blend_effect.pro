@@ -38,6 +38,7 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/blend_effect/main.qml
+QMLSOURCES += $$PWD/myqml/blend_effect/BlendControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

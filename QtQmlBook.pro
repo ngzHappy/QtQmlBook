@@ -1,8 +1,9 @@
 TEMPLATE = subdirs
 
-!win32{
-    CONFIG += ordered
-}
+#in some platform may be need this ...
+#!win32{
+#    CONFIG += ordered
+#}
 
 build_install.file = $$PWD/sstd_tools/build_install/build_install.pro
 SUBDIRS += build_install
