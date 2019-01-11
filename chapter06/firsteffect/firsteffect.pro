@@ -38,6 +38,7 @@ export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/firsteffect/main.qml
 QMLSOURCES += $$PWD/myqml/firsteffect/RenderText.qml
+QMLSOURCES += $$PWD/myqml/firsteffect/+windows/RenderText.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
