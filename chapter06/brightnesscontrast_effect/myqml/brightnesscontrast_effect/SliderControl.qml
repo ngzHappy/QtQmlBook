@@ -1,6 +1,7 @@
 ﻿import QtQuick 2.9
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import sstd.qml.control 1.0
 
 Slider{
     id : idSlider
@@ -9,15 +10,11 @@ Slider{
     property variant oldPosWhenValueChange : null ;
     onValueChanged: {
         inValueChangeRange = true;
-        var varTimeObject = new Date() ;
-        posWhenValueChange = varTimeObject.getTime();
-        varTimeObject=null;
+        posWhenValueChange = GlobalObject.getTimeSinceProgramStart();
         oldPosWhenValueChange = posWhenValueChange;
     }
     function checkIfInValueChangeRange(){
-        var varTimeObject = new Date() ;
-        posWhenValueChange = varTimeObject.getTime();
-        varTimeObject=null;
+        posWhenValueChange = GlobalObject.getTimeSinceProgramStart();
         if( (posWhenValueChange - oldPosWhenValueChange)>1000 ){
             inValueChangeRange = false
         }else{
