@@ -11,8 +11,13 @@ Rectangle {
     BlendControl {
     }
 
+    Image{
+        anchors.fill: parent;
+    }
 
-
+    Image{
+        anchors.fill: parent;
+    }
 
     Blend{
 

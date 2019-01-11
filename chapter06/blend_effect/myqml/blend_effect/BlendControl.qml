@@ -10,9 +10,28 @@ RowLayout {
     ComboBox {
         id: idComboBox
         model: [
-            "First",
-            "Second",
-            "Third"
+           "normal",
+           "addition",
+           "average",
+           "color",
+           "colorBurn",
+           "colorDodge",
+           "darken",
+           "darkerColor",
+           "difference",
+           "divide",
+           "exclusion",
+           "hardLight",
+           "hue",
+           "lighten",
+           "lighterColor",
+           "lightness",
+           "multiply",
+           "negation",
+           "saturation",
+           "screen",
+           "subtract",
+           "softLight"
         ]
     }
 
