@@ -1,10 +1,10 @@
-#brightnesscontrast_effect.pro
+#groupbox_control2.pro
 TEMPLATE = app
 
 CONFIG(debug,debug|release){
-    TARGET = brightnesscontrast_effect_debug
+    TARGET = groupbox_control2_debug
 }else{
-    TARGET = brightnesscontrast_effect
+    TARGET = groupbox_control2
 }
 
 #define out put dir
@@ -37,8 +37,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/brightnesscontrast_effect/main.qml
-QMLSOURCES += $$PWD/myqml/brightnesscontrast_effect/BrightnessContrastControl.qml
+QMLSOURCES += $$PWD/myqml/groupbox_control2/main.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
