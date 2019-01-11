@@ -7,6 +7,20 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ColumnLayout{
+        anchors.fill: parent
+        TabButton{
+            text: qsTr( "Good!" )
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            onClicked: {
+                console.log(qsTr("Clicked!"))
+            }
+        }
+    }
+
 }
+
+/*endl_input_of_latex_for_clanguage_lick*/
+/*TabButton是TabBar的一个组件*/
 
