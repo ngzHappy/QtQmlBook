@@ -6,7 +6,7 @@ inline static const auto & getStartTime() {
     return varAns;
 }
 
-std::int64_t GlobalObject::getTimeSinceProgramStart() const {
+qint64 GlobalObject::getTimeSinceProgramStart() const {
     const auto varCurrentTime
         = std::chrono::steady_clock::now();
     return std::chrono::duration_cast<
