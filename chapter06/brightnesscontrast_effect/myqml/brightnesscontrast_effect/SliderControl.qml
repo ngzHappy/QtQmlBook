@@ -5,8 +5,8 @@ import QtQuick.Layouts 1.12
 Slider{
     id : idSlider
     property bool inValueChangeRange : false
-    property variant posWhenValueChange: timeObject.getTime();
-    property variant oldPosWhenValueChange : timeObject.getTime();
+    property variant posWhenValueChange: null ;
+    property variant oldPosWhenValueChange : null ;
     onValueChanged: {
         inValueChangeRange = true;
         var varTimeObject = new Date() ;
