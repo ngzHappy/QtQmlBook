@@ -7,6 +7,38 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ToolBar{
+        width: parent.width
+        anchors.top: parent.top
+        anchors.left: parent.left
+
+        RowLayout{
+
+            ToolButton{
+                icon.source: "5.png"
+            }
+
+            ToolButton{
+                icon.source: "4.png"
+            }
+
+            ToolButton{
+                icon.source: "3.png"
+            }
+
+            ToolButton{
+                icon.source: "2.png"
+            }
+
+            ToolButton{
+                icon.source: "1.png"
+            }
+
+        }
+
+    }
+
+
 }
 
