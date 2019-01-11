@@ -37,6 +37,15 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/statemachine/main.qml
+QMLSOURCES += $$PWD/myqml/statemachine/DemoBasic.qml
+QMLSOURCES += $$PWD/myqml/statemachine/DemoCircleState.qml
+QMLSOURCES += $$PWD/myqml/statemachine/DemoCircleStatePause.qml
+QMLSOURCES += $$PWD/myqml/statemachine/DemoCircleStateQuit.qml
+QMLSOURCES += $$PWD/myqml/statemachine/DemoParallelStateAnimation.qml
+QMLSOURCES += $$PWD/myqml/statemachine/DemoParallelStateSelectRun.qml
+QMLSOURCES += $$PWD/myqml/statemachine/main_private/MainListItem.qml
+QMLSOURCES += $$PWD/myqml/statemachine/main_private/MainListModel.qml
+QMLSOURCES += $$PWD/myqml/statemachine/main_private/MainListView.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
