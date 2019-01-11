@@ -26,7 +26,36 @@
 
 class sstd_friend_class;
 
+/*用于定义变量，并规定最小内存对齐大小*/
+namespace _8_sstd_private {
 
+    template<std::size_t A, std::size_t B>
+    class _8_Max {
+    public:
+        constexpr const static std::size_t value =
+            A > B ? A : B;
+    };
+
+    template<typename A, typename B>
+    class _8_Max_Align {
+        using A_type = std::remove_cv_t<A>;
+        using B_type = std::remove_cv_t<B>;
+        static_assert(false == std::is_array_v<B>);
+        static_assert(false == std::is_array_v<A>);
+    public:
+        constexpr const static std::size_t value =
+            _8_Max< alignof(A_type),
+            alignof(B_type) >::value;
+    };
+
+}/*_8_sstd_private*/
+
+#ifndef sstd$
+#define sstd$(cValueName,.../*cValueType*/)   \
+alignas(_8_sstd_private::_8_Max_Align<const volatile void *, \
+__VA_ARGS__>::value ) __VA_ARGS__ cValueName  \
+/*--------------------------------------------*/
+#endif
 
 
 
