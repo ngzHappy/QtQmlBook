@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/coloroverlay_effect/main.qml
+QMLSOURCES += $$PWD/myqml/coloroverlay_effect/ColoroverlayControl.qml
+QMLSOURCES += $$PWD/myqml/coloroverlay_effect/SliderControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
