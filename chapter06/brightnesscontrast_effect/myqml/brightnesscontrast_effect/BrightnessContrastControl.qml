@@ -10,7 +10,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Label{
             Layout.minimumWidth: 64
-            text:qsTr("AAAA")
+            text:qsTr("brightness")
         }
         Slider{
             from : -1
@@ -26,7 +26,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Label{
             Layout.minimumWidth: 64
-            text:qsTr("BBBB")
+            text:qsTr("contrast")
         }
         Slider{
             from : -1
