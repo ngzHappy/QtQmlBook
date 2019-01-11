@@ -8,11 +8,6 @@ Rectangle {
     height: 480;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
-    BlendControl {
-        id : idBlendControl
-        z:1
-    }
-
     Image{
         anchors.fill: parent;
         source: "grass.jpg"
@@ -36,6 +31,10 @@ Rectangle {
         anchors.centerIn: parent;
         width: idBear.width
         height: idBear.height
+    }
+
+    BlendControl {
+        id : idBlendControl
     }
 
 }

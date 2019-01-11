@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.12
 
 ColumnLayout {
     width: parent.width
+    anchors.bottom: parent.bottom
 
     RowLayout{
         Layout.fillWidth: true

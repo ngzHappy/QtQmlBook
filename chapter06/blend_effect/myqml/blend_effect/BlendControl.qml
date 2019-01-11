@@ -6,6 +6,7 @@ import QtQuick.Layouts 1.12
 
 RowLayout {
     width: parent.width
+    anchors.bottom: parent.bottom
 
     ComboBox {
         id: idComboBox

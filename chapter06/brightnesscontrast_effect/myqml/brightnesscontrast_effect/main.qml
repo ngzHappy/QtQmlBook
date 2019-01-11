@@ -5,11 +5,6 @@ import QtGraphicalEffects 1.12
 
 Rectangle {
 
-    BrightnessContrastControl{
-        id:idControl
-        z:1
-    }
-
     id : idRoot
     width: 640;
     height: 480;
@@ -31,6 +26,10 @@ Rectangle {
         source: idImage
         contrast: idControl.contrastItem.value
         brightness: idControl.brightnessItem.value
+    }
+
+    BrightnessContrastControl{
+        id:idControl
     }
 
 }
