@@ -4,7 +4,3 @@ Text{
     font.family: "FreeMono"
 }
 
-/*QT_FILE_SELECTORS*/
-
-
-
