@@ -7,6 +7,20 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ListView {
+        anchors.fill: parent
+        model: [
+            QT_TR_NOOP("Option 1"),
+            QT_TR_NOOP("Option 2"),
+            QT_TR_NOOP("Option 3")]
+        delegate: SwitchDelegate {
+            text: modelData
+        }
+    }
+
 }
+
+
+
 
