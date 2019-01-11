@@ -39,6 +39,7 @@ export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/brightnesscontrast_effect/main.qml
 QMLSOURCES += $$PWD/myqml/brightnesscontrast_effect/BrightnessContrastControl.qml
+QMLSOURCES += $$PWD/myqml/brightnesscontrast_effect/SliderControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

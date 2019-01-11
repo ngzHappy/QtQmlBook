@@ -13,7 +13,7 @@ ColumnLayout {
             Layout.minimumWidth: 64
             text:qsTr("brightness")
         }
-        Slider{
+        SliderControl{
             from : -1
             to : 1
             stepSize: 0.01
@@ -29,7 +29,7 @@ ColumnLayout {
             Layout.minimumWidth: 64
             text:qsTr("contrast")
         }
-        Slider{
+        SliderControl{
             from : -1
             to : 1
             value: 0
