@@ -18,6 +18,7 @@ ColumnLayout {
             stepSize: 0.01
             value: 0
             Layout.fillWidth: true
+            id : idBrightness
         }
     }
 
@@ -28,13 +29,17 @@ ColumnLayout {
             text:qsTr("BBBB")
         }
         Slider{
-            from : 0
+            from : -1
             to : 1
             value: 0
             stepSize: 0.01
             Layout.fillWidth: true
+            id : idContrast
         }
     }
+
+    property alias brightnessItem : idBrightness
+    property alias contrastItem: idContrast
 
 }
 
