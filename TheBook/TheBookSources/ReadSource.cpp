@@ -49,6 +49,10 @@ namespace this_file {
                     qsl("/*endl_input_of_latex_for_clanguage_lick*/")){
                     break;
                 }
+                if (varTrimmedLine ==
+                    qsl("#/*endl_input_of_latex_for_clanguage_lick*/")) {
+                    break;
+                }
                 if (!varTrimmedLine.isEmpty()) {
                     varMinLeftSpace =
                         std::min(varMinLeftSpace, varSpaceLeftOfThisLine);
