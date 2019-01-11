@@ -8,17 +8,16 @@ Pane {
     width: 640;
     height: 480;
 
-    RowLayout{
+    ColumnLayout{
         anchors.fill: parent
-        ColumnLayout{
-            anchors.fill: parent
-            Button{
-                text:"Good!"
-
+        Button{
+            text: qsTr( "Good!" )
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            onClicked: {
+                console.log(qsTr("Clicked!"))
             }
         }
     }
-
 
 }
 
