@@ -7,6 +7,27 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ButtonGroup {
+        id: idRadioGroup
+    }
+
+    Column {
+        anchors.centerIn: parent;
+        RadioButton {
+            checked: true
+            text: qsTr("A")
+            ButtonGroup.group: idRadioGroup
+        }
+        RadioButton {
+            text: qsTr("B")
+            ButtonGroup.group: idRadioGroup
+        }
+        RadioButton {
+            text: qsTr("C")
+            ButtonGroup.group: idRadioGroup
+        }
+    }
+
 }
 
