@@ -3,9 +3,38 @@ import QtQuick 2.9
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 
-RowLayout {
+ColumnLayout {
     width: parent.width
 
+    RowLayout{
+        Layout.fillWidth: true
+        Label{
+            Layout.minimumWidth: 64
+            text:qsTr("AAAA")
+        }
+        Slider{
+            from : -1
+            to : 1
+            stepSize: 0.01
+            value: 0
+            Layout.fillWidth: true
+        }
+    }
+
+    RowLayout{
+        Layout.fillWidth: true
+        Label{
+            Layout.minimumWidth: 64
+            text:qsTr("BBBB")
+        }
+        Slider{
+            from : 0
+            to : 1
+            value: 0
+            stepSize: 0.01
+            Layout.fillWidth: true
+        }
+    }
 
 }
 

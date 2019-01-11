@@ -5,9 +5,16 @@ import QtGraphicalEffects 1.12
 
 Rectangle {
 
+    BrightnessContrastControl{
+    }
+
     id : idRoot
     width: 640;
     height: 480;
     color: Qt.rgba(0.8,0.8,0.8,1);
+
+
+
+
 }
 
