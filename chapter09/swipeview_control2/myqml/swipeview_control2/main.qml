@@ -9,8 +9,28 @@ Pane {
     height: 480;
 
     SwipeView{
-    anchors.fill: parent;
+        anchors.fill: parent;
 
+        Rectangle{
+            color: Qt.rgba(0.5,1,0.5,1)
+        }
+
+        Rectangle{
+            color: Qt.rgba(0.5,0.5,1,1)
+        }
+
+        Rectangle{
+            color: Qt.rgba(1,0.5,0.5,1)
+        }
+
+        id:idSwipeView
+    }
+
+    PageIndicator{
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        count: idSwipeView.count
+        currentIndex: idSwipeView.currentIndex
     }
 
 }
