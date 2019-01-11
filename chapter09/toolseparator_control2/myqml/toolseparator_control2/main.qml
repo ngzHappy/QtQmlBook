@@ -7,6 +7,47 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    RowLayout{
+        anchors.fill: parent
+
+        Item {
+            Layout.fillWidth: true
+        }
+
+        ToolButton {
+            text: qsTr("Action 1")
+        }
+        ToolButton {
+            text: qsTr("Action 2")
+        }
+
+        ToolSeparator {
+            orientation: Qt.Vertical
+        }
+
+        ToolButton {
+            text: qsTr("Action 3")
+        }
+        ToolButton {
+            text: qsTr("Action 4")
+        }
+
+        ToolSeparator {
+        }
+
+        ToolButton {
+            text: qsTr("Action 5")
+        }
+        ToolButton {
+            text: qsTr("Action 6")
+        }
+
+        Item {
+            Layout.fillWidth: true
+        }
+
+    }
+
 }
 
