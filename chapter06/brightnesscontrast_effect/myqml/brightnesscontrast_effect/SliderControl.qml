@@ -4,9 +4,38 @@ import QtQuick.Layouts 1.12
 
 Slider{
     id : idSlider
+    property bool inValueChangeRange : false
+    property variant posWhenValueChange: timeObject.getTime();
+    property variant oldPosWhenValueChange : timeObject.getTime();
+    onValueChanged: {
+        inValueChangeRange = true;
+        var varTimeObject = new Date() ;
+        posWhenValueChange = varTimeObject.getTime();
+        varTimeObject=null;
+        oldPosWhenValueChange = posWhenValueChange;
+    }
+    function checkIfInValueChangeRange(){
+        var varTimeObject = new Date() ;
+        posWhenValueChange = varTimeObject.getTime();
+        varTimeObject=null;
+        if( (posWhenValueChange - oldPosWhenValueChange)>1000 ){
+            inValueChangeRange = false
+        }else{
+            inValueChangeRange = true
+        }
+    }
+    Timer{
+        interval : 600
+        repeat : true
+        running : idSlider.inValueChangeRange
+        triggeredOnStart : false
+        onTriggered: {
+            idSlider.checkIfInValueChangeRange();
+        }
+    }
     ToolTip {
         parent: idSlider.handle
-        visible: idSlider.hovered
+        visible: idSlider.hovered | idSlider.inValueChangeRange
         text: idSlider.value.toFixed(2)
     }
 }
