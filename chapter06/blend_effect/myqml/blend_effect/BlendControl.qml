@@ -35,7 +35,7 @@ RowLayout {
         ]
     }
 
-
+    property alias blendModeComboBox : idComboBox
 
 
 }
