@@ -7,6 +7,15 @@ import QtQuick.Layouts 1.12
 RowLayout {
     width: parent.width
 
+    ComboBox {
+        id: idComboBox
+        model: [
+            "First",
+            "Second",
+            "Third"
+        ]
+    }
+
 
 
 

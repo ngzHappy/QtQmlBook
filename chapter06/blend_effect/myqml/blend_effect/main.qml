@@ -11,7 +11,11 @@ Rectangle {
     BlendControl {
     }
 
+
+
+
     Blend{
+
     }
 
 }
