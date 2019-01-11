@@ -35,7 +35,7 @@ Slider{
     }
     ToolTip {
         parent: idSlider.handle
-        visible: idSlider.hovered | idSlider.inValueChangeRange
+        visible: idSlider.hovered || idSlider.inValueChangeRange
         text: idSlider.value.toFixed(2)
     }
 }
