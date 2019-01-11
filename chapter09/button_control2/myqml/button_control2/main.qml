@@ -7,6 +7,18 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    RowLayout{
+        anchors.fill: parent
+        ColumnLayout{
+            anchors.fill: parent
+            Button{
+                text:"Good!"
+
+            }
+        }
+    }
+
+
 }
 
