@@ -1,4 +1,3 @@
-
 abstractbutton_control2
 action_control2
 actiongroup_control2
