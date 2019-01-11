@@ -37,6 +37,7 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/firsteffect/main.qml
+QMLSOURCES += $$PWD/myqml/firsteffect/RenderText.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
