@@ -7,6 +7,16 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ColumnLayout{
+        anchors.fill: parent
+        Slider {
+            from: 1
+            value: 25
+            to: 100
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+        }
+    }
+
 }
 
