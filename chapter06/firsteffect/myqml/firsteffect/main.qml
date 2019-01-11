@@ -9,7 +9,7 @@ Rectangle {
     height: 480;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
-    Text{
+    RenderText{
         id : idText
         text: "Good!"
         font.pointSize: 128
