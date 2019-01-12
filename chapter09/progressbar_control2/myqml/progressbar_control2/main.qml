@@ -7,6 +7,22 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ColumnLayout{
+        anchors.fill: parent ;
+
+        ProgressBar{
+            Layout.fillWidth: true;
+            value: 0.33
+        }
+
+        ProgressBar{
+            Layout.fillWidth: true;
+            value: 0.33
+            indeterminate: true
+        }
+
+    }
+
 }
 
