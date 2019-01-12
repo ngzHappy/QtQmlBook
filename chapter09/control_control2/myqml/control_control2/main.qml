@@ -7,6 +7,13 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    Control{
+        anchors.fill: parent
+        contentItem: Rectangle{
+            color: Qt.rgba(0.2,0.2,0.5,1)
+        }
+    }
+
 }
 
