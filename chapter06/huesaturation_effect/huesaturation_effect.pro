@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/huesaturation_effect/main.qml
+QMLSOURCES += $$PWD/myqml/huesaturation_effect/SliderControl.qml
+QMLSOURCES += $$PWD/myqml/huesaturation_effect/HuesaturationControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
