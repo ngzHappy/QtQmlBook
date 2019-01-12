@@ -13,7 +13,7 @@ Rectangle {
         height: parent.height * 0.8;
         anchors.centerIn: parent
         source: "image"
-        visible: true
+        visible: false
         fillMode: Image.PreserveAspectFit
         id : idImage
     }
