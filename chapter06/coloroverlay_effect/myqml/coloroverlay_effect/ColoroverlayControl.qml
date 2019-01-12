@@ -11,39 +11,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Label{
             Layout.minimumWidth: 64
-            text:qsTr("hue")
-        }
-        SliderControl{
-            from : 0
-            to : 1
-            stepSize: 0.01
-            value: 0
-            Layout.fillWidth: true
-            id : idHue
-        }
-    }
-
-    RowLayout{
-        Layout.fillWidth: true
-        Label{
-            Layout.minimumWidth: 64
-            text:qsTr("lightness")
-        }
-        SliderControl{
-            from : -1
-            to : 1
-            value: 0
-            stepSize: 0.01
-            Layout.fillWidth: true
-            id : idLightness
-        }
-    }
-
-    RowLayout{
-        Layout.fillWidth: true
-        Label{
-            Layout.minimumWidth: 64
-            text:qsTr("saturation")
+            text:qsTr("colorR")
         }
         SliderControl{
             from : 0
@@ -51,13 +19,77 @@ ColumnLayout {
             value: 0.5
             stepSize: 0.01
             Layout.fillWidth: true
-            id : idSaturation
+            id : idColorR
+            onValueChanged: updateApplyColor();
         }
     }
+    property alias colorRItem : idColorR
 
-    property alias saturationItem : idSaturation
-    property alias lightnessItem: idLightness
-    property alias hueItem: idHue
+    RowLayout{
+        Layout.fillWidth: true
+        Label{
+            Layout.minimumWidth: 64
+            text:qsTr("colorG")
+        }
+        SliderControl{
+            from : 0
+            to : 1
+            value: 0.5
+            stepSize: 0.01
+            Layout.fillWidth: true
+            id : idColorG
+            onValueChanged: updateApplyColor();
+        }
+    }
+    property alias colorGItem : idColorG
+
+    RowLayout{
+        Layout.fillWidth: true
+        Label{
+            Layout.minimumWidth: 64
+            text:qsTr("colorB")
+        }
+        SliderControl{
+            from : 0
+            to : 1
+            value: 0.5
+            stepSize: 0.01
+            Layout.fillWidth: true
+            id : idColorB
+            onValueChanged: updateApplyColor();
+        }
+    }
+    property alias colorBItem : idColorB
+
+    RowLayout{
+        Layout.fillWidth: true
+        Label{
+            Layout.minimumWidth: 64
+            text:qsTr("colorA")
+        }
+        SliderControl{
+            from : 0
+            to : 1
+            value: 0.5
+            stepSize: 0.01
+            Layout.fillWidth: true
+            id : idColorA
+            onValueChanged: updateApplyColor();
+        }
+    }
+    property alias colorAItem : idColorA
+
+    property color applyColor: Qt.rgba(idColorR.value,
+                                       idColorG.value,
+                                       idColorB.value,
+                                       idColorA.value);
+
+    function updateApplyColor(){
+        applyColor = Qt.rgba( idColorR.value,
+                             idColorG.value,
+                             idColorB.value,
+                             idColorA.value);
+    }
 
 }
 
