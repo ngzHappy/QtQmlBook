@@ -22,9 +22,13 @@ Rectangle {
         color: Qt.rgba(0.2,0.6,0.3,1)
         radius: 8
         samples: 16
-        spread: 0.5
+        spread: idThisControl.spreadItem.value
         anchors.fill: idImage
         source: idImage
+    }
+
+    GlowControl{
+        id : idThisControl
     }
 
 }
