@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/zoomblur_effect/main.qml
+QMLSOURCES += $$PWD/myqml/zoomblur_effect/ZoomBlurControl.qml
+QMLSOURCES += $$PWD/myqml/zoomblur_effect/SliderControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
