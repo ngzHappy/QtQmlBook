@@ -7,7 +7,7 @@ int main(int argc, char ** argv) {
     /*初始化程序*/
     auto varApp = sstd_make_unique< sstd::Application >(argc, argv);
     /*初始化Qml/Quick引擎*/
-    auto varWindow = sstd_make_unique< QmlApplicationEngine >();
+    auto varWindow = sstd_make_unique< sstd::QmlApplicationEngine >();
     {
         /*获得Qml文件绝对路径*/
         auto varFullFileName = sstd::getLocalFileFullPath(

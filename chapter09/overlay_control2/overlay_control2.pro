@@ -16,9 +16,6 @@ include($$PWD/../../sstd_library/import_sstd_library.pri)
 #import sstd_qt_and_qml_library
 include($$PWD/../../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
 
-SOURCES += $$PWD/QmlApplicationEngine.cpp
-HEADERS += $$PWD/QmlApplicationEngine.hpp
-
 !win32 {
     QMAKE_LFLAGS += -Wl,-rpath .
 }
