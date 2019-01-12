@@ -9,7 +9,21 @@ Rectangle {
     width: 640;
     height: 480;
 
+    Image{
+        width: parent.width * 0.8;
+        height: parent.height * 0.8;
+        anchors.centerIn: parent
+        source: "image.jpg"
+        visible: false
+        fillMode: Image.PreserveAspectFit
+        id : idImage
+    }
 
+    ColorOverlay{
+        anchors.fill: idImage
+        source: idImage
+        color: idColoroverlayControl.applyColor
+    }
 
     ColoroverlayControl{
         id : idColoroverlayControl

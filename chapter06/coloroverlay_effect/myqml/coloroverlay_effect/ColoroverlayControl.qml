@@ -16,7 +16,7 @@ ColumnLayout {
         SliderControl{
             from : 0
             to : 1
-            value: 0.5
+            value: 0.0
             stepSize: 0.01
             Layout.fillWidth: true
             id : idColorR
@@ -34,7 +34,7 @@ ColumnLayout {
         SliderControl{
             from : 0
             to : 1
-            value: 0.5
+            value: 0.0
             stepSize: 0.01
             Layout.fillWidth: true
             id : idColorG
@@ -52,7 +52,7 @@ ColumnLayout {
         SliderControl{
             from : 0
             to : 1
-            value: 0.5
+            value: 0.0
             stepSize: 0.01
             Layout.fillWidth: true
             id : idColorB
@@ -85,7 +85,7 @@ ColumnLayout {
                                        idColorA.value);
 
     function updateApplyColor(){
-        applyColor = Qt.rgba( idColorR.value,
+        applyColor = Qt.rgba(idColorR.value,
                              idColorG.value,
                              idColorB.value,
                              idColorA.value);
