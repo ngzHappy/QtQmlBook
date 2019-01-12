@@ -12,6 +12,7 @@ ApplicationWindow {
     ColumnLayout{
         anchors.fill: parent
         Button {
+            text : qsTr("弹窗")
             onClicked: idPopup.open()
             Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
             Popup {
