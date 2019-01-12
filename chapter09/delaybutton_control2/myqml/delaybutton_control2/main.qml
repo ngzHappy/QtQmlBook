@@ -7,6 +7,18 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ColumnLayout{
+        anchors.fill: parent
+        DelayButton{
+            text: qsTr( "Good!" )
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            onClicked: {
+                console.log(qsTr("Clicked!"))
+            }
+            delay: 3000
+        }
+    }
+
 }
 
