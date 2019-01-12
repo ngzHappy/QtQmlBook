@@ -7,6 +7,17 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    topInset: 0
+    leftInset: 0
+    bottomInset: 0
+    rightInset: 0
+
+    padding: 0
+
+    contentItem: Rectangle{
+        color: Qt.rgba(0.3,0.2,0.4,1)
+    }
+
 }
 
