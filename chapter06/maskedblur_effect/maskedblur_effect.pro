@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/maskedblur_effect/main.qml
+QMLSOURCES += $$PWD/myqml/maskedblur_effect/MaskedBlurControl.qml
+QMLSOURCES += $$PWD/myqml/maskedblur_effect/SliderControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
