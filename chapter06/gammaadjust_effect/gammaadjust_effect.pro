@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/gammaadjust_effect/main.qml
+QMLSOURCES += $$PWD/myqml/gammaadjust_effect/SliderControl.qml
+QMLSOURCES += $$PWD/myqml/gammaadjust_effect/GammaAdjustControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
