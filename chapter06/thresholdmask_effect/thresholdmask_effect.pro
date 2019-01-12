@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/thresholdmask_effect/main.qml
+QMLSOURCES += $$PWD/myqml/thresholdmask_effect/ThresholdMaskControl.qml
+QMLSOURCES += $$PWD/myqml/thresholdmask_effect/SliderControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

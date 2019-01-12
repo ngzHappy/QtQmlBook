@@ -18,9 +18,26 @@ Rectangle {
         id : idImage
     }
 
+    Image{
+        width: parent.width * 0.8;
+        height: parent.height * 0.8;
+        anchors.centerIn: parent
+        source: "image.png"
+        visible: false
+        fillMode: Image.PreserveAspectFit
+        id : idImageMask
+    }
+
      ThresholdMask{
          anchors.fill: idImage
          source: idImage
+         maskSource: idImageMask
+         spread: thisControl.spreadItem.value
+         threshold: thisControl.thresholdItem.value
+     }
+
+     ThresholdMaskControl{
+         id : thisControl
      }
 
 }
