@@ -7,6 +7,14 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    ColumnLayout{
+        anchors.fill: parent
+        ComboBox {
+            Layout.alignment: Qt.AlignHCenter | Qt.AlignVCenter
+            model: ["First", "Second", "Third"]
+        }
+    }
+
 }
 
