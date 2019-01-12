@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/gaussianblur_effect/main.qml
+QMLSOURCES += $$PWD/myqml/gaussianblur_effect/SliderControl.qml
+QMLSOURCES += $$PWD/myqml/gaussianblur_effect/GaussianBlurControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
