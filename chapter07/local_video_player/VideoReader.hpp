@@ -1,0 +1,21 @@
+﻿#pragma once
+
+class VideoReader{
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

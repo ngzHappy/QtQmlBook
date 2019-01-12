@@ -34,6 +34,12 @@ SOURCES += $$PWD/main.cpp
 HEADERS += $$PWD/AudioFrame.hpp
 HEADERS += $$PWD/AudioNumber.hpp
 
+SOURCES += $$PWD/VideoReader.cpp
+HEADERS += $$PWD/VideoReader.hpp
+
+SOURCES += $$PWD/FFMPEGOpenCloseThread.cpp
+HEADERS += $$PWD/FFMPEGOpenCloseThread.hpp
+
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
 }else{
