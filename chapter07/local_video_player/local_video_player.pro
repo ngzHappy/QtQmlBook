@@ -31,6 +31,9 @@ DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
 
+HEADERS += $$PWD/AudioFrame.hpp
+HEADERS += $$PWD/AudioNumber.hpp
+
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
 }else{

@@ -5,7 +5,7 @@
 
 class MusicFrame :
     public virtual sstd_intrusive_ptr_basic,
-    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(MusicFrame) {
+    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(MusicFrame) {
 public:
     class AudioDataItem {
     public:
