@@ -266,10 +266,6 @@ app_control_2_style.file = $$PWD/chapter09/control_2_style/control_2_style.pro
 app_control_2_style.depends = sstd_qml_control
 SUBDIRS += app_control_2_style
 
-app_abstractbutton_control2.file = $$PWD/chapter09/abstractbutton_control2/abstractbutton_control2.pro
-app_abstractbutton_control2.dpends = sstd_qt_and_qml_library
-SUBDIRS += app_abstractbutton_control2
-
 app_action_control2.file = $$PWD/chapter09/action_control2/action_control2.pro
 app_action_control2.dpends = sstd_qt_and_qml_library
 SUBDIRS += app_action_control2
