@@ -30,9 +30,6 @@ DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
 
-SOURCES += $$PWD/QmlApplicationEngine.cpp
-HEADERS += $$PWD/QmlApplicationEngine.hpp
-
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
 }else{
