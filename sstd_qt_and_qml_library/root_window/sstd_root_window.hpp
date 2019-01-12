@@ -7,6 +7,7 @@
 #include <sstd_library.hpp>
 #include "sstd_private/sstd_qquickview_resize.hpp"
 #include "sstd_private/sstd_qquickwidget_resize.hpp"
+#include "sstd_private/sstd_qmlapplicationengine.hpp"
 #include "../global/sstd_qt_and_qml_global.hpp"
 #include <QtQuick/qquickview.h>
 #include <QtQuickWidgets/qquickwidget.h>
@@ -142,6 +143,9 @@ namespace sstd {
 #else
     using DefaultRoowWindow = RootWindow<sstd::WindowType::QtQuickWindow> ;
 #endif
+
+    using QmlApplicationEngine =
+    _sstd1::_3_private_api::QmlApplicationEngine ;
 
 }/*namespace sstd*/
 

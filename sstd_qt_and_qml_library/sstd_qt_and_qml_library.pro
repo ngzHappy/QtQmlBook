@@ -82,6 +82,9 @@ SOURCES += $$PWD/local_qml_window_creator/sstd_local_qml_window_creator.cpp
 HEADERS += $$PWD/dir/sstd_copy_dir.hpp
 SOURCES += $$PWD/dir/sstd_copy_dir.cpp
 
+HEADERS += $$PWD/root_window/sstd_private/sstd_qmlapplicationengine.hpp
+SOURCES += $$PWD/root_window/sstd_private/sstd_qmlapplicationengine.cpp
+
 DEFINES *= GLEW_NO_GLU
 DEFINES *= GLEW_STATIC
 
