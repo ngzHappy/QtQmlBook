@@ -16,6 +16,10 @@ int main(int argc, char ** argv) {
         varWindow->load(varFullFileName);
     }
 
+    if (varWindow->rootObjects().isEmpty()) {
+        return -1;
+    }
+
     return varApp->exec();
 
 }
