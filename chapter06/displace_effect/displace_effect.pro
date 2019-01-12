@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/displace_effect/main.qml
+QMLSOURCES += $$PWD/myqml/displace_effect/SliderControl.qml
+QMLSOURCES += $$PWD/myqml/displace_effect/DisplaceControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
