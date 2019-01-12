@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/radialblur_effect/main.qml
+QMLSOURCES += $$PWD/myqml/radialblur_effect/SliderControl.qml
+QMLSOURCES += $$PWD/myqml/radialblur_effect/RadialBlurControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
