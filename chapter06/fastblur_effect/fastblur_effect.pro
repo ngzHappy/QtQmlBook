@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/fastblur_effect/main.qml
+QMLSOURCES += $$PWD/myqml/fastblur_effect/SliderControl.qml
+QMLSOURCES += $$PWD/myqml/fastblur_effect/FastBlurControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
