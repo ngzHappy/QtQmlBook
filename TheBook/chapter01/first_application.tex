@@ -53,6 +53,25 @@ cmd
 
 本节示例代码位于文件夹“QtQmlBook/chapter01/firstapplication”下。
 
+\lstlistingname\ \ref{f000019}
+展示了
+该项目的工程文件。
+
+\begin{itemize}
+\item 第11行引入“outdirpath.pri”文件，此文件定义了输出路径。
+\item 第13行引入“cplusplus.pri”文件，此文件定义了标准C{\sourcefonttwo{}+}{\sourcefonttwo{}+}相关控制项。
+\item 第15行引入“import\underline{\hspace{0.5em}}sstd\underline{\hspace{0.5em}}library.pri”文件，此文件引入“sstd\underline{\hspace{0.5em}}library”库。
+“sstd\underline{\hspace{0.5em}}library”库用于引入和补充标准C{\sourcefonttwo{}+}{\sourcefonttwo{}+}库。
+\item 第17行引入“import\underline{\hspace{0.5em}}sstd\underline{\hspace{0.5em}}qt\underline{\hspace{0.5em}}and\underline{\hspace{0.5em}}qml\underline{\hspace{0.5em}}library.pri”文件，
+此文件引入“sstd\underline{\hspace{0.5em}}qt\underline{\hspace{0.5em}}and\underline{\hspace{0.5em}}qml\underline{\hspace{0.5em}}library”库。
+“sstd\underline{\hspace{0.5em}}qt\underline{\hspace{0.5em}}and\underline{\hspace{0.5em}}qml\underline{\hspace{0.5em}}library”库用于引入和补充Qt库。
+\item 第44\raisebox{0.16ex}{\sourcefonttwo\~{}}48行将Qml文件加入工程。这是一种惯用法，用于实现Qml国际化。
+\end{itemize}
+
+本书的所有工程项目大同小异，以后不再赘述。
+
+
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000019,
 caption=GoodLuck,
