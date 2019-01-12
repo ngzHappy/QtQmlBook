@@ -38,6 +38,8 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/desaturate_effect/main.qml
+QMLSOURCES += $$PWD/myqml/desaturate_effect/SliderControl.qml
+QMLSOURCES += $$PWD/myqml/desaturate_effect/DesaturateControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
