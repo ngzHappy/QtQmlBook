@@ -10,6 +10,9 @@ Pane {
 
     Page{
         anchors.fill: parent
+        contentItem: Rectangle{
+            color: Qt.rgba(0.2,1,1,1)
+        }
     }
 
 }
