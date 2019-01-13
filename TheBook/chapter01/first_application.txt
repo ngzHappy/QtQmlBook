@@ -51,7 +51,9 @@
 :the_book_file:[[f000021]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000022]] :tex_raw:[[%main.cpp]]
 
-
+:the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]
+:the_book_file:[[f000024]] :tex_raw:[[%main2.qml]]
+:the_book_file:[[f000025]] :tex_raw:[[%main3.qml]]
 
 
 

@@ -212,7 +212,76 @@ return varApp.exec();
 %\end{spacing}
  %main.cpp
 
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000023,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+/*main1.qml*/
+import QtQuick 2.9
 
+Rectangle{
+
+    width: 512 ;
+    height: 512 ;
+    color: Qt.rgba(1,0,0,1);
+
+}/*Rectangle*/
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %main1.qml
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000024,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+/*main2.qml*/
+import QtQuick 2.9
+
+Rectangle{
+
+    width: 512 ;
+    height: 512 ;
+    color: Qt.rgba(1,0,0,1);
+
+/*begin:debug*/
+    border.width: 9 ;
+/*end:debug*/
+
+
+}/*Rectangle*/
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %main2.qml
+%\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000025,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+/*main3.qml*/
+import QtQuick 2.9
+import QtQuick.Window 2.2
+
+Window {
+
+    width: 512 ;
+    height: 512 ;
+    visible: true ;
+
+    Rectangle{
+        anchors.fill: parent ;
+        color: Qt.rgba(1,0,0,1);
+
+        /*begin:debug*/
+        border.width: 9 ;
+        /*end:debug*/
+
+    }/*Rectangle*/
+
+}
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %main3.qml
 
 
 

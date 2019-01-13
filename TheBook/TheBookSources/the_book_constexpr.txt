@@ -86,6 +86,9 @@ f000019::::../chapter01/firstapplication/firstapplication.pro::::]
 f000020::::chapter01/files/first_application/main.1.txt::::,firstnumber=67]
 f000021::::chapter01/files/first_application/main.2.txt::::,firstnumber=90]
 f000022::::chapter01/files/first_application/main.3.txt::::,firstnumber=111]
+f000023::::../chapter01/firstapplication/myqml/firstapplication/main1.qml::::]
+f000024::::../chapter01/firstapplication/myqml/firstapplication/main2.qml::::]
+f000025::::../chapter01/firstapplication/myqml/firstapplication/main3.qml::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
