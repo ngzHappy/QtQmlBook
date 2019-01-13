@@ -8,12 +8,14 @@ VideoPlayerThread::VideoPlayerThread() {
     mmmConnectState->mmmConnect1 =
         connect(this, &QThread::finished,
             this, [varConnectState, this]() {
+        auto var = varConnectState;
         deleteOnce(varConnectState.get());
         deleteLater();
     });
     mmmConnectState->mmmConnect2 =
         connect(this, &QThread::destroyed,
             this, [varConnectState, this]() {
+        auto var = varConnectState;
         deleteOnce(varConnectState.get());
     });
 }
