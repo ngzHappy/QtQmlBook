@@ -40,6 +40,9 @@ HEADERS += $$PWD/VideoReader.hpp
 SOURCES += $$PWD/VideoPlayer.cpp
 HEADERS += $$PWD/VideoPlayer.hpp
 
+SOURCES += $$PWD/VideoPlayerThread.cpp
+HEADERS += $$PWD/VideoPlayerThread.hpp
+
 SOURCES += $$PWD/FFMPEGOpenCloseThread.cpp
 HEADERS += $$PWD/FFMPEGOpenCloseThread.hpp
 
