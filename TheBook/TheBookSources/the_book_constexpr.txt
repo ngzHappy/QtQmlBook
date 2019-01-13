@@ -83,7 +83,7 @@ f000017::::chapter01/files/qtenv2.windows.bat.txt::::]
 f000018::::../build_msvc.bat::::]
 
 f000019::::../chapter01/firstapplication/firstapplication.pro::::]
-f000020::::chapter01/files/first_application/main.1.txt::::]
+f000020::::chapter01/files/first_application/main.1.txt::::,firstnumber=67]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
