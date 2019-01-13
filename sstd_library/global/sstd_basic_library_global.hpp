@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 #include <utility>
+#include <optional>
 #include <type_traits>
 #endif/*__cplusplus*/
 
@@ -57,7 +58,18 @@ __VA_ARGS__>::value ) __VA_ARGS__ cValueName  \
 /*--------------------------------------------*/
 #endif
 
-
+template<typename T>
+class alignas(_8_sstd_private::_8_Max_Align<
+    const volatile void*, std::optional<T>
+>::value) sstd_optional :
+    public std::optional<T> {
+public:
+    inline sstd_optional() = default;
+    inline sstd_optional(const sstd_optional &) = default;
+    inline sstd_optional(sstd_optional &&) = default;
+    inline sstd_optional&operator=(const sstd_optional &) = default;
+    inline sstd_optional&operator=(sstd_optional &&) = default;
+};
 
 
 
