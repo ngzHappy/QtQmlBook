@@ -30,6 +30,7 @@ DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
+HEADERS += $$PWD/VideoInformation.hpp
 
 HEADERS += $$PWD/AudioFrame.hpp
 HEADERS += $$PWD/AudioNumber.hpp

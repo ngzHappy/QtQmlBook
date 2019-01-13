@@ -5,7 +5,7 @@
 #include "FFMPEGOpenCloseThread.hpp"
 
 class VideoReader :
-    public virtual sstd_virtual_basic,
+    public virtual sstd_intrusive_ptr_basic,
     SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(VideoReader)  {
 public:
 
