@@ -765,3 +765,23 @@ inline T * sstd_virtual_basic::sstd_find_named_data_in_this_class_thread_safe(st
             a);
 }
 
+template<typename T>
+class alignas(_8_sstd_private::_8_Max_Align<
+    const volatile void*, std::optional<T>
+>::value) sstd_optional :
+    public std::optional<T> {
+public:
+    inline sstd_optional() = default;
+    inline sstd_optional(const sstd_optional &) = default;
+    inline sstd_optional(sstd_optional &&) = default;
+    inline sstd_optional&operator=(const sstd_optional &) = default;
+    inline sstd_optional&operator=(sstd_optional &&) = default;
+private:
+    SSTD_DEFINE_STATIC_CLASS(sstd_optional);
+};
+
+namespace sstd {
+    template <typename T>
+    using optional = sstd_optional<T>;
+}/*namespace sstd*/
+
