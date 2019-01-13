@@ -8,24 +8,24 @@ VideoPlayerThread::VideoPlayerThread() {
     mmmConnectState->mmmConnect1 =
         connect(this, &QThread::finished,
             this, [varConnectState, this]() {
-        deleteOnce();
+        deleteOnce(varConnectState.get());
         deleteLater();
-        clearData();
     });
     mmmConnectState->mmmConnect2 =
         connect(this, &QThread::destroyed,
             this, [varConnectState, this]() {
-        clearData();
+        deleteOnce(varConnectState.get());
     });
 }
 
 void VideoPlayerThread::clearData() {
 }
 
-void VideoPlayerThread::deleteOnce() {
-    std::call_once(mmmConnectState->mmmDeleteOnce, [this]() {
-        disconnect(mmmConnectState->mmmConnect1);
-        disconnect(mmmConnectState->mmmConnect2);
+void VideoPlayerThread::deleteOnce(ConnectState * arg) {
+    std::call_once(arg->mmmDeleteOnce, [this, arg]() {
+        clearData();
+        disconnect(arg->mmmConnect1);
+        disconnect(arg->mmmConnect2);
     });
 }
 
