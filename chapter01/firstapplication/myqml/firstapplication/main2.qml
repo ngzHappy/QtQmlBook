@@ -1,4 +1,5 @@
-﻿import QtQuick 2.9
+﻿/*main2.qml*/
+import QtQuick 2.9
 
 Rectangle{
 
