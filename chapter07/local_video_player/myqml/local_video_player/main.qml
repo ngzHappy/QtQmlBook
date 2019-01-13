@@ -3,7 +3,9 @@ import QtQuick 2.9
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.12
 import QtQuick.Dialogs 1.3
- 
+import sstd.video 1.0
+
+
 Pane {
 
     id : idRoot;
