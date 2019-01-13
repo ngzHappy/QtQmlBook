@@ -37,6 +37,9 @@ HEADERS += $$PWD/AudioNumber.hpp
 SOURCES += $$PWD/VideoReader.cpp
 HEADERS += $$PWD/VideoReader.hpp
 
+SOURCES += $$PWD/VideoPlayer.cpp
+HEADERS += $$PWD/VideoPlayer.hpp
+
 SOURCES += $$PWD/FFMPEGOpenCloseThread.cpp
 HEADERS += $$PWD/FFMPEGOpenCloseThread.hpp
 
