@@ -18,6 +18,7 @@ VideoPlayerThread::VideoPlayerThread() {
         auto var = varConnectState;
         deleteOnce(varConnectState.get());
     });
+    this->start();
 }
 
 void VideoPlayerThread::clearData() {
