@@ -58,7 +58,9 @@ __VA_ARGS__>::value ) __VA_ARGS__ cValueName  \
 /*--------------------------------------------*/
 #endif
 
-
+#ifndef sstd$a
+#define sstd$a(...) {__VA_ARGS__}
+#endif
 
 
 
