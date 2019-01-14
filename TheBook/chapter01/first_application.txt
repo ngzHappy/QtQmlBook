@@ -1,9 +1,9 @@
 ﻿
 :tex_raw:[[%]]
 
-:the_book_subsection:[[s100210]]
+:the_book_section:[[s100210]]
 
-:the_book_subsubsection:[[ss001u10]]
+:the_book_subsection:[[ss001u10]]
 
 读者可以使用Qt Creator打开“QtQmlBook.pro”。
 在Windows平台下，读者
@@ -48,7 +48,7 @@
 :the_book_file:[[f000019]]
 
 :tex_raw:[[%设置Qt Quick运行参数]]
-:the_book_subsubsection:[[ss001v10]]
+:the_book_subsection:[[ss001v10]]
 
 Qt Quick路径识别依靠QUrl类。
 QUrl既可以表达一个网络路径也可以表达一个本地路径。
@@ -96,7 +96,7 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 
 :the_book_file:[[f00002u]] :tex_raw:[[%import_sstd_qt_and_qml_library.1.pri]]
 
-:the_book_subsubsection:[[ss001010]]
+:the_book_subsection:[[ss001010]]
 
 QQuickView自Qt 5.0引入。
 
@@ -108,7 +108,7 @@ QQuickView是一个好的选择。
 :the_book_file:[[f000020]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]
 
-:the_book_subsubsection:[[ss001110]]
+:the_book_subsection:[[ss001110]]
 
 QQuickWidget自Qt 5.3引入。
 
@@ -129,7 +129,7 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 :the_book_file:[[f000021]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000024]] :tex_raw:[[%main2.qml]]
 
-:the_book_subsubsection:[[ss001210]]
+:the_book_subsection:[[ss001210]]
 
 QQmlApplicationEngine自Qt 5.1引入。
 
