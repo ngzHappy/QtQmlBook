@@ -15,6 +15,11 @@
 }\label{s100210}
 
 
+\FloatBarrier
+\subsubsection{
+本书的工程项目
+}\label{ss001u10}
+
 
 读者可以使用Qt Creator打开“QtQmlBook.pro”。
 在Windows平台下，读者
@@ -127,6 +132,10 @@ DISTFILES += $$QMLSOURCES
 %\end{spacing}
 
 
+\FloatBarrier
+\subsubsection{
+使用QQuickView加载Qt Quick程序
+}\label{ss001010}
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000020,
@@ -159,6 +168,30 @@ return varApp.exec();
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000023,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+/*main1.qml*/
+import QtQuick 2.9
+
+Rectangle{
+
+    width: 512 ;
+    height: 512 ;
+    color: Qt.rgba(1,0,0,1);
+
+}/*Rectangle*/
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %main1.qml
+
+\FloatBarrier
+\subsubsection{
+使用QQuickWidget加载Qt Quick程序
+}\label{ss001110}
+
+%\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000021,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -187,6 +220,35 @@ return varApp.exec();
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
+\begin{lstlisting}[label=f000024,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+/*main2.qml*/
+import QtQuick 2.9
+
+Rectangle{
+
+    width: 512 ;
+    height: 512 ;
+    color: Qt.rgba(1,0,0,1);
+
+/*begin:debug*/
+    border.width: 9 ;
+/*end:debug*/
+
+
+}/*Rectangle*/
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+ %main2.qml
+
+\FloatBarrier
+\subsubsection{
+使用QQmlApplicationEngine加载Qt Quick程序
+}\label{ss001210}
+
+%\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000022,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -211,48 +273,6 @@ return varApp.exec();
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main.cpp
-
-%\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000023,
-caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
-]
-/*main1.qml*/
-import QtQuick 2.9
-
-Rectangle{
-
-    width: 512 ;
-    height: 512 ;
-    color: Qt.rgba(1,0,0,1);
-
-}/*Rectangle*/
-\end{lstlisting}          %抄录环境
-%\end{spacing}
- %main1.qml
-%\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000024,
-caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
-]
-/*main2.qml*/
-import QtQuick 2.9
-
-Rectangle{
-
-    width: 512 ;
-    height: 512 ;
-    color: Qt.rgba(1,0,0,1);
-
-/*begin:debug*/
-    border.width: 9 ;
-/*end:debug*/
-
-
-}/*Rectangle*/
-\end{lstlisting}          %抄录环境
-%\end{spacing}
- %main2.qml
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000025,
 caption=GoodLuck,
@@ -282,6 +302,8 @@ Window {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main3.qml
+
+
 
 
 

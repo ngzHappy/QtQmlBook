@@ -3,6 +3,7 @@
 
 :the_book_subsection:[[s100210]]
 
+:the_book_subsubsection:[[ss001u10]]
 
 读者可以使用Qt Creator打开“QtQmlBook.pro”。
 在Windows平台下，读者
@@ -46,14 +47,19 @@
 
 :the_book_file:[[f000019]]
 
-
+:the_book_subsubsection:[[ss001010]]
 :the_book_file:[[f000020]] :tex_raw:[[%main.cpp]]
-:the_book_file:[[f000021]] :tex_raw:[[%main.cpp]]
-:the_book_file:[[f000022]] :tex_raw:[[%main.cpp]]
-
 :the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]
+
+:the_book_subsubsection:[[ss001110]]
+:the_book_file:[[f000021]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000024]] :tex_raw:[[%main2.qml]]
+
+:the_book_subsubsection:[[ss001210]]
+:the_book_file:[[f000022]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000025]] :tex_raw:[[%main3.qml]]
+
+
 
 
 
