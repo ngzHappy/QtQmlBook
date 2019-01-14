@@ -97,14 +97,53 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 :the_book_file:[[f00002u]] :tex_raw:[[%import_sstd_qt_and_qml_library.1.pri]]
 
 :the_book_subsubsection:[[ss001010]]
+
+QQuickView自Qt 5.0引入。
+
+QQuickView被设计用来提供一个在显示器上
+呈现Qml渲染结果的一个集成环境。
+如果读者需要在移动设备上呈现Qml，
+QQuickView是一个好的选择。
+
 :the_book_file:[[f000020]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]
 
 :the_book_subsubsection:[[ss001110]]
+
+QQuickWidget自Qt 5.3引入。
+
+引入QQuickWidget的目的就是混用
+Qt Quick和Qt Widgets。
+但实际上，使用QQuickWidget加载Qml和使用QQuickView加载Qml的
+根本区别在于：
+QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
+
+对于一些小型应用程序，异步渲染是不必要的。
+而更重要的是，在一些设备上，由于硬件限制，异步渲染是低效甚至
+不可实现的。即使可以实现，也可能有一些莫名其妙的BUG。
+
+对于以上情形，
+使用QQuickWidget比使用QQuickView能够获得
+更好的效果，甚至能消除一些BUG。
+
 :the_book_file:[[f000021]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000024]] :tex_raw:[[%main2.qml]]
 
 :the_book_subsubsection:[[ss001210]]
+
+QQmlApplicationEngine自Qt 5.1引入。
+
+引入QQmlApplicationEngine的目的是为了能够实现Qt Quick Controls。
+
+QQmlApplicationEngine是对
+QQuickView的进一步包装和扩展。
+Qt Quick Controls一些控件比如“对话框”需要一些
+全局支持。
+QQmlApplicationEngine就是被设计用来提供这些全局支持的。
+
+如果读者不需要传统对话框的话，
+QQuickView或QQuickWidget也是可以使用的。
+
 :the_book_file:[[f000022]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000025]] :tex_raw:[[%main3.qml]]
 
