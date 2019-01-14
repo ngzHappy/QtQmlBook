@@ -47,6 +47,9 @@
 
 :the_book_file:[[f000019]]
 
+:tex_raw:[[%设置Qt Quick运行参数]]
+:the_book_subsubsection:[[ss001v10]]
+
 :the_book_subsubsection:[[ss001010]]
 :the_book_file:[[f000020]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]
