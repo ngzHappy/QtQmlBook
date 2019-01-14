@@ -32,6 +32,9 @@ ss001010::::使用QQuickView加载Qt Quick程序
 ss001110::::使用QQuickWidget加载Qt Quick程序
 ss001210::::使用QQmlApplicationEngine加载Qt Quick程序
 
+%第4节
+s100410::::你好世界！
+
 %第二章
 c000011::::Qt Quick基础
 %第三章

@@ -107,7 +107,7 @@ QQuickView是一个好的选择。
 
 :tex_raw:[[\lstlistingname\ \ref{f000020}]]
 展示了使用QQuickView加载Qml的C++代码:tex_raw:[[\footnote{]]
-将宏QML_USE_WINDOW_TYPE的值改为1
+将宏QML_USE_WINDOW_TYPE的值改为1。
 :tex_raw:[[}]]；
 :tex_raw:[[\lstlistingname\ \ref{f000023}]]
 展示了一个简单显示一个红色窗口的Qml代码。
@@ -145,7 +145,7 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 
 :tex_raw:[[\lstlistingname\ \ref{f000021}]]
 展示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
-将宏QML_USE_WINDOW_TYPE的值改为2
+将宏QML_USE_WINDOW_TYPE的值改为2。
 :tex_raw:[[}]]；
 :tex_raw:[[\lstlistingname\ \ref{f000024}]]
 展示了一个简单显示一个红色窗口的Qml代码。
@@ -183,7 +183,7 @@ QQuickView或QQuickWidget也是足够使用的。
 
 :tex_raw:[[\lstlistingname\ \ref{f000022}]]
 展示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
-将宏QML_USE_WINDOW_TYPE的值改为3
+将宏QML_USE_WINDOW_TYPE的值改为3。
 :tex_raw:[[}]]；
 :tex_raw:[[\lstlistingname\ \ref{f000025}]]
 展示了一个简单显示一个红色窗口的Qml代码。
