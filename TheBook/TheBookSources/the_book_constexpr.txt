@@ -96,10 +96,10 @@ f00002u::::chapter01/files/first_application/import_sstd_qt_and_qml_library.1.pr
 f000023::::../chapter01/firstapplication/myqml/firstapplication/main1.qml::::]
 f000024::::../chapter01/firstapplication/myqml/firstapplication/main2.qml::::]
 f000025::::../chapter01/firstapplication/myqml/firstapplication/main3.qml::::]
-f000026::::../chapter01/firstapplication/myqml/firstapplication/main4.qml::::]
-f000027::::../chapter01/firstapplication/myqml/firstapplication/main5.qml::::]
-f000028::::../chapter01/firstapplication/myqml/firstapplication/main6.qml::::]
-f000029::::../chapter01/firstapplication/myqml/firstapplication/main7.qml::::]
+f000026::::chapter01/files/first_application/main.4.txt::::,firstnumber=6]
+f000027::::chapter01/files/first_application/main.5.txt::::,firstnumber=18]
+f000028::::chapter01/files/first_application/main.6.txt::::,firstnumber=39]
+f000029::::chapter01/files/first_application/main.7.txt::::,firstnumber=54]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]

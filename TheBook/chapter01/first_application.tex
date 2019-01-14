@@ -143,7 +143,18 @@ Qt Quick运行常用参数设置
 \begin{lstlisting}[label=f000026,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
-]
+,firstnumber=6]
+inline QUrl getLocalFileFullPath(
+    const QString & argFileName,
+    const QString & argBase) {
+    const QDir varRootDir{ argBase };
+    const auto varAns = varRootDir.absoluteFilePath(argFileName);
+    if (varAns.startsWith(QChar('/'))) {
+        return QStringLiteral(R"(file://)") + varAns;
+    } else {
+        return QStringLiteral(R"(file:///)") + varAns;
+    }
+}
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main4.qml
@@ -151,7 +162,27 @@ title=\lstlistingname\ \thelstlisting
 \begin{lstlisting}[label=f000027,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
-]
+,firstnumber=18]
+inline QSurfaceFormat getDefaultQSurfaceFormat() {
+    auto varFormat = QSurfaceFormat::defaultFormat();
+    varFormat.setVersion(4, 6);
+    varFormat.setProfile(QSurfaceFormat::CoreProfile);
+    varFormat.setSamples(4);
+    varFormat.setAlphaBufferSize(8);
+    varFormat.setBlueBufferSize(8);
+    varFormat.setRedBufferSize(8);
+    varFormat.setGreenBufferSize(8);
+    varFormat.setDepthBufferSize(24);
+    varFormat.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
+    varFormat.setRenderableType(QSurfaceFormat::OpenGL);
+    varFormat.setSwapInterval(0)/*关闭垂直同步*/;
+#if defined(ENABLE_GL_DEBUG)
+    varFormat.setOption(QSurfaceFormat::DebugContext, true);
+#else
+    varFormat.setOption(QSurfaceFormat::DebugContext, false);
+#endif
+    return varFormat;
+}
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main5.qml
@@ -159,7 +190,21 @@ title=\lstlistingname\ \thelstlisting
 \begin{lstlisting}[label=f000028,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
-]
+,firstnumber=39]
+inline void beforeApplication() {
+    {
+        /*初始化随机种子*/
+        ::srand(static_cast<unsigned>(::time(nullptr)));
+    }
+    {
+        /*高分屏支持*/
+        QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    }
+    {
+        /*设置默认opengl环境*/
+        QSurfaceFormat::setDefaultFormat(::getDefaultQSurfaceFormat());
+    }
+}
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main6.qml
@@ -167,7 +212,13 @@ title=\lstlistingname\ \thelstlisting
 \begin{lstlisting}[label=f000029,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
-]
+,firstnumber=54]
+inline void afterApplication() {
+    {
+        QImage varImage{QStringLiteral("test.png")};
+        (void)varImage;
+    }
+}
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main7.qml
