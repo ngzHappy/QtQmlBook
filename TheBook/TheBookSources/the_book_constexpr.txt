@@ -27,7 +27,7 @@ ss000a10::::获得更多qmake帮助
 %第3节
 s100210::::第一个程序
 ss001u10::::本书的工程项目
-ss001v10::::Qt Quick运行常用参数设置
+ss001v10::::Qt Quick运行常用设置
 ss001010::::使用QQuickView加载Qt Quick程序
 ss001110::::使用QQuickWidget加载Qt Quick程序
 ss001210::::使用QQmlApplicationEngine加载Qt Quick程序
@@ -114,13 +114,13 @@ command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 %表名称
 
 
-
-
-
-
-
-
-
+%
+%:tex_raw:[[\figurename\ \ref{p000003}]]
+%
+%:tex_raw:[[\lstlistingname\ \ref{f000017}]]
+%
+%
+%
 
 
 

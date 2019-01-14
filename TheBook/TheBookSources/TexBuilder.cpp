@@ -1731,7 +1731,8 @@ title=\commandnumbernameone \thecommandnumber
             return false;
         }
         bool isAllRaw = false;
-        while (false == isAllRaw) {
+        int varCallCount = 16;
+        while ((false == isAllRaw) && ((--varCallCount) > 0)) {
             isAllRaw = true;
             auto varPos = varParseState->data.cbegin();
             while (varPos != varParseState->data.cend()) {
@@ -1749,7 +1750,7 @@ title=\commandnumbernameone \thecommandnumber
                 }
             }
         }
-        return true;
+        return (varCallCount > 0);
     }
 
     inline void write_output() {

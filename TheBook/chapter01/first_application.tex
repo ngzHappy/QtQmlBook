@@ -135,9 +135,23 @@ DISTFILES += $$QMLSOURCES
 %设置Qt Quick运行参数
 \FloatBarrier
 \subsubsection{
-Qt Quick运行常用参数设置
+Qt Quick运行常用设置
 }\label{ss001v10}
 
+
+Qt Quick路径识别依靠QUrl类。
+QUrl既可以表达一个网络路径也可以表达一个本地路径。
+
+使用QUrl表达一个本地绝对路径，Windows平台下需要在开头加“file:///”，
+POSIX平台下需要在开头加“file://”。
+
+比如，在Windows平台下一个本地绝对路径是“C:/main.qml”，
+那么用QUrl表达则为“file:///C:/main.qml”；在Linux平台下
+一个本地绝对路径是“/usr/main.qml”，那么
+用QUrl表达则为“file:///usr/main.qml”。
+
+\lstlistingname\ \ref{f000026}
+展示如何用C{\sourcefonttwo{}+}{\sourcefonttwo{}+}实现这一功能。
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000026,
@@ -158,6 +172,10 @@ inline QUrl getLocalFileFullPath(
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main4.qml
+
+Qt Quick依赖于OpenGL。\lstlistingname\ \ref{f000027}
+展示常用OpenGL参数设置。
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000027,
 caption=GoodLuck,
@@ -186,6 +204,15 @@ inline QSurfaceFormat getDefaultQSurfaceFormat() {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main5.qml
+
+Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件之前
+都要先构造QCoreApplication或其子类。
+
+在构造QCoreApplication之前，
+需要设置一些参数。
+\lstlistingname\ \ref{f000028}
+展示了一些常见设置。
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000028,
 caption=GoodLuck,
@@ -208,6 +235,15 @@ inline void beforeApplication() {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main6.qml
+
+在构造完QCoreApplication之后，
+还需要加载一些组件。比如QImage组件是依靠插件支持的。
+对于一些外存较差的设备而言，加载插件可能会造成几百毫秒
+甚至数秒的卡顿。为了程序运行平滑，这些组件都是预加载的。
+
+\lstlistingname\ \ref{f000029}
+展示了如何实现这一操作。
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000029,
 caption=GoodLuck,
@@ -222,6 +258,9 @@ inline void afterApplication() {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
  %main7.qml
+
+\lstlistingname\ \ref{f00002u}
+展示了如何在工程文件中引入常用Qt库。
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f00002u,
