@@ -60,7 +60,7 @@ cmd
 
 \lstlistingname\ \ref{f000019}
 展示了
-该项目的工程文件。
+该项目的工程文件：
 
 \begin{itemize}
 \item 第11行引入“outdirpath.pri”文件，此文件定义了输出路径。
@@ -174,7 +174,7 @@ inline QUrl getLocalFileFullPath(
  %main4.qml
 
 Qt Quick依赖于OpenGL。\lstlistingname\ \ref{f000027}
-展示常用OpenGL参数设置。
+展示常用OpenGL参数设置：
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000027,
@@ -292,6 +292,13 @@ QQuickView被设计用来提供一个在显示器上
 如果读者需要在移动设备上呈现Qml，
 QQuickView是一个好的选择。
 
+\lstlistingname\ \ref{f000020}
+展示了使用QQuickView加载Qml的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码\footnote{
+将宏QML\underline{\hspace{0.5em}}USE\underline{\hspace{0.5em}}WINDOW\underline{\hspace{0.5em}}TYPE的值改为1
+}；
+\lstlistingname\ \ref{f000023}
+展示了一个简单显示一个红色窗口的Qml代码。
+
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000020,
 caption=GoodLuck,
@@ -341,6 +348,16 @@ Rectangle{
 %\end{spacing}
  %main1.qml
 
+如\lstlistingname\ \ref{f000020}
+的72\raisebox{0.16ex}{\sourcefonttwo\~{}}82行所示，本书在Debug模式下从当前
+项目目录下载入Qml文件，而在Release模式下
+从应用程序目录下载入Qml文件。
+
+将当前项目目录文件拷贝到应用程序目录是依靠本书自带的
+一个小工具“build\underline{\hspace{0.5em}}install”达成的。
+此工具对于非qml文件仅仅是拷贝，而对于qml文件做了更多处理。
+后续章节会有介绍。
+
 \FloatBarrier
 \subsection{
 使用QQuickWidget加载Qt Quick程序
@@ -362,6 +379,13 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 对于以上情形，
 使用QQuickWidget比使用QQuickView能够获得
 更好的效果，甚至能消除一些BUG。
+
+\lstlistingname\ \ref{f000021}
+展示了使用QQuickWidget加载Qml的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码\footnote{
+将宏QML\underline{\hspace{0.5em}}USE\underline{\hspace{0.5em}}WINDOW\underline{\hspace{0.5em}}TYPE的值改为2
+}；
+\lstlistingname\ \ref{f000024}
+展示了一个简单显示一个红色窗口的Qml代码。
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000021,
@@ -415,6 +439,17 @@ Rectangle{
 %\end{spacing}
  %main2.qml
 
+读者可以分别在Debug和Release模式下运行此程序，会发现Debug
+模式比Release模式多了一个边框。这一切都是靠本书自带的小工具
+“build\underline{\hspace{0.5em}}install”实现的。
+
+如\lstlistingname\ \ref{f000024}
+的10\raisebox{0.16ex}{\sourcefonttwo\~{}}12行所示。本书自带的小工具“build\underline{\hspace{0.5em}}install”在拷贝
+qml文件时会将/\raisebox{-0.35ex}{\sourcefonttwo{}*}begin:debug\raisebox{-0.35ex}{\sourcefonttwo{}*}/和/\raisebox{-0.35ex}{\sourcefonttwo{}*}end:debug\raisebox{-0.35ex}{\sourcefonttwo{}*}/之间的内容
+替换为注释。
+
+读者采用此小工具可以达到一些调试效果。
+
 \FloatBarrier
 \subsection{
 使用QQmlApplicationEngine加载Qt Quick程序
@@ -432,7 +467,16 @@ Qt Quick Controls一些控件比如“对话框”需要一些
 QQmlApplicationEngine就是被设计用来提供这些全局支持的。
 
 如果读者不需要传统对话框的话，
-QQuickView或QQuickWidget也是可以使用的。
+QQuickView或QQuickWidget也是足够使用的。
+但如果使用类似于对话框这样的功能，还是建议
+读者使用QQmlApplicationEngine。
+
+\lstlistingname\ \ref{f000022}
+展示了使用QQuickWidget加载Qml的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码\footnote{
+将宏QML\underline{\hspace{0.5em}}USE\underline{\hspace{0.5em}}WINDOW\underline{\hspace{0.5em}}TYPE的值改为3
+}；
+\lstlistingname\ \ref{f000025}
+展示了一个简单显示一个红色窗口的Qml代码。
 
 %\begin{spacing}{1.0}
 \begin{lstlisting}[label=f000022,
@@ -466,9 +510,9 @@ title=\lstlistingname\ \thelstlisting
 ]
 /*main3.qml*/
 import QtQuick 2.9
-import QtQuick.Window 2.2
+import QtQuick.Controls 2.5
 
-Window {
+ApplicationWindow {
 
     width: 512 ;
     height: 512 ;

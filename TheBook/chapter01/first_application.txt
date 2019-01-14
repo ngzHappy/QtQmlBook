@@ -30,7 +30,7 @@
 
 :tex_raw:[[\lstlistingname\ \ref{f000019}]]
 展示了
-该项目的工程文件。
+该项目的工程文件：
 
 :tex_raw:[[\begin{itemize}]]
 :tex_raw:[[\item ]]第11行引入“outdirpath.pri”文件，此文件定义了输出路径。
@@ -67,7 +67,7 @@ POSIX平台下需要在开头加“file://”。
 :the_book_file:[[f000026]] :tex_raw:[[%main4.qml]]
 
 Qt Quick依赖于OpenGL。:tex_raw:[[\lstlistingname\ \ref{f000027}]]
-展示常用OpenGL参数设置。
+展示常用OpenGL参数设置：
 
 :the_book_file:[[f000027]] :tex_raw:[[%main5.qml]]
 
@@ -105,8 +105,25 @@ QQuickView被设计用来提供一个在显示器上
 如果读者需要在移动设备上呈现Qml，
 QQuickView是一个好的选择。
 
+:tex_raw:[[\lstlistingname\ \ref{f000020}]]
+展示了使用QQuickView加载Qml的C++代码:tex_raw:[[\footnote{]]
+将宏QML_USE_WINDOW_TYPE的值改为1
+:tex_raw:[[}]]；
+:tex_raw:[[\lstlistingname\ \ref{f000023}]]
+展示了一个简单显示一个红色窗口的Qml代码。
+
 :the_book_file:[[f000020]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]
+
+如:tex_raw:[[\lstlistingname\ \ref{f000020}]]
+的72~82行所示，本书在Debug模式下从当前
+项目目录下载入Qml文件，而在Release模式下
+从应用程序目录下载入Qml文件。
+
+将当前项目目录文件拷贝到应用程序目录是依靠本书自带的
+一个小工具“build_install”达成的。
+此工具对于非qml文件仅仅是拷贝，而对于qml文件做了更多处理。
+后续章节会有介绍。
 
 :the_book_subsection:[[ss001110]]
 
@@ -126,8 +143,26 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 使用QQuickWidget比使用QQuickView能够获得
 更好的效果，甚至能消除一些BUG。
 
+:tex_raw:[[\lstlistingname\ \ref{f000021}]]
+展示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
+将宏QML_USE_WINDOW_TYPE的值改为2
+:tex_raw:[[}]]；
+:tex_raw:[[\lstlistingname\ \ref{f000024}]]
+展示了一个简单显示一个红色窗口的Qml代码。
+
 :the_book_file:[[f000021]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000024]] :tex_raw:[[%main2.qml]]
+
+读者可以分别在Debug和Release模式下运行此程序，会发现Debug
+模式比Release模式多了一个边框。这一切都是靠本书自带的小工具
+“build_install”实现的。
+
+如:tex_raw:[[\lstlistingname\ \ref{f000024}]]
+的10~12行所示。本书自带的小工具“build_install”在拷贝
+qml文件时会将/*begin:debug*/和/*end:debug*/之间的内容
+替换为注释。
+
+读者采用此小工具可以达到一些调试效果。
 
 :the_book_subsection:[[ss001210]]
 
@@ -142,7 +177,16 @@ Qt Quick Controls一些控件比如“对话框”需要一些
 QQmlApplicationEngine就是被设计用来提供这些全局支持的。
 
 如果读者不需要传统对话框的话，
-QQuickView或QQuickWidget也是可以使用的。
+QQuickView或QQuickWidget也是足够使用的。
+但如果使用类似于对话框这样的功能，还是建议
+读者使用QQmlApplicationEngine。
+
+:tex_raw:[[\lstlistingname\ \ref{f000022}]]
+展示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
+将宏QML_USE_WINDOW_TYPE的值改为3
+:tex_raw:[[}]]；
+:tex_raw:[[\lstlistingname\ \ref{f000025}]]
+展示了一个简单显示一个红色窗口的Qml代码。
 
 :the_book_file:[[f000022]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000025]] :tex_raw:[[%main3.qml]]
