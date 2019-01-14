@@ -1,0 +1,11 @@
+﻿inline QUrl getLocalFileFullPath(
+    const QString & argFileName,
+    const QString & argBase) {
+    const QDir varRootDir{ argBase };
+    const auto varAns = varRootDir.absoluteFilePath(argFileName);
+    if (varAns.startsWith(QChar('/'))) {
+        return QStringLiteral(R"(file://)") + varAns;
+    } else {
+        return QStringLiteral(R"(file:///)") + varAns;
+    }
+}

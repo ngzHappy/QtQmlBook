@@ -50,6 +50,13 @@
 :tex_raw:[[%设置Qt Quick运行参数]]
 :the_book_subsubsection:[[ss001v10]]
 
+:the_book_file:[[f000026]] :tex_raw:[[%main4.qml]]
+:the_book_file:[[f000027]] :tex_raw:[[%main5.qml]]
+:the_book_file:[[f000028]] :tex_raw:[[%main6.qml]]
+:the_book_file:[[f000029]] :tex_raw:[[%main7.qml]]
+
+:the_book_file:[[f00002u]] :tex_raw:[[%import_sstd_qt_and_qml_library.1.pri]]
+
 :the_book_subsubsection:[[ss001010]]
 :the_book_file:[[f000020]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]

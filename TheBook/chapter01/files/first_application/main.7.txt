@@ -1,0 +1,6 @@
+﻿inline void afterApplication() {
+    {
+        QImage varImage{QStringLiteral("test.png")};
+        (void)varImage;
+    }
+}
