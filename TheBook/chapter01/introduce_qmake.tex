@@ -43,6 +43,7 @@ qmake比cmake更加专注。
 \lstlistingname\ \ref{f000003}。
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000002,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -76,6 +77,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 %\end{spacing}
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000003,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -137,6 +139,7 @@ int main(int , char **) {
 保留第一行，
 观察Qt Creator的“概要信息”输出什么。
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f00000d,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -167,6 +170,7 @@ mydebug{
 所示。
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \refstepcounter{treeindexnumber}\label{d000001}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
@@ -199,6 +203,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
 比如本节采用的“CONFIG {\sourcefonttwo{}+}{\sourcefonttwo{}=} ordered”就要求项目按照定义顺序编译。
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000010,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -227,6 +232,7 @@ SUBDIRS += the_app
 \end{itemize}
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000016,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -273,6 +279,7 @@ include($$PWD/../test_library/import_test_library.pri)
 “\hspace{0.05em}\rule[0.7ex]{0.4em}{0.65pt}\hspace{0.05em}l”后面紧跟库的名称；
 \end{itemize}
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000011,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -294,6 +301,7 @@ CONFIG(debug,debug|release){
 “TEMPLATE {\sourcefonttwo{}=} lib”，如\lstlistingname\ \ref{f000012} 第13行所示。
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000012,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -343,6 +351,7 @@ DEFINES *= D_TEST_LIBRARY
 。
 都是标准C{\sourcefonttwo{}+}{\sourcefonttwo{}+}，本书不赘述。
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000014,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -368,6 +377,7 @@ public:
 %\end{spacing}
 %TestLibrary.hpp
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000013,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -389,6 +399,7 @@ void TestClass::foo() {
 %\end{spacing}
 %TestLibrary.cpp
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000015,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -417,7 +428,7 @@ qmake远比读者想象的要复杂的多，
 本节向读者展示一些常见功能如何使用qmake实现。
 
 
-\begin{figure}[ht] %浮动体 here and top ...
+\begin{figure}[htb] %浮动体 here and top ...
 \centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
 \caption{qmake对C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}编译链接过程控制点} %标题
@@ -444,6 +455,7 @@ QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK。
 所示。
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \refstepcounter{treeindexnumber}\label{d000000}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
@@ -470,6 +482,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
  %tree.txt
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000004,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -540,6 +553,7 @@ SUBDIRS += the_run
 
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000005,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -626,6 +640,7 @@ export(QMAKE_POST_LINK)
 没有新知识点，本书不赘述。
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000008,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -659,6 +674,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 %\end{spacing}
  %before_run.pro
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000009,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -715,6 +731,7 @@ int main(int argc, char ** argv) {
  %before_run/main.cpp
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000006,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -748,6 +765,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 %\end{spacing}
  %after_run.pro
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000007,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -804,6 +822,7 @@ int main(int argc, char ** argv) {
  %after_run/main.cpp
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f00000b,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -837,6 +856,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 %\end{spacing}
  %new_moc.pro
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f00000c,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -880,6 +900,7 @@ int main(int argc, char ** argv) {
  %new_moc/main.cpp
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f00000a,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -914,6 +935,7 @@ qmake生成Visual Studio工程
 如\commandnumbernameone\ \ref{command000003}：
 
 %\begin{spacing}{1.0}
+\FloatBarrier
 \refstepcounter{commandnumber}\label{command000003}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 title=\commandnumbernameone \thecommandnumber
@@ -939,6 +961,7 @@ qmake -r -tp vc < 工程名称 >
 如\lstlistingname\ \ref{f000017}
 第5行所示：
 %\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=f000017,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -980,7 +1003,7 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 如\figurename\ \ref{p000003}。
 
 
-\begin{figure}[ht] %浮动体 here and top ...
+\begin{figure}[htb] %浮动体 here and top ...
 \centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_1.png} %图片路径
 \caption{qmake Variable Reference} %标题
@@ -994,7 +1017,7 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 “Running qmake”即可，
 如\figurename\ \ref{p000004}。
 
-\begin{figure}[ht] %浮动体 here and top ...
+\begin{figure}[htb] %浮动体 here and top ...
 \centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_2.png} %图片路径
 \caption{Running qmake} %标题
@@ -1008,7 +1031,7 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 “qmake Language”即可，
 如\figurename\ \ref{p000005}。
 
-\begin{figure}[ht] %浮动体 here and top ...
+\begin{figure}[htb] %浮动体 here and top ...
 \centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_3.png} %图片路径
 \caption{qmake Language} %标题

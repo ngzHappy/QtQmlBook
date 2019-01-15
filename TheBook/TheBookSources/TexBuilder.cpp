@@ -492,6 +492,7 @@ public:
                 /***********************************************/
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
+\FloatBarrier
 \begin{lstlisting}[label=%1,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -554,6 +555,7 @@ title=\lstlistingname\ \thelstlisting
                 /***********************************************/
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
+\FloatBarrier
 \refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
@@ -616,6 +618,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
                 /***********************************************/
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
+\FloatBarrier
 \refstepcounter{commandnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 title=\commandnumbernameone \thecommandnumber
