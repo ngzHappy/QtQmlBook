@@ -11,10 +11,8 @@ public:
         std::uint16_t left;
         std::uint16_t right;
     };
-    sstd$(data, sstd::vector< AudioDataItem >);
-    sstd$(isEndl, bool) {
-        false
-    };
+    sstd$(data,sstd::vector< AudioDataItem >);
+    sstd$(isEndl,bool) sstd$a(false);
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(AudioFrame);
 };
