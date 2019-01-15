@@ -12,8 +12,7 @@ public:
     }
     inline void stop() {
         sstd$(varPlayerThread, VideoPlayerThread *)sstd$a(nullptr);
-        while (false == mmmPlayerThread.compare_exchange_strong(
-            varPlayerThread, nullptr)) {
+        while (!mmmPlayerThread.compare_exchange_weak(varPlayerThread, nullptr)) {
             continue;
         }
         if (varPlayerThread) {

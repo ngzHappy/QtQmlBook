@@ -321,7 +321,7 @@ void sstd_virtual_basic::ppp_destruct_this_state() {
     sstd_virtual_basic_state * varOldState = nullptr;
 
     while(!mmm_this_state.
-        compare_exchange_strong(varOldState, &varNull));
+        compare_exchange_weak(varOldState, &varNull));
     assert(mmm_this_state.load()== &varNull);
 
     if (varOldState == nullptr) {
