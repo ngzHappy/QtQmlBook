@@ -48,12 +48,12 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 :tex_raw:[[\item ]]第7行定义了Rectangle的宽度；
 :tex_raw:[[\item ]]第8行定义了Rectangle的高度；
 :tex_raw:[[\item ]]第9行定义了Rectangle的颜色；
-:tex_raw:[[\item ]]第11~19行定义了两个子对象；
 :tex_raw:[[\end{itemize}]]
 
+:tex_raw:[[\item ]]第11~19行定义了两个子对象。
 和Qt Widgets一样，子对象在父对象之上。兄弟对象之间的关系是，
 后出现的对象在先出现的对象之上。
-也可以调整z属性调整兄弟对象直接的上下关系。
+也可以调整z属性调整兄弟对象的上下关系。
 
 读者可以尝试注释掉第12行和17行观察程序输出结果。
 
@@ -68,7 +68,7 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 :the_book_file:[[f000032]]:tex_raw:[[%MainRectangle.qml]]
 
 Qml是一门大小写敏感的计算机语言。
-读者使用import命令引入Qml定义的“对象”时，文件名必须以大写开头；
+读者使用import命令引入Qml定义的对象时，文件名必须以大写开头；
 而引入JavaScript文件时，
 文件名应当以小写开头。
 
