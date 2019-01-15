@@ -70,21 +70,20 @@ import "main_private" as MainPrivate
 
 Rectangle {
 
-    width: 640;
-    height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
+    width: 640
+    height: 480
+    color: Qt.rgba(0.8, 0.8, 0.8, 1)
 
-    MainPrivate.MainText{
-        z : 1 ;
-        anchors.fill : parent;
-    }/*~MainText*/
+    MainPrivate.MainText {
+        z: 1
+        anchors.fill: parent
+    } /*~MainText*/
 
     MainPrivate.MainRectangle {
-        z : 0 ;
-        anchors.fill : parent;
-    }/*~MainRectangle*/
-
-}/*~Rectangle*/
+        z: 0
+        anchors.fill: parent
+    } /*~MainRectangle*/
+} /*~Rectangle*/
 \end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.qml
@@ -93,11 +92,11 @@ Rectangle {
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
-/*MainRectangle.qml*/
+/*main_private/MainRectangle.qml*/
 import QtQuick 2.9
 
-Rectangle{
-    color : Qt.rgba(0.8,0.2,0.2,1);
+Rectangle {
+    color: Qt.rgba(0.8, 0.2, 0.2, 1)
 }
 \end{lstlisting}          %抄录环境
 %\end{spacing}
@@ -107,15 +106,16 @@ Rectangle{
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
-/*MainText.qml*/
+/*main_private/MainText.qml*/
 import QtQuick 2.9
 
 Text {
-    text: qsTr("你好世界！");
-    color: Qt.rgba(Math.random()/10,Math.random()/10,Math.random()/10,1);
-    font.pointSize: 32;
-    verticalAlignment : Text.AlignVCenter;
-    horizontalAlignment : Text.AlignHCenter;
+    text: qsTr("你好世界！")
+    color: Qt.rgba(Math.random() / 10, Math.random() / 10,
+                   Math.random() / 10, 1)
+    font.pointSize: 32
+    verticalAlignment: Text.AlignVCenter
+    horizontalAlignment: Text.AlignHCenter
 }
 \end{lstlisting}          %抄录环境
 %\end{spacing}
