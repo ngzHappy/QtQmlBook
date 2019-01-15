@@ -105,6 +105,11 @@ f000027::::chapter01/files/first_application/main.5.txt::::,firstnumber=18]
 f000028::::chapter01/files/first_application/main.6.txt::::,firstnumber=39]
 f000029::::chapter01/files/first_application/main.7.txt::::,firstnumber=54]
 
+f000030::::../chapter01/hellowworld/main.cpp::::]
+f000031::::../chapter01/hellowworld/myqml/hellowworld/main.qml::::]
+f000032::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainRectangle.qml::::]
+f000033::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainText.qml::::]
+
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
 d000001::::chapter01/files/import_library/tree.txt::::]

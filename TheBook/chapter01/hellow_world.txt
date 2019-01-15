@@ -7,9 +7,9 @@
 
 
 
-
-
-
-
+:the_book_file:[[f000030]]:tex_raw:[[%main.cpp]]
+:the_book_file:[[f000031]]:tex_raw:[[%main.qml]]
+:the_book_file:[[f000032]]:tex_raw:[[%MainRectangle.qml]]
+:the_book_file:[[f000033]]:tex_raw:[[%MainText.qml]]
 
 
