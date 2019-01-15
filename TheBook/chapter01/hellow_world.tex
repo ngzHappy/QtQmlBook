@@ -81,11 +81,8 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 本书以后章节的“main.cpp”都大同小异，以后不再赘述。
 
 
-
-
-
-
-
+“main.qml”如\lstlistingname\ \ref{f000031}
+所示：
 
 %\begin{spacing}{1.0}
 \FloatBarrier
@@ -116,6 +113,49 @@ Rectangle {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.qml
+
+\begin{itemize}
+
+\item 第3行展示了如何引入其他目录的Qml文件。
+其语法如\lstlistingname\ \ref{f000034}
+所示：
+
+%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[label=f000034,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+import "ResourceURL" as Qualifier
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+%1.txt
+
+\item 第5行定义了一个Rectangle：
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item 第7行定义了Rectangle的宽度；
+\item 第8行定义了Rectangle的高度；
+\item 第9行定义了Rectangle的颜色；
+\item 第11\raisebox{0.16ex}{\sourcefonttwo\~{}}19行定义了两个子对象；
+\end{itemize}
+
+和Qt Widgets一样，子对象在父对象之上。兄弟对象之间的关系是，
+后出现的对象在先出现的对象之上。
+也可以调整z属性调整兄弟对象直接的上下关系。
+
+读者可以尝试注释掉第12行和17行观察程序输出结果。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\item 第13行和第18行使用“anchors”确保子对象完全覆盖父对象。
+
+\end{itemize}
+
+“MainRectangle.qml”如\lstlistingname\ \ref{f000032}
+所示：
 %\begin{spacing}{1.0}
 \FloatBarrier
 \begin{lstlisting}[label=f000032,
@@ -131,6 +171,15 @@ Rectangle {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
 %MainRectangle.qml
+
+Qml是一门大小写敏感的计算机语言。
+读者使用import命令引入Qml定义的“对象”时，文件名必须以大写开头；
+而引入JavaScript文件时，
+文件名应当以小写开头。
+
+“MainText.qml”如\lstlistingname\ \ref{f000033}
+所示：
+
 %\begin{spacing}{1.0}
 \FloatBarrier
 \begin{lstlisting}[label=f000033,
@@ -151,6 +200,18 @@ Text {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
 %MainText.qml
+
+\begin{itemize}
+
+\item 第5行展示了如何在Qml中实现国际化，读者只需要用
+qsTr包装字符串即可；
+\item 第6\raisebox{0.16ex}{\sourcefonttwo\~{}}7行展示了可以在Qml中直接使用JavaScript；
+
+
+\end{itemize}
+
+
+
 
 
 

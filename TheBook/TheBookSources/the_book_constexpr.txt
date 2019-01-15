@@ -109,6 +109,7 @@ f000030::::../chapter01/hellowworld/main.cpp::::]
 f000031::::../chapter01/hellowworld/myqml/hellowworld/main.qml::::]
 f000032::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainRectangle.qml::::]
 f000033::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainText.qml::::]
+f000034::::chapter01/files/hellow_world/1.txt::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
