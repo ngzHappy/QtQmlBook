@@ -2,6 +2,8 @@
 
 :the_book_section:[[s100410]]
 
+:the_book_image:[[p000006]]
+
 绝大多数介绍计算机语言的书籍都有一
 个“Hellow World!”的案例，本书也不能免俗。
 
@@ -22,8 +24,11 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 目录作为根目录；
 :tex_raw:[[\end{itemize}]]
 
+本书以后章节的“main.cpp”都大同小异，以后不再赘述。
 
-:the_book_image:[[p000006]]
+
+
+
 
 
 
