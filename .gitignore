@@ -12,3 +12,4 @@ QtQmlMultimedia.pro.user
 build-TheBook-*
 *.fdb_latexmk
 *.synctex(busy)
+build_msvc.new.bat
