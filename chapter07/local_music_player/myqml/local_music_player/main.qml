@@ -40,7 +40,7 @@ Pane {
         }
         //nameFilters: [ "Image files (*.jpg *.png)", "All files (*)" ]
         Component.onCompleted: {
-            idFileDialog.folder = Qt.resolvedUrl("/TestAudio");
+            idFileDialog.folder = "TestAudio";
         }
     }
 
