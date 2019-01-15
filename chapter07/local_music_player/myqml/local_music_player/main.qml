@@ -20,7 +20,7 @@ Pane {
         idUrl.text = fileUrl ;
         if( !idMusicPlayer.openFile( fileUrl ) ){
             idTextArea.text = qsTr("打开文件失败：")
-                + fileUrl  ;
+                    + fileUrl  ;
         }else{
             idTextArea.text =
                     idMusicPlayer.fullFileInfo();
@@ -52,7 +52,7 @@ Pane {
         onTriggered: {
             if(idMusicPlayer.getState()===MusicPlayer.Play){
                 idProgressBar.value =
-                    idMusicPlayer.currentTime()/idMusicPlayer.duration;
+                        idMusicPlayer.currentTime()/idMusicPlayer.duration;
             }else if(idMusicPlayer.getState()===MusicPlayer.Close){
                 idProgressBar.value=0;
             }
@@ -60,8 +60,8 @@ Pane {
     }
 
     ColumnLayout {
-       anchors.fill: parent;
-       anchors.margins: 8
+        anchors.fill: parent;
+        anchors.margins: 8
 
         ProgressBar {
             id: idProgressBar
@@ -146,14 +146,18 @@ Pane {
             clip: true
 
             function ensureVisible(r) {
-                if (contentX >= r.x)
+                if (contentX >= r.x){
                     contentX = r.x;
-                else if (contentX+width <= r.x+r.width)
+                }
+                else if (contentX+width <= r.x+r.width){
                     contentX = r.x+r.width-width;
-                if (contentY >= r.y)
+                }
+                if (contentY >= r.y){
                     contentY = r.y;
-                else if (contentY+height <= r.y+r.height)
+                }
+                else if (contentY+height <= r.y+r.height){
                     contentY = r.y+r.height-height;
+                }
             }
 
             TextArea{
