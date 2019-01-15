@@ -121,9 +121,9 @@ namespace this_file {
 
 class _VideoReaderPirvate {
 public:
-    sstd$(super,VideoReader* const);
-    sstd$(isFileOpen,bool) sstd$a(false);
-    sstd$(contex,ffmpeg::AVFormatContext *)sstd$a(nullptr);
+    VideoReader* const super ;
+    sstd_bool isFileOpen  sstd$a(false);
+    ffmpeg::AVFormatContext * contex sstd$a(nullptr);
     _VideoReaderPirvate(VideoReader* s) : super(s) {
     }
 

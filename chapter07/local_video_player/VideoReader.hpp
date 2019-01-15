@@ -15,7 +15,7 @@ public:
     /*打开文件并读取元信息*/
     bool open(const QString &);
 private:
-    sstd$(thisp,const _VideoReaderPirvate *);
+    const _VideoReaderPirvate * thisp;
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(VideoReader);
 };

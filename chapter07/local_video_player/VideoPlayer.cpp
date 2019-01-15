@@ -3,15 +3,15 @@
 
 class _VideoPlayerPrivate {
 public:
-    sstd$(mmmVolume, qreal)sstd$a(1);
-    sstd$(mmmDuration, qint64)sstd$a(0);
-    sstd$(mmmSuper, VideoPlayer * const);
-    sstd$(mmmPlayerThread, std::atomic<VideoPlayerThread *>)sstd$a(nullptr);
+    qreal mmmVolume sstd$a(1);
+    qint64 mmmDuration sstd$a(0);
+    VideoPlayer * const mmmSuper ;
+    std::atomic<VideoPlayerThread *> mmmPlayerThread sstd$a(nullptr);
     inline _VideoPlayerPrivate(VideoPlayer * s) :
         mmmSuper(s) {
     }
     inline void stop() {
-        sstd$(varPlayerThread, VideoPlayerThread *)sstd$a(nullptr);
+        VideoPlayerThread * varPlayerThread sstd$a(nullptr);
         while (!mmmPlayerThread.compare_exchange_weak(varPlayerThread, nullptr)) {
             continue;
         }
