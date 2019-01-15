@@ -129,7 +129,7 @@ command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 %:tex_raw:[[\lstlistingname\ \ref{f000017}]]
 %
 %:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
-%
+%itemize
 %:tex_raw:[[\begin{enumerate}]]
 %:tex_raw:[[\end{enumerate}]]
 %

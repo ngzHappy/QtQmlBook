@@ -14,17 +14,11 @@
 }\label{s100410}
 
 
+绝大多数介绍计算机语言的书籍都有一
+个“Hellow World!”的案例，本书也不能免俗。
 
-
-\begin{figure}[htb] %浮动体 here and top ...
-\centering %中心对齐
-\includegraphics[width=0.95\textwidth]{../chapter01/hellowworld/the_app.png} %图片路径
-\caption{你好世界！} %标题
-\label{p000006} %索引
-\end{figure}
-
-
-
+本章的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码
+如\lstlistingname\ \ref{f000030}：
 
 %\begin{spacing}{1.0}
 \FloatBarrier
@@ -48,7 +42,9 @@ int main(int argc, char ** argv) {
         varWindow->load(varFullFileName);
         /*检查并报错*/
         if (varWindow->status() != sstd::LoadState::Ready) {
-            qWarning() << QStringLiteral("can not load : ") << varFullFileName;
+            qWarning() <<
+                       QStringLiteral("can not load : ")
+                       << varFullFileName;
             return -1;
         }
     }
@@ -60,6 +56,32 @@ int main(int argc, char ** argv) {
 \end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.cpp
+
+本书将大量的程序细节隐藏到了“sstd\underline{\hspace{0.5em}}qt\underline{\hspace{0.5em}}and\underline{\hspace{0.5em}}qml\underline{\hspace{0.5em}}library”库里面。
+
+\begin{itemize}
+\item sstd::Application用于构造QApplication，
+并初始化Qt Quick运行所需的参数；
+\item sstd::DefaultRoowWindow在Debug
+模式下继承自QQuickWidget，在Release模式下继承自QQuickView；
+\item sstd::getLocalFileFullPath在
+Debug模式以当前文件目录作为根目录，在Release模式下以应用程序
+目录作为根目录；
+\end{itemize}
+
+
+
+\begin{figure}[htb] %浮动体 here and top ...
+\centering %中心对齐
+\includegraphics[width=0.95\textwidth]{../chapter01/hellowworld/the_app.png} %图片路径
+\caption{你好世界！} %标题
+\label{p000006} %索引
+\end{figure}
+
+
+
+
+
 %\begin{spacing}{1.0}
 \FloatBarrier
 \begin{lstlisting}[label=f000031,

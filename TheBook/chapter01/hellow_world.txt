@@ -2,12 +2,32 @@
 
 :the_book_section:[[s100410]]
 
+绝大多数介绍计算机语言的书籍都有一
+个“Hellow World!”的案例，本书也不能免俗。
+
+本章的C++代码
+如:tex_raw:[[\lstlistingname\ \ref{f000030}]]：
+
+:the_book_file:[[f000030]]:tex_raw:[[%main.cpp]]
+
+本书将大量的程序细节隐藏到了“sstd_qt_and_qml_library”库里面。
+
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]sstd::Application用于构造QApplication，
+并初始化Qt Quick运行所需的参数；
+:tex_raw:[[\item ]]sstd::DefaultRoowWindow在Debug
+模式下继承自QQuickWidget，在Release模式下继承自QQuickView；
+:tex_raw:[[\item ]]sstd::getLocalFileFullPath在
+Debug模式以当前文件目录作为根目录，在Release模式下以应用程序
+目录作为根目录；
+:tex_raw:[[\end{itemize}]]
+
 
 :the_book_image:[[p000006]]
 
 
 
-:the_book_file:[[f000030]]:tex_raw:[[%main.cpp]]
+
 :the_book_file:[[f000031]]:tex_raw:[[%main.qml]]
 :the_book_file:[[f000032]]:tex_raw:[[%MainRectangle.qml]]
 :the_book_file:[[f000033]]:tex_raw:[[%MainText.qml]]
