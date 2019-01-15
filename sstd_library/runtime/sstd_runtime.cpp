@@ -316,6 +316,10 @@ sstd_virtual_basic_state sstd_virtual_basic::ppp_construct_this_state() {
     return *(varOldState);
 }
 
+/*
+此函数只应当被执行一遍...
+此函数的设计是过安全的...
+*/
 void sstd_virtual_basic::ppp_destruct_this_state() {
     static sstd_virtual_basic_state varNull{ nullptr };
     sstd_virtual_basic_state * varOldState = nullptr;
