@@ -1,10 +1,9 @@
-﻿#include "DrawImageItem.hpp"
+﻿/*directdrawbyopengl/DrawImageItem.cpp*/
+#include "DrawImageItem.hpp"
 #include <string_view>
 #include <array>
 
 using namespace std::string_view_literals;
-
-/* Scene Graph - OpenGL Under QML */
 
 namespace {
 
