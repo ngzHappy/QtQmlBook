@@ -1,0 +1,1 @@
+﻿::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");

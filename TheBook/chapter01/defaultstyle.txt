@@ -22,13 +22,41 @@ Qt Quick Controls 2更加现代化并更适用于
 除了维护老项目，
 没有什么理由不采用Qt Quick Controls 2。
 
+本项目的“main.qml”如:tex_raw:[[\lstlistingname\ \ref{f000035}]]
+所示：
 
 :the_book_file:[[f000035]]:tex_raw:[[%main.qml]]
 
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第21行展示了如何使用Layout；
+:tex_raw:[[\item ]]第28行、第37行、第43行、第49行
+展示了使用关联属性:tex_raw:[[\footnote{]]
+Attached Properties。
+:tex_raw:[[}]]
+:tex_raw:[[\item ]]第29~31行展示了如何关联一个Qml信号到一个
+JavaScript函数；:tex_raw:[[%……]]
+:tex_raw:[[\item ]]第13~19行展示了如何在一个Qml对象里面
+使用JavaScript定义
+一个槽函数；
+:tex_raw:[[\end{itemize}]]
+
+本案例演示了如何使用Qt Quick Control自带的“Material”样式。
+
+要使用Qt Quick Control自带的样式，需要在QApplication
+构造之前调用如:tex_raw:[[\lstlistingname\ \ref{f000037}]]
+所示的C++代码，以载入配置文件。
+
+:the_book_file:[[f000037]]
+
+配置文件内容如:tex_raw:[[\lstlistingname\ \ref{f000036}]]
+所示：
 :the_book_file:[[f000036]]:tex_raw:[[%defaultstyle_qtquickcontrols2.conf]]
 
+Qt Quick Control的样式具有继承性。
 
-
+子控件的样式与父控件一致，
+只需要更改父控件的样式，
+则子控件的样式跟随父控件变化。
 
 
 

@@ -41,6 +41,8 @@ Qt Quick Controls 2更加现代化并更适用于
 除了维护老项目，
 没有什么理由不采用Qt Quick Controls 2。
 
+本项目的“main.qml”如\lstlistingname\ \ref{f000035}
+所示：
 
 %\begin{spacing}{1.0}
 \FloatBarrier
@@ -106,6 +108,38 @@ Pane {
 %\end{spacing}
 %main.qml
 
+\begin{itemize}
+\item 第21行展示了如何使用Layout；
+\item 第28行、第37行、第43行、第49行
+展示了使用关联属性\footnote{
+Attached Properties。
+}
+\item 第29\raisebox{0.16ex}{\sourcefonttwo\~{}}31行展示了如何关联一个Qml信号到一个
+JavaScript函数；%……
+\item 第13\raisebox{0.16ex}{\sourcefonttwo\~{}}19行展示了如何在一个Qml对象里面
+使用JavaScript定义
+一个槽函数；
+\end{itemize}
+
+本案例演示了如何使用Qt Quick Control自带的“Material”样式。
+
+要使用Qt Quick Control自带的样式，需要在QApplication
+构造之前调用如\lstlistingname\ \ref{f000037}
+所示的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码，以载入配置文件。
+
+%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[label=f000037,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+]
+::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");
+\end{lstlisting}          %抄录环境
+%\end{spacing}
+
+
+配置文件内容如\lstlistingname\ \ref{f000036}
+所示：
 %\begin{spacing}{1.0}
 \FloatBarrier
 \begin{lstlisting}[label=f000036,
@@ -122,8 +156,11 @@ Theme=Dark
 %\end{spacing}
 %defaultstyle_qtquickcontrols2.conf
 
+Qt Quick Control的样式具有继承性。
 
-
+子控件的样式与父控件一致，
+只需要更改父控件的样式，
+则子控件的样式跟随父控件变化。
 
 
 

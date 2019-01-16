@@ -115,6 +115,7 @@ f000034::::chapter01/files/hellow_world/1.txt::::]
 
 f000035::::../chapter01/defaultstyle/myqml/defaultstyle/main.qml::::]
 f000036::::../chapter01/defaultstyle/myqml/defaultstyle_qtquickcontrols2.conf::::]
+f000037::::chapter01/files/defaultsytle/1.txt::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
