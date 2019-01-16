@@ -35,6 +35,7 @@ ss001210::::使用QQmlApplicationEngine加载Qt Quick程序
 %第4节
 s100410::::你好世界！
 s100510::::初识Qt Quick控件
+s100610::::在Qt Quick中使用着色器
 
 %第二章
 c000011::::Qt Quick基础
@@ -65,6 +66,8 @@ p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[htb]::::[width
 p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[htb]::::[width=0.95\textwidth]
 p000006::::你好世界！::::../chapter01/hellowworld/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000007::::Qt Quick控件及样式！::::../chapter01/defaultstyle/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000008::::Qt Quick中使用着色器::::../chapter01/shadereffect/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000009::::Qt Quick着色器中使用纹理::::../chapter01/shadereffectwithimage/the_app.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
@@ -117,6 +120,9 @@ f000035::::../chapter01/defaultstyle/myqml/defaultstyle/main.qml::::]
 f000036::::../chapter01/defaultstyle/myqml/defaultstyle_qtquickcontrols2.conf::::]
 f000037::::chapter01/files/defaultsytle/1.txt::::]
 
+f000038::::../chapter01/shadereffect/myqml/shadereffect/main.qml::::]
+f000039::::../chapter01/shadereffectwithimage/myqml/shadereffectwithimage/main.qml::::]
+
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
 d000001::::chapter01/files/import_library/tree.txt::::]
@@ -143,3 +149,13 @@ command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 %:tex_raw:[[\commandnumbernameone\ \ref{command000003}]]
 %
 %:tex_raw:[[\footnote{]]:tex_raw:[[}]]
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
