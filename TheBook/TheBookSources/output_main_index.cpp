@@ -70,6 +70,14 @@ inline static void output_chapter_01() {
             the_book_throw(u8R"(chapter01/hellow_world.tex)"sv);
         }
     }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.tex")));
+        if(false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/defaultstyle.tex)"sv);
+        }
+    }
 }
 
 inline static void output_chapter_02() {

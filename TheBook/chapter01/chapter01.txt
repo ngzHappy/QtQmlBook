@@ -10,6 +10,11 @@
 \input{chapter01/introduce_qmake.tex}
 \input{chapter01/first_application.tex}
 \input{chapter01/hellow_world.tex}
+\input{chapter01/defaultstyle.tex}
+
+
+
+
 
 ]===]
 

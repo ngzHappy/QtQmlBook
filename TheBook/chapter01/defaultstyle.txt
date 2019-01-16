@@ -1,0 +1,38 @@
+﻿
+:the_book_section:[[s100510]]
+
+:the_book_image:[[p000007]]
+
+Qt Quick Controls 2 自Qt 5.7引入。
+
+本书不加特别说明，提到Qt Quick Controls就是指
+Qt Quick Controls 2。
+
+Qt Quick Controls 1更多的是沿用传统桌面
+的设计风格；而
+Qt Quick Controls 2更加现代化并更适用于
+移动设备。
+并且，Qt Quick Controls 2对于主题和样式
+提供了专门的语法支持。
+
+基于这些语法，读者可以轻松的实现样式、内容和结构分离。
+即使读者不想在样式上太花费心思，Qt Quick Controls 2也
+默认提供了数个艺术级的样式模板。
+
+除了维护老项目，
+没有什么理由不采用Qt Quick Controls 2。
+
+
+:the_book_file:[[f000035]]:tex_raw:[[%main.qml]]
+
+:the_book_file:[[f000036]]:tex_raw:[[%defaultstyle_qtquickcontrols2.conf]]
+
+
+
+
+
+
+
+
+
+

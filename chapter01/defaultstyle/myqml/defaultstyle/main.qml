@@ -1,4 +1,4 @@
-﻿/*main.qml*/
+﻿/*defaultstyle/main.qml*/
 import QtQuick 2.9
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
@@ -9,6 +9,14 @@ Pane {
     id : idRoot
     width: 640;
     height: 480;
+
+    function changeTheme(){
+        if(idRoot.Material.theme === Material.Dark ){
+            idRoot.Material.theme = Material.Light;
+        }else{
+            idRoot.Material.theme = Material.Dark;
+        }
+    }
 
     ColumnLayout {
         id: idColumn
@@ -41,14 +49,6 @@ Pane {
             Layout.fillWidth : true
         }
 
-    }
-
-    function changeTheme(){
-        if(idRoot.Material.theme === Material.Dark ){
-            idRoot.Material.theme = Material.Light;
-        }else{
-            idRoot.Material.theme = Material.Dark;
-        }
     }
 
 }/*~Pane*/

@@ -34,6 +34,7 @@ ss001210::::使用QQmlApplicationEngine加载Qt Quick程序
 
 %第4节
 s100410::::你好世界！
+s100510::::初识Qt Quick控件
 
 %第二章
 c000011::::Qt Quick基础
@@ -63,6 +64,7 @@ p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[htb
 p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[htb]::::[width=0.95\textwidth]
 p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[htb]::::[width=0.95\textwidth]
 p000006::::你好世界！::::../chapter01/hellowworld/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000007::::Qt Quick控件及样式！::::../chapter01/defaultstyle/the_app.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
@@ -110,6 +112,9 @@ f000031::::../chapter01/hellowworld/myqml/hellowworld/main.qml::::]
 f000032::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainRectangle.qml::::]
 f000033::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainText.qml::::]
 f000034::::chapter01/files/hellow_world/1.txt::::]
+
+f000035::::../chapter01/defaultstyle/myqml/defaultstyle/main.qml::::]
+f000036::::../chapter01/defaultstyle/myqml/defaultstyle_qtquickcontrols2.conf::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
