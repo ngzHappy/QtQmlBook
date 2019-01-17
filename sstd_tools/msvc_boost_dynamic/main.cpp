@@ -73,13 +73,13 @@ int main(int argc,char ** argv) {
 
 
     varStream << "CONFIG(debug,debug|release){"sv << std::endl;
-    for(const auto & varName : varRelease) {
+    for(const auto & varName : varDebug) {
         varStream << "    LIBS += -l"sv
             << varName.substr(0,varName.size() - 4)
             << std::endl;
     }
     varStream << "}else{"sv << std::endl;
-    for(const auto & varName : varDebug) {
+    for(const auto & varName : varRelease) {
         varStream << "    LIBS += -l"sv
             << varName.substr(0,varName.size() - 4)
             << std::endl;
