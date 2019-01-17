@@ -23,7 +23,7 @@ win32{
 }
 
 win32{
-    msvc*{
+    win32-msvc*{
         include($$PWD/msvc_boost.pri)
     }else{
         include($$PWD/mingw_boost.pri)
