@@ -16,11 +16,19 @@ win32-msvc*{
 #boost environment
 DEFINES *= BOOST_THREAD_PROVIDES_FUTURE_CTOR_ALLOCATORS
 DEFINES *= BOOST_THREAD_VERSION=4
+DEFINES *= BOOST_ALL_NO_LIB
+DEFINES *= BOOST_ALL_DYN_LINK
 win32{
     DEFINES *= BOOST_USE_WINAPI_VERSION=0x0501
 }
 
-
+win32{
+    msvc*{
+        include($$PWD/msvc_boost.pri)
+    }else{
+        include($$PWD/mingw_boost.pri)
+    }
+}
 
 
 

@@ -59,9 +59,10 @@ int main(int argc,char ** argv) {
             continue;
         }
         if(varName.find("lib") == 0) {
-            auto varName1 = varName.substr(3);
-            fs::rename(varRootPath / varName,varRootPath / varName1);
-            varName = std::move(varName1);
+            continue;
+            //auto varName1 = varName.substr(3);
+            //fs::rename(varRootPath / varName,varRootPath / varName1);
+            //varName = std::move(varName1);
         }
         if(varName.find("-gd-"sv) == std::string::npos) {
             varRelease.push_back(varName);
@@ -73,13 +74,13 @@ int main(int argc,char ** argv) {
 
     varStream << "CONFIG(debug,debug|release){"sv << std::endl;
     for(const auto & varName : varRelease) {
-        varStream << "    LIBS+= -l"sv
+        varStream << "    LIBS += -l"sv
             << varName.substr(0,varName.size() - 4)
             << std::endl;
     }
     varStream << "}else{"sv << std::endl;
     for(const auto & varName : varDebug) {
-        varStream << "    LIBS+= -l"sv
+        varStream << "    LIBS += -l"sv
             << varName.substr(0,varName.size() - 4)
             << std::endl;
     }
