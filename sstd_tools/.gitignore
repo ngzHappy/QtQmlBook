@@ -1,2 +1,4 @@
 create_default_project/create_default_project.pro.user
+mingw_boost_dynamic.pro.user
 build-create_default_project-*
+build-mingw_boost_dynamic*

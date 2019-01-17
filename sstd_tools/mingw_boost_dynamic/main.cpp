@@ -9,14 +9,76 @@ namespace fs = std::experimental::filesystem;
 
 #include <iostream>
 #include <fstream>
-
+#include <vector>
 #include <string>
+#include <string_view>
 using namespace std::string_literals;
+using namespace std::string_view_literals;
 
-int main(int ,char ** argv){
+class OutPutStream : public std::ofstream {
+    using super = std::ofstream;
+public:
+    template<typename T,
+             typename = std::enable_if_t<
+                 std::is_constructible_v<super,T&& >>>
+    inline OutPutStream(T && arg) :
+        super(std::forward<T>(arg),std::ios::binary) {
+    }
+    template<typename T,
+             typename = void,
+             typename = std::enable_if_t<
+                 !std::is_constructible_v<super,T&& >>>
+    inline OutPutStream(T && arg) :
+        super(std::forward<T>(arg).string(),std::ios::binary) {
+    }
+};
 
-    fs::path varRootFileName{ argv[0] };
-    
+int main(int argc,char ** argv){
+
+    if(argc<1){
+        return -1;
+    }
+
+    fs::path varRootPath {argv[1]};
+    fs::path varRootFileName{ varRootPath/"mingw_boost.pri"s };
+    OutPutStream varStream{ varRootFileName };
+
+    fs::directory_iterator varIt{varRootPath};
+    const fs::directory_iterator varEnd{};
+
+    std::vector<std::string> varFileNames{};
+    for(;varIt!=varEnd;++varIt){
+        const auto & varFilePath = varIt->path();
+        varFileNames.emplace_back( varFilePath.filename().string() );
+    }
+
+    std::vector<std::string> varRelease{};
+    std::vector<std::string> varDebug{};
+    for(const auto & varName : varFileNames ){
+        if(varName.find(".dll.a"sv)==std::string::npos ){
+            continue;
+        }
+        if(varName.find("-d-"sv)==std::string::npos){
+            varRelease.push_back(varName);
+        }else{
+            varDebug.push_back(varName);
+        }
+    }
+
+
+    varStream << "CONFIG(debug,debug|release){"sv << std::endl ;
+    for(const auto & varName : varRelease){
+        varStream << "    LIBS+= -l"sv
+                  << varName.substr(3,varName.size()-5)
+                  << std::endl;
+    }
+    varStream << "}else{"sv << std::endl ;
+    for(const auto & varName : varDebug ){
+        varStream << "    LIBS+= -l"sv
+                  << varName.substr(3,varName.size()-5)
+                  << std::endl;
+    }
+     varStream << "}"sv << std::endl ;
 
 }
 
