@@ -155,7 +155,7 @@ namespace sstd {
             inline TypedFiberFunction(U && u) :
                 mmmFunction(std::forward<U>(u)) {
             }
-            inline virtual Fiber do_call(FiberFunction * a,Fiber && f) override {
+            inline virtual Fiber do_call(FiberFunction<ReturnType_> * a,Fiber && f) override {
                 return mmmFunction(a,std::move(f));
             }
         private:
