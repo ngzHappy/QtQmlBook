@@ -30,32 +30,40 @@ namespace sstd {
                 return { this->shared_from_this(),
                     &(const_cast<Promise *>(this)->mmmFuture) };
             }
-            inline void set_exception() {
+            inline void set_exception() noexcept {
                 if(mmmIsSetValue) {
                     return;
                 }
                 mmmIsSetValue = true;
                 mmmPromise.set_exception(std::current_exception());
             }
-            inline void set_value() {
+            inline void set_value() noexcept {
                 if(mmmIsSetValue) {
                     return;
                 }
                 mmmIsSetValue = true;
-                if constexpr(std::is_same_v<void,
-                    std::remove_cv_t< std::remove_reference_t<ReturnType_>>>) {
-                    mmmPromise.set_value();
-                } else {
-                    mmmPromise.set_value({});
+                try {
+                    if constexpr(std::is_same_v<void,
+                        std::remove_cv_t< std::remove_reference_t<ReturnType_>>>) {
+                        mmmPromise.set_value();
+                    } else {
+                        mmmPromise.set_value({});
+                    }
+                } catch(...) {
+                    mmmPromise.set_exception(std::current_exception());
                 }
             }
             template<typename TV>
-            inline void set_value(TV && v) {
+            inline void set_value(TV && v) noexcept {
                 if(mmmIsSetValue) {
                     return;
                 }
                 mmmIsSetValue = true;
-                mmmPromise.set_value(std::forward<TV>(v));
+                try {
+                    mmmPromise.set_value(std::forward<TV>(v));
+                } catch(...) {
+                    mmmPromise.set_exception(std::current_exception());
+                }
             }
         private:
             SSTD_DEFINE_STATIC_CLASS(Promise);
@@ -63,12 +71,12 @@ namespace sstd {
         std::shared_ptr<Promise> mmmPromise;
 
         class ThisCall {
-            FiberFunction * mmmElement;
+            FiberFunction * const mmmElement;
         public:
-            inline ThisCall(FiberFunction * arg) :
+            inline ThisCall(FiberFunction * arg) noexcept :
                 mmmElement(arg) {
             }
-            inline Fiber operator()(Fiber && arg) const {
+            inline Fiber operator()(Fiber && arg) const noexcept {
                 try {
                     return
                         mmmElement->do_call(mmmElement,std::move(arg));
@@ -92,7 +100,7 @@ namespace sstd {
                 boost::context::protected_fixedsize_stack{ 1024 * 1024 * 10 },
                 ThisCall{ this });
         }
-        inline bool resume() {
+        inline bool resume() noexcept {
             if(mmmFiber) {
                 if(ppp_checked_fiber()) {
                     ppp_unchecked_resume();
@@ -102,7 +110,7 @@ namespace sstd {
             }
             return false;
         }
-        inline bool canResume() const {
+        inline bool canResume() const noexcept {
             if(mmmFiber) {
                 return ppp_checked_fiber();
             }
@@ -117,6 +125,9 @@ namespace sstd {
         }
         inline std::shared_ptr< std::future<ReturnType_> > getFuture() const {
             return mmmPromise->getFuture();
+        }
+        inline ~FiberFunction() {
+            mmmPromise->set_value();
         }
     protected:
         virtual Fiber do_call(FiberFunction*,Fiber && f) = 0;
