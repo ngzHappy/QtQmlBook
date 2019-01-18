@@ -10,9 +10,21 @@ namespace sstd {
 
     using Fiber = boost::context::fiber;
 
+    class FiberCall : 
+        public virtual sstd_intrusive_ptr_basic,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(FiberCall) {
+    public:
+        virtual ~FiberCall() = default;
+        /*ignore return and exception information*/
+        virtual bool call() = 0;
+    private:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(FiberCall);
+    };
+
     template<typename ReturnType_>
     class FiberFunction :
-        public virtual sstd_intrusive_ptr_basic {
+        public FiberCall,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(FiberFunction<ReturnType_>) {
     private:
         sstd_optional< Fiber > mmmFiber;
 
@@ -112,6 +124,9 @@ namespace sstd {
             }
             return false;
         }
+        inline bool call() override {
+            return this->resume();
+        }
         inline bool canResume() const noexcept {
             if(mmmFiber) {
                 return ppp_checked_fiber();
@@ -148,6 +163,7 @@ namespace sstd {
             return true;
         }
     private:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(FiberFunction);
     };
 
     namespace _12_private_ {
