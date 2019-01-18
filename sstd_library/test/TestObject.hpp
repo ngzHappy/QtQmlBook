@@ -16,6 +16,7 @@ private slots:
     void typeCastTest1();
     void dynamicObjectTest();
     void cleanupTestCase();
+    void testFiber();
 };
 
 
