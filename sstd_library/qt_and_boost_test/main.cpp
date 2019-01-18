@@ -11,8 +11,10 @@ boost::lockfree::spsc_queue
 #include <boost/lockfree/stack.hpp>
 #include <boost/lockfree/spsc_queue.hpp>
 
+#include <array>
 #include <string>
 #include <iostream>
+#include <sstream>
 
 template<typename T>
 class SingleReadSingleWriteQueue {
@@ -65,10 +67,71 @@ public:
 
 };
 
+template<typename T,std::size_t N=512>
+class IndexedQueue {
+    boost::lockfree::queue<
+        std::size_t,
+        boost::lockfree::fixed_sized<true>,
+        boost::lockfree::capacity<N>,
+        boost::lockfree::allocator<std::allocator<std::size_t>>
+    > mmmDataIndex ;
+    std::array<T,N> mmmData;
+public:
+    inline IndexedQueue() {
+        for(std::size_t n = 0; n < N;++n) {
+            mmmDataIndex.push(n);
+        }
+    }
+    inline bool getAIndex(std::size_t & arg) {
+        return mmmDataIndex.pop(arg);
+    }
+    inline bool giveBackAIndex(std::size_t arg) {
+        return mmmDataIndex.bounded_push(arg);
+    }
+    T & getDataByIndex(std::size_t n) {
+        return mmmData[n];
+    }
+    const T & getDataByIndex(std::size_t n) const {
+        return mmmData[n];
+    }
+    bool isEmpty() const {
+        return mmmDataIndex.empty();
+    }
+};
 
 int main(int argc,char ** argv) {
 
     QApplication varApplication{ argc,argv };
+
+    {
+        IndexedQueue< std::string > test;
+        
+        assert(false == test.giveBackAIndex(1024));
+
+        for(int i = 0; i < 32 ; ++i) {
+            std::thread([&test]() {
+                std::size_t n;
+                while(test.getAIndex(n)) {
+                    auto & var = test.getDataByIndex(n);
+                    std::stringstream ss;
+                    ss << n;
+                    ss >> var ;
+                }
+            }).detach();
+        }
+        
+        while(test.isEmpty()==false) {
+        }
+
+        for(int i = 0; i < 512;++i) {
+            std::cout << test.getDataByIndex(i) <<std::endl;
+        }
+
+        for(int i = 0; i < 512;++i) {
+            assert( test.giveBackAIndex(i) );
+        }
+
+    }
 
     {
         boost::lockfree::queue<int,std::allocator<int>> test{ 512 };
