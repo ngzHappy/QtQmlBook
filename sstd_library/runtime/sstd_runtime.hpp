@@ -475,14 +475,14 @@ template<typename T,
 
 
 #ifndef SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE
-#define SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_SSTD_T_) \
-    _0_SSTD_SUPER_PUBLIC sstd_runtime_basic<_SSTD_T_ , true>
+#define SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(...) \
+    _0_SSTD_SUPER_PUBLIC sstd_runtime_basic<__VA_ARGS__ , true>
 /**************************************************/
 #endif
 
 #ifndef SSTD_BEGIN_DEFINE_VIRTUAL_CLASS
-#define SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(_SSTD_T_) \
-    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(_SSTD_T_), \
+#define SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(...) \
+    SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(__VA_ARGS__), \
     public virtual sstd_virtual_basic
 /**************************************************/
 #endif
