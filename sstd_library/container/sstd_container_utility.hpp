@@ -64,19 +64,13 @@ inline void move_list_element_to_back(T & arg,const I & pos) {
     constexpr bool const canEqual =
         _12_private::CanEqual<ele_pos_type,I>::value;
     if constexpr(canEqual) {
-        if(arg.cend() == pos) {
-            return;
+        if((arg.cend() != pos)&&(pos != (--arg.cend()))) {
+            arg.splice(arg.end(),arg,pos);
         }
-        if(pos == (--arg.cend())) {
-            return;
-        }
-        arg.splice(arg.end(),arg,pos);
-        return;
     } else {
-        if(arg.crend() == pos) {
-            return;
+        if(arg.crend() != pos) {
+            return move_list_element_to_back(arg,--pos.base());
         }
-        return move_list_element_to_back(arg,--pos.base());
     }
 }
 
@@ -91,19 +85,13 @@ inline void move_list_element_to_front(T & arg,const I & pos) {
     constexpr bool const canEqual =
         _12_private::CanEqual<ele_pos_type,I>::value;
     if constexpr(canEqual) {
-        if(arg.cbegin() == pos) {
-            return;
-        }
-        if(arg.cend() == pos) {
-            return;
-        }
-        arg.splice(arg.begin(),arg,pos);
-        return;
+        if((arg.cbegin() != pos)&&(arg.cend() != pos)) {
+            arg.splice(arg.begin(),arg,pos);
+        }        
     } else {
-        if(arg.crend() == pos) {
-            return;
+        if(arg.crend() != pos) {
+            return move_list_element_to_front(arg,--pos.base());
         }
-        return move_list_element_to_front(arg,--pos.base());
     }
 }
 
