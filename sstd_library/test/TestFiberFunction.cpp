@@ -3,6 +3,14 @@
 
 #include <iostream>
 
+class TestAClass {
+public:
+    sstd::Fiber operator()(sstd::FiberFunction<void>* argF,sstd::Fiber&& argFB) {
+
+        sstd_yield_return(argF,argFB);
+    }
+};
+
 extern void testFiber1() {
 
     {
