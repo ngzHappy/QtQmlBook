@@ -165,7 +165,7 @@ namespace sstd {
     }/*_12_private_*/
 
     template<typename ReturnType_ = void,typename FunctionType_>
-    sstd::intrusive_ptr< FiberFunction<ReturnType_> >
+    inline sstd::intrusive_ptr< FiberFunction<ReturnType_> >
         make_fiber_function(FunctionType_ && f) {
         using F =
             _12_private_::TypedFiberFunction<FunctionType_,ReturnType_>;
@@ -188,4 +188,10 @@ namespace sstd {
 }
 #endif 
 
+/*sstd::FiberFunction<ReturnType_> * a,sstd::Fiber && f*/
+template<typename ReturnType_ = void,typename FunctionType_>
+inline sstd::intrusive_ptr< sstd::FiberFunction<ReturnType_> >
+sstd_make_fiber_function(FunctionType_ && f) {
+    return sstd::make_fiber_function<ReturnType_>(std::forward<FunctionType_>(f));
+}
 

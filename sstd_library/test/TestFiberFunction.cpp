@@ -6,7 +6,7 @@
 extern void testFiber1() {
 
     {
-        auto f = sstd::make_fiber_function<int>(
+        auto f = sstd_make_fiber_function<int>(
             [](sstd::FiberFunction<int>* argF,sstd::Fiber&& argFB)->sstd::Fiber {
             std::cout << "yield 1" << std::endl;
             sstd_yield(argFB);
@@ -21,7 +21,7 @@ extern void testFiber1() {
     }
 
     {
-        auto f = sstd::make_fiber_function<void>(
+        auto f = sstd_make_fiber_function<void>(
             [](sstd::FiberFunction<void>* argF,sstd::Fiber&& argFB)->sstd::Fiber {
             std::cout << "yield 3" << std::endl;
             sstd_yield(argFB);
@@ -36,7 +36,7 @@ extern void testFiber1() {
     }
 
     {
-        auto f = sstd::make_fiber_function<void>(
+        auto f = sstd_make_fiber_function<void>(
             [](sstd::FiberFunction<void>* argF,sstd::Fiber&& argFB)->sstd::Fiber {
             std::cout << "yield 5" << std::endl;
             sstd_yield(argFB);
