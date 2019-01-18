@@ -77,6 +77,7 @@ namespace sstd {
                 mmmElement(arg) {
             }
             inline Fiber operator()(Fiber && arg) const noexcept {
+                /*******************************************************/
                 try {
                     return
                         mmmElement->do_call(mmmElement,std::move(arg));
@@ -84,6 +85,7 @@ namespace sstd {
                     mmmElement->mmmPromise->set_exception();
                     return std::move(arg);
                 }
+                /*******************************************************/
             }
             ThisCall(ThisCall &&) = default;
             ThisCall(const ThisCall &) = default;
@@ -185,16 +187,19 @@ namespace sstd {
 
 }/*namespace sstd*/
 
+#ifndef sstd_resume
+#define sstd_resume(argSSTDF) (argSSTDF)->resume()
+#endif
 
 #ifndef sstd_yield_return
 #define sstd_yield_return(argSSTDF,argSSTDFi,...)  { \
-    argSSTDF->setValue( __VA_ARGS__ ); \
+    (argSSTDF)->setValue( __VA_ARGS__ ); \
     return std::move(argSSTDFi); \
 } 
 #endif
 
 #ifndef sstd_yield
-#define sstd_yield(argSSTDFi) { \
+#define sstd_yield(argSSTDF,argSSTDFi) { \
     argSSTDFi = std::move(argSSTDFi).resume(); \
 }
 #endif 
