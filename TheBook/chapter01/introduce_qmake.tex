@@ -44,7 +44,7 @@ qmake比cmake更加专注。
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000002,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -73,12 +73,12 @@ DESTDIR =  $$PWD
 
 DEFINES *= NUMBER=1
 DEFINES *= HELLOW=\\\"Hellow\\\"
-DEFINES += QT_DEPRECATED_WARNINGS(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(***@}{@***)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000003,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -90,7 +90,7 @@ int main(int , char **) {
         std::cout << HELLOW " World! "
                   << std::endl;
     }
-}(***@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@***)\end{lstlisting}          %抄录环境
+}(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -233,7 +233,7 @@ SUBDIRS += the_app(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlist
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000016,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -265,7 +265,7 @@ win32-msvc*{
 DESTDIR =  $$PWD/../bin
 
 SOURCES += $$PWD/main.cpp
-include($$PWD/../test_library/import_test_library.pri)(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+include($$PWD/../test_library/import_test_library.pri)(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -302,7 +302,7 @@ CONFIG(debug,debug|release){
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000012,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -335,7 +335,7 @@ SOURCES += $$PWD/TestLibrary.cpp
 HEADERS += $$PWD/TestLibrary.hpp
 
 DESTDIR =  $$PWD/../bin
-DEFINES *= D_TEST_LIBRARY(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+DEFINES *= D_TEST_LIBRARY(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %test_library.pro
 
@@ -352,7 +352,7 @@ DEFINES *= D_TEST_LIBRARY(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \th
 都是标准C{\sourcefonttwo{}+}{\sourcefonttwo{}+}，本书不赘述。
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000014,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -373,12 +373,12 @@ public:
     TestClass();
     ~TestClass();
     void foo();
-};(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+};(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %TestLibrary.hpp
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000013,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -395,12 +395,12 @@ TestClass::~TestClass() {
 
 void TestClass::foo() {
     std::cout << __func__ << std::endl;
-}(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+}(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %TestLibrary.cpp
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(***@}{@***)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000015,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -412,7 +412,7 @@ int main(int, char **) {
     TestClass varClass;
     varClass.foo();
     return 0;
-}(***@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@***)\end{lstlisting}          %抄录环境
+}(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.cpp
 
@@ -556,7 +556,7 @@ SUBDIRS += the_run(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlist
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000005,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -617,7 +617,7 @@ CONFIG(debug,debug|release){
 }else{
     QMAKE_POST_LINK += $${DESTDIR}/after_run $$PWD
 }
-export(QMAKE_POST_LINK)(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+export(QMAKE_POST_LINK)(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %the_run.pro
 
@@ -643,7 +643,7 @@ export(QMAKE_POST_LINK)(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thel
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000008,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -672,12 +672,12 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %before_run.pro
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(***@}{@***)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000009,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -728,13 +728,13 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}(***@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@***)\end{lstlisting}          %抄录环境
+}(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %before_run/main.cpp
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000006,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -763,12 +763,12 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %after_run.pro
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(***@}{@***)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000007,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -819,13 +819,13 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}(***@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@***)\end{lstlisting}          %抄录环境
+}(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %after_run/main.cpp
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(**@}{@**)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f00000b,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -854,12 +854,12 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %new_moc.pro
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(******************************@}{@******************************)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f00000c,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -897,13 +897,13 @@ int main(int argc, char ** argv) {
                }() ; )";
     varOutput << std::endl;
     return 0;
-}(******************************@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@******************************)\end{lstlisting}          %抄录环境
+}(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %new_moc/main.cpp
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(***@}{@***)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f00000a,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
@@ -921,7 +921,7 @@ namespace fs = std::experimental::filesystem;
 int main(int, char **) {
     std::cout << "the_run" << std::endl;
     return 0;
-}(***@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@***)\end{lstlisting}          %抄录环境
+}(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %the_run/main.cpp
 

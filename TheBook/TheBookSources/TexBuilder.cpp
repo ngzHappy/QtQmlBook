@@ -30,7 +30,8 @@ static inline int getMaxStartCount(const QString & arg) {
 
     while(varIt.hasNext()) {
         auto varMatch = varIt.next();
-        const auto varCurrentLength = varMatch.capturedLength() - 2;
+        const auto varCurrentLength =
+            varMatch.capturedLength() - 2;
         if(varCurrentLength > varMaxLength) {
             varMaxLength = varCurrentLength;
         }
