@@ -137,10 +137,16 @@ showstringspaces=false
 }
 
 %设置源码计数器
-
+\counterwithin{lstlisting}{section}
+\renewcommand\thelstlisting{
+    \thesection.\arabic{lstlisting}
+}
 
 %设置图片计数器
-
+\counterwithin{figure}{section}
+\renewcommand\thefigure{
+    \thesection.\arabic{figure}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %解决目录字体重叠BUG
