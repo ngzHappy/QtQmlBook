@@ -129,17 +129,17 @@ showstringspaces=false
 
 \newcommand\treeindexnumbernameone{路径}
 %\newcommand\theTreeIndexNumber{}
-\newcounter{treeindexnumber}[chapter]
+\newcounter{treeindexnumber}[section]
 %\stepcounter{treeindexnumber}
 %\refstepcounter{treeindexnumber}
 \renewcommand\thetreeindexnumber{
-    \thechapter.\arabic{treeindexnumber}
+    \thesection.\arabic{treeindexnumber}
 }
 
 \newcommand\commandnumbernameone{命令}
-\newcounter{commandnumber}[chapter]
+\newcounter{commandnumber}[section]
 \renewcommand\thecommandnumber{
-    \thechapter.\arabic{commandnumber}
+    \thesection.\arabic{commandnumber}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
