@@ -70,6 +70,7 @@ marginparwidth=2.2cm
 %\usepackage{times}
 
 \usepackage{marginnote}
+\usepackage{varwidth}
 
 %设置输出pdf格式
 \usepackage[
@@ -179,7 +180,7 @@ showstringspaces=true
 {\small\unicodefont{fc-cache -v}}
 
 QQQQQQQQQQQQQ
-\textit{在文字录入}\footnote{jjjjjx 141656}比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+\textit{在文字录入}\footnote{jjjjjx 141656}比赛（打字比赛）中，\textsl{最公平的比赛用}文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
 
 {
 test \itshape test \ttfamily test \upshape test
@@ -219,7 +220,7 @@ using namespace std;
 escapeinside={(***@}{@***)},
 label=x1fwaef,
 caption=sdglj,
-title=程序清单\thelstlisting\marginnote{\fbox{程序\ \ref{x1fwaef}}},
+title=程序清单 ,
 nolol=false,
 numbers=none ] 
 #include <iostream> 
@@ -228,11 +229,24 @@ using namespace std;
      cout<<"h ello"<<endl; //今天
      foo<int>();
      return 0;
-} (***@\marginpar[\hfill\fbox{aabbcc}]{aabbcc}@***)
+} (***@\marginpar[\hfill\fbox{\begin{varwidth}{10cm}\setlength{\baselineskip}{5pt}\hfill{}fsdlf\\dfasfds\end{varwidth}}]{aabbcc}@***)
 \end{lstlisting} 
+
+{
+\setlength\fboxsep{2pt}
+\fbox{
+    \footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}楷书}}\footnotesize{1.2.3}
+
+}
+
 
 dsfsdfdsa 
 
+dsfsdfdsa 
+
+dsfsdfdsa 
+
+\fbox{\begin{varwidth}{10cm}\setlength{\baselineskip}{5pt}fsdlf\\dfasfds\end{varwidth}}
 
 sdfdsafdsaf
 

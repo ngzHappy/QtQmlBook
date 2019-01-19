@@ -39,6 +39,7 @@ marginparwidth=2.1cm       %边注宽度
 \usepackage{tocloft}
 \usepackage{multicol}
 \usepackage{listings}   %引入程序代码
+\usepackage{varwidth}   %P125
 
 %%常见符号
 \usepackage{wasysym}    %

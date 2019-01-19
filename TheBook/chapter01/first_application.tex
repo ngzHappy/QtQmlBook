@@ -33,7 +33,7 @@
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000018,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 call "C:/Qt/Qt5.12.0/5.12.0/msvc2017_64/bin/qtenv2.bat"
 cd /D "E:/QtQmlBookMsvc"
@@ -41,7 +41,7 @@ qmake -r -tp vc "E:/QtQmlBook/QtQmlBook.pro"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlMultimedia.pro"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlBookTest.pro"
 qmake -r -tp vc "E:/QtQmlBook/TheBook/TheBook.pro"
-cmd(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -82,7 +82,7 @@ cmd(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000019,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #firstapplication.pro
 TEMPLATE = app
@@ -131,7 +131,7 @@ lupdate_only{
     SOURCES += $$QMLSOURCES
 }
 
-DISTFILES += $$QMLSOURCES(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+DISTFILES += $$QMLSOURCES(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -161,7 +161,7 @@ POSIX平台下需要在开头加“file://”。
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000026,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ,firstnumber=6]
 inline QUrl getLocalFileFullPath(
     const QString & argFileName,
@@ -173,7 +173,7 @@ inline QUrl getLocalFileFullPath(
     } else {
         return QStringLiteral(R"(file:///)") + varAns;
     }
-}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main4.qml
 
@@ -185,7 +185,7 @@ Qt Quick依赖于OpenGL。\lstlistingname\ \ref{f000027}
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000027,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ,firstnumber=18]
 inline QSurfaceFormat getDefaultQSurfaceFormat() {
     auto varFormat = QSurfaceFormat::defaultFormat();
@@ -206,7 +206,7 @@ inline QSurfaceFormat getDefaultQSurfaceFormat() {
     varFormat.setOption(QSurfaceFormat::DebugContext, false);
 #endif
     return varFormat;
-}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main5.qml
 
@@ -223,7 +223,7 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000028,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ,firstnumber=39]
 inline void beforeApplication() {
     {
@@ -238,7 +238,7 @@ inline void beforeApplication() {
         /*设置默认opengl环境*/
         QSurfaceFormat::setDefaultFormat(::getDefaultQSurfaceFormat());
     }
-}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main6.qml
 
@@ -255,14 +255,14 @@ inline void beforeApplication() {
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000029,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ,firstnumber=54]
 inline void afterApplication() {
     {
         QImage varImage{QStringLiteral("test.png")};
         (void)varImage;
     }
-}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main7.qml
 
@@ -274,7 +274,7 @@ inline void afterApplication() {
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f00002u,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 QT += gui
 QT += qml
@@ -283,7 +283,7 @@ QT += quick
 QT += widgets
 QT += concurrent
 QT += quickwidgets
-QT += quickcontrols2(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+QT += quickcontrols2(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %import_sstd_qt_and_qml_library.1.pri
 
@@ -312,7 +312,7 @@ QQuickView是一个好的选择。
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000020,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ,firstnumber=67]
 beforeApplication();
 QGuiApplication varApp{ argc,argv };
@@ -335,7 +335,7 @@ if (varView.status() != QQuickView::Status::Ready) {
     return -1;
 }
 varView.show();
-return varApp.exec();(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
@@ -343,7 +343,7 @@ return varApp.exec();(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingnam
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000023,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main1.qml*/
 import QtQuick 2.9
@@ -354,7 +354,7 @@ Rectangle{
     height: 512 ;
     color: Qt.rgba(1,0,0,1);
 
-}/*Rectangle*/(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main1.qml
 
@@ -402,7 +402,7 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000021,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ,firstnumber=90]
 beforeApplication();
 QApplication varApp{ argc,argv };
@@ -423,7 +423,7 @@ if (varWidget.status() != QQuickWidget::Status::Ready) {
     return -1;
 }
 varWidget.show();
-return varApp.exec();(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
@@ -431,7 +431,7 @@ return varApp.exec();(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingnam
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000024,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main2.qml*/
 import QtQuick 2.9
@@ -447,7 +447,7 @@ Rectangle{
 /*end:debug*/
 
 
-}/*Rectangle*/(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main2.qml
 
@@ -495,7 +495,7 @@ QQuickView或QQuickWidget也是足够使用的。
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000022,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ,firstnumber=111]
 beforeApplication();
 QGuiApplication varApp{ argc,argv };
@@ -513,7 +513,7 @@ if (varEngine.rootObjects().isEmpty()) {
     qWarning() << QStringLiteral("can not load : main3.qml");
     return -1;
 }
-return varApp.exec();(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
@@ -521,7 +521,7 @@ return varApp.exec();(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingnam
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000025,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main3.qml*/
 import QtQuick 2.9
@@ -543,7 +543,7 @@ ApplicationWindow {
 
     }/*Rectangle*/
 
-}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main3.qml
 

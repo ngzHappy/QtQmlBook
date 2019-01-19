@@ -41,6 +41,16 @@ static inline int getMaxStartCount(const QString & arg) {
 
 }
 
+QString getMarginpar(const QString & argName,const QString & argThe) {
+    const auto varPar =
+        qsl(R"(\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}%1}}\footnotesize{%2}})")
+        .arg(argName)
+        .arg(argThe);
+    const auto varAns =
+        qsl(R"(\marginpar[\hfill%1]{%1})").arg(varPar);
+    return varAns.arg(argName).arg(argThe);
+}
+
 static inline const QString & texRaw() {
     const static auto varAns = qsl(":tex_raw:");
     return varAns;
@@ -542,12 +552,12 @@ public:
 \begin{lstlisting}[escapeinside={%3}{%4},
 label=%1,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}})");
+                varString += getMarginpar(qsl(R"(\lstlistingname)"),qsl(R"(\thelstlisting)"));
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 %\end{spacing}
@@ -622,12 +632,12 @@ title=\lstlistingname\ \thelstlisting
 \begin{lstlisting}[escapeinside={%3}{%4},
 caption=GoodLuck,
 numbers=none,
-title=\treeindexnumbernameone\ \thetreeindexnumber
+title=\treeindexnumbernameone \thetreeindexnumber
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar[\hfill\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}]{\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}})");
+                varString += getMarginpar(qsl(R"(\treeindexnumbernameone)"),qsl(R"(\thetreeindexnumber)"));
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
@@ -701,12 +711,12 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
 \refstepcounter{commandnumber}\label{%1}    %增加命令行编号
 \begin{lstlisting}[escapeinside={%3}{%4},
 caption=GoodLuck,
-title=\commandnumbernameone\ \thecommandnumber
+title=\commandnumbernameone \thecommandnumber
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar[\hfill\fbox{\scriptsize{\kaishu\commandnumbernameone\,}\footnotesize{\thecommandnumber}}]{\fbox{\scriptsize{\kaishu\commandnumbernameone\,}\footnotesize{\thecommandnumber}}})");
+                varString += getMarginpar(qsl(R"(\commandnumbernameone)"),qsl(R"(\thecommandnumber)"));
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
@@ -767,7 +777,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 }
 
                 QString varFigureMarginnote = qsl(R"(%there must use marginnote not use marginpar ...
-\marginnote{\fbox{\scriptsize{\kaishu\figurename\,}\footnotesize{\ref{)");
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{)");
                 varFigureMarginnote += varKeyLabel;
                 varFigureMarginnote += QStringLiteral(R"(}}}})");
 
