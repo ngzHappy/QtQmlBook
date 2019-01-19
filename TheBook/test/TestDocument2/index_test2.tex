@@ -1,0 +1,390 @@
+
+%用于快速测试
+
+\documentclass[12pt,hyperref,UTF8]{ctexbook}
+
+\let\counterwithout\relax
+\let\counterwithin\relax
+
+%@P143
+\usepackage{xcolor}        %导入包xcolor
+\usepackage[
+a4paper ,
+left=3.0cm,                %靠近装订线的边距
+right=3.0cm,               %远离装订线的边距
+top=2.0cm,
+bottom=2.0cm,
+headheight=1.3cm,
+headsep=0.5cm,
+marginparsep=0.8cm,
+marginparwidth=2.2cm
+]{geometry}                %导入包geometry
+
+ %导入常用包
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{cite}
+\usepackage{caption}
+\usepackage{titlesec}
+\usepackage{chngcntr}
+\usepackage{setspace}
+\usepackage{tocbibind}  %设置目录
+\usepackage{tocloft}
+\usepackage{multicol}
+
+\usepackage{amsthm}
+\usepackage{xltxtra}
+\usepackage{listings}
+
+\usepackage{fontspec}
+%\usepackage{ebgaramond}
+%\setmainfont{Times New Roman}
+%\usepackage{newtxtext, newtxmath}
+%\setsansfont{Times New Roman}
+%\setmonofont{Times New Roman}
+%\usepackage{txfonts}
+\definecolor{gray1}{rgb}{0.9,0.9,0.85}
+\newfontfamily\unicodefont{Consolas}
+%\setCJKmainfont{Times New Roman}
+
+
+%%常见符号
+\usepackage{wasysym}    %
+\usepackage{textcomp}   %
+\usepackage{pifont}     %
+
+\usepackage{color}
+\definecolor{colorbackgroundthisproject}{rgb}{1,1,1} %页面背景颜色
+\definecolor{colortextthisproject}{rgb}{0,0,0}       %文字颜色
+%设置页面颜色
+\pagecolor{colorbackgroundthisproject}
+%设置字体颜色
+\color{colortextthisproject}
+
+\usepackage{xhfill}
+%\usepackage{times}
+
+\usepackage{marginnote}
+
+%设置输出pdf格式
+\usepackage[
+    colorlinks=true ,
+    %bookmarks=true,
+    %bookmarksopen=false,
+    %pdfpagemode=FullScreen,
+    %pdfstartview=Fit,
+    bookmarksnumbered=true,
+    pdftitle={Qml} ,       %标题
+    pdfauthor={Qml} ,      %作者
+    pdfsubject={Qml} ,     %主题
+    pdfkeywords={Qml} ,    %关键字
+    linkcolor=colortextthisproject
+]{hyperref}
+
+
+
+\usepackage{listings}%引入程序代码
+
+%http://blog.sina.com.cn/s/blog_5e16f1770100kv5t.html
+\lstset{
+language=C,
+breaklines=true,
+basicstyle=\small\unicodefont,
+stringstyle=\small\unicodefont ,
+keywordstyle=\small\unicodefont ,
+commentstyle=\small\unicodefont ,
+identifierstyle=\small\unicodefont ,
+numbers=left, 
+numberstyle=\footnotesize,
+frame=single,
+backgroundcolor=\color{gray1},
+showstringspaces=true
+} 
+
+\newcounter{newcounter}
+
+\lstnewenvironment{lstlistingcode}[1][] {%begin  lstlistingcode
+\stepcounter{newcounter}
+\setcounter{lstlisting}{\thenewcounter}
+\lstset{#1}
+}{%end lstlistingcode
+}
+
+\title{这是一本书}                              %书籍名称
+\author{Good Luck}                              %作者名
+
+%设置ctex
+%P135
+\CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
+%\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
+ 
+\RequirePackage{fancyhdr}
+\RequirePackage{zhnumber}
+                
+\RequirePackage{titlesec, titletoc}
+\RequirePackage{tikz,pgf}
+\usetikzlibrary{shapes,calc}
+% 参考：http://www.latexstudio.net/archives/8967.html
+% 拇指
+ 
+
+ %解决BUG
+\makeatletter
+\renewcommand{\numberline}[1]{%
+\settowidth\@tempdimb{#1\hspace{0.5em}}%
+\ifdim\@tempdima<\@tempdimb%
+  \@tempdima=\@tempdimb%
+\fi%
+\hb@xt@\@tempdima{\@cftbsnum #1\@cftasnum\hfil}\@cftasnumb}
+\makeatother
+
+\begin{document}
+
+
+\frontmatter
+%\pagestyle{empty}                 %关闭页眉页脚
+\maketitle                        %生成封面
+
+\cleardoublepage
+
+\pagestyle{headings}              %开启页眉页脚
+\pagenumbering{roman}             %重新开始页码编号
+
+\tableofcontents                  %生成目录
+ 
+ 
+
+\mainmatter
+
+ 
+ 
+
+\cleardoublepage
+%
+%    arabic - 阿拉伯数字
+%    roman - 小写的罗马数字
+%    Roman - 大写的罗马数字
+%    alph - 小写的字符形式
+%    Alph -大写的字符形式
+%
+\pagenumbering{arabic}  %重新开始页码编号
+\chapter{ Qchapter 1}
+%P129
+\section{蜘蛛超人}
+\label{testsection}
+
+\subsection{subsection 1}
+
+{\small\unicodefont{sudo mkfontscale}\\}
+{\small\unicodefont{sudo mkfontdir}\\}
+{\small\unicodefont{fc-cache -v}}
+
+QQQQQQQQQQQQQ
+在文字录入\footnote{jjjjjx 141656}比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+{
+test \itshape test \ttfamily test \upshape test
+}
+
+%程序 \ref{xfwaef}  
+\begin{lstlistingcode}[
+label=xfwaef,
+caption=dsgdsg ,
+firstnumber=100  ] 
+#include <iostream> 
+using namespace std;
+ int main() { 
+     cout<<"h ello"<<endl; //今天
+     foo<int>();
+     return 0;
+} 
+\end{lstlistingcode}
+
+%程序 \ref{xfwaef}  
+\begin{lstlisting}[
+label=xfwaef,
+caption=dsgdsg ,
+firstnumber=100 ] 
+#include <iostream> 
+using namespace std;
+ int main() { 
+     cout<<"h ello"<<endl; //今天
+     foo<int>();
+     return 0;
+} 
+\end{lstlisting}
+
+%\marginnote{\fbox{程序\ \ref{x1fwaef}}}
+%程序 \ref{x1fwaef}  
+\begin{lstlisting}[
+escapeinside={(***@}{@***)},
+label=x1fwaef,
+caption=sdglj,
+title=程序清单\thelstlisting\marginnote{\fbox{程序\ \ref{x1fwaef}}},
+nolol=false,
+numbers=none ] 
+#include <iostream> 
+using namespace std;
+ int main() { 
+     cout<<"h ello"<<endl; //今天
+     foo<int>();
+     return 0;
+} (***@\marginpar[\hfill\fbox{aabbcc}]{aabbcc}@***)
+\end{lstlisting} 
+
+dsfsdfdsa 
+
+
+sdfdsafdsaf
+
+\ref{x1fwaef}
+
+在文字录入A\ref{testsection}A\pageref{testsection}A比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\begin{figure}[ht]\marginnote{\fbox{图片\ 1.22}}
+\centering 
+\includegraphics[width=\textwidth]{0000.jpg}
+\caption[xxxxxxx]{xxxxxx }
+\label{xxxxxx1}
+
+\end{figure}%\protect\marginpar{\fbox{图片\ 1.22}}
+
+\subsection{subsection 2}
+
+在文字B\ref{xxxxxx1}B\pageref{xxxxxx1}B录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\section{section 2}
+
+\subsection{subsection 1}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\subsection{subsection 2}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+
+\cleardoublepage
+\chapter{chapter 2}
+
+\section{section 1}
+
+\subsection{subsection 1}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\subsection{subsection 2}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\cleardoublepage
+\chapter{chapter 3}
+
+\section{section 1}
+
+\subsection{subsection 1}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\subsection{subsection 2}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\section{section 2}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\cleardoublepage
+\chapter{chapter 4}
+
+\section{section 1}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\section{section 2}
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+在文字录入比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
+
+\backmatter
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

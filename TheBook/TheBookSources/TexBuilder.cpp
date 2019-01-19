@@ -630,6 +630,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
                 varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}]{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 )");
                 /***********************************************/
@@ -708,6 +709,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}]{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 )");
                 /***********************************************/
