@@ -15,20 +15,29 @@ _keys_set()
 _insertKey()
 *****/
 
+/*find max * between ( @ or @ )*/
 static inline int getMaxStartCount(const QString & arg) {
-    int varAns = 0;
-    int varCurrentCount = 0;
-    for(const auto & varI : arg) {
-        if(varI=='*') {
-            ++varCurrentCount;
-            if(varAns < varCurrentCount) {
-                varAns = varCurrentCount;
-            }
-        } else {
-            varCurrentCount = 0;
+
+    if(arg.size() < 3) {
+        return 0;
+    }
+
+    const static QRegularExpression varRex{
+        QStringLiteral(R"((\(\*+@)|(@\*+\)))") };
+
+    auto varIt = varRex.globalMatch(arg);
+    auto varMaxLength = 0;
+
+    while(varIt.hasNext()) {
+        auto varMatch = varIt.next();
+        const auto varCurrentLength = varMatch.capturedLength() - 2;
+        if(varCurrentLength > varMaxLength) {
+            varMaxLength = varCurrentLength;
         }
     }
-    return varAns;
+
+    return varMaxLength;
+
 }
 
 static inline const QString & texRaw() {
@@ -94,7 +103,7 @@ inline static std::string _replace_all(const std::string_view arg) {
         std::regex regex;
         std::string data;
         ReplaceItem() = default;
-        ReplaceItem(std::regex && a, std::string &&b) :
+        ReplaceItem(std::regex && a,std::string &&b) :
             regex(std::move(a)),
             data(std::move(b)) {
         }
@@ -106,27 +115,27 @@ inline static std::string _replace_all(const std::string_view arg) {
             std::regex_constants::ECMAScript |
             std::regex_constants::optimize;
         std::vector< ReplaceItem > ans;
-        ans.emplace_back(std::regex(u8R"(\+)", varRegexOption), std::string(u8R"({\sourcefonttwo{}+})"sv));
-        ans.emplace_back(std::regex(u8R"(\*)", varRegexOption), std::string(u8R"(\raisebox{-0.35ex}{\sourcefonttwo{}*})"sv));
-        ans.emplace_back(std::regex(u8R"(-)", varRegexOption), std::string(u8R"(\hspace{0.05em}\rule[0.7ex]{0.4em}{0.65pt}\hspace{0.05em})"sv));
-        ans.emplace_back(std::regex(u8R"(=)", varRegexOption), std::string(u8R"({\sourcefonttwo{}=})"sv));
+        ans.emplace_back(std::regex(u8R"(\+)",varRegexOption),std::string(u8R"({\sourcefonttwo{}+})"sv));
+        ans.emplace_back(std::regex(u8R"(\*)",varRegexOption),std::string(u8R"(\raisebox{-0.35ex}{\sourcefonttwo{}*})"sv));
+        ans.emplace_back(std::regex(u8R"(-)",varRegexOption),std::string(u8R"(\hspace{0.05em}\rule[0.7ex]{0.4em}{0.65pt}\hspace{0.05em})"sv));
+        ans.emplace_back(std::regex(u8R"(=)",varRegexOption),std::string(u8R"({\sourcefonttwo{}=})"sv));
         //ans.emplace_back(std::regex(u8R"(/)", varRegexOption), std::string(u8R"({\sourcefonttwo{}/})"sv));
-        ans.emplace_back(std::regex(u8R"(~)", varRegexOption), std::string(u8R"(\raisebox{0.16ex}{\sourcefonttwo\~{}})"sv));
-        ans.emplace_back(std::regex(u8R"(#)", varRegexOption), std::string(u8R"({\sourcefonttwo\#})"sv));
-        ans.emplace_back(std::regex(u8R"(\$)", varRegexOption), std::string(u8R"({\sourcefonttwo\$})"sv));
-        ans.emplace_back(std::regex(u8R"(%)", varRegexOption), std::string(u8R"({\sourcefonttwo\%})"sv));
-        ans.emplace_back(std::regex(u8R"(\^)", varRegexOption), std::string(u8R"({\sourcefonttwo\^{}})"sv));
-        ans.emplace_back(std::regex(u8R"(&)", varRegexOption), std::string(u8R"({\sourcefonttwo\&})"sv));
-        ans.emplace_back(std::regex(u8R"(\{)", varRegexOption), std::string(u8R"({\sourcefonttwo\{})"sv));
-        ans.emplace_back(std::regex(u8R"(\})", varRegexOption), std::string(u8R"({\sourcefonttwo\}})"sv));
-        ans.emplace_back(std::regex(u8R"(_)", varRegexOption), std::string(u8R"(\underline{\hspace{0.5em}})"sv));
-        ans.emplace_back(std::regex(u8R"(\\)", varRegexOption), std::string(u8R"(\textbackslash{})"sv));
-        ans.emplace_back(std::regex(u8R"(°)", varRegexOption), std::string(u8R"(\textdegree{})"sv));
-        ans.emplace_back(std::regex(u8R"(×)", varRegexOption), std::string(u8R"(\texttimes{})"sv));
-        ans.emplace_back(std::regex(u8R"(♀)", varRegexOption), std::string(u8R"(\male{})"sv));
-        ans.emplace_back(std::regex(u8R"(♂)", varRegexOption), std::string(u8R"(\female{})"sv));
-        ans.emplace_back(std::regex(u8R"(★)", varRegexOption), std::string(u8R"(\ding{72})"sv));
-        ans.emplace_back(std::regex(u8R"(☆)", varRegexOption), std::string(u8R"(\ding{73})"sv));
+        ans.emplace_back(std::regex(u8R"(~)",varRegexOption),std::string(u8R"(\raisebox{0.16ex}{\sourcefonttwo\~{}})"sv));
+        ans.emplace_back(std::regex(u8R"(#)",varRegexOption),std::string(u8R"({\sourcefonttwo\#})"sv));
+        ans.emplace_back(std::regex(u8R"(\$)",varRegexOption),std::string(u8R"({\sourcefonttwo\$})"sv));
+        ans.emplace_back(std::regex(u8R"(%)",varRegexOption),std::string(u8R"({\sourcefonttwo\%})"sv));
+        ans.emplace_back(std::regex(u8R"(\^)",varRegexOption),std::string(u8R"({\sourcefonttwo\^{}})"sv));
+        ans.emplace_back(std::regex(u8R"(&)",varRegexOption),std::string(u8R"({\sourcefonttwo\&})"sv));
+        ans.emplace_back(std::regex(u8R"(\{)",varRegexOption),std::string(u8R"({\sourcefonttwo\{})"sv));
+        ans.emplace_back(std::regex(u8R"(\})",varRegexOption),std::string(u8R"({\sourcefonttwo\}})"sv));
+        ans.emplace_back(std::regex(u8R"(_)",varRegexOption),std::string(u8R"(\underline{\hspace{0.5em}})"sv));
+        ans.emplace_back(std::regex(u8R"(\\)",varRegexOption),std::string(u8R"(\textbackslash{})"sv));
+        ans.emplace_back(std::regex(u8R"(°)",varRegexOption),std::string(u8R"(\textdegree{})"sv));
+        ans.emplace_back(std::regex(u8R"(×)",varRegexOption),std::string(u8R"(\texttimes{})"sv));
+        ans.emplace_back(std::regex(u8R"(♀)",varRegexOption),std::string(u8R"(\male{})"sv));
+        ans.emplace_back(std::regex(u8R"(♂)",varRegexOption),std::string(u8R"(\female{})"sv));
+        ans.emplace_back(std::regex(u8R"(★)",varRegexOption),std::string(u8R"(\ding{72})"sv));
+        ans.emplace_back(std::regex(u8R"(☆)",varRegexOption),std::string(u8R"(\ding{73})"sv));
         return std::move(ans);
     }();
 
@@ -136,7 +145,7 @@ inline static std::string _replace_all(const std::string_view arg) {
     public:
         std::string_view data;
         bool is_replace = false;
-        inline Replace(std::string_view a, bool b) :
+        inline Replace(std::string_view a,bool b) :
             data(a),
             is_replace(b) {
         }
@@ -145,51 +154,51 @@ inline static std::string _replace_all(const std::string_view arg) {
     std::vector<Replace> tmpReplacesInput;
     std::vector<Replace> tmpReplaces;
 
-    tmpReplaces.emplace_back(arg, false);
+    tmpReplaces.emplace_back(arg,false);
 
-    for (const auto & R : varReplaceDutys) {/*对于每一个正则表达式*/
+    for(const auto & R : varReplaceDutys) {/*对于每一个正则表达式*/
 
         /*如果输入里面没有匹配此正则表达式则跳过*/
-        if (false == std::regex_search(arg.data(), arg.data() + arg.size(), R.regex)) {
+        if(false == std::regex_search(arg.data(),arg.data() + arg.size(),R.regex)) {
             continue;
         }
 
         tmpReplacesInput = std::move(tmpReplaces);
 
-        for (const auto & varD : tmpReplacesInput) {
+        for(const auto & varD : tmpReplacesInput) {
 
-            if (varD.is_replace) { /*copy the replaced data to ans*/
+            if(varD.is_replace) { /*copy the replaced data to ans*/
                 tmpReplaces.push_back(varD);
                 continue;
             }
 
-            if (varD.data.empty()) { /*skip the empty data  */
+            if(varD.data.empty()) { /*skip the empty data  */
                 //tmpReplaces.push_back(varD);
                 continue;
             }
 
             std::regex_iterator varIt{
-                varD.data.data() ,
-                varD.data.data() + varD.data.size() ,
+                varD.data.data(),
+                varD.data.data() + varD.data.size(),
                 R.regex };
             decltype(varIt) varE;
 
-            if (varIt == varE) { /*if data do not match regex , copy it to ans*/
+            if(varIt == varE) { /*if data do not match regex , copy it to ans*/
                 tmpReplaces.push_back(varD);
                 continue;
             }
 
             /*add a do not used data,it will be poped*/
-            tmpReplaces.emplace_back(std::string_view{}, false);
-            for (; varIt != varE; ++varIt) { /*replace the data*/
+            tmpReplaces.emplace_back(std::string_view{},false);
+            for(; varIt != varE; ++varIt) { /*replace the data*/
                 tmpReplaces.pop_back();
                 const auto varPreFix = varIt->prefix();
-                const std::string_view varBeforeP(varPreFix.first, varPreFix.length());
+                const std::string_view varBeforeP(varPreFix.first,varPreFix.length());
                 const auto varSubFix = varIt->suffix();
-                const std::string_view varAfterP(varSubFix.first, varSubFix.length());
-                tmpReplaces.emplace_back(varBeforeP, false);
-                tmpReplaces.emplace_back(R.data, true);
-                tmpReplaces.emplace_back(varAfterP, false);
+                const std::string_view varAfterP(varSubFix.first,varSubFix.length());
+                tmpReplaces.emplace_back(varBeforeP,false);
+                tmpReplaces.emplace_back(R.data,true);
+                tmpReplaces.emplace_back(varAfterP,false);
             }
 
         }/*replace*/
@@ -198,14 +207,14 @@ inline static std::string _replace_all(const std::string_view arg) {
     {
         /*先计算返回元素大小...*/
         std::size_t varFinalSize = 4;
-        for (const auto & varI : tmpReplaces) {
+        for(const auto & varI : tmpReplaces) {
             varFinalSize += varI.data.size();
         }
         ans.reserve(varFinalSize);
     }
 
-    for (const auto & varI : tmpReplaces) {
-        if (varI.data.empty()) {
+    for(const auto & varI : tmpReplaces) {
+        if(varI.data.empty()) {
             continue;
         }
         ans.append(varI.data);
@@ -217,7 +226,7 @@ inline static std::string _replace_all(const std::string_view arg) {
 
 /*将文本转换为符合tex语法的文本*/
 static inline QString plainStringToTexString(const QString & arg) {
-    if (arg.isEmpty()) {
+    if(arg.isEmpty()) {
         return{};
     }
     std::string varString;
@@ -225,7 +234,7 @@ static inline QString plainStringToTexString(const QString & arg) {
         const auto argInput = arg.toUtf8();
         /*替换特殊字符*/
         varString = _replace_all({ argInput.constData(),
-             static_cast<std::size_t>(argInput.size()) });
+            static_cast<std::size_t>(argInput.size()) });
     }
     /*转换成QString*/
     return QString::fromUtf8(varString.c_str(),
@@ -245,14 +254,14 @@ public:
     std::optional< OutPutFileStream > outputStream;
 
     inline bool openInput() {
-        if (inputFile) {
+        if(inputFile) {
             return false;
         }
-        if (inputStream) {
+        if(inputStream) {
             return false;
         }
         inputFile.emplace(inputFileName);
-        if (false == inputFile->open(QIODevice::ReadOnly)) {
+        if(false == inputFile->open(QIODevice::ReadOnly)) {
             return false;
         }
         inputStream.emplace(inputFile.operator->());
@@ -260,14 +269,14 @@ public:
     }
 
     inline bool openOutput() {
-        if (outputFile) {
+        if(outputFile) {
             return false;
         }
-        if (outputStream) {
+        if(outputStream) {
             return false;
         }
         outputFile.emplace(outputFileName);
-        if (false == outputFile->open(QIODevice::WriteOnly)) {
+        if(false == outputFile->open(QIODevice::WriteOnly)) {
             return false;
         }
         outputStream.emplace(outputFile.operator->());
@@ -310,7 +319,7 @@ public:
             return false;
         }
 
-        inline Item(item_list_pos p, std::shared_ptr<ParseState> s) :
+        inline Item(item_list_pos p,std::shared_ptr<ParseState> s) :
             pos(p),
             state(std::move(s)) {
             line_number = state->line_number;
@@ -325,8 +334,8 @@ public:
     class FunctionOp :
         public Item {
     public:
-        inline FunctionOp(int deepthx, item_list_pos p, std::shared_ptr<ParseState> s)
-            :Item(p, std::move(s)), deepth(deepthx) {
+        inline FunctionOp(int deepthx,item_list_pos p,std::shared_ptr<ParseState> s)
+            :Item(p,std::move(s)),deepth(deepthx) {
         }
         int callDeepth{ 0 };
         virtual Type getType() const override {
@@ -343,8 +352,8 @@ public:
     class FunctionStart :
         public FunctionOp {
     public:
-        inline FunctionStart(int deepthx, item_list_pos p, std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+        inline FunctionStart(int deepthx,item_list_pos p,std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
         virtual Type getType() const override {
             return Type::TypeFunctionStart;
@@ -354,8 +363,8 @@ public:
     class FunctionEnd :
         public FunctionOp {
     public:
-        inline FunctionEnd(int deepthx, item_list_pos p, std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+        inline FunctionEnd(int deepthx,item_list_pos p,std::shared_ptr<ParseState> s)
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
         virtual Type getType() const override {
             return Type::TypeFunctionEnd;
@@ -370,7 +379,7 @@ public:
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         virtual Type getType() const override {
@@ -382,15 +391,15 @@ public:
             auto v = state->data.emplace(this->pos);
             bool isOk = false;
             /*获得args*/
-            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+            auto varArgs1 = getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgs = argc_to_string(varArgs1);
             /*将args转换为string*/
-            *v = std::make_shared<RawString>(varArgs[0], v, state);
+            *v = std::make_shared<RawString>(varArgs[0],v,state);
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgs1[0].second);
+            state->data.erase(this->pos,++varArgs1[0].second);
             /*更新表数据*/
             *arg = v;
             return true;
@@ -411,7 +420,7 @@ public:
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         virtual Type getType() const override {
@@ -423,8 +432,8 @@ public:
             auto v = state->data.emplace(this->pos);
             bool isOk = false;
             /*获得args*/
-            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+            auto varArgs1 = getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgs = argc_to_string(varArgs1);
@@ -434,7 +443,7 @@ public:
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
                 auto varArgs2 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 1) {
+                if(varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(
@@ -448,10 +457,10 @@ public:
 + qsl(R"(}
 \setcounter{secnumdepth}{4}                   %恢复编号，目录深度为4
 )");
-                *v = std::make_shared<RawString>(varString, v, state);
+                *v = std::make_shared<RawString>(varString,v,state);
             }
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgs1[0].second);
+            state->data.erase(this->pos,++varArgs1[0].second);
             /*更新表数据*/
             *arg = v;
             return true;
@@ -477,7 +486,7 @@ public:
         inline KeyFileSouceString(int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         inline bool toRawString(item_list_pos * arg) override {
@@ -486,8 +495,8 @@ public:
             bool isOk = false;
             /*获得args*/
             auto varArgsKeyPart =
-                getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+                getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgsKey =
@@ -501,7 +510,7 @@ public:
                     varString.trimmed();
                 auto varArgs2 =
                     varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 2) {
+                if(varArgs2.size() != 2) {
                     return false;
                 }
 
@@ -521,11 +530,11 @@ public:
                         varFullFile.chop(1);
                     }
                     const auto varStarSize = 1 + getMaxStartCount(varFullFile);
-                    const QString varStars{varStarSize,QChar('*')};
+                    const QString varStars{ varStarSize,QChar('*') };
                     varLeftKey = varLeftKey.arg(varStars);
                     varRightKey = varRightKey.arg(varStars);
                 }
-                
+
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
 \FloatBarrier
@@ -544,11 +553,11 @@ title=\lstlistingname\ \thelstlisting
 )");
                 /***********************************************/
 
-                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+                *varAnsPos = std::make_shared<RawString>(varString,varAnsPos,state);
             }
 
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            state->data.erase(this->pos,++varArgsKeyPart[0].second);
             /*更新表数据*/
             *arg = varAnsPos;
             return true;
@@ -566,8 +575,8 @@ title=\lstlistingname\ \thelstlisting
             bool isOk = false;
             /*获得args*/
             auto varArgsKeyPart =
-                getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+                getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgsKey =
@@ -581,12 +590,12 @@ title=\lstlistingname\ \thelstlisting
                     varString.trimmed();
                 auto varArgs2 =
                     varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 2) {
+                if(varArgs2.size() != 2) {
                     return false;
                 }
 
                 /***********************************************/
-                 
+
                 QString varFullFile;
                 QString varLeftKey = QStringLiteral(R"((%1@)");
                 QString varRightKey = QStringLiteral(R"(@%1))");
@@ -624,11 +633,11 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
 )");
                 /***********************************************/
 
-                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+                *varAnsPos = std::make_shared<RawString>(varString,varAnsPos,state);
             }
 
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            state->data.erase(this->pos,++varArgsKeyPart[0].second);
             /*更新表数据*/
             *arg = varAnsPos;
             return true;
@@ -645,8 +654,8 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
             bool isOk = false;
             /*获得args*/
             auto varArgsKeyPart =
-                getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+                getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgsKey =
@@ -660,7 +669,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
                     varString.trimmed();
                 auto varArgs2 =
                     varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 2) {
+                if(varArgs2.size() != 2) {
                     return false;
                 }
 
@@ -702,11 +711,11 @@ title=\commandnumbernameone\ \thecommandnumber
 )");
                 /***********************************************/
 
-                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+                *varAnsPos = std::make_shared<RawString>(varString,varAnsPos,state);
             }
 
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            state->data.erase(this->pos,++varArgsKeyPart[0].second);
             /*更新表数据*/
             *arg = varAnsPos;
             return true;
@@ -718,7 +727,7 @@ title=\commandnumbernameone\ \thecommandnumber
         inline KeyImageString(int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         Type getType() const override {
@@ -735,8 +744,8 @@ title=\commandnumbernameone\ \thecommandnumber
             bool isOk = false;
             /*获得args*/
             auto varArgsKeyPart =
-                getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+                getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgsKey =
@@ -750,7 +759,7 @@ title=\commandnumbernameone\ \thecommandnumber
                     varString.trimmed();
                 auto varArgs2 =
                     varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 4) {
+                if(varArgs2.size() != 4) {
                     return false;
                 }
 
@@ -762,7 +771,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 varString = qsl(R"(%begin图片
 )");
                 varString += qsl(R"(\begin{figure}%1 %浮动体 here and top ...
-)").arg(varArgs2[2]); 
+)").arg(varArgs2[2]);
                 varString += varFigureMarginnote;
                 varString += qsl(R"(\centering %中心对齐
 )");
@@ -778,11 +787,11 @@ title=\commandnumbernameone\ \thecommandnumber
 \end{figure}
 %end图片
 )");
-                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
+                *varAnsPos = std::make_shared<RawString>(varString,varAnsPos,state);
             }
 
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgsKeyPart[0].second);
+            state->data.erase(this->pos,++varArgsKeyPart[0].second);
             /*更新表数据*/
             *arg = varAnsPos;
             return true;
@@ -799,7 +808,7 @@ title=\commandnumbernameone\ \thecommandnumber
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         virtual Type getType() const override {
@@ -811,8 +820,8 @@ title=\commandnumbernameone\ \thecommandnumber
             auto v = state->data.emplace(this->pos);
             bool isOk = false;
             /*获得args*/
-            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+            auto varArgs1 = getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgs = argc_to_string(varArgs1);
@@ -822,7 +831,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
                 auto varArgs2 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 1) {
+                if(varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(%\FloatBarrier
@@ -832,10 +841,10 @@ title=\commandnumbernameone\ \thecommandnumber
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
-                *v = std::make_shared<RawString>(varString, v, state);
+                *v = std::make_shared<RawString>(varString,v,state);
             }
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgs1[0].second);
+            state->data.erase(this->pos,++varArgs1[0].second);
             /*更新表数据*/
             *arg = v;
             return true;
@@ -856,7 +865,7 @@ title=\commandnumbernameone\ \thecommandnumber
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         virtual Type getType() const override {
@@ -868,8 +877,8 @@ title=\commandnumbernameone\ \thecommandnumber
             auto v = state->data.emplace(this->pos);
             bool isOk = false;
             /*获得args*/
-            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+            auto varArgs1 = getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgs = argc_to_string(varArgs1);
@@ -879,7 +888,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
                 auto varArgs2 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 1) {
+                if(varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(\FloatBarrier
@@ -888,10 +897,10 @@ title=\commandnumbernameone\ \thecommandnumber
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
-                *v = std::make_shared<RawString>(varString, v, state);
+                *v = std::make_shared<RawString>(varString,v,state);
             }
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgs1[0].second);
+            state->data.erase(this->pos,++varArgs1[0].second);
             /*更新表数据*/
             *arg = v;
             return true;
@@ -912,7 +921,7 @@ title=\commandnumbernameone\ \thecommandnumber
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         virtual Type getType() const override {
@@ -924,8 +933,8 @@ title=\commandnumbernameone\ \thecommandnumber
             auto v = state->data.emplace(this->pos);
             bool isOk = false;
             /*获得args*/
-            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+            auto varArgs1 = getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgs = argc_to_string(varArgs1);
@@ -935,7 +944,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
                 auto varArgs2 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 1) {
+                if(varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(\FloatBarrier
@@ -944,10 +953,10 @@ title=\commandnumbernameone\ \thecommandnumber
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
-                *v = std::make_shared<RawString>(varString, v, state);
+                *v = std::make_shared<RawString>(varString,v,state);
             }
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgs1[0].second);
+            state->data.erase(this->pos,++varArgs1[0].second);
             /*更新表数据*/
             *arg = v;
             return true;
@@ -968,7 +977,7 @@ title=\commandnumbernameone\ \thecommandnumber
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
-            :FunctionOp(deepthx, p, std::move(s)) {
+            :FunctionOp(deepthx,p,std::move(s)) {
         }
 
         virtual Type getType() const override {
@@ -980,8 +989,8 @@ title=\commandnumbernameone\ \thecommandnumber
             auto v = state->data.emplace(this->pos);
             bool isOk = false;
             /*获得args*/
-            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
-            if (isOk == false) {
+            auto varArgs1 = getCallArgs(this->pos,1,&isOk,this->state);
+            if(isOk == false) {
                 return false;
             }
             auto varArgs = argc_to_string(varArgs1);
@@ -991,7 +1000,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 auto varString = varArgs[0];
                 const auto varKeyLabel = varString.trimmed();
                 auto varArgs2 = varConstexpr.getValues(varKeyLabel);
-                if (varArgs2.size() != 1) {
+                if(varArgs2.size() != 1) {
                     return false;
                 }
                 varString = qsl(R"(\FloatBarrier
@@ -1000,10 +1009,10 @@ title=\commandnumbernameone\ \thecommandnumber
 }\label{)") + varKeyLabel
 + qsl(R"(}
 )");
-                *v = std::make_shared<RawString>(varString, v, state);
+                *v = std::make_shared<RawString>(varString,v,state);
             }
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgs1[0].second);
+            state->data.erase(this->pos,++varArgs1[0].second);
             /*更新表数据*/
             *arg = v;
             return true;
@@ -1019,8 +1028,8 @@ title=\commandnumbernameone\ \thecommandnumber
         public Item {
     public:
         const QString data;
-        inline RawString(QString arg, item_list_pos p, std::shared_ptr<ParseState> s) :
-            Item(p, std::move(s)), data(std::move(arg)) {
+        inline RawString(QString arg,item_list_pos p,std::shared_ptr<ParseState> s) :
+            Item(p,std::move(s)),data(std::move(arg)) {
         }
         virtual Type getType() const override {
             return Type::TypeRawString;
@@ -1042,7 +1051,7 @@ title=\commandnumbernameone\ \thecommandnumber
             QString arg,
             item_list_pos p,
             std::shared_ptr<ParseState> s) :
-            Item(p, std::move(s)), data(std::move(arg)) {
+            Item(p,std::move(s)),data(std::move(arg)) {
         }
 
         virtual Type getType() const {
@@ -1052,7 +1061,7 @@ title=\commandnumbernameone\ \thecommandnumber
         bool toRawString(item_list_pos * arg) override {
             auto v = state->data.emplace(this->pos);
             *v = std::make_shared<RawString>(
-                plainStringToTexString(data), v, state);
+                plainStringToTexString(data),v,state);
             state->data.erase(this->pos);
             *arg = v;
             return true;
@@ -1070,25 +1079,25 @@ title=\commandnumbernameone\ \thecommandnumber
 
     inline void clean() {
 
-        if (inputStream) {
+        if(inputStream) {
             inputStream.reset();
         }
 
-        if (outputStream) {
+        if(outputStream) {
             outputStream.reset();
         }
 
-        if (inputFile) {
+        if(inputFile) {
             inputFile.reset();
         }
 
-        if (outputFile) {
+        if(outputFile) {
             outputFile.reset();
         }
 
-        if (currentParseState) {
-            for (auto & varI : currentParseState->data) {
-                if (varI) {
+        if(currentParseState) {
+            for(auto & varI : currentParseState->data) {
+                if(varI) {
                     varI->clear();
                 }
             }
@@ -1102,10 +1111,10 @@ title=\commandnumbernameone\ \thecommandnumber
     public:
         QString name;
         int argc{ 1 };
-        friend inline bool operator<(const FunctionKeys &l, const FunctionKeys & r) {
+        friend inline bool operator<(const FunctionKeys &l,const FunctionKeys & r) {
             return l.name < r.name;
         }
-        inline FunctionKeys(const QString & a, int b) :
+        inline FunctionKeys(const QString & a,int b) :
             name(a),
             argc(b) {
         }
@@ -1117,16 +1126,16 @@ title=\commandnumbernameone\ \thecommandnumber
 
     static inline std::shared_ptr< std::set<FunctionKeys> > _keys_set() {
         auto varAns = std::make_shared<std::set<FunctionKeys>>();
-        varAns->emplace(theBookChapter(), 1);
-        varAns->emplace(theBookText(), 1);
-        varAns->emplace(theBookForeword(), 1);
-        varAns->emplace(theBookSection(), 1);
-        varAns->emplace(theBookSubSection(), 1);
-        varAns->emplace(theBookImage(), 1);
-        varAns->emplace(theBookSubSubSection(), 1);
-        varAns->emplace(theBookReadFileSouce(), 1);
-        varAns->emplace(theBookReadTreeFileSouce(), 1);
-        varAns->emplace(theBookReadCommandFileSouce(), 1);
+        varAns->emplace(theBookChapter(),1);
+        varAns->emplace(theBookText(),1);
+        varAns->emplace(theBookForeword(),1);
+        varAns->emplace(theBookSection(),1);
+        varAns->emplace(theBookSubSection(),1);
+        varAns->emplace(theBookImage(),1);
+        varAns->emplace(theBookSubSubSection(),1);
+        varAns->emplace(theBookReadFileSouce(),1);
+        varAns->emplace(theBookReadTreeFileSouce(),1);
+        varAns->emplace(theBookReadCommandFileSouce(),1);
         return std::move(varAns);
     }
 
@@ -1141,18 +1150,18 @@ title=\commandnumbernameone\ \thecommandnumber
         auto & varStream = *inputStream;
         QString varLine;
         std::optional<const QString> varOp;
-        while (false == varStream.atEnd()) {
+        while(false == varStream.atEnd()) {
             varLine = varStream.readLine();
             ++(varState->line_number);
         pass_next_l:
-            if (varOp) {/*find end of tex_raw ... */
+            if(varOp) {/*find end of tex_raw ... */
                 auto varIndex = varLine.indexOf(*varOp);
-                if (varIndex > -1) {
+                if(varIndex > -1) {
                     {/*将左面部分加入列表*/
-                        if (varIndex) {
+                        if(varIndex) {
                             auto v = varState->data.emplace(varState->data.end());
                             auto varData =
-                                std::make_shared<RawString>(varLine.left(varIndex), v, varState);
+                                std::make_shared<RawString>(varLine.left(varIndex),v,varState);
                             *v = varData;
                         }
                     }
@@ -1161,7 +1170,7 @@ title=\commandnumbernameone\ \thecommandnumber
                     {/*将右边部分加入列表*/
                         auto varSize = varLine.size();
                         varSize -= varIndex + varOpSize;
-                        if (varSize > 0) {
+                        if(varSize > 0) {
                             varLine = varLine.right(varSize);
                             goto pass_next_l;
                         }
@@ -1169,7 +1178,7 @@ title=\commandnumbernameone\ \thecommandnumber
                     {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v, varState);
+                            std::make_shared<RawString>(qsl("\n"),v,varState);
                         *v = varData;
                     }
 
@@ -1177,49 +1186,49 @@ title=\commandnumbernameone\ \thecommandnumber
                     {/*将当前行加入列表...*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(varLine, v, varState);
+                            std::make_shared<RawString>(varLine,v,varState);
                         *v = varData;
                     }
                     {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v, varState);
+                            std::make_shared<RawString>(qsl("\n"),v,varState);
                         *v = varData;
                     }
                 }
             } else {
                 auto varIndex = varLine.indexOf(texRaw());
-                if (varIndex > -1) {/*find start of tex_raw ...*/
+                if(varIndex > -1) {/*find start of tex_raw ...*/
                     int varEqCount = 0;
                     auto varPos = varIndex + texRaw().size();
 
-                    if (varIndex > 0) {/*将:raw_tex[===[左边的值加入列表*/
+                    if(varIndex > 0) {/*将:raw_tex[===[左边的值加入列表*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<ProgramString>(varLine.left(varIndex), v, varState);
+                            std::make_shared<ProgramString>(varLine.left(varIndex),v,varState);
                         *v = varData;
                     }
 
                     {/*寻找非空元素...*/
                         bool isFindLeftStart = false;
-                        while (false == isFindLeftStart) {
-                            if (varPos >= varLine.size()) {
-                                while (false == varStream.atEnd()) {
+                        while(false == isFindLeftStart) {
+                            if(varPos >= varLine.size()) {
+                                while(false == varStream.atEnd()) {
                                     varLine = varStream.readLine();
                                     ++(varState->line_number);
-                                    if (varLine.trimmed().isEmpty()) {/*删除空行*/
+                                    if(varLine.trimmed().isEmpty()) {/*删除空行*/
                                         /*bad format ??? */
                                         continue;
                                     } else {
                                         break;
                                     }
                                 }/*while*/
-                                if (false == varStream.atEnd()) {
+                                if(false == varStream.atEnd()) {
                                     varPos = 0;
                                 } else {
                                     return false;
                                 }
-                            } else if (std::as_const(varLine)[varPos].isSpace()) {
+                            } else if(std::as_const(varLine)[varPos].isSpace()) {
                                 ++varPos;
                                 continue;
                             } else {
@@ -1228,20 +1237,20 @@ title=\commandnumbernameone\ \thecommandnumber
                         }
                     }
 
-                    if (std::as_const(varLine)[varPos] != QChar('[')) {
+                    if(std::as_const(varLine)[varPos] != QChar('[')) {
                         return false;
                     }
 
                     ++varPos;
-                    if (varPos > varLine.size()) {
+                    if(varPos > varLine.size()) {
                         return false;
                     }
 
-                    while (varPos < varLine.size()) {
-                        if (std::as_const(varLine)[varPos] == QChar('[')) {
+                    while(varPos < varLine.size()) {
+                        if(std::as_const(varLine)[varPos] == QChar('[')) {
                             break;
                         } else {
-                            if (std::as_const(varLine)[varPos] == QChar('=')) {
+                            if(std::as_const(varLine)[varPos] == QChar('=')) {
                                 ++varEqCount;
                                 ++varPos;
                             } else {
@@ -1250,17 +1259,17 @@ title=\commandnumbernameone\ \thecommandnumber
                         }
                     }
 
-                    if (varEqCount == 0) {
+                    if(varEqCount == 0) {
                         varOp.emplace(qsl("]]"));
                     } else {
-                        QString varString(varEqCount, QChar('='));
+                        QString varString(varEqCount,QChar('='));
                         varOp.emplace(qsl("]") + varString + qsl("]"));
                     }
 
-                    if ((++varPos) >= varLine.size()) {
+                    if((++varPos) >= varLine.size()) {
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v, varState);
+                            std::make_shared<RawString>(qsl("\n"),v,varState);
                         *v = varData;
                     } else {/*将剩余部分加入列表*/
 
@@ -1273,23 +1282,23 @@ title=\commandnumbernameone\ \thecommandnumber
 
 
                 } else {
-                    if (false == varLine.isEmpty()) {/*将当前行加入列表...*/
+                    if(false == varLine.isEmpty()) {/*将当前行加入列表...*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<ProgramString>(varLine, v, varState);
+                            std::make_shared<ProgramString>(varLine,v,varState);
                         *v = varData;
                     }
                     {/*加入换行符*/
                         auto v = varState->data.emplace(varState->data.end());
                         auto varData =
-                            std::make_shared<RawString>(qsl("\n"), v, varState);
+                            std::make_shared<RawString>(qsl("\n"),v,varState);
                         *v = varData;
                     }
                 }
             }
         }
 
-        if (varOp) {
+        if(varOp) {
             return false;
         }
 
@@ -1307,10 +1316,10 @@ title=\commandnumbernameone\ \thecommandnumber
         int varEndOpCount = 0;
         std::optional< Item::item_list_pos > varNewPos;
 
-        while (varPos != varData.cend()) {
+        while(varPos != varData.cend()) {
 
             const auto varCurrentType2 = varPos->get()->getType();
-            if (varCurrentType2 == Item::Type::TypeProgramString) {
+            if(varCurrentType2 == Item::Type::TypeProgramString) {
 
                 auto varItemRaw = *varPos;
                 auto varProgram =
@@ -1328,15 +1337,15 @@ title=\commandnumbernameone\ \thecommandnumber
                     auto varLeftIndex = varString.indexOf(varLeftExp);
                     auto varRightIndex = varString.indexOf(varRightExp);
 
-                    if ((varLeftIndex < 0) && (varRightIndex < 0)) {
+                    if((varLeftIndex < 0) && (varRightIndex < 0)) {
                         /*没有[[或]]*/
                         hasOp = false;
-                        if (varString.isEmpty() && varNewPos) {
+                        if(varString.isEmpty() && varNewPos) {
                             /*字符串为空...*/
                             varData.erase(varPos);
                             varPos = *varNewPos;
                         } else {
-                            if (varProgram->data != varString) {
+                            if(varProgram->data != varString) {
                                 /*如果字符串改变了,加入新的搜索节点*/
                                 auto v = varData.emplace(varPos);
                                 varData.erase(varPos);
@@ -1354,14 +1363,14 @@ title=\commandnumbernameone\ \thecommandnumber
                         hasOp = true;
                         bool isLeft = false;
                         int varIndex = -1;
-                        if (varLeftIndex < 0) {
+                        if(varLeftIndex < 0) {
                             varIndex = varRightIndex;
                             isLeft = false;
-                        } else if (varRightIndex < 0) {
+                        } else if(varRightIndex < 0) {
                             varIndex = varLeftIndex;
                             isLeft = true;
                         } else {
-                            if (varRightIndex < varLeftIndex) {
+                            if(varRightIndex < varLeftIndex) {
                                 isLeft = false;
                                 varIndex = varRightIndex;
                             } else {
@@ -1369,10 +1378,10 @@ title=\commandnumbernameone\ \thecommandnumber
                                 varIndex = varLeftIndex;
                             }
                         }
-                        if (varIndex > -1) {
+                        if(varIndex > -1) {
 
                             /*将index的左边加入搜索*/
-                            if (varIndex) {
+                            if(varIndex) {
                                 auto v = varData.emplace(varPos);
                                 auto varLeftString = varString.left(varIndex);
                                 *v = std::make_shared< ProgramString >(varLeftString,
@@ -1381,7 +1390,7 @@ title=\commandnumbernameone\ \thecommandnumber
                             }
 
                             /*加入op...*/
-                            if (isLeft) {
+                            if(isLeft) {
                                 ++varStartOpCount;
                                 auto v = varData.emplace(varPos);
                                 auto varDeepth = varStartOpCount - varEndOpCount;
@@ -1389,15 +1398,15 @@ title=\commandnumbernameone\ \thecommandnumber
                                 *v = std::make_shared< FunctionStart >(varDeepth,
                                     v,
                                     varState);
-                                if (varNewPos) {
+                                if(varNewPos) {
                                     varNewPos.reset();
                                 }
                                 varNewPos.emplace(v);
-                                if (varEndOpCount) {
+                                if(varEndOpCount) {
                                     varStartOpCount = varDeepth;
                                     varEndOpCount = 0;
                                 }
-                                varMaxDeepth = std::max(varMaxDeepth, varDeepth);
+                                varMaxDeepth = std::max(varMaxDeepth,varDeepth);
                             } else {
                                 auto v = varData.emplace(varPos);
                                 auto varDeepth = varStartOpCount - varEndOpCount;
@@ -1405,12 +1414,12 @@ title=\commandnumbernameone\ \thecommandnumber
                                 *v = std::make_shared< FunctionEnd >(varDeepth,
                                     v,
                                     varState);
-                                if (varNewPos) {
+                                if(varNewPos) {
                                     varNewPos.reset();
                                 }
                                 varNewPos.emplace(v);
                                 ++varEndOpCount;
-                                if (varEndOpCount) {
+                                if(varEndOpCount) {
                                     varStartOpCount = varDeepth;
                                     varEndOpCount = 0;
                                 }
@@ -1420,17 +1429,17 @@ title=\commandnumbernameone\ \thecommandnumber
                             {
                                 int varOpCount = 0;
                                 auto varCIndex = varIndex;
-                                for (; varCIndex < varString.size(); ++varCIndex) {
-                                    if (isLeft) {
-                                        if (varString[varCIndex] == QChar('[')) {
+                                for(; varCIndex < varString.size(); ++varCIndex) {
+                                    if(isLeft) {
+                                        if(varString[varCIndex] == QChar('[')) {
                                             ++varOpCount;
                                         }
                                     } else {
-                                        if (varString[varCIndex] == QChar(']')) {
+                                        if(varString[varCIndex] == QChar(']')) {
                                             ++varOpCount;
                                         }
                                     }
-                                    if (varOpCount == 2) {
+                                    if(varOpCount == 2) {
                                         break;
                                     }
                                 }
@@ -1442,7 +1451,7 @@ title=\commandnumbernameone\ \thecommandnumber
                         }
                     }
 
-                } while (hasOp);
+                } while(hasOp);
 
             } else {
                 ++varPos;
@@ -1460,65 +1469,65 @@ title=\commandnumbernameone\ \thecommandnumber
 
         auto varAns = varData.emplace(varPos);
 
-        if (varKey.name == theBookReadCommandFileSouce()) {
+        if(varKey.name == theBookReadCommandFileSouce()) {
             auto varValue =
                 std::make_shared< KeyCommandFileSouceString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (varKey.name == theBookChapter()) {
+        } else if(varKey.name == theBookChapter()) {
             auto varValue =
                 std::make_shared< KeyChapterString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (varKey.name == theBookForeword()) {
+        } else if(varKey.name == theBookForeword()) {
             auto varValue =
                 std::make_shared< KeyForewordString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (theBookSection() == varKey.name) {
+        } else if(theBookSection() == varKey.name) {
             auto varValue =
                 std::make_shared< KeySectionString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (theBookSubSection() == varKey.name) {
+        } else if(theBookSubSection() == varKey.name) {
             auto varValue =
                 std::make_shared< KeySubSectionString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (theBookSubSubSection() == varKey.name) {
+        } else if(theBookSubSubSection() == varKey.name) {
             auto varValue =
                 std::make_shared< KeySubSubSectionString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (theBookImage() == varKey.name) {
+        } else if(theBookImage() == varKey.name) {
             auto varValue =
                 std::make_shared< KeyImageString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (theBookReadFileSouce() == varKey.name) {
+        } else if(theBookReadFileSouce() == varKey.name) {
             auto varValue =
                 std::make_shared< KeyFileSouceString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (theBookReadTreeFileSouce() == varKey.name) {
+        } else if(theBookReadTreeFileSouce() == varKey.name) {
             auto varValue =
                 std::make_shared< KeyTreeFileSouceString >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
-        } else if (varKey.name == theBookText()) {
+        } else if(varKey.name == theBookText()) {
             auto varValue =
                 std::make_shared< KeyTextSring >(varDeepth,
-                    varAns,
-                    currentParseState);
+                varAns,
+                currentParseState);
             *varAns = varValue;
         }
 
@@ -1534,10 +1543,10 @@ title=\commandnumbernameone\ \thecommandnumber
         auto varBegin = std::make_reverse_iterator(arg);
         int varLeftCount = 0;
         int varRightCount = 0;
-        for (; varBegin != varEnd; ++varBegin) {
-            if (varBegin->get()->getType() == Item::Type::TypeFunctionEnd) {
+        for(; varBegin != varEnd; ++varBegin) {
+            if(varBegin->get()->getType() == Item::Type::TypeFunctionEnd) {
                 ++varRightCount;
-            } else if (varBegin->get()->getType() == Item::Type::TypeFunctionStart) {
+            } else if(varBegin->get()->getType() == Item::Type::TypeFunctionStart) {
                 ++varLeftCount;
             }
         }
@@ -1546,14 +1555,14 @@ title=\commandnumbernameone\ \thecommandnumber
     }
 
     /*获得argc...*/
-    static inline std::vector< std::pair< Item::item_list_pos, Item::item_list_pos > >
+    static inline std::vector< std::pair< Item::item_list_pos,Item::item_list_pos > >
         getCallArgs(
-            Item::item_list_pos argPos,
-            int  argc,
-            bool * ans,
-            std::shared_ptr<ParseState> currentParseState) {
+        Item::item_list_pos argPos,
+        int  argc,
+        bool * ans,
+        std::shared_ptr<ParseState> currentParseState) {
 
-        if (argc < 1) {
+        if(argc < 1) {
             *ans = true;
             return{};
         }
@@ -1566,24 +1575,24 @@ title=\commandnumbernameone\ \thecommandnumber
         auto varPos = argPos;
         ++varPos;
 
-        std::vector< std::pair< Item::item_list_pos, Item::item_list_pos > > varAns;
+        std::vector< std::pair< Item::item_list_pos,Item::item_list_pos > > varAns;
 
         auto argci = argc;
-        while (argci > 0) {
+        while(argci > 0) {
             --argci;
 
-            std::pair< Item::item_list_pos, Item::item_list_pos >
+            std::pair< Item::item_list_pos,Item::item_list_pos >
                 varItem;
             bool isSetBegin = false;
-            for (; varPos != varEnd; ++varPos) {
-                if (varPos->get()->getType() == Item::Type::TypeFunctionStart) {
+            for(; varPos != varEnd; ++varPos) {
+                if(varPos->get()->getType() == Item::Type::TypeFunctionStart) {
                     isSetBegin = true;
                     varItem.first = varPos;
-                } else if (varPos->get()->getType() == Item::Type::TypeFunctionEnd) {
+                } else if(varPos->get()->getType() == Item::Type::TypeFunctionEnd) {
                     varItem.second = varPos;
                     varAns.push_back(varItem);
                     ++varPos;
-                    if (false == isSetBegin) {
+                    if(false == isSetBegin) {
                         *ans = false;
                         return std::move(varAns);
                     }
@@ -1606,15 +1615,15 @@ title=\commandnumbernameone\ \thecommandnumber
         std::vector<QString> varAns;
         varAns.resize(args.size());
         std::size_t i = 0;
-        for (; i < args.size(); ++i) {
+        for(; i < args.size(); ++i) {
             auto varItem = args[i];
             auto & varAnsI = varAns[i];
             auto varPos = varItem.first;
-            for (; varPos != varItem.second; ++varPos) {
-                if (varPos->get()->getType() == Item::Type::TypeRawString) {
+            for(; varPos != varItem.second; ++varPos) {
+                if(varPos->get()->getType() == Item::Type::TypeRawString) {
                     varAnsI +=
                         static_cast<RawString *>(varPos->get())->data;
-                } else if (varPos->get()->getType() == Item::Type::TypeProgramString) {
+                } else if(varPos->get()->getType() == Item::Type::TypeProgramString) {
                     varAnsI += plainStringToTexString(
                         static_cast<ProgramString *>(varPos->get())->data);
                 }
@@ -1633,7 +1642,7 @@ title=\commandnumbernameone\ \thecommandnumber
         /*最大函数调用深度*/
         varState->current_deepth = varMaxDeepth;
 
-        if (varMaxDeepth == 0) {
+        if(varMaxDeepth == 0) {
             return true;
         }
 
@@ -1644,13 +1653,13 @@ title=\commandnumbernameone\ \thecommandnumber
         /*当前位置*/
         auto varPos = varData.cbegin();
         /*遍历整个表*/
-        while (varPos != varData.cend()) {
+        while(varPos != varData.cend()) {
 
             /*当前元素*/
             auto varItemRaw = *varPos;
 
             /*已经处理过...*/
-            if (varItemRaw->getType() != Item::Type::TypeProgramString) {
+            if(varItemRaw->getType() != Item::Type::TypeProgramString) {
                 ++varPos;
                 continue;
             }
@@ -1670,24 +1679,24 @@ title=\commandnumbernameone\ \thecommandnumber
                 /*本行keys计数器*/
                 int varKeyCount = 0;
                 /*搜索最左边的key*/
-                for (const auto & varI : *keys_set()) {
+                for(const auto & varI : *keys_set()) {
                     auto varThisKeyIndex =
                         varProgram->data.indexOf(varI.name);
-                    if (varThisKeyIndex < 0) {
+                    if(varThisKeyIndex < 0) {
                         continue;
                     }
                     ++varKeyCount;
-                    if (varIndex > varThisKeyIndex) {
+                    if(varIndex > varThisKeyIndex) {
                         varIndex = varThisKeyIndex;
                     }
-                    if (varKey) {
+                    if(varKey) {
                         varKey.reset();
                     }
                     varKey.emplace(varI);
                 }
 
                 /*没有key...*/
-                if (varIndex == std::numeric_limits<int>::max()) {
+                if(varIndex == std::numeric_limits<int>::max()) {
                     ++varPos;
                     break;
                 }
@@ -1695,39 +1704,39 @@ title=\commandnumbernameone\ \thecommandnumber
                 const auto varCurrentFunctionDeepth =
                     get_function_deepth(varPos);
 
-                if (varKey->argc > 0) {
+                if(varKey->argc > 0) {
                     assert(varKeyCount == 1);
                     Item::item_list_pos varNewPos;
-                    if (varIndex) {/*插入左边的内容*/
+                    if(varIndex) {/*插入左边的内容*/
                         auto v = varData.emplace(varPos);
                         auto varItem =
                             std::make_shared< ProgramString >(
-                                varProgram->data.left(varIndex),
-                                v,
-                                varState);
+                            varProgram->data.left(varIndex),
+                            v,
+                            varState);
                         *v = varItem;
                     }
                     /*插入key...*/
                     varNewPos =
-                        this->_insertKey(*varKey, varCurrentFunctionDeepth, varPos);
+                        this->_insertKey(*varKey,varCurrentFunctionDeepth,varPos);
                     /*删除当前位置*/
                     varData.erase(varPos);
                     varPos = varNewPos;
                     break;
                 } else {
                     Item::item_list_pos varNewPos;
-                    if (varIndex) {/*插入左边的内容*/
+                    if(varIndex) {/*插入左边的内容*/
                         auto v = varData.emplace(varPos);
                         auto varItem =
                             std::make_shared< ProgramString >(
-                                varProgram->data.left(varIndex),
-                                v,
-                                varState);
+                            varProgram->data.left(varIndex),
+                            v,
+                            varState);
                         *v = varItem;
                     }
                     /*插入key...*/
                     varNewPos =
-                        this->_insertKey(*varKey, varCurrentFunctionDeepth, varPos);
+                        this->_insertKey(*varKey,varCurrentFunctionDeepth,varPos);
                     /*删除无用数据*/
                     auto varDataString = varProgram->data;
                     const auto varNewSize =
@@ -1736,7 +1745,7 @@ title=\commandnumbernameone\ \thecommandnumber
                         varKey->name.size();
                     assert(varNewSize >= 0);
                     varDataString = varDataString.right(varNewSize);
-                    if (varDataString.isEmpty()) {
+                    if(varDataString.isEmpty()) {
                         /*删除空节点*/
                         varData.erase(varPos);
                         varPos = varNewPos;
@@ -1747,7 +1756,7 @@ title=\commandnumbernameone\ \thecommandnumber
                     }
                 }
 
-            } while (varIndex != std::numeric_limits<int>::max());
+            } while(varIndex != std::numeric_limits<int>::max());
 
         }
 
@@ -1755,7 +1764,7 @@ title=\commandnumbernameone\ \thecommandnumber
     }
 
     inline bool call_all_functions(std::shared_ptr<ParseState> varState) {
-        if (varState->current_deepth < 1) {
+        if(varState->current_deepth < 1) {
             return true;
         }
         /*整个表*/
@@ -1764,14 +1773,14 @@ title=\commandnumbernameone\ \thecommandnumber
         auto varCurrentDeepth = varState->current_deepth;
         do {
             varPos = varData.cbegin();
-            while (varPos != varData.cend()) {
-                if (varPos->get()->isKeyFunction()) {
+            while(varPos != varData.cend()) {
+                if(varPos->get()->isKeyFunction()) {
                     auto varItem = *varPos;
                     auto varCurrentDeepth1 =
                         static_cast<FunctionOp *>(varItem.get())->deepth;
                     assert(varCurrentDeepth >= varCurrentDeepth1);
-                    if (varCurrentDeepth == varCurrentDeepth1) {
-                        if (false == varItem->toRawString(&varPos)) {
+                    if(varCurrentDeepth == varCurrentDeepth1) {
+                        if(false == varItem->toRawString(&varPos)) {
                             return false;
                         }
                     } else {
@@ -1781,7 +1790,7 @@ title=\commandnumbernameone\ \thecommandnumber
                     ++varPos;
                 }
             }
-        } while ((--varCurrentDeepth) > -1);
+        } while((--varCurrentDeepth) > -1);
 
         return true;
     }
@@ -1796,28 +1805,28 @@ title=\commandnumbernameone\ \thecommandnumber
     inline bool parse() {
         auto varParseState = std::make_shared<ParseState>();
         currentParseState = varParseState;
-        if (false == parse_tex_raw(varParseState)) {
+        if(false == parse_tex_raw(varParseState)) {
             return false;
         }
-        if (false == parse_call_deepth(varParseState)) {
+        if(false == parse_call_deepth(varParseState)) {
             return false;
         }
-        if (false == call_all_functions(varParseState)) {
+        if(false == call_all_functions(varParseState)) {
             return false;
         }
         bool isAllRaw = false;
         int varCallCount = 16;
-        while ((false == isAllRaw) && ((--varCallCount) > 0)) {
+        while((false == isAllRaw) && ((--varCallCount) > 0)) {
             isAllRaw = true;
             auto varPos = varParseState->data.cbegin();
-            while (varPos != varParseState->data.cend()) {
+            while(varPos != varParseState->data.cend()) {
                 auto varI = *varPos;
                 const auto varCurrentType1 = varI->getType();
                 assert(varCurrentType1 != Item::Type::TypeFunctionEnd);
                 assert(varCurrentType1 != Item::Type::TypeFunctionStart);
-                if (varCurrentType1 != Item::Type::TypeRawString) {
+                if(varCurrentType1 != Item::Type::TypeRawString) {
                     isAllRaw = false;
-                    if (varI->toRawString(&varPos) == false) {
+                    if(varI->toRawString(&varPos) == false) {
                         return false;
                     }
                 } else {
@@ -1830,7 +1839,7 @@ title=\commandnumbernameone\ \thecommandnumber
 
     inline void write_output() {
         auto & varStream = *outputStream;
-        for (const auto & varI : currentParseState->data) {
+        for(const auto & varI : currentParseState->data) {
             varStream << static_cast<const RawString *>(
                 varI.get())->data;
         }
@@ -1885,17 +1894,17 @@ bool TexBuilder::convert() {
     } varLock{ thisp };
 
     /*打开输入文件*/
-    if (false == thisp->openInput()) {
+    if(false == thisp->openInput()) {
         return false;
     }
 
     /*打开输出文件*/
-    if (false == thisp->openOutput()) {
+    if(false == thisp->openOutput()) {
         return false;
     }
 
     /*进行转换*/
-    if (false == thisp->parse()) {
+    if(false == thisp->parse()) {
         return false;
     }
 
