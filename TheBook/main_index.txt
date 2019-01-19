@@ -116,8 +116,8 @@ showstringspaces=false
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
 
 \newenvironment{littlelongworld}
-{ \\[0.25cm] }
-{ \\[0.25cm] }
+{ \\[\parskip] }
+{ \\[\parskip] }
 
 \newcommand\treeindexnumbernameone{路径}
 %\newcommand\theTreeIndexNumber{}

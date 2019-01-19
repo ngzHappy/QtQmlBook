@@ -38,7 +38,8 @@
 :tex_raw:[[\item ]]第15行引入“import_sstd_library.pri”文件，此文件引入“sstd_library”库。
 “sstd_library”库用于引入和补充标准C++库。
 :tex_raw:[[\item ]]第17行引入“import_sstd_qt_and_qml_library.pri”文件，
-此文件引入“sstd_qt_and_qml_library”库。
+此文件引入“sstd_:tex_raw:[[\-]]qt_:tex_raw:[[\-]]and_:tex_raw:[[\-]]qml_:tex_raw:[[\-]]library”库。
+
 “sstd_qt_and_qml_library”库用于引入和补充Qt库。
 :tex_raw:[[\item ]]第44~48行将Qml文件加入工程。这是一种惯用法，用于实现Qml国际化。
 :tex_raw:[[\end{itemize}]]
