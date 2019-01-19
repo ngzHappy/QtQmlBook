@@ -547,7 +547,7 @@ title=\lstlistingname\ \thelstlisting
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}})");
+                varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 %\end{spacing}
@@ -627,7 +627,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}})");
+                varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}]{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 %\end{spacing}
@@ -705,7 +705,7 @@ title=\commandnumbernameone\ \thecommandnumber
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}})");
+                varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}]{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 %\end{spacing}
