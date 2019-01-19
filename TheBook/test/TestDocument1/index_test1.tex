@@ -16,8 +16,8 @@ top=2.0cm,
 bottom=2.0cm,
 headheight=1.3cm,
 headsep=0.5cm,
-marginparsep=0.5cm,
-marginparwidth=2.5cm
+marginparsep=0.8cm,
+marginparwidth=2.2cm
 ]{geometry}                %导入包geometry
 
  %导入常用包
@@ -207,7 +207,10 @@ using namespace std;
      foo<int>();
      return 0;
 } 
-\end{lstlisting}
+\end{lstlisting}\marginpar[\hfill\fbox{A}]{\fbox{B}}
+
+dsfsdfdsa 
+
 
 sdfdsafdsaf
 
@@ -216,7 +219,7 @@ sdfdsafdsaf
 在文字录入A\ref{testsection}A\pageref{testsection}A比赛（打字比赛）中，最公平的比赛用文本就是随机文本，这个随机汉字生成器便是为此所作。普通人的汉字录入速度一般是每分钟几十个到一百多个，我们可以生成一两千字的随机汉字文本，让比赛者录入完这些汉字，依据他们的比赛用时和正确率判断名次。生成随机汉字的原始文字一般选择常用汉字，经过随机排列之后只能一个字一个字的输入，对参赛者来说是相对公平的方案。
 
 \begin{figure}[ht]
-\centering
+\centering\marginnote{\fbox{图片\ 1.22}}
 \includegraphics[width=\textwidth]{0000.jpg}
 \caption{xxxxxx}
 \label{xxxxxx1}

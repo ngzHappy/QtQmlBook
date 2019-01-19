@@ -495,7 +495,7 @@ public:
 \FloatBarrier
 \begin{lstlisting}[label=%1,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\lstlistingname\ \thelstlisting}}
+title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
@@ -559,7 +559,7 @@ title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\lstlistingname\ \thelstl
 \refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
-title=\treeindexnumbernameone \thetreeindexnumber\marginnote{\fbox{\treeindexnumbernameone \thetreeindexnumber}}
+title=\treeindexnumbernameone\ \thetreeindexnumber\marginnote{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}}
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
@@ -621,7 +621,7 @@ title=\treeindexnumbernameone \thetreeindexnumber\marginnote{\fbox{\treeindexnum
 \FloatBarrier
 \refstepcounter{commandnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
-title=\commandnumbernameone \thecommandnumber\marginnote{\fbox{\commandnumbernameone \thecommandnumber}}
+title=\commandnumbernameone\ \thecommandnumber\marginnote{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}}
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
@@ -690,9 +690,16 @@ title=\commandnumbernameone \thecommandnumber\marginnote{\fbox{\commandnumbernam
                     return false;
                 }
 
-                varString = qsl(R"(
-\begin{figure}%1 %浮动体 here and top ...
+                QString varFigureMarginnote = qsl(R"(
+\marginnote{\fbox{\footnotesize{\figurename\ \ref{)");
+                varFigureMarginnote += varKeyLabel;
+                varFigureMarginnote += QStringLiteral(R"(}}}})");
+
+                varString = qsl(R"(%begin图片
+)");
+                varString += qsl(R"(\begin{figure}%1 %浮动体 here and top ...
 )").arg(varArgs2[2]);
+                varString += varFigureMarginnote;
                 varString += qsl(R"(\centering %中心对齐
 )");
                 varString += qsl(R"(\includegraphics%1{)").arg(varArgs2[3]);

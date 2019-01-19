@@ -19,8 +19,8 @@ top=2.0cm,
 bottom=2.0cm,
 headheight=1.3cm,
 headsep=0.5cm,
-marginparsep=0.5cm,        %边注与内容边距
-marginparwidth=2.5cm       %边注宽度
+marginparsep=0.8cm,        %边注与内容边距
+marginparwidth=2.1cm       %边注宽度
 ]{geometry}                %导入包geometry
 
 %引入边注包
@@ -119,7 +119,7 @@ showstringspaces=false
 { \\[0.25cm] }
 { \\[0.25cm] }
 
-\newcommand\treeindexnumbernameone{目录树}
+\newcommand\treeindexnumbernameone{路径}
 %\newcommand\theTreeIndexNumber{}
 \newcounter{treeindexnumber}[chapter]
 %\stepcounter{treeindexnumber}
@@ -128,7 +128,7 @@ showstringspaces=false
     \thechapter.\arabic{treeindexnumber}
 }
 
-\newcommand\commandnumbernameone{命令行}
+\newcommand\commandnumbernameone{命令}
 \newcounter{commandnumber}[chapter]
 \renewcommand\thecommandnumber{
     \thechapter.\arabic{commandnumber}
