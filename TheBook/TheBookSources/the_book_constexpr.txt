@@ -36,6 +36,7 @@ ss001210::::使用QQmlApplicationEngine加载Qt Quick程序
 s100410::::你好世界！
 s100510::::初识Qt Quick控件
 s100610::::在Qt Quick中使用着色器
+s100710::::使用C++扩展Qt Quick
 
 %第二章
 c000011::::Qt Quick基础
@@ -59,8 +60,8 @@ c000020::::前言
 
 %图片路径
 p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[htb]::::[scale=0.95]
-p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[htb]::::[width=0.95\textwidth]
-p000002::::qmake对C/C++编译链接过程控制点::::chapter01/images/advance_use_qmake.png::::[htb]::::[width=0.95\textwidth]
+p000001::::Qt在线安装建议安装组件::::chapter01/images/windows_qt_online_install.png::::[htb]::::[width=0.95\textwidth]
+p000002::::qmake对C/C++编译链接过程中的控制点::::chapter01/images/advance_use_qmake.png::::[htb]::::[width=0.95\textwidth]
 p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[htb]::::[width=0.95\textwidth]
 p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[htb]::::[width=0.95\textwidth]
 p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[htb]::::[width=0.95\textwidth]
@@ -68,6 +69,7 @@ p000006::::你好世界！::::../chapter01/hellowworld/the_app.png::::[htb]::::[
 p000007::::Qt Quick控件及样式！::::../chapter01/defaultstyle/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000008::::Qt Quick中使用着色器::::../chapter01/shadereffect/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000009::::Qt Quick着色器中使用纹理::::../chapter01/shadereffectwithimage/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000010::::QQuickItem继承关系图::::chapter01/images/qtquick_item.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
@@ -122,6 +124,8 @@ f000037::::chapter01/files/defaultsytle/1.txt::::]
 
 f000038::::../chapter01/shadereffect/myqml/shadereffect/main.qml::::]
 f000039::::../chapter01/shadereffectwithimage/myqml/shadereffectwithimage/main.qml::::]
+
+ 
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]

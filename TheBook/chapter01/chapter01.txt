@@ -12,7 +12,7 @@
 \input{chapter01/hellow_world.tex}
 \input{chapter01/defaultstyle.tex}
 \input{chapter01/use_shader_in_qt_quick.tex}
-
+\input{chapter01/directdrawbyopengl.tex}
 
 
 
