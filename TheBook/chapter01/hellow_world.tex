@@ -16,12 +16,13 @@
 
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
-
+%there must use marginnote not use marginpar ...
 \marginnote{\fbox{\footnotesize{\figurename\ \ref{p000006}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{../chapter01/hellowworld/the_app.png} %图片路径
 \caption{你好世界！} %标题
 \label{p000006} %索引
 \end{figure}
+%end图片
 
 
 绝大多数介绍计算机语言的书籍都有一
@@ -32,9 +33,10 @@
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000030,
+\begin{lstlisting}[escapeinside={(***@}{@***)},
+label=f000030,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 #include <sstd_qt_and_qml_library.hpp>
 
@@ -63,7 +65,7 @@ int main(int argc, char ** argv) {
     return varApp->exec();
 
 }
-\end{lstlisting}          %抄录环境
+(***@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@***)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.cpp
 
@@ -87,9 +89,10 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000031,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000031,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*main.qml*/
 import QtQuick 2.9
@@ -111,7 +114,7 @@ Rectangle {
         anchors.fill: parent
     } /*~MainRectangle*/
 } /*~Rectangle*/
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.qml
 
@@ -123,12 +126,13 @@ Rectangle {
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000034,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000034,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 import "ResourceURL" as Qualifier
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %1.txt
 
@@ -159,9 +163,10 @@ import "ResourceURL" as Qualifier
 所示：
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000032,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000032,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*main_private/MainRectangle.qml*/
 import QtQuick 2.9
@@ -169,7 +174,7 @@ import QtQuick 2.9
 Rectangle {
     color: Qt.rgba(0.8, 0.2, 0.2, 1)
 }
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %MainRectangle.qml
 
@@ -183,9 +188,10 @@ Qml是一门大小写敏感的计算机语言。
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000033,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000033,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*main_private/MainText.qml*/
 import QtQuick 2.9
@@ -198,7 +204,7 @@ Text {
     verticalAlignment: Text.AlignVCenter
     horizontalAlignment: Text.AlignHCenter
 }
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %MainText.qml
 

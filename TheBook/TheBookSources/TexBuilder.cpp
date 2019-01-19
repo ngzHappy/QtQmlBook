@@ -15,6 +15,22 @@ _keys_set()
 _insertKey()
 *****/
 
+static inline int getMaxStartCount(const QString & arg) {
+    int varAns = 0;
+    int varCurrentCount = 0;
+    for(const auto & varI : arg) {
+        if(varI=='*') {
+            ++varCurrentCount;
+            if(varAns < varCurrentCount) {
+                varAns = varCurrentCount;
+            }
+        } else {
+            varCurrentCount = 0;
+        }
+    }
+    return varAns;
+}
+
 static inline const QString & texRaw() {
     const static auto varAns = qsl(":tex_raw:");
     return varAns;
@@ -491,21 +507,35 @@ public:
 
                 /***********************************************/
 
-                varString = qsl(R"(%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[label=%1,
-caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
-%2
-)").arg(varKeyLabel).arg(varArgs2[1]);
+                QString varFullFile;
+                QString varLeftKey = QStringLiteral(R"((%1@)");
+                QString varRightKey = QStringLiteral(R"(@%1))");
                 {
                     const auto varSources =
                         readFileSource(getOutPutFileFullPath(varArgs2[0]));
-                    for (const auto & varLine : varSources) {
-                        varString += varLine;
-                        varString += QChar('\n');
+                    for(const auto & varLine : varSources) {
+                        varFullFile += varLine;
+                        varFullFile += QChar('\n');
                     }
+                    const auto varStarSize = 1 + getMaxStartCount(varFullFile);
+                    const QString varStars{varStarSize,QChar('*')};
+                    varLeftKey = varLeftKey.arg(varStars);
+                    varRightKey = varRightKey.arg(varStars);
                 }
+                
+
+                varString = qsl(R"(%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[escapeinside={%3}{%4},
+label=%1,
+caption=GoodLuck,
+title=\lstlistingname\ \thelstlisting
+%2
+)").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
+                varString += varFullFile;
+                varString += varLeftKey;
+                varString += qsl(R"(\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}})");
+                varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 %\end{spacing}
 )");
@@ -553,13 +583,13 @@ title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlisting
                 }
 
                 /***********************************************/
-
+                 
                 varString = qsl(R"(%\begin{spacing}{1.0}
 \FloatBarrier
 \refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
-title=\treeindexnumbernameone\ \thetreeindexnumber\marginnote{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}}
+title=\treeindexnumbernameone\ \thetreeindexnumber
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
@@ -571,7 +601,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber\marginnote{\fbox{\footnotesiz
                     }
                 }
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
-%\end{spacing}
+\marginpar{\raisebox{1.65ex}{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}}} %\end{spacing}
 )");
                 /***********************************************/
 
@@ -621,7 +651,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber\marginnote{\fbox{\footnotesiz
 \FloatBarrier
 \refstepcounter{commandnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
-title=\commandnumbernameone\ \thecommandnumber\marginnote{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}}
+title=\commandnumbernameone\ \thecommandnumber
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
@@ -634,7 +664,7 @@ title=\commandnumbernameone\ \thecommandnumber\marginnote{\fbox{\footnotesize{\c
                     }
                 }
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
-%\end{spacing}
+\marginpar{\raisebox{1.65ex}{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}}} %\end{spacing}
 )");
                 /***********************************************/
 
@@ -690,7 +720,7 @@ title=\commandnumbernameone\ \thecommandnumber\marginnote{\fbox{\footnotesize{\c
                     return false;
                 }
 
-                QString varFigureMarginnote = qsl(R"(
+                QString varFigureMarginnote = qsl(R"(%there must use marginnote not use marginpar ...
 \marginnote{\fbox{\footnotesize{\figurename\ \ref{)");
                 varFigureMarginnote += varKeyLabel;
                 varFigureMarginnote += QStringLiteral(R"(}}}})");
@@ -698,7 +728,7 @@ title=\commandnumbernameone\ \thecommandnumber\marginnote{\fbox{\footnotesize{\c
                 varString = qsl(R"(%begin图片
 )");
                 varString += qsl(R"(\begin{figure}%1 %浮动体 here and top ...
-)").arg(varArgs2[2]);
+)").arg(varArgs2[2]); 
                 varString += varFigureMarginnote;
                 varString += qsl(R"(\centering %中心对齐
 )");
@@ -712,6 +742,7 @@ title=\commandnumbernameone\ \thecommandnumber\marginnote{\fbox{\footnotesize{\c
                 varString += varKeyLabel;
                 varString += qsl(R"(} %索引
 \end{figure}
+%end图片
 )");
                 *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
             }

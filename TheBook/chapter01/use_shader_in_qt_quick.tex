@@ -15,12 +15,13 @@
 
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
-
+%there must use marginnote not use marginpar ...
 \marginnote{\fbox{\footnotesize{\figurename\ \ref{p000008}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{../chapter01/shadereffect/the_app.png} %图片路径
 \caption{Qt Quick中使用着色器} %标题
 \label{p000008} %索引
 \end{figure}
+%end图片
 
 
 Qt Quick本身是使用OpenGL达成渲染的，
@@ -39,9 +40,10 @@ Qt Quick中使用GLSL。
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000038,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000038,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*shadereffect/main.qml*/
 import QtQuick 2.9
@@ -92,7 +94,7 @@ void main() {
     }
 
 }/*~Rectangle*/
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.qml
 
@@ -118,19 +120,21 @@ void main() {
 
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
-
+%there must use marginnote not use marginpar ...
 \marginnote{\fbox{\footnotesize{\figurename\ \ref{p000009}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{../chapter01/shadereffectwithimage/the_app.png} %图片路径
 \caption{Qt Quick着色器中使用纹理} %标题
 \label{p000009} %索引
 \end{figure}
+%end图片
 
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000039,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000039,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*shadereffectwithimage/main.qml*/
 import QtQuick 2.9
@@ -190,7 +194,7 @@ void main() {
     }
 
 }/*~Rectangle*/
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.qml
 

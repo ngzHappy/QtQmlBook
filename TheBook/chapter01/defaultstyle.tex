@@ -15,12 +15,13 @@
 
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
-
+%there must use marginnote not use marginpar ...
 \marginnote{\fbox{\footnotesize{\figurename\ \ref{p000007}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{../chapter01/defaultstyle/the_app.png} %图片路径
 \caption{Qt Quick控件及样式！} %标题
 \label{p000007} %索引
 \end{figure}
+%end图片
 
 
 Qt Quick Controls 2 自Qt 5.7引入。
@@ -47,9 +48,10 @@ Qt Quick Controls 2更加现代化并更适用于
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000035,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000035,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*defaultstyle/main.qml*/
 import QtQuick 2.9
@@ -105,7 +107,7 @@ Pane {
     }
 
 }/*~Pane*/
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.qml
 
@@ -130,12 +132,13 @@ JavaScript函数；%……
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000037,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000037,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 ::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -143,9 +146,10 @@ title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlisting
 所示：
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000036,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000036,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 [Controls]
 Style=Material
@@ -153,7 +157,7 @@ FallbackStyle=Material
 
 [Material]
 Theme=Dark
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %defaultstyle_qtquickcontrols2.conf
 

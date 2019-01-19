@@ -30,9 +30,10 @@
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000018,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000018,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 call "C:/Qt/Qt5.12.0/5.12.0/msvc2017_64/bin/qtenv2.bat"
 cd /D "E:/QtQmlBookMsvc"
@@ -41,7 +42,7 @@ qmake -r -tp vc "E:/QtQmlBook/QtQmlMultimedia.pro"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlBookTest.pro"
 qmake -r -tp vc "E:/QtQmlBook/TheBook/TheBook.pro"
 cmd
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -78,9 +79,10 @@ cmd
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000019,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000019,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 #firstapplication.pro
 TEMPLATE = app
@@ -130,7 +132,7 @@ lupdate_only{
 }
 
 DISTFILES += $$QMLSOURCES
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -157,9 +159,10 @@ POSIX平台下需要在开头加“file://”。
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000026,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000026,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ,firstnumber=6]
 inline QUrl getLocalFileFullPath(
     const QString & argFileName,
@@ -172,7 +175,7 @@ inline QUrl getLocalFileFullPath(
         return QStringLiteral(R"(file:///)") + varAns;
     }
 }
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main4.qml
 
@@ -181,9 +184,10 @@ Qt Quick依赖于OpenGL。\lstlistingname\ \ref{f000027}
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000027,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000027,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ,firstnumber=18]
 inline QSurfaceFormat getDefaultQSurfaceFormat() {
     auto varFormat = QSurfaceFormat::defaultFormat();
@@ -205,7 +209,7 @@ inline QSurfaceFormat getDefaultQSurfaceFormat() {
 #endif
     return varFormat;
 }
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main5.qml
 
@@ -219,9 +223,10 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000028,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000028,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ,firstnumber=39]
 inline void beforeApplication() {
     {
@@ -237,7 +242,7 @@ inline void beforeApplication() {
         QSurfaceFormat::setDefaultFormat(::getDefaultQSurfaceFormat());
     }
 }
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main6.qml
 
@@ -251,9 +256,10 @@ inline void beforeApplication() {
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000029,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000029,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ,firstnumber=54]
 inline void afterApplication() {
     {
@@ -261,7 +267,7 @@ inline void afterApplication() {
         (void)varImage;
     }
 }
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main7.qml
 
@@ -270,9 +276,10 @@ inline void afterApplication() {
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f00002u,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f00002u,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 QT += gui
 QT += qml
@@ -282,7 +289,7 @@ QT += widgets
 QT += concurrent
 QT += quickwidgets
 QT += quickcontrols2
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %import_sstd_qt_and_qml_library.1.pri
 
@@ -308,9 +315,10 @@ QQuickView是一个好的选择。
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000020,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000020,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ,firstnumber=67]
 beforeApplication();
 QGuiApplication varApp{ argc,argv };
@@ -334,14 +342,15 @@ if (varView.status() != QQuickView::Status::Ready) {
 }
 varView.show();
 return varApp.exec();
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000023,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000023,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*main1.qml*/
 import QtQuick 2.9
@@ -353,7 +362,7 @@ Rectangle{
     color: Qt.rgba(1,0,0,1);
 
 }/*Rectangle*/
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main1.qml
 
@@ -398,9 +407,10 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000021,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000021,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ,firstnumber=90]
 beforeApplication();
 QApplication varApp{ argc,argv };
@@ -422,14 +432,15 @@ if (varWidget.status() != QQuickWidget::Status::Ready) {
 }
 varWidget.show();
 return varApp.exec();
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000024,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000024,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*main2.qml*/
 import QtQuick 2.9
@@ -446,7 +457,7 @@ Rectangle{
 
 
 }/*Rectangle*/
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main2.qml
 
@@ -491,9 +502,10 @@ QQuickView或QQuickWidget也是足够使用的。
 
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000022,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000022,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ,firstnumber=111]
 beforeApplication();
 QGuiApplication varApp{ argc,argv };
@@ -512,14 +524,15 @@ if (varEngine.rootObjects().isEmpty()) {
     return -1;
 }
 return varApp.exec();
-\end{lstlisting}          %抄录环境
+(*@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[label=f000025,
+\begin{lstlisting}[escapeinside={(**@}{@**)},
+label=f000025,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}
+title=\lstlistingname\ \thelstlisting
 ]
 /*main3.qml*/
 import QtQuick 2.9
@@ -542,7 +555,7 @@ ApplicationWindow {
     }/*Rectangle*/
 
 }
-\end{lstlisting}          %抄录环境
+(**@\marginpar{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@**)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %main3.qml
 
