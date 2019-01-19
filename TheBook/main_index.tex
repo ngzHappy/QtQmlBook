@@ -90,7 +90,13 @@ marginparwidth=2.1cm       %边注宽度
 \newfontfamily\sourcefontthree{DejaVu Sans Mono}  %源代码字体
 %sudo apt-get install ttf-mscorefonts-installer   %linux安装字体
 \newfontfamily\sourcefonttwo{Times New Roman}     %正文特殊符号字体
-\renewcommand\lstlistingname{源码}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setmainfont{Times New Roman}
+\setsansfont{DejaVu Sans}
+\setmonofont{Latin Modern Mono}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 %源代码默认样式
 \lstset{
 language=C,
@@ -169,6 +175,7 @@ showstringspaces=false
 \renewcommand\thelstlisting{
     \thesection.\arabic{lstlisting}
 }
+\renewcommand\lstlistingname{源码}
 
 \frontmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -39,7 +39,11 @@ marginparwidth=2.2cm
 
 \usepackage{fontspec}
 %\usepackage{ebgaramond}
-%\setmainfont{Times New Roman}
+
+\setmainfont{Times New Roman}
+\setsansfont{DejaVu Sans}
+\setmonofont{Latin Modern Mono}
+
 %\usepackage{newtxtext, newtxmath}
 %\setsansfont{Times New Roman}
 %\setmonofont{Times New Roman}
@@ -102,14 +106,8 @@ backgroundcolor=\color{gray1},
 showstringspaces=true
 } 
 
-\newcounter{newcounter}
-
-\lstnewenvironment{lstlistingcode}[1][] {%begin  lstlistingcode
-\stepcounter{newcounter}
-\setcounter{lstlisting}{\thenewcounter}
-\lstset{#1}
-}{%end lstlistingcode
-}
+ 
+ 
 
 \title{这是一本书}                              %书籍名称
 \author{Good Luck}                              %作者名
@@ -188,7 +186,7 @@ test \itshape test \ttfamily test \upshape test
 }
 
 %程序 \ref{xfwaef}  
-\begin{lstlistingcode}[
+\begin{lstlisting}[
 label=xfwaef,
 caption=dsgdsg ,
 firstnumber=100  ] 
@@ -199,7 +197,7 @@ using namespace std;
      foo<int>();
      return 0;
 } 
-\end{lstlistingcode}
+\end{lstlisting}
 
 %程序 \ref{xfwaef}  
 \begin{lstlisting}[
