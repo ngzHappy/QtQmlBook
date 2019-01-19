@@ -617,7 +617,7 @@ title=\lstlistingname\ \thelstlisting
                 }
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
 \refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[escapeinside={%3}{%4},
 caption=GoodLuck,
@@ -696,8 +696,8 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
                 }
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
-\FloatBarrier
-\refstepcounter{commandnumber}\label{%1}    %增加目录树编号
+%\FloatBarrier
+\refstepcounter{commandnumber}\label{%1}    %增加命令行编号
 \begin{lstlisting}[escapeinside={%3}{%4},
 caption=GoodLuck,
 title=\commandnumbernameone\ \thecommandnumber
