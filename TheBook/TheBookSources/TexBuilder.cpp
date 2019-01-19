@@ -547,7 +547,7 @@ title=\lstlistingname\ \thelstlisting
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}})");
+                varString += qsl(R"(\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 %\end{spacing}
@@ -627,7 +627,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}]{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}})");
+                varString += qsl(R"(\marginpar[\hfill\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}]{\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
@@ -706,7 +706,7 @@ title=\commandnumbernameone\ \thecommandnumber
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += qsl(R"(\marginpar[\hfill\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}]{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}})");
+                varString += qsl(R"(\marginpar[\hfill\fbox{\scriptsize{\kaishu\commandnumbernameone\,}\footnotesize{\thecommandnumber}}]{\fbox{\scriptsize{\kaishu\commandnumbernameone\,}\footnotesize{\thecommandnumber}}})");
                 varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
@@ -767,7 +767,7 @@ title=\commandnumbernameone\ \thecommandnumber
                 }
 
                 QString varFigureMarginnote = qsl(R"(%there must use marginnote not use marginpar ...
-\marginnote{\fbox{\footnotesize{\figurename\ \ref{)");
+\marginnote{\fbox{\scriptsize{\kaishu\figurename\,}\footnotesize{\ref{)");
                 varFigureMarginnote += varKeyLabel;
                 varFigureMarginnote += QStringLiteral(R"(}}}})");
 

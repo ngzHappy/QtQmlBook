@@ -73,7 +73,7 @@ DESTDIR =  $$PWD
 
 DEFINES *= NUMBER=1
 DEFINES *= HELLOW=\\\"Hellow\\\"
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 %\begin{spacing}{1.0}
@@ -90,7 +90,7 @@ int main(int , char **) {
         std::cout << HELLOW " World! "
                   << std::endl;
     }
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -150,7 +150,7 @@ mydebug{
     message("find my debug")
 }else{
     message("can not find my debug")
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -186,7 +186,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
 │   └── test_library.pro
 └── the_app
     ├── main.cpp
-    └── the_app.pro(*@\marginpar[\hfill\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}]{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}}@*)\end{lstlisting}          %抄录环境
+    └── the_app.pro(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}]{\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}}@*)\end{lstlisting}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
@@ -219,7 +219,7 @@ test_library.file = $$PWD/test_library/test_library.pro
 SUBDIRS += test_library
 
 the_app.file = $$PWD/the_app/the_app.pro
-SUBDIRS += the_app(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+SUBDIRS += the_app(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -266,7 +266,7 @@ win32-msvc*{
 DESTDIR =  $$PWD/../bin
 
 SOURCES += $$PWD/main.cpp
-include($$PWD/../test_library/import_test_library.pri)(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+include($$PWD/../test_library/import_test_library.pri)(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -292,7 +292,7 @@ CONFIG(debug,debug|release){
     LIBS += -L$$PWD/../bin -ltest_libraryd
 }else{
     LIBS += -L$$PWD/../bin -ltest_library
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -336,7 +336,7 @@ SOURCES += $$PWD/TestLibrary.cpp
 HEADERS += $$PWD/TestLibrary.hpp
 
 DESTDIR =  $$PWD/../bin
-DEFINES *= D_TEST_LIBRARY(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+DEFINES *= D_TEST_LIBRARY(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %test_library.pro
 
@@ -374,7 +374,7 @@ public:
     TestClass();
     ~TestClass();
     void foo();
-};(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+};(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %TestLibrary.hpp
 %\begin{spacing}{1.0}
@@ -396,7 +396,7 @@ TestClass::~TestClass() {
 
 void TestClass::foo() {
     std::cout << __func__ << std::endl;
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %TestLibrary.cpp
 %\begin{spacing}{1.0}
@@ -413,7 +413,7 @@ int main(int, char **) {
     TestClass varClass;
     varClass.foo();
     return 0;
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.cpp
 
@@ -431,7 +431,7 @@ qmake远比读者想象的要复杂的多，
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote not use marginpar ...
-\marginnote{\fbox{\footnotesize{\figurename\ \ref{p000002}}}}\centering %中心对齐
+\marginnote{\fbox{\scriptsize{\kaishu\figurename\,}\footnotesize{\ref{p000002}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
 \caption{qmake对C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}编译链接过程中的控制点} %标题
 \label{p000002} %索引
@@ -480,7 +480,7 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
     ├── main.cpp
     ├── test1.hpp
     ├── test2.hpp
-    └── the_run.pro(*@\marginpar[\hfill\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}]{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}}@*)\end{lstlisting}          %抄录环境
+    └── the_run.pro(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}]{\fbox{\scriptsize{\kaishu\treeindexnumbernameone\,}\footnotesize{\thetreeindexnumber}}}@*)\end{lstlisting}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %tree.txt
@@ -507,7 +507,7 @@ after_run.file = $$PWD/after_run/after_run.pro
 SUBDIRS += after_run
 
 the_run.file = $$PWD/the_run/the_run.pro
-SUBDIRS += the_run(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+SUBDIRS += the_run(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %advance_use_qmake.pro
 
@@ -619,7 +619,7 @@ CONFIG(debug,debug|release){
 }else{
     QMAKE_POST_LINK += $${DESTDIR}/after_run $$PWD
 }
-export(QMAKE_POST_LINK)(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+export(QMAKE_POST_LINK)(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %the_run.pro
 
@@ -674,7 +674,7 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %before_run.pro
 %\begin{spacing}{1.0}
@@ -730,7 +730,7 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %before_run/main.cpp
 
@@ -765,7 +765,7 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %after_run.pro
 %\begin{spacing}{1.0}
@@ -821,7 +821,7 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %after_run/main.cpp
 
@@ -856,7 +856,7 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %new_moc.pro
 %\begin{spacing}{1.0}
@@ -899,7 +899,7 @@ int main(int argc, char ** argv) {
                }() ; )";
     varOutput << std::endl;
     return 0;
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %new_moc/main.cpp
 
@@ -923,7 +923,7 @@ namespace fs = std::experimental::filesystem;
 int main(int, char **) {
     std::cout << "the_run" << std::endl;
     return 0;
-}(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %the_run/main.cpp
 
@@ -945,7 +945,7 @@ qmake生成Visual Studio工程
 caption=GoodLuck,
 title=\commandnumbernameone\ \thecommandnumber
 ]
-qmake -r -tp vc < 工程名称 >(*@\marginpar[\hfill\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}]{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}}@*)\end{lstlisting}          %抄录环境
+qmake -r -tp vc < 工程名称 >(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\commandnumbernameone\,}\footnotesize{\thecommandnumber}}]{\fbox{\scriptsize{\kaishu\commandnumbernameone\,}\footnotesize{\thecommandnumber}}}@*)\end{lstlisting}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
@@ -977,7 +977,7 @@ echo Setting up environment for Qt usage...
 set PATH=C:\Qt1\5.12.0\msvc2017_64\bin;%PATH%
 cd /D C:\Qt1\5.12.0\msvc2017_64
 call "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-echo Remember to call vcvarsall.bat to complete environment setup!(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+echo Remember to call vcvarsall.bat to complete environment setup!(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %qtenv2.windows.bat.txt
 
@@ -1010,7 +1010,7 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote not use marginpar ...
-\marginnote{\fbox{\footnotesize{\figurename\ \ref{p000003}}}}\centering %中心对齐
+\marginnote{\fbox{\scriptsize{\kaishu\figurename\,}\footnotesize{\ref{p000003}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_1.png} %图片路径
 \caption{qmake Variable Reference} %标题
 \label{p000003} %索引
@@ -1026,7 +1026,7 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote not use marginpar ...
-\marginnote{\fbox{\footnotesize{\figurename\ \ref{p000004}}}}\centering %中心对齐
+\marginnote{\fbox{\scriptsize{\kaishu\figurename\,}\footnotesize{\ref{p000004}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_2.png} %图片路径
 \caption{Running qmake} %标题
 \label{p000004} %索引
@@ -1042,7 +1042,7 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote not use marginpar ...
-\marginnote{\fbox{\footnotesize{\figurename\ \ref{p000005}}}}\centering %中心对齐
+\marginnote{\fbox{\scriptsize{\kaishu\figurename\,}\footnotesize{\ref{p000005}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_3.png} %图片路径
 \caption{qmake Language} %标题
 \label{p000005} %索引

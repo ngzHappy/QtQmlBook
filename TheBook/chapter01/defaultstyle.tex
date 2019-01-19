@@ -16,7 +16,7 @@
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote not use marginpar ...
-\marginnote{\fbox{\footnotesize{\figurename\ \ref{p000007}}}}\centering %中心对齐
+\marginnote{\fbox{\scriptsize{\kaishu\figurename\,}\footnotesize{\ref{p000007}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{../chapter01/defaultstyle/the_app.png} %图片路径
 \caption{Qt Quick控件及样式！} %标题
 \label{p000007} %索引
@@ -106,7 +106,7 @@ Pane {
 
     }
 
-}/*~Pane*/(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+}/*~Pane*/(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.qml
 
@@ -136,7 +136,7 @@ label=f000037,
 caption=GoodLuck,
 title=\lstlistingname\ \thelstlisting
 ]
-::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -154,7 +154,7 @@ Style=Material
 FallbackStyle=Material
 
 [Material]
-Theme=Dark(*@\marginpar[\hfill\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}]{\fbox{\footnotesize{\lstlistingname\ \thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+Theme=Dark(*@\marginpar[\hfill\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}]{\fbox{\scriptsize{\kaishu\lstlistingname\,}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %defaultstyle_qtquickcontrols2.conf
 
