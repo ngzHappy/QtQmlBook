@@ -144,12 +144,6 @@ showstringspaces=false
     \thesection.\arabic{commandnumber}
 }
 
-%设置源码计数器
-\counterwithin{lstlisting}{section}
-\renewcommand\thelstlisting{
-    \thesection.\arabic{lstlisting}
-}
-
 %设置图片计数器
 \counterwithin{figure}{section}
 \renewcommand\thefigure{
@@ -170,6 +164,11 @@ showstringspaces=false
 
 \begin{document}
 
+%设置源码计数器
+\counterwithin{lstlisting}{section}
+\renewcommand\thelstlisting{
+    \thesection.\arabic{lstlisting}
+}
 
 \frontmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
