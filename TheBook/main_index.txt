@@ -119,6 +119,7 @@ showstringspaces=false
 { \\[\parskip] }
 { \\[\parskip] }
 
+%设置路径计数器
 \newcommand\treeindexnumbernameone{路径}
 %\newcommand\theTreeIndexNumber{}
 \newcounter{treeindexnumber}[section]
@@ -128,11 +129,18 @@ showstringspaces=false
     \thesection.\arabic{treeindexnumber}
 }
 
+%设置命令计数器
 \newcommand\commandnumbernameone{命令}
 \newcounter{commandnumber}[section]
 \renewcommand\thecommandnumber{
     \thesection.\arabic{commandnumber}
 }
+
+%设置源码计数器
+
+
+%设置图片计数器
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %解决目录字体重叠BUG
