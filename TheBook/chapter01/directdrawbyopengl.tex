@@ -31,7 +31,8 @@ Qt Quick只是导出Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}的一套接口规
 比如实现一个鼠标监视器，那么只需要继承自QQuickItem；
 
 \item 如果读者需要的组件需要渲染，
-那么需要继承自QQuickItem，并在构造函数中设置TODO；
+那么需要继承自QQuickItem，并在构造函数中设置
+QQuickItem::ItemHasContents标志位；
 
 \item 如果读者希望使用QPainter实现渲染，
 那么需要继承自QQuickPaintedItem；
@@ -41,12 +42,17 @@ Qt Quick只是导出Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}的一套接口规
 
 \end{itemize}
 
+如\figurename\ \ref{p000010}
+，列出了C{\sourcefonttwo{}+}{\sourcefonttwo{}+}导出Qt Quick基类继承关系图。
+
+
+
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote not use marginpar ...
 \marginnote{\fbox{\footnotesize{\figurename\ \ref{p000010}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qtquick_item.png} %图片路径
-\caption{QQuickItem继承关系图} %标题
+\caption{C{\sourcefonttwo{}+}{\sourcefonttwo{}+}导出Qt Quick所需基类} %标题
 \label{p000010} %索引
 \end{figure}
 %end图片

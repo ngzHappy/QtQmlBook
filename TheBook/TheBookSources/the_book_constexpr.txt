@@ -69,7 +69,7 @@ p000006::::你好世界！::::../chapter01/hellowworld/the_app.png::::[htb]::::[
 p000007::::Qt Quick控件及样式！::::../chapter01/defaultstyle/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000008::::Qt Quick中使用着色器::::../chapter01/shadereffect/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000009::::Qt Quick着色器中使用纹理::::../chapter01/shadereffectwithimage/the_app.png::::[htb]::::[width=0.95\textwidth]
-p000010::::QQuickItem继承关系图::::chapter01/images/qtquick_item.png::::[htb]::::[width=0.95\textwidth]
+p000010::::C++导出Qt Quick所需基类::::chapter01/images/qtquick_item.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]

@@ -19,7 +19,8 @@ Qt Quick只是导出Qt C++的一套接口规范。
 比如实现一个鼠标监视器，那么只需要继承自QQuickItem；
 
 :tex_raw:[[\item ]]如果读者需要的组件需要渲染，
-那么需要继承自QQuickItem，并在构造函数中设置TODO；
+那么需要继承自QQuickItem，并在构造函数中设置
+QQuickItem::ItemHasContents标志位；
 
 :tex_raw:[[\item ]]如果读者希望使用QPainter实现渲染，
 那么需要继承自QQuickPaintedItem；
@@ -28,6 +29,11 @@ Qt Quick只是导出Qt C++的一套接口规范。
 那么需要继承自QQuickFramebufferObject；
 
 :tex_raw:[[\end{itemize}]]
+
+如:tex_raw:[[\figurename\ \ref{p000010}]]
+，列出了C++导出Qt Quick基类继承关系图。
+
+
 
 :the_book_image:[[p000010]]
 
