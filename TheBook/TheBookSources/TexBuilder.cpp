@@ -517,6 +517,9 @@ public:
                         varFullFile += varLine;
                         varFullFile += QChar('\n');
                     }
+                    if(!varFullFile.isEmpty()) {
+                        varFullFile.chop(1);
+                    }
                     const auto varStarSize = 1 + getMaxStartCount(varFullFile);
                     const QString varStars{varStarSize,QChar('*')};
                     varLeftKey = varLeftKey.arg(varStars);
@@ -584,24 +587,40 @@ title=\lstlistingname\ \thelstlisting
 
                 /***********************************************/
                  
-                varString = qsl(R"(%\begin{spacing}{1.0}
-\FloatBarrier
-\refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
-\begin{lstlisting}[caption=GoodLuck,
-numbers=none,
-title=\treeindexnumbernameone\ \thetreeindexnumber
-%2
-)").arg(varKeyLabel).arg(varArgs2[1]);
+                QString varFullFile;
+                QString varLeftKey = QStringLiteral(R"((%1@)");
+                QString varRightKey = QStringLiteral(R"(@%1))");
                 {
                     const auto varSources =
                         readFileSource(getOutPutFileFullPath(varArgs2[0]));
-                    for (const auto & varLine : varSources) {
-                        varString += varLine;
-                        varString += QChar('\n');
+                    for(const auto & varLine : varSources) {
+                        varFullFile += varLine;
+                        varFullFile += QChar('\n');
                     }
+                    if(!varFullFile.isEmpty()) {
+                        varFullFile.chop(1);
+                    }
+                    const auto varStarSize = 1 + getMaxStartCount(varFullFile);
+                    const QString varStars{ varStarSize,QChar('*') };
+                    varLeftKey = varLeftKey.arg(varStars);
+                    varRightKey = varRightKey.arg(varStars);
                 }
+
+                varString = qsl(R"(%\begin{spacing}{1.0}
+\FloatBarrier
+\refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
+\begin{lstlisting}[escapeinside={%3}{%4},
+caption=GoodLuck,
+numbers=none,
+title=\treeindexnumbernameone\ \thetreeindexnumber
+%2
+)").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
+                varString += varFullFile;
+                varString += varLeftKey;
+                varString += qsl(R"(\marginpar{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}})");
+                varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
-\marginpar{\raisebox{1.65ex}{\fbox{\footnotesize{\treeindexnumbernameone\ \thetreeindexnumber}}}} %\end{spacing}
+%\end{spacing}
 )");
                 /***********************************************/
 
@@ -647,24 +666,39 @@ title=\treeindexnumbernameone\ \thetreeindexnumber
 
                 /***********************************************/
 
-                varString = qsl(R"(%\begin{spacing}{1.0}
-\FloatBarrier
-\refstepcounter{commandnumber}\label{%1}    %增加目录树编号
-\begin{lstlisting}[caption=GoodLuck,
-title=\commandnumbernameone\ \thecommandnumber
-%2
-)").arg(varKeyLabel).arg(varArgs2[1]);
+                QString varFullFile;
+                QString varLeftKey = QStringLiteral(R"((%1@)");
+                QString varRightKey = QStringLiteral(R"(@%1))");
                 {
                     const auto varSources =
                         readFileSource(getOutPutFileFullPath(varArgs2[0]));
-                    for (const auto & varLine : varSources) {
-                        //varString += qsl(">> ");
-                        varString += varLine;
-                        varString += QChar('\n');
+                    for(const auto & varLine : varSources) {
+                        varFullFile += varLine;
+                        varFullFile += QChar('\n');
                     }
+                    if(!varFullFile.isEmpty()) {
+                        varFullFile.chop(1);
+                    }
+                    const auto varStarSize = 1 + getMaxStartCount(varFullFile);
+                    const QString varStars{ varStarSize,QChar('*') };
+                    varLeftKey = varLeftKey.arg(varStars);
+                    varRightKey = varRightKey.arg(varStars);
                 }
+
+                varString = qsl(R"(%\begin{spacing}{1.0}
+\FloatBarrier
+\refstepcounter{commandnumber}\label{%1}    %增加目录树编号
+\begin{lstlisting}[escapeinside={%3}{%4},
+caption=GoodLuck,
+title=\commandnumbernameone\ \thecommandnumber
+%2
+)").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
+                varString += varFullFile;
+                varString += varLeftKey;
+                varString += qsl(R"(\marginpar{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}})");
+                varString += varRightKey;
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
-\marginpar{\raisebox{1.65ex}{\fbox{\footnotesize{\commandnumbernameone\ \thecommandnumber}}}} %\end{spacing}
+%\end{spacing}
 )");
                 /***********************************************/
 
