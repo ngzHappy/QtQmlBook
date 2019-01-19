@@ -21,15 +21,18 @@
 \usepackage{xcolor}        %导入包xcolor
 \usepackage[
 a4paper ,
-left=2.0cm,                %靠近装订线的边距
-right=2.0cm,               %远离装订线的边距
+left=3.0cm,                %靠近装订线的边距
+right=3.0cm,               %远离装订线的边距
 top=2.0cm,
 bottom=2.0cm,
 headheight=1.3cm,
 headsep=0.5cm,
-marginparsep=0.1cm,
-marginparwidth=0.1cm
+marginparsep=0.5cm,        %边注与内容边距
+marginparwidth=2.5cm       %边注宽度
 ]{geometry}                %导入包geometry
+
+%引入边注包
+\usepackage{marginnote}
 
  %导入常用包
 \usepackage{graphicx}
@@ -87,7 +90,7 @@ marginparwidth=0.1cm
 \newfontfamily\sourcefontthree{DejaVu Sans Mono}  %源代码字体
 %sudo apt-get install ttf-mscorefonts-installer   %linux安装字体
 \newfontfamily\sourcefonttwo{Times New Roman}     %正文特殊符号字体
-\renewcommand\lstlistingname{程序}
+\renewcommand\lstlistingname{源码}
 %源代码默认样式
 \lstset{
 language=C,

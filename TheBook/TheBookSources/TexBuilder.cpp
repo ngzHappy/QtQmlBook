@@ -495,7 +495,7 @@ public:
 \FloatBarrier
 \begin{lstlisting}[label=%1,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname\ \thelstlisting\marginnote{\fbox{\lstlistingname\ \thelstlisting}}
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
@@ -559,7 +559,7 @@ title=\lstlistingname\ \thelstlisting
 \refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
 numbers=none,
-title=\treeindexnumbernameone \thetreeindexnumber
+title=\treeindexnumbernameone \thetreeindexnumber\marginnote{\fbox{\treeindexnumbernameone \thetreeindexnumber}}
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
@@ -621,7 +621,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
 \FloatBarrier
 \refstepcounter{commandnumber}\label{%1}    %增加目录树编号
 \begin{lstlisting}[caption=GoodLuck,
-title=\commandnumbernameone \thecommandnumber
+title=\commandnumbernameone \thecommandnumber\marginnote{\fbox{\commandnumbernameone \thecommandnumber}}
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]);
                 {
