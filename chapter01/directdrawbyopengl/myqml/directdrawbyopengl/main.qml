@@ -1,4 +1,5 @@
-﻿import QtQuick 2.9
+﻿/*directdrawbyopengl/main.qml*/
+import QtQuick 2.9
 import sstd.quick 1.0
 
 Rectangle{

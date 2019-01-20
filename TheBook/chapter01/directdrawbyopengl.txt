@@ -33,7 +33,48 @@ QQuickItem::ItemHasContents标志位；
 如:tex_raw:[[\figurename\ \ref{p000010}]]
 ，列出了C++导出Qt Quick基类继承关系图。
 
-
-
 :the_book_image:[[p000010]]
+
+本节展示直接使用C++调用OpenGL绘制，并将其导出到Qt Quick。
+
+本节示例位于目录“QtQmlBook/chapter01/directdrawbyopengl”。
+
+:the_book_image:[[p000011]]
+
+先来看看Qt Quick代码，
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000042}]]。
+
+:the_book_file:[[f000042]]
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]第3行引入自定义模块。
+其对应的C++代码如:tex_raw:[[\filesourcenumbernameone\ \ref{f000043}]]：
+:the_book_file:[[f000043]]
+
+本节的示例依然是静态加载，
+实际上Qt Quick也支持以插件的形式动态加载组件。
+
+:tex_raw:[[\item ]]第12~35行演示了如何使用
+自定义模块中的类“DrawImageItemRaw”。
+
+使用C++自定义的类与Qt Quick原生元素没有什么不同。
+信号槽、平移、旋转、缩放……
+
+不难发现，
+使用Qt Quick可以将一切从极高的抽象层上
+迅速的组装起来。
+
+:tex_raw:[[\item ]]第38~53行演示了直接在
+Qt Quick里面编译Qt Quick源码并以此创建对象。
+
+正如读者所见，
+Qt Quick拥有脚本语言的所有特性，
+并可以与Qt C++无缝通信。
+
+:tex_raw:[[\end{itemize}]]
+
+
+
+
 

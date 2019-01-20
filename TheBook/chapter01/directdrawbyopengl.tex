@@ -45,8 +45,6 @@ QQuickItem::ItemHasContents标志位；
 如\figurename\ \ref{p000010}
 ，列出了C{\sourcefonttwo{}+}{\sourcefonttwo{}+}导出Qt Quick基类继承关系图。
 
-
-
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote not use marginnote ...
@@ -56,6 +54,138 @@ QQuickItem::ItemHasContents标志位；
 \label{p000010} %索引
 \end{figure}
 %end图片
+
+
+本节展示直接使用C{\sourcefonttwo{}+}{\sourcefonttwo{}+}调用OpenGL绘制，并将其导出到Qt Quick。
+
+本节示例位于目录“QtQmlBook/chapter01/directdrawbyopengl”。
+
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote not use marginnote ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000011}}}}\centering %中心对齐
+\includegraphics[width=0.95\textwidth]{../chapter01/directdrawbyopengl/the_app.png} %图片路径
+\caption{直接使用OpenGL绘制} %标题
+\label{p000011} %索引
+\end{figure}
+%end图片
+
+
+先来看看Qt Quick代码，
+如\filesourcenumbernameone\ \ref{f000042}。
+
+%\begin{spacing}{1.0}
+\refstepcounter{filesourcenumber}\label{f000042}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
+\begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
+title=\filesourcenumbernameone \thefilesourcenumber
+]
+/*directdrawbyopengl/main.qml*/
+import QtQuick 2.9
+import sstd.quick 1.0
+
+Rectangle{
+    id : root_object
+    objectName: "root_object";
+    width: 1024 ;
+    height: 768 ;
+    color: Qt.rgba(1,0,0,1);
+
+    DrawImageItemRaw {
+
+        width: parent.width /2  ;
+        height: parent.height /2;
+        anchors.centerIn: parent;
+        transformOrigin: Item.Center ;
+        rawImage : Qt.resolvedUrl( "0000.jpg" );
+
+        Timer{
+            repeat: true;
+            running: true;
+            interval : 500 ;
+            triggeredOnStart: true;
+            onTriggered: {
+                parent.rotation += 15 ;
+                if(parent.rotation>360){
+                    parent.rotation -= 360 ;
+                }
+                parent.opacity = Math.random() * 0.3 + 0.7 ;
+                parent.scale = Math.random() * 0.3 + 0.7 ;
+            }
+        }
+
+    }
+
+
+    Component.onCompleted : {
+        Qt.createQmlObject(
+"
+import QtQuick 2.9
+import sstd.quick 1.0
+
+DrawImageItemRaw {
+    width: 256   ;
+    height: 256  ;
+    anchors.top: parent.top          ;
+    anchors.right : parent.right           ;
+    rawImage : Qt.resolvedUrl( '0000.jpg' ) ;
+}
+
+" , root_object  ) ;
+    }
+
+}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
+%\end{spacing}
+
+
+\begin{itemize}
+
+\item 第3行引入自定义模块。
+其对应的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码如\filesourcenumbernameone\ \ref{f000043}：
+%\begin{spacing}{1.0}
+\refstepcounter{filesourcenumber}\label{f000043}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
+\begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
+title=\filesourcenumbernameone \thefilesourcenumber
+]
+static inline void register_this() {
+    qmlRegisterType<DrawImageItem>(
+        "sstd.quick",
+        1, 0,
+        "DrawImageItemRaw");
+}
+Q_COREAPP_STARTUP_FUNCTION(register_this)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
+%\end{spacing}
+
+
+本节的示例依然是静态加载，
+实际上Qt Quick也支持以插件的形式动态加载组件。
+
+\item 第12\raisebox{0.16ex}{\sourcefonttwo\~{}}35行演示了如何使用
+自定义模块中的类“DrawImageItemRaw”。
+
+使用C{\sourcefonttwo{}+}{\sourcefonttwo{}+}自定义的类与Qt Quick原生元素没有什么不同。
+信号槽、平移、旋转、缩放……
+
+不难发现，
+使用Qt Quick可以将一切从极高的抽象层上
+迅速的组装起来。
+
+\item 第38\raisebox{0.16ex}{\sourcefonttwo\~{}}53行演示了直接在
+Qt Quick里面编译Qt Quick源码并以此创建对象。
+
+正如读者所见，
+Qt Quick拥有脚本语言的所有特性，
+并可以与Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}无缝通信。
+
+\end{itemize}
+
+
+
 
 
 

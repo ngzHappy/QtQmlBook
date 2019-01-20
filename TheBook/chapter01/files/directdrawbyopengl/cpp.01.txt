@@ -1,0 +1,7 @@
+static inline void register_this() {
+    qmlRegisterType<DrawImageItem>(
+        "sstd.quick",
+        1, 0,
+        "DrawImageItemRaw");
+}
+Q_COREAPP_STARTUP_FUNCTION(register_this)
