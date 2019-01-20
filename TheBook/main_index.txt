@@ -100,6 +100,7 @@ keywordstyle=   \scriptsize\sourcefontthree        , %设置字号，字体
 commentstyle=   \scriptsize\sourcefontthree        , %设置字号，字体
 identifierstyle=\scriptsize\sourcefontthree        , %设置字号，字体
 numbers=left,
+numbersep=0.5em,
 numberstyle=    \scriptsize\slshape\sourcefontone  , %设置字号，字体
 frame=single,
 backgroundcolor=\color{sourcegrayone},

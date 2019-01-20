@@ -28,10 +28,9 @@
 如\lstlistingname\ \ref{f000018} ：
 
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000018,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -44,23 +43,7 @@ qmake -r -tp vc "E:/QtQmlBook/QtQmlBookTest.pro"
 qmake -r -tp vc "E:/QtQmlBook/TheBook/TheBook.pro"
 cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000018,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-call "C:/Qt/Qt5.12.0/5.12.0/msvc2017_64/bin/qtenv2.bat"
-cd /D "E:/QtQmlBookMsvc"
-qmake -r -tp vc "E:/QtQmlBook/QtQmlBook.pro"
-qmake -r -tp vc "E:/QtQmlBook/QtQmlMultimedia.pro"
-qmake -r -tp vc "E:/QtQmlBook/QtQmlBookTest.pro"
-qmake -r -tp vc "E:/QtQmlBook/TheBook/TheBook.pro"
-cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi
+
 
 
 \begin{itemize}
@@ -94,10 +77,9 @@ cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox
 
 本书的所有工程项目大同小异，以后不再赘述。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000019,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -151,64 +133,7 @@ lupdate_only{
 
 DISTFILES += $$QMLSOURCES(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000019,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-#firstapplication.pro
-TEMPLATE = app
 
-CONFIG(debug,debug|release){
-    TARGET = firstapplication_debug
-}else{
-    TARGET = firstapplication
-}
-
-#define out put dir
-include($$PWD/../../outdirpath.pri)
-#define cplusplus environment
-include($$PWD/../../cplusplus.pri)
-#import sstd_library
-include($$PWD/../../sstd_library/import_sstd_library.pri)
-#import sstd_qt_and_qml_library
-include($$PWD/../../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
-
-!win32 {
-    QMAKE_LFLAGS += -Wl,-rpath .
-}
-
-win32-msvc*{
-    CONFIG += console
-}
-
-DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
-
-DESTDIR = $${RootDestDir}
-
-SOURCES += $$PWD/main.cpp
-
-CONFIG(debug,debug|release){
-    QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
-}else{
-    QMAKE_POST_LINK += $${DESTDIR}/build_install $$PWD "myqml"
-}
-export(QMAKE_POST_LINK)
-
-QMLSOURCES += $$PWD/myqml/firstapplication/main1.qml
-QMLSOURCES += $$PWD/myqml/firstapplication/main2.qml
-QMLSOURCES += $$PWD/myqml/firstapplication/main3.qml
-
-lupdate_only{
-    SOURCES += $$QMLSOURCES
-}
-
-DISTFILES += $$QMLSOURCES(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi
 
 %设置Qt Quick运行参数
 \FloatBarrier
@@ -231,10 +156,9 @@ POSIX平台下需要在开头加“file://”。
 \lstlistingname\ \ref{f000026}
 展示如何用C{\sourcefonttwo{}+}{\sourcefonttwo{}+}实现这一功能。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000026,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -251,35 +175,14 @@ inline QUrl getLocalFileFullPath(
     }
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000026,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-,firstnumber=6]
-inline QUrl getLocalFileFullPath(
-    const QString & argFileName,
-    const QString & argBase) {
-    const QDir varRootDir{ argBase };
-    const auto varAns = varRootDir.absoluteFilePath(argFileName);
-    if (varAns.startsWith(QChar('/'))) {
-        return QStringLiteral(R"(file://)") + varAns;
-    } else {
-        return QStringLiteral(R"(file:///)") + varAns;
-    }
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main4.qml
+ %main4.qml
 
 Qt Quick依赖于OpenGL。\lstlistingname\ \ref{f000027}
 展示常用OpenGL参数设置：
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000027,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -305,36 +208,7 @@ inline QSurfaceFormat getDefaultQSurfaceFormat() {
     return varFormat;
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000027,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-,firstnumber=18]
-inline QSurfaceFormat getDefaultQSurfaceFormat() {
-    auto varFormat = QSurfaceFormat::defaultFormat();
-    varFormat.setVersion(4, 6);
-    varFormat.setProfile(QSurfaceFormat::CoreProfile);
-    varFormat.setSamples(4);
-    varFormat.setAlphaBufferSize(8);
-    varFormat.setBlueBufferSize(8);
-    varFormat.setRedBufferSize(8);
-    varFormat.setGreenBufferSize(8);
-    varFormat.setDepthBufferSize(24);
-    varFormat.setSwapBehavior(QSurfaceFormat::DoubleBuffer);
-    varFormat.setRenderableType(QSurfaceFormat::OpenGL);
-    varFormat.setSwapInterval(0)/*关闭垂直同步*/;
-#if defined(ENABLE_GL_DEBUG)
-    varFormat.setOption(QSurfaceFormat::DebugContext, true);
-#else
-    varFormat.setOption(QSurfaceFormat::DebugContext, false);
-#endif
-    return varFormat;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main5.qml
+ %main5.qml
 
 Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件之前
 都要先构造QCoreApplication或其子类。
@@ -344,10 +218,9 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 \lstlistingname\ \ref{f000028}
 展示了一些常见设置。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000028,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -367,30 +240,7 @@ inline void beforeApplication() {
     }
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000028,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-,firstnumber=39]
-inline void beforeApplication() {
-    {
-        /*初始化随机种子*/
-        ::srand(static_cast<unsigned>(::time(nullptr)));
-    }
-    {
-        /*高分屏支持*/
-        QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    }
-    {
-        /*设置默认opengl环境*/
-        QSurfaceFormat::setDefaultFormat(::getDefaultQSurfaceFormat());
-    }
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main6.qml
+ %main6.qml
 
 在构造完QCoreApplication之后，
 还需要加载一些组件。比如QImage组件是依靠插件支持的。
@@ -400,10 +250,9 @@ inline void beforeApplication() {
 \lstlistingname\ \ref{f000029}
 展示了如何实现这一操作。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000029,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -415,30 +264,14 @@ inline void afterApplication() {
     }
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000029,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-,firstnumber=54]
-inline void afterApplication() {
-    {
-        QImage varImage{QStringLiteral("test.png")};
-        (void)varImage;
-    }
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main7.qml
+ %main7.qml
 
 \lstlistingname\ \ref{f00002u}
 展示了如何在工程文件中引入常用Qt库。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f00002u,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -452,24 +285,7 @@ QT += concurrent
 QT += quickwidgets
 QT += quickcontrols2(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f00002u,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-QT += gui
-QT += qml
-QT += core
-QT += quick
-QT += widgets
-QT += concurrent
-QT += quickwidgets
-QT += quickcontrols2(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %import_sstd_qt_and_qml_library.1.pri
+ %import_sstd_qt_and_qml_library.1.pri
 
 \FloatBarrier
 \subsection{
@@ -491,10 +307,9 @@ QQuickView是一个好的选择。
 \lstlistingname\ \ref{f000023}
 展示了一个简单显示一个红色窗口的Qml代码。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000020,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -522,42 +337,10 @@ if (varView.status() != QQuickView::Status::Ready) {
 varView.show();
 return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
+ %main.cpp
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000020,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-,firstnumber=67]
-beforeApplication();
-QGuiApplication varApp{ argc,argv };
-afterApplication();
-QQuickView varView;
-varView.setResizeMode(QQuickView::ResizeMode::SizeViewToRootObject);
-#ifdef _DEBUG
-varView.setSource(
-    getLocalFileFullPath(
-        QStringLiteral("myqml/firstapplication/main1.qml"),
-        CURRENT_DEBUG_PATH));
-#else
-varView.setSource(
-    getLocalFileFullPath(
-        QStringLiteral("myqml/firstapplication/main1.qml"),
-        qApp->applicationDirPath()));
-#endif
-if (varView.status() != QQuickView::Status::Ready) {
-    qWarning() << QStringLiteral("can not load : main1.qml");
-    return -1;
-}
-varView.show();
-return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main.cpp
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000023,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -573,26 +356,7 @@ Rectangle{
 
 }/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000023,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-/*main1.qml*/
-import QtQuick 2.9
-
-Rectangle{
-
-    width: 512 ;
-    height: 512 ;
-    color: Qt.rgba(1,0,0,1);
-
-}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main1.qml
+ %main1.qml
 
 如\lstlistingname\ \ref{f000020}
 的72\raisebox{0.16ex}{\sourcefonttwo\~{}}82行所示，本书在Debug模式下从当前
@@ -633,10 +397,9 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 \lstlistingname\ \ref{f000024}
 展示了一个简单显示一个红色窗口的Qml代码。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000021,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -662,40 +425,10 @@ if (varWidget.status() != QQuickWidget::Status::Ready) {
 varWidget.show();
 return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
+ %main.cpp
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000021,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-,firstnumber=90]
-beforeApplication();
-QApplication varApp{ argc,argv };
-afterApplication();
-QQuickWidget varWidget;
-varWidget.setResizeMode(QQuickWidget::ResizeMode::SizeViewToRootObject);
-#ifdef _DEBUG
-varWidget.setSource(getLocalFileFullPath(
-    QStringLiteral("myqml/firstapplication/main2.qml"),
-    CURRENT_DEBUG_PATH));
-#else
-varWidget.setSource(getLocalFileFullPath(
-    QStringLiteral("myqml/firstapplication/main2.qml"),
-    qApp->applicationDirPath()));
-#endif
-if (varWidget.status() != QQuickWidget::Status::Ready) {
-    qWarning() << QStringLiteral("can not load : main2.qml");
-    return -1;
-}
-varWidget.show();
-return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main.cpp
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000024,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -716,31 +449,7 @@ Rectangle{
 
 }/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000024,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-/*main2.qml*/
-import QtQuick 2.9
-
-Rectangle{
-
-    width: 512 ;
-    height: 512 ;
-    color: Qt.rgba(1,0,0,1);
-
-/*begin:debug*/
-    border.width: 9 ;
-/*end:debug*/
-
-
-}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main2.qml
+ %main2.qml
 
 读者可以分别在Debug和Release模式下运行此程序，会发现Debug
 模式比Release模式多了一个边框。这一切都是靠本书自带的小工具
@@ -781,10 +490,9 @@ QQuickView或QQuickWidget也是足够使用的。
 \lstlistingname\ \ref{f000025}
 展示了一个简单显示一个红色窗口的Qml代码。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000022,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -807,37 +515,10 @@ if (varEngine.rootObjects().isEmpty()) {
 }
 return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
+ %main.cpp
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000022,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-,firstnumber=111]
-beforeApplication();
-QGuiApplication varApp{ argc,argv };
-afterApplication();
-#ifdef _DEBUG
-QQmlApplicationEngine varEngine(getLocalFileFullPath(
-    QStringLiteral("myqml/firstapplication/main3.qml"),
-    CURRENT_DEBUG_PATH));
-#else
-QQmlApplicationEngine varEngine(getLocalFileFullPath(
-    QStringLiteral("myqml/firstapplication/main3.qml"),
-    qApp->applicationDirPath()));
-#endif
-if (varEngine.rootObjects().isEmpty()) {
-    qWarning() << QStringLiteral("can not load : main3.qml");
-    return -1;
-}
-return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main.cpp
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000025,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -864,37 +545,7 @@ ApplicationWindow {
 
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000025,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-/*main3.qml*/
-import QtQuick 2.9
-import QtQuick.Controls 2.5
-
-ApplicationWindow {
-
-    width: 512 ;
-    height: 512 ;
-    visible: true ;
-
-    Rectangle{
-        anchors.fill: parent ;
-        color: Qt.rgba(1,0,0,1);
-
-        /*begin:debug*/
-        border.width: 9 ;
-        /*end:debug*/
-
-    }/*Rectangle*/
-
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi %main3.qml
+ %main3.qml
 
 
 

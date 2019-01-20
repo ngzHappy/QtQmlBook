@@ -46,10 +46,9 @@ Qt Quick Controls 2更加现代化并更适用于
 本项目的“main.qml”如\lstlistingname\ \ref{f000035}
 所示：
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000035,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -109,70 +108,7 @@ Pane {
 
 }/*~Pane*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000035,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-/*defaultstyle/main.qml*/
-import QtQuick 2.9
-import QtQuick.Controls 2.3
-import QtQuick.Layouts 1.3
-import QtQuick.Controls.Material 2.12
-
-Pane {
-
-    id : idRoot
-    width: 640;
-    height: 480;
-
-    function changeTheme(){
-        if(idRoot.Material.theme === Material.Dark ){
-            idRoot.Material.theme = Material.Light;
-        }else{
-            idRoot.Material.theme = Material.Dark;
-        }
-    }
-
-    ColumnLayout {
-        id: idColumn
-        anchors.fill: parent
-
-        Button {
-            id: idButton
-            text: qsTr("更换主题")
-            Layout.fillWidth : true
-            onClicked: {
-                idRoot.changeTheme();
-            }
-        }
-
-        TextField {
-            id: idTextField
-            text: qsTr("Text Field")
-            Layout.fillWidth : true
-        }
-
-        TabButton {
-            id: idTabButton
-            text: qsTr("Tab Button")
-            Layout.fillWidth : true
-        }
-
-        ProgressBar {
-            id: idProgressBar
-            value: 0.5
-            Layout.fillWidth : true
-        }
-
-    }
-
-}/*~Pane*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi%main.qml
+%main.qml
 
 \begin{itemize}
 \item 第21行展示了如何使用Layout；
@@ -193,34 +129,22 @@ JavaScript函数；%……
 构造之前调用如\lstlistingname\ \ref{f000037}
 所示的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码，以载入配置文件。
 
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000037,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
 ]
 ::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000037,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi
+
 
 配置文件内容如\lstlistingname\ \ref{f000036}
 所示：
-\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
+%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[numbers=right,
-escapeinside={(*@}{@*)},
+\begin{lstlisting}[escapeinside={(*@}{@*)},
 label=f000036,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -232,22 +156,7 @@ FallbackStyle=Material
 [Material]
 Theme=Dark(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-}\else{%\begin{spacing}{1.0}
-\FloatBarrier
-\begin{lstlisting}[numbers=left,
-escapeinside={(*@}{@*)},
-label=f000036,
-caption=GoodLuck,
-title=\lstlistingname \thelstlisting
-]
-[Controls]
-Style=Material
-FallbackStyle=Material
-
-[Material]
-Theme=Dark(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
-%\end{spacing}
-}\fi%defaultstyle_qtquickcontrols2.conf
+%defaultstyle_qtquickcontrols2.conf
 
 Qt Quick Control的样式具有继承性。
 

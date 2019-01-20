@@ -15,11 +15,6 @@ _keys_set()
 _insertKey()
 *****/
 
-static inline QString getCheckOddPage(){
-    return
-    qsl(R"(\checkoddpage\ifoddpage{%1}\else{%2}\fi)");
-}
-
 /*find max * between ( @ or @ )*/
 static inline int getMaxStartCount(const QString & arg) {
 
@@ -50,10 +45,10 @@ QString getMarginpar(const QString & argName,const QString & argThe) {
     const auto varPar1 =
         qsl(R"(\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}%1}}\footnotesize{%2}})");
     const auto varPar2 = varPar1.arg(argName);
-    const auto varPar  = varPar2.arg(argThe);
+    const auto varPar = varPar2.arg(argThe);
     const auto varAns =
         qsl(R"(\marginpar[\hfill%1]{%1})").arg(varPar);
-    return varAns ;
+    return varAns;
 }
 
 static inline const QString & texRaw() {
@@ -554,8 +549,7 @@ public:
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[#numbers=left#,
-escapeinside={%3}{%4},
+\begin{lstlisting}[escapeinside={%3}{%4},
 label=%1,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -568,15 +562,7 @@ title=\lstlistingname \thelstlisting
                 varString += qsl(R"(\end{lstlisting}          %抄录环境
 %\end{spacing}
 )");
-                {
-                    auto varReplaceString = getCheckOddPage();
-                    auto varLeft = varString ;
-                    auto varRight = varString ;
-                    varLeft.replace(qsl(R"(#numbers=left#)"),qsl(R"(numbers=left)"));
-                    varRight.replace(qsl(R"(#numbers=left#)"),qsl(R"(numbers=right)"));
-                    varString =
-                        varReplaceString.arg( varRight ).arg( varLeft );
-                }
+
                 /***********************************************/
 
                 *varAnsPos = std::make_shared<RawString>(varString,varAnsPos,state);
@@ -644,8 +630,7 @@ title=\lstlistingname \thelstlisting
                 varString = qsl(R"(%\begin{spacing}{1.0}
 %\FloatBarrier
 \refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
-\begin{lstlisting}[#numbers=left#,
-escapeinside={%3}{%4},
+\begin{lstlisting}[escapeinside={%3}{%4},
 caption=GoodLuck,
 numbers=none,
 title=\treeindexnumbernameone \thetreeindexnumber
@@ -659,15 +644,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 )");
-                {
-                    auto varReplaceString = getCheckOddPage();
-                    auto varLeft = varString ;
-                    auto varRight = varString ;
-                    varLeft.replace(qsl(R"(#numbers=left#)"),qsl(R"(numbers=left)"));
-                    varRight.replace(qsl(R"(#numbers=left#)"),qsl(R"(numbers=right)"));
-                    varString =
-                        varReplaceString.arg( varRight ).arg( varLeft );
-                }
+
                 /***********************************************/
 
                 *varAnsPos = std::make_shared<RawString>(varString,varAnsPos,state);
