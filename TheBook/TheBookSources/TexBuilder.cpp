@@ -549,7 +549,7 @@ public:
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={%3}{%4},
+\begin{thebookfilesourceone}[escapeinside={%3}{%4},
 label=%1,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -559,7 +559,7 @@ title=\lstlistingname \thelstlisting
                 varString += varLeftKey;
                 varString += getMarginpar(qsl(R"(\lstlistingname)"),qsl(R"(\thelstlisting)"));
                 varString += varRightKey;
-                varString += qsl(R"(\end{lstlisting}          %抄录环境
+                varString += qsl(R"(\end{thebookfilesourceone}          %抄录环境
 %\end{spacing}
 )");
 
@@ -630,7 +630,7 @@ title=\lstlistingname \thelstlisting
                 varString = qsl(R"(%\begin{spacing}{1.0}
 %\FloatBarrier
 \refstepcounter{treeindexnumber}\label{%1}    %增加目录树编号
-\begin{lstlisting}[escapeinside={%3}{%4},
+\begin{thebookfilesourceonepathtree}[escapeinside={%3}{%4},
 caption=GoodLuck,
 numbers=none,
 title=\treeindexnumbernameone \thetreeindexnumber
@@ -640,7 +640,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
                 varString += varLeftKey;
                 varString += getMarginpar(qsl(R"(\treeindexnumbernameone)"),qsl(R"(\thetreeindexnumber)"));
                 varString += varRightKey;
-                varString += qsl(R"(\end{lstlisting}          %抄录环境
+                varString += qsl(R"(\end{thebookfilesourceonepathtree}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 )");
@@ -711,7 +711,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
                 varString = qsl(R"(%\begin{spacing}{1.0}
 %\FloatBarrier
 \refstepcounter{commandnumber}\label{%1}    %增加命令行编号
-\begin{lstlisting}[escapeinside={%3}{%4},
+\begin{thebookfilesourceonecommand}[escapeinside={%3}{%4},
 caption=GoodLuck,
 title=\commandnumbernameone \thecommandnumber
 %2
@@ -720,7 +720,7 @@ title=\commandnumbernameone \thecommandnumber
                 varString += varLeftKey;
                 varString += getMarginpar(qsl(R"(\commandnumbernameone)"),qsl(R"(\thecommandnumber)"));
                 varString += varRightKey;
-                varString += qsl(R"(\end{lstlisting}          %抄录环境
+                varString += qsl(R"(\end{thebookfilesourceonecommand}          %抄录环境
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 )");

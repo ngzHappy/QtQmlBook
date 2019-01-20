@@ -164,6 +164,28 @@ showstringspaces=false
 \makeatother
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\lstnewenvironment{thebookfilesourceone}[1][]{
+%begin env ...
+    \lstset{#1}
+}{
+%end env ...
+}
+
+\lstnewenvironment{thebookfilesourceonepathtree}[1][]{
+%begin env ...
+    \lstset{#1}
+}{
+%end env ...
+}
+
+\lstnewenvironment{thebookfilesourceonecommand}[1][]{
+%begin env ...
+    \lstset{#1}
+}{
+%end env ...
+}
+
+
 \begin{document}
 
 %设置源码计数器
