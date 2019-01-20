@@ -62,6 +62,38 @@ inline static void output_chapter_01() {
             the_book_throw(u8R"(chapter01/first_application.tex)"sv);
         }
     }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/hellow_world.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/hellow_world.tex")));
+        if (false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/hellow_world.tex)"sv);
+        }
+    }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.tex")));
+        if(false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/defaultstyle.tex)"sv);
+        }
+    }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/use_shader_in_qt_quick.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/use_shader_in_qt_quick.tex")));
+        if(false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/use_shader_in_qt_quick.tex)"sv);
+        }
+    }
+    {
+        auto varBuilder = std::make_shared<TexBuilder>();
+        varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/directdrawbyopengl.txt")));
+        varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/directdrawbyopengl.tex")));
+        if(false == varBuilder->convert()) {
+            the_book_throw(u8R"(chapter01/directdrawbyopengl.tex)"sv);
+        }
+    }
 }
 
 inline static void output_chapter_02() {

@@ -1,0 +1,92 @@
+﻿
+
+:the_book_section:[[s100410]]
+
+:the_book_image:[[p000006]]
+
+绝大多数介绍计算机语言的书籍都有一
+个“Hellow World!”的案例，本书也不能免俗。
+
+本章的C++代码
+如:tex_raw:[[\lstlistingname\ \ref{f000030}]]：
+
+:the_book_file:[[f000030]]:tex_raw:[[%main.cpp]]
+
+本书将大量的程序细节隐藏到了“sstd_qt_and_qml_library”库里面。
+
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]sstd::Application用于构造QApplication，
+并初始化Qt Quick运行所需的参数；
+:tex_raw:[[\item ]]sstd::DefaultRoowWindow在Debug
+模式下继承自QQuickWidget，在Release模式下继承自QQuickView；
+:tex_raw:[[\item ]]sstd::getLocalFileFullPath在
+Debug模式以当前文件目录作为根目录，在Release模式下以应用程序
+目录作为根目录；
+:tex_raw:[[\end{itemize}]]
+
+本书以后章节的“main.cpp”都大同小异，以后不再赘述。
+
+
+“main.qml”如:tex_raw:[[\lstlistingname\ \ref{f000031}]]
+所示：
+
+:the_book_file:[[f000031]]:tex_raw:[[%main.qml]]
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]第3行展示了如何引入其他目录的Qml文件。
+其语法如:tex_raw:[[\lstlistingname\ \ref{f000034}]]
+所示：
+
+:the_book_file:[[f000034]]:tex_raw:[[%1.txt]]
+
+:tex_raw:[[\item ]]第5行定义了一个Rectangle：
+
+:tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
+
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第7行定义了Rectangle的宽度；
+:tex_raw:[[\item ]]第8行定义了Rectangle的高度；
+:tex_raw:[[\item ]]第9行定义了Rectangle的颜色；
+:tex_raw:[[\end{itemize}]]
+
+:tex_raw:[[\item ]]第11~19行定义了两个子对象。
+和Qt Widgets一样，子对象在父对象之上。兄弟对象之间的关系是，
+后出现的对象在先出现的对象之上。
+也可以调整z属性调整兄弟对象的上下关系。
+
+读者可以尝试注释掉第12行和17行观察程序输出结果。
+
+:tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
+
+:tex_raw:[[\item ]]第13行和第18行使用“anchors”确保子对象完全覆盖父对象。
+
+:tex_raw:[[\end{itemize}]]
+
+“MainRectangle.qml”如:tex_raw:[[\lstlistingname\ \ref{f000032}]]
+所示：
+:the_book_file:[[f000032]]:tex_raw:[[%MainRectangle.qml]]
+
+Qml是一门大小写敏感的计算机语言。
+读者使用import命令引入Qml定义的对象时，文件名必须以大写开头；
+而引入JavaScript文件时，
+文件名应当以小写开头。
+
+“MainText.qml”如:tex_raw:[[\lstlistingname\ \ref{f000033}]]
+所示：
+
+:the_book_file:[[f000033]]:tex_raw:[[%MainText.qml]]
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]第5行展示了如何在Qml中实现国际化，读者只需要用
+qsTr包装字符串即可；
+:tex_raw:[[\item ]]第6~7行展示了可以在Qml中直接使用JavaScript；
+
+
+:tex_raw:[[\end{itemize}]]
+
+
+
+
+

@@ -33,13 +33,15 @@
 幸运的是，目前Qt网站有一个漏洞。读者可以直接访问
  \url{https://www.qt.io/download-thank-you
 }，点击“here”下载在线安装包。如\figurename\ \ref{p000000}。
-
-\begin{figure}[ht] %浮动体 here and top ...
-\centering %中心对齐
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote not use marginpar ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000000}}}}\centering %中心对齐
 \includegraphics[scale=0.95]{chapter01/images/windows_download_here.png} %图片路径
 \caption{Qt在线安装包下载路径} %标题
 \label{p000000} %索引
 \end{figure}
+%end图片
 
 以管理员身份运行在线安装包，
 选择安装路径时请不要选择包含空格和中文字符的路径。
@@ -55,13 +57,15 @@ Qt选择5.12.0或以上版本。
 “Qt Debug Information Files”这些模块。
 在“Tools”选项下组好安装“CDB”以及对应的“MinGW”。
 本书建议最小安装如\figurename\ \ref{p000001}。
-
-\begin{figure}[ht] %浮动体 here and top ...
-\centering %中心对齐
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote not use marginpar ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000001}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/windows_qt_online_install.png} %图片路径
-\caption{Qt在线安装建议选择安装组件} %标题
+\caption{Qt在线安装建议安装组件} %标题
 \label{p000001} %索引
 \end{figure}
+%end图片
 
 
 \FloatBarrier

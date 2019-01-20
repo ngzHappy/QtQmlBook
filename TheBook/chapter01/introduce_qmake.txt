@@ -1,6 +1,6 @@
 ﻿:tex_raw:[[%Gook Luck！]]
 
-:the_book_subsection:[[s100310]]
+:the_book_section:[[s100310]]
 
 qmake类似于cmake，但qmake比cmake更加简洁清晰。
 如果读者希望写一个跨平台的通用库的话，
@@ -17,7 +17,7 @@ qmake比cmake更加专注。
 不可能介绍qmake的每一个细节。
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
-:the_book_subsubsection:[[ss000610]]
+:the_book_subsection:[[ss000610]]
 读者新建一个目录:tex_raw:[[\footnote{]]
 本书所有目录都要求不包含空格和中文，以后不再赘述。
 :tex_raw:[[}]]，
@@ -80,7 +80,7 @@ qmake比cmake更加专注。
 :tex_raw:[[%
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
-:the_book_subsubsection:[[ss000710]]
+:the_book_subsection:[[ss000710]]
 
 绝大多数项目的项目结构都很复杂，从这一节开始读者要开始接受这一事实。
 本节示例的项目结构如:tex_raw:[[\treeindexnumbernameone\ \ref{d000001}]]
@@ -148,7 +148,7 @@ qmake比cmake更加专注。
 
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
-:the_book_subsubsection:[[ss000810]]
+:the_book_subsection:[[ss000810]]
 
 qmake远比读者想象的要复杂的多，
 本节向读者展示一些常见功能如何使用qmake实现。
@@ -257,7 +257,7 @@ QMAKE_POST_LINK。
 
 
 :tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
-:the_book_subsubsection:[[ss000910]]
+:the_book_subsection:[[ss000910]]
 使用qmake生成Visual Studio工程十分简单，
 其核心指令只有一条，
 如:tex_raw:[[\commandnumbernameone\ \ref{command000003}]]：
@@ -284,7 +284,7 @@ QMAKE_POST_LINK。
 以后读者在Windows平台下运行“qtenv2.bat”就
 可以得到一个完整的运行环境了。
 
-:the_book_subsubsection:[[ss000a10]]
+:the_book_subsection:[[ss000a10]]
 
 本书所介绍的知识已经足够帮助读者搭建绝大多数
 大型复杂应用程序。

@@ -1,0 +1,22 @@
+﻿beforeApplication();
+QGuiApplication varApp{ argc,argv };
+afterApplication();
+QQuickView varView;
+varView.setResizeMode(QQuickView::ResizeMode::SizeViewToRootObject);
+#ifdef _DEBUG
+varView.setSource(
+    getLocalFileFullPath(
+        QStringLiteral("myqml/firstapplication/main1.qml"),
+        CURRENT_DEBUG_PATH));
+#else
+varView.setSource(
+    getLocalFileFullPath(
+        QStringLiteral("myqml/firstapplication/main1.qml"),
+        qApp->applicationDirPath()));
+#endif
+if (varView.status() != QQuickView::Status::Ready) {
+    qWarning() << QStringLiteral("can not load : main1.qml");
+    return -1;
+}
+varView.show();
+return varApp.exec();

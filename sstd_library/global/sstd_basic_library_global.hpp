@@ -4,6 +4,7 @@
 #include <cmath>
 #include <limits>
 #include <utility>
+#include <optional>
 #include <type_traits>
 #endif/*__cplusplus*/
 
@@ -48,19 +49,24 @@ namespace _8_sstd_private {
             alignof(B_type) >::value;
     };
 
+    using min_align_type = const volatile void *;
+
 }/*_8_sstd_private*/
 
 #ifndef sstd$
 #define sstd$(cValueName,.../*cValueType*/)   \
-alignas(_8_sstd_private::_8_Max_Align<const volatile void *, \
+alignas(_8_sstd_private::_8_Max_Align<_8_sstd_private::min_align_type, \
 __VA_ARGS__>::value ) __VA_ARGS__ cValueName  \
 /*--------------------------------------------*/
 #endif
 
+#ifndef sstd$a
+#define sstd$a(...) {__VA_ARGS__}
+#endif
 
-
-
-
+#ifndef sstd_bool 
+#define sstd_bool alignas(_8_sstd_private::min_align_type) bool
+#endif
 
 
 

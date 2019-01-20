@@ -1,0 +1,65 @@
+
+:the_book_section:[[s100610]]
+
+:the_book_image:[[p000008]]
+
+Qt Quick本身是使用OpenGL达成渲染的，
+Qt Quick原生支持GLSL。
+
+不过，考虑到硬件兼容性。目前在Qml中
+使用GLSL，只支持
+顶点着色器和片段着色器。
+
+如果读者需要使用计算着色器、几何着色器或分型着色器，
+读者需要使用C++扩展Qml。
+
+如:tex_raw:[[\lstlistingname\ \ref{f000038}]]
+第14~46行展示了如何使用“ShaderEffect”，在
+Qt Quick中使用GLSL。
+
+:the_book_file:[[f000038]]:tex_raw:[[%main.qml]]
+
+:tex_raw:[[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%]]
+
+使用“ShaderEffect”导入纹理是极为简单的。
+读者只需要在“ShaderEffect”自定义
+一个代表“Image”的属性，
+在GLSL中就可以直接使用了。
+
+如:tex_raw:[[\lstlistingname\ \ref{f000039}]]
+所示：
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]第14~18行定义了一个Image；
+:tex_raw:[[\item ]]第20行定在“ShaderEffect”中自定义了
+一个名为的“source”属性，此属性指向Image对象；
+:tex_raw:[[\item ]]第30行在片段着色器中将
+“source”属性作为一个纹理载入；
+
+:tex_raw:[[\end{itemize}]]
+
+:the_book_image:[[p000009]]
+
+:the_book_file:[[f000039]]:tex_raw:[[%main.qml]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

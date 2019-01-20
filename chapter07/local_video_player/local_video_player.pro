@@ -30,12 +30,19 @@ DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
+HEADERS += $$PWD/VideoInformation.hpp
 
 HEADERS += $$PWD/AudioFrame.hpp
 HEADERS += $$PWD/AudioNumber.hpp
 
 SOURCES += $$PWD/VideoReader.cpp
 HEADERS += $$PWD/VideoReader.hpp
+
+SOURCES += $$PWD/VideoPlayer.cpp
+HEADERS += $$PWD/VideoPlayer.hpp
+
+SOURCES += $$PWD/VideoPlayerThread.cpp
+HEADERS += $$PWD/VideoPlayerThread.hpp
 
 SOURCES += $$PWD/FFMPEGOpenCloseThread.cpp
 HEADERS += $$PWD/FFMPEGOpenCloseThread.hpp

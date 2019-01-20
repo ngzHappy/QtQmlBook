@@ -455,3 +455,9 @@ void TestObject::dynamicObjectTest() {
 
 }
 
+extern void testFiber1();
+void TestObject::testFiber() {
+    testFiber1();
+}
+
+

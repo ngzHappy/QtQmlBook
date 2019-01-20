@@ -5,6 +5,18 @@
 
 namespace this_file {
 
+    template<typename T, typename U >
+    inline static std::vector<T> to_vector(U && arg) {
+        std::vector<T> varAns;
+        varAns.reserve(std::as_const(arg).size());
+        auto varPos = std::as_const(arg).begin();
+        const auto varEnd = std::as_const(arg).end();
+        for (; varPos != varEnd; ++varPos) {
+            varAns.push_back(*varPos);
+        }
+        return std::move(varAns);
+    }
+
     class SourceLine {
     public:
         int lineNumber{ 0 }     /*行号*/;
@@ -45,8 +57,8 @@ namespace this_file {
                     }
                 }
                 auto varTrimmedLine = varLine.trimmed();
-                if(varTrimmedLine==
-                    qsl("/*endl_input_of_latex_for_clanguage_lick*/")){
+                if (varTrimmedLine ==
+                    qsl("/*endl_input_of_latex_for_clanguage_lick*/")) {
                     break;
                 }
                 if (varTrimmedLine ==
@@ -83,7 +95,7 @@ namespace this_file {
                 }
             }
             /*删除尾空行*/
-            while(false ==lines.empty()){
+            while (false == lines.empty()) {
                 if (lines.crbegin()->data.isEmpty()) {
                     lines.pop_back();
                 } else {
@@ -94,7 +106,7 @@ namespace this_file {
 
         inline std::vector<QString> read() {
             readfile();
-            return { lines.cbegin(),lines.cend() };
+            return to_vector<QString>(lines);
         }
 
     };

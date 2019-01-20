@@ -1,4 +1,4 @@
-﻿/*main.qml*/
+﻿/*shadereffectwithimage/main.qml*/
 import QtQuick 2.9
 
 Rectangle {
@@ -17,7 +17,7 @@ Rectangle {
             visible: false    ;
         }
         ShaderEffect{
-            property variant source: idSourceImage
+            property variant source: idSourceImage/*the image...*/
             anchors.fill: parent ;
             fragmentShader:"
 /*片段着色器*/
@@ -27,7 +27,7 @@ in vec2 qt_TexCoord0;
 
 out vec4 fragColor;
 
-uniform sampler2D source;
+uniform sampler2D source/*the image...*/;
 uniform float qt_Opacity;
 
 void main() {

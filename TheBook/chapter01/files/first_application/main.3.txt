@@ -1,0 +1,20 @@
+﻿
+beforeApplication();
+QGuiApplication varApp{ argc,argv };
+afterApplication();
+#ifdef _DEBUG
+QQmlApplicationEngine varEngine(getLocalFileFullPath(
+    QStringLiteral("myqml/firstapplication/main3.qml"),
+    CURRENT_DEBUG_PATH));
+#else
+QQmlApplicationEngine varEngine(getLocalFileFullPath(
+    QStringLiteral("myqml/firstapplication/main3.qml"),
+    qApp->applicationDirPath()));
+#endif
+if (varEngine.rootObjects().isEmpty()) {
+    qWarning() << QStringLiteral("can not load : main3.qml");
+    return -1;
+}
+return varApp.exec();
+
+

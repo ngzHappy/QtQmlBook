@@ -7,10 +7,10 @@ int main(int argc, char ** argv) {
     /*初始化Qml/Quick引擎*/
     auto varWindow = sstd_make_unique< sstd::DefaultRoowWindow >();
     {
-        varWindow->setMinimumSize({ 512,32 });
+        varWindow->setMinimumSize({ 512,512 });
         /*获得Qml文件绝对路径*/
         auto varFullFileName = sstd::getLocalFileFullPath(
-            QStringLiteral("myqml/music_player/main.qml"));
+            QStringLiteral("myqml/local_video_player/main.qml"));
         /*加载Qml文件*/
         varWindow->load(varFullFileName);
         /*检查并报错*/

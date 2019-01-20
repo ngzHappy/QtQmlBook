@@ -1,4 +1,4 @@
-﻿/*main.qml*/
+﻿/*shadereffect/main.qml*/
 import QtQuick 2.9
 
 Rectangle {

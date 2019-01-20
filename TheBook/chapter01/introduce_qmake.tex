@@ -9,7 +9,7 @@
 %Gook Luck！
 
 \FloatBarrier
-\subsection{
+\section{
 qmake入门
 }\label{s100310}
 
@@ -30,7 +30,7 @@ qmake比cmake更加专注。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \FloatBarrier
-\subsubsection{
+\subsection{
 使用qmake构建Hellow World！
 }\label{ss000610}
 
@@ -43,9 +43,11 @@ qmake比cmake更加专注。
 \lstlistingname\ \ref{f000003}。
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000002,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000002,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 QT -= gui
 QT -= core
@@ -71,14 +73,15 @@ DESTDIR =  $$PWD
 
 DEFINES *= NUMBER=1
 DEFINES *= HELLOW=\\\"Hellow\\\"
-DEFINES += QT_DEPRECATED_WARNINGS
-\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000003,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000003,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #include <iostream>
 
@@ -87,8 +90,7 @@ int main(int , char **) {
         std::cout << HELLOW " World! "
                   << std::endl;
     }
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -137,17 +139,18 @@ int main(int , char **) {
 保留第一行，
 观察Qt Creator的“概要信息”输出什么。
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f00000d,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f00000d,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 CONFIG += mydebug
 mydebug{
     message("find my debug")
 }else{
     message("can not find my debug")
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -157,7 +160,7 @@ mydebug{
 % 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \FloatBarrier
-\subsubsection{
+\subsection{
 使用qmake创建动态链接库
 }\label{ss000710}
 
@@ -167,8 +170,10 @@ mydebug{
 所示。
 
 %\begin{spacing}{1.0}
+%\FloatBarrier
 \refstepcounter{treeindexnumber}\label{d000001}    %增加目录树编号
-\begin{lstlisting}[caption=GoodLuck,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
 numbers=none,
 title=\treeindexnumbernameone \thetreeindexnumber
 ]
@@ -181,8 +186,8 @@ title=\treeindexnumbernameone \thetreeindexnumber
 │   └── test_library.pro
 └── the_app
     ├── main.cpp
-    └── the_app.pro
-\end{lstlisting}          %抄录环境
+    └── the_app.pro(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\treeindexnumbernameone}}\footnotesize{\thetreeindexnumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\treeindexnumbernameone}}\footnotesize{\thetreeindexnumber}}}@*)\end{lstlisting}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
@@ -199,9 +204,11 @@ title=\treeindexnumbernameone \thetreeindexnumber
 比如本节采用的“CONFIG {\sourcefonttwo{}+}{\sourcefonttwo{}=} ordered”就要求项目按照定义顺序编译。
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000010,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000010,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #import_library.pro
 TEMPLATE = subdirs
@@ -212,8 +219,7 @@ test_library.file = $$PWD/test_library/test_library.pro
 SUBDIRS += test_library
 
 the_app.file = $$PWD/the_app/the_app.pro
-SUBDIRS += the_app
-\end{lstlisting}          %抄录环境
+SUBDIRS += the_app(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -227,9 +233,11 @@ SUBDIRS += the_app
 \end{itemize}
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000016,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000016,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #the_app.pro
 QT += gui
@@ -258,8 +266,7 @@ win32-msvc*{
 DESTDIR =  $$PWD/../bin
 
 SOURCES += $$PWD/main.cpp
-include($$PWD/../test_library/import_test_library.pri)
-\end{lstlisting}          %抄录环境
+include($$PWD/../test_library/import_test_library.pri)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -273,9 +280,11 @@ include($$PWD/../test_library/import_test_library.pri)
 “\hspace{0.05em}\rule[0.7ex]{0.4em}{0.65pt}\hspace{0.05em}l”后面紧跟库的名称；
 \end{itemize}
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000011,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000011,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #import_test_library.pri
 INCLUDEPATH += $$PWD
@@ -283,8 +292,7 @@ CONFIG(debug,debug|release){
     LIBS += -L$$PWD/../bin -ltest_libraryd
 }else{
     LIBS += -L$$PWD/../bin -ltest_library
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 
 
@@ -294,9 +302,11 @@ CONFIG(debug,debug|release){
 “TEMPLATE {\sourcefonttwo{}=} lib”，如\lstlistingname\ \ref{f000012} 第13行所示。
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000012,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000012,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #test_library.pro
 QT += gui
@@ -326,8 +336,7 @@ SOURCES += $$PWD/TestLibrary.cpp
 HEADERS += $$PWD/TestLibrary.hpp
 
 DESTDIR =  $$PWD/../bin
-DEFINES *= D_TEST_LIBRARY
-\end{lstlisting}          %抄录环境
+DEFINES *= D_TEST_LIBRARY(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %test_library.pro
 
@@ -343,9 +352,11 @@ DEFINES *= D_TEST_LIBRARY
 。
 都是标准C{\sourcefonttwo{}+}{\sourcefonttwo{}+}，本书不赘述。
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000014,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000014,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*TestLibrary.hpp*/
 #pragma once
@@ -363,14 +374,15 @@ public:
     TestClass();
     ~TestClass();
     void foo();
-};
-\end{lstlisting}          %抄录环境
+};(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %TestLibrary.hpp
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000013,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000013,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*TestLibrary.cpp*/
 #include "TestLibrary.hpp"
@@ -384,14 +396,15 @@ TestClass::~TestClass() {
 
 void TestClass::foo() {
     std::cout << __func__ << std::endl;
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %TestLibrary.cpp
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000015,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000015,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main.cpp*/
 #include <TestLibrary.hpp>
@@ -400,15 +413,14 @@ int main(int, char **) {
     TestClass varClass;
     varClass.foo();
     return 0;
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
 %main.cpp
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \FloatBarrier
-\subsubsection{
+\subsection{
 qmake高级用法
 }\label{ss000810}
 
@@ -416,13 +428,15 @@ qmake高级用法
 qmake远比读者想象的要复杂的多，
 本节向读者展示一些常见功能如何使用qmake实现。
 
-
-\begin{figure}[ht] %浮动体 here and top ...
-\centering %中心对齐
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote not use marginpar ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000002}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/advance_use_qmake.png} %图片路径
-\caption{qmake对C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}编译链接过程控制点} %标题
+\caption{qmake对C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}编译链接过程中的控制点} %标题
 \label{p000002} %索引
 \end{figure}
+%end图片
 
 
 如\figurename\ \ref{p000002}
@@ -444,8 +458,10 @@ QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK。
 所示。
 
 %\begin{spacing}{1.0}
+%\FloatBarrier
 \refstepcounter{treeindexnumber}\label{d000000}    %增加目录树编号
-\begin{lstlisting}[caption=GoodLuck,
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
 numbers=none,
 title=\treeindexnumbernameone \thetreeindexnumber
 ]
@@ -464,15 +480,17 @@ title=\treeindexnumbernameone \thetreeindexnumber
     ├── main.cpp
     ├── test1.hpp
     ├── test2.hpp
-    └── the_run.pro
-\end{lstlisting}          %抄录环境
+    └── the_run.pro(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\treeindexnumbernameone}}\footnotesize{\thetreeindexnumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\treeindexnumbernameone}}\footnotesize{\thetreeindexnumber}}}@*)\end{lstlisting}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %tree.txt
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000004,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000004,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #advance_use_qmake.pro
 TEMPLATE = subdirs
@@ -489,8 +507,7 @@ after_run.file = $$PWD/after_run/after_run.pro
 SUBDIRS += after_run
 
 the_run.file = $$PWD/the_run/the_run.pro
-SUBDIRS += the_run
-\end{lstlisting}          %抄录环境
+SUBDIRS += the_run(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %advance_use_qmake.pro
 
@@ -540,9 +557,11 @@ SUBDIRS += the_run
 
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000005,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000005,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #the_run.pro
 QT -= gui
@@ -600,8 +619,7 @@ CONFIG(debug,debug|release){
 }else{
     QMAKE_POST_LINK += $${DESTDIR}/after_run $$PWD
 }
-export(QMAKE_POST_LINK)
-\end{lstlisting}          %抄录环境
+export(QMAKE_POST_LINK)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %the_run.pro
 
@@ -626,9 +644,11 @@ export(QMAKE_POST_LINK)
 没有新知识点，本书不赘述。
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000008,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000008,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #before_run.pro
 QT -= gui
@@ -654,14 +674,15 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS
-\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %before_run.pro
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000009,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000009,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main.cpp*/
 #if __has_include(<filesystem>)
@@ -709,15 +730,16 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %before_run/main.cpp
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000006,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000006,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #after_run.pro
 QT -= gui
@@ -743,14 +765,15 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS
-\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %after_run.pro
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000007,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000007,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main.cpp*/
 #if __has_include(<filesystem>)
@@ -798,15 +821,16 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %after_run/main.cpp
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f00000b,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f00000b,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 #new_moc.pro
 QT -= gui
@@ -832,14 +856,15 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS
-\end{lstlisting}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %new_moc.pro
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f00000c,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f00000c,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main.cpp*/
 #include <iostream>
@@ -874,15 +899,16 @@ int main(int argc, char ** argv) {
                }() ; )";
     varOutput << std::endl;
     return 0;
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %new_moc/main.cpp
 
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f00000a,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f00000a,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 /*main.cpp*/
 #if __has_include(<filesystem>)
@@ -897,15 +923,14 @@ namespace fs = std::experimental::filesystem;
 int main(int, char **) {
     std::cout << "the_run" << std::endl;
     return 0;
-}
-\end{lstlisting}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %the_run/main.cpp
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \FloatBarrier
-\subsubsection{
+\subsection{
 qmake生成Visual Studio工程
 }\label{ss000910}
 
@@ -914,12 +939,14 @@ qmake生成Visual Studio工程
 如\commandnumbernameone\ \ref{command000003}：
 
 %\begin{spacing}{1.0}
-\refstepcounter{commandnumber}\label{command000003}    %增加目录树编号
-\begin{lstlisting}[caption=GoodLuck,
+%\FloatBarrier
+\refstepcounter{commandnumber}\label{command000003}    %增加命令行编号
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
 title=\commandnumbernameone \thecommandnumber
 ]
-qmake -r -tp vc < 工程名称 >
-\end{lstlisting}          %抄录环境
+qmake -r -tp vc < 工程名称 >(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\commandnumbernameone}}\footnotesize{\thecommandnumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\commandnumbernameone}}\footnotesize{\thecommandnumber}}}@*)\end{lstlisting}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
@@ -939,17 +966,18 @@ qmake -r -tp vc < 工程名称 >
 如\lstlistingname\ \ref{f000017}
 第5行所示：
 %\begin{spacing}{1.0}
-\begin{lstlisting}[label=f000017,
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000017,
 caption=GoodLuck,
-title=\lstlistingname\ \thelstlisting
+title=\lstlistingname \thelstlisting
 ]
 @echo off
 echo Setting up environment for Qt usage...
 set PATH=C:\Qt1\5.12.0\msvc2017_64\bin;%PATH%
 cd /D C:\Qt1\5.12.0\msvc2017_64
 call "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-echo Remember to call vcvarsall.bat to complete environment setup!
-\end{lstlisting}          %抄录环境
+echo Remember to call vcvarsall.bat to complete environment setup!(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
  %qtenv2.windows.bat.txt
 
@@ -957,7 +985,7 @@ echo Remember to call vcvarsall.bat to complete environment setup!
 可以得到一个完整的运行环境了。
 
 \FloatBarrier
-\subsubsection{
+\subsection{
 获得更多qmake帮助
 }\label{ss000a10}
 
@@ -979,13 +1007,15 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 “qmake Variable Reference”即可，
 如\figurename\ \ref{p000003}。
 
-
-\begin{figure}[ht] %浮动体 here and top ...
-\centering %中心对齐
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote not use marginpar ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000003}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_1.png} %图片路径
 \caption{qmake Variable Reference} %标题
 \label{p000003} %索引
 \end{figure}
+%end图片
 
 
 \item qmake控制台运行参数
@@ -993,13 +1023,15 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 要获得qmake的所有控制台运行参数相关信息，只需要单击
 “Running qmake”即可，
 如\figurename\ \ref{p000004}。
-
-\begin{figure}[ht] %浮动体 here and top ...
-\centering %中心对齐
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote not use marginpar ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000004}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_2.png} %图片路径
 \caption{Running qmake} %标题
 \label{p000004} %索引
 \end{figure}
+%end图片
 
 
 \item qmake的完整语法
@@ -1007,13 +1039,15 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 要完整的了解qmake的所有语法，只需要单击
 “qmake Language”即可，
 如\figurename\ \ref{p000005}。
-
-\begin{figure}[ht] %浮动体 here and top ...
-\centering %中心对齐
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote not use marginpar ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000005}}}}\centering %中心对齐
 \includegraphics[width=0.95\textwidth]{chapter01/images/qmake_help_3.png} %图片路径
 \caption{qmake Language} %标题
 \label{p000005} %索引
 \end{figure}
+%end图片
 
 
 \end{itemize}

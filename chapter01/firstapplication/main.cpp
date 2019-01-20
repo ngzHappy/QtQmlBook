@@ -13,7 +13,6 @@ inline QUrl getLocalFileFullPath(
     } else {
         return QStringLiteral(R"(file:///)") + varAns;
     }
-
 }
 
 inline QSurfaceFormat getDefaultQSurfaceFormat() {

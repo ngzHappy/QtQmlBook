@@ -32,4 +32,7 @@ SOURCES += $$PWD/main.cpp
 SOURCES += $$PWD/TestObject.cpp
 HEADERS += $$PWD/TestObject.hpp
 
+SOURCES += $$PWD/TestFiberFunction.cpp
+HEADERS += $$PWD/TestFiberFunction.hpp
+
 DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"

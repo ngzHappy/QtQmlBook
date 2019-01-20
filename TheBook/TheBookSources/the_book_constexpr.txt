@@ -6,7 +6,7 @@
 
 %章节名称
 %第一章
-c000010::::Qt Quick全面介绍
+c000010::::Qt Quick入门导引
 %第1节
 s100110::::搭建开发环境
 s000110::::在Windows平台下搭建开发环境
@@ -26,6 +26,18 @@ ss000a10::::获得更多qmake帮助
 
 %第3节
 s100210::::第一个程序
+ss001u10::::本书的工程项目
+ss001v10::::Qt Quick运行常用设置
+ss001010::::使用QQuickView加载Qt Quick程序
+ss001110::::使用QQuickWidget加载Qt Quick程序
+ss001210::::使用QQmlApplicationEngine加载Qt Quick程序
+
+%第4节
+s100410::::你好世界！
+s100510::::初识Qt Quick控件
+s100610::::在Qt Quick中使用着色器
+s100710::::使用C++扩展Qt Quick
+
 %第二章
 c000011::::Qt Quick基础
 %第三章
@@ -47,12 +59,17 @@ c000019::::模型视图
 c000020::::前言
 
 %图片路径
-p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[ht]::::[scale=0.95]
-p000001::::Qt在线安装建议选择安装组件::::chapter01/images/windows_qt_online_install.png::::[ht]::::[width=0.95\textwidth]
-p000002::::qmake对C/C++编译链接过程控制点::::chapter01/images/advance_use_qmake.png::::[ht]::::[width=0.95\textwidth]
-p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[ht]::::[width=0.95\textwidth]
-p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[ht]::::[width=0.95\textwidth]
-p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[ht]::::[width=0.95\textwidth]
+p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[htb]::::[scale=0.95]
+p000001::::Qt在线安装建议安装组件::::chapter01/images/windows_qt_online_install.png::::[htb]::::[width=0.95\textwidth]
+p000002::::qmake对C/C++编译链接过程中的控制点::::chapter01/images/advance_use_qmake.png::::[htb]::::[width=0.95\textwidth]
+p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[htb]::::[width=0.95\textwidth]
+p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[htb]::::[width=0.95\textwidth]
+p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[htb]::::[width=0.95\textwidth]
+p000006::::你好世界！::::../chapter01/hellowworld/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000007::::Qt Quick控件及样式！::::../chapter01/defaultstyle/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000008::::Qt Quick中使用着色器::::../chapter01/shadereffect/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000009::::Qt Quick着色器中使用纹理::::../chapter01/shadereffectwithimage/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000010::::C++导出Qt Quick所需基类::::chapter01/images/qtquick_item.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
@@ -83,6 +100,32 @@ f000017::::chapter01/files/qtenv2.windows.bat.txt::::]
 f000018::::../build_msvc.bat::::]
 
 f000019::::../chapter01/firstapplication/firstapplication.pro::::]
+f000020::::chapter01/files/first_application/main.1.txt::::,firstnumber=67]
+f000021::::chapter01/files/first_application/main.2.txt::::,firstnumber=90]
+f000022::::chapter01/files/first_application/main.3.txt::::,firstnumber=111]
+f00002u::::chapter01/files/first_application/import_sstd_qt_and_qml_library.1.pri::::]
+f000023::::../chapter01/firstapplication/myqml/firstapplication/main1.qml::::]
+f000024::::../chapter01/firstapplication/myqml/firstapplication/main2.qml::::]
+f000025::::../chapter01/firstapplication/myqml/firstapplication/main3.qml::::]
+f000026::::chapter01/files/first_application/main.4.txt::::,firstnumber=6]
+f000027::::chapter01/files/first_application/main.5.txt::::,firstnumber=18]
+f000028::::chapter01/files/first_application/main.6.txt::::,firstnumber=39]
+f000029::::chapter01/files/first_application/main.7.txt::::,firstnumber=54]
+
+f000030::::../chapter01/hellowworld/main.cpp::::]
+f000031::::../chapter01/hellowworld/myqml/hellowworld/main.qml::::]
+f000032::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainRectangle.qml::::]
+f000033::::../chapter01/hellowworld/myqml/hellowworld/main_private/MainText.qml::::]
+f000034::::chapter01/files/hellow_world/1.txt::::]
+
+f000035::::../chapter01/defaultstyle/myqml/defaultstyle/main.qml::::]
+f000036::::../chapter01/defaultstyle/myqml/defaultstyle_qtquickcontrols2.conf::::]
+f000037::::chapter01/files/defaultsytle/1.txt::::]
+
+f000038::::../chapter01/shadereffect/myqml/shadereffect/main.qml::::]
+f000039::::../chapter01/shadereffectwithimage/myqml/shadereffectwithimage/main.qml::::]
+
+ 
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
@@ -97,15 +140,26 @@ command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 %表名称
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+%
+%:tex_raw:[[\figurename\ \ref{p000003}]]
+%
+%:tex_raw:[[\lstlistingname\ \ref{f000017}]]
+%
+%:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
+%itemize
+%:tex_raw:[[\begin{enumerate}]]
+%:tex_raw:[[\end{enumerate}]]
+%
+%:tex_raw:[[\commandnumbernameone\ \ref{command000003}]]
+%
+%:tex_raw:[[\footnote{]]:tex_raw:[[}]]
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
