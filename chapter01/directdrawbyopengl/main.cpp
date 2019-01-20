@@ -1,4 +1,5 @@
-﻿#include <sstd_qt_and_qml_library.hpp>
+﻿/*directdrawbyopengl/main.cpp*/
+#include <sstd_qt_and_qml_library.hpp>
 #include "DrawImageItem.hpp"
 
 int main(int argc, char ** argv) {
@@ -16,7 +17,8 @@ int main(int argc, char ** argv) {
         varWindow->load(varFullFileName);
         /*检查并报错*/
         if (varWindow->status() != sstd::LoadState::Ready) {
-            qWarning() << QStringLiteral("can not load : ") << varFullFileName;
+            qWarning() << QStringLiteral("can not load : ") 
+            << varFullFileName;
             return -1;
         }
 
