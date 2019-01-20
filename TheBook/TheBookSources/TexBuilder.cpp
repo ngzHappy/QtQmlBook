@@ -548,16 +548,16 @@ public:
 
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{%1}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={%3}{%4},
-label=%1,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 %2
 )").arg(varKeyLabel).arg(varArgs2[1]).arg(varLeftKey).arg(varRightKey);
                 varString += varFullFile;
                 varString += varLeftKey;
-                varString += getMarginpar(qsl(R"(\lstlistingname)"),qsl(R"(\thelstlisting)"));
+                varString += getMarginpar(qsl(R"(\filesourcenumbernameone)"),qsl(R"(\thefilesourcenumber)"));
                 varString += varRightKey;
                 varString += qsl(R"(\end{thebookfilesourceone}          %抄录环境
 %\end{spacing}
