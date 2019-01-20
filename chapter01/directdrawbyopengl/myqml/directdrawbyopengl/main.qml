@@ -28,7 +28,7 @@ Rectangle{
                     parent.rotation -= 360 ;
                 }
                 parent.opacity = Math.random() * 0.3 + 0.7 ;
-                parent.scale = Math.random() * 0.3 + 0.7 ;
+                parent.scale = Math.random() * 0.3 + 0.7   ;
             }
         }
 
@@ -44,8 +44,8 @@ import sstd.quick 1.0
 DrawImageItemRaw {
     width: 256   ;
     height: 256  ;
-    anchors.top: parent.top          ;
-    anchors.right : parent.right           ;
+    anchors.top: parent.top                 ;
+    anchors.right : parent.right            ;
     rawImage : Qt.resolvedUrl( '0000.jpg' ) ;
 }
 
