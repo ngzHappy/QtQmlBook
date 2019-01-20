@@ -186,9 +186,16 @@ showstringspaces=false
 %end env ...
 }
 
+%命令行环境
 \lstnewenvironment{thebookfilesourceonecommand}[1][]{
 %begin env ...
-    \lstset{#1}
+    \lstset{
+basicstyle=     \scriptsize\itshape\sourcefontone        , %设置字号，字体
+stringstyle=    \scriptsize\itshape\sourcefontone        , %设置字号，字体
+keywordstyle=   \scriptsize\itshape\sourcefontone        , %设置字号，字体
+commentstyle=   \scriptsize\itshape\sourcefontone        , %设置字号，字体
+identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字体
+#1 }
 }{
 %end env ...
 }
