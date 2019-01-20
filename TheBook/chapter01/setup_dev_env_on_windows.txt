@@ -55,14 +55,18 @@ C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include\boost
 并将编译结果的“*.lib”文件拷贝到Qt根目录下的lib文件夹，
 将“*.dll”文件拷贝到Qt根目录下的bin文件夹。
 
+:tex_raw:[[\renewcommand\thelstnumber{\ifnum\value{lstnumber}>3{\ }\else{\arabic{lstnumber}}\fi}]]
 :the_book_command_file:[[command000002s02]]
+:tex_raw:[[\renewcommand\thelstnumber{\arabic{lstnumber}}]]
 
 如果读者使用的是MinGW环境，则需要使用“Mingw命令提示符”运
 行:tex_raw:[[\commandnumbernameone\ \ref{command000002s01}]]。
 并将编译结果的“*.a”文件拷贝到Qt根目录下的lib文件夹，
 将“*.dll”文件拷贝到Qt根目录下的bin文件夹。
 
+:tex_raw:[[\renewcommand\thelstnumber{\ifnum\value{lstnumber}>3{\ }\else{\arabic{lstnumber}}\fi}]]
 :the_book_command_file:[[command000002s01]]
+:tex_raw:[[\renewcommand\thelstnumber{\arabic{lstnumber}}]]
 
 :the_book_subsubsection:[[ss000310]]
 

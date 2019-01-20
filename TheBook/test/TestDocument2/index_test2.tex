@@ -199,6 +199,21 @@ using namespace std;
      return 0;
 } 
 \end{lstlisting}
+\renewcommand\thelstnumber{\ifnum\value{lstnumber}>3{\ }\else{\arabic{lstnumber}}\fi}
+%程序 \ref{xfwaef}  
+\begin{lstlisting}[
+label=xfwaef,
+caption=dsgdsg ,
+firstnumber=1  ] 
+#include <iostream> 
+using namespace std;
+ int main() { 
+     cout<<"h ello"<<endl; //今天
+     foo<int>();
+     return 0;
+} 
+\end{lstlisting}
+\renewcommand\thelstnumber{\arabic{lstnumber}}
 
 %程序 \ref{xfwaef}  
 \begin{lstlisting}[
@@ -216,6 +231,7 @@ using namespace std;
 
 %\marginnote{\fbox{程序\ \ref{x1fwaef}}}
 %程序 \ref{x1fwaef}  
+
 \begin{lstlisting}[
 escapeinside={(***@}{@***)},
 label=x1fwaef,
@@ -231,6 +247,7 @@ using namespace std;
      return 0;
 } (***@\marginpar[\hfill\fbox{\begin{varwidth}{10cm}\setlength{\baselineskip}{5pt}\hfill{}fsdlf\\dfasfds\end{varwidth}}]{aabbcc}@***)
 \end{lstlisting} 
+
 
 {
 \setlength\fboxsep{2pt}

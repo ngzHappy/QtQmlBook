@@ -93,13 +93,14 @@ C:\textbackslash{}Qt\textbackslash{}Qt5.12.0\textbackslash{}5.12.0\textbackslash
 并将编译结果的“\raisebox{-0.35ex}{\sourcefonttwo{}*}.lib”文件拷贝到Qt根目录下的lib文件夹，
 将“\raisebox{-0.35ex}{\sourcefonttwo{}*}.dll”文件拷贝到Qt根目录下的bin文件夹。
 
+\renewcommand\thelstnumber{\ifnum\value{lstnumber}>3{\ }\else{\arabic{lstnumber}}\fi}
 %\begin{spacing}{1.0}
 %\FloatBarrier
 \refstepcounter{commandnumber}\label{command000002s02}    %增加命令行编号
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 caption=GoodLuck,
 title=\commandnumbernameone \thecommandnumber
- ,numbers=none]
+]
 cd /D < Boost源代码路径 >
 bootstrap.bat
 bjam --build-type=complete
@@ -111,19 +112,21 @@ bjam --build-type=complete
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
+\renewcommand\thelstnumber{\arabic{lstnumber}}
 
 如果读者使用的是MinGW环境，则需要使用“Mingw命令提示符”运
 行\commandnumbernameone\ \ref{command000002s01}。
 并将编译结果的“\raisebox{-0.35ex}{\sourcefonttwo{}*}.a”文件拷贝到Qt根目录下的lib文件夹，
 将“\raisebox{-0.35ex}{\sourcefonttwo{}*}.dll”文件拷贝到Qt根目录下的bin文件夹。
 
+\renewcommand\thelstnumber{\ifnum\value{lstnumber}>3{\ }\else{\arabic{lstnumber}}\fi}
 %\begin{spacing}{1.0}
 %\FloatBarrier
 \refstepcounter{commandnumber}\label{command000002s01}    %增加命令行编号
 \begin{lstlisting}[escapeinside={(*@}{@*)},
 caption=GoodLuck,
 title=\commandnumbernameone \thecommandnumber
-,numbers=none]
+]
 cd /D < Boost源代码路径 >
 bootstrap.bat
 bjam --build-type=complete
@@ -135,6 +138,7 @@ bjam --build-type=complete
 \addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
+\renewcommand\thelstnumber{\arabic{lstnumber}}
 
 \FloatBarrier
 \subsubsection{
