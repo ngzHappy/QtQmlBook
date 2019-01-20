@@ -154,6 +154,13 @@ showstringspaces=false
     \thesection.\arabic{commandnumber}
 }
 
+%设置源码计数器
+\newcommand\filesourcenumbernameone{源码}
+\newcounter{filesourcenumber}[section]
+\renewcommand\thefilesourcenumber{
+    \thesection.\arabic{filesourcenumber}
+}
+
 %设置图片计数器
 \counterwithin{figure}{section}
 \renewcommand\thefigure{
