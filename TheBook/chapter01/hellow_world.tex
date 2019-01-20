@@ -31,9 +31,10 @@
 本章的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码
 如\lstlistingname\ \ref{f000030}：
 
-%\begin{spacing}{1.0}
+\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(*@}{@*)},
+\begin{lstlisting}[numbers=right,
+escapeinside={(*@}{@*)},
 label=f000030,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -66,7 +67,43 @@ int main(int argc, char ** argv) {
 
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-%main.cpp
+}\else{%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[numbers=left,
+escapeinside={(*@}{@*)},
+label=f000030,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+]
+#include <sstd_qt_and_qml_library.hpp>
+
+int main(int argc, char ** argv) {
+
+    /*初始化程序*/
+    auto varApp = sstd_make_unique< sstd::Application >(argc, argv);
+    /*初始化Qml/Quick引擎*/
+    auto varWindow = sstd_make_unique< sstd::DefaultRoowWindow >();
+    {
+        /*获得Qml文件绝对路径*/
+        auto varFullFileName = sstd::getLocalFileFullPath(
+            QStringLiteral("myqml/hellowworld/main.qml"));
+        /*加载Qml文件*/
+        varWindow->load(varFullFileName);
+        /*检查并报错*/
+        if (varWindow->status() != sstd::LoadState::Ready) {
+            qWarning() <<
+                       QStringLiteral("can not load : ")
+                       << varFullFileName;
+            return -1;
+        }
+    }
+    varWindow->show();
+
+    return varApp->exec();
+
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+}\fi%main.cpp
 
 本书将大量的程序细节隐藏到了“sstd\underline{\hspace{0.5em}}qt\underline{\hspace{0.5em}}and\underline{\hspace{0.5em}}qml\underline{\hspace{0.5em}}library”库里面。
 
@@ -86,9 +123,10 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 “main.qml”如\lstlistingname\ \ref{f000031}
 所示：
 
-%\begin{spacing}{1.0}
+\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(*@}{@*)},
+\begin{lstlisting}[numbers=right,
+escapeinside={(*@}{@*)},
 label=f000031,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -114,7 +152,36 @@ Rectangle {
     } /*~MainRectangle*/
 } /*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-%main.qml
+}\else{%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[numbers=left,
+escapeinside={(*@}{@*)},
+label=f000031,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+]
+/*main.qml*/
+import QtQuick 2.9
+import "main_private" as MainPrivate
+
+Rectangle {
+
+    width: 640
+    height: 480
+    color: Qt.rgba(0.8, 0.8, 0.8, 1)
+
+    MainPrivate.MainText {
+        z: 1
+        anchors.fill: parent
+    } /*~MainText*/
+
+    MainPrivate.MainRectangle {
+        z: 0
+        anchors.fill: parent
+    } /*~MainRectangle*/
+} /*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+}\fi%main.qml
 
 \begin{itemize}
 
@@ -122,16 +189,27 @@ Rectangle {
 其语法如\lstlistingname\ \ref{f000034}
 所示：
 
-%\begin{spacing}{1.0}
+\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(*@}{@*)},
+\begin{lstlisting}[numbers=right,
+escapeinside={(*@}{@*)},
 label=f000034,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
 ]
 import "ResourceURL" as Qualifier(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-%1.txt
+}\else{%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[numbers=left,
+escapeinside={(*@}{@*)},
+label=f000034,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+]
+import "ResourceURL" as Qualifier(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+}\fi%1.txt
 
 \item 第5行定义了一个Rectangle：
 
@@ -158,9 +236,10 @@ import "ResourceURL" as Qualifier(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbo
 
 “MainRectangle.qml”如\lstlistingname\ \ref{f000032}
 所示：
-%\begin{spacing}{1.0}
+\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(*@}{@*)},
+\begin{lstlisting}[numbers=right,
+escapeinside={(*@}{@*)},
 label=f000032,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -172,7 +251,22 @@ Rectangle {
     color: Qt.rgba(0.8, 0.2, 0.2, 1)
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-%MainRectangle.qml
+}\else{%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[numbers=left,
+escapeinside={(*@}{@*)},
+label=f000032,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+]
+/*main_private/MainRectangle.qml*/
+import QtQuick 2.9
+
+Rectangle {
+    color: Qt.rgba(0.8, 0.2, 0.2, 1)
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+}\fi%MainRectangle.qml
 
 Qml是一门大小写敏感的计算机语言。
 读者使用import命令引入Qml定义的对象时，文件名必须以大写开头；
@@ -182,9 +276,10 @@ Qml是一门大小写敏感的计算机语言。
 “MainText.qml”如\lstlistingname\ \ref{f000033}
 所示：
 
-%\begin{spacing}{1.0}
+\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(*@}{@*)},
+\begin{lstlisting}[numbers=right,
+escapeinside={(*@}{@*)},
 label=f000033,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -201,7 +296,27 @@ Text {
     horizontalAlignment: Text.AlignHCenter
 }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-%MainText.qml
+}\else{%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[numbers=left,
+escapeinside={(*@}{@*)},
+label=f000033,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+]
+/*main_private/MainText.qml*/
+import QtQuick 2.9
+
+Text {
+    text: qsTr("你好世界！")
+    color: Qt.rgba(Math.random() / 10, Math.random() / 10,
+                   Math.random() / 10, 1)
+    font.pointSize: 32
+    verticalAlignment: Text.AlignVCenter
+    horizontalAlignment: Text.AlignHCenter
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+}\fi%MainText.qml
 
 \begin{itemize}
 

@@ -105,6 +105,8 @@ frame=single,
 backgroundcolor=\color{sourcegrayone},
 showstringspaces=false
 }
+%\ifoddpage \lstset{numbers=left} \else \lstset{numbers=right}
+\usepackage{changepage}    %判断奇数页偶数页
 
 %设置item样式......
 \usepackage{enumitem}

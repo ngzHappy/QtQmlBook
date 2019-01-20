@@ -38,9 +38,10 @@ Qt Quick原生支持GLSL。
 第14\raisebox{0.16ex}{\sourcefonttwo\~{}}46行展示了如何使用“ShaderEffect”，在
 Qt Quick中使用GLSL。
 
-%\begin{spacing}{1.0}
+\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(*@}{@*)},
+\begin{lstlisting}[numbers=right,
+escapeinside={(*@}{@*)},
 label=f000038,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -95,7 +96,65 @@ void main() {
 
 }/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-%main.qml
+}\else{%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[numbers=left,
+escapeinside={(*@}{@*)},
+label=f000038,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+]
+/*shadereffect/main.qml*/
+import QtQuick 2.9
+
+Rectangle {
+
+    width: 640;
+    height: 480;
+    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    Rectangle{
+        anchors.centerIn: parent    ;
+        width: parent.width * 0.8   ;
+        height: parent.height * 0.8 ;
+        ShaderEffect{
+            anchors.fill: parent ;
+            fragmentShader:"
+/*片段着色器*/
+#version 460
+
+in vec2  qt_TexCoord0/*纹理坐标*/  ;
+out vec4 fragColor   /*输出值*/    ;
+
+uniform float qt_Opacity/*透明度*/ ;
+
+void main() {
+    vec4 varColor  = vec4( qt_TexCoord0.x ,  qt_TexCoord0.y , 0.5 , 1);
+    fragColor = varColor * qt_Opacity;
+}
+
+"
+            vertexShader :"
+/*顶点着色器*/
+#version 460
+
+in vec4 qt_Vertex/*输入点坐标*/    ;
+out vec2 qt_TexCoord0/*纹理坐标*/  ;
+
+uniform mat4 qt_Matrix/*投影矩阵*/ ;
+
+void main() {
+    gl_Position = qt_Matrix * qt_Vertex;
+    qt_TexCoord0 = gl_Position.xy*0.5 + 0.5 ;
+}
+
+"
+        }
+    }
+
+}/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+}\fi%main.qml
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -128,9 +187,10 @@ void main() {
 %end图片
 
 
-%\begin{spacing}{1.0}
+\checkoddpage\ifoddpage{%\begin{spacing}{1.0}
 \FloatBarrier
-\begin{lstlisting}[escapeinside={(*@}{@*)},
+\begin{lstlisting}[numbers=right,
+escapeinside={(*@}{@*)},
 label=f000039,
 caption=GoodLuck,
 title=\lstlistingname \thelstlisting
@@ -194,7 +254,74 @@ void main() {
 
 }/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
 %\end{spacing}
-%main.qml
+}\else{%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[numbers=left,
+escapeinside={(*@}{@*)},
+label=f000039,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+]
+/*shadereffectwithimage/main.qml*/
+import QtQuick 2.9
+
+Rectangle {
+
+    width: 640;
+    height: 480;
+    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    Rectangle{
+        anchors.centerIn: parent    ;
+        width: parent.width * 0.8   ;
+        height: parent.height * 0.8 ;
+        Image{
+            id : idSourceImage;
+            source: "0000.jpg";
+            visible: false    ;
+        }
+        ShaderEffect{
+            property variant source: idSourceImage/*the image...*/
+            anchors.fill: parent ;
+            fragmentShader:"
+/*片段着色器*/
+#version 460
+
+in vec2 qt_TexCoord0;
+
+out vec4 fragColor;
+
+uniform sampler2D source/*the image...*/;
+uniform float qt_Opacity;
+
+void main() {
+    fragColor = texture(source, qt_TexCoord0) * qt_Opacity;
+}
+
+"
+            vertexShader :"
+/*顶点着色器*/
+#version 460
+
+in vec4 qt_Vertex;
+in vec2 qt_MultiTexCoord0;
+
+out vec2 qt_TexCoord0;
+
+uniform mat4 qt_Matrix;
+
+void main() {
+    qt_TexCoord0 = qt_MultiTexCoord0;
+    gl_Position = qt_Matrix * qt_Vertex;
+}
+
+"
+        }
+    }
+
+}/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+}\fi%main.qml
 
 
 
