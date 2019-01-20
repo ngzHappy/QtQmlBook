@@ -115,14 +115,14 @@ bjam --build-type=complete
 \renewcommand\thelstnumber{\arabic{lstnumber}}
 
 之后，读者需要根据编译输出更新“QtQmlBook/msvc\underline{\hspace{0.5em}}boost.pri”文件。
-如\lstlistingname\ \ref{f000041}
+如\filesourcenumbernameone\ \ref{f000041}
 所示：
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000041}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000041,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,numbers=none]
 CONFIG(debug,debug|release){
     LIBS += "boost_atomic-vc141-mt-gd-x64-1_68.lib"
@@ -130,7 +130,8 @@ CONFIG(debug,debug|release){
 else{
     LIBS += "boost_atomic-vc141-mt-x64-1_68.lib"
     ……
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
@@ -161,14 +162,14 @@ bjam --build-type=complete
 \renewcommand\thelstnumber{\arabic{lstnumber}}
 
 之后，读者需要根据编译输出更新“QtQmlBook/mingw\underline{\hspace{0.5em}}boost.pri”文件。
-如\lstlistingname\ \ref{f000040}
+如\filesourcenumbernameone\ \ref{f000040}
 所示：
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000040}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000040,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,numbers=none]
 CONFIG(debug,debug|release){
     LIBS += "libboost_atomic-mgw73-mt-d-x64-1_68.dll"
@@ -176,7 +177,8 @@ CONFIG(debug,debug|release){
 }else{
     LIBS += "libboost_atomic-mgw73-mt-x64-1_68.dll"
     ……
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 

@@ -43,15 +43,15 @@ Qt Quick Controls 2更加现代化并更适用于
 除了维护老项目，
 没有什么理由不采用Qt Quick Controls 2。
 
-本项目的“main.qml”如\lstlistingname\ \ref{f000035}
+本项目的“main.qml”如\filesourcenumbernameone\ \ref{f000035}
 所示：
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000035}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000035,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*defaultstyle/main.qml*/
 import QtQuick 2.9
@@ -106,7 +106,8 @@ Pane {
 
     }
 
-}/*~Pane*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}/*~Pane*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %main.qml
 
@@ -126,35 +127,37 @@ JavaScript函数；%……
 本案例演示了如何使用Qt Quick Control自带的“Material”样式。
 
 要使用Qt Quick Control自带的样式，需要在QApplication
-构造之前调用如\lstlistingname\ \ref{f000037}
+构造之前调用如\filesourcenumbernameone\ \ref{f000037}
 所示的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码，以载入配置文件。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000037}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000037,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
-::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+::qputenv("QT_QUICK_CONTROLS_CONF","defaultstyle_qtquickcontrols2.conf");(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
-配置文件内容如\lstlistingname\ \ref{f000036}
+配置文件内容如\filesourcenumbernameone\ \ref{f000036}
 所示：
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000036}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000036,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 [Controls]
 Style=Material
 FallbackStyle=Material
 
 [Material]
-Theme=Dark(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+Theme=Dark(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %defaultstyle_qtquickcontrols2.conf
 

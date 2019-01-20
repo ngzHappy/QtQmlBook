@@ -34,16 +34,16 @@ Qt Quick原生支持GLSL。
 如果读者需要使用计算着色器、几何着色器或分型着色器，
 读者需要使用C{\sourcefonttwo{}+}{\sourcefonttwo{}+}扩展Qml。
 
-如\lstlistingname\ \ref{f000038}
+如\filesourcenumbernameone\ \ref{f000038}
 第14\raisebox{0.16ex}{\sourcefonttwo\~{}}46行展示了如何使用“ShaderEffect”，在
 Qt Quick中使用GLSL。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000038}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000038,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*shadereffect/main.qml*/
 import QtQuick 2.9
@@ -93,7 +93,8 @@ void main() {
         }
     }
 
-}/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %main.qml
 
@@ -104,7 +105,7 @@ void main() {
 一个代表“Image”的属性，
 在GLSL中就可以直接使用了。
 
-如\lstlistingname\ \ref{f000039}
+如\filesourcenumbernameone\ \ref{f000039}
 所示：
 
 \begin{itemize}
@@ -129,11 +130,11 @@ void main() {
 
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000039}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000039,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*shadereffectwithimage/main.qml*/
 import QtQuick 2.9
@@ -192,7 +193,8 @@ void main() {
         }
     }
 
-}/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}/*~Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %main.qml
 

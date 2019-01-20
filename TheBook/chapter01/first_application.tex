@@ -25,15 +25,15 @@
 在Windows平台下，读者
 也可以修改“build\underline{\hspace{0.5em}}msvc.bat”，从而使用Visual Studio。
 
-如\lstlistingname\ \ref{f000018} ：
+如\filesourcenumbernameone\ \ref{f000018} ：
 
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000018}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000018,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 call "C:/Qt/Qt5.12.0/5.12.0/msvc2017_64/bin/qtenv2.bat"
 cd /D "E:/QtQmlBookMsvc"
@@ -41,7 +41,8 @@ qmake -r -tp vc "E:/QtQmlBook/QtQmlBook.pro"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlMultimedia.pro"
 qmake -r -tp vc "E:/QtQmlBook/QtQmlBookTest.pro"
 qmake -r -tp vc "E:/QtQmlBook/TheBook/TheBook.pro"
-cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
@@ -59,7 +60,7 @@ cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox
 
 本节示例代码位于文件夹“QtQmlBook/chapter01/firstapplication”下。
 
-\lstlistingname\ \ref{f000019}
+\filesourcenumbernameone\ \ref{f000019}
 展示了
 该项目的工程文件：
 
@@ -78,11 +79,11 @@ cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox
 本书的所有工程项目大同小异，以后不再赘述。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000019}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000019,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #firstapplication.pro
 TEMPLATE = app
@@ -131,7 +132,8 @@ lupdate_only{
     SOURCES += $$QMLSOURCES
 }
 
-DISTFILES += $$QMLSOURCES(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+DISTFILES += $$QMLSOURCES(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
@@ -153,15 +155,15 @@ POSIX平台下需要在开头加“file://”。
 一个本地绝对路径是“/usr/main.qml”，那么
 用QUrl表达则为“file:///usr/main.qml”。
 
-\lstlistingname\ \ref{f000026}
+\filesourcenumbernameone\ \ref{f000026}
 展示如何用C{\sourcefonttwo{}+}{\sourcefonttwo{}+}实现这一功能。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000026}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000026,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,firstnumber=6]
 inline QUrl getLocalFileFullPath(
     const QString & argFileName,
@@ -173,19 +175,20 @@ inline QUrl getLocalFileFullPath(
     } else {
         return QStringLiteral(R"(file:///)") + varAns;
     }
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main4.qml
 
-Qt Quick依赖于OpenGL。\lstlistingname\ \ref{f000027}
+Qt Quick依赖于OpenGL。\filesourcenumbernameone\ \ref{f000027}
 展示常用OpenGL参数设置：
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000027}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000027,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,firstnumber=18]
 inline QSurfaceFormat getDefaultQSurfaceFormat() {
     auto varFormat = QSurfaceFormat::defaultFormat();
@@ -206,7 +209,8 @@ inline QSurfaceFormat getDefaultQSurfaceFormat() {
     varFormat.setOption(QSurfaceFormat::DebugContext, false);
 #endif
     return varFormat;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main5.qml
 
@@ -215,15 +219,15 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 
 在构造QCoreApplication之前，
 需要设置一些参数。
-\lstlistingname\ \ref{f000028}
+\filesourcenumbernameone\ \ref{f000028}
 展示了一些常见设置。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000028}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000028,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,firstnumber=39]
 inline void beforeApplication() {
     {
@@ -238,7 +242,8 @@ inline void beforeApplication() {
         /*设置默认opengl环境*/
         QSurfaceFormat::setDefaultFormat(::getDefaultQSurfaceFormat());
     }
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main6.qml
 
@@ -247,34 +252,35 @@ inline void beforeApplication() {
 对于一些外存较差的设备而言，加载插件可能会造成几百毫秒
 甚至数秒的卡顿。为了程序运行平滑，这些组件都是预加载的。
 
-\lstlistingname\ \ref{f000029}
+\filesourcenumbernameone\ \ref{f000029}
 展示了如何实现这一操作。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000029}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000029,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,firstnumber=54]
 inline void afterApplication() {
     {
         QImage varImage{QStringLiteral("test.png")};
         (void)varImage;
     }
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main7.qml
 
-\lstlistingname\ \ref{f00002u}
+\filesourcenumbernameone\ \ref{f00002u}
 展示了如何在工程文件中引入常用Qt库。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f00002u}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f00002u,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 QT += gui
 QT += qml
@@ -283,7 +289,8 @@ QT += quick
 QT += widgets
 QT += concurrent
 QT += quickwidgets
-QT += quickcontrols2(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+QT += quickcontrols2(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %import_sstd_qt_and_qml_library.1.pri
 
@@ -300,19 +307,19 @@ QQuickView被设计用来提供一个在显示器上
 如果读者需要在移动设备上呈现Qml，
 QQuickView是一个好的选择。
 
-\lstlistingname\ \ref{f000020}
+\filesourcenumbernameone\ \ref{f000020}
 展示了使用QQuickView加载Qml的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码\footnote{
 将宏QML\underline{\hspace{0.5em}}USE\underline{\hspace{0.5em}}WINDOW\underline{\hspace{0.5em}}TYPE的值改为1。
 }；
-\lstlistingname\ \ref{f000023}
+\filesourcenumbernameone\ \ref{f000023}
 展示了一个简单显示一个红色窗口的Qml代码。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000020}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000020,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,firstnumber=67]
 beforeApplication();
 QGuiApplication varApp{ argc,argv };
@@ -335,15 +342,16 @@ if (varView.status() != QQuickView::Status::Ready) {
     return -1;
 }
 varView.show();
-return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000023}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000023,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main1.qml*/
 import QtQuick 2.9
@@ -354,11 +362,12 @@ Rectangle{
     height: 512 ;
     color: Qt.rgba(1,0,0,1);
 
-}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main1.qml
 
-如\lstlistingname\ \ref{f000020}
+如\filesourcenumbernameone\ \ref{f000020}
 的72\raisebox{0.16ex}{\sourcefonttwo\~{}}82行所示，本书在Debug模式下从当前
 项目目录下载入Qml文件，而在Release模式下
 从应用程序目录下载入Qml文件。
@@ -390,19 +399,19 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 使用QQuickWidget比使用QQuickView能够获得
 更好的效果，甚至能消除一些BUG。
 
-\lstlistingname\ \ref{f000021}
+\filesourcenumbernameone\ \ref{f000021}
 展示了使用QQuickWidget加载Qml的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码\footnote{
 将宏QML\underline{\hspace{0.5em}}USE\underline{\hspace{0.5em}}WINDOW\underline{\hspace{0.5em}}TYPE的值改为2。
 }；
-\lstlistingname\ \ref{f000024}
+\filesourcenumbernameone\ \ref{f000024}
 展示了一个简单显示一个红色窗口的Qml代码。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000021}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000021,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,firstnumber=90]
 beforeApplication();
 QApplication varApp{ argc,argv };
@@ -423,15 +432,16 @@ if (varWidget.status() != QQuickWidget::Status::Ready) {
     return -1;
 }
 varWidget.show();
-return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000024}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000024,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main2.qml*/
 import QtQuick 2.9
@@ -447,7 +457,8 @@ Rectangle{
 /*end:debug*/
 
 
-}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}/*Rectangle*/(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main2.qml
 
@@ -455,7 +466,7 @@ Rectangle{
 模式比Release模式多了一个边框。这一切都是靠本书自带的小工具
 “build\underline{\hspace{0.5em}}install”实现的。
 
-如\lstlistingname\ \ref{f000024}
+如\filesourcenumbernameone\ \ref{f000024}
 的10\raisebox{0.16ex}{\sourcefonttwo\~{}}12行所示。本书自带的小工具“build\underline{\hspace{0.5em}}install”在拷贝
 qml文件时会将/\raisebox{-0.35ex}{\sourcefonttwo{}*}begin:debug\raisebox{-0.35ex}{\sourcefonttwo{}*}/和/\raisebox{-0.35ex}{\sourcefonttwo{}*}end:debug\raisebox{-0.35ex}{\sourcefonttwo{}*}/之间的内容
 替换为注释。
@@ -483,19 +494,19 @@ QQuickView或QQuickWidget也是足够使用的。
 但如果使用类似于对话框这样的功能，还是建议
 读者使用QQmlApplicationEngine。
 
-\lstlistingname\ \ref{f000022}
+\filesourcenumbernameone\ \ref{f000022}
 展示了使用QQuickWidget加载Qml的C{\sourcefonttwo{}+}{\sourcefonttwo{}+}代码\footnote{
 将宏QML\underline{\hspace{0.5em}}USE\underline{\hspace{0.5em}}WINDOW\underline{\hspace{0.5em}}TYPE的值改为3。
 }；
-\lstlistingname\ \ref{f000025}
+\filesourcenumbernameone\ \ref{f000025}
 展示了一个简单显示一个红色窗口的Qml代码。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000022}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000022,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ,firstnumber=111]
 beforeApplication();
 QGuiApplication varApp{ argc,argv };
@@ -513,15 +524,16 @@ if (varEngine.rootObjects().isEmpty()) {
     qWarning() << QStringLiteral("can not load : main3.qml");
     return -1;
 }
-return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+return varApp.exec();(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main.cpp
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000025}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000025,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main3.qml*/
 import QtQuick 2.9
@@ -543,7 +555,8 @@ ApplicationWindow {
 
     }/*Rectangle*/
 
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %main3.qml
 

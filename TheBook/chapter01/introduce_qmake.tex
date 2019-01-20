@@ -38,16 +38,16 @@ qmake比cmake更加专注。
 本书所有目录都要求不包含空格和中文，以后不再赘述。
 }，
 在此文件夹下新建一个“hellow\underline{\hspace{0.5em}}world.pro”文件，输入文件内容如
-\lstlistingname\ \ref{f000002}。
+\filesourcenumbernameone\ \ref{f000002}。
 在此文件夹下建立“main.cpp”文件，输入内容如
-\lstlistingname\ \ref{f000003}。
+\filesourcenumbernameone\ \ref{f000003}。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000002}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000002,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 QT -= gui
 QT -= core
@@ -73,15 +73,16 @@ DESTDIR =  $$PWD
 
 DEFINES *= NUMBER=1
 DEFINES *= HELLOW=\\\"Hellow\\\"
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000003}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000003,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #include <iostream>
 
@@ -90,14 +91,15 @@ int main(int , char **) {
         std::cout << HELLOW " World! "
                   << std::endl;
     }
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
 使用Qt Creator打开“hellow\underline{\hspace{0.5em}}world.pro”，
 运行此项目。
 
-现在来分析一下\lstlistingname\ \ref{f000002}：
+现在来分析一下\filesourcenumbernameone\ \ref{f000002}：
 \begin{itemize}
 \item 第1\raisebox{0.16ex}{\sourcefonttwo\~{}}2行表示不使用Qt库；
 \item 第4行表示这是一个控制台应用程序；
@@ -134,23 +136,24 @@ int main(int , char **) {
 
 第6\raisebox{0.16ex}{\sourcefonttwo\~{}}10行和14\raisebox{0.16ex}{\sourcefonttwo\~{}}18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
 读者可以尝试一下向文件“hellow\underline{\hspace{0.5em}}world.pro”文件最后
-加入\lstlistingname\ \ref{f00000d}，
-分别去掉\lstlistingname\ \ref{f00000d}第一行和
+加入\filesourcenumbernameone\ \ref{f00000d}，
+分别去掉\filesourcenumbernameone\ \ref{f00000d}第一行和
 保留第一行，
 观察Qt Creator的“概要信息”输出什么。
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f00000d}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f00000d,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 CONFIG += mydebug
 mydebug{
     message("find my debug")
 }else{
     message("can not find my debug")
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
@@ -192,7 +195,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
 
 
 先来看看“import\underline{\hspace{0.5em}}library.pro”文件，
-如\lstlistingname\ \ref{f000010}
+如\filesourcenumbernameone\ \ref{f000010}
 所示。
 
 此文件启用了一个新的模版，“subdirs”。
@@ -204,11 +207,11 @@ title=\treeindexnumbernameone \thetreeindexnumber
 比如本节采用的“CONFIG {\sourcefonttwo{}+}{\sourcefonttwo{}=} ordered”就要求项目按照定义顺序编译。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000010}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000010,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #import_library.pro
 TEMPLATE = subdirs
@@ -219,12 +222,13 @@ test_library.file = $$PWD/test_library/test_library.pro
 SUBDIRS += test_library
 
 the_app.file = $$PWD/the_app/the_app.pro
-SUBDIRS += the_app(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+SUBDIRS += the_app(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
 再来看看“the\underline{\hspace{0.5em}}app.pro”文件，
-如\lstlistingname\ \ref{f000016} 所示。它采用了“app”模版。
+如\filesourcenumbernameone\ \ref{f000016} 所示。它采用了“app”模版。
 比起上一节，它多了一些新的知识点。
 \begin{itemize}
 \item 第21\raisebox{0.16ex}{\sourcefonttwo\~{}}23行更改了在非Windows平台下程序的链接参数，
@@ -233,11 +237,11 @@ SUBDIRS += the_app(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize
 \end{itemize}
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000016}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000016,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #the_app.pro
 QT += gui
@@ -266,12 +270,13 @@ win32-msvc*{
 DESTDIR =  $$PWD/../bin
 
 SOURCES += $$PWD/main.cpp
-include($$PWD/../test_library/import_test_library.pri)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+include($$PWD/../test_library/import_test_library.pri)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
 接下来是“import\underline{\hspace{0.5em}}test\underline{\hspace{0.5em}}library.pri”文件，
-如\lstlistingname\ \ref{f000011} 所示。
+如\filesourcenumbernameone\ \ref{f000011} 所示。
 它也引入了一些新的知识。
 \begin{itemize}
 \item 第2行使用“INCLUDEPATH”变量将当前目录加入C/C{\sourcefonttwo{}+}{\sourcefonttwo{}+}包含路径搜索路径；
@@ -280,11 +285,11 @@ include($$PWD/../test_library/import_test_library.pri)(*@\marginpar[\hfill\setle
 “{\hspace{0.05em}\rule[0.7ex]{0.4em}{0.65pt}\hspace{0.05em}l}”后面紧跟库的名称；
 \end{itemize}
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000011}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000011,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #import_test_library.pri
 INCLUDEPATH += $$PWD
@@ -292,21 +297,22 @@ CONFIG(debug,debug|release){
     LIBS += -L$$PWD/../bin -ltest_libraryd
 }else{
     LIBS += -L$$PWD/../bin -ltest_library
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 
 
 然后，我么来看一下如何使用qmake定义一个动态链接库。
 一切与定义应用程序没什么不同，只是将
 “TEMPLATE {\sourcefonttwo{}=} app”改成了
-“TEMPLATE {\sourcefonttwo{}=} lib”，如\lstlistingname\ \ref{f000012} 第13行所示。
+“TEMPLATE {\sourcefonttwo{}=} lib”，如\filesourcenumbernameone\ \ref{f000012} 第13行所示。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000012}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000012,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #test_library.pro
 QT += gui
@@ -336,27 +342,28 @@ SOURCES += $$PWD/TestLibrary.cpp
 HEADERS += $$PWD/TestLibrary.hpp
 
 DESTDIR =  $$PWD/../bin
-DEFINES *= D_TEST_LIBRARY(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+DEFINES *= D_TEST_LIBRARY(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %test_library.pro
 
 
 剩下的是
 “TestLibrary.hpp”
-（如\lstlistingname\ \ref{f000014}），
+（如\filesourcenumbernameone\ \ref{f000014}），
 “TestLibrary.cpp”
-（如\lstlistingname\ \ref{f000013}）
+（如\filesourcenumbernameone\ \ref{f000013}）
 和
 “main.cpp”
-（如\lstlistingname\ \ref{f000015}）
+（如\filesourcenumbernameone\ \ref{f000015}）
 。
 都是标准C{\sourcefonttwo{}+}{\sourcefonttwo{}+}，本书不赘述。
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000014}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000014,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*TestLibrary.hpp*/
 #pragma once
@@ -374,15 +381,16 @@ public:
     TestClass();
     ~TestClass();
     void foo();
-};(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+};(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %TestLibrary.hpp
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000013}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000013,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*TestLibrary.cpp*/
 #include "TestLibrary.hpp"
@@ -396,15 +404,16 @@ TestClass::~TestClass() {
 
 void TestClass::foo() {
     std::cout << __func__ << std::endl;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %TestLibrary.cpp
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000015}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000015,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main.cpp*/
 #include <TestLibrary.hpp>
@@ -413,7 +422,8 @@ int main(int, char **) {
     TestClass varClass;
     varClass.foo();
     return 0;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 %main.cpp
 
@@ -454,7 +464,7 @@ QMAKE\underline{\hspace{0.5em}}POST\underline{\hspace{0.5em}}LINK。
 如\treeindexnumbernameone\ \ref{d000000}
 所示，
 “advance\underline{\hspace{0.5em}}use\underline{\hspace{0.5em}}qmake.pro”文件
-如\lstlistingname\ \ref{f000004}
+如\filesourcenumbernameone\ \ref{f000004}
 所示。
 
 %\begin{spacing}{1.0}
@@ -486,11 +496,11 @@ title=\treeindexnumbernameone \thetreeindexnumber
  %tree.txt
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000004}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000004,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #advance_use_qmake.pro
 TEMPLATE = subdirs
@@ -507,7 +517,8 @@ after_run.file = $$PWD/after_run/after_run.pro
 SUBDIRS += after_run
 
 the_run.file = $$PWD/the_run/the_run.pro
-SUBDIRS += the_run(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+SUBDIRS += the_run(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %advance_use_qmake.pro
 
@@ -521,7 +532,7 @@ SUBDIRS += the_run(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize
 \end{enumerate}
 
 主要分析一下“the\underline{\hspace{0.5em}}run.pro”
-（如\lstlistingname\ \ref{f000005}）。
+（如\filesourcenumbernameone\ \ref{f000005}）。
 
 %##########################################################
 
@@ -557,11 +568,11 @@ SUBDIRS += the_run(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize
 
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000005}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000005,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #the_run.pro
 QT -= gui
@@ -619,7 +630,8 @@ CONFIG(debug,debug|release){
 }else{
     QMAKE_POST_LINK += $${DESTDIR}/after_run $$PWD
 }
-export(QMAKE_POST_LINK)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+export(QMAKE_POST_LINK)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %the_run.pro
 
@@ -627,28 +639,28 @@ export(QMAKE_POST_LINK)(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnot
 
 其余的，
 “before\underline{\hspace{0.5em}}run.pro”
-（如\lstlistingname\ \ref{f000008}）
+（如\filesourcenumbernameone\ \ref{f000008}）
 、“before\underline{\hspace{0.5em}}run/main.cpp”
-（如\lstlistingname\ \ref{f000009}）
+（如\filesourcenumbernameone\ \ref{f000009}）
 、“after\underline{\hspace{0.5em}}run.pro”
-（如\lstlistingname\ \ref{f000006}）
+（如\filesourcenumbernameone\ \ref{f000006}）
 、“after\underline{\hspace{0.5em}}run/main.cpp”
-（如\lstlistingname\ \ref{f000007}）
+（如\filesourcenumbernameone\ \ref{f000007}）
 、“new\underline{\hspace{0.5em}}moc.pro”
-（如\lstlistingname\ \ref{f00000b}）
+（如\filesourcenumbernameone\ \ref{f00000b}）
 、“new\underline{\hspace{0.5em}}moc/main.cpp”
-（如\lstlistingname\ \ref{f00000c}）
+（如\filesourcenumbernameone\ \ref{f00000c}）
 和
 “the\underline{\hspace{0.5em}}run/main.cpp”
-（如\lstlistingname\ \ref{f00000a}）
+（如\filesourcenumbernameone\ \ref{f00000a}）
 没有新知识点，本书不赘述。
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000008}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000008,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #before_run.pro
 QT -= gui
@@ -674,15 +686,16 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %before_run.pro
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000009}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000009,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main.cpp*/
 #if __has_include(<filesystem>)
@@ -730,16 +743,17 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %before_run/main.cpp
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000006}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000006,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #after_run.pro
 QT -= gui
@@ -765,15 +779,16 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %after_run.pro
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000007}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000007,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main.cpp*/
 #if __has_include(<filesystem>)
@@ -821,16 +836,17 @@ int main(int argc, char ** argv) {
         .time_since_epoch().count();
     stream << std::endl;
     return 0;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %after_run/main.cpp
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f00000b}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f00000b,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 #new_moc.pro
 QT -= gui
@@ -856,15 +872,16 @@ win32-msvc*{
 SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
-DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+DEFINES += QT_DEPRECATED_WARNINGS(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %new_moc.pro
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f00000c}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f00000c,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main.cpp*/
 #include <iostream>
@@ -899,16 +916,17 @@ int main(int argc, char ** argv) {
                }() ; )";
     varOutput << std::endl;
     return 0;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %new_moc/main.cpp
 
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f00000a}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f00000a,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 /*main.cpp*/
 #if __has_include(<filesystem>)
@@ -923,7 +941,8 @@ namespace fs = std::experimental::filesystem;
 int main(int, char **) {
     std::cout << "the_run" << std::endl;
     return 0;
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %the_run/main.cpp
 
@@ -962,21 +981,22 @@ qmake -r -tp vc < 工程名称 >(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox
 32位开发环境将“vcvarsall.bat”或
 64位开发环境将“vcvar64.bat”引入并执行。
 
-如\lstlistingname\ \ref{f000017}
+如\filesourcenumbernameone\ \ref{f000017}
 第5行所示：
 %\begin{spacing}{1.0}
-\FloatBarrier
+%\FloatBarrier
+\refstepcounter{filesourcenumber}\label{f000017}    %增加源代码编号
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-label=f000017,
 caption=GoodLuck,
-title=\lstlistingname \thelstlisting
+title=\filesourcenumbernameone \thefilesourcenumber
 ]
 @echo off
 echo Setting up environment for Qt usage...
 set PATH=C:\Qt1\5.12.0\msvc2017_64\bin;%PATH%
 cd /D C:\Qt1\5.12.0\msvc2017_64
 call "C:/Program Files (x86)/Microsoft Visual Studio/2017/Enterprise/VC/Auxiliary/Build/vcvars64.bat"
-echo Remember to call vcvarsall.bat to complete environment setup!(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{thebookfilesourceone}          %抄录环境
+echo Remember to call vcvarsall.bat to complete environment setup!(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
  %qtenv2.windows.bat.txt
 
