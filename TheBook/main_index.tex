@@ -134,8 +134,8 @@ showstringspaces=false
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
 
 \newenvironment{littlelongworld}
-{ \\[\parskip] }
-{ \\[\parskip] }
+{ \\ }
+{ \\ }
 
 %设置路径计数器
 \newcommand\treeindexnumbernameone{路径}
@@ -180,6 +180,9 @@ showstringspaces=false
     \thesection.\arabic{lstlisting}
 }
 \renewcommand\lstlistingname{源码}
+
+%设置标点挤压模式
+\punctstyle{banjiao}
 
 \frontmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

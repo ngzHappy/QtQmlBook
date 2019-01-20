@@ -37,12 +37,13 @@ Qt选择5.12.0或以上版本。
 :the_book_subsubsection:[[ss000210]]
 读者只需要到Boost官网:tex_raw:[[ \url{https://www.boost.org/
 }]]下载最新Boost稳定版。解压缩，将“boost”文件夹复制到Qt Include路径即可。
+
 比如，
 用户的Qt Include路径为：
 :tex_raw:[[\begin{littlelongworld}]]
 C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include
 :tex_raw:[[\end{littlelongworld}]]
-复制完boost之后，
+:tex_raw:[[\hspace*{\parindent}]]复制完boost之后，
 应当存在路径：
 :tex_raw:[[\begin{littlelongworld}]]
 C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include\boost
@@ -84,7 +85,9 @@ QtQmlBook\sstd_library\memory\libs
 :tex_raw:[[\begin{littlelongworld}]]
 QtQmlBook\sstd_library\_sstd_library_memory.pri
 :tex_raw:[[\end{littlelongworld}]]
-并将此文件内容清空。
+并将此文件内容清空:tex_raw:[[\footnote{]]
+注意不要删除这个文件，而只是删除此文件内容。
+:tex_raw:[[}]]。
 
 
 
