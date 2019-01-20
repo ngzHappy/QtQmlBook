@@ -135,24 +135,26 @@ d000001::::chapter01/files/import_library/tree.txt::::]
 command000000::::chapter01/files/command.install.linux.qt.txt::::]
 command000001::::chapter01/files/command.install.linux.qt.1.txt::::]
 command000002::::chapter01/files/command.install.linux.qt.2.txt::::]
+command000002s01::::chapter01/files/command.gcc.boost.txt::::]
+command000002s02::::chapter01/files/command.vs.boost.txt::::]
 command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 
 %表名称
 
 
 %
-%:tex_raw:[[\figurename\ \ref{p000003}]]
+% :tex_raw:[[\figurename\ \ref{p000003}]]
 %
-%:tex_raw:[[\lstlistingname\ \ref{f000017}]]
+% :tex_raw:[[\lstlistingname\ \ref{f000017}]]
 %
-%:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
-%itemize
-%:tex_raw:[[\begin{enumerate}]]
-%:tex_raw:[[\end{enumerate}]]
+% :tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
+% itemize
+% :tex_raw:[[\begin{enumerate}]]
+% :tex_raw:[[\end{enumerate}]]
 %
-%:tex_raw:[[\commandnumbernameone\ \ref{command000003}]]
+% :tex_raw:[[\commandnumbernameone\ \ref{command000003}]]
 %
-%:tex_raw:[[\footnote{]]:tex_raw:[[}]]
+% :tex_raw:[[\footnote{]]:tex_raw:[[}]]
 %
 %
 %

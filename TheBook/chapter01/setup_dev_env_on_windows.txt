@@ -35,8 +35,8 @@ Qt选择5.12.0或以上版本。
 :the_book_image:[[p000001]]
 
 :the_book_subsubsection:[[ss000210]]
-读者只需要到Boost官网:tex_raw:[[ \url{https://www.boost.org/
-}]]下载最新Boost稳定版。解压缩，将“boost”文件夹复制到Qt Include路径即可。
+读者需要到Boost官网:tex_raw:[[ \url{https://www.boost.org/
+}]]下载最新Boost稳定版。解压缩，将“boost”文件夹复制到Qt Include路径。
 
 比如，
 用户的Qt Include路径为：
@@ -49,6 +49,20 @@ C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include
 C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include\boost
 :tex_raw:[[\end{littlelongworld}]]
 :tex_raw:[[\hspace*{\parindent}]]当然，读者也可以采用“mklink”建立链接代替拷贝。
+
+如果读者使用的是Visual Studio自带的编译器，则需要使用“Visual Studio命令提示符”运
+行:tex_raw:[[\commandnumbernameone\ \ref{command000002s02}]]。
+并将编译结果的“*.lib”文件拷贝到Qt根目录下的lib文件夹，
+将“*.dll”文件拷贝到Qt根目录下的bin文件夹。
+
+:the_book_command_file:[[command000002s02]]
+
+如果读者使用的是MinGW环境，则需要使用“Mingw命令提示符”运
+行:tex_raw:[[\commandnumbernameone\ \ref{command000002s01}]]。
+并将编译结果的“*.a”文件拷贝到Qt根目录下的lib文件夹，
+将“*.dll”文件拷贝到Qt根目录下的bin文件夹。
+
+:the_book_command_file:[[command000002s01]]
 
 :the_book_subsubsection:[[ss000310]]
 

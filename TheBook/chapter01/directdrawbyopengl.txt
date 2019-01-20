@@ -12,21 +12,21 @@ Qt Quick只是导出Qt C++的一套接口规范。
 
 :tex_raw:[[\begin{itemize}]]
 
-:tex_raw:[[\item ]]如果读者需要的组件不需要几何逻辑，
+:tex_raw:[[\item ]]如果所需的组件不需要几何逻辑，
 比如实现一个本地文件监视器，那么只继承自QObject即可；
 
-:tex_raw:[[\item ]]如果读者需要的组件需要几何逻辑但无需渲染，
+:tex_raw:[[\item ]]如果所需的组件需要几何逻辑但无需渲染，
 比如实现一个鼠标监视器，那么只需要继承自QQuickItem；
 
-:tex_raw:[[\item ]]如果读者需要的组件需要渲染，
+:tex_raw:[[\item ]]如果所需的组件需要渲染，
 那么需要继承自QQuickItem，并在构造函数中设置
 QQuickItem::ItemHasContents标志位；
 
-:tex_raw:[[\item ]]如果读者希望使用QPainter实现渲染，
-那么需要继承自QQuickPaintedItem；
+:tex_raw:[[\item ]]如果希望使用QPainter实现渲染，
+那么需要继承自QQuickPaintedItem是一个好的选择；
 
-:tex_raw:[[\item ]]如果读者需要一个简易的OpenGL离屏渲染环境，
-那么需要继承自QQuickFramebufferObject；
+:tex_raw:[[\item ]]如果仅需要一个简易的OpenGL离屏渲染环境，
+那么继承自QQuickFramebufferObject是一个好的选择；
 
 :tex_raw:[[\end{itemize}]]
 
