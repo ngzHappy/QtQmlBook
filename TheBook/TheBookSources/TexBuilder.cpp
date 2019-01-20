@@ -560,6 +560,7 @@ title=\filesourcenumbernameone \thefilesourcenumber
                 varString += getMarginpar(qsl(R"(\filesourcenumbernameone)"),qsl(R"(\thefilesourcenumber)"));
                 varString += varRightKey;
                 varString += qsl(R"(\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
 %\end{spacing}
 )");
 
