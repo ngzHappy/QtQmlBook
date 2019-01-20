@@ -125,6 +125,8 @@ f000037::::chapter01/files/defaultsytle/1.txt::::]
 f000038::::../chapter01/shadereffect/myqml/shadereffect/main.qml::::]
 f000039::::../chapter01/shadereffectwithimage/myqml/shadereffectwithimage/main.qml::::]
 
+f000040::::chapter01/files/source.boost.pri.gcc.txt::::,numbers=none]
+f000041::::chapter01/files/source.boost.pri.vs.txt::::,numbers=none]
  
 
 %树目录路径

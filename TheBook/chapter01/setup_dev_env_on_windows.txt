@@ -59,7 +59,12 @@ C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include\boost
 :the_book_command_file:[[command000002s02]]
 :tex_raw:[[\renewcommand\thelstnumber{\arabic{lstnumber}}]]
 
-如果读者使用的是MinGW环境，则需要使用“Mingw命令提示符”运
+之后，读者需要根据编译输出更新“QtQmlBook/msvc_boost.pri”文件。
+如:tex_raw:[[\lstlistingname\ \ref{f000041}]]
+所示：
+:the_book_file:[[f000041]]
+
+如果读者使用的是MinGW环境，则需要使用“MinGW命令提示符”运
 行:tex_raw:[[\commandnumbernameone\ \ref{command000002s01}]]。
 并将编译结果的“*.a”文件拷贝到Qt根目录下的lib文件夹，
 将“*.dll”文件拷贝到Qt根目录下的bin文件夹。
@@ -67,6 +72,11 @@ C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\include\boost
 :tex_raw:[[\renewcommand\thelstnumber{\ifnum\value{lstnumber}>3{\ }\else{\arabic{lstnumber}}\fi}]]
 :the_book_command_file:[[command000002s01]]
 :tex_raw:[[\renewcommand\thelstnumber{\arabic{lstnumber}}]]
+
+之后，读者需要根据编译输出更新“QtQmlBook/mingw_boost.pri”文件。
+如:tex_raw:[[\lstlistingname\ \ref{f000040}]]
+所示：
+:the_book_file:[[f000040]]
 
 :the_book_subsubsection:[[ss000310]]
 

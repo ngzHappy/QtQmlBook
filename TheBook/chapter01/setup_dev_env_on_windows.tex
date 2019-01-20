@@ -104,7 +104,7 @@ title=\commandnumbernameone \thecommandnumber
 cd /D < Boost源代码路径 >
 bootstrap.bat
 bjam --build-type=complete
-     --toolset=< MSVC版本比如：msvc-14.1>
+     --toolset=< MSVC版本比如：msvc-14.1 >
      address-model=64
      link=shared
      runtime-link=shared
@@ -114,7 +114,27 @@ bjam --build-type=complete
 
 \renewcommand\thelstnumber{\arabic{lstnumber}}
 
-如果读者使用的是MinGW环境，则需要使用“Mingw命令提示符”运
+之后，读者需要根据编译输出更新“QtQmlBook/msvc\underline{\hspace{0.5em}}boost.pri”文件。
+如\lstlistingname\ \ref{f000041}
+所示：
+%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000041,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+,numbers=none]
+CONFIG(debug,debug|release){
+    LIBS += "boost_atomic-vc141-mt-gd-x64-1_68.lib"
+    ……
+else{
+    LIBS += "boost_atomic-vc141-mt-x64-1_68.lib"
+    ……
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+
+
+如果读者使用的是MinGW环境，则需要使用“MinGW命令提示符”运
 行\commandnumbernameone\ \ref{command000002s01}。
 并将编译结果的“\raisebox{-0.35ex}{\sourcefonttwo{}*}.a”文件拷贝到Qt根目录下的lib文件夹，
 将“\raisebox{-0.35ex}{\sourcefonttwo{}*}.dll”文件拷贝到Qt根目录下的bin文件夹。
@@ -139,6 +159,26 @@ bjam --build-type=complete
 %\end{spacing}
 
 \renewcommand\thelstnumber{\arabic{lstnumber}}
+
+之后，读者需要根据编译输出更新“QtQmlBook/mingw\underline{\hspace{0.5em}}boost.pri”文件。
+如\lstlistingname\ \ref{f000040}
+所示：
+%\begin{spacing}{1.0}
+\FloatBarrier
+\begin{lstlisting}[escapeinside={(*@}{@*)},
+label=f000040,
+caption=GoodLuck,
+title=\lstlistingname \thelstlisting
+,numbers=none]
+CONFIG(debug,debug|release){
+    LIBS += "libboost_atomic-mgw73-mt-d-x64-1_68.dll"
+    ……
+}else{
+    LIBS += "libboost_atomic-mgw73-mt-x64-1_68.dll"
+    ……
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\lstlistingname}}\footnotesize{\thelstlisting}}}@*)\end{lstlisting}          %抄录环境
+%\end{spacing}
+
 
 \FloatBarrier
 \subsubsection{

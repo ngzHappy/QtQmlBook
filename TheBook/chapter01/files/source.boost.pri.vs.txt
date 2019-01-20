@@ -1,0 +1,11 @@
+CONFIG(debug,debug|release){
+    LIBS += "boost_atomic-vc141-mt-gd-x64-1_68.lib"
+    ……
+else{
+    LIBS += "boost_atomic-vc141-mt-x64-1_68.lib"
+    ……
+}
+
+
+
+

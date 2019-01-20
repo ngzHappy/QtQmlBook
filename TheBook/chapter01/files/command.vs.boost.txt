@@ -1,7 +1,7 @@
 cd /D < Boost源代码路径 >
 bootstrap.bat
 bjam --build-type=complete 
-     --toolset=< MSVC版本比如：msvc-14.1> 
+     --toolset=< MSVC版本比如：msvc-14.1 > 
      address-model=64 
      link=shared 
      runtime-link=shared 
