@@ -118,8 +118,8 @@ bjam --build-type=complete
 如\filesourcenumbernameone\ \ref{f000041}
 所示：
 %\begin{spacing}{1.0}
-%\FloatBarrier
 \refstepcounter{filesourcenumber}\label{f000041}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
 caption=GoodLuck,
 title=\filesourcenumbernameone \thefilesourcenumber
@@ -165,8 +165,8 @@ bjam --build-type=complete
 如\filesourcenumbernameone\ \ref{f000040}
 所示：
 %\begin{spacing}{1.0}
-%\FloatBarrier
 \refstepcounter{filesourcenumber}\label{f000040}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
 \begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
 caption=GoodLuck,
 title=\filesourcenumbernameone \thefilesourcenumber

@@ -548,8 +548,8 @@ public:
 
 
                 varString = qsl(R"(%\begin{spacing}{1.0}
-%\FloatBarrier
 \refstepcounter{filesourcenumber}\label{%1}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
 \begin{thebookfilesourceone}[escapeinside={%3}{%4},
 caption=GoodLuck,
 title=\filesourcenumbernameone \thefilesourcenumber

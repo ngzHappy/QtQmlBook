@@ -91,7 +91,7 @@ marginparwidth=2.1cm       %边注宽度
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %源代码默认样式
-\lstset{
+\lstset{float,
 language=C,
 breaklines=true,
 basicstyle=     \scriptsize\sourcefontthree        , %设置字号，字体
