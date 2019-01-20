@@ -13,7 +13,7 @@ Qt Quick原生支持GLSL。
 如果读者需要使用计算着色器、几何着色器或分型着色器，
 读者需要使用C++扩展Qml。
 
-如:tex_raw:[[\lstlistingname\ \ref{f000038}]]
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000038}]]
 第14~46行展示了如何使用“ShaderEffect”，在
 Qt Quick中使用GLSL。
 
@@ -26,7 +26,7 @@ Qt Quick中使用GLSL。
 一个代表“Image”的属性，
 在GLSL中就可以直接使用了。
 
-如:tex_raw:[[\lstlistingname\ \ref{f000039}]]
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000039}]]
 所示：
 
 :tex_raw:[[\begin{itemize}]]

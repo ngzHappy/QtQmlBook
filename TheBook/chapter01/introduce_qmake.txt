@@ -22,9 +22,9 @@ qmake比cmake更加专注。
 本书所有目录都要求不包含空格和中文，以后不再赘述。
 :tex_raw:[[}]]，
 在此文件夹下新建一个“hellow_world.pro”文件，输入文件内容如
-:tex_raw:[[\lstlistingname\ \ref{f000002}]]。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000002}]]。
 在此文件夹下建立“main.cpp”文件，输入内容如
-:tex_raw:[[\lstlistingname\ \ref{f000003}]]。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000003}]]。
 
 :the_book_file:[[f000002]]
 :the_book_file:[[f000003]]
@@ -32,7 +32,7 @@ qmake比cmake更加专注。
 使用Qt Creator打开“hellow_world.pro”，
 运行此项目。
 
-现在来分析一下:tex_raw:[[\lstlistingname\ \ref{f000002}]]：
+现在来分析一下:tex_raw:[[\filesourcenumbernameone\ \ref{f000002}]]：
 :tex_raw:[[\begin{itemize}]]
 :tex_raw:[[\item ]]第1~2行表示不使用Qt库；
 :tex_raw:[[\item ]]第4行表示这是一个控制台应用程序；
@@ -69,8 +69,8 @@ qmake比cmake更加专注。
 
 第6~10行和14~18虽然写法不同，实际上都是检查“CONFIG”中是否定义了特定项。
 读者可以尝试一下向文件“hellow_world.pro”文件最后
-加入:tex_raw:[[\lstlistingname\ \ref{f00000d}]]，
-分别去掉:tex_raw:[[\lstlistingname\ \ref{f00000d}]]第一行和
+加入:tex_raw:[[\filesourcenumbernameone\ \ref{f00000d}]]，
+分别去掉:tex_raw:[[\filesourcenumbernameone\ \ref{f00000d}]]第一行和
 保留第一行，
 观察Qt Creator的“概要信息”输出什么。
 :the_book_file:[[f00000d]]
@@ -89,7 +89,7 @@ qmake比cmake更加专注。
 :the_book_tree_file:[[d000001]]
 
 先来看看“import_library.pro”文件，
-如:tex_raw:[[\lstlistingname\ \ref{f000010}]]
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000010}]]
 所示。
 
 此文件启用了一个新的模版，“subdirs”。
@@ -103,7 +103,7 @@ qmake比cmake更加专注。
 :the_book_file:[[f000010]]
 
 再来看看“the_app.pro”文件，
-如:tex_raw:[[\lstlistingname\ \ref{f000016}]] 所示。它采用了“app”模版。
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000016}]] 所示。它采用了“app”模版。
 比起上一节，它多了一些新的知识点。
 :tex_raw:[[\begin{itemize}]]
 :tex_raw:[[\item ]]第21~23行更改了在非Windows平台下程序的链接参数，
@@ -114,7 +114,7 @@ qmake比cmake更加专注。
 :the_book_file:[[f000016]]
 
 接下来是“import_test_library.pri”文件，
-如:tex_raw:[[\lstlistingname\ \ref{f000011}]] 所示。
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000011}]] 所示。
 它也引入了一些新的知识。
 :tex_raw:[[\begin{itemize}]]
 :tex_raw:[[\item ]]第2行使用“INCLUDEPATH”变量将当前目录加入C/C++包含路径搜索路径；
@@ -127,19 +127,19 @@ qmake比cmake更加专注。
 然后，我么来看一下如何使用qmake定义一个动态链接库。
 一切与定义应用程序没什么不同，只是将
 “TEMPLATE = app”改成了
-“TEMPLATE = lib”，如:tex_raw:[[\lstlistingname\ \ref{f000012}]] 第13行所示。
+“TEMPLATE = lib”，如:tex_raw:[[\filesourcenumbernameone\ \ref{f000012}]] 第13行所示。
 
 :the_book_file:[[f000012]]:tex_raw:[[%test_library.pro]]
 
 
 剩下的是
 “TestLibrary.hpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f000014}]]），
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000014}]]），
 “TestLibrary.cpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f000013}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000013}]]）
 和
 “main.cpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f000015}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000015}]]）
 。
 都是标准C++，本书不赘述。
 :the_book_file:[[f000014]]:tex_raw:[[%TestLibrary.hpp]]
@@ -170,7 +170,7 @@ QMAKE_POST_LINK。
 如:tex_raw:[[\treeindexnumbernameone\ \ref{d000000}]]
 所示，
 “advance_use_qmake.pro”文件
-如:tex_raw:[[\lstlistingname\ \ref{f000004}]]
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000004}]]
 所示。
 
 :the_book_tree_file:[[d000000]] :tex_raw:[[%tree.txt]]
@@ -187,7 +187,7 @@ QMAKE_POST_LINK。
 :tex_raw:[[\end{enumerate}]]
 
 主要分析一下“the_run.pro”
-（如:tex_raw:[[\lstlistingname\ \ref{f000005}]]）。
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000005}]]）。
 
 :tex_raw:[[%##########################################################]]
 
@@ -228,20 +228,20 @@ QMAKE_POST_LINK。
 
 其余的，
 “before_run.pro”
-（如:tex_raw:[[\lstlistingname\ \ref{f000008}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000008}]]）
 、“before_run/main.cpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f000009}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000009}]]）
 、“after_run.pro”
-（如:tex_raw:[[\lstlistingname\ \ref{f000006}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000006}]]）
 、“after_run/main.cpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f000007}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f000007}]]）
 、“new_moc.pro”
-（如:tex_raw:[[\lstlistingname\ \ref{f00000b}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f00000b}]]）
 、“new_moc/main.cpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f00000c}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f00000c}]]）
 和
 “the_run/main.cpp”
-（如:tex_raw:[[\lstlistingname\ \ref{f00000a}]]）
+（如:tex_raw:[[\filesourcenumbernameone\ \ref{f00000a}]]）
 没有新知识点，本书不赘述。
 
 :the_book_file:[[f000008]] :tex_raw:[[%before_run.pro]]
@@ -276,7 +276,7 @@ QMAKE_POST_LINK。
 32位开发环境将“vcvarsall.bat”或
 64位开发环境将“vcvar64.bat”引入并执行。
 
-如:tex_raw:[[\lstlistingname\ \ref{f000017}]]
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000017}]]
 第5行所示：
 :the_book_file:[[f000017]] :tex_raw:[[%qtenv2.windows.bat.txt]]
 

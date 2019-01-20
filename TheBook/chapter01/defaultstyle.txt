@@ -22,7 +22,7 @@ Qt Quick Controls 2更加现代化并更适用于
 除了维护老项目，
 没有什么理由不采用Qt Quick Controls 2。
 
-本项目的“main.qml”如:tex_raw:[[\lstlistingname\ \ref{f000035}]]
+本项目的“main.qml”如:tex_raw:[[\filesourcenumbernameone\ \ref{f000035}]]
 所示：
 
 :the_book_file:[[f000035]]:tex_raw:[[%main.qml]]
@@ -43,12 +43,12 @@ JavaScript函数；:tex_raw:[[%……]]
 本案例演示了如何使用Qt Quick Control自带的“Material”样式。
 
 要使用Qt Quick Control自带的样式，需要在QApplication
-构造之前调用如:tex_raw:[[\lstlistingname\ \ref{f000037}]]
+构造之前调用如:tex_raw:[[\filesourcenumbernameone\ \ref{f000037}]]
 所示的C++代码，以载入配置文件。
 
 :the_book_file:[[f000037]]
 
-配置文件内容如:tex_raw:[[\lstlistingname\ \ref{f000036}]]
+配置文件内容如:tex_raw:[[\filesourcenumbernameone\ \ref{f000036}]]
 所示：
 :the_book_file:[[f000036]]:tex_raw:[[%defaultstyle_qtquickcontrols2.conf]]
 

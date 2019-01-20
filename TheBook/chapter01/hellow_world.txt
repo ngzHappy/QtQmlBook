@@ -8,7 +8,7 @@
 个“Hellow World!”的案例，本书也不能免俗。
 
 本章的C++代码
-如:tex_raw:[[\lstlistingname\ \ref{f000030}]]：
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000030}]]：
 
 :the_book_file:[[f000030]]:tex_raw:[[%main.cpp]]
 
@@ -27,7 +27,7 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 本书以后章节的“main.cpp”都大同小异，以后不再赘述。
 
 
-“main.qml”如:tex_raw:[[\lstlistingname\ \ref{f000031}]]
+“main.qml”如:tex_raw:[[\filesourcenumbernameone\ \ref{f000031}]]
 所示：
 
 :the_book_file:[[f000031]]:tex_raw:[[%main.qml]]
@@ -35,7 +35,7 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 :tex_raw:[[\begin{itemize}]]
 
 :tex_raw:[[\item ]]第3行展示了如何引入其他目录的Qml文件。
-其语法如:tex_raw:[[\lstlistingname\ \ref{f000034}]]
+其语法如:tex_raw:[[\filesourcenumbernameone\ \ref{f000034}]]
 所示：
 
 :the_book_file:[[f000034]]:tex_raw:[[%1.txt]]
@@ -63,7 +63,7 @@ Debug模式以当前文件目录作为根目录，在Release模式下以应用�
 
 :tex_raw:[[\end{itemize}]]
 
-“MainRectangle.qml”如:tex_raw:[[\lstlistingname\ \ref{f000032}]]
+“MainRectangle.qml”如:tex_raw:[[\filesourcenumbernameone\ \ref{f000032}]]
 所示：
 :the_book_file:[[f000032]]:tex_raw:[[%MainRectangle.qml]]
 
@@ -72,7 +72,7 @@ Qml是一门大小写敏感的计算机语言。
 而引入JavaScript文件时，
 文件名应当以小写开头。
 
-“MainText.qml”如:tex_raw:[[\lstlistingname\ \ref{f000033}]]
+“MainText.qml”如:tex_raw:[[\filesourcenumbernameone\ \ref{f000033}]]
 所示：
 
 :the_book_file:[[f000033]]:tex_raw:[[%MainText.qml]]
