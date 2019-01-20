@@ -778,7 +778,7 @@ title=\commandnumbernameone \thecommandnumber
                     return false;
                 }
 
-                QString varFigureMarginnote = qsl(R"(%there must use marginnote not use marginpar ...
+                QString varFigureMarginnote = qsl(R"(%there must use marginnote not use marginnote ...
 \marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{)");
                 varFigureMarginnote += varKeyLabel;
                 varFigureMarginnote += QStringLiteral(R"(}}}})");
