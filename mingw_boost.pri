@@ -1,7 +1,7 @@
 CONFIG(debug,debug|release){
-   LIBS += "libboost_atomic-mgw73-mt-d-x64-1_68.dll"
-   LIBS += "libboost_chrono-mgw73-mt-d-x64-1_68.dll"
-   LIBS += "libboost_container-mgw73-mt-d-x64-1_68.dll"
+    LIBS += "libboost_atomic-mgw73-mt-d-x64-1_68.dll"
+    LIBS += "libboost_chrono-mgw73-mt-d-x64-1_68.dll"
+    LIBS += "libboost_container-mgw73-mt-d-x64-1_68.dll"
     LIBS += "libboost_context-mgw73-mt-d-x64-1_68.dll"
     LIBS += "libboost_contract-mgw73-mt-d-x64-1_68.dll"
     LIBS += "libboost_coroutine-mgw73-mt-d-x64-1_68.dll"

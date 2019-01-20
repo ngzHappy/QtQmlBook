@@ -29,6 +29,21 @@ win32{
     }else{
         include($$PWD/mingw_boost.pri)
     }
+} else {
+#/usr/lib/x86_64-linux-gnu/
+    LIBS += -lboost_atomic
+    LIBS += -lboost_chrono
+    LIBS += -lboost_system
+    LIBS += -lboost_timer
+    LIBS += -lboost_thread
+    LIBS += -lboost_stacktrace_addr2line
+    LIBS += -lboost_random
+    LIBS += -lboost_locale
+    LIBS += -lboost_date_time
+    LIBS += -lboost_coroutine
+    LIBS += -lboost_context
+    LIBS += -lboost_filesystem
+
 }
 
 
