@@ -249,6 +249,12 @@ namespace {
         QTextStream & getCommandSourceIndex() const override {
             return *commandSourceIndex;
         }
+        ~ThisGlobalTexBuilder() {
+            commandSourceIndex.reset();
+            dirTreeSourceIndex.reset();
+            sourceIndex.reset();
+            figureIndex.reset();
+        }
     };
         }
 
