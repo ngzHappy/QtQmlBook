@@ -4,5 +4,6 @@ msvc_boost_dynamic/msvc_boost_dynamic.pro.user
 build-create_default_project-*
 build-mingw_boost_dynamic*
 build-msvc_boost_dynamic*
+build-relative_path*
 
 
