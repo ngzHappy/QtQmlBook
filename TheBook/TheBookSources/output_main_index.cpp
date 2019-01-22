@@ -77,7 +77,7 @@ extern void test_this();
 #endif
 
 namespace {
-    class ThisGlobalTexBuilder :
+    class ThisGlobalTexBuilder final :
         public GlobalTexBuilder {
         mutable std::optional<OutPutFileStream> figureIndex;
         mutable std::optional<OutPutFileStream> sourceIndex;
