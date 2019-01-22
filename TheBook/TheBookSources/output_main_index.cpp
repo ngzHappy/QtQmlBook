@@ -54,7 +54,12 @@ namespace {
             varBuilder->setInputFileName(getOutPutFileFullPath(varI.inputFileName));
             varBuilder->setOutputFileName(getOutPutFileFullPath(varI.outputFileName));
             if (false == varBuilder->convert()) {
+                qWarning() << 
+                    varI.inputFileName << qsl("Error");
                 varAns = false;
+            } else {
+                qWarning() << 
+                    varI.inputFileName << qsl("Ok");
             }
         }
 
