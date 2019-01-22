@@ -20,7 +20,7 @@ namespace {
             }
         };
 
-        std::list< const InputOutputItem > varDutys;
+        std::list< InputOutputItem > varDutys;
 
         {
             QFile varFile{
@@ -49,7 +49,7 @@ namespace {
 
         bool varAns{true};
 
-        for (const auto & varI : varDutys) {
+        for (const auto & varI : std::as_const( varDutys ) ) {
             auto varBuilder = std::make_shared<TexBuilder>(arg);
             varBuilder->setInputFileName(getOutPutFileFullPath(varI.inputFileName));
             varBuilder->setOutputFileName(getOutPutFileFullPath(varI.outputFileName));
