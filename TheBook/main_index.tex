@@ -251,6 +251,21 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 \input{chapter09/chapter09.tex}   %第九章
 \input{chapter10/chapter10.tex}   %第十章
 
+\cleardoublepage                              %增加空白页
+\setcounter{secnumdepth}{-2}                  %暂停编号，但加入目录
+\chapter{附录}
+\section{图片索引}
+\input{figureIndex.tex}                       %图片索引目录
+\clearpage
+\section{源码索引}
+\input{sourceIndex.tex}                       %源码索引目录
+\clearpage
+\section{路径索引}
+\input{dirTreeSourceIndex.tex}                %目录树索引目录
+\clearpage
+\section{命令索引}
+\input{commandSourceIndex.tex}                %命令索引目录
+
 \backmatter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
