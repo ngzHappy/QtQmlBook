@@ -7,6 +7,9 @@ namespace {
 
     inline bool build_make_files(GlobalTexBuilder * arg) {
 
+        qWarning() << 
+            qsl("---------------------------");
+
         class InputOutputItem {
         public:
             QString inputFileName;
