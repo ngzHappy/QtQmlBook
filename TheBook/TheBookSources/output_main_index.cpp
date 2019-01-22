@@ -2,9 +2,9 @@
 #include "OutPutStream.hpp"
 #include "TexBuilder.hpp"
 
-inline static void output_foreword() {
+inline static void output_foreword(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("foreword/foreword.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("foreword/foreword.tex")));
         if (false == varBuilder->convert()) {
@@ -13,9 +13,9 @@ inline static void output_foreword() {
     }
 }
 
-inline static void output_chapter_01() {
+inline static void output_chapter_01(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/chapter01.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/chapter01.tex")));
         if (false == varBuilder->convert()) {
@@ -23,7 +23,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/section01_chapter01.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/section01_chapter01.tex")));
         if (false == varBuilder->convert()) {
@@ -31,7 +31,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_linux.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_linux.tex")));
         if (false == varBuilder->convert()) {
@@ -39,7 +39,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_windows.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/setup_dev_env_on_windows.tex")));
         if (false == varBuilder->convert()) {
@@ -47,7 +47,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/introduce_qmake.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/introduce_qmake.tex")));
         if (false == varBuilder->convert()) {
@@ -55,7 +55,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/first_application.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/first_application.tex")));
         if (false == varBuilder->convert()) {
@@ -63,7 +63,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/hellow_world.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/hellow_world.tex")));
         if (false == varBuilder->convert()) {
@@ -71,7 +71,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.tex")));
         if(false == varBuilder->convert()) {
@@ -79,7 +79,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/use_shader_in_qt_quick.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/use_shader_in_qt_quick.tex")));
         if(false == varBuilder->convert()) {
@@ -87,7 +87,7 @@ inline static void output_chapter_01() {
         }
     }
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/directdrawbyopengl.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/directdrawbyopengl.tex")));
         if(false == varBuilder->convert()) {
@@ -96,9 +96,9 @@ inline static void output_chapter_01() {
     }
 }
 
-inline static void output_chapter_02() {
+inline static void output_chapter_02(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter02/chapter02.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter02/chapter02.tex")));
         if (false == varBuilder->convert()) {
@@ -107,9 +107,9 @@ inline static void output_chapter_02() {
     }
 }
 
-inline static void output_chapter_03() {
+inline static void output_chapter_03(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter03/chapter03.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter03/chapter03.tex")));
         if (false == varBuilder->convert()) {
@@ -118,9 +118,9 @@ inline static void output_chapter_03() {
     }
 }
 
-inline static void output_chapter_04() {
+inline static void output_chapter_04(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter04/chapter04.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter04/chapter04.tex")));
         if (false == varBuilder->convert()) {
@@ -129,9 +129,9 @@ inline static void output_chapter_04() {
     }
 }
 
-inline static void output_chapter_05() {
+inline static void output_chapter_05(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter05/chapter05.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter05/chapter05.tex")));
         if (false == varBuilder->convert()) {
@@ -140,9 +140,9 @@ inline static void output_chapter_05() {
     }
 }
 
-inline static void output_chapter_06() {
+inline static void output_chapter_06(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter06/chapter06.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter06/chapter06.tex")));
         if (false == varBuilder->convert()) {
@@ -151,9 +151,9 @@ inline static void output_chapter_06() {
     }
 }
 
-inline static void output_chapter_07() {
+inline static void output_chapter_07(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter07/chapter07.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter07/chapter07.tex")));
         if (false == varBuilder->convert()) {
@@ -162,9 +162,9 @@ inline static void output_chapter_07() {
     }
 }
 
-inline static void output_chapter_08() {
+inline static void output_chapter_08(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter08/chapter08.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter08/chapter08.tex")));
         if (false == varBuilder->convert()) {
@@ -173,9 +173,9 @@ inline static void output_chapter_08() {
     }
 }
 
-inline static void output_chapter_09() {
+inline static void output_chapter_09(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter09/chapter09.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter09/chapter09.tex")));
         if (false == varBuilder->convert()) {
@@ -184,9 +184,9 @@ inline static void output_chapter_09() {
     }
 }
 
-inline static void output_chapter_10() {
+inline static void output_chapter_10(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter10/chapter10.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter10/chapter10.tex")));
         if (false == varBuilder->convert()) {
@@ -195,9 +195,9 @@ inline static void output_chapter_10() {
     }
 }
 
-inline static void output_main_index_this() {
+inline static void output_main_index_this(GlobalTexBuilder * arg) {
     {
-        auto varBuilder = std::make_shared<TexBuilder>();
+        auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("main_index.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("main_index.tex")));
         if (false == varBuilder->convert()) {
@@ -210,6 +210,29 @@ inline static void output_main_index_this() {
 extern void test_this();
 #endif
 
+namespace {
+    class ThisGlobalTexBuilder : 
+        public GlobalTexBuilder {
+        mutable OutPutFileStream figureIndex;
+        mutable OutPutFileStream sourceIndex;
+        mutable OutPutFileStream dirTreeSourceIndex;
+        mutable OutPutFileStream commandSourceIndex;
+    public:
+        QTextStream & getFigureIndex() const override {
+            return figureIndex;
+        }
+        QTextStream & getSourceIndex() const override {
+            return sourceIndex;
+        }
+        QTextStream & getDirTreeSourceIndex() const override {
+            return dirTreeSourceIndex;
+        }
+        QTextStream & getCommandSourceIndex() const override {
+            return commandSourceIndex;
+        }
+    };
+}
+
 /*输出主文件目录*/
 extern void output_main_index() try {
 
@@ -217,18 +240,19 @@ extern void output_main_index() try {
     test_this();
 #endif
 
-    output_main_index_this();
-    output_foreword();
-    output_chapter_01();
-    output_chapter_02();
-    output_chapter_03();
-    output_chapter_04();
-    output_chapter_05();
-    output_chapter_06();
-    output_chapter_07();
-    output_chapter_08();
-    output_chapter_09();
-    output_chapter_10();
+    ThisGlobalTexBuilder varGlobalTexBuilder;
+    output_main_index_this(&varGlobalTexBuilder);
+    output_foreword(&varGlobalTexBuilder);
+    output_chapter_01(&varGlobalTexBuilder);
+    output_chapter_02(&varGlobalTexBuilder);
+    output_chapter_03(&varGlobalTexBuilder);
+    output_chapter_04(&varGlobalTexBuilder);
+    output_chapter_05(&varGlobalTexBuilder);
+    output_chapter_06(&varGlobalTexBuilder);
+    output_chapter_07(&varGlobalTexBuilder);
+    output_chapter_08(&varGlobalTexBuilder);
+    output_chapter_09(&varGlobalTexBuilder);
+    output_chapter_10(&varGlobalTexBuilder);
 
 } catch (...) {
     throw;

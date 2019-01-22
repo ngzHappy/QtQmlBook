@@ -10,6 +10,9 @@
 #include <regex>
 #include <string>
 
+GlobalTexBuilder::~GlobalTexBuilder() {
+}
+
 /******
 _keys_set()
 _insertKey()
@@ -255,6 +258,7 @@ static inline QString plainStringToTexString(const QString & arg) {
 class TexBuilderPrivate {
 public:
     TexBuilder * const super;
+    GlobalTexBuilder * const globalSuper;
     QString inputFileName;
     QString outputFileName;
 
@@ -1862,12 +1866,14 @@ title=\commandnumbernameone \thecommandnumber
     }
 
 public:
-    TexBuilderPrivate(TexBuilder * arg) :super(arg) {
+    TexBuilderPrivate(TexBuilder * arg, GlobalTexBuilder *argG) 
+        :super(arg) 
+        ,globalSuper(argG){
     }
 };
 
-TexBuilder::TexBuilder() :
-    thisp(new TexBuilderPrivate(this)) {
+TexBuilder::TexBuilder(GlobalTexBuilder * arg) :
+    thisp(new TexBuilderPrivate(this,arg)) {
 
 }
 

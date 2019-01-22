@@ -21,12 +21,22 @@ keys :
 */
 
 class TexBuilderPrivate;
+
+class GlobalTexBuilder {
+public:
+    virtual ~GlobalTexBuilder();
+    virtual QTextStream & getFigureIndex() const = 0;
+    virtual QTextStream & getSourceIndex() const = 0;
+    virtual QTextStream & getDirTreeSourceIndex() const = 0;
+    virtual QTextStream & getCommandSourceIndex() const = 0;
+};
+
 class TexBuilder :
     public std::enable_shared_from_this<TexBuilder> {
     TexBuilderPrivate * const thisp;
 public:
 
-    TexBuilder();
+    TexBuilder(GlobalTexBuilder * g = nullptr);
     ~TexBuilder();
 
     /*设置输入文件名称*/
