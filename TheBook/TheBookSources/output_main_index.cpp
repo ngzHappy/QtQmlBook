@@ -1,6 +1,7 @@
 ﻿#include "output_main_index.hpp"
 #include "OutPutStream.hpp"
 #include "TexBuilder.hpp"
+#include <optional>
 
 inline static void output_foreword(GlobalTexBuilder * arg) {
     {
@@ -74,7 +75,7 @@ inline static void output_chapter_01(GlobalTexBuilder * arg) {
         auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/defaultstyle.tex")));
-        if(false == varBuilder->convert()) {
+        if (false == varBuilder->convert()) {
             the_book_throw(u8R"(chapter01/defaultstyle.tex)"sv);
         }
     }
@@ -82,7 +83,7 @@ inline static void output_chapter_01(GlobalTexBuilder * arg) {
         auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/use_shader_in_qt_quick.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/use_shader_in_qt_quick.tex")));
-        if(false == varBuilder->convert()) {
+        if (false == varBuilder->convert()) {
             the_book_throw(u8R"(chapter01/use_shader_in_qt_quick.tex)"sv);
         }
     }
@@ -90,7 +91,7 @@ inline static void output_chapter_01(GlobalTexBuilder * arg) {
         auto varBuilder = std::make_shared<TexBuilder>(arg);
         varBuilder->setInputFileName(getOutPutFileFullPath(qsl("chapter01/directdrawbyopengl.txt")));
         varBuilder->setOutputFileName(getOutPutFileFullPath(qsl("chapter01/directdrawbyopengl.tex")));
-        if(false == varBuilder->convert()) {
+        if (false == varBuilder->convert()) {
             the_book_throw(u8R"(chapter01/directdrawbyopengl.tex)"sv);
         }
     }
@@ -211,27 +212,45 @@ extern void test_this();
 #endif
 
 namespace {
-    class ThisGlobalTexBuilder : 
+    class ThisGlobalTexBuilder :
         public GlobalTexBuilder {
-        mutable OutPutFileStream figureIndex;
-        mutable OutPutFileStream sourceIndex;
-        mutable OutPutFileStream dirTreeSourceIndex;
-        mutable OutPutFileStream commandSourceIndex;
+        mutable std::optional<OutPutFileStream> figureIndex;
+        mutable std::optional<OutPutFileStream> sourceIndex;
+        mutable std::optional<OutPutFileStream> dirTreeSourceIndex;
+        mutable std::optional<OutPutFileStream> commandSourceIndex;
+        QFile fileFigureIndex;
+        QFile fileSourceIndex;
+        QFile fileDirTreeSourceIndex;
+        QFile fileCommandSourceIndex;
     public:
+        ThisGlobalTexBuilder() {
+            fileFigureIndex.setFileName(getOutPutFileFullPath(qsl("figureIndex.tex")));
+            fileSourceIndex.setFileName(getOutPutFileFullPath(qsl("sourceIndex.tex")));
+            fileDirTreeSourceIndex.setFileName(getOutPutFileFullPath(qsl("dirTreeSourceIndex.tex")));
+            fileCommandSourceIndex.setFileName(getOutPutFileFullPath(qsl("commandSourceIndex.tex")));
+            fileFigureIndex.open(QIODevice::WriteOnly);
+            fileSourceIndex.open(QIODevice::WriteOnly);
+            fileCommandSourceIndex.open(QIODevice::WriteOnly);
+            fileDirTreeSourceIndex.open(QIODevice::WriteOnly);
+            figureIndex.emplace(&fileFigureIndex);
+            sourceIndex.emplace(&fileSourceIndex);
+            dirTreeSourceIndex.emplace(&fileDirTreeSourceIndex);
+            commandSourceIndex.emplace(&fileCommandSourceIndex);
+        }
         QTextStream & getFigureIndex() const override {
-            return figureIndex;
+            return *figureIndex;
         }
         QTextStream & getSourceIndex() const override {
-            return sourceIndex;
+            return *sourceIndex;
         }
         QTextStream & getDirTreeSourceIndex() const override {
-            return dirTreeSourceIndex;
+            return *dirTreeSourceIndex;
         }
         QTextStream & getCommandSourceIndex() const override {
-            return commandSourceIndex;
+            return *commandSourceIndex;
         }
     };
-}
+        }
 
 /*输出主文件目录*/
 extern void output_main_index() try {
