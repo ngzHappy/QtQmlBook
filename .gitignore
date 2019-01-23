@@ -15,3 +15,4 @@ build-TheBook-*
 *.fdb_latexmk
 *.synctex(busy)
 build_msvc.new.bat
+sstd_tools/msvc2017-settings/CurrentSettings.vssettings

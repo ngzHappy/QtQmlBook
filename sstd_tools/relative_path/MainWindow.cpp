@@ -6,12 +6,12 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow) {
     ui->setupUi(this);
-    connect(ui->sbA,&QPushButton::clicked,
-        this,&MainWindow::_on_sbA_clicked);
-    connect(ui->sbB,&QPushButton::clicked,
-        this,&MainWindow::_on_sbB_clicked);
-    connect(ui->rb,&QPushButton::clicked,
-        this,&MainWindow::_on_rb_clicked);
+    connect(ui->sbA, &QPushButton::clicked,
+        this, &MainWindow::_on_sbA_clicked);
+    connect(ui->sbB, &QPushButton::clicked,
+        this, &MainWindow::_on_sbB_clicked);
+    connect(ui->rb, &QPushButton::clicked,
+        this, &MainWindow::_on_rb_clicked);
 
     QDir varDir{ CURRENT_DEBUG_PATH };
     ui->leA->setText(QDir(
@@ -48,7 +48,7 @@ namespace {
 
 void MainWindow::_on_sbA_clicked() {
     auto varAns = selectDir(ui->leA);
-    if(varAns.isEmpty()) {
+    if (varAns.isEmpty()) {
         return;
     }
     ui->leA->setText(varAns);
@@ -56,7 +56,7 @@ void MainWindow::_on_sbA_clicked() {
 
 void MainWindow::_on_sbB_clicked() {
     auto varAns = selectFile(ui->leB);
-    if(varAns.isEmpty()) {
+    if (varAns.isEmpty()) {
         return;
     }
     ui->leB->setText(varAns);
