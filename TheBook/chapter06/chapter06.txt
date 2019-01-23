@@ -2,7 +2,36 @@
 :the_book_chapter:[==[c000015]==]
 
 
+:tex_raw:[[
 
+\input{chapter06/firsteffect.tex}
+\input{chapter06/Blend.tex}
+\input{chapter06/BrightnessContrast.tex}
+\input{chapter06/ColorOverlay.tex}
+\input{chapter06/Colorize.tex}
+\input{chapter06/Desaturate.tex}
+\input{chapter06/GammaAdjust.tex}
+\input{chapter06/HueSaturation.tex}
+\input{chapter06/LevelAdjust.tex}
+\input{chapter06/ConicalGradient.tex}
+\input{chapter06/LinearGradient.tex}
+\input{chapter06/RadialGradient.tex}
+\input{chapter06/Displace.tex}
+\input{chapter06/DropShadow.tex}
+\input{chapter06/InnerShadow.tex}
+\input{chapter06/FastBlur.tex}
+\input{chapter06/GaussianBlur.tex}
+\input{chapter06/MaskedBlur.tex}
+\input{chapter06/RecursiveBlur.tex}
+\input{chapter06/DirectionalBlur.tex}
+\input{chapter06/RadialBlur.tex}
+\input{chapter06/ZoomBlur.tex}
+\input{chapter06/Glow.tex}
+\input{chapter06/RectangularGlow.tex}
+\input{chapter06/OpacityMask.tex}
+\input{chapter06/ThresholdMask.tex}
+
+]]
 
 
 

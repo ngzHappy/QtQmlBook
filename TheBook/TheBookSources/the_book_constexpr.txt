@@ -48,6 +48,33 @@ c000013::::状态机及动画
 c000014::::粒子系统
 %第六章
 c000015::::特效
+c000015s000001::::导引
+c000015s000002::::Blend
+c000015s000003::::BrightnessContrast
+c000015s000004::::ColorOverlay
+c000015s000005::::Colorize
+c000015s000006::::Desaturate
+c000015s000007::::GammaAdjust
+c000015s000008::::HueSaturation
+c000015s000009::::LevelAdjust
+c000015s000010::::ConicalGradient
+c000015s000011::::LinearGradient
+c000015s000012::::RadialGradient
+c000015s000013::::Displace
+c000015s000014::::DropShadow
+c000015s000015::::InnerShadow
+c000015s000016::::FastBlur
+c000015s000017::::GaussianBlur
+c000015s000018::::MaskedBlur
+c000015s000019::::RecursiveBlur
+c000015s000020::::DirectionalBlur
+c000015s000021::::RadialBlur
+c000015s000022::::ZoomBlur
+c000015s000023::::Glow
+c000015s000024::::RectangularGlow
+c000015s000025::::OpacityMask
+c000015s000026::::ThresholdMask
+
 %第七章
 c000016::::多媒体
 %第八章
@@ -71,6 +98,9 @@ p000008::::Qt Quick中使用着色器::::../chapter01/shadereffect/the_app.png::
 p000009::::Qt Quick着色器中使用纹理::::../chapter01/shadereffectwithimage/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000010::::C++导出Qt Quick所需基类::::chapter01/images/qtquick_item.png::::[htb]::::[width=0.95\textwidth]
 p000011::::直接使用OpenGL绘制::::../chapter01/directdrawbyopengl/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000012::::文字阴影::::../chapter06/firsteffect/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000013::::blend::::../chapter06/blend_effect/the_app.png::::[htb]::::[width=0.95\textwidth]
+
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
