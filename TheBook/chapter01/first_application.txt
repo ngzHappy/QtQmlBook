@@ -116,7 +116,7 @@ QQuickView自Qt 5.0引入。
 
 QQuickView被设计用来提供一个在显示器上
 呈现Qml渲染结果的一个集成环境。
-如果读者需要在移动设备上呈现Qml，
+如果读者需要在移动设备上呈现Qt Quick，
 QQuickView是一个好的选择。
 
 :tex_raw:[[\filesourcenumbernameone\ \ref{f000020}]]
