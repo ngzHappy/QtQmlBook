@@ -19,7 +19,7 @@
 
 :tex_raw:[[\item ]]第1行用于设置Qt运行环境；
 :tex_raw:[[\item ]]第2行用于设置Visual Studio工程文件输出目录；
-:tex_raw:[[\item ]]第3~6行用于指明将哪些qmake项目转为Visual Studio项目；
+:tex_raw:[[\item ]]第3~15行用于指明将哪些qmake项目转为Visual Studio项目；
 
 :tex_raw:[[\end{itemize}]]
 
