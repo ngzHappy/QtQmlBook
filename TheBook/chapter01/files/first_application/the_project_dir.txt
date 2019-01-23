@@ -1,4 +1,17 @@
-the project dir ...
+.
+└── QtQmlBook
+    ├── QtQmlBookBasic.pro
+    ├── QtQmlBookChapter01.pro
+    ├── QtQmlBookChapter02.pro
+    ├── QtQmlBookChapter03.pro
+    ├── QtQmlBookChapter04.pro
+    ├── QtQmlBookChapter05.pro
+    ├── QtQmlBookChapter06.pro
+    ├── QtQmlBookChapter07.pro
+    ├── QtQmlBookChapter08.pro
+    ├── QtQmlBookChapter09.pro
+    ├── QtQmlBookChapter10.pro
+    └── QtQmlBookTest.pro
 
 
 

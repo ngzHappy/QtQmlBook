@@ -5,7 +5,7 @@
 
 :the_book_subsection:[[ss001u10]]
 
-本书的项目结构如:tex_raw:[[\treeindexnumbernameone\ \ref{d000002}]] ：
+本书的项目结构如:tex_raw:[[\treeindexnumbernameone\ \ref{d000002}]]：
 :the_book_tree_file:[[d000002]]
 
 :tex_raw:[[\begin{itemize}]]
@@ -22,7 +22,7 @@
 在Windows平台下，
 也可以修改“build_msvc.bat”，从而使用Visual Studio。
 
-如:tex_raw:[[\filesourcenumbernameone\ \ref{f000018}]] ：
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000018}]]：
 
 
 :the_book_file:[[f000018]]
@@ -37,12 +37,12 @@
 :tex_raw:[[\end{itemize}]]
 
 运行完上述命令后，读者即可使用Visual Studio打
-开“QtQmlBook.sln”
+开相应的“sln”文件。
 
 本节示例代码位于文件夹“QtQmlBook/chapter01/firstapplication”下。
 
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000019}]]
-展示了
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000019}]]展
+示了
 该项目的工程文件：
 
 :tex_raw:[[\begin{itemize}]]
@@ -75,8 +75,8 @@ POSIX平台下需要在开头加“file://”。
 一个本地绝对路径是“/usr/main.qml”，那么
 用QUrl表达则为“file:///usr/main.qml”。
 
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000026}]]
-展示如何用C++实现这一功能。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000026}]]展
+示如何用C++实现这一功能。
 
 :the_book_file:[[f000026]] :tex_raw:[[%main4.qml]]
 
@@ -90,8 +90,8 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 
 在构造QCoreApplication之前，
 需要设置一些参数。
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000028}]]
-展示了一些常见设置。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000028}]]展
+示了一些常见设置。
 
 :the_book_file:[[f000028]] :tex_raw:[[%main6.qml]]
 
@@ -100,13 +100,13 @@ Qt库依靠事件队列实现消息循环。因而在使用绝大多数Qt组件�
 对于一些外存较差的设备而言，加载插件可能会造成几百毫秒
 甚至数秒的卡顿。为了程序运行平滑，这些组件都是预加载的。
 
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000029}]]
-展示了如何实现这一操作。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000029}]]展
+示了如何实现这一操作。
 
 :the_book_file:[[f000029]] :tex_raw:[[%main7.qml]]
 
-:tex_raw:[[\filesourcenumbernameone\ \ref{f00002u}]]
-展示了如何在工程文件中引入常用Qt库。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f00002u}]]展
+示了如何在工程文件中引入常用Qt库。
 
 :the_book_file:[[f00002u]] :tex_raw:[[%import_sstd_qt_and_qml_library.1.pri]]
 
@@ -119,18 +119,18 @@ QQuickView被设计用来提供一个在显示器上
 如果读者需要在移动设备上呈现Qt Quick，
 QQuickView是一个好的选择。
 
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000020}]]
-展示了使用QQuickView加载Qml的C++代码:tex_raw:[[\footnote{]]
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000020}]]展
+示了使用QQuickView加载Qml的C++代码:tex_raw:[[\footnote{]]
 将宏QML_USE_WINDOW_TYPE的值改为1。
 :tex_raw:[[}]]；
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000023}]]
-展示了一个简单显示一个红色窗口的Qml代码。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000023}]]展
+示了一个简单显示一个红色窗口的Qml代码。
 
 :the_book_file:[[f000020]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000023]] :tex_raw:[[%main1.qml]]
 
-如:tex_raw:[[\filesourcenumbernameone\ \ref{f000020}]]
-的72~82行所示，本书在Debug模式下从当前
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000020}]]的72~82行
+所示，本书在Debug模式下从当前
 项目目录下载入Qml文件，而在Release模式下
 从应用程序目录下载入Qml文件。
 
@@ -157,12 +157,12 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 使用QQuickWidget比使用QQuickView能够获得
 更好的效果，甚至能消除一些BUG。
 
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000021}]]
-展示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000021}]]展
+示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
 将宏QML_USE_WINDOW_TYPE的值改为2。
 :tex_raw:[[}]]；
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000024}]]
-展示了一个简单显示一个红色窗口的Qml代码。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000024}]]展
+示了一个简单显示一个红色窗口的Qml代码。
 
 :the_book_file:[[f000021]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000024]] :tex_raw:[[%main2.qml]]
@@ -171,8 +171,8 @@ QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
 模式比Release模式多了一个边框。这一切都是靠本书自带的小工具
 “build_install”实现的。
 
-如:tex_raw:[[\filesourcenumbernameone\ \ref{f000024}]]
-的10~12行所示。本书自带的小工具“build_install”在拷贝
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000024}]]的10~12行所
+示。本书自带的小工具“build_install”在拷贝
 qml文件时会将/*begin:debug*/和/*end:debug*/之间的内容
 替换为注释。
 
@@ -195,12 +195,12 @@ QQuickView或QQuickWidget也是足够使用的。
 但如果使用类似于对话框这样的功能，还是建议
 读者使用QQmlApplicationEngine。
 
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000022}]]
-展示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000022}]]展
+示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
 将宏QML_USE_WINDOW_TYPE的值改为3。
 :tex_raw:[[}]]；
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000025}]]
-展示了一个简单显示一个红色窗口的Qml代码。
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000025}]]展
+示了一个简单显示一个红色窗口的Qml代码。
 
 :the_book_file:[[f000022]] :tex_raw:[[%main.cpp]]
 :the_book_file:[[f000025]] :tex_raw:[[%main3.qml]]
