@@ -8,6 +8,8 @@
 *.autosave
 QtQmlBook.pro.user
 QtQmlBookTest.pro.user
+QtQmlBookBasic.pro.user
+*.pro.user
 QtQmlMultimedia.pro.user
 build-TheBook-*
 *.fdb_latexmk
