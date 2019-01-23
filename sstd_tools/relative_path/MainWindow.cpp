@@ -34,7 +34,7 @@ namespace {
         return QFileDialog::getOpenFileName(
             nullptr,
             QObject::trUtf8(u8R"(选择文件：)"),
-            varDir.dirName());
+            varDir.absolutePath());
     }
 
     QString selectDir(QLineEdit * arg) {
