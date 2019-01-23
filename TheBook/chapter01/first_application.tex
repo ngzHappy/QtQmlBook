@@ -21,8 +21,32 @@
 }\label{ss001u10}
 
 
-读者可以使用Qt Creator打开“QtQmlBook.pro”。
-在Windows平台下，读者
+本书的项目结构如\treeindexnumbernameone\ \ref{d000002} ：
+%\begin{spacing}{1.0}
+%\FloatBarrier
+\refstepcounter{treeindexnumber}\label{d000002}    %增加目录树编号
+\begin{thebookfilesourceonepathtree}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
+numbers=none,
+title=\treeindexnumbernameone \thetreeindexnumber
+]
+the project dir ...(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\treeindexnumbernameone}}\footnotesize{\thetreeindexnumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\treeindexnumbernameone}}\footnotesize{\thetreeindexnumber}}}@*)\end{thebookfilesourceonepathtree}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
+%\end{spacing}
+
+
+\begin{itemize}
+
+\item “QtQmlBookBasic.pro”此项目必须优先编译，其他所有项目依赖于此项目；
+\item “QtQmlBookChapter01.pro”\raisebox{0.16ex}{\sourcefonttwo\~{}}“QtQmlBookChapter10.pro”分别对应本书
+第 1 章到第 10 章内容；
+\item “QtQmlBookTest.pro”对应于本书的测试文件；
+
+\end{itemize}
+
+对于初学者可以使用Qt Creator分别打开上述工程文件进行编译。
+
+在Windows平台下，
 也可以修改“build\underline{\hspace{0.5em}}msvc.bat”，从而使用Visual Studio。
 
 如\filesourcenumbernameone\ \ref{f000018} ：
@@ -60,7 +84,7 @@ cmd(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox
 
 \item 第1行用于设置Qt运行环境；
 \item 第2行用于设置Visual Studio工程文件输出目录；
-\item 第3\raisebox{0.16ex}{\sourcefonttwo\~{}}6行用于指明将哪些qmake项目转为Visual Studio项目；
+\item 第3\raisebox{0.16ex}{\sourcefonttwo\~{}}15行用于指明将哪些qmake项目转为Visual Studio项目；
 
 \end{itemize}
 

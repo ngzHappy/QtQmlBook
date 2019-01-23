@@ -5,8 +5,21 @@
 
 :the_book_subsection:[[ss001u10]]
 
-读者可以使用Qt Creator打开“QtQmlBook.pro”。
-在Windows平台下，读者
+本书的项目结构如:tex_raw:[[\treeindexnumbernameone\ \ref{d000002}]] ：
+:the_book_tree_file:[[d000002]]
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]“QtQmlBookBasic.pro”此项目必须优先编译，其他所有项目依赖于此项目；
+:tex_raw:[[\item ]]“QtQmlBookChapter01.pro”~“QtQmlBookChapter10.pro”分别对应本书
+第 1 章到第 10 章随书代码；
+:tex_raw:[[\item ]]“QtQmlBookTest.pro”对应于本书的测试文件；
+
+:tex_raw:[[\end{itemize}]]
+
+对于初学者可以使用Qt Creator分别打开上述工程文件进行编译。
+
+在Windows平台下，
 也可以修改“build_msvc.bat”，从而使用Visual Studio。
 
 如:tex_raw:[[\filesourcenumbernameone\ \ref{f000018}]] ：
