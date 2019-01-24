@@ -31,7 +31,13 @@ Rectangle {
 }
 
 /*endl_input_of_latex_for_clanguage_lick*/
+/*
 
+https://bugreports.qt.io/browse/QTBUG-64775
+https://codereview.qt-project.org/#/c/250594/
+Q_INIT_RESOURCE(qtgraphicaleffectsshaders); 
+
+*/
 
 
 

@@ -1,5 +1,6 @@
 ﻿#include "sstd_qquickwidget_resize.hpp"
 
+#include <QtCore>
 
 namespace _sstd1::_3_private_api {
 
@@ -8,7 +9,7 @@ namespace _sstd1::_3_private_api {
     }
 
     ResizeQuickWiget::~ResizeQuickWiget() {
-
+        
     }
 
 

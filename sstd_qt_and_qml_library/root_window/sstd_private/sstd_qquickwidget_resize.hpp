@@ -19,7 +19,7 @@ namespace _sstd1 {
             Q_OBJECT
         public:
             ResizeQuickWiget();
-            ~ResizeQuickWiget();
+            virtual ~ResizeQuickWiget();
         private:
             using Super = QQuickWidget;
             friend class ResizeQuickWidgetPrivate;
