@@ -34,6 +34,13 @@ Slider{
         parent: idSlider.handle
         visible: idSlider.hovered || idSlider.inValueChangeRange
         text: idSlider.value.toFixed(2)
+        Component.onDestruction: {
+        /*on destruct this must be show , or it will case a crash ...*/
+            text = ""
+            width = 1 ;
+            height = 1 ;
+            visible = true ;
+        }
     }
 }
 
