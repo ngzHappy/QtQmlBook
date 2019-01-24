@@ -33,3 +33,9 @@ Rectangle {
 
 }
 
+/*endl_input_of_latex_for_clanguage_lick*/
+/*
+there is a Qt bug ...
+sometimes the application will crash 
+when use GlobalObject ...
+*/
