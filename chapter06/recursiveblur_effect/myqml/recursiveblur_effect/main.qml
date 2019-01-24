@@ -21,7 +21,7 @@ Rectangle {
     RecursiveBlur{
         anchors.fill: idImage
         source: idImage
-        loops: 32
+        loops: 8
         radius: 8
     }
 }

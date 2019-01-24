@@ -5,7 +5,7 @@ import QtGraphicalEffects 1.12
 Rectangle {
     id : idRoot
     width: 640;
-    height: 480;
+    height: 640;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
     RadialGradient {
