@@ -122,17 +122,9 @@ Item {
 
 namespace sstd {
 
-    static sstd_optional< ApplicationArgs > & getGlobalApplicationArgs() {
-        static sstd_optional< ApplicationArgs > varAns;
-        return varAns;
-    }
-
     Application::Application(ApplicationArgs v) :
         Super(v.getArgC(), v.getArgV()),
         mmmArgs(v) {
-        /*Application只应当在主线程构造不必考虑线程安全
-        将Args拷贝到静态区，以克服析构时的BUG*/
-        getGlobalApplicationArgs().emplace(v);
         /*在QApplication构造之后构造*/
             {
                 /*never delete*/
