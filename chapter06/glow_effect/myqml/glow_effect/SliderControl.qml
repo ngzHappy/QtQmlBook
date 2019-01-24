@@ -10,11 +10,11 @@ Slider{
     property variant oldPosWhenValueChange : null ;
     onValueChanged: {
         inValueChangeRange = true;
-        posWhenValueChange = GlobalObject.getTimeSinceProgramStart();
+        posWhenValueChange = AttachedGlobalObject.getTimeSinceProgramStart();
         oldPosWhenValueChange = posWhenValueChange;
     }
     function checkIfInValueChangeRange(){
-        posWhenValueChange = GlobalObject.getTimeSinceProgramStart();
+        posWhenValueChange = AttachedGlobalObject.getTimeSinceProgramStart();
         if( (posWhenValueChange - oldPosWhenValueChange)>1000 ){
             inValueChangeRange = false
         }else{

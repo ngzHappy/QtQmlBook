@@ -48,6 +48,9 @@ SOURCES += $$PWD/TestData.cpp
 HEADERS += $$PWD/GlobalObject.hpp
 SOURCES += $$PWD/GlobalObject.cpp
 
+HEADERS += $$PWD/AttachedGlobalObject.hpp
+SOURCES += $$PWD/AttachedGlobalObject.cpp
+
 DISTFILES = $$PWD/sstd/qml/control/qmldir
 
 QMLSOURCES += $$PWD/sstd/qml/control/TestText.qml

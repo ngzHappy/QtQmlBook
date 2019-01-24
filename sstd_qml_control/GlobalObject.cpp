@@ -20,11 +20,13 @@ GlobalObject::GlobalObject() :
 }
 
 QObject * GlobalObject::instance(QQmlEngine *, QJSEngine *) {
+    return instanceRaw();
+}
+
+GlobalObject * GlobalObject::instanceRaw(){
     static auto varAns = sstd_new<GlobalObject>();
     return varAns;
 }
-
-
 
 
 

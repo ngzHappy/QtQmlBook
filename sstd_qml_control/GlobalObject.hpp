@@ -11,6 +11,7 @@ public:
 public:
     GlobalObject();
 public:
+    static GlobalObject * instanceRaw();
     static QObject * instance(QQmlEngine *, QJSEngine *);
 private:
     const std::chrono::steady_clock::time_point mmmStartTime;
@@ -18,7 +19,9 @@ private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(GlobalObject);
 };
 
-
+/**
+Creating C++ Plugins for QML
+**/
 
 
 
