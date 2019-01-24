@@ -24,6 +24,57 @@ Blend
 %end图片
 
 
+%\begin{spacing}{1.0}
+\refstepcounter{filesourcenumber}\label{f000052}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
+\begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
+title=\filesourcenumbernameone \thefilesourcenumber
+]
+/*blend_effect/main.qml*/
+import QtQuick 2.9
+import QtGraphicalEffects 1.12
+
+Rectangle {
+    id : idRoot
+    width: 640;
+    height: 480;
+    color: Qt.rgba(0.8,0.8,0.8,1);
+
+    Image{
+        anchors.fill: parent;
+        source: "grass.jpg"
+        fillMode: Image.Tile
+        id : idGrass
+        visible: false
+    }
+
+    Image{
+        anchors.centerIn: parent;
+        source: "bear.png"
+        fillMode: Image.Stretch
+        id : idBear
+        visible: false
+    }
+
+    Blend{
+        source: idGrass
+        foregroundSource: idBear
+        mode: idBlendControl.blendModeComboBox.currentText
+        anchors.centerIn: parent;
+        width: idBear.width
+        height: idBear.height
+    }
+
+    BlendControl {
+        id : idBlendControl
+    }
+
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
+%\end{spacing}
+
+
 未完待续
 
 
