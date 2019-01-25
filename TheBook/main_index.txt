@@ -208,6 +208,10 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 %end env ...
 }
 
+%设置标题
+\setlength{\belowcaptionskip}{0.1em}
+\setlength{\LTpost}{0pt}
+%\setlength{\LTpre}{0pt}
 
 \begin{document}
 
