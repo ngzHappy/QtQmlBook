@@ -453,7 +453,7 @@ public:
         }
 
         bool toRawString(item_list_pos * arg) override {
-
+            QString varTableFullPath;
             /*将ans插入表*/
             auto varAnsPos = state->data.emplace(this->pos);
 
@@ -559,7 +559,6 @@ public:
 \end{longtable}
 %表
 )");
-                    QString varTableFullPath;
                     {
                         const QDir varDir{ varDirPath };
                         varTableFullPath =
@@ -573,7 +572,9 @@ public:
                     }
                 }
 
-                varString = varTableString;
+                varString = qsl(R"(\input{%1})")
+                    .arg(getOutPutFileDir()
+                        .relativeFilePath(varTableFullPath));
 
                 /*写入Ans*/
                 *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);

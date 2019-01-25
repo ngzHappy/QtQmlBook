@@ -19,8 +19,13 @@
 using namespace std::string_view_literals;
 using namespace std::chrono_literals;
 
-static inline QString getOutPutFileFullPath(const QString & arg) {
+static inline const QDir & getOutPutFileDir() {
     const static QDir varDir{ THE_PROJECT_PWD_DIR };
+    return varDir;
+}
+
+static inline QString getOutPutFileFullPath(const QString & arg) {
+    const auto & varDir = getOutPutFileDir();
     return varDir.absoluteFilePath(arg);
 }
 
