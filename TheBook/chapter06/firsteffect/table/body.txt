@@ -1,0 +1,32 @@
+﻿
+Blend :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+BrightnessContrast :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+ColorOverlay :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+Colorize :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+Desaturate :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+GammaAdjust :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+HueSaturation :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+LevelAdjust :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+ConicalGradient :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+LinearGradient :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+RadialGradient :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+Displace :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+DropShadow :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+InnerShadow :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+FastBlur :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+GaussianBlur :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+MaskedBlur :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+RecursiveBlur :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+DirectionalBlur :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+RadialBlur :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+ZoomBlur :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+Glow :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+RectangularGlow :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+OpacityMask :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+ThresholdMask  :tex_raw:[[&]] aabbc :tex_raw:[[\\]]
+
+
+
+
+
+

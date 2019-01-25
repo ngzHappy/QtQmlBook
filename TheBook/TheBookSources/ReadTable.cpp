@@ -1,4 +1,5 @@
 ﻿#include "ReadTable.hpp"
+#include "TexBuilder.hpp"
 #include <optional>
 
 class Reader {
@@ -19,6 +20,7 @@ public:
         stream.reset();
         file.reset();
     }
+
 };
 
 class ReadTablePrivate {
@@ -33,6 +35,30 @@ public:
     inline ~ReadTablePrivate() {
     }
 
+    inline bool build_tex() {
+
+        using T = std::pair<QString, QString>;
+        const static std::array< T, 3 > varNames{
+                T{qsl(R"(body.txt)"),qsl(R"(body.tex)")},
+                T{qsl(R"(head.txt)"),qsl(R"(head.tex)")},
+                T{qsl(R"(headcontrol.txt)"),qsl(R"(headcontrol.tex)")}
+        };
+
+        const QDir varDir(tableDirName);
+        for (const auto & varI : varNames) {
+            TexBuilder varBuilder;
+            varBuilder.setInputFileName(
+                varDir.absoluteFilePath(varI.first));
+            varBuilder.setOutputFileName(
+                varDir.absoluteFilePath(varI.second));
+            if (!varBuilder.convert()) {
+                return false;
+            }
+        }
+
+        return true;
+
+    }
 };
 
 ReadTable::ReadTable() :
@@ -64,6 +90,9 @@ bool ReadTable::open() {
             return false;
         }
     }
+    if (!thisp->build_tex()) {
+        return false;
+    }
     const QDir varDir(getTableDirName());
     if (!thisp->bodyReader.open(
         varDir.absoluteFilePath(QStringLiteral(
@@ -74,7 +103,7 @@ bool ReadTable::open() {
         varDir.absoluteFilePath(QStringLiteral(
             "head.tex")))) {
         return false;
-    } 
+    }
     if (!thisp->headControlReader.open(
         varDir.absoluteFilePath(QStringLiteral(
             "headcontrol.tex")))) {
@@ -83,13 +112,53 @@ bool ReadTable::open() {
     return true;
 }
 
+static inline QString readAndTrimmed(QTextStream & arg) {
+    std::list<QString> varAnsLines;
+
+    while (false == arg.atEnd()) {
+        varAnsLines.push_back(arg.readLine());
+    }
+
+    while (varAnsLines.empty() == false) {
+        const auto varJudge =
+            varAnsLines.front().trimmed();
+        if (varJudge.isEmpty() ||
+            (varJudge[0] == QChar('%'))) {
+            varAnsLines.pop_front();
+            continue;
+        } else {
+            break;
+        }
+    }
+
+    while (varAnsLines.empty() == false) {
+        const auto varJudge =
+            varAnsLines.back().trimmed();
+        if (varJudge.isEmpty() ||
+            (varJudge[0] == QChar('%'))) {
+            varAnsLines.pop_back();
+            continue;
+        } else {
+            break;
+        }
+    }
+
+    QString varAns;
+    for (const auto & varI : varAnsLines) {
+        varAns += varI;
+        varAns += QChar('\n');
+    }
+
+    return varAns.trimmed();
+
+}
+
 QString ReadTable::readHead()const {
     if (!thisp->headReader.stream) {
         return {};
     }
     return
-        thisp->headReader.stream
-        ->readAll().trimmed();
+        readAndTrimmed(*thisp->headReader.stream);
 }
 
 QString ReadTable::readBody()const {
@@ -97,8 +166,7 @@ QString ReadTable::readBody()const {
         return{};
     }
     return
-        thisp->bodyReader.stream
-        ->readAll().trimmed();
+        readAndTrimmed(*thisp->bodyReader.stream);
 }
 
 QString ReadTable::readHeadControl() const {
@@ -106,8 +174,7 @@ QString ReadTable::readHeadControl() const {
         return{};
     }
     return
-        thisp->headControlReader.stream
-        ->readAll().trimmed();
+        readAndTrimmed(*thisp->headControlReader.stream);
 }
 
 
