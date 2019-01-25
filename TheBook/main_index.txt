@@ -115,6 +115,9 @@ showstringspaces=false
 \setitemize[1]{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 \setdescription{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=5pt}
 
+%表
+\usepackage{longtable}
+\usepackage{booktabs}
 
 %设置常量
 \title{Qt Quick全面导引}                              %书籍名称

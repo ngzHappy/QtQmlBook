@@ -433,11 +433,11 @@ public:
 
     };
 
-    class KeyTable : 
+    class KeyTableString : 
         public FunctionOp {
     public:
 
-        inline KeyTable(
+        inline KeyTableString(
             int deepthx,
             item_list_pos p,
             std::shared_ptr<ParseState> s)
@@ -481,7 +481,66 @@ public:
                 }
 
                 const auto & varCaptionRaw = varArgs2[0];
-                const auto & varDirRAw = varArgs2[1];
+                const auto & varDirRaw = varArgs2[1];
+
+                const auto varDirPath = 
+                    getOutPutFileFullPath(varDirRaw);
+
+                const auto varCaption =
+                    theBookPlainTextToTexText(varCaptionRaw);
+
+                QString varTableString;
+                {
+                    ReadTable varReader;
+                    varReader.setTableDirName(varDirPath) ;
+                    if (!varReader.open()) {
+                        return false;
+                    }
+                    const QString varHeadData =
+                        varReader.readHead();
+                    const QString varBodyData =
+                        varReader.readBody();
+                    varTableString += qsl(R"(%表
+\begin{longtable}{lcr}
+
+%表头....
+\toprule     )");
+                    varTableString += varHeadData;
+                    varTableString += qsl(R"(
+\\ \midrule 
+\endfirsthead
+)");
+                    varTableString += qsl(R"(
+%表尾...
+\bottomrule
+\caption{%1}\label{%2} 
+\endlastfoot
+)").arg(varCaption).arg(varKeyLabel);
+
+                    varTableString += qsl(R"(
+%重复表头
+\toprule
+)");
+                    varTableString += varHeadData;
+                    varTableString += qsl(R"(\\ \midrule
+\endhead)");
+
+                    varTableString += qsl(R"(
+%重复表尾
+\midrule
+\endfoot 
+)");
+                    varTableString += varBodyData;
+
+                    varTableString += qsl(R"(
+\end{longtable}
+%表
+)");
+
+                }
+
+                /*写入Ans*/
+                *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);
 
             }
 
@@ -1672,7 +1731,7 @@ title=\commandnumbernameone \thecommandnumber
             *varAns = varValue;
         } else if (theBookTable() == varKey.name) {
             auto varValue =
-                std::make_shared< KeyTable >(varDeepth,
+                std::make_shared< KeyTableString >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
