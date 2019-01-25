@@ -1,4 +1,4 @@
-﻿/*main.qml*/
+﻿/*firsteffect/main.qml*/
 import QtQuick 2.9
 import QtGraphicalEffects 1.12
 
@@ -15,6 +15,7 @@ Rectangle {
         font.pointSize: 128
         font.bold: true
         anchors.centerIn: parent
+        color: Qt.darker( idInnerShadow.color ) ;
     }
 
     DropShadow{
@@ -28,6 +29,7 @@ Rectangle {
     }
 
     InnerShadow{
+        id : idInnerShadow
         anchors.fill: idText
         radius: 8.0
         samples: 16
@@ -39,5 +41,6 @@ Rectangle {
 
 }/*~Rectangle*/
 
+/*endl_input_of_latex_for_clanguage_lick*/
 /*DropShadow QML Type*/
 /*InnerShadow QML Type*/

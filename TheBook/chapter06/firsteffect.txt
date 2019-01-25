@@ -2,13 +2,13 @@
 
 由于Qt Quick的所有渲染最终都
 依靠现代3D可编程渲染管线实现。
-这样用户就可以
+这样读者就可以
 在原有管线的基础上任意添加
 新的渲染管线。
 
-这样，读者可以不受限的将
+毫无疑问，读者可以不受限的将
 所有现代渲染技术应用到
-程序之中。
+应用程序之中。
 
 对于常见图形特效，Qt Quick
 提供了“Qt Graphical Effects”
@@ -21,6 +21,25 @@ Qt Graphical Effects提供的
 :the_book_section:[[c000015s000001]]
 
 :the_book_image:[[p000012]]
+
+要使用Qt Graphical Effects
+只需要在Qml文件开头增加一行：:tex_raw:[[\\]]
+import QtGraphicalEffects 1.12
+
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000051}]]展示了
+使用“DropShadow”和“InnerShadow”模拟光照，
+虚拟立体文字。
+
+值得注意的是，
+图形特效不应当是其源（source）的子类。
+否则，上一次图形特效渲染出的结果会加入下一次运算。
+这会造成渲染出现闭环。
+在绝大多数情况下这种闭环会导致错误的渲染结果。
+
+:the_book_file:[[f000051]]
+
+Qt Graphical Effects共提供了25种图形特效，
+如:tex_raw:[[\tablename\ \ref{tb000000}]]所示：
 
 :the_book_table:[[tb000000]]
 

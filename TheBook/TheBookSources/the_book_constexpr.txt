@@ -188,6 +188,7 @@ f000042::::../chapter01/directdrawbyopengl/myqml/directdrawbyopengl/main.qml::::
 f000043::::chapter01/files/directdrawbyopengl/cpp.01.txt::::]
 f000044::::../chapter01/directdrawbyopengl/main.cpp::::]
 
+f000051::::../chapter06/firsteffect/myqml/firsteffect/main.qml::::]
 f000052::::../chapter06/blend_effect/myqml/blend_effect/main.qml::::]
 f000053::::../chapter06/brightnesscontrast_effect/myqml/brightnesscontrast_effect/main.qml::::]
 f000054::::../chapter06/coloroverlay_effect/myqml/coloroverlay_effect/main.qml::::]
