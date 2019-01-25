@@ -14,6 +14,7 @@ public:
     bool open();
     QString readHead() const;
     QString readBody() const;
+    QString readHeadControl() const;
 private:
     ReadTablePrivate * const thisp;
 };

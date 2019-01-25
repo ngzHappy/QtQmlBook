@@ -500,12 +500,15 @@ public:
                         varReader.readHead();
                     const QString varBodyData =
                         varReader.readBody();
+                    const auto varHeadControl =
+                        varReader.readHeadControl();
                     varTableString += qsl(R"(%表
-\begin{longtable}{lcr}
+\begin{longtable}{%1}
 
 %表头....
-\toprule     )");
+\toprule{})").arg(varHeadControl);
                     varTableString += varHeadData;
+
                     varTableString += qsl(R"(
 \\ \midrule 
 \endfirsthead
@@ -519,10 +522,10 @@ public:
 
                     varTableString += qsl(R"(
 %重复表头
-\toprule
-)");
+\toprule{})");
                     varTableString += varHeadData;
-                    varTableString += qsl(R"(\\ \midrule
+                    varTableString += qsl(R"(
+\\ \midrule
 \endhead)");
 
                     varTableString += qsl(R"(
@@ -538,6 +541,8 @@ public:
 )");
 
                 }
+
+                varString = varTableString;
 
                 /*写入Ans*/
                 *varAnsPos = std::make_shared<RawString>(varString, varAnsPos, state);

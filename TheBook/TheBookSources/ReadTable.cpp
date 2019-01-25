@@ -26,7 +26,7 @@ public:
     QString tableDirName;
     Reader headReader;
     Reader bodyReader;
-
+    Reader headControlReader;
     inline ReadTablePrivate() {
     }
 
@@ -74,6 +74,11 @@ bool ReadTable::open() {
         varDir.absoluteFilePath(QStringLiteral(
             "head.txt")))) {
         return false;
+    } 
+    if (!thisp->headControlReader.open(
+        varDir.absoluteFilePath(QStringLiteral(
+            "headcontrol.txt")))) {
+        return false;
     }
     return true;
 }
@@ -96,7 +101,14 @@ QString ReadTable::readBody()const {
         ->readAll().trimmed();
 }
 
-
+QString ReadTable::readHeadControl() const {
+    if (!thisp->headControlReader.stream) {
+        return{};
+    }
+    return
+        thisp->headControlReader.stream
+        ->readAll().trimmed();
+}
 
 
 
