@@ -67,17 +67,17 @@ bool ReadTable::open() {
     const QDir varDir(getTableDirName());
     if (!thisp->bodyReader.open(
         varDir.absoluteFilePath(QStringLiteral(
-            "body.txt")))) {
+            "body.tex")))) {
         return false;
     }
     if (!thisp->headReader.open(
         varDir.absoluteFilePath(QStringLiteral(
-            "head.txt")))) {
+            "head.tex")))) {
         return false;
     } 
     if (!thisp->headControlReader.open(
         varDir.absoluteFilePath(QStringLiteral(
-            "headcontrol.txt")))) {
+            "headcontrol.tex")))) {
         return false;
     }
     return true;
