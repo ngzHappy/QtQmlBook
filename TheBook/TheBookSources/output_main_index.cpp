@@ -119,6 +119,9 @@ namespace {
         QTextStream & getCommandSourceIndex() const override {
             return *commandSourceIndex;
         }
+        QTextStream & getTableIndex() const override {
+            return *tableIndex;
+        }
         ~ThisGlobalTexBuilder() {
             commandSourceIndex.reset();
             dirTreeSourceIndex.reset();

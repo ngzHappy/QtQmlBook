@@ -480,6 +480,20 @@ public:
                     return false;
                 }
 
+                {
+                    auto & varIndexStream = state
+                        ->texBuilderPrivate
+                        ->globalSuper
+                        ->getTableIndex();
+                    varIndexStream << qsl(R"++++(\noindent\tablename\ \ref{)++++");
+                    varIndexStream << varKeyLabel;
+                    varIndexStream << qsl(R"++++(},\ \pageref{)++++");
+                    varIndexStream << varKeyLabel;
+                    varIndexStream << qsl(R"++++(}%)++++");
+                    varIndexStream << varKeyLabel;
+                    varIndexStream << endl << endl;
+                }
+
                 const auto & varCaptionRaw = varArgs2[0];
                 const auto & varDirRaw = varArgs2[1];
 

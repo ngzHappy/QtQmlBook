@@ -170,6 +170,12 @@ showstringspaces=false
     \thesection.\arabic{figure}
 }
 
+%设置表计数器
+\counterwithin{table}{section}
+\renewcommand\thefigure{
+    \thesection.\arabic{table}
+}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %解决目录字体重叠BUG
 \makeatletter
