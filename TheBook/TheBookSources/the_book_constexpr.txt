@@ -230,7 +230,8 @@ command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 
 %表名称
 
-tb000000::::ThresholdMask::::chapter06/firsteffect/table
+tb000000::::Qt Graphical Effects特效概述::::chapter06/firsteffect/table
+tb000001::::Blend特效属性::::chapter06/blendeffect/table_property
 
 %
 % :tex_raw:[[\figurename\ \ref{p000003}]]

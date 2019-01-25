@@ -1,0 +1,55 @@
+:tex_raw:[[%属性 类型 默认值 范围 简介]]
+
+cached 
+    :tex_raw:[[&]]
+bool     
+    :tex_raw:[[&]]
+false     
+    :tex_raw:[[&]]
+:tex_raw:[[$[false,true]$]]     
+    :tex_raw:[[&]]
+缓存结果
+    :tex_raw:[[\\]]
+
+mode
+    :tex_raw:[[&]]
+string 
+    :tex_raw:[[&]]
+normal 
+    :tex_raw:[[&]]
+未完待续
+    :tex_raw:[[&]]
+混合模式
+    :tex_raw:[[\\]]
+
+source 
+    :tex_raw:[[&]]
+variant
+    :tex_raw:[[&]]
+:tex_raw:[[$\exists$ %鬼知道是啥]]
+    :tex_raw:[[&]]
+:tex_raw:[[$\forall$ %鬼知道是啥]]
+    :tex_raw:[[&]]
+混合源
+    :tex_raw:[[\\]]
+
+foregroundSource 
+    :tex_raw:[[&]]
+variant
+    :tex_raw:[[&]]
+:tex_raw:[[$\exists$ %鬼知道是啥]]
+    :tex_raw:[[&]]
+:tex_raw:[[$\forall$ %鬼知道是啥]]
+    :tex_raw:[[&]]
+混合源
+    :tex_raw:[[\\]]
+
+
+
+
+
+
+
+
+
+
