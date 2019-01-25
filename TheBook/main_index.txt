@@ -164,7 +164,7 @@ showstringspaces=false
 
 %设置表计数器
 \counterwithin{table}{section}
-\renewcommand\thefigure{
+\renewcommand\thetable{
     \thesection.\arabic{table}
 }
 
