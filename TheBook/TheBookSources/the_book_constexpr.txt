@@ -229,6 +229,7 @@ command000003::::chapter01/files/command.qmake.to.vs.txt::::]
 
 %表名称
 
+tb000000::::ThresholdMask::::chapter06/firsteffect/table
 
 %
 % :tex_raw:[[\figurename\ \ref{p000003}]]

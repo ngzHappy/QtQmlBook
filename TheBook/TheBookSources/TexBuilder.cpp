@@ -455,21 +455,40 @@ public:
         bool toRawString(item_list_pos * arg) override {
 
             /*将ans插入表*/
-            auto v = state->data.emplace(this->pos);
+            auto varAnsPos = state->data.emplace(this->pos);
 
             bool isOk = false;
             /*获得args*/
-            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            auto varArgsFull1 = getCallArgs(this->pos, 1, &isOk, this->state);
             if (isOk == false) {
                 return false;
             }
 
+            auto varArgsKey =
+                argc_to_string(varArgsFull1);
 
+            {
+                const GetTheBookConstexpr varConstexpr;
+                /*获得label*/
+                auto varString = varArgsKey[0];
+                const auto varKeyLabel =
+                    varString.trimmed();
+                auto varArgs2 =
+                    varConstexpr.getValues(varKeyLabel);
+                /*caption , dir */
+                if (varArgs2.size() != 2) {
+                    return false;
+                }
+
+                const auto & varCaptionRaw = varArgs2[0];
+                const auto & varDirRAw = varArgs2[1];
+
+            }
 
             /*删除整个函数*/
-            state->data.erase(this->pos, ++varArgs1[0].second);
+            state->data.erase(this->pos, ++varArgsFull1[0].second);
             /*更新表数据*/
-            *arg = v;
+            *arg = varAnsPos;
             return true;
         }
 
@@ -886,7 +905,7 @@ title=\commandnumbernameone \thecommandnumber
                     varIndexStream << endl << endl;
                 }
 
-                QString varFigureMarginnote = qsl(R"(%there must use marginnote not use marginnote ...
+                QString varFigureMarginnote = qsl(R"(%there must use marginnote ...
 \marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{)");
                 varFigureMarginnote += varKeyLabel;
                 varFigureMarginnote += QStringLiteral(R"(}}}})");
@@ -1269,6 +1288,7 @@ title=\commandnumbernameone \thecommandnumber
         varAns->emplace(theBookReadFileSouce(), 1);
         varAns->emplace(theBookReadTreeFileSouce(), 1);
         varAns->emplace(theBookReadCommandFileSouce(), 1);
+        varAns->emplace(theBookTable(), 1);
         return std::move(varAns);
     }
 
@@ -1647,6 +1667,12 @@ title=\commandnumbernameone \thecommandnumber
         } else if (theBookReadFileSouce() == varKey.name) {
             auto varValue =
                 std::make_shared< KeyFileSouceString >(varDeepth,
+                    varAns,
+                    currentParseState);
+            *varAns = varValue;
+        } else if (theBookTable() == varKey.name) {
+            auto varValue =
+                std::make_shared< KeyTable >(varDeepth,
                     varAns,
                     currentParseState);
             *varAns = varValue;
