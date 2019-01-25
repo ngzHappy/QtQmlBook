@@ -83,24 +83,29 @@ namespace {
         mutable std::optional<OutPutFileStream> sourceIndex;
         mutable std::optional<OutPutFileStream> dirTreeSourceIndex;
         mutable std::optional<OutPutFileStream> commandSourceIndex;
+        mutable std::optional<OutPutFileStream> tableIndex;
         QFile fileFigureIndex;
         QFile fileSourceIndex;
         QFile fileDirTreeSourceIndex;
         QFile fileCommandSourceIndex;
+        QFile fileTableIndex;
     public:
         ThisGlobalTexBuilder() {
             fileFigureIndex.setFileName(getOutPutFileFullPath(qsl("figureIndex.tex")));
             fileSourceIndex.setFileName(getOutPutFileFullPath(qsl("sourceIndex.tex")));
             fileDirTreeSourceIndex.setFileName(getOutPutFileFullPath(qsl("dirTreeSourceIndex.tex")));
             fileCommandSourceIndex.setFileName(getOutPutFileFullPath(qsl("commandSourceIndex.tex")));
+            fileTableIndex.setFileName(getOutPutFileFullPath(qsl("tableIndex.tex")));
             fileFigureIndex.open(QIODevice::WriteOnly);
             fileSourceIndex.open(QIODevice::WriteOnly);
             fileCommandSourceIndex.open(QIODevice::WriteOnly);
             fileDirTreeSourceIndex.open(QIODevice::WriteOnly);
+            fileTableIndex.open(QIODevice::WriteOnly);
             figureIndex.emplace(&fileFigureIndex);
             sourceIndex.emplace(&fileSourceIndex);
             dirTreeSourceIndex.emplace(&fileDirTreeSourceIndex);
             commandSourceIndex.emplace(&fileCommandSourceIndex);
+            tableIndex.emplace(&fileTableIndex);
         }
         QTextStream & getFigureIndex() const override {
             return *figureIndex;
@@ -119,6 +124,7 @@ namespace {
             dirTreeSourceIndex.reset();
             sourceIndex.reset();
             figureIndex.reset();
+            tableIndex.reset();
         }
     };
 }
