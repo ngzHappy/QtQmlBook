@@ -4,6 +4,7 @@
 
 main_index.txt
 foreword/foreword.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter01/chapter01.txt
 chapter01/section01_chapter01.txt
 chapter01/setup_dev_env_on_windows.txt
@@ -14,10 +15,15 @@ chapter01/hellow_world.txt
 chapter01/defaultstyle.txt
 chapter01/use_shader_in_qt_quick.txt
 chapter01/directdrawbyopengl.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter02/chapter02.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter03/chapter03.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter04/chapter04.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter05/chapter05.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter06/chapter06.txt
 chapter06/firsteffect.txt
 chapter06/Blend.txt
@@ -45,9 +51,13 @@ chapter06/Glow.txt
 chapter06/RectangularGlow.txt
 chapter06/OpacityMask.txt
 chapter06/ThresholdMask.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter07/chapter07.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter08/chapter08.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter09/chapter09.txt
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter10/chapter10.txt
 
 
