@@ -433,7 +433,7 @@ public:
 
     };
 
-    class KeyTableString : 
+    class KeyTableString :
         public FunctionOp {
     public:
 
@@ -445,7 +445,7 @@ public:
         }
 
         virtual Type getType() const override {
-            return Type::TypeTable ;
+            return Type::TypeTable;
         }
 
         bool isKeyFunction() const override {
@@ -497,7 +497,7 @@ public:
                 const auto & varCaptionRaw = varArgs2[0];
                 const auto & varDirRaw = varArgs2[1];
 
-                const auto varDirPath = 
+                const auto varDirPath =
                     getOutPutFileFullPath(varDirRaw);
 
                 const auto varCaption =
@@ -506,7 +506,7 @@ public:
                 QString varTableString;
                 {
                     ReadTable varReader;
-                    varReader.setTableDirName(varDirPath) ;
+                    varReader.setTableDirName(varDirPath);
                     if (!varReader.open()) {
                         return false;
                     }
@@ -559,7 +559,18 @@ public:
 \end{longtable}
 %表
 )");
-
+                    QString varTableFullPath;
+                    {
+                        const QDir varDir{ varDirPath };
+                        varTableFullPath =
+                            varDir.absoluteFilePath(qsl("table.tex"));
+                        QFile varFile{ varTableFullPath };
+                        if (!varFile.open(QIODevice::WriteOnly)) {
+                            return false;
+                        }
+                        OutPutFileStream varStream{ &varFile };
+                        varStream << varTableString;
+                    }
                 }
 
                 varString = varTableString;
@@ -896,7 +907,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
                     auto & varIndexStream = state
                         ->texBuilderPrivate
                         ->globalSuper
-                        ->getCommandSourceIndex() ;
+                        ->getCommandSourceIndex();
                     varIndexStream << qsl(R"++++(\noindent\commandnumbernameone\ \ref{)++++");
                     varIndexStream << varKeyLabel;
                     varIndexStream << qsl(R"++++(},\ \pageref{)++++");
