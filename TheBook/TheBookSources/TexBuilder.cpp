@@ -508,7 +508,13 @@ public:
 %表头....
 \toprule{})").arg(varHeadControl);
                     varTableString += varHeadData;
-
+                    {
+                        QString varTableMarginnote = qsl(R"(%there must use marginnote ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\tablename\,}\footnotesize{\ref{)");
+                        varTableMarginnote += varKeyLabel;
+                        varTableMarginnote += QStringLiteral(R"(}}}})");
+                        varTableString += varTableMarginnote;
+                    }
                     varTableString += qsl(R"(
 \\ \midrule 
 \endfirsthead
