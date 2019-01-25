@@ -1,9 +1,30 @@
 
+
+由于Qt Quick的所有渲染最终都
+依靠现代3D可编程渲染管线实现。
+这样用户就可以
+在原有管线的基础上任意添加
+新的渲染管线。
+
+这样，读者可以不受限的将
+所有现代渲染技术应用到
+程序之中。
+
+对于常见图形特效，Qt Quick
+提供了“Qt Graphical Effects”
+模块。
+
+本章将带领读者纵览
+Qt Graphical Effects提供的
+25种图形特效。
+
 :the_book_section:[[c000015s000001]]
 
 :the_book_image:[[p000012]]
 
-aaaaaaaaaaaaaaaaaaaaaaaa
 :the_book_table:[[tb000000]]
-bbbbbbbbbbbbbbbbbbbbbbbb
+
+
+
+
 
