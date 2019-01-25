@@ -2,6 +2,7 @@
 #include "OutPutStream.hpp"
 #include "ReadSource.hpp"
 #include "GetTheBookConstexpr.hpp"
+#include "ReadTable.hpp"
 #include <optional>
 #include <list>
 #include <set>
@@ -106,6 +107,11 @@ static inline const QString & theBookReadTreeFileSouce() {
 
 static inline const QString & theBookReadCommandFileSouce() {
     const static auto varAns = qsl(":the_book_command_file:");
+    return varAns;
+}
+
+static inline const QString & theBookTable() {
+    const static auto varAns = qsl(":the_book_table:");
     return varAns;
 }
 
@@ -317,6 +323,7 @@ public:
             TypeSubSectionString,
             TypeSubSubSectionString,
             TypeFileSourceString,
+            TypeTable,
             TypeImageString,
         };
 
@@ -421,6 +428,48 @@ public:
         }
 
         bool isKeyFunction() const override {
+            return true;
+        }
+
+    };
+
+    class KeyTable : 
+        public FunctionOp {
+    public:
+
+        inline KeyTable(
+            int deepthx,
+            item_list_pos p,
+            std::shared_ptr<ParseState> s)
+            : FunctionOp(deepthx, p, std::move(s)) {
+        }
+
+        virtual Type getType() const override {
+            return Type::TypeTable ;
+        }
+
+        bool isKeyFunction() const override {
+            return true;
+        }
+
+        bool toRawString(item_list_pos * arg) override {
+
+            /*将ans插入表*/
+            auto v = state->data.emplace(this->pos);
+
+            bool isOk = false;
+            /*获得args*/
+            auto varArgs1 = getCallArgs(this->pos, 1, &isOk, this->state);
+            if (isOk == false) {
+                return false;
+            }
+
+
+
+            /*删除整个函数*/
+            state->data.erase(this->pos, ++varArgs1[0].second);
+            /*更新表数据*/
+            *arg = v;
             return true;
         }
 

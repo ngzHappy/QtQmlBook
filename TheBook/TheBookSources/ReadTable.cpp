@@ -10,7 +10,7 @@ public:
         if (false == file->open(QIODevice::ReadOnly)) {
             return false;
         }
-        stream.emplace( &(*file) );
+        stream.emplace(&(*file));
         return true;
     }
     inline Reader() {
@@ -35,7 +35,7 @@ public:
 
 };
 
-ReadTable::ReadTable() : 
+ReadTable::ReadTable() :
     thisp(new ReadTablePrivate) {
 }
 
@@ -65,9 +65,9 @@ bool ReadTable::open() {
         }
     }
     const QDir varDir(getTableDirName());
-    if (!thisp->bodyReader.open( 
+    if (!thisp->bodyReader.open(
         varDir.absoluteFilePath(QStringLiteral(
-            "body.txt")) )) {
+            "body.txt")))) {
         return false;
     }
     if (!thisp->headReader.open(
@@ -82,7 +82,7 @@ QString ReadTable::readHead()const {
     if (!thisp->headReader.stream) {
         return {};
     }
-    return 
+    return
         thisp->headReader.stream
         ->readAll().trimmed();
 }

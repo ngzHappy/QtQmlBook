@@ -4,7 +4,7 @@
 #include "the_book_global.hpp"
 
 class ReadTablePrivate;
-class ReadTable{
+class ReadTable {
 public:
     ReadTable();
     ~ReadTable();
@@ -12,8 +12,8 @@ public:
     const QString & getTableDirName();
     void setTableDirName(const QString &);
     bool open();
-    QString readHead()const;
-    QString readBody()const;
+    QString readHead() const;
+    QString readBody() const;
 private:
     ReadTablePrivate * const thisp;
 };
