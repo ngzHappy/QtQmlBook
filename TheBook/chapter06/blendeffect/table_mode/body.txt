@@ -6,7 +6,7 @@
 normal
     :tex_raw:[[&]]
 结果是foregroundSource的rgb，
-foregroundSource与source中alpha的较大者
+alpha取二者中alpha的较大者
     :tex_raw:[[\\]]
 
 addition
