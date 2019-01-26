@@ -31,7 +31,7 @@ variant
     :tex_raw:[[&]]
 :tex_raw:[[\thebookexistone %鬼知道是啥]]
     :tex_raw:[[&]]
-:tex_raw:[[\thebookallone{}$\left\{可渲染对象\right\}$ %鬼知道是啥]]
+:tex_raw:[[\thebookallone{}$\left\{\text{可渲染对象}\right\}$ %鬼知道是啥]]
     :tex_raw:[[&]]
 混合源（基色）
     :tex_raw:[[\\]]
@@ -42,7 +42,7 @@ variant
     :tex_raw:[[&]]
 :tex_raw:[[\thebookexistone %鬼知道是啥]]
     :tex_raw:[[&]]
-:tex_raw:[[\thebookallone{}$\left\{可渲染对象\right\}$ %鬼知道是啥]]
+:tex_raw:[[\thebookallone{}$\left\{\text{可渲染对象}\right\}$ %鬼知道是啥]]
     :tex_raw:[[&]]
 前混合源（混合色）
     :tex_raw:[[\\]]
