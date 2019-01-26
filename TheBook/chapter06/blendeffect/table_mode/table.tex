@@ -47,10 +47,28 @@ average
 结果是source与foregroundSource的均值
     \\
 
+saturation
+    &
+结果是source的亮度值与色调，
+foregroundSource的饱和度
+    \\
+
+hue
+    &
+结果是source的亮度值与饱和度，
+foregroundSource的色调
+    \\
+
 color
     &
 结果是source的亮度值，
 foregroundSource的色调与饱和度
+    \\
+
+lightness
+    &
+结果是foregroundSource的亮度值，
+source的色调与饱和度
     \\
 
 colorBurn
@@ -71,6 +89,12 @@ darken
  %与Photoshop  效果一致
     \\
 
+lighten
+    &
+变亮$\left[v=max(a,b)\right]$
+ %与Photoshop  效果一致
+    \\
+
 darkerColor
     &
 深色$\left[v=\begin{cases}
@@ -80,8 +104,16 @@ b, & a_r+a_r+a_b>b_r+b_g+b_b
  %与Photoshop  效果一致
     \\
 
-difference
+lighterColor
     &
+浅色$\left[v=\begin{cases}
+a, & a_r+a_r+a_b>b_r+b_g+b_b \\ 
+b, & a_r+a_r+a_b<b_r+b_g+b_b
+\end{cases}\right]$
+ %与Photoshop  效果一致
+    \\
+
+difference
     &
 变暗$\left[v=abs(b-a)\right]$
  %与Photoshop  效果一致
@@ -89,15 +121,55 @@ difference
 
 divide
     &
-    &
 划分$\left[v=b/a\right]$
+ %与Photoshop  效果一致
+    \\
+
+multiply
+    &
+正片叠底$\left[v=b\times{}a\right]$
+ %与Photoshop  效果一致
+    \\
+
+negation
+    &
+正片叠底$\left[v=abs(b-a)\right]$
  %与Photoshop  效果一致
     \\
 
 exclusion
     &
+排除$\left[v=a+b-(a\times{}b)/2\right]$
+ %与Photoshop  效果一致
+    \\
+
+hardLight
     &
-排除$\left[v=b/a\right]$
+强光$\left[v=\begin{cases}
+2ab, & a<0.5 \\ 
+1-2(1-a)(1-b), & a\ge{}0.5
+\end{cases}\right]$
+ %与Photoshop  效果一致
+    \\
+
+softLight
+    &
+强光$\left[v=\begin{cases}
+2ab+a^2(1-2b), & a<0.5 \\ 
+2a(1-b)+\sqrt{a}(2a-1), & a\ge{}0.5
+\end{cases}\right]$
+ %与Photoshop  效果一致
+    \\
+
+screen
+    &
+滤色$\left[v=1-(1-a)(1-b)\right]$
+ %与Photoshop  效果一致
+    \\
+
+subtract
+    &
+减去$\left[v=b-a\right]$
  %与Photoshop  效果一致
     \\
 \end{longtable}

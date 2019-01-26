@@ -18,10 +18,28 @@ average
 结果是source与foregroundSource的均值
     :tex_raw:[[\\]]
 
+saturation
+    :tex_raw:[[&]]
+结果是source的亮度值与色调，
+foregroundSource的饱和度
+    :tex_raw:[[\\]]
+
+hue
+    :tex_raw:[[&]]
+结果是source的亮度值与饱和度，
+foregroundSource的色调
+    :tex_raw:[[\\]]
+
 color
     :tex_raw:[[&]]
 结果是source的亮度值，
 foregroundSource的色调与饱和度
+    :tex_raw:[[\\]]
+
+lightness
+    :tex_raw:[[&]]
+结果是foregroundSource的亮度值，
+source的色调与饱和度
     :tex_raw:[[\\]]
 
 colorBurn
@@ -42,6 +60,12 @@ darken
 :tex_raw:[[ %与Photoshop  效果一致]]
     :tex_raw:[[\\]]
 
+lighten
+    :tex_raw:[[&]]
+变亮:tex_raw:[[$\left[v=max(a,b)\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
 darkerColor
     :tex_raw:[[&]]
 深色:tex_raw:[[$\left[v=\begin{cases}
@@ -51,8 +75,16 @@ b, & a_r+a_r+a_b>b_r+b_g+b_b
 :tex_raw:[[ %与Photoshop  效果一致]]
     :tex_raw:[[\\]]
 
-difference
+lighterColor
     :tex_raw:[[&]]
+浅色:tex_raw:[[$\left[v=\begin{cases}
+a, & a_r+a_r+a_b>b_r+b_g+b_b \\ 
+b, & a_r+a_r+a_b<b_r+b_g+b_b
+\end{cases}\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+difference
     :tex_raw:[[&]]
 变暗:tex_raw:[[$\left[v=abs(b-a)\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
@@ -60,19 +92,56 @@ difference
 
 divide
     :tex_raw:[[&]]
-    :tex_raw:[[&]]
 划分:tex_raw:[[$\left[v=b/a\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+multiply
+    :tex_raw:[[&]]
+正片叠底:tex_raw:[[$\left[v=b\times{}a\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+negation
+    :tex_raw:[[&]]
+正片叠底:tex_raw:[[$\left[v=abs(b-a)\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
     :tex_raw:[[\\]]
 
 exclusion
     :tex_raw:[[&]]
-    :tex_raw:[[&]]
-排除:tex_raw:[[$\left[v=b/a\right]$]]
+排除:tex_raw:[[$\left[v=a+b-(a\times{}b)/2\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
     :tex_raw:[[\\]]
 
+hardLight
+    :tex_raw:[[&]]
+强光:tex_raw:[[$\left[v=\begin{cases}
+2ab, & a<0.5 \\ 
+1-2(1-a)(1-b), & a\ge{}0.5
+\end{cases}\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
 
+softLight
+    :tex_raw:[[&]]
+柔光:tex_raw:[[$\left[v=\begin{cases}
+2ab+a^2(1-2b), & a<0.5 \\ 
+2a(1-b)+\sqrt{a}(2a-1), & a\ge{}0.5
+\end{cases}\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
 
+screen
+    :tex_raw:[[&]]
+滤色:tex_raw:[[$\left[v=1-(1-a)(1-b)\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+subtract
+    :tex_raw:[[&]]
+减去:tex_raw:[[$\left[v=b-a\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
 
 
