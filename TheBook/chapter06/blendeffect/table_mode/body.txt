@@ -5,7 +5,8 @@
 
 normal
     :tex_raw:[[&]]
-使用Alpha通道进行混合   
+结果是foregroundSource的rgb，
+foregroundSource与source中alpha的较大者
     :tex_raw:[[\\]]
 
 addition

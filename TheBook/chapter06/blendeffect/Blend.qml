@@ -1,117 +1,4 @@
-﻿
-%使用XeLaTeX编译
-%版权所有，翻版必究
-%本文件由程序自动生成，任何修改将被覆盖
-%2019 年 01 月 23 日
 
-
-
-
-\FloatBarrier
-\section{
-Blend
-}\label{c000015s000002}
-
-
-Blend特效常用属性
-如\tablename\ \ref{tb000001}：
-
-\input{chapter06/blendeffect/table_property/table.tex}
-
-混合模式
-如\tablename\ \ref{tb000002}
-    \footnote{$a$代表foregroundSource，
-$b$代表source，
-$0$代表黑色，
-$1$代表白色，
-$v$代表最终结果。}
-：
-
-\input{chapter06/blendeffect/table_mode/table.tex}
-
-如\filesourcenumbernameone\ \ref{f000052}展
-示了Blend的常见用法。
-
-%begin图片
-\begin{figure}[htb] %浮动体 here and top ...
-%there must use marginnote ...
-\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000018}}}}\centering %中心对齐
-\includegraphics[width=0.95\textwidth]{../chapter06/blend_effect/the_app.png} %图片路径
-\caption{Blend} %标题
-\label{p000018} %索引
-\end{figure}
-%end图片
-
-
-%\begin{spacing}{1.0}
-\refstepcounter{filesourcenumber}\label{f000052}    %增加源代码编号
-\FloatBarrier                                  %强制完成浮动体布局
-\begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-caption=GoodLuck,
-title=\filesourcenumbernameone \thefilesourcenumber
-]
-/*blend_effect/main.qml*/
-import QtQuick 2.9
-import QtGraphicalEffects 1.12
-
-Rectangle {
-    id : idRoot
-    width: 640;
-    height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
-
-    Image{
-        anchors.fill: idBear;
-        source: "grass.jpg"
-        fillMode: Image.Tile
-        id : idGrass
-        visible: false
-    }
-
-    Image{
-        anchors.centerIn: parent;
-        source: "bear.png"
-        fillMode: Image.Stretch
-        id : idBear
-        visible: false
-    }
-
-    Blend{
-        source: idGrass
-        foregroundSource: idBear
-        mode: idBlendControl.blendModeComboBox.currentText
-        anchors.centerIn: parent;
-        width: idBear.width
-        height: idBear.height
-    }
-
-    BlendControl {
-        id : idBlendControl
-    }
-
-}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
-\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
-%\end{spacing}
-
-
-对于一些跳读本书的读者可能会对Qt Quick如何实现
-Blend特效感到好奇。
-这一切没有什么秘密，Qt本身就是开源的。
-读者可以下载Qt源代码，并找到Blend.qml文件，
-它一般位于如下位置：\\
-Qt/qtgraphicaleffects/src/effects/Blend.qml
-
-其源代码如\filesourcenumbernameone\ \ref{f000050}。
-本书为了便于印刷删除了注释与空行
-并调整了源码格式。
-
-%\begin{spacing}{1.0}
-\refstepcounter{filesourcenumber}\label{f000050}    %增加源代码编号
-\FloatBarrier                                  %强制完成浮动体布局
-\begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
-caption=GoodLuck,
-title=\filesourcenumbernameone \thefilesourcenumber
-]
 import QtQuick 2.12
 import QtGraphicalEffects.private 1.12
 Item {
@@ -171,39 +58,39 @@ Item {
         property string blendModeAddition: "result.rgb = min(rgb1 + rgb2, 1.0);"
         property string blendModeAverage: "result.rgb = 0.5 * (rgb1 + rgb2);"
         property string blendModeColor: "result.rgb = HSLtoRGB(vec3(RGBtoHSL(rgb2).xy, RGBtoL(rgb1)));"
-        property string blendModeColorBurn:
+        property string blendModeColorBurn: 
         "result.rgb = clamp(1.0 - ((1.0 - rgb1) / max(vec3(1.0 / 256.0), rgb2)), vec3(0.0), vec3(1.0));"
-        property string blendModeColorDodge:
+        property string blendModeColorDodge: 
         "result.rgb = clamp(rgb1 / max(vec3(1.0 / 256.0), (1.0 - rgb2)), vec3(0.0), vec3(1.0));"
         property string blendModeDarken: "result.rgb = min(rgb1, rgb2);"
-        property string blendModeDarkerColor:
+        property string blendModeDarkerColor: 
         "result.rgb = 0.3 * rgb1.r + 0.59 * rgb1.g + 0.11 * rgb1.b > 0.3 * rgb2.r + 0.59 * rgb2.g + 0.11 * rgb2.b ? rgb2 : rgb1;"
         property string blendModeDifference: "result.rgb = abs(rgb1 - rgb2);"
         property string blendModeDivide: "result.rgb = clamp(rgb1 / rgb2, 0.0, 1.0);"
-        property string blendModeExclusion:
+        property string blendModeExclusion: 
         "result.rgb = rgb1 + rgb2 - 2.0 * rgb1 * rgb2;"
-        property string blendModeHardLight:
+        property string blendModeHardLight: 
         "result.rgb = vec3(channelBlendHardLight(rgb1.r, rgb2.r), channelBlendHardLight(rgb1.g, rgb2.g), channelBlendHardLight(rgb1.b, rgb2.b));"
-        property string blendModeHue:
+        property string blendModeHue: 
         "result.rgb = HSLtoRGB(vec3(RGBtoHSL(rgb2).x, RGBtoHSL(rgb1).yz));"
         property string blendModeLighten: "result.rgb = max(rgb1, rgb2);"
-        property string blendModeLighterColor:
+        property string blendModeLighterColor: 
         "result.rgb = 0.3 * rgb1.r + 0.59 * rgb1.g + 0.11 * rgb1.b > 0.3 * rgb2.r + 0.59 * rgb2.g + 0.11 * rgb2.b ? rgb1 : rgb2;"
-        property string blendModeLightness:
+        property string blendModeLightness: 
         "result.rgb = HSLtoRGB(vec3(RGBtoHSL(rgb1).xy, RGBtoL(rgb2)));"
         property string blendModeMultiply: "result.rgb = rgb1 * rgb2;"
         property string blendModeNegation: "result.rgb = 1.0 - abs(1.0 - rgb1 - rgb2);"
-        property string blendModeNormal:
+        property string blendModeNormal: 
         "result.rgb = rgb2; a = max(color1.a, color2.a);"
-        property string blendModeSaturation:
+        property string blendModeSaturation: 
         "lowp vec3 hsl1 = RGBtoHSL(rgb1); result.rgb = HSLtoRGB(vec3(hsl1.x, RGBtoHSL(rgb2).y, hsl1.z));"
-        property string blendModeScreen:
+        property string blendModeScreen: 
         "result.rgb = 1.0 - (vec3(1.0) - rgb1) * (vec3(1.0) - rgb2);"
         property string blendModeSubtract: "result.rgb = max(rgb1 - rgb2, vec3(0.0));"
-        property string blendModeSoftLight:
+        property string blendModeSoftLight: 
         "result.rgb = rgb1 * ((1.0 - rgb1) * rgb2 + (1.0 - (1.0 - rgb1) * (1.0 - rgb2)));"
-        property string fragmentCoreShaderWorkaround:
-        (GraphicsInfo.profile === GraphicsInfo.OpenGLCoreProfile ?
+        property string fragmentCoreShaderWorkaround: 
+        (GraphicsInfo.profile === GraphicsInfo.OpenGLCoreProfile ? 
            "#version 150 core
             #define varying in
             #define texture2D texture
@@ -265,7 +152,7 @@ Item {
                 return vec3(r, g, b); }
             lowp float channelBlendHardLight(lowp float c1, lowp float c2) {
                 return c2 > 0.5 ?
-                    (1.0 - (1.0 - 2.0 * (c2 - 0.5)) * (1.0 - c1))
+                    (1.0 - (1.0 - 2.0 * (c2 - 0.5)) * (1.0 - c1)) 
                     : (2.0 * c1 * c2); }
             void main() {
                 lowp vec4 result = vec4(0.0);
@@ -278,28 +165,5 @@ Item {
                 gl_FragColor.rgb = mix(rgb1, result.rgb, color2.a);
                 gl_FragColor.rbg *= a;
                 gl_FragColor.a = a;
-                gl_FragColor *= qt_Opacity; } " } }(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
-\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
-%\end{spacing}
-
-
-通过阅读\filesourcenumbernameone\ \ref{f000050}，
-不难发现，Blend仅仅是
-ShaderEffect的一个具体应用罢了。
-读者也可以结合本书第 \ref{c000011}章的内容写自己的
-特效。
-
-
-
-
-
-
-
-
-%使用XeLaTeX编译
-%版权所有，翻版必究
-%本文件由程序自动生成，任何修改将被覆盖
-%2019 年 01 月 23 日
-
-
+                gl_FragColor *= qt_Opacity; } " } }
 
