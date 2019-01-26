@@ -1,6 +1,6 @@
 ﻿
 Blend :tex_raw:[[&]]              Blend       :tex_raw:[[&]] 混合 :tex_raw:[[\\]]
-BrightnessContrast :tex_raw:[[&]] Color       :tex_raw:[[&]] 亮度变换 :tex_raw:[[\\]]
+BrightnessContrast :tex_raw:[[&]] Color       :tex_raw:[[&]] 亮度对比度 :tex_raw:[[\\]]
 ColorOverlay :tex_raw:[[&]]       Color       :tex_raw:[[&]] cccc :tex_raw:[[\\]]
 Colorize :tex_raw:[[&]]           Color       :tex_raw:[[&]] cccc :tex_raw:[[\\]]
 Desaturate :tex_raw:[[&]]         Color       :tex_raw:[[&]] cccc :tex_raw:[[\\]]

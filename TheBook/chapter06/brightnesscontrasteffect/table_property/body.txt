@@ -1,0 +1,58 @@
+:tex_raw:[[%属性 类型 默认值 范围 简介]]
+:tex_raw:[[%http://www.360doc.com/content/17/0928/15/6791835_690867661.shtml]]
+:tex_raw:[[%https://www.jianshu.com/p/175631f45ec6]]
+
+
+cached 
+    :tex_raw:[[&]]
+bool     
+    :tex_raw:[[&]]
+false     
+    :tex_raw:[[&]]
+:tex_raw:[[$[false,true]$]]     
+    :tex_raw:[[&]]
+缓存结果
+    :tex_raw:[[\\]]
+
+mode
+    :tex_raw:[[&]]
+string 
+    :tex_raw:[[&]]
+normal 
+    :tex_raw:[[&]]
+:tex_raw:[[见\tablename\ \ref{tb000002}]]
+    :tex_raw:[[&]]
+混合模式
+    :tex_raw:[[\\]]
+ 
+source 
+    :tex_raw:[[&]]
+variant
+    :tex_raw:[[&]]
+:tex_raw:[[\thebookexistone %鬼知道是啥]]
+    :tex_raw:[[&]]
+:tex_raw:[[\thebookallone{}$\left\{\text{可渲染对象}\right\}$ %鬼知道是啥]]
+    :tex_raw:[[&]]
+混合源（基色）
+    :tex_raw:[[\\]]
+
+foregroundSource 
+    :tex_raw:[[&]]
+variant
+    :tex_raw:[[&]]
+:tex_raw:[[\thebookexistone %鬼知道是啥]]
+    :tex_raw:[[&]]
+:tex_raw:[[\thebookallone{}$\left\{\text{可渲染对象}\right\}$ %鬼知道是啥]]
+    :tex_raw:[[&]]
+前混合源（混合色）
+    :tex_raw:[[\\]]
+
+
+
+
+
+
+
+
+
+
