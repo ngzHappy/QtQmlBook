@@ -1,0 +1,35 @@
+:tex_raw:[[%简介 描述]]
+
+normal
+    :tex_raw:[[&]]
+使用Alpha通道进行混合   
+    :tex_raw:[[\\]]
+
+addition
+    :tex_raw:[[&]]
+结果是source与foregroundSource的和
+    :tex_raw:[[\\]]
+
+
+average
+    :tex_raw:[[&]]
+结果是source与foregroundSource的均值
+    :tex_raw:[[\\]]
+
+color
+    :tex_raw:[[&]]
+结果是source的亮度值，
+foregroundSource的色调与饱和度
+    :tex_raw:[[\\]]
+
+colorBurn
+    :tex_raw:[[&]]
+颜色加深 :tex_raw:[[ %与Photoshop colorBurn效果一致]]
+    :tex_raw:[[\\]]
+
+colorDodge
+    :tex_raw:[[&]]
+颜色减淡 :tex_raw:[[ %与Photoshop colorDodge效果一致]]
+    :tex_raw:[[\\]]
+
+

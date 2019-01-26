@@ -516,7 +516,8 @@ public:
                         varReader.readBody();
                     const auto varHeadControl =
                         varReader.readHeadControl();
-                    varTableString += qsl(R"(%表
+                    varTableString += qsl(R"(%begin表
+\FloatBarrier                                  %强制完成浮动体布局
 \begin{longtable}{%1}
 
 %表头....
@@ -557,7 +558,7 @@ public:
 
                     varTableString += qsl(R"(
 \end{longtable}
-%表
+%end表
 )");
                     {
                         const QDir varDir{ varDirPath };

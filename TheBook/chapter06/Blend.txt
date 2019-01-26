@@ -1,14 +1,21 @@
 
 :the_book_section:[[c000015s000002]]
 
-:the_book_image:[[p000018]]
-
-Blend特效
+Blend特效常用属性
+如:tex_raw:[[\tablename\ \ref{tb000001}]]：
 
 :the_book_table:[[tb000001]]
 
+混合类型
+如:tex_raw:[[\tablename\ \ref{tb000002}]]:tex_raw:[[
+    \footnote{对于图片处理中常见术语，本书不赘述。}
+]]：
+
+:the_book_table:[[tb000002]]
+
+:the_book_image:[[p000018]]
 
 :the_book_file:[[f000052]]
 
-未完待续
+ 
 

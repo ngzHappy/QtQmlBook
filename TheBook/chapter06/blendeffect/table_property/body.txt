@@ -17,7 +17,7 @@ string
     :tex_raw:[[&]]
 normal 
     :tex_raw:[[&]]
-未完待续
+:tex_raw:[[见\tablename\ \ref{tb000002}]]
     :tex_raw:[[&]]
 混合模式
     :tex_raw:[[\\]]
@@ -41,7 +41,7 @@ variant
     :tex_raw:[[&]]
 :tex_raw:[[\thebookallone %鬼知道是啥]]
     :tex_raw:[[&]]
-混合源
+前混合源
     :tex_raw:[[\\]]
 
 
