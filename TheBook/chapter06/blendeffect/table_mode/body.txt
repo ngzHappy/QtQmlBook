@@ -104,7 +104,7 @@ multiply
 
 negation
     :tex_raw:[[&]]
-正片叠底:tex_raw:[[$\left[v=1/\left|b-a\right|\right]$]]
+否定:tex_raw:[[$\left[v=1/\left|b-a\right|\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
     :tex_raw:[[\\]]
 
