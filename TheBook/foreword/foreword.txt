@@ -114,8 +114,9 @@ Boost版本为1.69.0，
 第:tex_raw:[[ \ref{c000016}]]章本书介绍如何结合FFMPEG构建多媒体模块。
 这些章节各有主题，读者根据需要选读即可。
 
+为了行文方便，本书转义了一些特殊符号如下表：
 
-
+:tex_raw:[[\input{foreword/table/table.tex}]]
 
 
 
