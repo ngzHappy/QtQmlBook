@@ -8,7 +8,11 @@ Blend特效常用属性
 
 混合类型
 如:tex_raw:[[\tablename\ \ref{tb000002}]]:tex_raw:[[
-    \footnote{对于图片处理中常见术语，本书不赘述。}
+    \footnote{$a$代表foregroundSource，
+$b$代表source，
+$0$代表黑色，
+$1$代表白色，
+$v$代表最终结果。}
 ]]：
 
 :the_book_table:[[tb000002]]

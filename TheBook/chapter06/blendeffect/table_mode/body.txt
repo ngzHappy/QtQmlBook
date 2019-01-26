@@ -1,4 +1,7 @@
 :tex_raw:[[%简介 描述]]
+:tex_raw:[[%http://www.360doc.com/content/17/0928/15/6791835_690867661.shtml]]
+:tex_raw:[[%https://blog.csdn.net/linjf520/article/details/51086289]]
+:tex_raw:[[%https://jingyan.baidu.com/article/20095761dfde7ccb0721b426.html]]
 
 normal
     :tex_raw:[[&]]
@@ -9,7 +12,6 @@ addition
     :tex_raw:[[&]]
 结果是source与foregroundSource的和
     :tex_raw:[[\\]]
-
 
 average
     :tex_raw:[[&]]
@@ -24,12 +26,53 @@ foregroundSource的色调与饱和度
 
 colorBurn
     :tex_raw:[[&]]
-颜色加深 :tex_raw:[[ %与Photoshop colorBurn效果一致]]
+颜色加深:tex_raw:[[$\left[v=1-(1-b)/a\right]$]]
+:tex_raw:[[ %与Photoshop colorBurn效果一致]]
     :tex_raw:[[\\]]
 
 colorDodge
     :tex_raw:[[&]]
-颜色减淡 :tex_raw:[[ %与Photoshop colorDodge效果一致]]
+颜色减淡 :tex_raw:[[$\left[v=b/(1-a)\right]$]]
+:tex_raw:[[ %与Photoshop colorDodge效果一致]]
     :tex_raw:[[\\]]
+
+darken
+    :tex_raw:[[&]]
+变暗:tex_raw:[[$\left[v=min(a,b)\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+darkerColor
+    :tex_raw:[[&]]
+深色:tex_raw:[[$\left[v=\begin{cases}
+a, & a_r+a_r+a_b<b_r+b_g+b_b \\ 
+b, & a_r+a_r+a_b>b_r+b_g+b_b
+\end{cases}\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+difference
+    :tex_raw:[[&]]
+    :tex_raw:[[&]]
+变暗:tex_raw:[[$\left[v=abs(b-a)\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+divide
+    :tex_raw:[[&]]
+    :tex_raw:[[&]]
+划分:tex_raw:[[$\left[v=b/a\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+exclusion
+    :tex_raw:[[&]]
+    :tex_raw:[[&]]
+排除:tex_raw:[[$\left[v=b/a\right]$]]
+:tex_raw:[[ %与Photoshop  效果一致]]
+    :tex_raw:[[\\]]
+
+
+
 
 

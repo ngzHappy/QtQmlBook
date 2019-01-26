@@ -11,9 +11,9 @@
 \begin{longtable}{cc}
 
 %表头....
-\toprule{}简介
+\toprule{}名称
 &
-描述%there must use marginnote ...
+描述[公式]%there must use marginnote ...
 \marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\tablename\,}\footnotesize{\ref{tb000002}}}}
 \\ \midrule 
 \endfirsthead
@@ -24,9 +24,9 @@
 \endlastfoot
 
 %重复表头
-\toprule{}简介
+\toprule{}名称
 &
-描述
+描述[公式]
 \\ \midrule
 \endhead
 %重复表尾
@@ -42,7 +42,6 @@ addition
 结果是source与foregroundSource的和
     \\
 
-
 average
     &
 结果是source与foregroundSource的均值
@@ -56,12 +55,50 @@ foregroundSource的色调与饱和度
 
 colorBurn
     &
-颜色加深  %与Photoshop colorBurn效果一致
+颜色加深$\left[v=1-(1-b)/a\right]$
+ %与Photoshop colorBurn效果一致
     \\
 
 colorDodge
     &
-颜色减淡  %与Photoshop colorDodge效果一致
+颜色减淡 $\left[v=b/(1-a)\right]$
+ %与Photoshop colorDodge效果一致
+    \\
+
+darken
+    &
+变暗$\left[v=min(a,b)\right]$
+ %与Photoshop  效果一致
+    \\
+
+darkerColor
+    &
+深色$\left[v=\begin{cases}
+a, & a_r+a_r+a_b<b_r+b_g+b_b \\ 
+b, & a_r+a_r+a_b>b_r+b_g+b_b
+\end{cases}\right]$
+ %与Photoshop  效果一致
+    \\
+
+difference
+    &
+    &
+变暗$\left[v=abs(b-a)\right]$
+ %与Photoshop  效果一致
+    \\
+
+divide
+    &
+    &
+划分$\left[v=b/a\right]$
+ %与Photoshop  效果一致
+    \\
+
+exclusion
+    &
+    &
+排除$\left[v=b/a\right]$
+ %与Photoshop  效果一致
     \\
 \end{longtable}
 %end表
