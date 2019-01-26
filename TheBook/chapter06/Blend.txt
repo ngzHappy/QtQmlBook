@@ -17,9 +17,9 @@ $v$代表最终结果。}
 
 :the_book_table:[[tb000002]]
 
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000052}]]展
+示了Blend的常见用法。
+
 :the_book_image:[[p000018]]
 
 :the_book_file:[[f000052]]
-
- 
-

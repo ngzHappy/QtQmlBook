@@ -9,7 +9,7 @@ Rectangle {
     color: Qt.rgba(0.8,0.8,0.8,1);
 
     Image{
-        anchors.fill: parent;
+        anchors.fill: idBear;
         source: "grass.jpg"
         fillMode: Image.Tile
         id : idGrass
