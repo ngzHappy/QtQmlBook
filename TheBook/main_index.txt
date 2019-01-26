@@ -214,6 +214,14 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 \setlength{\LTpost}{0pt}
 %\setlength{\LTpre}{0pt}
 
+\newcommand\thebookexistone{
+    \rotatebox[origin=c]{12}{\scalebox{0.65}{$\exists$}}
+}
+\newcommand\thebookallone{
+    \rotatebox[origin=c]{-6}{$\forall$}
+}
+
+
 \begin{document}
 
 %设置标点挤压模式

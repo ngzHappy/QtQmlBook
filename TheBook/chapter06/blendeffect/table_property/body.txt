@@ -26,9 +26,9 @@ source
     :tex_raw:[[&]]
 variant
     :tex_raw:[[&]]
-:tex_raw:[[$\exists$ %鬼知道是啥]]
+:tex_raw:[[\thebookexistone %鬼知道是啥]]
     :tex_raw:[[&]]
-:tex_raw:[[$\forall$ %鬼知道是啥]]
+:tex_raw:[[\thebookallone %鬼知道是啥]]
     :tex_raw:[[&]]
 混合源
     :tex_raw:[[\\]]
@@ -37,9 +37,9 @@ foregroundSource
     :tex_raw:[[&]]
 variant
     :tex_raw:[[&]]
-:tex_raw:[[$\exists$ %鬼知道是啥]]
+:tex_raw:[[\thebookexistone %鬼知道是啥]]
     :tex_raw:[[&]]
-:tex_raw:[[$\forall$ %鬼知道是啥]]
+:tex_raw:[[\thebookallone %鬼知道是啥]]
     :tex_raw:[[&]]
 混合源
     :tex_raw:[[\\]]
