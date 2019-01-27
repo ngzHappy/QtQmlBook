@@ -7,6 +7,28 @@
 
 
 
+
+\begin{comment}
+#version 150 core
+in vec2 qt_TexCoord0;
+uniform float qt_Opacity;
+uniform sampler2D source;
+uniform float brightness;
+uniform float contrast;
+out vec4 fragColor;
+
+void main() {
+    vec4 pixelColor = texture(source, qt_TexCoord0);
+    pixelColor.rgb /= max(1.0/256.0, pixelColor.a);
+    float c = 1.0 + contrast;
+    float contrastGainFactor = 1.0 + c * c * c * c * step(0.0, contrast);
+    pixelColor.rgb = ((pixelColor.rgb - 0.5) * (contrastGainFactor * contrast + 1.0)) + 0.5;
+    pixelColor.rgb = mix(pixelColor.rgb, vec3(step(0.0, brightness)), abs(brightness));
+    fragColor = vec4(pixelColor.rgb * pixelColor.a, pixelColor.a) * qt_Opacity;
+}
+\end{comment}
+
+
 \FloatBarrier
 \section{
 BrightnessContrast
@@ -71,6 +93,32 @@ Rectangle {
 %\end{spacing}
 
 
+%\begin{spacing}{1.0}
+\refstepcounter{filesourcenumber}\label{f000077}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
+\begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
+title=\filesourcenumbernameone \thefilesourcenumber
+]
+#version 150 core
+in vec2 qt_TexCoord0;
+uniform float qt_Opacity;
+uniform sampler2D source;
+uniform float brightness;
+uniform float contrast;
+out vec4 fragColor;
+
+void main() {
+    vec4 pixelColor = texture(source, qt_TexCoord0);
+    pixelColor.rgb /= max(1.0/256.0, pixelColor.a);
+    float c = 1.0 + contrast;
+    float contrastGainFactor = 1.0 + c * c * c * c * step(0.0, contrast);
+    pixelColor.rgb = ((pixelColor.rgb - 0.5) * (contrastGainFactor * contrast + 1.0)) + 0.5;
+    pixelColor.rgb = mix(pixelColor.rgb, vec3(step(0.0, brightness)), abs(brightness));
+    fragColor = vec4(pixelColor.rgb * pixelColor.a, pixelColor.a) * qt_Opacity;
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
+%\end{spacing}
 
 
 

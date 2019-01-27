@@ -215,6 +215,7 @@ f000073::::../chapter06/glow_effect/myqml/glow_effect/main.qml::::]
 f000074::::../chapter06/rectangularglow_effect/myqml/rectangularglow_effect/main.qml::::]
 f000075::::../chapter06/opacitymask_effect/myqml/opacitymask_effect/main.qml::::]
 f000076::::../chapter06/thresholdmask_effect/myqml/thresholdmask_effect/main.qml::::]
+f000077::::chapter06/brightnesscontrasteffect/brightnesscontrast.frag::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]

@@ -1,6 +1,3 @@
-
-:tex_raw:[[
-\begin{comment}
 #version 150 core
 in vec2 qt_TexCoord0;
 uniform float qt_Opacity;
@@ -18,34 +15,3 @@ void main() {
     pixelColor.rgb = mix(pixelColor.rgb, vec3(step(0.0, brightness)), abs(brightness));
     fragColor = vec4(pixelColor.rgb * pixelColor.a, pixelColor.a) * qt_Opacity;
 }
-\end{comment}
-]]
-
-:the_book_section:[[c000015s000003]]
-
-:the_book_table:[[tb000003]]
-
-:the_book_image:[[p000019]]
-
-:the_book_file:[[f000053]]
-
-:the_book_file:[[f000077]]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
