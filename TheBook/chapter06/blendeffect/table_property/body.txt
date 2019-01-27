@@ -11,7 +11,7 @@ false
     :tex_raw:[[&]]
 :tex_raw:[[$[false,true]$]]     
     :tex_raw:[[&]]
-缓存结果
+缓存
     :tex_raw:[[\\]]
 
 mode
