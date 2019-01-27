@@ -1,4 +1,4 @@
-﻿% 摘自Qt 5 编程入门
+﻿:tex_raw:[[% 摘自Qt 5 编程入门]]
 
 Blend :tex_raw:[[&]]              Blend       :tex_raw:[[&]] 混合 :tex_raw:[[\\]]
 BrightnessContrast :tex_raw:[[&]] Color       :tex_raw:[[&]] 亮度对比度 :tex_raw:[[\\]]
