@@ -254,7 +254,7 @@ tb000003::::类型属性::::chapter06/brightnesscontrasteffect/table_property
 % :tex_raw:[[\begin{itemize}]]
 % :tex_raw:[[\end{itemize}]]
 %
-%
+% :tex_raw:[[\tablename\ \ref{d000000}]]
 %
 %
 %

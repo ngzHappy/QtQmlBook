@@ -23,13 +23,22 @@ void main() {
 
 :the_book_section:[[c000015s000003]]
 
+BrightnessContrast用于调整亮度和对比度。其常见属性
+见:tex_raw:[[\tablename\ \ref{tb000003}]]。
+
 :the_book_table:[[tb000003]]
+
+BrightnessContrast的关键代码
+见:tex_raw:[[\filesourcenumbernameone\ \ref{f000077}]]。
+:the_book_file:[[f000077]]
+
+本节案例源码见:tex_raw:[[\filesourcenumbernameone\ \ref{f000053}]]。
 
 :the_book_image:[[p000019]]
 
 :the_book_file:[[f000053]]
 
-:the_book_file:[[f000077]]
+
 
 
 
