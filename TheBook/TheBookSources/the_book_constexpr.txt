@@ -216,6 +216,7 @@ f000074::::../chapter06/rectangularglow_effect/myqml/rectangularglow_effect/main
 f000075::::../chapter06/opacitymask_effect/myqml/opacitymask_effect/main.qml::::]
 f000076::::../chapter06/thresholdmask_effect/myqml/thresholdmask_effect/main.qml::::]
 f000077::::chapter06/brightnesscontrasteffect/brightnesscontrast.frag::::]
+f000078::::chapter06/coloroverlayeffect/coloroverlay.frag::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
@@ -236,6 +237,7 @@ tb000000::::Qt Graphical Effects特效概述::::chapter06/firsteffect/table
 tb000001::::Blend特效属性::::chapter06/blendeffect/table_property
 tb000002::::类型属性::::chapter06/blendeffect/table_mode
 tb000003::::类型属性::::chapter06/brightnesscontrasteffect/table_property
+tb000004::::类型属性::::chapter06/coloroverlayeffect/table_property
 
 %
 % :tex_raw:[[\figurename\ \ref{p000003}]]

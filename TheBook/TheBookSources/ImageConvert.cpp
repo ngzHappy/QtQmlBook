@@ -18,7 +18,7 @@ bool ImageConvert::needConvert() const {
     return true;
 }
 
-void drawImageBorder(
+inline static void drawImageBorder(
     QImage * arg1,
     int width,
     const QColor & color) {
@@ -80,7 +80,7 @@ void drawImageBorder(
 
     }
 
-    *arg1 = *arg;
+    *arg1 = std::move(*arg);
 
 }
 

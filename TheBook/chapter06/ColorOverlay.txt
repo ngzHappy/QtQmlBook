@@ -1,9 +1,24 @@
 
 :the_book_section:[[c000015s000004]]
 
+ColorOverlay用于在可渲染对象上叠加一个颜色。其常见属性
+见:tex_raw:[[\tablename\ \ref{tb000003}]]。
+
+:the_book_table:[[tb000004]]
+
+:tex_raw:[[
+%    file:///G:/qt-everywhere-src-5.12.0/qtgraphicaleffects/src/effects/shaders/+glslcore/coloroverlay.frag
+]]
+
+ColorOverlay的关键代码
+见:tex_raw:[[\filesourcenumbernameone\ \ref{f000078}]]。
+:the_book_file:[[f000078]]
+
+本节案例源码见:tex_raw:[[\filesourcenumbernameone\ \ref{f000054}]]。
+
 :the_book_image:[[p000020]]
 
 :the_book_file:[[f000054]]
 
-未完待续
+ 
 

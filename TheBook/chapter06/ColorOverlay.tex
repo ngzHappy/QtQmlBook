@@ -13,6 +13,45 @@ ColorOverlay
 }\label{c000015s000004}
 
 
+ColorOverlay用于在可渲染对象上叠加一个颜色。其常见属性
+见\tablename\ \ref{tb000003}。
+
+\input{chapter06/coloroverlayeffect/table_property/table.tex}
+
+
+%    file:///G:/qt-everywhere-src-5.12.0/qtgraphicaleffects/src/effects/shaders/+glslcore/coloroverlay.frag
+
+
+ColorOverlay的关键代码
+见\filesourcenumbernameone\ \ref{f000078}。
+%\begin{spacing}{1.0}
+\refstepcounter{filesourcenumber}\label{f000078}    %增加源代码编号
+\FloatBarrier                                  %强制完成浮动体布局
+\begin{thebookfilesourceone}[escapeinside={(*@}{@*)},
+caption=GoodLuck,
+title=\filesourcenumbernameone \thefilesourcenumber
+]
+/*+glslcore/coloroverlay.frag*/
+#version 150 core
+in vec2 qt_TexCoord0;
+uniform float qt_Opacity;
+uniform sampler2D source;
+uniform vec4 color;
+out vec4 fragColor;
+void main() {
+    vec4 pixelColor = texture(source, qt_TexCoord0);
+    fragColor = vec4(
+        mix(pixelColor.rgb/max(pixelColor.a, 0.00390625),
+            color.rgb/max(color.a, 0.00390625),
+            color.a) * pixelColor.a,
+        pixelColor.a) * qt_Opacity;
+}(*@\marginpar[\hfill\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}]{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\parbox{1em}{\setlength{\baselineskip}{2pt}\filesourcenumbernameone}}\footnotesize{\thefilesourcenumber}}}@*)\end{thebookfilesourceone}          %抄录环境
+\addtocounter{lstlisting}{-1}   %sub lstlisting counter ...
+%\end{spacing}
+
+
+本节案例源码见\filesourcenumbernameone\ \ref{f000054}。
+
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote ...
@@ -67,7 +106,7 @@ Rectangle {
 %\end{spacing}
 
 
-未完待续
+ 
 
 
 
