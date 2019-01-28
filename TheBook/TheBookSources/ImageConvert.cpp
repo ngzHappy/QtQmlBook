@@ -44,12 +44,20 @@ bool ImageConvert::convert() {
                 output_image_relative_path);
     }
 
-    return 0 ==
-        QProcess::execute(
-            varCommand,
-            QStringList()
-            << input_image_full_path
-            << output_image_full_path);
+    QProcess varProcess;
+    varProcess.closeReadChannel(QProcess::StandardOutput);
+    varProcess.start(
+        varCommand,
+        QStringList()
+        << input_image_full_path
+        << output_image_full_path);
+    if (varProcess.waitForFinished(60'000)) {
+        return 0 == varProcess.exitCode();
+    } else {
+        varProcess.terminate();
+        return false;
+    }
+   
 
 }
 
