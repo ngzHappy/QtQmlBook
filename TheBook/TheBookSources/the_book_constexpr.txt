@@ -258,6 +258,7 @@ tb000001::::Blend特效属性::::chapter06/blendeffect/table_property
 tb000002::::类型属性::::chapter06/blendeffect/table_mode
 tb000003::::类型属性::::chapter06/brightnesscontrasteffect/table_property
 tb000004::::类型属性::::chapter06/coloroverlayeffect/table_property
+tb000005::::QML基本类型::::chapter02/table/basic_qml_type_table
 
 %
 % :tex_raw:[[\figurename\ \ref{p000003}]]

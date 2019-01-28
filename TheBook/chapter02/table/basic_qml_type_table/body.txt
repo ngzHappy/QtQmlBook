@@ -1,0 +1,81 @@
+:tex_raw:[[%类型 说明]]
+ 
+bool
+    :tex_raw:[[&]]
+布尔类型
+    :tex_raw:[[\\]]
+ 
+int
+    :tex_raw:[[&]]
+整型
+    :tex_raw:[[\\]]
+
+double
+    :tex_raw:[[&]]
+浮点型
+    :tex_raw:[[\\]]
+
+real
+    :tex_raw:[[&]]
+浮点型
+    :tex_raw:[[\\]]
+
+enumeration
+    :tex_raw:[[&]]
+枚举型
+    :tex_raw:[[\\]]
+
+string
+    :tex_raw:[[&]]
+字符串
+    :tex_raw:[[\\]]
+
+url
+    :tex_raw:[[&]]
+统一资源定位符
+    :tex_raw:[[\\]]
+
+var
+    :tex_raw:[[&]]
+QVariant
+    :tex_raw:[[\\]]
+
+
+
+:tex_raw:[===[
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%list
+%    :tex_raw:[[&]]
+%链表
+%    :tex_raw:[[\\]]
+%
+%date
+%    :tex_raw:[[&]]
+%日期
+%    :tex_raw:[[\\]]
+%
+%point
+%    :tex_raw:[[&]]
+%点
+%    :tex_raw:[[\\]]
+%
+%rect
+%    :tex_raw:[[&]]
+%矩形
+%    :tex_raw:[[\\]]
+%
+%size
+%    :tex_raw:[[&]]
+%长宽
+%    :tex_raw:[[\\]]
+%
+]===]
+
+
+
+
+
+
+
+
+

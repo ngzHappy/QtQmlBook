@@ -1,10 +1,25 @@
 ﻿
 :the_book_subsection:[[c000011s000000s01]]
 
+:tex_raw:[[%QML Basic Types
+%bool
+%double
+%enumeration
+%int
+%list
+%real
+%string
+%url
+%var
+%date
+%point
+%rect
+%size 
+]]
 :the_book_subsubsection:[[c000011s000000s01s01]]
 
 
-
+:the_book_table:[[tb000005]]
 
 
 
