@@ -222,6 +222,12 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
     \rotatebox[origin=c]{-6}{$\forall$}
 }
 
+%表格行距
+\renewcommand\arraystretch{0.8}
+%\setlength\belowrulesep{0pt}
+%\setlength\aboverulesep{0pt}
+%标题上部额外间距
+\setlength{\abovecaptionskip}{5pt}
 
 \begin{document}
 
