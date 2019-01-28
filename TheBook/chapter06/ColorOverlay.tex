@@ -56,7 +56,7 @@ void main() {
 \begin{figure}[htb] %浮动体 here and top ...
 %there must use marginnote ...
 \marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000020}}}}\centering %中心对齐
-\includegraphics[width=0.95\textwidth]{the_book_image/p000020.eps} %图片路径
+\setlength\fboxsep{-1pt}\fbox{\includegraphics[width=0.95\textwidth]{the_book_image/p000020.eps}} %图片路径
 \caption{ColorOverlay} %标题
 \label{p000020} %索引
 \end{figure}

@@ -1026,9 +1026,9 @@ title=\commandnumbernameone \thecommandnumber
                 varString += varFigureMarginnote;
                 varString += qsl(R"(\centering %中心对齐
 )");
-                varString += qsl(R"(\includegraphics%1{)").arg(varArgs2[3]);
+                varString += qsl(R"(\setlength\fboxsep{-1pt}\fbox{\includegraphics%1{)").arg(varArgs2[3]);
                 varString += varIsImageConverted? varImageConvert.getRelativePath() : varArgs2[1];
-                varString += qsl(R"(} %图片路径
+                varString += qsl(R"(}} %图片路径
 \caption{)");
                 varString += theBookPlainTextToTexText(varArgs2[0]);
                 varString += qsl(R"(} %标题
