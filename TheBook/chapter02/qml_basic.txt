@@ -40,9 +40,37 @@ Qt集成开发环境所有编译器都识别BOM，除了qmake。
 本书对C++源文件，QML源文件，以及JavaScript源文件添加BOM
 以最大程度降低平台差异性。
 
-:tex_raw:[[%注释]]
+:tex_raw:[[%注释与帮助]]
 :the_book_subsection:[[c000011s000000s02]]
 
+C++、QML以及JavaScript的注释语法都是一致的：
+
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]//单行注释
+:tex_raw:[[\item ]]/*多行注释*/
+:tex_raw:[[\end{itemize}]]
+
+而qmake的工程文件只支持单行注释：
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]#单行注释
+:tex_raw:[[\end{itemize}]]
+
+:tex_raw:[[
+%http://www.glimix.com/archives/1594 
+%https://wiki.qt.io/QDoc
+%http://doc.qt.io/qt-5/qdoc-index.html
+]]
+Qt集成开发环境自带一个工具可以
+自动提取C++与QML中的注释并生成帮助
+文件。
+
+此工具被称为QDoc。
+
+QDoc是一套庞大的体系，读者可以在QtCreator中输入
+qdoc以获得更多帮助。
+如:tex_raw:[[\figurename\ \ref{p000043}]]。
+
+:the_book_image:[[p000043]]
 
 
 :tex_raw:[[
