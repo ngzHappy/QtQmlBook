@@ -63,11 +63,15 @@ void drawImageBorder(
 
         assert(varCurrentLineBegin == arg->constScanLine(varLineCount));
 
-        for (int varColumnCount = 0;
+        if ((varLineCount < varTopLimit) || (varLineCount >= varBottomLimit)) {
+            const auto varEnd = varCurrentLine + varImageWidth;
+            for (auto varPos = varCurrentLine; varPos < varEnd; ++varPos) {
+                *varPos = varColor;
+            }
+        } else for (int varColumnCount = 0;
             varColumnCount < varImageWidth;
             ++varColumnCount) {
-            if ((varColumnCount <= varLeftLimit) || (varColumnCount >= varRightLimit) ||
-                (varLineCount <= varTopLimit) || (varLineCount >= varBottomLimit)) {
+            if ((varColumnCount < varLeftLimit) || (varColumnCount >= varRightLimit)) {
                 auto varPos =
                     varCurrentLine + varColumnCount;
                 *varPos = varColor;
@@ -113,7 +117,7 @@ bool ImageConvert::convert() {
                     output_image_relative_path);
             input_image_full_path = output_image_full_path;
         }
-        drawImageBorder(&varImage, 1, QColor(255, 255, 255, 255));
+        drawImageBorder(&varImage, 1, QColor(253, 255, 255, 255));
         varImage.save(output_image_full_path);
     }
 
