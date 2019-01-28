@@ -2,6 +2,7 @@
 #include "OutPutStream.hpp"
 #include "ReadSource.hpp"
 #include "GetTheBookConstexpr.hpp"
+#include "ImageConvert.hpp"
 #include "ReadTable.hpp"
 #include <optional>
 #include <list>
@@ -989,6 +990,17 @@ title=\commandnumbernameone \thecommandnumber
                     return false;
                 }
 
+                /*进行图片转换...*/
+                ImageConvert varImageConvert{
+                    varKeyLabel,
+                    getOutPutFileFullPath(varArgs2[1])
+                };
+                bool varIsImageConverted = false;
+                if (varImageConvert.needConvert()) {
+                    varIsImageConverted = 
+                    varImageConvert.convert();
+                }
+
                 {
                     auto & varIndexStream = state
                         ->texBuilderPrivate
@@ -1015,7 +1027,7 @@ title=\commandnumbernameone \thecommandnumber
                 varString += qsl(R"(\centering %中心对齐
 )");
                 varString += qsl(R"(\includegraphics%1{)").arg(varArgs2[3]);
-                varString += varArgs2[1];
+                varString += varIsImageConverted? varImageConvert.getRelativePath() : varArgs2[1];
                 varString += qsl(R"(} %图片路径
 \caption{)");
                 varString += theBookPlainTextToTexText(varArgs2[0]);
