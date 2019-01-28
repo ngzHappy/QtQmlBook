@@ -111,7 +111,7 @@ bool ImageConvert::convert() {
             output_image_relative_path =
                 qsl("the_book_image/") +
                 image_index +
-                qsl(".png");
+                qsl(".bmp");
             output_image_full_path =
                 getOutPutFileFullPath(
                     output_image_relative_path);
