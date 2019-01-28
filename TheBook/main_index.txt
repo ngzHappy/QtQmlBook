@@ -106,7 +106,11 @@ numbersep=0.5em,
 numberstyle=    \scriptsize\slshape\sourcefontone  , %设置字号，字体
 frame=single,
 backgroundcolor=\color{sourcegrayone},
-showstringspaces=false
+showstringspaces=false ,
+aboveskip=1pt,
+belowskip=1pt,
+abovecaptionskip=1pt,
+belowcaptionskip=5pt
 }
 %\ifoddpage \lstset{numbers=left} \else \lstset{numbers=right}
 \usepackage{changepage}    %判断奇数页偶数页
@@ -223,11 +227,16 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 }
 
 %表格行距
-\renewcommand\arraystretch{0.8}
+\renewcommand\arraystretch{0.9}
 %\setlength\belowrulesep{0pt}
 %\setlength\aboverulesep{0pt}
 %标题上部额外间距
 \setlength{\abovecaptionskip}{5pt}
+\setlength{\belowcaptionskip}{3pt}
+%338
+\setlength{\floatsep}{12pt plus 2pt minus 6pt}
+\setlength{\textfloatsep}{12pt plus 2pt minus 6pt}
+\setlength{\intextsep}{12pt plus 2pt minus 6pt}
 
 \begin{document}
 
