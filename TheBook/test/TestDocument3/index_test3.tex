@@ -188,6 +188,10 @@ QQQQQQQQQQQQQ
 %\marginnote{sdfds }
 %\centering 
 
+\renewcommand\arraystretch{0.7}
+\setlength\belowrulesep{0pt}
+\setlength\aboverulesep{0pt}
+
 \begin{longtable}{lcr}
 
 %表头....
@@ -197,11 +201,13 @@ A & B & C \marginnote{sdfds }
 \endfirsthead
 
 %表尾...
-\bottomrule
-\caption{xxxxxx1}\label{r234} 
+  
 \endlastfoot
 
-%重复表头
+
+
+%重复表头 \renewcommand\arraystretch{0.0}
+\multicolumn{1}{@{}l@{}}{\tiny\noindent{}续接上表 } \\
 \toprule
 A & B & C 
 \\ \midrule
@@ -216,6 +222,59 @@ A & B & C
 1 & 2 & 3 \\
 4 & 5 & 6 \\
 1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+4 & 5 & 6 \\
+1 & 2 & 3 \\
+
+\bottomrule 
+\caption{xxxxxx1}\label{r234} 
 
 \end{longtable}
 %\caption[xxxxxxx]{xxxxxx1 }

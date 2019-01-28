@@ -537,10 +537,8 @@ public:
 )");
                     varTableString += qsl(R"(
 %表尾...
-\bottomrule
-\caption{%1}\label{%2} 
 \endlastfoot
-)").arg(varCaption).arg(varKeyLabel);
+)");
 
                     varTableString += qsl(R"(
 %重复表头
@@ -557,10 +555,16 @@ public:
 )");
                     varTableString += varBodyData;
 
+                    if (!varTableString.endsWith(qsl(R"(\\)"))) {
+                        varTableString += qsl(R"(\\)");
+                    }
+
                     varTableString += qsl(R"(
+\bottomrule            %表底部线
+\caption{%1}\label{%2} %表标题
 \end{longtable}
 %end表
-)");
+)").arg(varCaption).arg(varKeyLabel) ;
                     {
                         const QDir varDir{ varDirPath };
                         varTableFullPath =
