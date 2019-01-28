@@ -63,8 +63,11 @@ SOURCES += $$PWD/TheBookSources/output_main_index.cpp
 HEADERS += $$PWD/TheBookSources/OutPutStream.hpp
 SOURCES += $$PWD/TheBookSources/OutPutStream.cpp
 
-HEADERS += $$PWD/TheBookSources/ReadTable.hpp
-SOURCES += $$PWD/TheBookSources/ReadTable.cpp
+HEADERS += $$PWD/TheBookSources/OutPutStream.hpp
+SOURCES += $$PWD/TheBookSources/OutPutStream.cpp
+
+HEADERS += $$PWD/TheBookSources/ImageConvert.hpp
+SOURCES += $$PWD/TheBookSources/ImageConvert.cpp
 
 HEADERS += $$PWD/TheBookSources/TexBuilder.hpp
 SOURCES += $$PWD/TheBookSources/TexBuilder.cpp
