@@ -60,8 +60,8 @@ SOURCES += $$PWD/TheBookSources/GetTheBookConstexpr.cpp
 HEADERS += $$PWD/TheBookSources/output_main_index.hpp
 SOURCES += $$PWD/TheBookSources/output_main_index.cpp
 
-HEADERS += $$PWD/TheBookSources/OutPutStream.hpp
-SOURCES += $$PWD/TheBookSources/OutPutStream.cpp
+HEADERS += $$PWD/TheBookSources/ReadTable.hpp
+SOURCES += $$PWD/TheBookSources/ReadTable.cpp
 
 HEADERS += $$PWD/TheBookSources/OutPutStream.hpp
 SOURCES += $$PWD/TheBookSources/OutPutStream.cpp
