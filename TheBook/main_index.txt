@@ -234,9 +234,9 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 \setlength{\abovecaptionskip}{5pt}
 \setlength{\belowcaptionskip}{3pt}
 %338
-\setlength{\floatsep}{12pt plus 2pt minus 6pt}
-\setlength{\textfloatsep}{12pt plus 2pt minus 6pt}
-\setlength{\intextsep}{12pt plus 2pt minus 6pt}
+\setlength{\floatsep}{10pt plus 2pt minus 2pt}
+\setlength{\textfloatsep}{10pt plus 2pt minus 2pt}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
 
 \begin{document}
 
