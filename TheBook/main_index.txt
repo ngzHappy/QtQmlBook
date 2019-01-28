@@ -131,8 +131,8 @@ showstringspaces=false
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
 
 \newenvironment{littlelongworld}
-{ \\ }
-{ \\ }
+{ \\\hspace*{\fill} }
+{ \hspace*{\fill}\\ }
 
 %设置路径计数器
 \newcommand\treeindexnumbernameone{路径}

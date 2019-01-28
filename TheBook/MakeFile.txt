@@ -17,6 +17,8 @@ chapter01/use_shader_in_qt_quick.txt
 chapter01/directdrawbyopengl.txt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter02/chapter02.txt
+chapter02/qml_basic.txt
+chapter02/qml_property.txt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 chapter03/chapter03.txt
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
