@@ -88,7 +88,7 @@ c000020::::前言
 %图片路径
 p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[htb]::::[width=8cm]
 p000001::::Qt在线安装建议安装组件::::chapter01/images/windows_qt_online_install.png::::[htb]::::[width=0.95\textwidth]
-p000002::::qmake对C/C++编译链接过程中的控制点::::chapter01/images/advance_use_qmake.png::::[htb]::::[width=0.95\textwidth]
+p000002::::qmake对C/C++编译链接过程中的控制点::::&chapter01/images/advance_use_qmake.png::::[htb]::::[width=0.95\textwidth]
 p000003::::qmake Variable Reference::::chapter01/images/qmake_help_1.png::::[htb]::::[width=0.95\textwidth]
 p000004::::Running qmake::::chapter01/images/qmake_help_2.png::::[htb]::::[width=0.95\textwidth]
 p000005::::qmake Language::::chapter01/images/qmake_help_3.png::::[htb]::::[width=0.95\textwidth]
@@ -96,7 +96,7 @@ p000006::::你好世界！::::../chapter01/hellowworld/the_app.png::::[htb]::::[
 p000007::::Qt Quick控件及样式！::::../chapter01/defaultstyle/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000008::::Qt Quick中使用着色器::::../chapter01/shadereffect/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000009::::Qt Quick着色器中使用纹理::::../chapter01/shadereffectwithimage/the_app.png::::[htb]::::[width=0.95\textwidth]
-p000010::::C++导出Qt Quick所需基类::::chapter01/images/qtquick_item.png::::[htb]::::[width=0.95\textwidth]
+p000010::::C++导出Qt Quick所需基类::::&chapter01/images/qtquick_item.png::::[htb]::::[width=0.95\textwidth]
 p000011::::直接使用OpenGL绘制::::../chapter01/directdrawbyopengl/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000012::::文字阴影::::../chapter06/firsteffect/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000018::::Blend::::../chapter06/blend_effect/the_app.png::::[htb]::::[width=0.95\textwidth]

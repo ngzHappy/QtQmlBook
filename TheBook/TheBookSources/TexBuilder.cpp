@@ -990,10 +990,17 @@ title=\commandnumbernameone \thecommandnumber
                     return false;
                 }
 
+                auto varImagePathRaw = varArgs2[1];
+                const bool varDoNotPutFrame = 
+                    varImagePathRaw.startsWith(QChar('&'));
+                if (varDoNotPutFrame) {
+                    varImagePathRaw.remove(0,1);
+                }
+
                 /*进行图片转换...*/
                 ImageConvert varImageConvert{
                     varKeyLabel,
-                    getOutPutFileFullPath(varArgs2[1])
+                    getOutPutFileFullPath(varImagePathRaw)
                 };
                 bool varIsImageConverted = false;
                 if (varImageConvert.needConvert()) {
@@ -1026,9 +1033,15 @@ title=\commandnumbernameone \thecommandnumber
                 varString += varFigureMarginnote;
                 varString += qsl(R"(\centering %中心对齐
 )");
-                varString += qsl(R"(\setlength\fboxsep{-1pt}\fbox{\includegraphics%1{)").arg(varArgs2[3]);
-                varString += varIsImageConverted? varImageConvert.getRelativePath() : varArgs2[1];
-                varString += qsl(R"(}} %图片路径
+                if (!varDoNotPutFrame) {
+                    varString += qsl(R"(\setlength\fboxsep{-1pt}\fbox{)")/*1*/;
+                }
+                varString += qsl(R"(\includegraphics%1{)").arg(varArgs2[3]);
+                varString += varIsImageConverted? varImageConvert.getRelativePath() : varImagePathRaw ;
+                if (!varDoNotPutFrame) {
+                    varString += qsl(R"(})")/*1*/;
+                }
+                varString += qsl(R"(} %图片路径
 \caption{)");
                 varString += theBookPlainTextToTexText(varArgs2[0]);
                 varString += qsl(R"(} %标题
