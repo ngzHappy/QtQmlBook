@@ -56,7 +56,7 @@ QML中的布尔类型根绝大多数计算机语言一致，只有true和false�
 :tex_raw:[[\item ]]int
 
 QML中的整型对应于C++中的int，其安全使用范围是
- -2000000000~2000000000。
+-2000000000~2000000000。
 :tex_raw:[[\item ]]double与real
 
 QML中的double与real没有什么区别，对应于
