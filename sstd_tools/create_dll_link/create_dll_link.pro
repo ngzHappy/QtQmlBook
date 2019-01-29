@@ -2,6 +2,8 @@
 QT += core gui
 QT += widgets
 
+CONFIG += console
+
 TARGET = create_dll_link
 TEMPLATE = app
 
