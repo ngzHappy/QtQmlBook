@@ -73,6 +73,10 @@ QML中的布尔类型根绝大多数计算机语言一致，只有true和false�
 
 QML中的整型对应于C{\sourcefonttwo{}+}{\sourcefonttwo{}+}中的int，其安全使用范围是
 \hspace{0.05em}\rule[0.7ex]{0.4em}{0.65pt}\hspace{0.05em}2000000000\raisebox{0.16ex}{\sourcefonttwo\~{}}2000000000。
+
+很多时候应用程序需要的是int64，这时候应当使用
+var。
+
 \item double与real
 
 QML中的double与real没有什么区别，对应于
@@ -93,7 +97,11 @@ QML中的字符串除了可以使用JavaScript中的所有方法之外，
 QML中list被设计用于包装QML对象，如果需要基本类型容器，应当使用var。
 \item var
 
-QML中的var用于代表一切合法类型，包括信号槽，容器，基本类型……
+QML中的var用于代表一切合法类型，包括信号槽，容器，基本类型以及一切
+可以被QVariant识别的类型……
+
+在一些时候读者会发现variant这个词，它与var是一致的。
+支持这个词仅仅是为了支持老版本的QML。
 
 \end{itemize}
 

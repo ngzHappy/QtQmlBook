@@ -1,4 +1,4 @@
-:tex_raw:[[%类型 说明]]
+﻿:tex_raw:[[%类型 说明]]
  
 bool
     :tex_raw:[[&]]
@@ -27,7 +27,7 @@ enumeration
 
 string
     :tex_raw:[[&]]
-字符串
+字符型
     :tex_raw:[[\\]]
 
 url
