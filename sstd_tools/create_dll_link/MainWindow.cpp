@@ -6,12 +6,16 @@
 #include <string_view>
 using namespace std::string_view_literals;
 
+#define USE_FILESYSTEM 1
+
+#if USE_FILESYSTEM
 #if __has_include(<filesystem>)
 #include <filesystem>
 namespace fs = std::filesystem;
 #else
 #include <experimental/filesystem>
 namespace fs = std::experimental::filesystem;
+#endif
 #endif
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -100,6 +104,7 @@ Prefix=D:/Qt/Qt5.12.0/5.12.0/msvc2017_64
             varTargetDir.absoluteFilePath(varFileName);
         const auto varSource =
             varI.source_file.absoluteFilePath();
+#if USE_FILESYSTEM
         const fs::path varTargetSTD{
             varTarget.toStdWString() };
         const fs::path varSourceSTD{
@@ -110,6 +115,9 @@ Prefix=D:/Qt/Qt5.12.0/5.12.0/msvc2017_64
             std::cout << arg.what() << std::endl;
             continue;
         }
+#else
+        QFile::link( varSource , varTarget );
+#endif
     }
 
 }
