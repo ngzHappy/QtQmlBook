@@ -39,7 +39,7 @@ win32-msvc*{
     QMAKE_CXXFLAGS += -Wno-deprecated-declarations
 }
 
-
+DEFINES *= QT_BIN_DIR_WHERE=\\\"$$[QT_INSTALL_BINS]\\\"
 
 
 

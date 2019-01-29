@@ -23,6 +23,7 @@ win32{
 }
 
 win32{
+    #qmake -query 
     LIBS += -L$$[QT_INSTALL_LIBS]
     win32-msvc*{
         include($$PWD/msvc_boost.pri)
