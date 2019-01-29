@@ -61,6 +61,51 @@ Qt并没有提供接口可以让读者直接定义
 类型。读者如果需要扩展QML类型，只能继承自QObject类。
 
 
+    % Data Type Conversion Between QML and C++
+
+
+\begin{itemize}
+
+\item bool 
+
+QML中的布尔类型根绝大多数计算机语言一致，只有true和false两个值。
+\item int
+
+QML中的整型对应于C{\sourcefonttwo{}+}{\sourcefonttwo{}+}中的int，其安全使用范围是
+ \hspace{0.05em}\rule[0.7ex]{0.4em}{0.65pt}\hspace{0.05em}2000000000\raisebox{0.16ex}{\sourcefonttwo\~{}}2000000000。
+\item double与real
+
+QML中的double与real没有什么区别，对应于
+IEEE 754标准中规定的64位双精度浮点数。
+\item enumeration
+
+QML中的枚举类型，既可来源于C{\sourcefonttwo{}+}{\sourcefonttwo{}+}的导出，
+也可来源于QML中的定义。
+\item url
+
+QML中的路径都是url类型，它与QUrl一致。
+\item string
+
+QML中的字符串除了可以使用JavaScript中的所有方法之外，
+还可以使用QString中的arg函数。
+\item list
+
+QML中list被设计用于包装QML对象，如果需要基本类型容器，应当使用var。
+\item var
+
+QML中的var用于代表一切合法类型，包括信号槽，容器，基本类型……
+
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
 
 
 
