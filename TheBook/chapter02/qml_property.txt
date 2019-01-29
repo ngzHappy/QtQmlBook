@@ -18,21 +18,31 @@
 ]]
 :the_book_subsubsection:[[c000011s000000s01s01]]
 
+:tex_raw:[[%http://doc.qt.io/qt-5/qml-int.html]]
+QML被设计为一门可以支持JavaScript的
+弱类型语言。
+
+虽然绝大多数JavaScript代码可以在QML
+环境之中正常运行。
+但并不意味着JavaScript语义与QML语义
+完全一致。
+
+一般而言，QML对JavaScript做了适当扩展。
+
+如果读者完全按照JavaScript语义理解
+QML类型系统，倒也不算错。
+但损失大量效率是免不了的。
+
+:tex_raw:[[\tablename\ \ref{tb000005}]]展示了
+QML中的基本类型。
 
 :the_book_table:[[tb000005]]
 
-
-
-
-
-
-
-
-
-
-
-
-
+:tex_raw:[[\tablename\ \ref{tb000005}]]中的基本类型
+是直接内嵌在QML引擎中的。
+Qt并没有提供接口可以让读者直接定义
+像int，double这样的原生
+类型。读者如果需要扩展QML类型，只能继承自QObject类。
 
 
 
