@@ -40,31 +40,51 @@ public:
     bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
 
     virtual QHash<int, QByteArray> roleNames() const override;
+public:
+    Q_SLOT void remove(const int &);
+    Q_SLOT void insert(const int &);
 private:
     class Item {
     public:
-        
+
         QString rawString;
+        QColor rawColor;
+
+        inline Item() {
+            rawColor = QColor(
+                (std::rand() & 127) + 127,
+                (std::rand() & 127) + 127,
+                (std::rand() & 127) + 127,
+                255);
+        }
 
         enum class RoleOfItem : int {
-            RawString = Qt::UserRole + 1,
+            RawColor = Qt::UserRole + 1,
+            RawString = Qt::UserRole,
         };
 
         inline QVariant getData(int argRole) const {
             const auto role = static_cast<RoleOfItem>(argRole);
             switch (role) {
-                case RoleOfItem::RawString : return rawString;
+            case RoleOfItem::RawColor: return rawColor;
+            case RoleOfItem::RawString: return rawString;
             }
             return {};
         }
 
-        inline bool setData(int argRole,const QVariant & arg) {
+        inline bool setData(int argRole, const QVariant & arg) {
             const auto role = static_cast<RoleOfItem>(argRole);
             switch (role) {
-                case RoleOfItem::RawString : {
-                    rawString = arg.toString();
-                    return true;
-                }
+            case RoleOfItem::RawColor:
+            {
+                rawColor = arg.value<QColor>();
+                return true;
+            }
+            case RoleOfItem::RawString:
+            {
+                rawString = arg.toString();
+                return true;
+            }
             }
             return false;
         }
@@ -77,8 +97,10 @@ private:
     private:
         inline static QHash<int, QByteArray> _roleNames() {
             QHash<int, QByteArray> varAns;
-            varAns.insert( static_cast<int>(RoleOfItem::RawString), 
-                QByteArrayLiteral("rawString") );
+            varAns.insert(static_cast<int>(RoleOfItem::RawString),
+                QByteArrayLiteral("rawString"));
+            varAns.insert(static_cast<int>(RoleOfItem::RawColor),
+                QByteArrayLiteral("rawColor"));
             return std::move(varAns);
         }
     };
@@ -94,17 +116,17 @@ private:
         inline HeadItem(HeadItem&&) = default;
         inline HeadItem&operator=(const HeadItem &) = default;
         inline HeadItem&operator=(HeadItem&&) = default;
-        inline HeadItem&operator=( const QVariant & arg ) {
+        inline HeadItem&operator=(const QVariant & arg) {
             data = arg.toString();
             return *this;
         }
     };
     sstd::vector<HeadItem> mmmHead;
 private:
-    bool _insertRows(int row, int count, const QModelIndex &parent  ) ;
-    bool _insertColumns(int column, int count, const QModelIndex &parent  ) ;
-    bool _removeRows(int row, int count, const QModelIndex &parent  ) ;
-    bool _removeColumns(int column, int count, const QModelIndex &parent  ) ;
+    bool _insertRows(int row, int count, const QModelIndex &parent);
+    bool _insertColumns(int column, int count, const QModelIndex &parent);
+    bool _removeRows(int row, int count, const QModelIndex &parent);
+    bool _removeColumns(int column, int count, const QModelIndex &parent);
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(ListModel);
 };

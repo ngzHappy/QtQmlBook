@@ -1,11 +1,20 @@
 ﻿#include "ListModel.hpp"
 
-ListModel::ListModel(QObject *parent)
-    : Super(parent) {
-        {
-            auto & varItem = mmmHead.emplace_back();
-            varItem.data = trUtf8(u8R"(表头)");
+ListModel::ListModel(QObject *parent) : Super(parent) {
+    {
+        auto & varItem = mmmHead.emplace_back();
+        varItem.data = trUtf8(u8R"(表头)");
+    }
+    {
+        const constexpr auto varTestSize
+            = 1024 * 1024;
+        mmmData.reserve(varTestSize);
+        for (int i = 0; i < varTestSize; ++i) {
+            auto & varItem = mmmData.emplace_back();
+            varItem.rawString =
+                QString::number(i);
         }
+    }
 }
 
 /*get head ... */
@@ -54,16 +63,16 @@ QModelIndex ListModel::parent(const QModelIndex &index) const {
 
 int ListModel::rowCount(const QModelIndex &parent) const {
     if (!parent.isValid()) {
-        return 0;
+        return static_cast<int>(mmmData.size());
     }
-    return static_cast<int>(mmmData.size());
+    return 0;
 }
 
 int ListModel::columnCount(const QModelIndex &parent) const {
     if (!parent.isValid()) {
-        return 0;
+        return 1;
     }
-    return 1;
+    return 0;
 }
 
 QVariant ListModel::data(const QModelIndex &index, int role) const {
@@ -81,7 +90,6 @@ bool ListModel::setData(
     const QVariant &value,
     int role) {
     if (
-        (role == Qt::EditRole) &&
         (index.row() < static_cast<int>(mmmData.size())) &&
         (data(index, role) != value)) {
         const bool varAns = mmmData[index.row()].setData(role, value);
@@ -95,7 +103,7 @@ Qt::ItemFlags ListModel::flags(const QModelIndex &index) const {
     if (!index.isValid()) {
         return Qt::NoItemFlags;
     }
-    return Qt::ItemIsEditable; // FIXME: Implement me!
+    return Qt::ItemIsEditable;
 }
 
 bool ListModel::insertRows(int row, int count, const QModelIndex &parent) {
@@ -126,26 +134,59 @@ bool ListModel::removeColumns(int column, int count, const QModelIndex &parent) 
     return varAns;
 }
 
+void ListModel::remove(const int & arg) {
+    if (arg < 0) {
+        return;
+    }
+    this->removeRows(arg, 1, {});
+}
 
-bool ListModel::_insertRows(int row, int count, const QModelIndex &parent) try {
+void ListModel::insert(const int & arg) {
+    if (arg < 0) {
+        return;
+    }
+    this->insertRows(arg, 1, {});
+}
+
+bool ListModel::_insertRows(int row, int count, const QModelIndex &) try {
+    if ((row < static_cast<int>(mmmData.size())) && (count > 0)) {
+        for (int i = 0; i < count; ++i) {
+            auto varBegin = mmmData.begin() + row;
+            auto varPos = mmmData.insert(varBegin, {});
+            varPos->rawString = QStringLiteral("X");
+        }
+        return true;
+    } else if (mmmData.empty() && (count > 0)) {
+        mmmData.resize(static_cast<std::size_t>(count));
+        for (auto & varI : mmmData) {
+            varI.rawString = QStringLiteral("X");
+        }
+    }
+    return false;
+} catch (...) {
+    return false;
+}
+
+bool ListModel::_removeRows(int row, int count, const QModelIndex &)try {
+    if ((row < static_cast<int>(mmmData.size())) && (count > 0)) {
+        auto varBegin = mmmData.cbegin() + row;
+        auto varEnd = varBegin + count;
+        mmmData.erase(varBegin, varEnd);
+        return true;
+    }
+    return false;
+} catch (...) {
+    return false;
+}
+
+
+bool ListModel::_insertColumns(int, int, const QModelIndex &)try {
     return true;
 } catch (...) {
     return false;
 }
 
-bool ListModel::_insertColumns(int column, int count, const QModelIndex &parent)try {
-    return true;
-} catch (...) {
-    return false;
-}
-
-bool ListModel::_removeRows(int row, int count, const QModelIndex &parent)try {
-    return true;
-} catch (...) {
-    return false;
-}
-
-bool ListModel::_removeColumns(int column, int count, const QModelIndex &parent)try {
+bool ListModel::_removeColumns(int, int, const QModelIndex &)try {
     return true;
 } catch (...) {
     return false;
@@ -159,7 +200,7 @@ static inline void register_this() {
     qmlRegisterType<ListModel>(
         "sstd.model",
         1, 0,
-        "LIstModel");
+        "ListModel");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
 
