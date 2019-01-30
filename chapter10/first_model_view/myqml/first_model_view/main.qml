@@ -30,8 +30,9 @@ Rectangle {
         }
 
         delegate: Rectangle{
+            id : idDelegate
             width: idList.width
-            height: 32
+            height: 64
             color: rawColor
             Text {
                 anchors.fill: parent ;
