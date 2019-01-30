@@ -38,24 +38,48 @@ public:
     // Remove data:
     bool removeRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
     bool removeColumns(int column, int count, const QModelIndex &parent = QModelIndex()) override;
+
+    virtual QHash<int, QByteArray> roleNames() const override;
 private:
     class Item {
     public:
-        inline operator QVariant() const {
-            return data;
-        }
-        QString data;
+        
+        QString rawString;
+
+        enum class RoleOfItem : int {
+            RawString = Qt::UserRole + 1,
+        };
 
         inline QVariant getData(int role) const {
-            return data;
+            switch (role) {
+                case static_cast<int>(RoleOfItem::RawString) :
+                    return rawString;
+            }
+            return {};
         }
 
         inline bool setData(int role,const QVariant & arg) {
-            return true;
+            switch (role) {
+                case static_cast<int>(RoleOfItem::RawString) : {
+                    rawString = arg.toString();
+                    return true;
+                }
+            }
+            return false;
         }
 
+        inline static QHash<int, QByteArray> roleNames() {
+            const static auto varAns = _roleNames();
+            return varAns;
+        }
 
-
+    private:
+        inline static QHash<int, QByteArray> _roleNames() {
+            QHash<int, QByteArray> varAns;
+            varAns.insert( static_cast<int>(RoleOfItem::RawString), 
+                QByteArrayLiteral("rawString") );
+            return std::move(varAns);
+        }
     };
     sstd::vector<Item> mmmData;
     class HeadItem {

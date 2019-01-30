@@ -147,3 +147,7 @@ bool ListModel::_removeColumns(int column, int count, const QModelIndex &parent)
     return false;
 }
 
+QHash<int, QByteArray> ListModel::roleNames() const {
+    return Item::roleNames();
+}
+
