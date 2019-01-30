@@ -115,7 +115,7 @@ void ListModel::insert(const int & arg) {
 bool ListModel::_insertRows(int row, int count, const QModelIndex &) try {
     if ((row < static_cast<int>(mmmData.size())) && (count > 0)) {
         for (int i = 0; i < count; ++i) {
-            auto varBegin = mmmData.begin() + row;
+            auto varBegin = mmmData.cbegin() + row;
             auto varPos = mmmData.insert(varBegin, Item{});
             varPos->rawString = QStringLiteral("X");
         }
