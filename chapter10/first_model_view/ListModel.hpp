@@ -50,17 +50,18 @@ private:
             RawString = Qt::UserRole + 1,
         };
 
-        inline QVariant getData(int role) const {
+        inline QVariant getData(int argRole) const {
+            const auto role = static_cast<RoleOfItem>(argRole);
             switch (role) {
-                case static_cast<int>(RoleOfItem::RawString) :
-                    return rawString;
+                case RoleOfItem::RawString : return rawString;
             }
             return {};
         }
 
-        inline bool setData(int role,const QVariant & arg) {
+        inline bool setData(int argRole,const QVariant & arg) {
+            const auto role = static_cast<RoleOfItem>(argRole);
             switch (role) {
-                case static_cast<int>(RoleOfItem::RawString) : {
+                case RoleOfItem::RawString : {
                     rawString = arg.toString();
                     return true;
                 }
