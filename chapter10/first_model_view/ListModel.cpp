@@ -57,7 +57,7 @@ QModelIndex ListModel::index(
     (void)parent;
 }
 
-QModelIndex ListModel::parent(const QModelIndex &index) const {
+QModelIndex ListModel::parent(const QModelIndex &) const {
     return {};
 }
 
@@ -99,10 +99,7 @@ bool ListModel::setData(
     return false;
 }
 
-Qt::ItemFlags ListModel::flags(const QModelIndex &index) const {
-    if (!index.isValid()) {
-        return Qt::NoItemFlags;
-    }
+Qt::ItemFlags ListModel::flags(const QModelIndex &) const {
     return Qt::ItemIsEditable;
 }
 
@@ -152,7 +149,7 @@ bool ListModel::_insertRows(int row, int count, const QModelIndex &) try {
     if ((row < static_cast<int>(mmmData.size())) && (count > 0)) {
         for (int i = 0; i < count; ++i) {
             auto varBegin = mmmData.begin() + row;
-            auto varPos = mmmData.insert(varBegin, {});
+            auto varPos = mmmData.insert(varBegin, Item{});
             varPos->rawString = QStringLiteral("X");
         }
         return true;
@@ -161,6 +158,7 @@ bool ListModel::_insertRows(int row, int count, const QModelIndex &) try {
         for (auto & varI : mmmData) {
             varI.rawString = QStringLiteral("X");
         }
+        return true;
     }
     return false;
 } catch (...) {
@@ -178,7 +176,6 @@ bool ListModel::_removeRows(int row, int count, const QModelIndex &)try {
 } catch (...) {
     return false;
 }
-
 
 bool ListModel::_insertColumns(int, int, const QModelIndex &)try {
     return true;
