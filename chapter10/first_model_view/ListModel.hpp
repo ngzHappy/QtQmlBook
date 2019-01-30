@@ -11,10 +11,6 @@ private:
 public:
     explicit ListModel(QObject *parent = nullptr);
 
-    // Header:
-    QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
-    bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role = Qt::EditRole) override;
-
     // Basic functionality:
     QModelIndex index(int row, int column,
         const QModelIndex &parent = QModelIndex()) const override;
@@ -105,23 +101,6 @@ private:
         }
     };
     sstd::vector<Item> mmmData;
-    class HeadItem {
-    public:
-        inline operator QVariant() const {
-            return data;
-        }
-        QString data;
-        inline HeadItem() = default;
-        inline HeadItem(const HeadItem &) = default;
-        inline HeadItem(HeadItem&&) = default;
-        inline HeadItem&operator=(const HeadItem &) = default;
-        inline HeadItem&operator=(HeadItem&&) = default;
-        inline HeadItem&operator=(const QVariant & arg) {
-            data = arg.toString();
-            return *this;
-        }
-    };
-    sstd::vector<HeadItem> mmmHead;
 private:
     bool _insertRows(int row, int count, const QModelIndex &parent);
     bool _insertColumns(int column, int count, const QModelIndex &parent);

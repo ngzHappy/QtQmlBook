@@ -2,10 +2,6 @@
 
 ListModel::ListModel(QObject *parent) : Super(parent) {
     {
-        auto & varItem = mmmHead.emplace_back();
-        varItem.data = trUtf8(u8R"(表头)");
-    }
-    {
         const constexpr auto varTestSize
             = 1024 * 1024;
         mmmData.reserve(varTestSize);
@@ -15,35 +11,6 @@ ListModel::ListModel(QObject *parent) : Super(parent) {
                 QString::number(i);
         }
     }
-}
-
-/*get head ... */
-QVariant ListModel::headerData(
-    int section,
-    Qt::Orientation orientation, int role) const {
-    if (role == Qt::DisplayRole) {
-        if (section < static_cast<int>(mmmHead.size())) {
-            return mmmHead[section];
-        }
-    }
-    return {};
-    (void)orientation;
-}
-
-/*set head ...*/
-bool ListModel::setHeaderData(
-    int section,
-    Qt::Orientation orientation,
-    const QVariant &value,
-    int role) {
-    if ((section < static_cast<int>(mmmHead.size())) &&
-        (role == Qt::DisplayRole) &&
-        (value != headerData(section, orientation, role))) {
-        mmmHead[section] = value;
-        emit headerDataChanged(orientation, section, section);
-        return true;
-    }
-    return false;
 }
 
 QModelIndex ListModel::index(
