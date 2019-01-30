@@ -28,7 +28,8 @@ DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 
 DESTDIR = $${RootDestDir}
 
-SOURCES += $$PWD/main.cpp
+SOURCES += $$PWD/main.cpp \
+    ListModel.cpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
@@ -44,3 +45,6 @@ lupdate_only{
 }
 
 DISTFILES += $$QMLSOURCES
+
+HEADERS += \
+    ListModel.hpp
