@@ -2,6 +2,10 @@
 
 ListModel::ListModel(QObject *parent)
     : Super(parent) {
+        {
+            auto & varItem = mmmHead.emplace_back();
+            varItem.data = trUtf8(u8R"(表头)");
+        }
 }
 
 /*get head ... */
@@ -150,4 +154,14 @@ bool ListModel::_removeColumns(int column, int count, const QModelIndex &parent)
 QHash<int, QByteArray> ListModel::roleNames() const {
     return Item::roleNames();
 }
+
+static inline void register_this() {
+    qmlRegisterType<ListModel>(
+        "sstd.model",
+        1, 0,
+        "LIstModel");
+}
+Q_COREAPP_STARTUP_FUNCTION(register_this)
+
+
 
