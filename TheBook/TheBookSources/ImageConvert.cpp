@@ -18,69 +18,24 @@ bool ImageConvert::needConvert() const {
     return true;
 }
 
-inline static void drawImageBorder(
-    QImage * arg1,
-    int width,
-    const QColor & color) {
+inline static void clipImage(
+    QImage * arg1) {
 
-    auto varTmpImage =
-        arg1->convertToFormat(QImage::Format::Format_RGBA8888);
-    QImage * arg = &varTmpImage;
-
-    class Color {
-    public:
-        std::uint8_t r;
-        std::uint8_t g;
-        std::uint8_t b;
-        std::uint8_t a;
-    };
-
-    const Color varColor{
-        static_cast<std::uint8_t>(color.red() & 255) ,
-        static_cast<std::uint8_t>(color.green() & 255) ,
-        static_cast<std::uint8_t>(color.blue() & 255) ,
-        static_cast<std::uint8_t>(color.alpha() & 255) };
-
-    const auto varSkip = arg->bytesPerLine();
-    auto varBeginOfTheImage = arg->bits();
-    auto varCurrentLine =
-        reinterpret_cast<Color *>(varBeginOfTheImage);
-    auto varCurrentLineBegin = varBeginOfTheImage;
-
-    const auto varImageHeight = arg->height();
-    const auto varImageWidth = arg->width();
-    const auto varLeftLimit = width;
-    const auto varRightLimit = varImageWidth > width ? (varImageWidth - width) : 0;
-    const auto varTopLimit = width;
-    const auto varBottomLimit = varImageHeight > width ? (varImageHeight - width) : 0;
-
-    for (
-        int varLineCount = 0;
-        varLineCount < varImageHeight;
-        ++varLineCount,
-        varCurrentLineBegin += varSkip,
-        varCurrentLine = reinterpret_cast<Color *>(varCurrentLineBegin)) {
-
-        assert(varCurrentLineBegin == arg->constScanLine(varLineCount));
-
-        if ((varLineCount < varTopLimit) || (varLineCount >= varBottomLimit)) {
-            const auto varEnd = varCurrentLine + varImageWidth;
-            for (auto varPos = varCurrentLine; varPos < varEnd; ++varPos) {
-                *varPos = varColor;
-            }
-        } else for (int varColumnCount = 0;
-            varColumnCount < varImageWidth;
-            ++varColumnCount) {
-            if ((varColumnCount < varLeftLimit) || (varColumnCount >= varRightLimit)) {
-                auto varPos =
-                    varCurrentLine + varColumnCount;
-                *varPos = varColor;
-            }
-        }
-
+    if (arg1->width() < 0) {
+        return;
     }
 
-    *arg1 = std::move(*arg);
+    if (arg1->height() < 0) {
+        return;
+    }
+
+    const auto varTmp =
+        arg1->convertToFormat(QImage::Format_RGBA8888);
+
+    *arg1 =
+        varTmp.copy(1, 1,
+            std::max(1, varTmp.width() - 2),
+            std::max(1, varTmp.height() - 2));
 
 }
 
@@ -117,7 +72,7 @@ bool ImageConvert::convert() {
                     output_image_relative_path);
             input_image_full_path = output_image_full_path;
         }
-        drawImageBorder(&varImage, 1, QColor(253, 255, 255, 255));
+        clipImage(&varImage);
         varImage.save(output_image_full_path);
     }
 
