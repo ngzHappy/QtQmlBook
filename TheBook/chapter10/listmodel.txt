@@ -51,7 +51,7 @@
 :tex_raw:[[\end{enumerate}]]
 
 
-
+:the_book_image:[[p000047]]
 
 
 

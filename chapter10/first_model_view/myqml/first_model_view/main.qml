@@ -6,7 +6,7 @@ import sstd.model 1.0 as ThisModel
 
 Rectangle {
     id : idRoot
-    width: 256;
+    width: 308;
     height: 480;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
@@ -16,13 +16,15 @@ Rectangle {
         id : idList
 
         header : Rectangle {
+            color: Qt.rgba(0.5,0.8,0.8,1)
             width: idList.width
-            height: 32
+            height: 16
         }
 
         footer : Rectangle{
+            color: Qt.rgba(0.8,0.5,0.8,1)
             width: idList.width
-            height: 32
+            height: 16
         }
 
         model:  ThisModel.ListModel{
@@ -36,6 +38,7 @@ Rectangle {
             color: rawColor
             Text {
                 anchors.fill: parent ;
+                font.pointSize: 16
                 text: rawString
             }
             RowLayout{
@@ -51,7 +54,8 @@ Rectangle {
                         }
                         if(rawString.substr(0,1)==="-") {
                             if(rawString.length>1){
-                                rawString = rawString.substr(1, rawString.length);
+                                rawString =
+                                        rawString.substr(1, rawString.length);
                             }else{
                                  rawString = 'x';
                             }
