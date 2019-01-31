@@ -43,12 +43,14 @@
 下拉获得更多数据 :tex_raw:[[\\]]
 :tex_raw:[[\end{tabbing}]]
 
-
-
 :tex_raw:[[\FloatBarrier]]
 :the_book_image:[[p000046]]
 
 :tex_raw:[[\end{enumerate}]]
+
+:tex_raw:[===[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QAbstractItemModel重要函数解析]===]
+:the_book_subsection:[[c000019s01s02]]
+
 
 
 :the_book_image:[[p000047]]
