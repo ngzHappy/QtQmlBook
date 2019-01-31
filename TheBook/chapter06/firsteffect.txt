@@ -23,10 +23,10 @@ Qt Graphical Effects提供的
 :the_book_image:[[p000012]]
 
 要使用Qt Graphical Effects
-只需要在Qml文件开头增加一行：:tex_raw:[[\\]]
+只需要在Qml文件开头增加一行：:tex_raw:[[\begin{littlelongworld}]]
 import QtGraphicalEffects 1.12
-
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000051}]]展示了
+:tex_raw:[[\end{littlelongworld}]]
+:tex_raw:[[\hspace*{\parindent}]]:tex_raw:[[\filesourcenumbernameone\ \ref{f000051}]]展示了
 使用“DropShadow”和“InnerShadow”模拟光照，
 以达到模拟立体文字的效果。
 
