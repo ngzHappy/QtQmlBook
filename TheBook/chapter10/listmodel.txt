@@ -29,24 +29,21 @@
 :tex_raw:[[\item ]]如:tex_raw:[[\figurename\ \ref{p000046}]]所示。
 输入类名，并选择所需功能。
 如果没有选择任何功能，则创建一个只读的模型。
+:tex_raw:[[\begin{tabbing}]]
+:tex_raw:[[\textbullet\ ]]Rows and columns can be removed :tex_raw:[[\hspace{2em} \=]] MMM :tex_raw:[[\kill]]
+:tex_raw:[[\textbullet\ ]]Customize header row:tex_raw:[[\>]]
+自定义标题 :tex_raw:[[\\]]
+:tex_raw:[[\textbullet\ ]]Items are editable :tex_raw:[[\>]]
+数据元素可编辑 :tex_raw:[[\\]]
+:tex_raw:[[\textbullet\ ]]Rows and columns can be added :tex_raw:[[\>]]
+可以添加行或列 :tex_raw:[[\\]]
+:tex_raw:[[\textbullet\ ]]Rows and columns can be removed :tex_raw:[[\>]]
+可以删除行或列 :tex_raw:[[\\]]
+:tex_raw:[[\textbullet\ ]]Fetch data dynamically :tex_raw:[[\>]]
+下拉获得更多数据 :tex_raw:[[\\]]
+:tex_raw:[[\end{tabbing}]]
 
-    :tex_raw:[[\begin{itemize}]]
-:tex_raw:[[\item ]]Customize header row
 
-自定义标题
-:tex_raw:[[\item ]]Items are editable
-
-数据元素可编辑
-:tex_raw:[[\item ]]Rows and columns can be added
-
-可以添加行或列
-:tex_raw:[[\item ]]Rows and columns can be removed
-
-可以删除行或列
-:tex_raw:[[\item ]]Fetch data dynamically
-
-下拉获得更多数据
-    :tex_raw:[[\end{itemize}]]
 
 :tex_raw:[[\FloatBarrier]]
 :the_book_image:[[p000046]]
