@@ -1038,7 +1038,7 @@ title=\commandnumbernameone \thecommandnumber
                 varString += qsl(R"(\centering %中心对齐
 )");
                 if (!varDoNotPutFrame) {
-                    varString += qsl(R"(\setlength\fboxsep{0pt}\fbox{)")/*1*/;
+                    varString += qsl(R"(\setlength\fboxsep{0pt}\fcolorbox[rgb]{0,0,0}{0,0,0}{)")/*1*/;
                 }
                 varString += qsl(R"(\includegraphics%1{)").arg(varArgs2[3]);
                 varString += varIsImageConverted? varImageConvert.getRelativePath() : varImagePathRaw ;
