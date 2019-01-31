@@ -481,14 +481,14 @@ public:
                     return false;
                 }
 
-                {
+                {/*...index*/
                     auto & varIndexStream = state
                         ->texBuilderPrivate
                         ->globalSuper
                         ->getTableIndex();
                     varIndexStream << qsl(R"++++(\noindent\tablename\ \ref{)++++");
                     varIndexStream << varKeyLabel;
-                    varIndexStream << qsl(R"++++(},\ \pageref{)++++");
+                    varIndexStream << qsl(R"++++(},\dotfill\pageref{)++++"); 
                     varIndexStream << varKeyLabel;
                     varIndexStream << qsl(R"++++(}%)++++");
                     varIndexStream << varKeyLabel;
@@ -720,14 +720,14 @@ public:
                     varRightKey = varRightKey.arg(varStars);
                 }
 
-                {
+                {/*index ...*/
                     auto & varIndexStream = state
                         ->texBuilderPrivate
                         ->globalSuper
                         ->getSourceIndex();
                     varIndexStream << qsl(R"++++(\noindent\filesourcenumbernameone\ \ref{)++++");
                     varIndexStream << varKeyLabel;
-                    varIndexStream << qsl(R"++++(},\ \pageref{)++++");
+                    varIndexStream << qsl(R"++++(}\dotfill\pageref{)++++");
                     varIndexStream << varKeyLabel;
                     varIndexStream << qsl(R"++++(}%)++++");
                     varIndexStream << varKeyLabel;
@@ -822,7 +822,7 @@ title=\filesourcenumbernameone \thefilesourcenumber
                         ->getDirTreeSourceIndex();
                     varIndexStream << qsl(R"++++(\noindent\treeindexnumbernameone\ \ref{)++++");
                     varIndexStream << varKeyLabel;
-                    varIndexStream << qsl(R"++++(},\ \pageref{)++++");
+                    varIndexStream << qsl(R"++++(}\dotfill\pageref{)++++");
                     varIndexStream << varKeyLabel;
                     varIndexStream << qsl(R"++++(}%)++++");
                     varIndexStream << varKeyLabel;
@@ -917,7 +917,7 @@ title=\treeindexnumbernameone \thetreeindexnumber
                         ->getCommandSourceIndex();
                     varIndexStream << qsl(R"++++(\noindent\commandnumbernameone\ \ref{)++++");
                     varIndexStream << varKeyLabel;
-                    varIndexStream << qsl(R"++++(},\ \pageref{)++++");
+                    varIndexStream << qsl(R"++++(}\dotfill\pageref{)++++");
                     varIndexStream << varKeyLabel;
                     varIndexStream << qsl(R"++++(}%)++++");
                     varIndexStream << varKeyLabel;
@@ -1019,7 +1019,7 @@ title=\commandnumbernameone \thecommandnumber
                         ->getFigureIndex();
                     varIndexStream << qsl(R"++++(\noindent\figurename\ \ref{)++++");
                     varIndexStream << varKeyLabel;
-                    varIndexStream << qsl(R"++++(},\ \pageref{)++++");
+                    varIndexStream << qsl(R"++++(}\dotfill\pageref{)++++");
                     varIndexStream << varKeyLabel;
                     varIndexStream << qsl(R"++++(})++++");
                     varIndexStream << endl << endl;
