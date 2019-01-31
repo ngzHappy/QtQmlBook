@@ -72,6 +72,9 @@ SOURCES += $$PWD/TheBookSources/ImageConvert.cpp
 HEADERS += $$PWD/TheBookSources/TexBuilder.hpp
 SOURCES += $$PWD/TheBookSources/TexBuilder.cpp
 
+HEADERS += $$PWD/TheBookSources/CreateMakeFile.hpp
+SOURCES += $$PWD/TheBookSources/CreateMakeFile.cpp
+
 DEFINES *= THE_PROJECT_PWD_DIR=\\\"$${PWD}\\\"
 
 DISTFILES += $$PWD/TheBookSources/the_book_constexpr.txt
