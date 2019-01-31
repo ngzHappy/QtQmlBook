@@ -87,9 +87,12 @@ public:
                 const auto & varR = varR_;
 
                 while (false == varStream.atEnd()) {
-                    auto varLine =
+                    const auto varLine =
                         varStream.readLine().trimmed();
-                    auto varMatched =
+                    if (varLine.size() < 6/*\input*/) {
+                        continue;
+                    }
+                    const auto varMatched =
                         varR.match(varLine);
                     if (varMatched.hasMatch()) {
                         auto varFile = varMatched.captured(1);
