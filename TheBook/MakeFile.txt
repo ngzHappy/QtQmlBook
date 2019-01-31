@@ -55,6 +55,8 @@ chapter07/chapter07.txt
 chapter08/chapter08.txt
 chapter09/chapter09.txt
 chapter10/chapter10.txt
+chapter10/listmodel.txt
+chapter10/treemodel.txt
 
 
 
