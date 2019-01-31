@@ -1,6 +1,7 @@
 ﻿#include "output_main_index.hpp"
 #include "OutPutStream.hpp"
 #include "TexBuilder.hpp"
+#include "CreateMakeFile.hpp"
 #include <optional>
 
 namespace {
@@ -138,6 +139,11 @@ extern void output_main_index() try {
 #ifdef _DEBUG
     test_this();
 #endif
+
+    {
+        CreateMakeFile varCreateMakeFile;
+        varCreateMakeFile.createMakeFile();
+    }
 
     ThisGlobalTexBuilder varGlobalTexBuilder;
     if (false == build_make_files(&varGlobalTexBuilder)) {

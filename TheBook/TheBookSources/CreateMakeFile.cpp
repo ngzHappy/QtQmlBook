@@ -27,7 +27,12 @@ namespace this_file {
 
         inline static std::shared_ptr<Duty> createADuty(const QString & arg) {
             auto varAns = std::make_shared<Duty>();
-            varAns->filePath = arg;
+            {
+                const auto varOutPutDir = getOutPutFileDir();
+                const auto varRootPath =
+                    varOutPutDir.absoluteFilePath(arg);
+                varAns->filePath = varRootPath;
+            }
             return std::move(varAns);
         }
 
@@ -45,11 +50,8 @@ public:
 
     inline bool createMakeFile(this_file::CreateMakeFileState * arg) {
         {
-            const auto varOutPutDir = getOutPutFileDir();
-            const auto varRootPath =
-                varOutPutDir.absoluteFilePath(args->rootFileName);
             arg->dutys.push_front(
-                this_file::CreateMakeFileState::createADuty(varRootPath));
+                this_file::CreateMakeFileState::createADuty( args->rootFileName ));
         }
 
         while (arg->dutys.empty() == false) {
@@ -76,18 +78,28 @@ public:
             }
 
             this_file::CreateMakeFileState::DutysType varThisFileDutys;
-            InputStream varStream{ &varReadFile };
-            const static QRegularExpression varR_{ QStringLiteral(
-                R"(^\s*\\input\s*\{([^}]+)\}\s*$)") };
-            const auto & varR = varR_;
 
-            while (false == varStream.atEnd()) {
-                auto varLine =
-                    varStream.readLine().trimmed();
-                auto varMatched =
-                    varR_.match(varLine);
-                if (varMatched.hasMatch()) {
-                    qDebug() << varMatched.captured(0);
+            {
+                InputStream varStream{ &varReadFile };
+                const static QRegularExpression varR_{ QStringLiteral(
+                    R"(^\s*\\input\s*\{([^}]+)\}.*)") };
+                const auto & varR = varR_;
+
+                while (false == varStream.atEnd()) {
+                    auto varLine =
+                        varStream.readLine().trimmed();
+                    auto varMatched =
+                        varR.match(varLine);
+                    if (varMatched.hasMatch()) {
+                        auto varFile = varMatched.captured(1);
+                        if (varFile.endsWith(QStringLiteral(".tex"), Qt::CaseInsensitive)) {
+                            varFile.chop(2);
+                            varFile += QStringLiteral("xt");
+                            varThisFileDutys.push_back(
+                                this_file::CreateMakeFileState::createADuty(varFile)
+                            );
+                        }
+                    }
                 }
             }
 

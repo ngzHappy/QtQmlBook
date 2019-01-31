@@ -4,7 +4,7 @@
 
 class CreateMakeFileConstruct {
 public:
-    virtual ~CreateMakeFileConstruct();
+    virtual ~CreateMakeFileConstruct() = default;
     QString rootFileName;
     inline CreateMakeFileConstruct(
         const QString & argRootFileName = QStringLiteral("main_index.txt")
