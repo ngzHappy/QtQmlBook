@@ -6,7 +6,7 @@ import QtQuick.Layouts 1.12
 Rectangle {
     id : idRoot
     width: 640;
-    height: 480;
+    height: 128;
     color: Qt.rgba(0.8,0.8,0.8,1);
 
     ListView{
@@ -23,6 +23,7 @@ Rectangle {
                 text: rawString
                 verticalAlignment:Text.AlignVCenter
                 horizontalAlignment:Text.AlignHCenter
+                font.pointSize: 24
             }
         }
 
