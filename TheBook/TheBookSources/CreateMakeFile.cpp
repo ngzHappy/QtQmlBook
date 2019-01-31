@@ -61,16 +61,16 @@ public:
 
             QFileInfo varInfo{ varDuty->filePath };
             {
-                if (varInfo.exists() == false) {
+                if (varInfo.exists() == false) {/*忽略不存在的file...*/
                     continue;
                 }
-                if (varInfo.isFile() == false) {
+                if (varInfo.isFile() == false) {/*忽略文件夹...*/
+                    continue;
+                }
+                if (!(varInfo.suffix().toLower() == QStringLiteral("txt"))) {/*只编译txt...*/
                     continue;
                 }
                 arg->ans.emplace_back(std::move(varInfo));
-                if (!(varInfo.suffix().toLower() == QStringLiteral("txt"))) {
-                    continue;
-                }
             }
 
             QFile varReadFile{ varInfo.absoluteFilePath() };
@@ -80,10 +80,10 @@ public:
 
             this_file::CreateMakeFileState::DutysType varThisFileDutys;
 
-            {
+            {/*寻找符合\input{???} 的语句*/
                 InputStream varStream{ &varReadFile };
                 const static QRegularExpression varR_{ QStringLiteral(
-                    R"(^\s*\\input\s*\{([^}]+)\}.*)") };
+                    R"(^(?::tex_raw:\[[=]*\[)?\s*\\input\s*\{([^}]+)\}.*)") };
                 const auto & varR = varR_;
 
                 while (false == varStream.atEnd()) {
