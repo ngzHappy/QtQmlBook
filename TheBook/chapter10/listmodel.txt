@@ -48,8 +48,44 @@
 
 :tex_raw:[[\end{enumerate}]]
 
+:tex_raw:[===[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%模型与地址]===]
+:the_book_subsection:[[c000019s01s03]]
+
+:the_book_image:[[p000048]]
+
+如:tex_raw:[[\figurename\ \ref{p000048}]]，展示了一个深度
+为2的一棵QAbstractItemModel树。
+
+:tex_raw:[===[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QAbstractItemModel根]===]
+:the_book_subsubsection:[[c000019s01s03s01]]
+
 :tex_raw:[===[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QAbstractItemModel重要函数解析]===]
 :the_book_subsection:[[c000019s01s02]]
+
+:tex_raw:[===[
+\begin{comment}
+
+QHash<int, QByteArray> roleNames() const
+
+Qt::ItemFlags flags(const QModelIndex &index) const
+
+QModelIndex index(int row, int column, const QModelIndex &parent) const
+QModelIndex parent(const QModelIndex &index) const
+
+int rowCount(const QModelIndex &parent) const
+int columnCount(const QModelIndex &parent) const
+
+QVariant data(const QModelIndex &index, int role) const
+bool setData(const QModelIndex &index, const QVariant &value, int role)
+
+bool insertRows(int row, int count, const QModelIndex &parent)
+bool insertColumns(int column, int count, const QModelIndex &parent)
+
+bool removeRows(int row, int count, const QModelIndex &parent)
+bool removeColumns(int column, int count, const QModelIndex &parent)
+
+\end{comment}
+]===]
 
 
 

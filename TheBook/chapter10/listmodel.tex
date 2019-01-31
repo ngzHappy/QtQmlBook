@@ -77,8 +77,6 @@
 下拉获得更多数据 \\
 \end{tabbing}
 
-
-
 \FloatBarrier
 %begin图片
 \begin{figure}[htb] %浮动体 here and top ...
@@ -92,6 +90,67 @@
 
 
 \end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%模型与地址
+\FloatBarrier
+\subsection{
+模型与地址
+}\label{c000019s01s03}
+
+
+%begin图片
+\begin{figure}[htb] %浮动体 here and top ...
+%there must use marginnote ...
+\marginnote{\setlength\fboxsep{2pt}\fbox{\footnotesize{\kaishu\figurename\,}\footnotesize{\ref{p000048}}}}\centering %中心对齐
+\includegraphics[width=7.5cm]{chapter10/images/ModelAndIndex.pdf} %图片路径
+\caption{Qt Model模型} %标题
+\label{p000048} %索引
+\end{figure}
+%end图片
+
+
+如\figurename\ \ref{p000048}，展示了一个深度
+为2的一棵QAbstractItemModel树。
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QAbstractItemModel根
+\FloatBarrier
+\subsubsection{
+根
+}\label{c000019s01s03s01}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QAbstractItemModel重要函数解析
+\FloatBarrier
+\subsection{
+QAbstractItemModel重要函数解析
+}\label{c000019s01s02}
+
+
+
+\begin{comment}
+
+QHash<int, QByteArray> roleNames() const
+
+Qt::ItemFlags flags(const QModelIndex &index) const
+
+QModelIndex index(int row, int column, const QModelIndex &parent) const
+QModelIndex parent(const QModelIndex &index) const
+
+int rowCount(const QModelIndex &parent) const
+int columnCount(const QModelIndex &parent) const
+
+QVariant data(const QModelIndex &index, int role) const
+bool setData(const QModelIndex &index, const QVariant &value, int role)
+
+bool insertRows(int row, int count, const QModelIndex &parent)
+bool insertColumns(int column, int count, const QModelIndex &parent)
+
+bool removeRows(int row, int count, const QModelIndex &parent)
+bool removeColumns(int column, int count, const QModelIndex &parent)
+
+\end{comment}
+
+
 
 
 %begin图片
