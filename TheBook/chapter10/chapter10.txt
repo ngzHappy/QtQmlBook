@@ -29,10 +29,15 @@ Qt Widgets中的模型视图非常难用。
 即使模型拥有高达数亿元素。
 Qt Quick的模型视图架构也可以快速
 布局。
-最终，只有可见元素被渲染，而不可见元素
+最终，只有当前可见部分被渲染，而当前不可见部分
 除了布局信息之外，不耗费任何额外资源。
 
+:tex_raw:[[
 
+\input{chapter10/listmodel.tex}
+\input{chapter10/treemodel.tex}
+
+]]
 
 
 
