@@ -74,7 +74,7 @@
 \textbullet\ Rows and columns can be removed \>
 可以删除行或列 \\
 \textbullet\ Fetch data dynamically \>
-下拉获得更多数据 \\
+下拉获得更多数据  
 \end{tabbing}
 
 \FloatBarrier
@@ -109,14 +109,58 @@
 %end图片
 
 
-如\figurename\ \ref{p000048}，展示了一个深度
-为2的一棵QAbstractItemModel树。
+如\figurename\ \ref{p000048}，展示了一棵深度
+为2的QAbstractItemModel树。
+
+一维表，二维表，树都是通过
+QAbstractItemModel
+包装的。
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QAbstractItemModel根
 \FloatBarrier
 \subsubsection{
 根
 }\label{c000019s01s03s01}
+
+在Qt项视图架构体系里，根是一个无效的QModelIndex。
+QModelIndex的默认构造函数就是构造一个无效的索引，也就代表根。
+
+\FloatBarrier
+\subsubsection{
+项
+}\label{c000019s01s03s02}
+
+在Qt项视图架构体系里，项是一个有效的QModelIndex。
+
+一个有效的QModelIndex包含
+四个元素：\begin{tabbing}
+\hspace*{\parindent}\textbullet\ QAbstractItemModel \raisebox{-0.35ex}{\sourcefonttwo{}*}  \ \ \= \kill
+\hspace*{\parindent}\textbullet\ int                   \> row  \\
+\hspace*{\parindent}\textbullet\ int                   \> column  \\
+\hspace*{\parindent}\textbullet\ quintptr              \> internalid/internalPointer \\
+\hspace*{\parindent}\textbullet\ QAbstractItemModel \raisebox{-0.35ex}{\sourcefonttwo{}*}  \> model 
+\end{tabbing}
+ 
+一个有效的QModelIndex可以由\begin{littlelongworld}
+QModelIndex QAbstractItemModel::createIndex(int r, int c, void \raisebox{-0.35ex}{\sourcefonttwo{}*}p{\sourcefonttwo{}=}nullptr) const
+\end{littlelongworld}
+或\begin{littlelongworld}
+QModelIndex QAbstractItemModel::createIndex(int r, int c, quintptr id) const
+\end{littlelongworld}
+构造。
+
+QModelIndex与stl迭代器类似，在使用过程中会出现失效问题。
+如果需要缓存QModelIndex则需要使用QPersistentModelIndex
+进行包装。在使用之前使用\begin{littlelongworld}
+bool QPersistentModelIndex::isValid() const
+\end{littlelongworld}
+进行有效性判断。
+
+
+\FloatBarrier
+\subsubsection{
+父项
+}\label{c000019s01s03s03}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%QAbstractItemModel重要函数解析
