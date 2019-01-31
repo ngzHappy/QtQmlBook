@@ -1,4 +1,5 @@
 ﻿#include "CreateMakeFile.hpp"
+#include "OutPutStream.hpp"
 #include <list>
 
 namespace this_file {
@@ -51,7 +52,7 @@ public:
     inline bool createMakeFile(this_file::CreateMakeFileState * arg) {
         {
             arg->dutys.push_front(
-                this_file::CreateMakeFileState::createADuty( args->rootFileName ));
+                this_file::CreateMakeFileState::createADuty(args->rootFileName));
         }
 
         while (arg->dutys.empty() == false) {
@@ -66,8 +67,8 @@ public:
                 if (varInfo.isFile() == false) {
                     continue;
                 }
+                arg->ans.emplace_back(std::move(varInfo));
                 if (!(varInfo.suffix().toLower() == QStringLiteral("txt"))) {
-                    arg->ans.emplace_back(std::move(varInfo));
                     continue;
                 }
             }
@@ -103,6 +104,27 @@ public:
                 }
             }
 
+            arg->dutys.splice(
+                arg->dutys.cbegin(),
+                std::move(varThisFileDutys));
+
+        }
+
+        QFile varFile{ getOutPutFileFullPath(
+            QStringLiteral("MakeFile.txt"))
+        };
+
+        if (false == varFile.open(QIODevice::WriteOnly)) {
+            return false;
+        }
+
+        OutPutFileStream varOutPut{ &varFile };
+
+        for (const auto & varAns : arg->ans) {
+            varOutPut <<
+                getOutPutFileDir().relativeFilePath(
+                    varAns.data.canonicalFilePath());
+            varOutPut << endl;
         }
 
         return true;
