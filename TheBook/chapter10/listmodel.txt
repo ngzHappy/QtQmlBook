@@ -1,11 +1,57 @@
 ﻿
 :tex_raw:[===[%导引]===]
 
+:the_book_section:[[c000019s01]]
 
+:tex_raw:[===[%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%导引]===]
 
+:the_book_subsection:[[c000019s01s01]]
 
+无论是对于初学者还是老手，
+通过继承自QAbstractItemModel
+创建自己的模型都是一件麻烦的事。
 
+所幸的是QtCreator可以帮助我们快速的
+创建出我们所需的模型的架构。
 
+:tex_raw:[[\begin{enumerate}]]
+
+:tex_raw:[[\item ]]如:tex_raw:[[\figurename\ \ref{p000044}]]所示。
+在项目名称单击右键，选择“Add New:tex_raw:[=[\ldots]=]”。
+:tex_raw:[[\FloatBarrier]]
+:the_book_image:[[p000044]]
+
+:tex_raw:[[\item ]]如:tex_raw:[[\figurename\ \ref{p000045}]]所示。
+选择“Qt Item Model”模板。
+:tex_raw:[[\FloatBarrier]]
+:the_book_image:[[p000045]]
+
+:tex_raw:[[\item ]]如:tex_raw:[[\figurename\ \ref{p000046}]]所示。
+输入类名，并选择所需功能。
+如果没有选择任何功能，则创建一个只读的模型。
+
+    :tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]Customize header row
+
+自定义标题
+:tex_raw:[[\item ]]Items are editable
+
+数据元素可编辑
+:tex_raw:[[\item ]]Rows and columns can be added
+
+可以添加行或列
+:tex_raw:[[\item ]]Rows and columns can be removed
+
+可以删除行或列
+:tex_raw:[[\item ]]Fetch data dynamically
+
+下拉获得更多数据
+    :tex_raw:[[\end{itemize}]]
+
+:tex_raw:[[\FloatBarrier]]
+:the_book_image:[[p000046]]
+
+:tex_raw:[[\end{enumerate}]]
 
 
 

@@ -103,6 +103,7 @@ c000018::::控件
 %第十章
 c000019::::模型视图
 c000019s01::::自定义表模型
+c000019s01s01::::使用QtCreator快速创建模型
 c000019s02::::自定义树模型
 
 
@@ -148,8 +149,9 @@ p000040::::RectangularGlow::::../chapter06/rectangularglow_effect/the_app.png:::
 p000041::::OpacityMask::::../chapter06/opacitymask_effect/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000042::::ThresholdMask::::../chapter06/thresholdmask_effect/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000043::::QDoc::::chapter02/image/qdoc.png::::[htb]::::[width=0.95\textwidth]
-
-
+p000044::::使用QtCreator创建模型::::chapter10/images/qtcreator_make_model_00.png::::[htb]::::[width=0.95\textwidth]
+p000045::::使用QtCreator创建模型::::chapter10/images/qtcreator_make_model_01.png::::[htb]::::[width=0.95\textwidth]
+p000046::::使用QtCreator创建模型::::chapter10/images/qtcreator_make_model_02.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
