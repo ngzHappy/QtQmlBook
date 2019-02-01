@@ -36,13 +36,13 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/system_particlesystem/ParticleGroupOfSystem.qml
+QMLSOURCES += $$PWD/myqml/charts/ParticleGroupOfSystem.qml
 
-QMLSOURCES += $$PWD/myqml/system_particlesystem/main.qml
-QMLSOURCES += $$PWD/myqml/system_particlesystem/DemoBasic.qml
-QMLSOURCES += $$PWD/myqml/system_particlesystem/main_private/MainListItem.qml
-QMLSOURCES += $$PWD/myqml/system_particlesystem/main_private/MainListModel.qml
-QMLSOURCES += $$PWD/myqml/system_particlesystem/main_private/MainListView.qml
+QMLSOURCES += $$PWD/myqml/charts/main.qml
+QMLSOURCES += $$PWD/myqml/charts/DemoBasic.qml
+QMLSOURCES += $$PWD/myqml/charts/main_private/MainListItem.qml
+QMLSOURCES += $$PWD/myqml/charts/main_private/MainListModel.qml
+QMLSOURCES += $$PWD/myqml/charts/main_private/MainListView.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
