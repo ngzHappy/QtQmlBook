@@ -2,7 +2,11 @@
 :the_book_chapter:[==[c000017]==]
 
 
+:tex_raw:[[
 
+\input{chapter08/charts/charts.tex}
+
+]]
 
 
 
