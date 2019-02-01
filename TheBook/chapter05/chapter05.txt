@@ -1,4 +1,14 @@
 ﻿
+:tex_raw:[[
+% the_book_chapter
+% the_book_subsection
+% the_book_subsubsection
+% the_book_section
+% the_book_image
+% the_book_table
+% the_book_file
+]]
+
 :the_book_chapter:[==[c000014]==]
 
 Qt Quick自带一个艺术级的粒子系统模块。
@@ -13,8 +23,14 @@ Qt Quick自带一个艺术级的粒子系统模块。
 Qt Quick自带的粒子系统显然
 不是一个好的选择。
 
-
-
+本书不打算介绍Qt Quick自定义
+粒子系统。
+因为，对于常见
+粒子效果，Qt Quick可以轻松实现。
+而对于那些不得不使用Qt Quick自定义
+粒子系统实现的复杂效果，没有必要
+非要在Qt Quick粒子系统里
+绕圈，直接使用3D API实现即可。
 
 
 
