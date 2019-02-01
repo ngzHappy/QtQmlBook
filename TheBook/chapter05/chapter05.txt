@@ -22,6 +22,53 @@ Qt Quick自带的粒子系统显然
 非要在Qt Quick粒子系统里
 绕圈，直接使用3D API实现即可。
 
+:tex_raw:[[%导引]]
+:the_book_section:[[c000014s01]]
+
+:tex_raw:[[\begin{comment}
+https://www.kancloud.cn/cloudcastle/qt5-demo/109870
+Using the Qt Quick Particle System
+http://doc.qt.io/qt-5/qtquick-effects-particles.html
+\end{comment}]]
+
+要使用Qt Quick Particles体系只需要在Qml文件
+开头添加:tex_raw:[[\begin{littlelongworld}]]
+import QtQuick.Particles 2.12
+:tex_raw:[[\end{littlelongworld}]]
+即可。
+
+Qt Quick粒子系统由
+粒子绘制器（ParticlePainter）、
+粒子组（ParticleGroup）、
+系统（ParticleSystem）、
+发射器（Emitter）
+以及
+影响器（Affector）
+构成。
+
+逻辑粒子（Logical Particle）
+在一个时刻只被分到一个粒子组。
+在运行时，逻辑粒子的粒子组可以改变。
+
+在一个时刻，一个粒子组只对应于一个
+粒子绘制器。
+
+因而，在运行时，改变逻辑粒子的粒子组可以
+改变逻辑粒子的外观但不改变逻辑粒子的运动
+状态。
+
+特别的，如果粒子组没有对应粒子绘制器，
+那么属于该粒子组的逻辑粒子不可见。
+
+发射器可以给逻辑粒子一个初始位置、寿命、速度以及加速度，
+并影响逻辑粒子的密度。
+
+影响器可以在粒子发射之后改变
+粒子的运行状态。
+
+系统可以可以从全局监视和控制粒子系统的运行状态。
+
+
 
 :tex_raw:[[
 % ______all_key_words
