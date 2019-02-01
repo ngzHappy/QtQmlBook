@@ -1,4 +1,5 @@
-﻿import QtQuick 2.11
+﻿
+import QtQuick 2.11
 import QtQuick.Particles 2.0
 
 DemoBasic {
@@ -27,17 +28,35 @@ DemoBasic {
             emitRate : 2500 ;
             maximumEmitted : 500 ;
             lifeSpan : 1000 ;
-            x : idRoot.width * 0.5 ;
-            y : idRoot.height * 0.5 ;
             Component.onCompleted: {
-                pulse( Math.min(
-                          lifeSpan,
-                          maximumEmitted/emitRate * 1000)
-                      );
+                burst(500 ,
+                      idRoot.width * 0.5 ,
+                      idRoot.height * 0.5 );
             }
         }
 
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

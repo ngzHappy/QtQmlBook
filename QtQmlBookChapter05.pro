@@ -8,6 +8,9 @@ SUBDIRS += app_emitters_particlesystem
 app_affectors_particlesystem.file = $$PWD/chapter05/affectors_particlesystem/affectors_particlesystem.pro
 SUBDIRS += app_affectors_particlesystem
 
+app_system_particlesystem.file = $$PWD/chapter05/system_particlesystem/system_particlesystem.pro
+SUBDIRS += app_system_particlesystem
+
 app_firstparticlesystem.file = $$PWD/chapter05/firstparticlesystem/firstparticlesystem.pro
 SUBDIRS += app_firstparticlesystem
 

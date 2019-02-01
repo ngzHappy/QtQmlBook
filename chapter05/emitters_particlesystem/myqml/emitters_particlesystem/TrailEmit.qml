@@ -48,10 +48,10 @@ DemoBasic {
             lifeSpan : 500;
             system: idParticleSystem ;
             velocity: PointDirection{
-                x : -200 ;
-                y :  100;
-                yVariation: 12
-                xVariation: 64
+                x : -200      ;
+                y :  100      ;
+                yVariation: 12;
+                xVariation: 64;
             }
         }
 
