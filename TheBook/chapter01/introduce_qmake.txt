@@ -270,7 +270,7 @@ QMAKE_POST_LINK。
 
 读者可以在Qt安装目录下找到“qtenv2.bat”文件。其中一个合法路径是：
 :tex_raw:[[\begin{littlelongworld}]]
-"C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\bin\qtenv2.bat"
+C:\Qt\Qt5.12.0\5.12.0\msvc2017_64\bin\qtenv2.bat
 :tex_raw:[[\end{littlelongworld}]]
 :tex_raw:[[\hspace*{\parindent}]]读者要修改“qtenv2.bat”文件。
 32位开发环境将“vcvarsall.bat”或
