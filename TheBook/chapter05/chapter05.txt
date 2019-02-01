@@ -1,14 +1,4 @@
 ﻿
-:tex_raw:[[
-% the_book_chapter
-% the_book_subsection
-% the_book_subsubsection
-% the_book_section
-% the_book_image
-% the_book_table
-% the_book_file
-]]
-
 :the_book_chapter:[==[c000014]==]
 
 Qt Quick自带一个艺术级的粒子系统模块。
@@ -33,9 +23,15 @@ Qt Quick自带的粒子系统显然
 绕圈，直接使用3D API实现即可。
 
 
-
-
-
-
+:tex_raw:[[
+% ______all_key_words
+% the_book_chapter the_book_subsection the_book_subsubsection
+% the_book_section the_book_image the_book_table
+% the_book_file the_book_tree_file the_book_command_file
+% littlelongworld tabbing ref
+% figurename tablename filesourcenumbernameone
+% treeindexnumbernameone commandnumbernameone footnote 
+% item itemize
+]]
 
 
