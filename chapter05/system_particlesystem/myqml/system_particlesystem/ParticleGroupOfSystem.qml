@@ -118,7 +118,7 @@ DemoBasic {
 
 }
 
-
+/*http://doc.qt.io/qt-5/qtquick-effects-particles.html*/
 
 
 
