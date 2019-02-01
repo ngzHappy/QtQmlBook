@@ -31,7 +31,7 @@ Qt Quick自带的粒子系统显然
 % littlelongworld tabbing ref
 % figurename tablename filesourcenumbernameone
 % treeindexnumbernameone commandnumbernameone footnote 
-% item itemize
+% item itemize comment textbullet
 ]]
 
 
