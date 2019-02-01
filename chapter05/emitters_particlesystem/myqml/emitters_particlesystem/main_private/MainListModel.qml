@@ -29,5 +29,10 @@ ListModel {
         programSource : "../TrailEmit.qml";
     }
 
+     ListElement {
+        programName :  QT_TR_NOOP("脉冲发射(Pulse Emit.qml)") ;
+        programSource : "../PulseOfEmit.qml";
+    }
+
 }
 

@@ -41,12 +41,14 @@ QMLSOURCES += $$PWD/myqml/emitters_particlesystem/VelocityOfEmit.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/AccelerationEmit.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/TrailEmit.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/VelocityFromMovementOfEmit.qml
+QMLSOURCES += $$PWD/myqml/emitters_particlesystem/PulseOfEmit.qml
 
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/DemoBasic.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main_private/MainListItem.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main_private/MainListModel.qml
 QMLSOURCES += $$PWD/myqml/emitters_particlesystem/main_private/MainListView.qml
+
 lupdate_only{
     SOURCES += $$QMLSOURCES
 }
