@@ -28,8 +28,9 @@ $v$代表最终结果。}
 Blend特效感到好奇。
 这一切没有什么秘密，Qt本身就是开源的。
 读者可以下载Qt源代码，并找到Blend.qml文件，
-它一般位于如下位置：:tex_raw:[[\\]]
+它一般位于如下位置：:tex_raw:[[\begin{littlelongworld}]]
 Qt/qtgraphicaleffects/src/effects/Blend.qml
+:tex_raw:[[\end{littlelongworld}]]
 
 其源代码如:tex_raw:[[\filesourcenumbernameone\ \ref{f000050}]]。
 本书为了便于印刷删除了注释与空行
@@ -44,4 +45,14 @@ ShaderEffect的一个具体应用罢了。
 特效。
 
 
+:tex_raw:[[
+% ______all_key_words
+% the_book_chapter the_book_subsection the_book_subsubsection
+% the_book_section the_book_image the_book_table
+% the_book_file the_book_tree_file the_book_command_file
+% littlelongworld tabbing ref
+% figurename tablename filesourcenumbernameone
+% treeindexnumbernameone commandnumbernameone footnote 
+% item itemize comment textbullet
+]]
 
