@@ -53,6 +53,8 @@ chapter06/OpacityMask.txt
 chapter06/ThresholdMask.txt
 chapter07/chapter07.txt
 chapter08/chapter08.txt
+chapter08/charts/charts.txt
+chapter08/charts/first_chart.txt
 chapter09/chapter09.txt
 chapter10/chapter10.txt
 chapter10/listmodel.txt
