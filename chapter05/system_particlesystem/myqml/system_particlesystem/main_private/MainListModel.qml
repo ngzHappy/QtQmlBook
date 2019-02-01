@@ -5,8 +5,8 @@ ListModel {
 
     /****/
     ListElement {
-        programName :  QT_TR_NOOP("遮罩(MaskEmit.qml)") ;
-        programSource : "../MaskEmit.qml";
+        programName :  QT_TR_NOOP("组(ParticleGroup.qml)") ;
+        programSource : "../ParticleGroupOfSystem.qml";
     }
 
 }

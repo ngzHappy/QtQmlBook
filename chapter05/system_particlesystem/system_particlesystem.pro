@@ -36,6 +36,7 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
+QMLSOURCES += $$PWD/myqml/system_particlesystem/ParticleGroupOfSystem.qml
 
 QMLSOURCES += $$PWD/myqml/system_particlesystem/main.qml
 QMLSOURCES += $$PWD/myqml/system_particlesystem/DemoBasic.qml
