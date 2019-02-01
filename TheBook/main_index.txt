@@ -134,9 +134,12 @@ belowcaptionskip=5pt
 \CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
 
+% Calibri
+% http://www.uisdc.com/western-fonts-typesetting
+\newfontfamily{\sourcefontfive}{Calibri}
 \newenvironment{littlelongworld}
-{ \\\hspace*{\fill}\slshape\sourcefontone\fontsize{9pt}{\baselineskip}\selectfont }
-{   \hspace*{\fill}\\ }
+{  \small         \\\hspace*{\fill} \slshape\sourcefontfive   }
+{                   \hspace*{\fill}\\ }
 
 %设置路径计数器
 \newcommand\treeindexnumbernameone{路径}
