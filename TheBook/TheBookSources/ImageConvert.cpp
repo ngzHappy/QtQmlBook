@@ -57,13 +57,23 @@ static inline bool convert_image_to_pdf(
      * 8.27in x 11.69in,
      * or 595pt x 842pt.*/
 
-     /*宽度大概是16.2cm*/
-    const constexpr auto varImgageWidth = 460;
-    /*根据宽度计算高度*/
-    const auto varImageHeigth = static_cast<int>(0.5 +
-        varImgageWidth *
-        double(varImage.height())
-        / double(varImage.width()));
+     /*460大概是16.2cm*/
+    auto varImgageWidth = 460;
+    auto varImageHeigth = 460;
+
+    if (varImage.height() > varImage.width()) {
+        const auto varR = double(varImage.width())
+            / double(varImage.height());
+        /*根据高度计算宽度*/
+        varImgageWidth = static_cast<int>(0.5 +
+            varImageHeigth * varR);
+    } else {
+        const auto varR = double(varImage.height())
+            / double(varImage.width());
+        /*根据宽度计算高度*/
+        varImageHeigth = static_cast<int>(0.5 +
+            varImgageWidth * varR);
+    }
 
     /*打开写文件*/
     QFile varPDFFile{ argPdfFileName };
