@@ -1,4 +1,4 @@
-
+﻿
 :the_book_section:[[c000015s000002]]
 
 Blend特效常用属性
@@ -43,7 +43,6 @@ ShaderEffect的一个具体应用罢了。
 读者也可以结合本书第:tex_raw:[[ \ref{c000011}]]章的内容写自己的
 特效。
 
-
 :tex_raw:[[
 % ______all_key_words
 % the_book_chapter the_book_subsection the_book_subsubsection
@@ -53,5 +52,6 @@ ShaderEffect的一个具体应用罢了。
 % figurename tablename filesourcenumbernameone
 % treeindexnumbernameone commandnumbernameone footnote 
 % item itemize comment textbullet
+% \hspace*{\parindent}
 ]]
 

@@ -68,8 +68,6 @@ Qt Quick粒子系统由
 
 系统可以可以从全局监视和控制粒子系统的运行状态。
 
-
-
 :tex_raw:[[
 % ______all_key_words
 % the_book_chapter the_book_subsection the_book_subsubsection
@@ -79,6 +77,6 @@ Qt Quick粒子系统由
 % figurename tablename filesourcenumbernameone
 % treeindexnumbernameone commandnumbernameone footnote 
 % item itemize comment textbullet
+% \hspace*{\parindent}
 ]]
-
 

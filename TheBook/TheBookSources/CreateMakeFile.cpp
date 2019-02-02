@@ -1,6 +1,7 @@
 ﻿#include "CreateMakeFile.hpp"
 #include "OutPutStream.hpp"
 #include <list>
+#include <vector>
 
 namespace this_file {
 
@@ -47,6 +48,97 @@ public:
 
     inline CreateMakeFilePrivate(std::shared_ptr< const CreateMakeFileConstruct > && v) :
         args(std::move(v)) {
+    }
+
+    inline void updateKeywords(this_file::CreateMakeFileState * arg) {
+        for (const auto & varAns : arg->ans) {
+
+            std::vector< QString > varAllLines;
+            using cit =
+                std::vector< QString >::const_iterator;
+            cit varCurrentDeletePos = varAllLines.cend();
+
+            {
+                QFile varFile{ varAns.data.absoluteFilePath() };
+                if (!varFile.open(QIODevice::ReadOnly)) {
+                    continue;
+                }
+                InputStream varReadStream{ &varFile };
+                while (!varReadStream.atEnd()) {
+                    varAllLines.push_back(varReadStream.readLine());
+                }
+            }
+
+            {
+                /*从后向前搜索______all_key_words*/
+                bool varNeedUpdateHelp = false;
+                auto varPos = varAllLines.crbegin();
+                const auto varEnd = varAllLines.crend();
+                for (; varPos != varEnd; ++varPos) {
+                    if (varPos->trimmed() == QStringLiteral(R"(% ______all_key_words)")) {
+                        auto varNextPos = varPos + 1;
+                        if (varNextPos == varEnd) {
+                            break;
+                        } else {
+                            if (varNextPos->trimmed() == QStringLiteral(R"(:tex_raw:[[)")) {
+                                varNeedUpdateHelp = true;
+                                varCurrentDeletePos = varNextPos.base() - 1;
+                                break;
+                            }
+                        }
+                    }
+                }
+                if (false == varNeedUpdateHelp) {
+                    varCurrentDeletePos = varAllLines.cend();
+                }
+            }
+
+            do {/*更新非空项目...*/
+                if (varAllLines.empty()) {
+                    break;
+                }
+                auto varPos = std::make_reverse_iterator( varCurrentDeletePos );
+                auto varEnd = varAllLines.crend();
+                for (;varPos!=varEnd;++varPos) {
+                    if (!varPos->trimmed().isEmpty()) {
+                        varCurrentDeletePos = varPos.base();
+                        break;
+                    }
+                }
+            } while (false);
+
+            {
+                QFile varFile{ varAns.data.absoluteFilePath() };
+                if (!varFile.open(QIODevice::WriteOnly)) {
+                    continue;
+                }
+                QTextStream varWriteStream{ &varFile };
+                varWriteStream.setCodec(QTextCodec::codecForName("UTF-8"));
+                varWriteStream.setGenerateByteOrderMark(true);
+                auto varPos = varAllLines.cbegin();
+                for (; varPos != varCurrentDeletePos; ++varPos) {
+                    varWriteStream << *varPos << endl;
+                }
+
+                varWriteStream << QStringLiteral(R"!(
+:tex_raw:[[
+% ______all_key_words
+% the_book_chapter the_book_subsection the_book_subsubsection
+% the_book_section the_book_image the_book_table
+% the_book_file the_book_tree_file the_book_command_file
+% littlelongworld tabbing ref
+% figurename tablename filesourcenumbernameone
+% treeindexnumbernameone commandnumbernameone footnote 
+% item itemize comment textbullet
+% \hspace*{\parindent}
+]]
+
+)!");
+
+            }
+
+
+        }
     }
 
     inline bool createMakeFile(this_file::CreateMakeFileState * arg) {
@@ -147,8 +239,9 @@ bool CreateMakeFile::createMakeFile() {
     }
 
     auto varState = std::make_shared<this_file::CreateMakeFileState>();
-    return thisp->createMakeFile(varState.get());
-
+    auto varAns = thisp->createMakeFile(varState.get());
+    thisp->updateKeywords(varState.get());
+    return varAns;
 }
 
 
