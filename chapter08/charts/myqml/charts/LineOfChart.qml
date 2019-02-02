@@ -13,10 +13,10 @@ DemoBasic {
         id : idView
 
         LineSeries {
-            name: "LineSeries"
-            capStyle : Qt.SquareCap
-            style:Qt.DashDotDotLine
-            width :2
+            name: "LineSeries1"
+            capStyle : idControl.capStyleItem.currentValue
+            style:idControl.styleItem.currentValue
+            width : idControl.widthItem.value
             XYPoint { x: 0; y: 0 }
             XYPoint { x: 1.1; y: 2.1 }
             XYPoint { x: 1.9; y: 3.3 }
