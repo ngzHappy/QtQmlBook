@@ -39,8 +39,15 @@ inline static void clipImage(
 
 }
 
+extern std::atomic< std::size_t > & countConvertImageToPdf() {
+    static std::atomic< std::size_t > varAns{ 0 };
+    return varAns;
+}
+
 /*将图片转为pdf*/
-static inline bool convert_image_to_pdf(const QImage & argImage, const QString argPdfFileName) {
+static inline bool convert_image_to_pdf(
+    const QImage & argImage,
+    const QString argPdfFileName) {
 
     const auto
         varImage = argImage.convertToFormat(QImage::Format_RGBA8888_Premultiplied);
@@ -88,8 +95,36 @@ static inline bool convert_image_to_pdf(const QImage & argImage, const QString a
 
 }
 
+namespace {
+    class Run : public QRunnable {
+        const QImage inputImage;
+        const QString outputImagePath;
+        bool isDestory = false;
+    public:
+        inline Run(const QImage & a, const QString & b) :
+            inputImage(a),
+            outputImagePath(b) {
+            ++countConvertImageToPdf();
+        }
+        inline void run() override {
+            convert_image_to_pdf(inputImage, outputImagePath);
+            destory();
+        }
+        inline void destory() {
+            if (isDestory) {
+                return;
+            }
+            isDestory = true;
+            --countConvertImageToPdf();
+        }
+        inline ~Run() {
+            destory();
+        }
+    };
+}/**/
+
 bool ImageConvert::convert() {
-       
+
     {
         /*打开输入图片*/
         QImage varImage{
@@ -124,9 +159,10 @@ bool ImageConvert::convert() {
     }
 
     /*将图片转为pdf*/
-    return convert_image_to_pdf(
-        QImage(input_image_full_path), 
-        output_image_full_path);
+    QThreadPool::globalInstance()->start(
+        new Run{ QImage(input_image_full_path), output_image_full_path });
+
+    return true;
 
 }
 

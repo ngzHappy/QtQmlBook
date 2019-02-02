@@ -8,7 +8,7 @@ namespace {
 
     inline bool build_make_files(GlobalTexBuilder * arg) {
 
-        qWarning() << 
+        qWarning() <<
             qsl("---------------------------");
 
         class InputOutputItem {
@@ -47,22 +47,22 @@ namespace {
             }
         }
 
-        if ( varDutys.empty() ) {
+        if (varDutys.empty()) {
             return false;
         }
 
-        bool varAns{true};
+        bool varAns{ true };
 
-        for (const auto & varI : std::as_const( varDutys ) ) {
+        for (const auto & varI : std::as_const(varDutys)) {
             auto varBuilder = std::make_shared<TexBuilder>(arg);
             varBuilder->setInputFileName(getOutPutFileFullPath(varI.inputFileName));
             varBuilder->setOutputFileName(getOutPutFileFullPath(varI.outputFileName));
             if (false == varBuilder->convert()) {
-                qWarning() << 
+                qWarning() <<
                     varI.inputFileName << qsl("Error");
                 varAns = false;
             } else {
-                qWarning() << 
+                qWarning() <<
                     varI.inputFileName << qsl("Ok");
             }
         }
@@ -148,6 +148,14 @@ extern void output_main_index() try {
     ThisGlobalTexBuilder varGlobalTexBuilder;
     if (false == build_make_files(&varGlobalTexBuilder)) {
         the_book_throw(u8R"(build error!)"sv);
+    }
+
+    {/*waiting for convert image to pdf finished ...*/
+        extern std::atomic< std::size_t > & countConvertImageToPdf();
+        while (countConvertImageToPdf().load() > 1) {
+            std::this_thread::sleep_for(1ms);
+            std::this_thread::yield();
+        }
     }
 
 } catch (...) {
