@@ -45,17 +45,17 @@ extern std::atomic< std::size_t > & countConvertImageToPdf() {
 }
 
 /*将图片转为pdf*/
+/*#include <QtGui/QtGui>*/
 static inline bool convert_image_to_pdf(
     const QImage & argImage,
     const QString argPdfFileName) {
 
-    const auto
-        varImage = argImage.convertToFormat(QImage::Format_RGBA8888_Premultiplied);
+    const auto varImage
+        = argImage.convertToFormat(QImage::Format_RGBA8888_Premultiplied);
 
     if (varImage.height() < 1) {
         return false;
     }
-
     if (varImage.width() < 1) {
         return false;
     }
@@ -69,16 +69,17 @@ static inline bool convert_image_to_pdf(
     auto varImgageWidth = 460;
     auto varImageHeigth = 460;
 
-    if (varImage.height() > varImage.width()) {
+    /*限制图片的最大长或宽...*/
+    if (varImage.height() > varImage.width()) {/*图片的高度大于长度...*/
         const auto varR = double(varImage.width())
             / double(varImage.height());
-        /*根据高度计算宽度*/
+        /*调整宽度*/
         varImgageWidth = static_cast<int>(0.5 +
             varImageHeigth * varR);
-    } else if (varImage.height() < varImage.width()) {
+    } else if (varImage.height() < varImage.width()) {/*图片的高度大于宽度...*/
         const auto varR = double(varImage.height())
             / double(varImage.width());
-        /*根据宽度计算高度*/
+        /*调整高度*/
         varImageHeigth = static_cast<int>(0.5 +
             varImgageWidth * varR);
     }
@@ -93,16 +94,20 @@ static inline bool convert_image_to_pdf(
 
     {/*设置文件参数*/
         varWriter.setMargins({ 0,0,0,0 });
-        varWriter.setResolution(720)/*每英寸像素点数*/;
-        const QPageSize varSize{
+        /*设置分辨率*/
+        varWriter.setResolution(720)/*每英寸像素点数DPI*/;
+        /*设置pdf文档大小*/
+        const QPageSize varSize{/*QSize是72 dpi时的值*/
             QSize{varImgageWidth,varImageHeigth} ,QPageSize::Point/*72*/ };
         varWriter.setPageSize(varSize);
     }
 
     /*写文件*/
     QPainter varPainter{ &varWriter };
+    /*获得pdf文件真实像素大小*/
     const auto varSizeOfViewPort =
         varPainter.viewport().size();
+    /*将图片绘制到pdf文件*/
     varPainter.drawImage(0, 0,
         varImage.scaled(
             varSizeOfViewPort,
