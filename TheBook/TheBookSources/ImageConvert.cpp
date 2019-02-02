@@ -52,6 +52,14 @@ static inline bool convert_image_to_pdf(
     const auto
         varImage = argImage.convertToFormat(QImage::Format_RGBA8888_Premultiplied);
 
+    if (varImage.height() < 1) {
+        return;
+    }
+
+    if (varImage.width()<1) {
+        return;
+    }
+
     /* For example,
      * A4 is defined by the standard as 210mm x 297mm,
      * 8.27in x 11.69in,
@@ -67,7 +75,7 @@ static inline bool convert_image_to_pdf(
         /*根据高度计算宽度*/
         varImgageWidth = static_cast<int>(0.5 +
             varImageHeigth * varR);
-    } else {
+    } else if (varImage.height() < varImage.width()) {
         const auto varR = double(varImage.height())
             / double(varImage.width());
         /*根据宽度计算高度*/
