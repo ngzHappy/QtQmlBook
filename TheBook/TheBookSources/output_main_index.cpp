@@ -154,7 +154,6 @@ extern void output_main_index() try {
         extern std::atomic< std::size_t > & countConvertImageToPdf();
         while (countConvertImageToPdf().load() > 1) {
             std::this_thread::sleep_for(1ms);
-            std::this_thread::yield();
         }
     }
 
