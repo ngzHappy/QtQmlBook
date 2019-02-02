@@ -1,10 +1,10 @@
 
 :the_book_section:[[c000017s01]]
 
+:tex_raw:[[%../chapter08/firstchart/the_book.png]]
 
 
-
-
+:the_book_image:[[p000049]]
 
 
 
