@@ -50,6 +50,7 @@ public:
         args(std::move(v)) {
     }
 
+    /*为每个可编译txt文件末尾增加关键字帮助，转为UTF-8 With Bom，并删除多余末尾空行*/
     inline void updateKeywords(this_file::CreateMakeFileState * arg) {
         for (const auto & varAns : arg->ans) {
 
@@ -99,6 +100,7 @@ public:
                 }
                 auto varPos = std::make_reverse_iterator( varCurrentDeletePos );
                 auto varEnd = varAllLines.crend();
+                varCurrentDeletePos = varAllLines.cbegin();
                 for (;varPos!=varEnd;++varPos) {
                     if (!varPos->trimmed().isEmpty()) {
                         varCurrentDeletePos = varPos.base();
