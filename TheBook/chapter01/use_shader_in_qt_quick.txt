@@ -53,5 +53,6 @@ Qt Quick中使用GLSL。
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 

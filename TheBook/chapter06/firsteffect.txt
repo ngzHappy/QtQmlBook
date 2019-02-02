@@ -53,5 +53,6 @@ Qt Graphical Effects共提供了25种图形特效，
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 

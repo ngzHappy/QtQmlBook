@@ -215,5 +215,6 @@ QQuickView或QQuickWidget也是足够使用的。
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 

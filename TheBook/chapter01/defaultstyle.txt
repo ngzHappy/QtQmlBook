@@ -68,5 +68,6 @@ Qt Quick Control的样式具有继承性。
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 

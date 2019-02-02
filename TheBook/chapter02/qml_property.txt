@@ -99,5 +99,6 @@ QML中的var用于代表一切合法类型，包括信号槽，容器，基本�
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 

@@ -127,5 +127,6 @@ QtQmlBook\sstd_library\_sstd_library_memory.pri
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 

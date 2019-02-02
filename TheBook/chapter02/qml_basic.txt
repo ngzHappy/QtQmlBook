@@ -89,5 +89,6 @@ qdoc以获得更多帮助。
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 

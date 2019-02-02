@@ -82,6 +82,7 @@ extern bool updateKeywords(const QString & argFullPath) {
 % treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
+% FloatBarrier
 ]]
 
 )!");
