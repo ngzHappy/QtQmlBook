@@ -6,9 +6,7 @@
 extern bool updateKeywords(const QString & argFullPath) {
 
     std::vector< QString > varAllLines;
-    using cit =
-        std::vector< QString >::const_iterator;
-    cit varCurrentDeletePos = varAllLines.cend();
+    auto varCurrentDeletePos = varAllLines.cend();
 
     {
         QFile varFile{ argFullPath };
@@ -45,7 +43,7 @@ extern bool updateKeywords(const QString & argFullPath) {
         }
     }
 
-    do {/*更新非空项目...*/
+    do {/*删除行位空行...*/
         if (varAllLines.empty()) {
             break;
         }
