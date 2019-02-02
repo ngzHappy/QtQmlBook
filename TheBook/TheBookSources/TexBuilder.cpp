@@ -11,6 +11,7 @@
 #include <limits>
 #include <regex>
 #include <string>
+extern bool updateKeywords(const QString & argFullPath);
 
 GlobalTexBuilder::~GlobalTexBuilder() {
 }
@@ -2164,6 +2165,11 @@ QString TexBuilder::getOutputFileName() const {
 
 bool TexBuilder::convert() {
 
+    /*更新源文件...*/
+    if (false == updateKeywords(thisp->inputFileName)) {
+        return false;
+    }
+
     /*由于shared_ptr循环引用，所以手动删除数据*/
     class CleanLock {
         TexBuilderPrivate * const data;
@@ -2175,6 +2181,7 @@ bool TexBuilder::convert() {
         inline ~CleanLock() {
             this->clean();
         }
+    private:
         inline void clean() {
             data->clean();
         }

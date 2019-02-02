@@ -327,7 +327,7 @@ Qt的帮助系统一向被认为是各个软件项目中最好的之一。
 % the_book_file the_book_tree_file the_book_command_file
 % littlelongworld tabbing ref
 % figurename tablename filesourcenumbernameone
-% treeindexnumbernameone commandnumbernameone footnote 
+% treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
 ]]

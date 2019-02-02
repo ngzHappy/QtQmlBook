@@ -329,7 +329,7 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 % the_book_file the_book_tree_file the_book_command_file
 % littlelongworld tabbing ref
 % figurename tablename filesourcenumbernameone
-% treeindexnumbernameone commandnumbernameone footnote 
+% treeindexnumbernameone commandnumbernameone footnote
 % item itemize comment textbullet
 % \hspace*{\parindent}
 ]]
