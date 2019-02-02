@@ -1,23 +1,67 @@
 
 :the_book_section:[[c000017s01]]
 
+曲线图（Qt Charts）模块默认并不被安装，
+但是它非常有用，
+读者应当总是安装这个模块。
+
+要使用Qt Charts模块需要在QML头添加：:tex_raw:[[\begin{littlelongworld}]]
+import QtCharts 2.3
+:tex_raw:[[\end{littlelongworld}]]
+并在工程文件添加：:tex_raw:[[\begin{littlelongworld}]]
+QT += charts
+:tex_raw:[[\end{littlelongworld}]]
+
+:tex_raw:[[\filesourcenumbernameone\ \ref{f000080}]]展示
+了一个简单的Qt Charts模块的应用。
+
 :tex_raw:[[%../chapter08/firstchart/the_book.png]]
-
-
 :the_book_image:[[p000049]]
 
+:tex_raw:[[%../chapter08/firstchart/myqml/firstchart/main.qml]]
+:the_book_file:[[f000080]]
 
+:tex_raw:[[\begin{comment}]]
+介绍代码..........................
+:tex_raw:[[\end{comment}]]
 
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000080}]]所
+示：
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第12行使用ChartView作为
+Qt Charts各类曲线的
+视图。
+    :tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]第16行定义了ChartView的主题。
+:tex_raw:[[\item ]]第19行要求隐藏
+图例。
+:tex_raw:[[\item ]]第20行启用所有动画。
+    :tex_raw:[[\end{itemize}]]
+:tex_raw:[[\item ]]第22行、第38行
+分别定义了柱状图和折线图。
+:tex_raw:[[\item ]]第45~46行
+规定折线图使用柱状图的坐标系。
 
+:tex_raw:[[\end{itemize}]]
 
+视图、
+曲线、
+坐标轴、
+图例、
+动画
+与
+主题。
+这些是Qt Charts支持良好的部分。
 
+除此之外，Qt Charts也支持
+输入设备（比如鼠标键盘）响应和
+移动视图。
 
-
-
-
-
-
-
+有时候需要给Qt Charts增加一些额外自定义元素，
+那么就不得不深入Qt Charts源码并多费心思。
+毕竟Qt Charts是为QGraphicsView而设计的，
+对于Qt Quick而言，Qt Charts的
+一些设计就过于呆板。
 
 :tex_raw:[[
 % ______all_key_words

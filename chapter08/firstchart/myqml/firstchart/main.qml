@@ -1,4 +1,4 @@
-﻿/*main.qml*/
+﻿/*firstchart/main.qml*/
 import QtQuick 2.9
 import QtCharts 2.3
 
@@ -10,7 +10,6 @@ Rectangle {
     color: Qt.rgba(0.8,0.8,0.8,1);
 
     ChartView{
-
         anchors.centerIn: parent ;
         width: parent.width * 0.95 ;
         height: parent.height * 0.95 ;
@@ -18,6 +17,7 @@ Rectangle {
         antialiasing: true
         dropShadowEnabled : true
         legend.visible : false
+        animationOptions :ChartView.AllAnimations
 
         BarSeries {
             id: idBar
