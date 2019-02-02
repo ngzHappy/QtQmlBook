@@ -3,7 +3,7 @@ main_index.synctex.gz
 *.out
 *.log
 *.aux
-*.pdf
+main_index.pdf
 *.toc
 *.synctex.gz
 *.fls

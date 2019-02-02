@@ -39,23 +39,59 @@ inline static void clipImage(
 
 }
 
-bool ImageConvert::convert() {
+/*将图片转为pdf*/
+static inline bool convert_image_to_pdf(const QImage & argImage, const QString argPdfFileName) {
 
-    QString varCommand;
-    {
-        QFileSelector varSelect{};
-        auto varFileName =
-            varSelect.select(getOutPutFileFullPath(qsl("the_book_image/command/sam2p.txt")));
-        QFile varReadFile{ varFileName };
-        if (!varReadFile.open(QIODevice::ReadOnly)) {
-            return false;
-        }
-        InputStream varReadStream{ &varReadFile };
-        varCommand =
-            varReadStream.readAll().trimmed();
+    const auto
+        varImage = argImage.convertToFormat(QImage::Format_RGBA8888_Premultiplied);
+
+    /* For example,
+     * A4 is defined by the standard as 210mm x 297mm,
+     * 8.27in x 11.69in,
+     * or 595pt x 842pt.*/
+
+     /*宽度大概是16.2cm*/
+    const constexpr auto varImgageWidth = 460;
+    /*根据宽度计算高度*/
+    const auto varImageHeigth = static_cast<int>(0.5 +
+        varImgageWidth *
+        double(varImage.height())
+        / double(varImage.width()));
+
+    /*打开写文件*/
+    QFile varPDFFile{ argPdfFileName };
+    if (false == varPDFFile.open(QIODevice::WriteOnly)) {
+        return false;
     }
 
+    QPdfWriter varWriter{ &varPDFFile };
+
+    {/*设置文件参数*/
+        varWriter.setMargins({ 0,0,0,0 });
+        varWriter.setResolution(720)/*每英寸像素点数*/;
+        const QPageSize varSize{
+            QSize{varImgageWidth,varImageHeigth} ,QPageSize::Point/*72*/ };
+        varWriter.setPageSize(varSize);
+    }
+
+    /*写文件*/
+    QPainter varPainter{ &varWriter };
+    const auto varSizeOfViewPort =
+        varPainter.viewport().size();
+    varPainter.drawImage(0, 0,
+        varImage.scaled(
+            varSizeOfViewPort,
+            Qt::IgnoreAspectRatio,
+            Qt::SmoothTransformation));
+
+    return true;
+
+}
+
+bool ImageConvert::convert() {
+       
     {
+        /*打开输入图片*/
         QImage varImage{
             input_image_full_path
         };
@@ -72,6 +108,7 @@ bool ImageConvert::convert() {
                     output_image_relative_path);
             input_image_full_path = output_image_full_path;
         }
+        /*处理图片并保存*/
         clipImage(&varImage);
         varImage.save(output_image_full_path);
     }
@@ -80,25 +117,16 @@ bool ImageConvert::convert() {
         output_image_relative_path =
             qsl("the_book_image/") +
             image_index +
-            qsl(".eps");
+            qsl(".pdf");
         output_image_full_path =
             getOutPutFileFullPath(
                 output_image_relative_path);
     }
 
-    QProcess varProcess;
-    varProcess.closeReadChannel(QProcess::StandardOutput);
-    varProcess.start(
-        varCommand,
-        QStringList()
-        << input_image_full_path
-        << output_image_full_path);
-    if (varProcess.waitForFinished(60'000)) {
-        return 0 == varProcess.exitCode();
-    } else {
-        varProcess.terminate();
-        return false;
-    }
+    /*将图片转为pdf*/
+    return convert_image_to_pdf(
+        QImage(input_image_full_path), 
+        output_image_full_path);
 
 }
 
