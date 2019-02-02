@@ -1,0 +1,42 @@
+﻿/*charts/LineOfChart*/
+import QtQuick 2.11
+import QtCharts 2.3
+
+import "main_private/control" as Control
+
+DemoBasic {
+
+    ChartView {
+        title: "Line"
+        anchors.fill: parent
+        antialiasing: true
+
+        LineSeries {
+            name: "LineSeries"
+            capStyle : Qt.SquareCap
+            style:Qt.DashDotDotLine
+            width :2
+            XYPoint { x: 0; y: 0 }
+            XYPoint { x: 1.1; y: 2.1 }
+            XYPoint { x: 1.9; y: 3.3 }
+            XYPoint { x: 2.1; y: 2.1 }
+            XYPoint { x: 2.9; y: 4.9 }
+            XYPoint { x: 3.4; y: 3.0 }
+            XYPoint { x: 4.1; y: 3.3 }
+        }
+    }
+
+    Control.LineOfChartControl{
+    }
+
+}
+
+/*endl_input_of_latex_for_clanguage_lick*/
+/*http://doc.qt.io/qt-5/qtquick-effects-particles.html*/
+
+
+
+
+
+
+

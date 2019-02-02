@@ -36,13 +36,15 @@ CONFIG(debug,debug|release){
 }
 export(QMAKE_POST_LINK)
 
-QMLSOURCES += $$PWD/myqml/charts/ParticleGroupOfSystem.qml
+QMLSOURCES += $$PWD/myqml/charts/LineOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/main_private/control/LineOfChartControl.qml
 
 QMLSOURCES += $$PWD/myqml/charts/main.qml
 QMLSOURCES += $$PWD/myqml/charts/DemoBasic.qml
 QMLSOURCES += $$PWD/myqml/charts/main_private/MainListItem.qml
 QMLSOURCES += $$PWD/myqml/charts/main_private/MainListModel.qml
 QMLSOURCES += $$PWD/myqml/charts/main_private/MainListView.qml
+QMLSOURCES += $$PWD/myqml/charts/main_private/control/SliderControl.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

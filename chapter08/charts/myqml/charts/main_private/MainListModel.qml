@@ -5,8 +5,8 @@ ListModel {
 
     /****/
     ListElement {
-        programName :  QT_TR_NOOP("组(ParticleGroup.qml)") ;
-        programSource : "../ParticleGroupOfSystem.qml";
+        programName :  QT_TR_NOOP("折线图(LineSeries)") ;
+        programSource : "../LineOfChart.qml";
     }
 
 }
