@@ -99,7 +99,7 @@ namespace {
     class Run : public QRunnable {
         const QImage inputImage;
         const QString outputImagePath;
-        bool isDestory = false;
+        volatile bool isDestory{ false };
     public:
         inline Run(const QImage & a, const QString & b) :
             inputImage(a),
