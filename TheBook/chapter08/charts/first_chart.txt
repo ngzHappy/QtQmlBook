@@ -11,8 +11,7 @@ import QtCharts 2.3
 并在工程文件添加：:tex_raw:[[\begin{littlelongworld}]]
 QT += charts
 :tex_raw:[[\end{littlelongworld}]]
-
-:tex_raw:[[\filesourcenumbernameone\ \ref{f000080}]]展示
+:tex_raw:[[\hspace*{\parindent}]]:tex_raw:[[\filesourcenumbernameone\ \ref{f000080}]]展示
 了一个简单的Qt Charts模块的应用。
 
 :tex_raw:[[%../chapter08/firstchart/the_book.png]]
@@ -72,5 +71,6 @@ Qt Charts各类曲线的
 % figurename tablename filesourcenumbernameone
 % treeindexnumbernameone commandnumbernameone footnote 
 % item itemize comment textbullet
+% \hspace*{\parindent}
 ]]
 
