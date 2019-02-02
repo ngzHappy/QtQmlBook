@@ -53,11 +53,11 @@ static inline bool convert_image_to_pdf(
         varImage = argImage.convertToFormat(QImage::Format_RGBA8888_Premultiplied);
 
     if (varImage.height() < 1) {
-        return;
+        return false;
     }
 
-    if (varImage.width()<1) {
-        return;
+    if (varImage.width() < 1) {
+        return false;
     }
 
     /* For example,
