@@ -20,8 +20,13 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("散点图(AreaSeries)") ;
+        programName :  QT_TR_NOOP("区域图(AreaSeries)") ;
         programSource : "../AreaOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("柱状图(BarSeries)") ;
+        programSource : "../BarOfChart.qml";
     }
 
 }

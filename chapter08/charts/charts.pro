@@ -45,6 +45,7 @@ QMLSOURCES += $$PWD/myqml/charts/LineOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/SplineOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/ScatterOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/AreaOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/BarOfChart.qml
 
 QMLSOURCES += $$PWD/myqml/charts/main_private/control/LineOfChartControl.qml
 
