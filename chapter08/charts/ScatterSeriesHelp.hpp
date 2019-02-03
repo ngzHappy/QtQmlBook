@@ -2,6 +2,7 @@
 
 #include <sstd_qt_and_qml_library.hpp>
 #include <QtCharts/QtCharts>
+#include <limits>
 
 class ScatterSeriesHelp :
     public QObject,
@@ -18,7 +19,8 @@ public:
     void setFlag(int);
     Q_SIGNAL void flagChanged();
 private:
-    int mmmFlag{0};
+    QScatterSeries * const super;
+    int mmmFlag{ std::numeric_limits<int>::max() };
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(ScatterSeriesHelp);
 };

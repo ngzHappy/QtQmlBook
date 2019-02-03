@@ -29,12 +29,8 @@ inline static void setBrush(QScatterSeries * arg) {
     arg->setBrush(varBrushImage);
 }
 
-
 ScatterSeriesHelp::ScatterSeriesHelp(QScatterSeries * arg) :
-    QObject(arg) {
-    arg->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
-    arg->setMarkerSize(varMarkSize);
-    setBrush(arg);
+    QObject(arg), super(arg) {
 }
 
 ScatterSeriesHelp *ScatterSeriesHelp::qmlAttachedProperties(QObject *object) {
@@ -52,6 +48,23 @@ void ScatterSeriesHelp::setFlag(int arg) {
     if (arg == mmmFlag) {
         return;
     }
+
+    switch (arg) {
+    case 1:
+    {
+        super->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
+        super->setMarkerSize(varMarkSize);
+        setBrush(super);
+    }break;
+    default:
+    {
+        static_assert(varMarkSize > 8);
+        super->setMarkerSize(varMarkSize - 8);
+        super->setPen(QPen{ QColor(255,128,128),2 });
+        super->setMarkerShape(QScatterSeries::MarkerShapeCircle);
+    }break;
+    }
+
     mmmFlag = arg;
     flagChanged();
 }

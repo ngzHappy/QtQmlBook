@@ -24,21 +24,19 @@ DemoBasic {
             XYPoint { x: 1.9; y: 1.6 }
             XYPoint { x: 2.1; y: 1.3 }
             XYPoint { x: 2.5; y: 2.1 }
-            markerShape : ScatterSeries.MarkerShapeCircle
-            borderColor: Qt.rgba(0.9,0.6,0.5,1)
-            borderWidth: 2
+            ScatterSeriesHelp.flag: 0
         }
 
         ScatterSeries {
             id: idScatter2
             name: "Scatter2"
-            XYPoint { x: 1.5; y: 1.6 }
             XYPoint { x: 1.5; y: 1.5 }
-            XYPoint { x: 1.57; y: 1.7 }
-            XYPoint { x: 1.8; y: 1.9 }
-            XYPoint { x: 1.9; y: 1.7 }
-            XYPoint { x: 2.1; y: 2.0 }
-            XYPoint { x: 2.5; y: 1.8 }
+            XYPoint { x: 1.5; y: 1.6 }
+            XYPoint { x: 1.57; y: 1.55 }
+            XYPoint { x: 1.8; y: 1.8 }
+            XYPoint { x: 1.9; y: 1.6 }
+            XYPoint { x: 2.1; y: 1.3 }
+            XYPoint { x: 2.5; y: 2.1 }
             axisY: idScatter1.axisY
             axisX: idScatter1.axisX
             ScatterSeriesHelp.flag: 1
