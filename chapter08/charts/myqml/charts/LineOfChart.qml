@@ -1,4 +1,4 @@
-﻿/*charts/LineOfChart*/
+﻿/*charts/LineOfChart.qml*/
 import QtQuick 2.11
 import QtCharts 2.3
 
@@ -7,7 +7,7 @@ import "main_private/control" as Control
 DemoBasic {
 
     ChartView {
-        title: "Line"
+        title: qsTr("折线图")
         anchors.fill: parent
         antialiasing: true
         id : idView
@@ -43,6 +43,7 @@ DemoBasic {
             color: Qt.rgba(0.6,0.6,0.6)
             axisX: idLine.axisX
             axisY: idLine.axisY
+            pointsVisible: true
         }
 
         Component.onCompleted: {

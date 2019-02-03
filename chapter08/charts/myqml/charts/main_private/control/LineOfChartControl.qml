@@ -52,7 +52,7 @@ ColumnLayout {
         SliderControl{
             from : 0
             to : 5
-            value: 1
+            value: 2.5
             stepSize: 0.1
             Layout.fillWidth: true
             id : idWidth

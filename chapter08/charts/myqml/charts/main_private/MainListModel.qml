@@ -9,5 +9,17 @@ ListModel {
         programSource : "../LineOfChart.qml";
     }
 
+    ListElement {
+        programName :  QT_TR_NOOP("样条曲线图(SplineSeries)") ;
+        programSource : "../SplineOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("散点图(ScatterSeries)") ;
+        programSource : "../ScatterOfChart.qml";
+    }
+
 }
+
+
 
