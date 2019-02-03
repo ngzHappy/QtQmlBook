@@ -12,6 +12,7 @@ DemoBasic {
         anchors.fill: parent
         antialiasing: true
         id : idView
+        legend.markerShape : Legend.MarkerShapeFromSeries
 
         ScatterSeries {
             id: idScatter1
@@ -24,6 +25,8 @@ DemoBasic {
             XYPoint { x: 2.1; y: 1.3 }
             XYPoint { x: 2.5; y: 2.1 }
             markerShape : ScatterSeries.MarkerShapeCircle
+            borderColor: Qt.rgba(0.9,0.6,0.5,1)
+            borderWidth: 2
         }
 
         ScatterSeries {
@@ -38,7 +41,6 @@ DemoBasic {
             XYPoint { x: 2.5; y: 1.8 }
             axisY: idScatter1.axisY
             axisX: idScatter1.axisX
-            borderWidth: 1
             ScatterSeriesHelp.flag: 1
         }
 

@@ -38,7 +38,6 @@ inline static void setBrushFilename(QScatterSeries * arg) {
 
 ScatterSeriesHelp::ScatterSeriesHelp(QScatterSeries * arg) :
     QObject(arg) {
-    arg->setBorderColor(QColor(123, 123, 100, 255));
     arg->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
     arg->setMarkerSize(varMarkSize);
     setBrushFilename(arg);
