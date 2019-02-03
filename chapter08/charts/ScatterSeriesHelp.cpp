@@ -1,13 +1,9 @@
 ﻿#include "ScatterSeriesHelp.hpp"
 
-ScatterSeriesHelp::ScatterSeriesHelp(QScatterSeries * arg) :
-    QObject(arg) {
-    constexpr const auto varPI = 3.141592654;
-    constexpr const auto varMarkSize = 32;
-    arg->setBorderColor(QColor(123, 123, 100, 255));
-    arg->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
-    arg->setMarkerSize(varMarkSize);
-    /************************************************************/
+constexpr const auto static varPI = 3.141592654;
+constexpr const auto static varMarkSize = 32;
+
+inline static QString getBrushFileName() {
     QPainterPath starPath;
     starPath.moveTo(28, 15);
     for (int i = 1; i < 5; ++i) {
@@ -24,8 +20,28 @@ ScatterSeriesHelp::ScatterSeriesHelp(QScatterSeries * arg) :
     painter.setPen(QRgb(0xf6a625));
     painter.setBrush(painter.pen().color());
     painter.drawPath(starPath);
-    /*************************************************************/
-    arg->setBrush( star );
+
+    QDir varDir{ qApp->applicationDirPath() };
+    varDir.mkpath(
+        varDir.absoluteFilePath(QStringLiteral("myImages")));
+    auto varSaveFileName =
+        varDir.absoluteFilePath(QStringLiteral("myImages/star_brush.png"));
+    star.save(varSaveFileName);
+    return varSaveFileName;
+}
+
+inline static void setBrushFilename(QScatterSeries * arg) {
+    static auto const varBrushFileName = getBrushFileName();
+    arg->setProperty("brushFilename", varBrushFileName);
+}
+
+
+ScatterSeriesHelp::ScatterSeriesHelp(QScatterSeries * arg) :
+    QObject(arg) {
+    arg->setBorderColor(QColor(123, 123, 100, 255));
+    arg->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
+    arg->setMarkerSize(varMarkSize);
+    setBrushFilename(arg);
 }
 
 ScatterSeriesHelp *ScatterSeriesHelp::qmlAttachedProperties(QObject *object) {
