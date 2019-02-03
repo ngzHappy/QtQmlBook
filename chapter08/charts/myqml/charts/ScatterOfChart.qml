@@ -28,18 +28,18 @@ DemoBasic {
         ScatterSeries {
             id: idScatter2
             name: "Scatter2"
-            XYPoint { x: 1.5; y: 1.6  }
-            XYPoint { x: 1.5; y: 1.5  }
-            XYPoint { x: 1.57; y: 1.7  }
-            XYPoint { x: 1.8; y: 1.9  }
-            XYPoint { x: 1.9; y: 1.7  }
-            XYPoint { x: 2.1; y: 2.0  }
-            XYPoint { x: 2.5; y: 1.8  }
+            XYPoint { x: 1.5; y: 1.6 }
+            XYPoint { x: 1.5; y: 1.5 }
+            XYPoint { x: 1.57; y: 1.7 }
+            XYPoint { x: 1.8; y: 1.9 }
+            XYPoint { x: 1.9; y: 1.7 }
+            XYPoint { x: 2.1; y: 2.0 }
+            XYPoint { x: 2.5; y: 1.8 }
             axisY: idScatter1.axisY
             axisX: idScatter1.axisX
             markerShape: ScatterSeries.MarkerShapeRectangle
+            markerSize :32
         }
-
 
     }
 
