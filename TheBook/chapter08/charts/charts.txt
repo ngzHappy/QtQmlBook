@@ -6,9 +6,8 @@
 
 \input{chapter08/charts/line_chart.tex}
 \input{chapter08/charts/spline_chart.tex}
-
-\input{chapter08/charts/area_chart.tex}
 \input{chapter08/charts/scatter_chart.tex}
+\input{chapter08/charts/area_chart.tex}
 
 \input{chapter08/charts/bar_chart.tex}
 \input{chapter08/charts/horizontal_bar_chart.tex}

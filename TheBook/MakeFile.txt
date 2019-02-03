@@ -57,8 +57,8 @@ chapter08/charts/charts.txt
 chapter08/charts/first_chart.txt
 chapter08/charts/line_chart.txt
 chapter08/charts/spline_chart.txt
-chapter08/charts/area_chart.txt
 chapter08/charts/scatter_chart.txt
+chapter08/charts/area_chart.txt
 chapter08/charts/bar_chart.txt
 chapter08/charts/horizontal_bar_chart.txt
 chapter08/charts/stacked_bar_chart.txt
