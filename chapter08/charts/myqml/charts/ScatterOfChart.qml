@@ -1,6 +1,7 @@
 ﻿/*charts/ScatterOfChart.qml*/
 import QtQuick 2.11
 import QtCharts 2.3
+import sstd.charts.help 1.0
 
 import "main_private/control" as Control
 
@@ -37,8 +38,8 @@ DemoBasic {
             XYPoint { x: 2.5; y: 1.8 }
             axisY: idScatter1.axisY
             axisX: idScatter1.axisX
-            markerShape: ScatterSeries.MarkerShapeRectangle
-            markerSize :32
+            borderWidth: 1
+            ScatterSeriesHelp.flag: 1
         }
 
     }

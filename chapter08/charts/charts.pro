@@ -6,6 +6,8 @@ CONFIG(debug,debug|release){
     TARGET = charts
 }
 
+QT += charts
+
 #define out put dir
 include($$PWD/../../outdirpath.pri)
 #define cplusplus environment
@@ -28,6 +30,9 @@ DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
+
+SOURCES += $$PWD/ScatterSeriesHelp.cpp
+HEADERS += $$PWD/ScatterSeriesHelp.hpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
