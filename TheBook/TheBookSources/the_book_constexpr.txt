@@ -182,6 +182,7 @@ p000050::::QtCharts::::../chapter08/charts/AreaSeries.png::::[htb]::::[width=0.9
 p000051::::QtCharts::::../chapter08/charts/LineSeries.png::::[htb]::::[width=0.95\textwidth]
 p000052::::QtCharts::::../chapter08/charts/ScatterSeries.png::::[htb]::::[width=0.95\textwidth]
 p000053::::QtCharts::::../chapter08/charts/SplineSeries.png::::[htb]::::[width=0.95\textwidth]
+p000054::::QtCharts::::../chapter08/charts/BarSeries.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
