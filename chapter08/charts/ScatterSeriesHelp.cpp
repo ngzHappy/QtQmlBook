@@ -1,14 +1,15 @@
 ﻿#include "ScatterSeriesHelp.hpp"
 
 constexpr const auto static varPI = 3.141592654;
-constexpr const auto static varMarkSize = 32;
+constexpr const auto static varMarkSize = 30;
 
 inline static QImage getBrushFileName() {
     QPainterPath starPath;
-    starPath.moveTo(28, 15);
+    static_assert(varMarkSize > 2);
+    starPath.moveTo(varMarkSize - 2, double(varMarkSize)*0.5);
     for (int i = 1; i < 5; ++i) {
-        starPath.lineTo(14 + 14 * qCos(0.8 * i * varPI),
-            15 + 14 * qSin(0.8 * i * varPI));
+        starPath.lineTo(14 + 14 * std::cos(0.8 * i * varPI),
+            15 + 14 * std::sin(0.8 * i * varPI));
     }
     starPath.closeSubpath();
 
@@ -60,7 +61,7 @@ void ScatterSeriesHelp::setFlag(int arg) {
     default:
     {
         static_assert(varMarkSize > 8);
-        super->setBrush(QColor(100,100,252));
+        super->setBrush(QColor(100, 100, 252));
         super->setMarkerSize(varMarkSize - 8);
         super->setPen(QPen{ QColor(255,128,128),2 });
         super->setMarkerShape(QScatterSeries::MarkerShapeCircle);
