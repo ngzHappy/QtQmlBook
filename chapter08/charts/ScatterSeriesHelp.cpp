@@ -54,11 +54,13 @@ void ScatterSeriesHelp::setFlag(int arg) {
     {
         super->setMarkerShape(QScatterSeries::MarkerShapeRectangle);
         super->setMarkerSize(varMarkSize);
+        super->setPen(Qt::NoPen);
         setBrush(super);
     }break;
     default:
     {
         static_assert(varMarkSize > 8);
+        super->setBrush(QColor(100,100,252));
         super->setMarkerSize(varMarkSize - 8);
         super->setPen(QPen{ QColor(255,128,128),2 });
         super->setMarkerShape(QScatterSeries::MarkerShapeCircle);

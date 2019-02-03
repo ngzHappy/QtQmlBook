@@ -40,6 +40,22 @@ DemoBasic {
             axisY: idScatter1.axisY
             axisX: idScatter1.axisX
             ScatterSeriesHelp.flag: 1
+
+            Timer{
+                interval : 2000
+                repeat : true
+                running : true
+                triggeredOnStart : false
+                onTriggered: {
+                    var varItem = idScatter2.ScatterSeriesHelp;
+                    if(varItem.flag){
+                        varItem.flag = 0;
+                    }else{
+                        varItem.flag = 1;
+                    }
+                }
+            }
+
         }
 
     }
