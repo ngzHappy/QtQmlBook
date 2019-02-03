@@ -19,6 +19,11 @@ ListModel {
         programSource : "../ScatterOfChart.qml";
     }
 
+    ListElement {
+        programName :  QT_TR_NOOP("散点图(AreaSeries)") ;
+        programSource : "../AreaOfChart.qml";
+    }
+
 }
 
 
