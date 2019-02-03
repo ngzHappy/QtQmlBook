@@ -178,6 +178,10 @@ p000046::::使用QtCreator创建模型::::chapter10/images/qtcreator_make_model_
 p000047::::List::::../chapter10/first_model_view/the_app.png::::[htb]::::[height=0.75\textwidth]
 p000048::::Qt Model模型::::&chapter10/images/ModelAndIndex.pdf::::[htb]::::[width=7.5cm]
 p000049::::QtCharts::::../chapter08/firstchart/the_book.png::::[htb]::::[width=0.95\textwidth]
+p000050::::QtCharts::::../chapter08/charts/AreaSeries.png::::[htb]::::[width=0.95\textwidth]
+p000051::::QtCharts::::../chapter08/charts/LineSeries.png::::[htb]::::[width=0.95\textwidth]
+p000052::::QtCharts::::../chapter08/charts/ScatterSeries.png::::[htb]::::[width=0.95\textwidth]
+p000053::::QtCharts::::../chapter08/charts/SplineSeries.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]

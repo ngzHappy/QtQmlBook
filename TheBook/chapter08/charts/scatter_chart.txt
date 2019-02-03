@@ -1,6 +1,8 @@
 ﻿
 :the_book_section:[[c000017s0103]]
 
+:the_book_image:[[p000052]]
+
 :tex_raw:[[
 % ______all_key_words
 % the_book_chapter the_book_subsection the_book_subsubsection
