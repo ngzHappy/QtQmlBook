@@ -33,6 +33,7 @@ ListModel {
         programName :  QT_TR_NOOP("水平柱状图(HorizontalBarSeries)") ;
         programSource : "../HorizontalBarOfChart.qml";
     }
+
 }
 
 
