@@ -45,18 +45,18 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("HorizontalStackedBarOfChart(HorizontalBarSeries)") ;
+        programName :  QT_TR_NOOP("堆叠柱状图(StackedBarSeries)") ;
+        programSource : "../StackedBarOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("水平堆叠柱状图(HorizontalStackedBarSeries)") ;
         programSource : "../HorizontalStackedBarOfChart.qml";
     }
 
     ListElement {
         programName :  QT_TR_NOOP("PieOfChart(HorizontalBarSeries)") ;
         programSource : "../PieOfChart.qml";
-    }
-
-    ListElement {
-        programName :  QT_TR_NOOP("StackedBarOfChart(HorizontalBarSeries)") ;
-        programSource : "../StackedBarOfChart.qml";
     }
 
     ListElement {
