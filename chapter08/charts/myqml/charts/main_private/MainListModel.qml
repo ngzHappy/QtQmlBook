@@ -35,8 +35,8 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("CandlestickOfChart(HorizontalBarSeries)") ;
-        programSource : "../CandlestickOfChart.qml";
+        programName :  QT_TR_NOOP("百分比柱状图(PercentBarSeries)") ;
+        programSource : "../PercentBarOfChart.qml";
     }
 
     ListElement {
@@ -50,11 +50,6 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("PercentBarOfChart(HorizontalBarSeries)") ;
-        programSource : "../PercentBarOfChart.qml";
-    }
-
-    ListElement {
         programName :  QT_TR_NOOP("PieOfChart(HorizontalBarSeries)") ;
         programSource : "../PieOfChart.qml";
     }
@@ -62,6 +57,11 @@ ListModel {
     ListElement {
         programName :  QT_TR_NOOP("StackedBarOfChart(HorizontalBarSeries)") ;
         programSource : "../StackedBarOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("CandlestickOfChart(HorizontalBarSeries)") ;
+        programSource : "../CandlestickOfChart.qml";
     }
 
     ListElement {
