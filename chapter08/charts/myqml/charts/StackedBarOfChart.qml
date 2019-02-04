@@ -13,7 +13,8 @@ DemoBasic {
         id : idView
 
         StackedBarSeries{
-            axisX: BarCategoryAxis { categories: [
+            axisX: BarCategoryAxis {
+                categories: [
                     "2007",
                     "2008",
                     "2009",
