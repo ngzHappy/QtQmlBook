@@ -2,6 +2,7 @@
 
 win32-msvc*{
     QMAKE_CXXFLAGS += /std:c++latest
+    QMAKE_CXXFLAGS += /utf-8
 }else{
     CONFIG += c++17
     LIBS += -lstdc++fs
@@ -23,7 +24,7 @@ win32{
 }
 
 win32{
-    #qmake -query 
+    #qmake -query
     LIBS += -L$$[QT_INSTALL_LIBS]
     win32-msvc*{
         include($$PWD/msvc_boost.pri)
