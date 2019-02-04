@@ -11,6 +11,7 @@ SOURCES += $$PWD/main.cpp \
 
 win32-msvc*{
     QMAKE_CXXFLAGS += /std:c++latest
+    CONFIG += utf8_source
 }else{
     CONFIG += c++17
 }
