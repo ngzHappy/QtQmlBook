@@ -47,13 +47,13 @@ QMLSOURCES += $$PWD/myqml/charts/ScatterOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/AreaOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/BarOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/HorizontalBarOfChart.qml
-QMLSOURCES += $$PWD/myqml/charts/StackedBarSeriesOfChart.qml
-QMLSOURCES += $$PWD/myqml/charts/PieSeriesOfChart.qml
-QMLSOURCES += $$PWD/myqml/charts/PercentBarSeriesOfChart.qml
-QMLSOURCES += $$PWD/myqml/charts/HorizontalStackedBarSeriesOfChart.qml
-QMLSOURCES += $$PWD/myqml/charts/HorizontalPercentBarSeriesOfChart.qml
-QMLSOURCES += $$PWD/myqml/charts/CandlestickSeriesOfChart.qml
-QMLSOURCES += $$PWD/myqml/charts/BoxPlotSeriesOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/StackedBarOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/PieOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/PercentBarOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/HorizontalStackedBarOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/HorizontalPercentBarOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/CandlestickOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/BoxPlotOfChart.qml
 
 QMLSOURCES += $$PWD/myqml/charts/main_private/control/LineOfChartControl.qml
 

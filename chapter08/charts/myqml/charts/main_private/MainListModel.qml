@@ -35,40 +35,39 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("BoxPlotSeriesOfChart(HorizontalBarSeries)") ;
-        programSource : "../BoxPlotSeriesOfChart.qml";
+        programName :  QT_TR_NOOP("CandlestickOfChart(HorizontalBarSeries)") ;
+        programSource : "../CandlestickOfChart.qml";
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("CandlestickSeriesOfChart(HorizontalBarSeries)") ;
-        programSource : "../CandlestickSeriesOfChart.qml";
+        programName :  QT_TR_NOOP("HorizontalPercentBarOfChart(HorizontalBarSeries)") ;
+        programSource : "../HorizontalPercentBarOfChart.qml";
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("HorizontalPercentBarSeriesOfChart(HorizontalBarSeries)") ;
-        programSource : "../HorizontalPercentBarSeriesOfChart.qml";
+        programName :  QT_TR_NOOP("HorizontalStackedBarOfChart(HorizontalBarSeries)") ;
+        programSource : "../HorizontalStackedBarOfChart.qml";
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("HorizontalStackedBarSeriesOfChart(HorizontalBarSeries)") ;
-        programSource : "../HorizontalStackedBarSeriesOfChart.qml";
+        programName :  QT_TR_NOOP("PercentBarOfChart(HorizontalBarSeries)") ;
+        programSource : "../PercentBarOfChart.qml";
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("PercentBarSeriesOfChart(HorizontalBarSeries)") ;
-        programSource : "../PercentBarSeriesOfChart.qml";
+        programName :  QT_TR_NOOP("PieOfChart(HorizontalBarSeries)") ;
+        programSource : "../PieOfChart.qml";
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("PieSeriesOfChart(HorizontalBarSeries)") ;
-        programSource : "../PieSeriesOfChart.qml";
+        programName :  QT_TR_NOOP("StackedBarOfChart(HorizontalBarSeries)") ;
+        programSource : "../StackedBarOfChart.qml";
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("StackedBarSeriesOfChart(HorizontalBarSeries)") ;
-        programSource : "../StackedBarSeriesOfChart.qml";
+        programName :  QT_TR_NOOP("箱体图(BoxPlotSeries)") ;
+        programSource : "../BoxPlotOfChart.qml";
     }
-
 
 }
 
