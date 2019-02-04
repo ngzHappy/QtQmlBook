@@ -7,7 +7,7 @@ import "main_private/control" as Control
 DemoBasic {
 
     ChartView {
-        title: qsTr("箱体图")
+        title: qsTr("盒图")
         anchors.fill: parent
         antialiasing: true
         id : idView

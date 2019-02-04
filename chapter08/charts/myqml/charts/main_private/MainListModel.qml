@@ -60,12 +60,12 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("CandlestickOfChart(HorizontalBarSeries)") ;
+        programName :  QT_TR_NOOP("K线图(CandlestickSeries)") ;
         programSource : "../CandlestickOfChart.qml";
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("箱体图(BoxPlotSeries)") ;
+        programName :  QT_TR_NOOP("盒图(BoxPlotSeries)") ;
         programSource : "../BoxPlotOfChart.qml";
     }
 
