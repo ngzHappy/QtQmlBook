@@ -34,6 +34,42 @@ ListModel {
         programSource : "../HorizontalBarOfChart.qml";
     }
 
+    ListElement {
+        programName :  QT_TR_NOOP("BoxPlotSeriesOfChart(HorizontalBarSeries)") ;
+        programSource : "../BoxPlotSeriesOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("CandlestickSeriesOfChart(HorizontalBarSeries)") ;
+        programSource : "../CandlestickSeriesOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("HorizontalPercentBarSeriesOfChart(HorizontalBarSeries)") ;
+        programSource : "../HorizontalPercentBarSeriesOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("HorizontalStackedBarSeriesOfChart(HorizontalBarSeries)") ;
+        programSource : "../HorizontalStackedBarSeriesOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("PercentBarSeriesOfChart(HorizontalBarSeries)") ;
+        programSource : "../PercentBarSeriesOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("PieSeriesOfChart(HorizontalBarSeries)") ;
+        programSource : "../PieSeriesOfChart.qml";
+    }
+
+    ListElement {
+        programName :  QT_TR_NOOP("StackedBarSeriesOfChart(HorizontalBarSeries)") ;
+        programSource : "../StackedBarSeriesOfChart.qml";
+    }
+
+
 }
 
 
