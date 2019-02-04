@@ -55,7 +55,7 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("PieOfChart(HorizontalBarSeries)") ;
+        programName :  QT_TR_NOOP("饼图(PieSeries)") ;
         programSource : "../PieOfChart.qml";
     }
 
