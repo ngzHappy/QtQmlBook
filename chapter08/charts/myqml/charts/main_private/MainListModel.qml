@@ -40,7 +40,7 @@ ListModel {
     }
 
     ListElement {
-        programName :  QT_TR_NOOP("HorizontalPercentBarOfChart(HorizontalBarSeries)") ;
+        programName :  QT_TR_NOOP("水平百分比柱状图(HorizontalPercentBarSeries)") ;
         programSource : "../HorizontalPercentBarOfChart.qml";
     }
 
