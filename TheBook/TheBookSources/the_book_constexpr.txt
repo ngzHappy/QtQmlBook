@@ -183,6 +183,14 @@ p000051::::QtCharts::::../chapter08/charts/LineSeries.png::::[htb]::::[width=0.9
 p000052::::QtCharts::::../chapter08/charts/ScatterSeries.png::::[htb]::::[width=0.95\textwidth]
 p000053::::QtCharts::::../chapter08/charts/SplineSeries.png::::[htb]::::[width=0.95\textwidth]
 p000054::::QtCharts::::../chapter08/charts/BarSeries.png::::[htb]::::[width=0.95\textwidth]
+p000062::::QtCharts::::../chapter08/charts/HorizontalPercentBarSeries.png::::[htb]::::[width=0.95\textwidth]
+p000055::::QtCharts::::../chapter08/charts/PercentBarSeries.png::::[htb]::::[width=0.95\textwidth]
+p000056::::QtCharts::::../chapter08/charts/StackedBarSeries.png::::[htb]::::[width=0.95\textwidth]
+p000057::::QtCharts::::../chapter08/charts/HorizontalStackedBarSeries.png::::[htb]::::[width=0.95\textwidth]
+p000058::::QtCharts::::../chapter08/charts/CandlestickSeries.png::::[htb]::::[width=0.95\textwidth]
+p000059::::QtCharts::::../chapter08/charts/PieSeries.png::::[htb]::::[width=0.95\textwidth]
+p000060::::QtCharts::::../chapter08/charts/BoxPlotSeries.png::::[htb]::::[width=0.95\textwidth]
+p000061::::QtCharts::::../chapter08/charts/HorizontalBarSeries.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]

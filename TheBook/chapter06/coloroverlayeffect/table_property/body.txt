@@ -47,3 +47,4 @@ variant
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
+

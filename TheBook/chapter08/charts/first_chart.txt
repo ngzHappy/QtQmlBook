@@ -165,3 +165,4 @@ A base type for line, spline, and scatter series
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
+

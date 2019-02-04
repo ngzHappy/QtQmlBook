@@ -1,6 +1,8 @@
 ﻿
 :the_book_section:[[c000017s0108]]
 
+:the_book_image:[[p000057]]
+
 :tex_raw:[[
 % ______all_key_words
 % the_book_chapter the_book_subsection the_book_subsubsection
@@ -13,3 +15,4 @@
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
+

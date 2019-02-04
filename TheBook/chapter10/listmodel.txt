@@ -139,3 +139,4 @@ bool removeColumns(int column, int count, const QModelIndex &parent)
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
+
