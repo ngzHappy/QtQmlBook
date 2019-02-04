@@ -49,6 +49,17 @@ namespace {
 
     inline static void run_once_application_construct(RunOnceApplicationConstruct * arg) {
         {
+#ifdef _DEBUG
+            /*设置Application Name*/
+            auto varName = qApp->applicationName();
+            const auto varAboutToRemove = QStringLiteral("_debug");
+            if (varName.endsWith(varAboutToRemove)) {
+                varName.chop(varAboutToRemove.size());
+                qApp->setApplicationName(varName);
+            }
+#endif
+        }
+        {
             const QDir varDir{ qApp->applicationDirPath() };
             QQuickStyle::addStylePath(varDir.absoluteFilePath(QStringLiteral("sstd/qml/control")));
         }
