@@ -29,14 +29,14 @@ inline static std::string_view trim_right(const std::string & arg) {
         return ""sv;
     }
     const auto varLastPos =
-        arg.find_last_not_of(" \r\n"sv);
+            arg.find_last_not_of(" \r\n"sv);
     if (varLastPos == std::string::npos) {/*empty line ...*/
         return ""sv;
     }
     return std::string_view{ arg.c_str(), 1 + varLastPos };
 }
 
-inline static void cast_a_file(const fs::path & arg) {
+inline static void cast_a_file(const fs::path & arg,bool ignoreBom) {
 
     std::list<std::string > varLines;
 
@@ -77,12 +77,17 @@ inline static void cast_a_file(const fs::path & arg) {
 
     std::ofstream varOutPut{ varFileName,std::ios::binary };
     if(varAllAboutToWrite.empty()){
-        const std::string_view varBom{ varRawBom,3 };
-        varOutPut << varBom << "\n"sv;
+        if(ignoreBom){
+            varOutPut<< "\n"sv;
+        }else{
+            const std::string_view varBom{ varRawBom,3 };
+            varOutPut << varBom << "\n"sv;
+        }
+
         return;
     }
 
-    {
+    if(!ignoreBom){
         const auto & varFirstLine = varAllAboutToWrite[0];
         bool varNeedWriteBom=false;
         if(varFirstLine.size()<3){
@@ -110,7 +115,15 @@ inline static void castCRLFOrCRToLF(const fs::path & arg) {
     if (!fs::is_directory(arg)) {
         return;
     }
-    std::list<fs::path> varAboutToDo;
+    const static std::regex varCheckFormat{
+        u8R"!(^[^.].*\.(?:(?:txt)|(?:pri)|(?:pro)|(?:cpp)|(?:c)|(?:h)|(?:hpp)|(?:hxx)|(?:qml)|(?:tex))$)!" ,
+        std::regex_constants::icase | std::regex_constants::ECMAScript
+    };
+    const static std::regex varCheckIgnoreBOM{
+        u8R"!(^[^.].*\.(?:(?:pri)|(?:pro)|(?:txt))$)!" ,
+        std::regex_constants::icase | std::regex_constants::ECMAScript
+    };
+    std::list< std::pair< fs::path ,std::string > > varAboutToDo;
     {
         fs::recursive_directory_iterator varIt{ arg };
         fs::recursive_directory_iterator const varEnd;
@@ -119,19 +132,17 @@ inline static void castCRLFOrCRToLF(const fs::path & arg) {
                 continue;
             }
             const auto & varFileNamePath = varIt->path();
-            const auto varFileName =
-                varFileNamePath.filename().string();
-            const static std::regex varCheckFormat{
-                u8R"!(^[^.].*\.(?:(?:txt)|(?:cpp)|(?:c)|(?:h)|(?:hpp)|(?:hxx)|(?:qml)|(?:tex))$)!" ,
-                std::regex_constants::icase | std::regex_constants::ECMAScript
-            };
+            auto varFileName =
+                    varFileNamePath.filename().string();
             if (std::regex_match(varFileName, varCheckFormat)) {
-                varAboutToDo.push_back(varFileNamePath);
+                varAboutToDo.emplace_back(varFileNamePath,std::move(varFileName));
             }
         }
     }
     for (const auto & varI : varAboutToDo) {
-        cast_a_file(varI);
+        const auto varIgnoreBOM=
+                std::regex_match(varI.second, varCheckIgnoreBOM );
+        cast_a_file(varI.first,varIgnoreBOM);
     }
 }
 
