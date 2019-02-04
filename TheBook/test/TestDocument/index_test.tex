@@ -94,12 +94,12 @@ stringstyle=\small\unicodefont ,
 keywordstyle=\small\unicodefont ,
 commentstyle=\small\unicodefont ,
 identifierstyle=\small\unicodefont ,
-numbers=left, 
+numbers=left,
 numberstyle=\footnotesize,
 frame=single,
 backgroundcolor=\color{gray1},
 showstringspaces=true
-} 
+}
 
 
 \title{这是一本书}                              %书籍名称
@@ -109,10 +109,10 @@ showstringspaces=true
 %P135
 \CTEXsetup[ number={ \arabic{chapter} } ]{chapter}
 %\CTEXsetup[ number={ \arabic{section} } , name={第,节} ]{section}
- 
+
 \RequirePackage{fancyhdr}
 \RequirePackage{zhnumber}
-                
+
 \RequirePackage{titlesec, titletoc}
 \RequirePackage{tikz,pgf}
 \usetikzlibrary{shapes,calc}
@@ -150,7 +150,7 @@ showstringspaces=true
     \fancyhf{}
     \renewcommand\headrulewidth{.5pt}       % 页眉横线
     \renewcommand\footrulewidth{0pt}
-    
+
     \fancyhead[OC]{}       % 页眉章标题
     \fancyhead[EC]{}         % 页眉文章题目
     \fancyhead[OR,EL]{\thepage}                 % 页眉编号
@@ -180,13 +180,13 @@ showstringspaces=true
 \pagenumbering{roman}             %重新开始页码编号
 
 \tableofcontents                  %生成目录
- 
- 
+
+
 
 \mainmatter
 
 \pagestyle{mainFancy}
- 
+
 
 \cleardoublepage
 %
@@ -215,36 +215,36 @@ QQQQQQQQQQQQQ
 test \itshape test \ttfamily test \upshape test
 }
 
-%程序 \ref{xfwaef}  
+%程序 \ref{xfwaef}
 \begin{lstlisting}[
 label=xfwaef,
 caption=dsgdsg ,
-firstnumber=100 ] 
-#include <iostream> 
+firstnumber=100 ]
+#include <iostream>
 using namespace std;
- int main() { 
+ int main() {
      cout<<"h ello"<<endl; //今天
      foo<int>();
      return 0;
-} 
+}
 \end{lstlisting}
 
-%程序 \ref{x1fwaef}  
+%程序 \ref{x1fwaef}
 \begin{lstlisting}[
 label=x1fwaef,
 caption=sdglj,
 title=程序清单\thelstlisting,
 nolol=false,
-numbers=none ] 
-#include <iostream> 
+numbers=none ]
+#include <iostream>
 using namespace std;
- int main() { 
+ int main() {
      cout<<"h ello"<<endl; //今天
      foo<int>();
      return 0;
-} 
+}
 \end{lstlisting}
- 
+
 
 \ref{x1fwaef}
 
@@ -365,33 +365,3 @@ using namespace std;
 
 
 \end{document}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

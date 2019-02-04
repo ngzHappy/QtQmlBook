@@ -372,13 +372,3 @@ Q_COREAPP_STARTUP_FUNCTION(register_this)
 x' = m11*x + m21*y + dx
 y' = m22*y + m12*x + dy
 **/
-
-
-
-
-
-
-
-
-
-

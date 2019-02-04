@@ -12,4 +12,3 @@ aa:tex_raw:[==[啊abc蛤]==]bb
 % item itemize comment textbullet
 % \hspace*{\parindent}
 ]]
-

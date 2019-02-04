@@ -1,13 +1,2 @@
-bjam --build-type=complete --toolset=msvc-14.1 address-model=64 link=shared runtime-link=shared threading=multi  
-bjam --build-type=complete --toolset=gcc address-model=64 link=shared runtime-link=shared threading=multi  
-
-
-
-
-
-
-
-
-
-
-
+bjam --build-type=complete --toolset=msvc-14.1 address-model=64 link=shared runtime-link=shared threading=multi
+bjam --build-type=complete --toolset=gcc address-model=64 link=shared runtime-link=shared threading=multi

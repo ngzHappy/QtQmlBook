@@ -13,16 +13,3 @@ Rectangle{
 
 
 }/*Rectangle*/
-
-
-
-
-
-
-
-
-
-
-
-
-

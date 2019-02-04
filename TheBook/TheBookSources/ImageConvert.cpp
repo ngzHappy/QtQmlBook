@@ -188,27 +188,3 @@ bool ImageConvert::convert() {
     return true;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

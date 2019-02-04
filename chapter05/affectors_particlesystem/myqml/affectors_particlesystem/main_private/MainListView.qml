@@ -57,9 +57,3 @@ ListView {
     }/*Rectangle*/
 
 }/*ListView*/
-
-
-
-
-
-

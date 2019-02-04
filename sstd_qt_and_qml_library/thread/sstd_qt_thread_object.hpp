@@ -121,4 +121,3 @@ inline std::shared_ptr<sstd_qt_thread_object> _0_sstd_qt_thread_object::getWatch
 }
 
 Q_DECLARE_METATYPE(sstd_qt_thread_call_object_ptr)
-

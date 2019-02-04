@@ -23,15 +23,15 @@ DemoBasic {
                     "2011",
                     "2012" ]
             }
-            BarSet { 
+            BarSet {
                 label: "Bob";
                 values: [2, 2, 3, 4, 5, 6]
             }
-            BarSet { 
+            BarSet {
                 label: "Susan";
                 values: [5, 1, 2, 4, 1, 7]
             }
-            BarSet { 
+            BarSet {
                 label: "James";
                 values: [3, 5, 8, 13, 5, 8]
             }
@@ -54,4 +54,3 @@ DemoBasic {
     }
 
 }
-

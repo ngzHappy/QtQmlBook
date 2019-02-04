@@ -17,14 +17,3 @@ namespace sstd::opengl_utility {
     EXPORT_SSTD_QT_AND_QML_LIBRARY GLuint createVFProgram(std::string_view,std::string_view);
 
 }/*namespace sstd*/
-
-
-
-
-
-
-
-
-
-
-

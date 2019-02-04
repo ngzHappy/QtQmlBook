@@ -5,6 +5,3 @@ Text{
 }
 
 /*QT_FILE_SELECTORS*/
-
-
-

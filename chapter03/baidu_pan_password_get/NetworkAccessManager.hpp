@@ -14,14 +14,3 @@ private:
     using Super = QNetworkAccessManager;
     SSTD_END_DEFINE_VIRTUAL_CLASS(NetworkAccessManager);
 };
-
-
-
-
-
-
-
-
-
-
-

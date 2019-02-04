@@ -26,19 +26,3 @@ private:
 };
 
 QML_DECLARE_TYPEINFO(ScatterSeriesHelp, QML_HAS_ATTACHED_PROPERTIES)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

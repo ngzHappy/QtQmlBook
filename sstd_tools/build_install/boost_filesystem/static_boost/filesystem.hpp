@@ -7,7 +7,7 @@
 
 //  Library home page: http://www.boost.org/libs/filesystem
 
-//--------------------------------------------------------------------------------------// 
+//--------------------------------------------------------------------------------------//
 
 #ifndef BOOST_FILESYSTEM_FILESYSTEM_HPP
 #define BOOST_FILESYSTEM_FILESYSTEM_HPP
@@ -18,4 +18,4 @@
 #  include <static_boost/filesystem/convenience.hpp>
 #  include <static_boost/filesystem/string_file.hpp>
 
-#endif  // BOOST_FILESYSTEM_FILESYSTEM_HPP 
+#endif  // BOOST_FILESYSTEM_FILESYSTEM_HPP

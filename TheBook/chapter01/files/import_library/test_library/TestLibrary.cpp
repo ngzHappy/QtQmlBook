@@ -11,15 +11,3 @@ TestClass::~TestClass() {
 void TestClass::foo() {
     std::cout << __func__ << std::endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-

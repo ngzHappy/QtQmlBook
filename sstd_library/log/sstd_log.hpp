@@ -46,16 +46,3 @@ _1_SSTD_CORE_EXPORT sstd::LogFunction * sstd_set_log_function(sstd::LogFunction 
 #ifndef sstd_debug
 #define sstd_debug(...) _1_sstd_log( sstd::LogLevel::debug , __VA_ARGS__ , __LINE__ ,__func__, __FILE__ )
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-

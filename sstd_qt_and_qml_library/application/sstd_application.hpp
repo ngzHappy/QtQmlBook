@@ -39,14 +39,9 @@ namespace sstd {
         SSTD_END_DEFINE_VIRTUAL_CLASS(Application);
     };
 
-    inline Application::Application(int argc, char ** argv, 
+    inline Application::Application(int argc, char ** argv,
         std::string_view argQmlStyleName) :
         Application(ApplicationArgs{ argc,argv,argQmlStyleName }) {
     }
 
 }/*namespace sstd*/
-
-
-
-
-

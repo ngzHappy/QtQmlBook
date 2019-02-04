@@ -9,16 +9,3 @@ inline static void test_this() {
 Q_COREAPP_STARTUP_FUNCTION(test_this)
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-

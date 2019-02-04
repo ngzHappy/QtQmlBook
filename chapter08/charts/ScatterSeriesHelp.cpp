@@ -80,27 +80,3 @@ static inline void register_this() {
         "can not create ...");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

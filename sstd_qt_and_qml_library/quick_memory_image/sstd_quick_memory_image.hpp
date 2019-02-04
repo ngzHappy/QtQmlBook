@@ -33,17 +33,3 @@ namespace sstd {
     using QuickMemoryImage = _0_sstd_quick_memory_image;
 
 }/*namespace sstd*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-

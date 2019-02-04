@@ -12,16 +12,3 @@
 #define EXPORT_SSTD_QT_AND_QML_LIBRARY Q_DECL_EXPORT
 
 #endif/*_1_SSTD_QT_AND_QML_LIBRARY*/
-
-
-
-
-
-
-
-
-
-
-
-
-

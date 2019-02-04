@@ -489,7 +489,7 @@ public:
                         ->getTableIndex();
                     varIndexStream << qsl(R"++++(\noindent\tablename\ \ref{)++++");
                     varIndexStream << varKeyLabel;
-                    varIndexStream << qsl(R"++++(},\dotfill\pageref{)++++"); 
+                    varIndexStream << qsl(R"++++(},\dotfill\pageref{)++++");
                     varIndexStream << varKeyLabel;
                     varIndexStream << qsl(R"++++(}%)++++");
                     varIndexStream << varKeyLabel;
@@ -533,7 +533,7 @@ public:
                         varTableString += varTableMarginnote;
                     }
                     varTableString += qsl(R"(
-\\ \midrule 
+\\ \midrule
 \endfirsthead
 )");
                     varTableString += qsl(R"(
@@ -552,7 +552,7 @@ public:
                     varTableString += qsl(R"(
 %重复表尾
 \midrule
-\endfoot 
+\endfoot
 )");
                     varTableString += varBodyData;
 
@@ -996,7 +996,7 @@ title=\commandnumbernameone \thecommandnumber
                 }
 
                 auto varImagePathRaw = varArgs2[1];
-                const bool varDoNotPutFrame = 
+                const bool varDoNotPutFrame =
                     varImagePathRaw.startsWith(QChar('&'));
                 if (varDoNotPutFrame) {
                     varImagePathRaw.remove(0,1);
@@ -1009,7 +1009,7 @@ title=\commandnumbernameone \thecommandnumber
                 };
                 bool varIsImageConverted = false;
                 if (varImageConvert.needConvert()) {
-                    varIsImageConverted = 
+                    varIsImageConverted =
                     varImageConvert.convert();
                 }
 
@@ -2212,11 +2212,3 @@ bool TexBuilder::convert() {
 extern QString theBookPlainTextToTexText(const QString & arg) {
     return plainStringToTexString(arg);
 }
-
-
-
-
-
-
-
-

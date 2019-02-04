@@ -2697,7 +2697,7 @@ bool free_fastpath(void *ptr, size_t size, bool size_hint) {
 	tcache_t *tcache = tsd_tcachep_get(tsd);
 
 	alloc_ctx_t alloc_ctx;
-	/* 
+	/*
 	 * If !config_cache_oblivious, we can check PAGE alignment to
 	 * detect sampled objects.  Otherwise addresses are
 	 * randomized, and we have to look it up in the rtree anyway.

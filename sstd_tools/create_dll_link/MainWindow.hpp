@@ -20,5 +20,3 @@ private slots:
 private:
     Ui::MainWindow *ui;
 };
-
-

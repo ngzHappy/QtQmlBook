@@ -173,4 +173,3 @@ inline QQmlComponent * MineSweeping::getBoomComponent() const {
 inline QQmlComponent * MineSweeping::getOkMineComponent() const {
     return pppGetOkMineItemItem();
 }
-

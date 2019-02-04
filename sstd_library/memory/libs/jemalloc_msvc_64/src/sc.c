@@ -245,7 +245,7 @@ size_classes(
 	assert(sc_data->lg_large_minclass == SC_LG_LARGE_MINCLASS);
 	assert(sc_data->large_maxclass == SC_LARGE_MAXCLASS);
 
-	/* 
+	/*
 	 * In the allocation fastpath, we want to assume that we can
 	 * unconditionally subtract the requested allocation size from
 	 * a ssize_t, and detect passing through 0 correctly.  This

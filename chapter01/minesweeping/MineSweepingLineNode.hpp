@@ -44,11 +44,3 @@ inline qreal MineSweepingLineNode::getLineWidth() const {
 inline QColor MineSweepingLineNode::getLineColor() const {
     return mmmLineColor;
 }
-
-
-
-
-
-
-
-

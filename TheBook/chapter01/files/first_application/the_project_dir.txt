@@ -12,16 +12,3 @@
     ├── QtQmlBookChapter09.pro
     ├── QtQmlBookChapter10.pro
     └── QtQmlBookTest.pro
-
-
-
-
-
-
-
-
-
-
-
-
-

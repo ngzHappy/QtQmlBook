@@ -71,7 +71,7 @@ prof_alloc_time_get(tsdn_t *tsdn, const void *ptr, alloc_ctx_t *alloc_ctx) {
 
 JEMALLOC_ALWAYS_INLINE void
 prof_alloc_time_set(tsdn_t *tsdn, const void *ptr, alloc_ctx_t *alloc_ctx,
-    nstime_t t) { 
+    nstime_t t) {
 	cassert(config_prof);
 	assert(ptr != NULL);
 

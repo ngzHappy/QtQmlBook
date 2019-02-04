@@ -167,6 +167,3 @@ static inline void register_this() {
         "ListModel");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
-
-
-

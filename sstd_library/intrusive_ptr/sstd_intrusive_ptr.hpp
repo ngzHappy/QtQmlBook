@@ -42,12 +42,3 @@ inline sstd::intrusive_ptr<T> sstd_make_intrusive_ptr(Args && ... args) {
     using ans_type = sstd::intrusive_ptr<T>;
     return ans_type{ sstd_new<U>(std::forward<Args>(args)...) };
 }
-
-
-
-
-
-
-
-
-

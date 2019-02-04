@@ -44,7 +44,7 @@ public:
                 --(*e);
             }
         } varCheck{ &mmmWriteCount };
-#endif 
+#endif
         return mmmData.push(std::forward<V>(v));
     }
 
@@ -61,7 +61,7 @@ public:
                 --(*e);
             }
         } varCheck{ &mmmReadCount };
-#endif 
+#endif
         return mmmData.pop(std::forward<V>(v));
     }
 
@@ -105,7 +105,7 @@ int main(int argc,char ** argv) {
 
     {
         IndexedQueue< std::string > test;
-        
+
         assert(false == test.giveBackAIndex(1024));
 
         for(int i = 0; i < 32 ; ++i) {
@@ -119,7 +119,7 @@ int main(int argc,char ** argv) {
                 }
             }).detach();
         }
-        
+
         while(test.isEmpty()==false) {
         }
 
@@ -173,6 +173,3 @@ int main(int argc,char ** argv) {
     std::cout << std::endl;
 
 }
-
-
-

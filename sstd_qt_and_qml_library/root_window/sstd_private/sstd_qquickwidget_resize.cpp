@@ -9,19 +9,8 @@ namespace _sstd1::_3_private_api {
     }
 
     ResizeQuickWiget::~ResizeQuickWiget() {
-        
+
     }
 
 
 }/* namespace sstd::private_api */
-
-
-
-
-
-
-
-
-
-
-

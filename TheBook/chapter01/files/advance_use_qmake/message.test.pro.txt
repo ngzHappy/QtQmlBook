@@ -1,4 +1,4 @@
- 
+
 CONFIG += mydebug
 mydebug{
     message("find my debug")

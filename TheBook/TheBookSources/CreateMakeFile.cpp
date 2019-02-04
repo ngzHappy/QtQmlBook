@@ -151,5 +151,3 @@ bool CreateMakeFile::createMakeFile() {
     const auto varAns = thisp->createMakeFile(varState.get());
     return varAns;
 }
-
-

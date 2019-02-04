@@ -13,5 +13,3 @@ extern QString the_book_license(){
 
 
 }
-
-

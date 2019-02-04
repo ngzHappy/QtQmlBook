@@ -125,7 +125,7 @@ struct prof_thr_node_s {
 	uint64_t thr_uid;
 	/* Variable size based on thr_name_sz. */
 	char name[1];
-}; 
+};
 
 typedef struct prof_alloc_node_s prof_alloc_node_t;
 
@@ -387,7 +387,7 @@ prof_log_bt_index(tsd_t *tsd, prof_bt_t *bt) {
 
 		new_node->next = NULL;
 		new_node->index = log_bt_index;
-		/* 
+		/*
 		 * Copy the backtrace: bt is inside a tdata or gctx, which
 		 * might die before prof_log_stop is called.
 		 */
@@ -401,7 +401,7 @@ prof_log_bt_index(tsd_t *tsd, prof_bt_t *bt) {
 	} else {
 		return node->index;
 	}
-} 
+}
 static size_t
 prof_log_thr_index(tsd_t *tsd, uint64_t thr_uid, const char *name) {
 	assert(prof_logging_state == prof_logging_state_started);
@@ -477,7 +477,7 @@ prof_try_log(tsd_t *tsd, const void *ptr, size_t usize, prof_tctx_t *tctx) {
 	prof_alloc_node_t *new_node = (prof_alloc_node_t *)
 		ialloc(tsd, sizeof(prof_alloc_node_t),
 		    sz_size2index(sizeof(prof_alloc_node_t)), false, true);
- 
+
 	const char *prod_thr_name = (tctx->tdata->thread_name == NULL)?
 				        "" : tctx->tdata->thread_name;
 	const char *cons_thr_name = prof_thread_name_get(tsd);
@@ -515,7 +515,7 @@ label_done:
 }
 
 void
-prof_free_sampled_object(tsd_t *tsd, const void *ptr, size_t usize, 
+prof_free_sampled_object(tsd_t *tsd, const void *ptr, size_t usize,
     prof_tctx_t *tctx) {
 	malloc_mutex_lock(tsd_tsdn(tsd), tctx->tdata->lock);
 
@@ -2601,8 +2601,8 @@ static void
 prof_log_emit_traces(tsd_t *tsd, emitter_t *emitter) {
 	emitter_json_array_kv_begin(emitter, "stack_traces");
 	prof_bt_node_t *bt_node = log_bt_first;
-	prof_bt_node_t *bt_old_node; 
-	/* 
+	prof_bt_node_t *bt_old_node;
+	/*
 	 * Calculate how many hex digits we need: twice number of bytes, two for
 	 * "0x", and then one more for terminating '\0'.
 	 */

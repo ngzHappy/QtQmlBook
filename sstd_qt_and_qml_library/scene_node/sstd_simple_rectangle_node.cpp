@@ -40,15 +40,3 @@ void _0_sstd_simple_rectangle_node::setColor(const QColor &color) {
 QColor _0_sstd_simple_rectangle_node::color() const {
     return m_material.color();
 }
-
-
-
-
-
-
-
-
-
-
-
-

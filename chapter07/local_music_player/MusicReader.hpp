@@ -42,9 +42,3 @@ inline _MusicReaderPrivate * MusicReader::getThisPrivate() {
 inline _MusicReaderPrivate * MusicReader::getThisPrivate() const {
     return mmmPrivate;
 }
-
-
-
-
-
-

@@ -56,7 +56,7 @@ C++、QML以及JavaScript的注释语法都是一致的：
 :tex_raw:[[\end{itemize}]]
 
 :tex_raw:[[
-%http://www.glimix.com/archives/1594 
+%http://www.glimix.com/archives/1594
 %https://wiki.qt.io/QDoc
 %http://doc.qt.io/qt-5/qdoc-index.html
 ]]
@@ -91,4 +91,3 @@ qdoc以获得更多帮助。
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

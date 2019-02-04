@@ -19,12 +19,3 @@ ApplicationWindow {
     }/*Rectangle*/
 
 }
-
-
-
-
-
-
-
-
-

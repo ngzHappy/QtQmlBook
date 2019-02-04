@@ -309,16 +309,16 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 % \enlargethispage{1cm}
 % http://www.ctex.org/documents/latex/graphics/node2.html
 % https://www.jianshu.com/p/b1751078e28e
-% \tiny           
-% \scriptsize     
-% \footnotesize   
-% \small          
-% \normalsize     
-% \large          
-% \Large          
-% \LARGE          
-% \huge           
-% \Huge           
+% \tiny
+% \scriptsize
+% \footnotesize
+% \small
+% \normalsize
+% \large
+% \Large
+% \LARGE
+% \huge
+% \Huge
 
 ]==========]
 
@@ -334,4 +334,3 @@ identifierstyle=\scriptsize\itshape\sourcefontone        , %设置字号，字�
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

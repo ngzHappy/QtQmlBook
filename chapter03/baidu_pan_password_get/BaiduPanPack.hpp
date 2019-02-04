@@ -12,10 +12,3 @@ public:
         QString/*password*/,
         BaiduPanPasswordGet::ReturnState/*error code*/);
 };
-
-
-
-
-
-
-

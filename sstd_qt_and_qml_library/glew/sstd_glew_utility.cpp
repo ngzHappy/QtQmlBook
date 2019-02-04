@@ -229,12 +229,3 @@ namespace sstd::opengl_utility {
 //
 // https://www.khronos.org/registry/OpenGL-Refpages/gl4/
 //
-
-
-
-
-
-
-
-
-

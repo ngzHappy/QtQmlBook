@@ -222,14 +222,14 @@ emitter_init(emitter_t *emitter, emitter_output_t emitter_output,
 	emitter->write_cb = write_cb;
 	emitter->cbopaque = cbopaque;
 	emitter->item_at_depth = false;
-	emitter->emitted_key = false; 
+	emitter->emitted_key = false;
 	emitter->nesting_depth = 0;
 }
 
 /******************************************************************************/
 /* JSON public API. */
 
-/* 
+/*
  * Emits a key (e.g. as appears in an object). The next json entity emitted will
  * be the corresponding value.
  */

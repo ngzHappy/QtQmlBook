@@ -9,13 +9,3 @@ namespace sstd {
     EXPORT_SSTD_QT_AND_QML_LIBRARY const QSurfaceFormat & getDefaultQSurfaceFormat();
 
 }/*namespace sstd*/
-
-
-
-
-
-
-
-
-
-

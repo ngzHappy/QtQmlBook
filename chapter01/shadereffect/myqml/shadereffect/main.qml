@@ -29,10 +29,10 @@ void main() {
 
 "
             vertexShader :"
-/*顶点着色器*/ 
+/*顶点着色器*/
 #version 460
 
-in vec4 qt_Vertex/*输入点坐标*/    ; 
+in vec4 qt_Vertex/*输入点坐标*/    ;
 out vec2 qt_TexCoord0/*纹理坐标*/  ;
 
 uniform mat4 qt_Matrix/*投影矩阵*/ ;
@@ -47,6 +47,3 @@ void main() {
     }
 
 }/*~Rectangle*/
-
-
-

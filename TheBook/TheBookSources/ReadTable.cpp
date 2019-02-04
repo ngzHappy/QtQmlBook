@@ -176,6 +176,3 @@ QString ReadTable::readHeadControl() const {
     return
         readAndTrimmed(*thisp->headControlReader.stream);
 }
-
-
-

@@ -59,17 +59,17 @@ namespace this_file {
 
         inline void beforeDestory() {
             mmmNumberTextPorperty.reset();
-            delete mmmBoomItem; 
+            delete mmmBoomItem;
             mmmBoomItem = nullptr;
-            delete mmmFlagItem; 
+            delete mmmFlagItem;
             mmmFlagItem = nullptr;
-            delete mmmMaskItem; 
+            delete mmmMaskItem;
             mmmMaskItem = nullptr;
-            delete mmmErrorItem; 
+            delete mmmErrorItem;
             mmmErrorItem = nullptr;
-            delete mmmMineItem; 
+            delete mmmMineItem;
             mmmMineItem = nullptr;
-            delete mmmNumberItem; 
+            delete mmmNumberItem;
             mmmNumberItem = nullptr;
         }
 
@@ -1136,15 +1136,3 @@ static inline void register_this() {
         "MineSweeping");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
-
-
-
-
-
-
-
-
-
-
-
-

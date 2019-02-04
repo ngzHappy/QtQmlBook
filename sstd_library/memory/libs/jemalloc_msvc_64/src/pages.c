@@ -578,7 +578,7 @@ init_thp_state(void) {
 #endif
 
         if (nread < 0) {
-		goto label_error; 
+		goto label_error;
         }
 
 	if (strncmp(buf, sys_state_madvise, (size_t)nread) == 0) {

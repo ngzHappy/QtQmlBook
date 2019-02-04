@@ -39,7 +39,3 @@ namespace sstd {
     using DirectDrawImage = _0_sstd_direct_draw_image;
 
 }/*namespace sstd*/
-
-
-
-

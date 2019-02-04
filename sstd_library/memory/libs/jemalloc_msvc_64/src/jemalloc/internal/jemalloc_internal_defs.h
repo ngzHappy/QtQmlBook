@@ -140,7 +140,7 @@
 /* #undef JEMALLOC_MUTEX_INIT_CB */
 
 /* Non-empty if the tls_model attribute is supported. */
-#define JEMALLOC_TLS_MODEL 
+#define JEMALLOC_TLS_MODEL
 
 /*
  * JEMALLOC_DEBUG enables assertions and other sanity checks, and disables
@@ -149,7 +149,7 @@
 /* #undef JEMALLOC_DEBUG */
 
 /* JEMALLOC_STATS enables statistics calculation. */
-#define JEMALLOC_STATS 
+#define JEMALLOC_STATS
 
 /* JEMALLOC_EXPERIMENTAL_SMALLOCX_API enables experimental smallocx API. */
 /* #undef JEMALLOC_EXPERIMENTAL_SMALLOCX_API */
@@ -173,7 +173,7 @@
 /* #undef JEMALLOC_DSS */
 
 /* Support memory filling (junk/zero). */
-#define JEMALLOC_FILL 
+#define JEMALLOC_FILL
 
 /* Support utrace(2)-based tracing. */
 /* #undef JEMALLOC_UTRACE */
@@ -244,7 +244,7 @@
  * If defined, explicitly attempt to more uniformly distribute large allocation
  * pointer alignments across all cache indices.
  */
-#define JEMALLOC_CACHE_OBLIVIOUS 
+#define JEMALLOC_CACHE_OBLIVIOUS
 
 /*
  * If defined, enable logging facilities.  We make this a configure option to

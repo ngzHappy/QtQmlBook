@@ -8,12 +8,3 @@ Rectangle {
     height: 640
 
 }/*Window*/
-
-
-
-
-
-
-
-
-

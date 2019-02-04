@@ -53,13 +53,3 @@ DrawImageItemRaw {
     }
 
 }/*Rectangle*/
-
-
-
-
-
-
-
-
-
-

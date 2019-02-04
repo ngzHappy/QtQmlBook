@@ -182,6 +182,3 @@ Pane {
     }
 
 }/*~Rectangle*/
-
-
-

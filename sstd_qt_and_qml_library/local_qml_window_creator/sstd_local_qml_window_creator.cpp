@@ -59,6 +59,3 @@ static inline void registerThis() {
     });
 }
 Q_COREAPP_STARTUP_FUNCTION(registerThis)
-
-
-

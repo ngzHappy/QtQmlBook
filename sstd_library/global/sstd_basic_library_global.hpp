@@ -64,12 +64,6 @@ __VA_ARGS__>::value ) __VA_ARGS__ cValueName  \
 #define sstd$a(...) {__VA_ARGS__}
 #endif
 
-#ifndef sstd_bool 
+#ifndef sstd_bool
 #define sstd_bool alignas(_8_sstd_private::min_align_type) bool
 #endif
-
-
-
-
-
-

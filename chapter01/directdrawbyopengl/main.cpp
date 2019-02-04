@@ -17,7 +17,7 @@ int main(int argc, char ** argv) {
         varWindow->load(varFullFileName);
         /*检查并报错*/
         if (varWindow->status() != sstd::LoadState::Ready) {
-            qWarning() << QStringLiteral("can not load : ") 
+            qWarning() << QStringLiteral("can not load : ")
             << varFullFileName;
             return -1;
         }
@@ -26,7 +26,7 @@ int main(int argc, char ** argv) {
 
     varWindow->show();
 
-    {   
+    {
         /*运行时由C++端添加对象*/
         auto varRootObject = varWindow->getRootObject();
         assert(varRootObject);
@@ -50,7 +50,7 @@ int main(int argc, char ** argv) {
 import QtQuick 2.9
 import sstd.quick 1.0
 
-DrawImageItemRaw { 
+DrawImageItemRaw {
 
     width: 256                             ;
     height: 256                            ;
@@ -64,7 +64,7 @@ DrawImageItemRaw {
 
         QQmlComponent varComponent{ varWindow->getEngine() };
         auto varContex = QQmlEngine::contextForObject( varWindow->getRootObject() );
-        varComponent.setData(   
+        varComponent.setData(
             QByteArray( varQmlCode.data(),static_cast<int>(varQmlCode.size()) ),
             varContex->baseUrl()
         );
@@ -80,4 +80,3 @@ DrawImageItemRaw {
     return varApp->exec();
 
 }
-

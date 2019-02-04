@@ -4,18 +4,3 @@ NetworkAccessManager::NetworkAccessManager(QObject * var )
     : Super(var){
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

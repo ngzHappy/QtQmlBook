@@ -67,4 +67,3 @@ inline std::future<void> FFMPEGOpenCloseThread::call(T && arg) {
     auto varFunction = sstd_make_shared<F>(std::forward<T>(arg));
     return pppCall(std::move(varFunction));
 }
-

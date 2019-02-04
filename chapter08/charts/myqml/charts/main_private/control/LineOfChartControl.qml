@@ -64,10 +64,3 @@ ColumnLayout {
     property alias capStyleItem : idCapStyle
 
 }
-
-
-
-
-
-
-

@@ -23,4 +23,3 @@ namespace sstd {
 }/*namespace sstd*/
 
 #endif
-

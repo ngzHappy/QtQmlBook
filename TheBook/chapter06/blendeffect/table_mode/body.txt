@@ -70,7 +70,7 @@ lighten
 darkerColor
     :tex_raw:[[&]]
 深色:tex_raw:[[$\left[v=\begin{cases}
-a, & a_r+a_r+a_b<b_r+b_g+b_b \\ 
+a, & a_r+a_r+a_b<b_r+b_g+b_b \\
 b, & a_r+a_r+a_b>b_r+b_g+b_b
 \end{cases}\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
@@ -79,7 +79,7 @@ b, & a_r+a_r+a_b>b_r+b_g+b_b
 lighterColor
     :tex_raw:[[&]]
 浅色:tex_raw:[[$\left[v=\begin{cases}
-a, & a_r+a_r+a_b>b_r+b_g+b_b \\ 
+a, & a_r+a_r+a_b>b_r+b_g+b_b \\
 b, & a_r+a_r+a_b<b_r+b_g+b_b
 \end{cases}\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
@@ -118,7 +118,7 @@ exclusion
 hardLight
     :tex_raw:[[&]]
 强光:tex_raw:[[$\left[v=\begin{cases}
-2ab, & a<0.5 \\ 
+2ab, & a<0.5 \\
 1-2(1-a)(1-b), & a\ge{}0.5
 \end{cases}\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
@@ -127,7 +127,7 @@ hardLight
 softLight
     :tex_raw:[[&]]
 柔光:tex_raw:[[$\left[v=\begin{cases}
-2ab+a^2(1-2b), & a<0.5 \\ 
+2ab+a^2(1-2b), & a<0.5 \\
 2a(1-b)+\sqrt{a}(2a-1), & a\ge{}0.5
 \end{cases}\right]$]]
 :tex_raw:[[ %与Photoshop  效果一致]]
@@ -157,4 +157,3 @@ subtract
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

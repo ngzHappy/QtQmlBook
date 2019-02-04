@@ -80,5 +80,3 @@ namespace boost
 } // namespace boost
 
 #endif // BOOST_SYSTEM_SYSTEM_ERROR_HPP
-
-

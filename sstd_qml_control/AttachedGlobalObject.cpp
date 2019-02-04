@@ -7,7 +7,3 @@ AttachedGlobalObject *AttachedGlobalObject::qmlAttachedProperties(QObject * arg)
 AttachedGlobalObject::AttachedGlobalObject(QObject * arg)
     :QObject(arg) {
 }
-
-
-
-

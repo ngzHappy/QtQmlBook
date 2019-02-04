@@ -15,7 +15,7 @@ using namespace std::string_view_literals;
 namespace _sstd1::_3_private_api {
 
     ResizeQuickView::ResizeQuickView() {
-      
+
     }
 
     ResizeQuickView::~ResizeQuickView() {
@@ -23,14 +23,3 @@ namespace _sstd1::_3_private_api {
 
 
 }/* namespace sstd::private_api */
-
-
-
-
-
-
-
-
-
-
-

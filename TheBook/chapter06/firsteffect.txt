@@ -55,4 +55,3 @@ Qt Graphical Effects共提供了25种图形特效，
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

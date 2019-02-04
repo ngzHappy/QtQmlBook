@@ -8,23 +8,23 @@ color
     :tex_raw:[[&]]
 transparent
     :tex_raw:[[&]]
-:tex_raw:[[\thebookallone{}$\left\{\text{RGBA颜色}\right\}$ %鬼知道是啥]]  
+:tex_raw:[[\thebookallone{}$\left\{\text{RGBA颜色}\right\}$ %鬼知道是啥]]
     :tex_raw:[[&]]
 覆盖颜色
     :tex_raw:[[\\]]
 
-cached 
+cached
     :tex_raw:[[&]]
-bool     
+bool
     :tex_raw:[[&]]
-false     
+false
     :tex_raw:[[&]]
-:tex_raw:[[$[false,true]$]]     
+:tex_raw:[[$[false,true]$]]
     :tex_raw:[[&]]
 缓存
     :tex_raw:[[\\]]
- 
-source 
+
+source
     :tex_raw:[[&]]
 variant
     :tex_raw:[[&]]
@@ -47,4 +47,3 @@ variant
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

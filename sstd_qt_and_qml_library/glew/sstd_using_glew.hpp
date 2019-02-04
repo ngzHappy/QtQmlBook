@@ -655,12 +655,3 @@ using sstd::glWaitSync ; \
 static_assert(true,"true")
 /**********************************************/
 #endif
-
-
-
-
-
-
-
-
-

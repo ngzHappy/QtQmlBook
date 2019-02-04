@@ -32,17 +32,3 @@ int main(int argc, char ** argv) {
     varOutput << std::endl;
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

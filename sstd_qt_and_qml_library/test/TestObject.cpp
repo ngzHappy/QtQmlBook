@@ -11,4 +11,3 @@ void TestObject::initTestCase() {
 void TestObject::cleanupTestCase() {
 
 }
-

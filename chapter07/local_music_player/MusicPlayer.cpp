@@ -521,6 +521,3 @@ namespace this_file {
     }
 
 }
-
-
-

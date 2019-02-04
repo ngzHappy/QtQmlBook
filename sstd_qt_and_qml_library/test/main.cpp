@@ -10,8 +10,3 @@ int main(int argc, char ** argv) {
     return QTest::qExec(varTestObject.get(), argc, argv);
 
 }
-
-
-
-
-

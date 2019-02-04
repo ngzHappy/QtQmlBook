@@ -30,13 +30,3 @@ Rectangle{
     }
 
 }/*Rectangle*/
-
-
-
-
-
-
-
-
-
-

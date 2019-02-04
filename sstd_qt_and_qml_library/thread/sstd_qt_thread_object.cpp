@@ -179,12 +179,3 @@ EXPORT_SSTD_QT_AND_QML_LIBRARY auto _0_sstd_get_thread_object(QPointer<QThread> 
 
     return std::move(varAns);
 }
-
-
-
-
-
-
-
-
-

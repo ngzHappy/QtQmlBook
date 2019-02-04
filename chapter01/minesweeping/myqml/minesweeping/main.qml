@@ -167,6 +167,3 @@ Pane {
     }
 
 }/*~Rectangle*/
-
-
-

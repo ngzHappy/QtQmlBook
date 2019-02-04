@@ -157,4 +157,3 @@ bool VideoReader::open(const QString & arg) {
     return const_cast<_VideoReaderPirvate*>(thisp)
         ->open(arg);
 }
-

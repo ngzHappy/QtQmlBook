@@ -30,7 +30,3 @@ namespace sstd{
     EXPORT_SSTD_QT_AND_QML_LIBRARY QString getLocalPathFromApp(const QString &);
 
 }/*namespace sstd*/
-
-
-
-

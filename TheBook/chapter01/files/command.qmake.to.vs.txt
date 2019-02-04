@@ -1,3 +1,2 @@
 
 qmake -r -tp vc < 工程名称 >
-

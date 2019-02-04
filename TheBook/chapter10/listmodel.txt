@@ -40,7 +40,7 @@
 :tex_raw:[[\textbullet\ ]]Rows and columns can be removed :tex_raw:[[\>]]
 可以删除行或列 :tex_raw:[[\\]]
 :tex_raw:[[\textbullet\ ]]Fetch data dynamically :tex_raw:[[\>]]
-下拉获得更多数据  
+下拉获得更多数据
 :tex_raw:[[\end{tabbing}]]
 
 :tex_raw:[[\FloatBarrier]]
@@ -74,9 +74,9 @@ QModelIndex的默认构造函数就是构造一个无效的索引，也就代表
 :tex_raw:[[\hspace*{\parindent}\textbullet\ ]]int                   :tex_raw:[[\>]] row  :tex_raw:[[\\]]
 :tex_raw:[[\hspace*{\parindent}\textbullet\ ]]int                   :tex_raw:[[\>]] column  :tex_raw:[[\\]]
 :tex_raw:[[\hspace*{\parindent}\textbullet\ ]]quintptr              :tex_raw:[[\>]] internalid/internalPointer :tex_raw:[[\\]]
-:tex_raw:[[\hspace*{\parindent}\textbullet\ ]]QAbstractItemModel *  :tex_raw:[[\>]] model 
+:tex_raw:[[\hspace*{\parindent}\textbullet\ ]]QAbstractItemModel *  :tex_raw:[[\>]] model
 :tex_raw:[[\end{tabbing}]]
- 
+
 一个有效的QModelIndex可以由:tex_raw:[[\begin{littlelongworld}]]
 QModelIndex QAbstractItemModel::createIndex(int r, int c,void *p=nullptr) const
 :tex_raw:[[\end{littlelongworld}]]
@@ -139,4 +139,3 @@ bool removeColumns(int column, int count, const QModelIndex &parent)
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

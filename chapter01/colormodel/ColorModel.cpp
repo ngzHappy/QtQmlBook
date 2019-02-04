@@ -59,9 +59,3 @@ static inline void register_this() {
         "ColorModel");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
-
-
-
-
-
-

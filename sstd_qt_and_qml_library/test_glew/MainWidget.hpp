@@ -22,8 +22,3 @@ private:
     GLuint mmmBufferIndex{0};
     GLuint mmmTexture{0};
 };
-
-
-
-
-

@@ -22,4 +22,3 @@
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

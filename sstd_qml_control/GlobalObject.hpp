@@ -22,18 +22,3 @@ private:
 /**
 Creating C++ Plugins for QML
 **/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

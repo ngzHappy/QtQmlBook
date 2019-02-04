@@ -337,4 +337,3 @@
 
 // Macro used to identify the Clang compiler.
 #define BOOST_CLANG 1
-

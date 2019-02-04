@@ -43,19 +43,3 @@ ColumnLayout {
     property alias contrastItem: idContrast
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

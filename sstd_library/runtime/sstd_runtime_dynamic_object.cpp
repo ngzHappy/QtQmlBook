@@ -112,6 +112,3 @@ _data_sstd_virtual_basic::_data_sstd_virtual_basic() :
 _data_sstd_virtual_basic::~_data_sstd_virtual_basic() {
     delete mmmData;
 }
-
-
-

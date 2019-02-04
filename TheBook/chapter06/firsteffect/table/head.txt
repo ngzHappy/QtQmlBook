@@ -1,5 +1,5 @@
 ﻿
-类名 
+类名
 :tex_raw:[[&]]
 分类
 :tex_raw:[[&]]
@@ -17,4 +17,3 @@
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

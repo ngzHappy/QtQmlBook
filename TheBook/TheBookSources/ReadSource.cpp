@@ -119,22 +119,3 @@ extern std::vector<QString> readFileSource(const QString & arg) {
     varReader->fileName = arg;
     return varReader->read();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

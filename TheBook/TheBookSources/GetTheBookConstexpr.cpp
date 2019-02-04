@@ -85,11 +85,3 @@ std::vector<QString> GetTheBookConstexpr::getValues(const QString & arg) const {
     }
     return varPos->second;
 }
-
-
-
-
-
-
-
-

@@ -22,6 +22,3 @@ Rectangle {
     }
 
 }/*~Rectangle*/
-
-
-

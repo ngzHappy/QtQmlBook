@@ -96,12 +96,3 @@ void* _1_sstd_memory_static_class_basic::operator new[](std::size_t count, std::
 void _1_sstd_memory_static_class_basic::operator delete[](void* ptr, std::align_val_t al) {
     return ::auto_free(ptr, al);
 }
-
-
-
-
-
-
-
-
-

@@ -178,6 +178,3 @@ void main() {
 
 
 }/*~Rectangle*/
-
-
-

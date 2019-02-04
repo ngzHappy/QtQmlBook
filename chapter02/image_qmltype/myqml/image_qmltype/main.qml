@@ -79,6 +79,3 @@ Rectangle {
     }
 
 }/*~Rectangle*/
-
-
-

@@ -129,4 +129,3 @@ QtQmlBook\sstd_library\_sstd_library_memory.pri
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

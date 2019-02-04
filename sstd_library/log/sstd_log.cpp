@@ -164,18 +164,3 @@ _1_SSTD_CORE_EXPORT sstd::LogFunction * sstd_set_log_function(sstd::LogFunction 
     }
     return varAns;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

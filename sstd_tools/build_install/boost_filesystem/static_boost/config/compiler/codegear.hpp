@@ -236,4 +236,3 @@
 #endif
 
 #define BOOST_COMPILER "CodeGear C++ version " BOOST_STRINGIZE(__CODEGEARC__)
-

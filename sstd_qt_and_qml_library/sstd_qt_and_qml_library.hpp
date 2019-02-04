@@ -40,4 +40,3 @@ inline QString operator""_qstr8(const char * a,std::size_t b) {
 inline QByteArray operator""_qbya(const char * a, std::size_t b) {
     return QByteArray{ a, static_cast<int>(b) };
 }
-

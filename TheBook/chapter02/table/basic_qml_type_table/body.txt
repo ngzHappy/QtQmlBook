@@ -1,10 +1,10 @@
 ﻿:tex_raw:[[%类型 说明]]
- 
+
 bool
     :tex_raw:[[&]]
 布尔类型
     :tex_raw:[[\\]]
- 
+
 int
     :tex_raw:[[&]]
 整型
@@ -83,4 +83,3 @@ var
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

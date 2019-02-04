@@ -2712,7 +2712,7 @@ prof_log_start_ctl(tsd_t *tsd, const size_t *mib, size_t miblen, void *oldp,
 
 	if (prof_log_start(tsd_tsdn(tsd), filename)) {
 		ret = EFAULT;
-		goto label_return; 
+		goto label_return;
 	}
 
 	ret = 0;

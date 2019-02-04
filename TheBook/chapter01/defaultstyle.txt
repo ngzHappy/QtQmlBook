@@ -70,4 +70,3 @@ Qt Quick Control的样式具有继承性。
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

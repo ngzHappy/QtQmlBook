@@ -42,10 +42,3 @@ DemoBasic {
 
 /*endl_input_of_latex_for_clanguage_lick*/
 /*http://doc.qt.io/qt-5/qtquick-effects-particles.html*/
-
-
-
-
-
-
-

@@ -59,18 +59,3 @@ inline QPointF MineSweepingLine::getEndPoint() const {
 inline QPointF MineSweepingLine::getBeginPoint() const {
     return getLineNode()->getBeginPoint();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

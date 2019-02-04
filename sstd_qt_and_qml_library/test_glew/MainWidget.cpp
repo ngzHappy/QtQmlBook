@@ -114,4 +114,3 @@ MainWidget::~MainWidget() {
     sstd::glDeleteTextures(1, &mmmTexture);
 
 }
-

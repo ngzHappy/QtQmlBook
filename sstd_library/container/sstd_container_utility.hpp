@@ -12,7 +12,7 @@ namespace sstd::_12_private{
     > class CanEqual<T,U,std::void_t<
         decltype(std::declval<T&&>() == std::declval<U&&>())>
     > : public std::true_type {
-    };   
+    };
 }/*sstd::_12_private*/
 
 namespace sstd{
@@ -56,7 +56,7 @@ inline void move_list_back_to_front(T & arg) {
 }/*sstd*/
 
 namespace sstd{
-    
+
 /*move list element to last ...*/
 template<typename T,typename I>
 inline void move_list_element_to_back(T & arg,const I & pos) {
@@ -87,7 +87,7 @@ inline void move_list_element_to_front(T & arg,const I & pos) {
     if constexpr(canEqual) {
         if((arg.cbegin() != pos)&&(arg.cend() != pos)) {
             arg.splice(arg.begin(),arg,pos);
-        }        
+        }
     } else {
         if(arg.crend() != pos) {
             return move_list_element_to_front(arg,--pos.base());
@@ -96,10 +96,3 @@ inline void move_list_element_to_front(T & arg,const I & pos) {
 }
 
 }/*sstd*/
-
-
-
-
-
-
-

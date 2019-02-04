@@ -51,6 +51,3 @@ Rectangle {
     }
 
 }/*~Rectangle*/
-
-
-

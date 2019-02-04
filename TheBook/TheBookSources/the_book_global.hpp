@@ -62,7 +62,3 @@ inline static void outputHeader(T && o) {
 }
 
 extern QString theBookPlainTextToTexText(const QString &);
-
-
-
-

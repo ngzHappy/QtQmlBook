@@ -8,13 +8,3 @@ Rectangle{
     color: Qt.rgba(1,0,0,1);
 
 }/*Rectangle*/
-
-
-
-
-
-
-
-
-
-

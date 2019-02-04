@@ -160,8 +160,3 @@ extern void output_main_index() try {
 } catch (...) {
     throw;
 }
-
-
-
-
-

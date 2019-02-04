@@ -16,31 +16,9 @@ class CreateMakeFilePrivate;
 
 class CreateMakeFile {
 public:
-    CreateMakeFile(std::shared_ptr<const CreateMakeFileConstruct> arg 
+    CreateMakeFile(std::shared_ptr<const CreateMakeFileConstruct> arg
         = std::make_shared<CreateMakeFileConstruct>() );
     bool createMakeFile();
 private:
     std::shared_ptr<CreateMakeFilePrivate> thisp;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

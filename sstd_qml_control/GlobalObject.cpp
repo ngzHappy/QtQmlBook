@@ -27,11 +27,3 @@ GlobalObject * GlobalObject::instanceRaw(){
     static auto varAns = sstd_new<GlobalObject>();
     return varAns;
 }
-
-
-
-
-
-
-
-

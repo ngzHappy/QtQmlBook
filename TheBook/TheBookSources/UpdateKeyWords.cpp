@@ -92,22 +92,3 @@ extern bool updateKeywords(const QString & argFullPath) {
     return true;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

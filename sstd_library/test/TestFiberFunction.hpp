@@ -10,7 +10,7 @@ namespace sstd {
 
     using Fiber = boost::context::fiber;
 
-    class FiberCall : 
+    class FiberCall :
         public virtual sstd_intrusive_ptr_basic,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS_OVERRIDE(FiberCall) {
     public:
@@ -211,14 +211,14 @@ namespace sstd {
 #define sstd_yield_return(argSSTDF,argSSTDFi,...)  { \
     (argSSTDF)->setValue( __VA_ARGS__ ); \
     return std::move(argSSTDFi); \
-} 
+}
 #endif
 
 #ifndef sstd_yield
 #define sstd_yield(argSSTDF,argSSTDFi) { \
     argSSTDFi = std::move(argSSTDFi).resume(); \
 }
-#endif 
+#endif
 
 /*sstd::FiberFunction<ReturnType_> * a,sstd::Fiber && f*/
 template<typename ReturnType_ = void,typename FunctionType_>
@@ -226,4 +226,3 @@ inline sstd::intrusive_ptr< sstd::FiberFunction<ReturnType_> >
 sstd_make_fiber_function(FunctionType_ && f) {
     return sstd::make_fiber_function<ReturnType_>(std::forward<FunctionType_>(f));
 }
-

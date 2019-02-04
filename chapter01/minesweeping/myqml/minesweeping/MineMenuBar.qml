@@ -19,4 +19,3 @@ MenuBar {
     signal toResetAction();
 
 }
-

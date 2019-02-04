@@ -291,7 +291,7 @@ void _0_sstd_direct_draw_image::pppSetImage1(const QImage & arg) {
     } else {
         mmmImage = arg.convertToFormat(QImage::Format_RGBA64);
     }
-   
+
     mmmImageUpdate = true;
     this->imageChanged();
     this->update();
@@ -304,15 +304,3 @@ static inline void register_this() {
         "DirectDrawImage");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
-
-
-
-
-
-
-
-
-
-
-
-

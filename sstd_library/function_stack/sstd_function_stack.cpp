@@ -6,16 +6,3 @@ sstd_function_stack::sstd_function_stack() {
 
 sstd_function_stack::~sstd_function_stack(){
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

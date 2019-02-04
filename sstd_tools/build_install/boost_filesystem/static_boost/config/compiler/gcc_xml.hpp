@@ -107,5 +107,3 @@
 #endif
 
 #define BOOST_COMPILER "GCC-XML C++ version " __GCCXML__
-
-

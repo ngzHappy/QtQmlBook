@@ -13,4 +13,3 @@
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

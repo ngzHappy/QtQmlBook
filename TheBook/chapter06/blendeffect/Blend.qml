@@ -58,39 +58,39 @@ Item {
         property string blendModeAddition: "result.rgb = min(rgb1 + rgb2, 1.0);"
         property string blendModeAverage: "result.rgb = 0.5 * (rgb1 + rgb2);"
         property string blendModeColor: "result.rgb = HSLtoRGB(vec3(RGBtoHSL(rgb2).xy, RGBtoL(rgb1)));"
-        property string blendModeColorBurn: 
+        property string blendModeColorBurn:
         "result.rgb = clamp(1.0 - ((1.0 - rgb1) / max(vec3(1.0 / 256.0), rgb2)), vec3(0.0), vec3(1.0));"
-        property string blendModeColorDodge: 
+        property string blendModeColorDodge:
         "result.rgb = clamp(rgb1 / max(vec3(1.0 / 256.0), (1.0 - rgb2)), vec3(0.0), vec3(1.0));"
         property string blendModeDarken: "result.rgb = min(rgb1, rgb2);"
-        property string blendModeDarkerColor: 
+        property string blendModeDarkerColor:
         "result.rgb = 0.3 * rgb1.r + 0.59 * rgb1.g + 0.11 * rgb1.b > 0.3 * rgb2.r + 0.59 * rgb2.g + 0.11 * rgb2.b ? rgb2 : rgb1;"
         property string blendModeDifference: "result.rgb = abs(rgb1 - rgb2);"
         property string blendModeDivide: "result.rgb = clamp(rgb1 / rgb2, 0.0, 1.0);"
-        property string blendModeExclusion: 
+        property string blendModeExclusion:
         "result.rgb = rgb1 + rgb2 - 2.0 * rgb1 * rgb2;"
-        property string blendModeHardLight: 
+        property string blendModeHardLight:
         "result.rgb = vec3(channelBlendHardLight(rgb1.r, rgb2.r), channelBlendHardLight(rgb1.g, rgb2.g), channelBlendHardLight(rgb1.b, rgb2.b));"
-        property string blendModeHue: 
+        property string blendModeHue:
         "result.rgb = HSLtoRGB(vec3(RGBtoHSL(rgb2).x, RGBtoHSL(rgb1).yz));"
         property string blendModeLighten: "result.rgb = max(rgb1, rgb2);"
-        property string blendModeLighterColor: 
+        property string blendModeLighterColor:
         "result.rgb = 0.3 * rgb1.r + 0.59 * rgb1.g + 0.11 * rgb1.b > 0.3 * rgb2.r + 0.59 * rgb2.g + 0.11 * rgb2.b ? rgb1 : rgb2;"
-        property string blendModeLightness: 
+        property string blendModeLightness:
         "result.rgb = HSLtoRGB(vec3(RGBtoHSL(rgb1).xy, RGBtoL(rgb2)));"
         property string blendModeMultiply: "result.rgb = rgb1 * rgb2;"
         property string blendModeNegation: "result.rgb = 1.0 - abs(1.0 - rgb1 - rgb2);"
-        property string blendModeNormal: 
+        property string blendModeNormal:
         "result.rgb = rgb2; a = max(color1.a, color2.a);"
-        property string blendModeSaturation: 
+        property string blendModeSaturation:
         "lowp vec3 hsl1 = RGBtoHSL(rgb1); result.rgb = HSLtoRGB(vec3(hsl1.x, RGBtoHSL(rgb2).y, hsl1.z));"
-        property string blendModeScreen: 
+        property string blendModeScreen:
         "result.rgb = 1.0 - (vec3(1.0) - rgb1) * (vec3(1.0) - rgb2);"
         property string blendModeSubtract: "result.rgb = max(rgb1 - rgb2, vec3(0.0));"
-        property string blendModeSoftLight: 
+        property string blendModeSoftLight:
         "result.rgb = rgb1 * ((1.0 - rgb1) * rgb2 + (1.0 - (1.0 - rgb1) * (1.0 - rgb2)));"
-        property string fragmentCoreShaderWorkaround: 
-        (GraphicsInfo.profile === GraphicsInfo.OpenGLCoreProfile ? 
+        property string fragmentCoreShaderWorkaround:
+        (GraphicsInfo.profile === GraphicsInfo.OpenGLCoreProfile ?
            "#version 150 core
             #define varying in
             #define texture2D texture
@@ -152,7 +152,7 @@ Item {
                 return vec3(r, g, b); }
             lowp float channelBlendHardLight(lowp float c1, lowp float c2) {
                 return c2 > 0.5 ?
-                    (1.0 - (1.0 - 2.0 * (c2 - 0.5)) * (1.0 - c1)) 
+                    (1.0 - (1.0 - 2.0 * (c2 - 0.5)) * (1.0 - c1))
                     : (2.0 * c1 * c2); }
             void main() {
                 lowp vec4 result = vec4(0.0);
@@ -166,4 +166,3 @@ Item {
                 gl_FragColor.rbg *= a;
                 gl_FragColor.a = a;
                 gl_FragColor *= qt_Opacity; } " } }
-

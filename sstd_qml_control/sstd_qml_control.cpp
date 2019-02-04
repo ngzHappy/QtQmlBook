@@ -21,14 +21,3 @@ void SSTDQmlControlPlugin::registerTypes(const char *uri) {
 /**
 Overview - QML and C++ Integration
 **/
-
-
-
-
-
-
-
-
-
-
-

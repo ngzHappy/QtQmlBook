@@ -16,6 +16,3 @@ Rectangle {
     }
 
 }/*~Rectangle*/
-
-
-

@@ -73,8 +73,3 @@ void MainWindow::_on_rb_clicked() {
     ui->la->setText(varAns);
 
 }
-
-
-
-
-

@@ -166,19 +166,3 @@ namespace sstd {
     AbstractRootWindow::~AbstractRootWindow() {
     }
 }/**/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

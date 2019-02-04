@@ -60,19 +60,3 @@ ColumnLayout {
     property alias hueItem: idHue
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

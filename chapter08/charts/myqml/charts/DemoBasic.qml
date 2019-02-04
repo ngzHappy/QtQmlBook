@@ -8,12 +8,3 @@ Rectangle {
     height: 600
 
 }/*~Rectangle*/
-
-
-
-
-
-
-
-
-

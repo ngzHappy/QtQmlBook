@@ -2600,25 +2600,3 @@ EXPORT_SSTD_QT_AND_QML_LIBRARY void  sstd::_sstd_glViewportIndexedfv(GLuint  ind
 EXPORT_SSTD_QT_AND_QML_LIBRARY void  sstd::_sstd_glWaitSync(GLsync  sync, GLbitfield  flags, GLuint64  timeout) {
     return ::glWaitSync(sync, flags, timeout);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

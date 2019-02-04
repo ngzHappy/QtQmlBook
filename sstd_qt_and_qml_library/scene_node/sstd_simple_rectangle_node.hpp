@@ -29,13 +29,3 @@ private:
 namespace sstd {
     using SimpleRectangleNode = _0_sstd_simple_rectangle_node;
 }/*namespace sstd*/
-
-
-
-
-
-
-
-
-
-

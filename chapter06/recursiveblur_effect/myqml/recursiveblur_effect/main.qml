@@ -25,4 +25,3 @@ Rectangle {
         radius: 8
     }
 }
-

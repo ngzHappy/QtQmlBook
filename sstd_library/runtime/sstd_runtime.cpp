@@ -484,4 +484,3 @@ static inline void static_test() {
 
 }
 #endif
-

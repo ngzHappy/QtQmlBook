@@ -2,7 +2,7 @@
 #include <sstd_qt_and_qml_library.hpp>
 
 int main(int argc, char ** argv) {
-    
+
     /*初始化程序*/
     auto varApp = sstd_make_unique< sstd::Application >(argc, argv);
     /*初始化Qml/Quick引擎*/

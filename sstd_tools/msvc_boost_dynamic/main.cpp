@@ -75,47 +75,17 @@ int main(int argc,char ** argv) {
     varStream << "CONFIG(debug,debug|release){"sv << std::endl;
     for(const auto & varName : varDebug) {
         varStream << u8R"(    LIBS += ")"sv
-            << varName 
+            << varName
             << u8R"(")"
             << std::endl;
     }
     varStream << "}else{"sv << std::endl;
     for(const auto & varName : varRelease) {
         varStream << u8R"(    LIBS += ")"sv
-            << varName 
+            << varName
             << u8R"(")"
             << std::endl;
     }
     varStream << "}"sv << std::endl;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

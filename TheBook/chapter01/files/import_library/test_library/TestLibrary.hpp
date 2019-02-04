@@ -15,13 +15,3 @@ public:
     ~TestClass();
     void foo();
 };
-
-
-
-
-
-
-
-
-
-

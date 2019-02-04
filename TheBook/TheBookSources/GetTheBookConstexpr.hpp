@@ -16,9 +16,3 @@ public:
 public:
     std::vector<QString> getValues(const QString &) const;
 };
-
-
-
-
-
-

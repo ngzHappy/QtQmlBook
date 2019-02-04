@@ -6,14 +6,3 @@ int main(int, char **) {
     varClass.foo();
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-

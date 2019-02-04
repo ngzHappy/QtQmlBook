@@ -9,4 +9,3 @@ Pane {
     height: 480;
     color: Qt.rgba(0.8,0.8,0.8,1);
 }
-

@@ -784,4 +784,3 @@ namespace sstd {
     template <typename T>
     using optional = sstd_optional<T>;
 }/*namespace sstd*/
-

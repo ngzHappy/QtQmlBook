@@ -1,4 +1,4 @@
- 
+
 .
 ├── import_library.pro
 ├── test_library
@@ -9,5 +9,3 @@
 └── the_app
     ├── main.cpp
     └── the_app.pro
-
-    

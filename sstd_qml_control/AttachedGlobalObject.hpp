@@ -29,5 +29,3 @@ QML_DECLARE_TYPEINFO(AttachedGlobalObject, QML_HAS_ATTACHED_PROPERTIES)
 /**
 Defining QML Types from C++
 **/
-
-

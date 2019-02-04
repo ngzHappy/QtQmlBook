@@ -33,4 +33,3 @@ private:
 inline void DrawImageItem::setImage(const QImage & arg) {
     this->pppSetImage1(arg);
 }
-

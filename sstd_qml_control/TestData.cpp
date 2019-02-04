@@ -15,17 +15,3 @@ void TestData::setData(const QString & arg) {
     mmmData = arg;
     dataChanged();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

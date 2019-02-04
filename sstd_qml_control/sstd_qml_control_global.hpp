@@ -7,19 +7,3 @@
 #else
 #define EXPORT_SSTD_QML_CONTROL Q_DECL_EXPORT
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

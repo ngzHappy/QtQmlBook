@@ -320,10 +320,10 @@ namespace boost
 
       virtual const char *     name() const BOOST_SYSTEM_NOEXCEPT = 0;
       virtual std::string      message( int ev ) const = 0;
-      inline virtual error_condition  default_error_condition( int ev ) const 
+      inline virtual error_condition  default_error_condition( int ev ) const
         BOOST_SYSTEM_NOEXCEPT;
       inline virtual bool             equivalent( int code,
-                                           const error_condition & condition ) const 
+                                           const error_condition & condition ) const
         BOOST_SYSTEM_NOEXCEPT;
       inline virtual bool             equivalent( const error_code & code,
                                            int condition ) const  BOOST_SYSTEM_NOEXCEPT;
@@ -740,7 +740,7 @@ inline const error_category & generic_category() BOOST_SYSTEM_NOEXCEPT
     //  "throws" function in namespace boost rather than namespace boost::system.
 
   }  // namespace system
-                                                               
+
   namespace detail
   {
     //  Misuse of the error_code object is turned into a noisy failure by

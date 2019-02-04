@@ -48,8 +48,3 @@ private:
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(MusicPlayer);
 };
-
-
-
-
-

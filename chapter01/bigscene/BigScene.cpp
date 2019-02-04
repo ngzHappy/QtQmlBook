@@ -265,7 +265,3 @@ static inline void register_this() {
         "BigScene");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
-
-
-
-

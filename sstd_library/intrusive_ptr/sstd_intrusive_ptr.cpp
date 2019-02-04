@@ -16,14 +16,3 @@ void sstd_intrusive_ptr_basic::sstd_intrusive_ptr_release() {
         delete this;
     }
 }
-
-
-
-
-
-
-
-
-
-
-

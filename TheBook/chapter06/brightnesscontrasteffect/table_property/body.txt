@@ -4,11 +4,11 @@
 
 brightness
     :tex_raw:[[&]]
-real    
+real
     :tex_raw:[[&]]
-0.0   
+0.0
     :tex_raw:[[&]]
-:tex_raw:[[$[-1,1]$]]     
+:tex_raw:[[$[-1,1]$]]
     :tex_raw:[[&]]
 亮度
     :tex_raw:[[\\]]
@@ -17,25 +17,25 @@ contrast
     :tex_raw:[[&]]
 real
     :tex_raw:[[&]]
-0.0     
+0.0
     :tex_raw:[[&]]
-:tex_raw:[[$[-1,1]$]]     
+:tex_raw:[[$[-1,1]$]]
     :tex_raw:[[&]]
 对比度
     :tex_raw:[[\\]]
 
-cached 
+cached
     :tex_raw:[[&]]
-bool     
+bool
     :tex_raw:[[&]]
-false     
+false
     :tex_raw:[[&]]
-:tex_raw:[[$[false,true]$]]     
+:tex_raw:[[$[false,true]$]]
     :tex_raw:[[&]]
 缓存
     :tex_raw:[[\\]]
- 
-source 
+
+source
     :tex_raw:[[&]]
 variant
     :tex_raw:[[&]]
@@ -58,4 +58,3 @@ variant
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

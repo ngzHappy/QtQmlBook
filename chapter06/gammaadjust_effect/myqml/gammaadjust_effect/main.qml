@@ -35,12 +35,6 @@ Rectangle {
 
 https://bugreports.qt.io/browse/QTBUG-64775
 https://codereview.qt-project.org/#/c/250594/
-Q_INIT_RESOURCE(qtgraphicaleffectsshaders); 
+Q_INIT_RESOURCE(qtgraphicaleffectsshaders);
 
 */
-
-
-
-
-
-

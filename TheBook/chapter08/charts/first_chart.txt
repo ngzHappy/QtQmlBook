@@ -64,19 +64,19 @@ Qt Charts各类曲线的
 
 :tex_raw:[[
 \begin{comment}
-!!!!Qt Charts Overview 
+!!!!Qt Charts Overview
 
-AbstractAxis 
+AbstractAxis
 A base type used for specialized axis types
-AbstractBarSeries 
+AbstractBarSeries
 An abstract parent type for all bar series types
-AbstractSeries 
+AbstractSeries
 Base type for all Qt Chart series types
-AreaSeries 
+AreaSeries
 Presents data in area charts
-BarCategoryAxis 
+BarCategoryAxis
 Adds categories to a chart's axes
-BarSeries 
+BarSeries
 Presents a series of data as vertical bars grouped by category
 BarSet
 Represents one set of bars in a bar chart
@@ -150,7 +150,7 @@ XYPoint
 Initializes XY-series coordinate data
 XYSeries
 A base type for line, spline, and scatter series
-\end{comment}    
+\end{comment}
 ]]
 
 :tex_raw:[[
@@ -165,4 +165,3 @@ A base type for line, spline, and scatter series
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

@@ -128,8 +128,3 @@ pppCall(std::shared_ptr<_FFMPEGOpenCloseThreadCaller> arg) {
 FFMPEGOpenCloseThread::FFMPEGOpenCloseThread() {
     mmmData = instanceFFMPEGOpenCloseThreadPrivate();
 }
-
-
-
-
-

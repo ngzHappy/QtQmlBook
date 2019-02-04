@@ -43,19 +43,3 @@ inline std::unique_ptr<T> sstd_make_unique(Args && ... args) {
     T1 * varPointer = sstd_new<T1>(std::forward<Args>(args)...);
     return std::unique_ptr<T>{varPointer};
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -108,8 +108,3 @@ _SSTD_T_&operator=(const _SSTD_T_ &)=delete; \
 _SSTD_T_&operator=(_SSTD_T_ &&)=delete; \
 static_assert(true,"")
 #endif
-
-
-
-
-

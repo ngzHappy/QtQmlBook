@@ -55,18 +55,3 @@ MainWindow::MainWindow() {
 MainWindow::~MainWindow() {
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

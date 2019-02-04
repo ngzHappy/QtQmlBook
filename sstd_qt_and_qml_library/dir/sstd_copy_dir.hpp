@@ -12,8 +12,3 @@ EXPORT_SSTD_QT_AND_QML_LIBRARY bool copyDir(const QString &,const QString &);
 
 
 }/*namespace sstd*/
-
-
-
-
-

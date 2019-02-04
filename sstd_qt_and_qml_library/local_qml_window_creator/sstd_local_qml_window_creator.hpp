@@ -19,12 +19,3 @@ class EXPORT_SSTD_QT_AND_QML_LIBRARY _1_sstd_local_qml_window_creator :
 namespace sstd {
     using LocalQmlWindowCreator = _1_sstd_local_qml_window_creator ;
 }
-
-
-
-
-
-
-
-
-

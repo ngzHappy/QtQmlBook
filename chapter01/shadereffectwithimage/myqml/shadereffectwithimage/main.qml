@@ -56,6 +56,3 @@ void main() {
     }
 
 }/*~Rectangle*/
-
-
-

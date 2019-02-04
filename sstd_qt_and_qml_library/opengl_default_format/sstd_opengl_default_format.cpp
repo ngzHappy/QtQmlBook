@@ -40,4 +40,3 @@ namespace sstd {
     }
 
 }/*namespace sstd*/
-

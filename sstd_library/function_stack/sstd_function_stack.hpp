@@ -13,7 +13,3 @@ private:
     SSTD_DELETE_COPY_ASSIGN(sstd_function_stack);
     SSTD_END_DEFINE_VIRTUAL_CLASS(sstd_function_stack);
 };
-
-
-
-

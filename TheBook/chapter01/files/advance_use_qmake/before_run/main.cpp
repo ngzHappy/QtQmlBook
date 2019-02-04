@@ -45,12 +45,3 @@ int main(int argc, char ** argv) {
     stream << std::endl;
     return 0;
 }
-
-
-
-
-
-
-
-
-

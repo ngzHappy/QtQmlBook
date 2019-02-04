@@ -5,7 +5,3 @@ else{
     LIBS += "boost_atomic-vc141-mt-x64-1_68.lib"
     ……
 }
-
-
-
-

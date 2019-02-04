@@ -14,7 +14,7 @@
 %date
 %point
 %rect
-%size 
+%size
 ]]
 :the_book_subsubsection:[[c000011s000000s01s01]]
 
@@ -50,7 +50,7 @@ Qt并没有提供接口可以让读者直接定义
 
 :tex_raw:[[\begin{itemize}]]
 
-:tex_raw:[[\item ]]bool 
+:tex_raw:[[\item ]]bool
 
 QML中的布尔类型根绝大多数计算机语言一致，只有true和false两个值。
 :tex_raw:[[\item ]]int
@@ -101,4 +101,3 @@ QML中的var用于代表一切合法类型，包括信号槽，容器，基本�
 % \hspace*{\parindent}
 % FloatBarrier
 ]]
-

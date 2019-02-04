@@ -59,19 +59,3 @@ ColumnLayout {
     property alias lengthItem : idLength
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

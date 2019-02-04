@@ -106,13 +106,3 @@ namespace sstd {
     using u16string = std::basic_string<char16_t,std::char_traits<char16_t>,sstd::allocator<char16_t>>;
     using u32string = std::basic_string<char32_t,std::char_traits<char32_t>,sstd::allocator<char32_t>>;
 }/*namespace sstd*/
-
-
-
-
-
-
-
-
-
-

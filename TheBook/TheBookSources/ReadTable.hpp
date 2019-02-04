@@ -18,21 +18,3 @@ public:
 private:
     ReadTablePrivate * const thisp;
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

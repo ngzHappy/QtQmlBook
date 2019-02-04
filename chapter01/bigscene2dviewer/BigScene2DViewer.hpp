@@ -62,8 +62,3 @@ inline qreal BigScene2DViewer::pppGetCenterX() const {
 inline qreal BigScene2DViewer::pppGetCenterY() const {
     return mmmCenterY;
 }
-
-
-
-
-

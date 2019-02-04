@@ -30,4 +30,3 @@ ApplicationWindow {
     }
 
 }
-

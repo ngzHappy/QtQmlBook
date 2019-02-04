@@ -31,8 +31,3 @@ void VideoPlayerThread::deleteOnce(ConnectState * arg) {
         disconnect(arg->mmmConnect2);
     });
 }
-
-
-
-
-

@@ -2604,12 +2604,3 @@ namespace sstd {
         return sstd::_sstd_glWaitSync(sync, flags, timeout);
     }
 }
-
-
-
-
-
-
-
-
-

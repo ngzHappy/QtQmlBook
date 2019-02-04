@@ -20,7 +20,3 @@ private:
 
 
 extern sstd_register_qthread_object_private * instance_sstd_register_qthread_object_private();
-
-
-
-

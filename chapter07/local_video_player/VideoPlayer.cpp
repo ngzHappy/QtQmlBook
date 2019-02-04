@@ -54,4 +54,3 @@ static inline void registerThis() {
         "VideoPlayer");
 }
 Q_COREAPP_STARTUP_FUNCTION(registerThis)
-

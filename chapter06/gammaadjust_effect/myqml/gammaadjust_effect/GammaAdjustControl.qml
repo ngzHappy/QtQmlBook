@@ -25,19 +25,3 @@ ColumnLayout {
     property alias gammaItem : idGamma
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
