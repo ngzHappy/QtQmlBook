@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_HOOK_H
+﻿#ifndef JEMALLOC_INTERNAL_HOOK_H
 #define JEMALLOC_INTERNAL_HOOK_H
 
 #include "jemalloc/internal/tsd.h"

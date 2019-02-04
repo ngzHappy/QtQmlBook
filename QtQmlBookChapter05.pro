@@ -13,4 +13,3 @@ SUBDIRS += app_system_particlesystem
 
 app_firstparticlesystem.file = $$PWD/chapter05/firstparticlesystem/firstparticlesystem.pro
 SUBDIRS += app_firstparticlesystem
-

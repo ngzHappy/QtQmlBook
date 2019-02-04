@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_PROF_INLINES_B_H
+﻿#ifndef JEMALLOC_INTERNAL_PROF_INLINES_B_H
 #define JEMALLOC_INTERNAL_PROF_INLINES_B_H
 
 #include "jemalloc/internal/sz.h"

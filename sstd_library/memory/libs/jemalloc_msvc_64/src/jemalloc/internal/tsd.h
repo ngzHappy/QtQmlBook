@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_TSD_H
+﻿#ifndef JEMALLOC_INTERNAL_TSD_H
 #define JEMALLOC_INTERNAL_TSD_H
 
 #include "jemalloc/internal/arena_types.h"

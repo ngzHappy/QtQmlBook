@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_NSTIME_H
+﻿#ifndef JEMALLOC_INTERNAL_NSTIME_H
 #define JEMALLOC_INTERNAL_NSTIME_H
 
 /* Maximum supported number of seconds (~584 years). */

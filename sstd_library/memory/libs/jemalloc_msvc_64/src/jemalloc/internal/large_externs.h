@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_LARGE_EXTERNS_H
+﻿#ifndef JEMALLOC_INTERNAL_LARGE_EXTERNS_H
 #define JEMALLOC_INTERNAL_LARGE_EXTERNS_H
 
 #include "jemalloc/internal/hook.h"

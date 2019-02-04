@@ -19,17 +19,3 @@ SUBDIRS += sstd_qt_and_qml_library_glew_test
 qt_and_boost_test.file = $$PWD/sstd_library/qt_and_boost_test/qt_and_boost_test.pro
 qt_and_boost_test.depends = build_install_test
 SUBDIRS += qt_and_boost_test
-
-
-
-
-
-
-
-
-
-
-
-
-
-

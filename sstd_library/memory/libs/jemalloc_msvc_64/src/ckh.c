@@ -1,4 +1,4 @@
-/*
+﻿/*
  *******************************************************************************
  * Implementation of (2^1+,2) cuckoo hashing, where 2^1+ indicates that each
  * hash bucket contains 2^n cells, for n >= 1, and 2 indicates that two hash

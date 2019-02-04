@@ -63,4 +63,3 @@ lupdate_only{
 }
 
 DISTFILES += $$QMLSOURCES
-

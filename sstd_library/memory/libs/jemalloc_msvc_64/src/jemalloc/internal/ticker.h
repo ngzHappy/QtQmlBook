@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_TICKER_H
+﻿#ifndef JEMALLOC_INTERNAL_TICKER_H
 #define JEMALLOC_INTERNAL_TICKER_H
 
 #include "jemalloc/internal/util.h"

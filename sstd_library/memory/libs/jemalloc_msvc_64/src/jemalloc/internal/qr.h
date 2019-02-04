@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_QR_H
+﻿#ifndef JEMALLOC_INTERNAL_QR_H
 #define JEMALLOC_INTERNAL_QR_H
 
 /* Ring definitions. */

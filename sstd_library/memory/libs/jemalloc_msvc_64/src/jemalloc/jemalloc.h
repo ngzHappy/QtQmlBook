@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_H_
+﻿#ifndef JEMALLOC_H_
 #define JEMALLOC_H_
 #ifdef __cplusplus
 extern "C" {

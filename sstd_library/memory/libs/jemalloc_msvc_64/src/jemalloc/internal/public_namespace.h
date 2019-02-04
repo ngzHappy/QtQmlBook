@@ -1,4 +1,4 @@
-#define je_aligned_alloc JEMALLOC_N(aligned_alloc)
+﻿#define je_aligned_alloc JEMALLOC_N(aligned_alloc)
 #define je_calloc JEMALLOC_N(calloc)
 #define je_dallocx JEMALLOC_N(dallocx)
 #define je_free JEMALLOC_N(free)

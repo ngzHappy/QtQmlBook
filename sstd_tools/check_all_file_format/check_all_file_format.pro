@@ -32,4 +32,3 @@ HEADERS += \
     $$PWD/MainWindow.hpp
 
 DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
-

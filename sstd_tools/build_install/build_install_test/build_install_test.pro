@@ -16,8 +16,3 @@ DESTDIR = $${TestRootDestDir}
 
 DEFINES += FromDir=\\\"$$PWD\\\"
 DEFINES += ToDir=\\\"$$DESTDIR\\\"
-
-
-
-
-

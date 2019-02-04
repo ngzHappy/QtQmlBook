@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Name mangling for public symbols is controlled by --with-mangling and
  * --with-jemalloc-prefix.  With default settings the je_ prefix is stripped by
  * these macro definitions.

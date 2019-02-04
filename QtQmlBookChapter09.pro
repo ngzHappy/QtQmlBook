@@ -175,8 +175,3 @@ SUBDIRS += app_tooltip_control2
 
 app_tumbler_control2.file = $$PWD/chapter09/tumbler_control2/tumbler_control2.pro
 SUBDIRS += app_tumbler_control2
-
-
-
-
-

@@ -10,12 +10,3 @@ LIBS += -lavutil
 LIBS += -lpostproc
 LIBS += -lswresample
 LIBS += -lswscale
-
-
-
-
-
-
-
-
-

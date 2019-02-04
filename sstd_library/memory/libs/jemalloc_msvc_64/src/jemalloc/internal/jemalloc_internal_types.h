@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_TYPES_H
+﻿#ifndef JEMALLOC_INTERNAL_TYPES_H
 #define JEMALLOC_INTERNAL_TYPES_H
 
 #include "jemalloc/internal/quantum.h"

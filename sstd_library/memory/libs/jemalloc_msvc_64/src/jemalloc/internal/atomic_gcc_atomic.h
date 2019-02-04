@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_ATOMIC_GCC_ATOMIC_H
+﻿#ifndef JEMALLOC_INTERNAL_ATOMIC_GCC_ATOMIC_H
 #define JEMALLOC_INTERNAL_ATOMIC_GCC_ATOMIC_H
 
 #include "jemalloc/internal/assert.h"

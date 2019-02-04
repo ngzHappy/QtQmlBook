@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_PREAMBLE_H
+﻿#ifndef JEMALLOC_PREAMBLE_H
 #define JEMALLOC_PREAMBLE_H
 
 #include "jemalloc_internal_defs.h"

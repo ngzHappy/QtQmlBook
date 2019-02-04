@@ -7,4 +7,3 @@ SUBDIRS += app_first_model_view
 
 app_horizontal_list.file = $$PWD/chapter10/horizontal_list/horizontal_list.pro
 SUBDIRS += app_horizontal_list
-

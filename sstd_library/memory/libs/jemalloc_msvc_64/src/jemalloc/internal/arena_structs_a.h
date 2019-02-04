@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_ARENA_STRUCTS_A_H
+﻿#ifndef JEMALLOC_INTERNAL_ARENA_STRUCTS_A_H
 #define JEMALLOC_INTERNAL_ARENA_STRUCTS_A_H
 
 #include "jemalloc/internal/bitmap.h"

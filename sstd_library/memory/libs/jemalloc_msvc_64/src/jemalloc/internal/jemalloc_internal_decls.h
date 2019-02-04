@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_DECLS_H
+﻿#ifndef JEMALLOC_INTERNAL_DECLS_H
 #define JEMALLOC_INTERNAL_DECLS_H
 
 #include <math.h>

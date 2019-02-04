@@ -10,8 +10,3 @@ SUBDIRS += app_first_cplusplus_extern
 
 app_first_plugin_import.file = $$PWD/chapter03/first_plugin_import/first_plugin_import.pro
 SUBDIRS += app_first_plugin_import
-
-
-
-
-

@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_ARENA_EXTERNS_H
+﻿#ifndef JEMALLOC_INTERNAL_ARENA_EXTERNS_H
 #define JEMALLOC_INTERNAL_ARENA_EXTERNS_H
 
 #include "jemalloc/internal/bin.h"

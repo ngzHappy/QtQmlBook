@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_EXTENT_EXTERNS_H
+﻿#ifndef JEMALLOC_INTERNAL_EXTENT_EXTERNS_H
 #define JEMALLOC_INTERNAL_EXTENT_EXTERNS_H
 
 #include "jemalloc/internal/mutex.h"

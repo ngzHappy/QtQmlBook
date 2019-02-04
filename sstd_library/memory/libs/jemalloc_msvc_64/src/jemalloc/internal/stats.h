@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_STATS_H
+﻿#ifndef JEMALLOC_INTERNAL_STATS_H
 #define JEMALLOC_INTERNAL_STATS_H
 
 /*  OPTION(opt,		var_name,	default,	set_value_to) */

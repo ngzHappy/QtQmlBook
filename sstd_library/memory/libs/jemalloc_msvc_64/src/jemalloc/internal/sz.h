@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_SIZE_H
+﻿#ifndef JEMALLOC_INTERNAL_SIZE_H
 #define JEMALLOC_INTERNAL_SIZE_H
 
 #include "jemalloc/internal/bit_util.h"

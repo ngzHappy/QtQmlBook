@@ -5,14 +5,3 @@ CONFIG(debug,debug|release){
 }else{
     LIBS += -L$$PWD/../bin -ltest_library
 }
-
-
-
-
-
-
-
-
-
-
-

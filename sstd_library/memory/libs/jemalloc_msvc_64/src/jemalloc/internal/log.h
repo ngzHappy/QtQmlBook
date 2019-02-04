@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_LOG_H
+﻿#ifndef JEMALLOC_INTERNAL_LOG_H
 #define JEMALLOC_INTERNAL_LOG_H
 
 #include "jemalloc/internal/atomic.h"

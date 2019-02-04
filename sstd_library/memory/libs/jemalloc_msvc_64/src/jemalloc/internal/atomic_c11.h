@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_ATOMIC_C11_H
+﻿#ifndef JEMALLOC_INTERNAL_ATOMIC_C11_H
 #define JEMALLOC_INTERNAL_ATOMIC_C11_H
 
 #include <stdatomic.h>

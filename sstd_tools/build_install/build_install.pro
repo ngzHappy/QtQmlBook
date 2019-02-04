@@ -16,8 +16,3 @@ DESTDIR = $${RootDestDir}
 
 DEFINES += FromDir=\\\"$${PWD}\\\"
 DEFINES += ToDir=\\\"$${DESTDIR}\\\"
-
-
-
-
-

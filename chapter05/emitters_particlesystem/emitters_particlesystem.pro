@@ -56,6 +56,3 @@ lupdate_only{
 
 DISTFILES += $$QMLSOURCES
 DISTFILES += $$PWD/myqml/emitters_particlesystem/GetImageSourceName.js
-
-
-

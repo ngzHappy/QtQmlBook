@@ -15,18 +15,3 @@ CONFIG(debug,debug|release){
 }
 
 DEFINES *= SSTD_HAS_GLEW_APPLICATION_INITIALIZE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

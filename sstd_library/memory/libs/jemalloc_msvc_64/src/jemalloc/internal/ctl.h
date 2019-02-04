@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_CTL_H
+﻿#ifndef JEMALLOC_INTERNAL_CTL_H
 #define JEMALLOC_INTERNAL_CTL_H
 
 #include "jemalloc/internal/jemalloc_internal_types.h"

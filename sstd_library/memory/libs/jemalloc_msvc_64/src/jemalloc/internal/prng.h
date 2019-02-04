@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_PRNG_H
+﻿#ifndef JEMALLOC_INTERNAL_PRNG_H
 #define JEMALLOC_INTERNAL_PRNG_H
 
 #include "jemalloc/internal/atomic.h"

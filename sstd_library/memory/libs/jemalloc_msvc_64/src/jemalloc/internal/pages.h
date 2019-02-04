@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_PAGES_EXTERNS_H
+﻿#ifndef JEMALLOC_INTERNAL_PAGES_EXTERNS_H
 #define JEMALLOC_INTERNAL_PAGES_EXTERNS_H
 
 /* Page size.  LG_PAGE is determined by the configure script. */

@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_UTIL_H
+﻿#ifndef JEMALLOC_INTERNAL_UTIL_H
 #define JEMALLOC_INTERNAL_UTIL_H
 
 #define UTIL_INLINE static inline

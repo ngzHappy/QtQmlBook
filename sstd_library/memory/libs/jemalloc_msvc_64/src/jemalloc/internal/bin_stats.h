@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_BIN_STATS_H
+﻿#ifndef JEMALLOC_INTERNAL_BIN_STATS_H
 #define JEMALLOC_INTERNAL_BIN_STATS_H
 
 #include "jemalloc/internal/mutex_prof.h"

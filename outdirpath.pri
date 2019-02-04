@@ -20,23 +20,3 @@ CONFIG(debug,debug|release){#debug
     DEFINES *= QT_NO_DEBUG #Q_ASSERT,Q_ASSERT_X
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

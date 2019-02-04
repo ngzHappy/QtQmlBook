@@ -34,4 +34,3 @@ SUBDIRS += app_defaultstyle
 
 app_minesweeping.file = $$PWD/chapter01/minesweeping/minesweeping.pro
 SUBDIRS += app_minesweeping
-

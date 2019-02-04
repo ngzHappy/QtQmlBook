@@ -22,4 +22,3 @@ SUBDIRS += app_text_qmltype
 
 app_enum_qml.file = $$PWD/chapter02/enum_qml/enum_qml.pro
 SUBDIRS += app_enum_qml
-

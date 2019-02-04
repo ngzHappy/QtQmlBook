@@ -1,4 +1,4 @@
-/* include/jemalloc/jemalloc_defs.h.  Generated from jemalloc_defs.h.in by configure.  */
+﻿/* include/jemalloc/jemalloc_defs.h.  Generated from jemalloc_defs.h.in by configure.  */
 /* Defined if __attribute__((...)) syntax is supported. */
 /* #undef JEMALLOC_HAVE_ATTR */
 

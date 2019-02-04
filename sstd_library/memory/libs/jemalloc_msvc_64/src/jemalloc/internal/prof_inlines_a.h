@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_PROF_INLINES_A_H
+﻿#ifndef JEMALLOC_INTERNAL_PROF_INLINES_A_H
 #define JEMALLOC_INTERNAL_PROF_INLINES_A_H
 
 #include "jemalloc/internal/mutex.h"

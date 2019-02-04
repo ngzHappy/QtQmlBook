@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_MUTEX_POOL_H
+﻿#ifndef JEMALLOC_INTERNAL_MUTEX_POOL_H
 #define JEMALLOC_INTERNAL_MUTEX_POOL_H
 
 #include "jemalloc/internal/hash.h"

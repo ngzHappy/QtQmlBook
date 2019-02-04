@@ -4,23 +4,3 @@ CONFIG(debug,debug|release){
 }else{
     LIBS +=-L$${RootDestDir} -lsstd_library
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

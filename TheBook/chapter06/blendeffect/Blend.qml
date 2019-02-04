@@ -1,4 +1,4 @@
-
+﻿
 import QtQuick 2.12
 import QtGraphicalEffects.private 1.12
 Item {

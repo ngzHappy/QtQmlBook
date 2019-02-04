@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_WITNESS_H
+﻿#ifndef JEMALLOC_INTERNAL_WITNESS_H
 #define JEMALLOC_INTERNAL_WITNESS_H
 
 #include "jemalloc/internal/ql.h"

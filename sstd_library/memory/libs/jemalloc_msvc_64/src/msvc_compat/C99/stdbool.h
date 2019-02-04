@@ -1,4 +1,4 @@
-#ifndef stdbool_h
+﻿#ifndef stdbool_h
 #define stdbool_h
 
 #include <wtypes.h>

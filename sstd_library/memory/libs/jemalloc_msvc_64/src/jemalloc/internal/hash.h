@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_HASH_H
+﻿#ifndef JEMALLOC_INTERNAL_HASH_H
 #define JEMALLOC_INTERNAL_HASH_H
 
 #include "jemalloc/internal/assert.h"

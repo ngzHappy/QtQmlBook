@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_QL_H
+﻿#ifndef JEMALLOC_INTERNAL_QL_H
 #define JEMALLOC_INTERNAL_QL_H
 
 #include "jemalloc/internal/qr.h"

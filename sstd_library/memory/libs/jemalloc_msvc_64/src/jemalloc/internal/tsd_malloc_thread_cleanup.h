@@ -1,4 +1,4 @@
-#ifdef JEMALLOC_INTERNAL_TSD_MALLOC_THREAD_CLEANUP_H
+﻿#ifdef JEMALLOC_INTERNAL_TSD_MALLOC_THREAD_CLEANUP_H
 #error This file should be included only once, by tsd.h.
 #endif
 #define JEMALLOC_INTERNAL_TSD_MALLOC_THREAD_CLEANUP_H

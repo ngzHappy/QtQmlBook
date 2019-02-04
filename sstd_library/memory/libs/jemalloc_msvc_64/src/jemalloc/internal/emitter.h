@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_EMITTER_H
+﻿#ifndef JEMALLOC_INTERNAL_EMITTER_H
 #define JEMALLOC_INTERNAL_EMITTER_H
 
 #include "jemalloc/internal/ql.h"

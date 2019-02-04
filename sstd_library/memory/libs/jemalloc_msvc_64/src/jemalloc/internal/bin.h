@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_BIN_H
+﻿#ifndef JEMALLOC_INTERNAL_BIN_H
 #define JEMALLOC_INTERNAL_BIN_H
 
 #include "jemalloc/internal/bin_stats.h"

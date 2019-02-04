@@ -55,7 +55,3 @@ CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/after_run $$PWD
 }
 export(QMAKE_POST_LINK)
-
-
-
-

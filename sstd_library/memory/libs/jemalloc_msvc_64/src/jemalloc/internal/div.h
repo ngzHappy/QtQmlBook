@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_DIV_H
+﻿#ifndef JEMALLOC_INTERNAL_DIV_H
 #define JEMALLOC_INTERNAL_DIV_H
 
 #include "jemalloc/internal/assert.h"

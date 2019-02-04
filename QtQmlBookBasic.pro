@@ -19,8 +19,3 @@ SUBDIRS += sstd_qml_control
 #sstd_library.depends = build_install
 #sstd_qt_and_qml_library.depends = build_install sstd_library
 #sstd_qml_control.depends = build_install sstd_library sstd_qt_and_qml_library
-
-
-
-
-

@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_BASE_EXTERNS_H
+﻿#ifndef JEMALLOC_INTERNAL_BASE_EXTERNS_H
 #define JEMALLOC_INTERNAL_BASE_EXTERNS_H
 
 extern metadata_thp_mode_t opt_metadata_thp;

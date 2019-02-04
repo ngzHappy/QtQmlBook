@@ -23,7 +23,3 @@ SOURCES += $$PWD/main.cpp
 DESTDIR =  $$PWD/../bin
 
 DEFINES += QT_DEPRECATED_WARNINGS
-
-
-
-

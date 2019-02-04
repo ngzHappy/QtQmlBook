@@ -47,16 +47,3 @@ win32{
     LIBS += -lboost_filesystem
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

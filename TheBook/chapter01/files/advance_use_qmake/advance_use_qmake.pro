@@ -14,9 +14,3 @@ SUBDIRS += after_run
 
 the_run.file = $$PWD/the_run/the_run.pro
 SUBDIRS += the_run
-
-
-
-
-
-

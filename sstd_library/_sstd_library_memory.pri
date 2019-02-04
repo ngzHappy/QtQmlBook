@@ -1,4 +1,4 @@
- 
+
 win32-g++*{#win32-g++*
 
     DEFINES *= _0_SSTD_HAS_JE_MALLLOC
@@ -22,4 +22,3 @@ win32-msvc*{#win32-msvc*
 } #win32-msvc*
 
 }#win32-g++*
-

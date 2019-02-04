@@ -81,7 +81,3 @@ DEFINES *= THE_PROJECT_PWD_DIR=\\\"$${PWD}\\\"
 
 DISTFILES += $$PWD/TheBookSources/the_book_constexpr.txt
 DISTFILES += $$PWD/MakeFile.txt
-
-
-
-

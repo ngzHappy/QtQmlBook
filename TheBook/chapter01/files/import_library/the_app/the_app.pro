@@ -26,23 +26,3 @@ DESTDIR =  $$PWD/../bin
 
 SOURCES += $$PWD/main.cpp
 include($$PWD/../test_library/import_test_library.pri)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -79,8 +79,3 @@ SUBDIRS += app_opacitymask_effect
 
 app_thresholdmask_effect.file = $$PWD/chapter06/thresholdmask_effect/thresholdmask_effect.pro
 SUBDIRS += app_thresholdmask_effect
-
-
-
-
-

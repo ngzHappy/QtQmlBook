@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_MUTEX_H
+﻿#ifndef JEMALLOC_INTERNAL_MUTEX_H
 #define JEMALLOC_INTERNAL_MUTEX_H
 
 #include "jemalloc/internal/atomic.h"

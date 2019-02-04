@@ -1,4 +1,4 @@
-/*
+﻿/*
  * A Pairing Heap implementation.
  *
  * "The Pairing Heap: A New Form of Self-Adjusting Heap"

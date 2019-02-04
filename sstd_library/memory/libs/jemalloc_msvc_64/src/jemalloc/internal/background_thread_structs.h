@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_BACKGROUND_THREAD_STRUCTS_H
+﻿#ifndef JEMALLOC_INTERNAL_BACKGROUND_THREAD_STRUCTS_H
 #define JEMALLOC_INTERNAL_BACKGROUND_THREAD_STRUCTS_H
 
 /* This file really combines "structs" and "types", but only transitionally. */

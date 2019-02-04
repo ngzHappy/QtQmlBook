@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_BIT_UTIL_H
+﻿#ifndef JEMALLOC_INTERNAL_BIT_UTIL_H
 #define JEMALLOC_INTERNAL_BIT_UTIL_H
 
 #include "jemalloc/internal/assert.h"

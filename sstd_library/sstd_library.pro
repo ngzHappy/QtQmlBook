@@ -47,4 +47,3 @@ INCLUDEPATH += $$[QT_INSTALL_HEADERS]
 
 #remove here if you can not build static jemalloc ...
 include($$PWD/_sstd_library_memory.pri)
-

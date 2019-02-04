@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_ARENA_TYPES_H
+﻿#ifndef JEMALLOC_INTERNAL_ARENA_TYPES_H
 #define JEMALLOC_INTERNAL_ARENA_TYPES_H
 
 #include "jemalloc/internal/sc.h"

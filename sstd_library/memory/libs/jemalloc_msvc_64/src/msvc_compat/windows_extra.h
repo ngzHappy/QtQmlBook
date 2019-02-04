@@ -1,4 +1,4 @@
-#ifndef MSVC_COMPAT_WINDOWS_EXTRA_H
+﻿#ifndef MSVC_COMPAT_WINDOWS_EXTRA_H
 #define MSVC_COMPAT_WINDOWS_EXTRA_H
 
 #include <errno.h>

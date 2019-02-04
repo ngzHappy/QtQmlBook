@@ -27,30 +27,3 @@ HEADERS += $$PWD/TestLibrary.hpp
 
 DESTDIR =  $$PWD/../bin
 DEFINES *= D_TEST_LIBRARY
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

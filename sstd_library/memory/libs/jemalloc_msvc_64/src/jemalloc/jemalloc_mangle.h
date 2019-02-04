@@ -1,4 +1,4 @@
-/*
+﻿/*
  * By default application code must explicitly refer to mangled symbol names,
  * so that it is possible to use jemalloc in conjunction with another allocator
  * in the same application.  Define JEMALLOC_MANGLE in order to cause automatic

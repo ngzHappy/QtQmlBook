@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_PROF_TYPES_H
+﻿#ifndef JEMALLOC_INTERNAL_PROF_TYPES_H
 #define JEMALLOC_INTERNAL_PROF_TYPES_H
 
 typedef struct prof_bt_s prof_bt_t;

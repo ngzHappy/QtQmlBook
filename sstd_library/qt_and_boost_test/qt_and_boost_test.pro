@@ -31,5 +31,3 @@ DESTDIR = $${TestRootDestDir}
 DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 
 SOURCES += $$PWD/main.cpp
-
-

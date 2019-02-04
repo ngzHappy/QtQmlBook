@@ -40,6 +40,3 @@ win32-msvc*{
 }
 
 DEFINES *= QT_BIN_DIR_WHERE=\\\"$$[QT_INSTALL_BINS]\\\"
-
-
-

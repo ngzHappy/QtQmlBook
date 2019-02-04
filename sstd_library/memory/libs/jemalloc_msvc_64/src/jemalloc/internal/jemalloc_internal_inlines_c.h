@@ -1,4 +1,4 @@
-#ifndef JEMALLOC_INTERNAL_INLINES_C_H
+﻿#ifndef JEMALLOC_INTERNAL_INLINES_C_H
 #define JEMALLOC_INTERNAL_INLINES_C_H
 
 #include "jemalloc/internal/hook.h"

@@ -1,4 +1,4 @@
-#ifndef strings_h
+﻿#ifndef strings_h
 #define strings_h
 
 /* MSVC doesn't define ffs/ffsl. This dummy strings.h header is provided

@@ -8,39 +8,3 @@ SUBDIRS += test_library
 
 the_app.file = $$PWD/the_app/the_app.pro
 SUBDIRS += the_app
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

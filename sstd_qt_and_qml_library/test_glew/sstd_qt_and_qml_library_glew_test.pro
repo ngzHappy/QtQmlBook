@@ -41,4 +41,3 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
-
