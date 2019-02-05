@@ -10,9 +10,9 @@ DemoBasic {
         Rectangle {
 
             color: Qt.rgba(
-                       Math.random()*0.5+0.2,
-                       Math.random()*0.5+0.2,
-                       Math.random()*0.5+0.2,
+                       Math.random()*0.5+0.4,
+                       Math.random()*0.5+0.45,
+                       Math.random()*0.5+0.55,
                        1);
             property double labelY: 0
             property string labelYString: "Good"
