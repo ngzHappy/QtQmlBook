@@ -7,13 +7,45 @@ DemoBasic {
 
     Component{
         id : idAddItem
-        Item{
+        Rectangle {
+
+            color: Qt.rgba(
+                       Math.random()*0.5+0.5,
+                       Math.random()*0.5+0.5,
+                       Math.random()*0.5+0.5,
+                       1);
             property double labelY: 0
+            property string labelYString: "Good"
+            property int index: 0
             property double value: 0
             property var series: null
+            property alias labelText: idLabelText
+
             Text {
-                text: labelY
+                anchors.fill: parent
+                id : idLabelText
+                text: labelYString
+                verticalAlignment : Text.AlignVCenter
+                font.pointSize: Math.max( parent.height*0.55 ,1 )
             }
+
+            Text {
+                x : parent.width
+                height: parent.height
+                text: parent.value
+                font.pointSize: idLabelText.font.pointSize
+                verticalAlignment : Text.AlignVCenter
+            }
+
+            Text {
+                anchors.right: idLabelText.left
+                anchors.rightMargin: 10
+                height: parent.height
+                font.pointSize: idLabelText.font.pointSize
+                verticalAlignment : Text.AlignVCenter
+                text: index
+            }
+
         }
     }
 
@@ -24,10 +56,14 @@ DemoBasic {
         id : idView
 
         legend.visible : false
-        margins.left: 20
-        margins.right: 20
+        margins.left: 30
+        margins.right: 50
         margins.top: 20
         margins.bottom: 20
+
+        onPlotAreaChanged: {
+            idView.updateSeriesPosition();
+        }
 
         property var addItems: []
 
@@ -53,12 +89,13 @@ DemoBasic {
             varAxisY.labelsVisible =false;
             varAxisX.labelsVisible = false;
             var varBarSetValues = varBarSet.values;
-            var varLableY = 0;
             for( var varKey in varBarSetValues ){
                 var varAddItem=idAddItem.createObject(idView);
-                varAddItem.labelY = varLableY++;
+                varAddItem.labelY = varKey;
                 varAddItem.series = argS;
                 varAddItem.value = varBarSetValues[varKey];
+                varAddItem.labelYString = varAxisY.categories[varKey];
+                varAddItem.index = varBarSetValues.length - varKey
                 idView.addItems.push(varAddItem);
             }
             updateSeriesPosition();
@@ -68,16 +105,17 @@ DemoBasic {
 
             axisY: BarCategoryAxis {
                 categories: [
-                    "6",
-                    "5",
-                    "4",
-                    "3",
-                    "2",
-                    "1" ]
+                    "赵四",
+                    "刘能",
+                    "广坤",
+                    "小蒙",
+                    "长贵",
+                    "永强" ]
             }
 
             BarSet {
                 label: "NotUsed";
+                color: Qt.rgba(0,0,0,0)
                 values: [
                     40,
                     50,
