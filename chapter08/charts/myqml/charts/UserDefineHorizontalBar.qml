@@ -10,9 +10,9 @@ DemoBasic {
         Rectangle {
 
             color: Qt.rgba(
-                       Math.random()*0.5+0.5,
-                       Math.random()*0.5+0.5,
-                       Math.random()*0.5+0.5,
+                       Math.random()*0.5+0.2,
+                       Math.random()*0.5+0.2,
+                       Math.random()*0.5+0.2,
                        1);
             property double labelY: 0
             property string labelYString: "Good"
@@ -87,7 +87,7 @@ DemoBasic {
             var varAxisY = argS.axisY;
             var varAxisX = argS.axisX;
             varAxisY.labelsVisible =false;
-            varAxisX.labelsVisible = false;
+            varAxisX.labelsVisible = true;
             var varBarSetValues = varBarSet.values;
             for( var varKey in varBarSetValues ){
                 var varAddItem=idAddItem.createObject(idView);
