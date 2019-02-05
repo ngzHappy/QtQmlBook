@@ -54,6 +54,7 @@ QMLSOURCES += $$PWD/myqml/charts/HorizontalStackedBarOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/HorizontalPercentBarOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/CandlestickOfChart.qml
 QMLSOURCES += $$PWD/myqml/charts/BoxPlotOfChart.qml
+QMLSOURCES += $$PWD/myqml/charts/UserDefineHorizontalBar.qml
 
 QMLSOURCES += $$PWD/myqml/charts/main_private/control/LineOfChartControl.qml
 

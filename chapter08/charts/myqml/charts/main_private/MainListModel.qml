@@ -69,4 +69,10 @@ ListModel {
         programSource : "../BoxPlotOfChart.qml";
     }
 
+    ListElement {
+        programName :  QT_TR_NOOP("自定义水平柱状图(UserDefineHorizontalBar.qml)") ;
+        programSource : "../UserDefineHorizontalBar.qml";
+    }
+
+
 }
