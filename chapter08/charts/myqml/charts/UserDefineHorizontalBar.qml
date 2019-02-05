@@ -78,18 +78,22 @@ DemoBasic {
         property var addItems: []
 
         function updateSeriesPosition(){
-             for( var varKey in idView.addItems ){
+            for( var varKey in idView.addItems ){
                 var varItem = idView.addItems[varKey];
                 var varBarWidth = varItem.series.barWidth/*dy*/;
                 var varCurrentPoint0=
-                    idView.mapToPosition( Qt.point(0,varItem.labelY-varBarWidth*0.5) , varItem.series);
+                        idView.mapToPosition(
+                            Qt.point(0,varItem.labelY-varBarWidth*0.5) ,
+                            varItem.series);
                 var varCurrentPoint1=
-                    idView.mapToPosition( Qt.point(varItem.value,varItem.labelY+varBarWidth*0.5) , varItem.series);
-                 varItem.x = varCurrentPoint0.x;
-                 varItem.y = varCurrentPoint1.y;
-                 varItem.width = varCurrentPoint1.x - varCurrentPoint0.x ;
-                 varItem.height =   varCurrentPoint0.y - varCurrentPoint1.y;
-             }
+                        idView.mapToPosition(
+                            Qt.point(varItem.value,varItem.labelY+varBarWidth*0.5) ,
+                            varItem.series);
+                varItem.x = varCurrentPoint0.x;
+                varItem.y = varCurrentPoint1.y;
+                varItem.width = varCurrentPoint1.x - varCurrentPoint0.x ;
+                varItem.height =   varCurrentPoint0.y - varCurrentPoint1.y;
+            }
         }
 
         function addToSeries(argS){
