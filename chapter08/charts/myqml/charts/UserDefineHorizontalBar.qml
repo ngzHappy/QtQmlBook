@@ -22,28 +22,38 @@ DemoBasic {
             property alias labelText: idLabelText
 
             Text {
-                anchors.fill: parent
+                height: parent.height
+                anchors.left: parent.left
+                anchors.leftMargin: 5
                 id : idLabelText
                 text: labelYString
                 verticalAlignment : Text.AlignVCenter
-                font.pointSize: Math.max( parent.height*0.55 ,1 )
+                font.pointSize: Math.max( parent.height*0.45 ,1 )
+                style: Text.Outline;
+                styleColor: Qt.rgba(0.6,0.6,0.6,0.8)
             }
 
             Text {
-                x : parent.width
+                anchors.left: parent.right
+                anchors.leftMargin: 5
                 height: parent.height
                 text: parent.value
-                font.pointSize: idLabelText.font.pointSize
+                font.pointSize: Math.max( parent.height*0.35 ,1 )
                 verticalAlignment : Text.AlignVCenter
             }
 
             Text {
-                anchors.right: idLabelText.left
+                anchors.right: parent.left
                 anchors.rightMargin: 10
                 height: parent.height
-                font.pointSize: idLabelText.font.pointSize
+                font.pointSize: Math.max(
+                                    parent.height*(0.55 +
+                                                   0.1*
+                                                   Math.max(0, (3- index) ) )
+                                    ,1 )
                 verticalAlignment : Text.AlignVCenter
                 text: index
+                visible: index<4
             }
 
         }
