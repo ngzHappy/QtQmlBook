@@ -10,3 +10,6 @@ SUBDIRS += app_firstchart
 
 app_charts.file = $$PWD/chapter08/charts/charts.pro
 SUBDIRS += app_charts
+
+app_texteditdeep.file = $$PWD/chapter08/texteditdeep/texteditdeep.pro
+SUBDIRS += app_texteditdeep
