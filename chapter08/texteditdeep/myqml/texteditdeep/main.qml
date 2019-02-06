@@ -51,6 +51,12 @@ Pane {
 
     }
 
+    Component.onCompleted: {
+        for(var i =0;i<100;++i){
+            idTextArea.append( "%1".arg(i) );
+        }
+    }
+
     Menu {
         id: idContextMenu
 

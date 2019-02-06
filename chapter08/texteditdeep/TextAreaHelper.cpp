@@ -220,7 +220,6 @@ void TextAreaHelper::componentComplete() {
 
 void TextAreaHelper::pppAboutUpdate() {
     pppOnDoMainChange();
-    this->update();
 }
 
 TextAreaHelper::~TextAreaHelper() {
