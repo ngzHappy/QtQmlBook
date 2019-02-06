@@ -7,7 +7,7 @@ class GifTextAreaHelper :
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(GifTextAreaHelper){
     Q_OBJECT
 private:
-    using Super = GifTextAreaHelper;
+    using Super = QQuickItem;
 public:
     GifTextAreaHelper();
 protected:

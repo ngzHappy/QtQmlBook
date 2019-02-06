@@ -48,18 +48,19 @@ namespace {
     class BlockUserData :
         public QTextBlockUserData,
         SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(BlockUserData) {
+        QPointer<QQuickItem> mmmItem;
     public:
-
         QQuickItem * const item;
 
         inline BlockUserData(QQuickItem * v) : item(v) {
-
+            mmmItem = v;
         }
 
         inline ~BlockUserData() {
-            if (item) {
-                item->setVisible(false);
-                delete item;
+            auto varItem = mmmItem.data();
+            if (varItem) {
+                varItem->setVisible(false);
+                delete varItem;
             }
         }
 

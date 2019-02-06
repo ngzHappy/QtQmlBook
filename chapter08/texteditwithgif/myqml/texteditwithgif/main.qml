@@ -2,6 +2,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import sstd.giftextarea.help 1.0
 
 Pane {
     id : idRoot
@@ -28,7 +29,8 @@ Pane {
             rightPadding: 6
             topPadding: 6
             bottomPadding: 0
-            background: null
+            background: GifTextAreaHelper{
+            }
 
             MouseArea {
                 acceptedButtons: Qt.RightButton
@@ -43,7 +45,7 @@ Pane {
 
     Component.onCompleted: {
         idTextArea.append("A：%1:A".arg(
-        "<img width=32 height=32 src='image://PlaceHolderImageProvider/abc.qml'>") );
+        "<img width=32 height=32 src='image://placeholderimageprovider/abc.qml'>") );
     }
 
     Menu {

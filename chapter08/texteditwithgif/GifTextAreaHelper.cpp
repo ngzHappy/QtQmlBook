@@ -15,6 +15,14 @@ void GifTextAreaHelper::classBegin(){
     }
 }
 
+static inline void register_this() {
+    qmlRegisterType<GifTextAreaHelper>(
+        "sstd.giftextarea.help",
+        1, 0,
+        "GifTextAreaHelper");
+}
+Q_COREAPP_STARTUP_FUNCTION(register_this)
+
 
 
 
