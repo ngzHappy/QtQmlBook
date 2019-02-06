@@ -1,35 +1,35 @@
 ﻿#include "TextAreaHelper.hpp"
 
-TextAreaHelper::TextAreaHelper( QQuickItem * arg ) :
+TextAreaHelper::TextAreaHelper(QQuickItem * arg) :
     Super(arg) {
-
+    this->setFlag(QQuickItem::ItemHasContents, true);
 }
 
-QObject * TextAreaHelper::getFlickable() const{
+QQuickItem * TextAreaHelper::getFlickable() const {
     return mmmFlickAble;
 }
 
-QObject * TextAreaHelper::getTextArea() const{
+QQuickItem * TextAreaHelper::getTextArea() const {
     return mmmTextArea;
 }
 
-void TextAreaHelper::setTextArea(QObject *arg){
-    assert( nullptr == mmmTextArea );
+void TextAreaHelper::setTextArea(QQuickItem *arg) {
+    assert(nullptr == mmmTextArea);
     mmmTextArea = arg;
     textAreaChanged();
 }
 
-void TextAreaHelper::setFlickable(QObject *arg){
-    assert( nullptr==mmmFlickAble );
+void TextAreaHelper::setFlickable(QQuickItem *arg) {
+    assert(nullptr == mmmFlickAble);
     mmmFlickAble = arg;
     flickableChanged();
 }
 
 static inline void register_this() {
     qmlRegisterType<TextAreaHelper>(
-                "sstd.textarea.help",
-                1, 0,
-                "TextAreaHelper");
+        "sstd.textarea.help",
+        1, 0,
+        "TextAreaHelper");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
 

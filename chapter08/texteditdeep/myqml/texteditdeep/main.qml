@@ -2,6 +2,7 @@
 import QtQuick 2.11
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
+import sstd.textarea.help 1.0
 
 Rectangle {
     id : idRoot
@@ -29,7 +30,10 @@ Rectangle {
             rightPadding: 6
             topPadding: 0
             bottomPadding: 0
-            background: null
+            background: TextAreaHelper{
+                textArea: idTextArea
+                flickable: idFlickable
+            }
 
             MouseArea {
                 acceptedButtons: Qt.RightButton
