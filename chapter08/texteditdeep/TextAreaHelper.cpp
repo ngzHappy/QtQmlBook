@@ -2,7 +2,7 @@
 
 TextAreaHelper::TextAreaHelper(QQuickItem * arg) :
     Super(arg) {
-    this->setFlag(QQuickItem::ItemHasContents, true);
+    this->setFlag(QQuickItem::ItemHasContents, false);
 }
 
 QQuickItem * TextAreaHelper::getFlickable() const {
@@ -23,6 +23,19 @@ void TextAreaHelper::setFlickable(QQuickItem *arg) {
     assert(nullptr == mmmFlickAble);
     mmmFlickAble = arg;
     flickableChanged();
+}
+
+QQuickTextDocument * TextAreaHelper::getDocument() const {
+    return mmmDocument;
+}
+
+void TextAreaHelper::setDocument(QQuickTextDocument * arg) {
+    assert(nullptr == mmmDocument);
+    mmmDocument = arg;
+    auto varDocument = mmmDocument->textDocument();
+    assert(varDocument);
+
+    documentChanged();
 }
 
 static inline void register_this() {

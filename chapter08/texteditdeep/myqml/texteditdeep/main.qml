@@ -33,6 +33,7 @@ Rectangle {
             background: TextAreaHelper{
                 textArea: idTextArea
                 flickable: idFlickable
+                document: idTextArea.textDocument
             }
 
             MouseArea {
