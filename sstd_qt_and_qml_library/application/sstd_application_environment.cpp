@@ -26,7 +26,9 @@ namespace sstd {
         }
         {
             /*关闭异步渲染*/
+#if defined(_DEBUG)
             ::qputenv("QSG_RENDER_LOOP","basic");
+#endif
         }
     }
 
