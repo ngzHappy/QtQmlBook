@@ -30,12 +30,21 @@ Pane {
             topPadding: 6
             bottomPadding: 0
             background: GifTextAreaHelper{
+                id : idGifTextAreaHelper
             }
 
             MouseArea {
                 acceptedButtons: Qt.RightButton
                 anchors.fill: parent
-                onClicked: idContextMenu.open()
+                onClicked: {
+                    idContextMenu.x = mouse.x ;
+                    idContextMenu.y = mouse.y ;
+                    idContextMenu.open();
+                }
+            }
+
+            Item{
+                id : forgroundItem
             }
 
             onLinkActivated: Qt.openUrlExternally(link)
@@ -50,6 +59,12 @@ Pane {
 
     Menu {
         id: idContextMenu
+
+        closePolicy: Popup.CloseOnPressOutside
+                    |Popup.CloseOnPressOutsideParent
+                    |Popup.CloseOnReleaseOutside
+                    |Popup.CloseOnReleaseOutsideParent
+                    |Popup.CloseOnEscape ;
 
         MenuItem {
             text: qsTr("复制")
