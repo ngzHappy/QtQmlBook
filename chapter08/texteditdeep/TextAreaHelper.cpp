@@ -1,22 +1,7 @@
 ﻿#include "TextAreaHelper.hpp"
 
-namespace {
-    class ThisNode :
-        public sstd::SimpleRectangleNode,
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(ThisNode) {
-    public:
-        inline ThisNode() {
-            this->setFlag(QSGNode::OwnedByParent, true);
-            this->setColor(Qt::transparent);
-        }
-    private:
-        SSTD_END_DEFINE_VIRTUAL_CLASS(ThisNode);
-    };
-}/**/
-
 TextAreaHelper::TextAreaHelper() {
     this->setFlag(QQuickItem::ItemHasContents, false);
-
 }
 
 QQuickItem * TextAreaHelper::getFlickable() const {
@@ -236,15 +221,6 @@ void TextAreaHelper::componentComplete() {
 void TextAreaHelper::pppAboutUpdate() {
     pppOnDoMainChange();
     this->update();
-}
-
-QSGNode * TextAreaHelper::updatePaintNode(QSGNode * arg, QQuickItem::UpdatePaintNodeData *) {
-    ThisNode * varAns = static_cast<ThisNode *>(arg);
-    if (varAns == nullptr) {
-        varAns = sstd_new<ThisNode>();
-    }
-    varAns->setRect(this->x(), this->y(), this->width(), this->height());
-    return varAns;
 }
 
 TextAreaHelper::~TextAreaHelper() {

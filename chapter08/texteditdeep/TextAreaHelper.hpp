@@ -37,7 +37,6 @@ protected:
 private:
     Q_SLOT void pppOnDoMainChange();
     Q_SLOT void pppAboutUpdate();
-    QSGNode * updatePaintNode(QSGNode *, QQuickItem::UpdatePaintNodeData *) override;
 private:
     QQuickItem * mmmTextArea{ nullptr };
     QQuickItem * mmmFlickAble{ nullptr };

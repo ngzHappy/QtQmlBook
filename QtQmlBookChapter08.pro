@@ -13,3 +13,6 @@ SUBDIRS += app_charts
 
 app_texteditdeep.file = $$PWD/chapter08/texteditdeep/texteditdeep.pro
 SUBDIRS += app_texteditdeep
+
+app_texteditwithgif.file = $$PWD/chapter08/texteditwithgif/texteditwithgif.pro
+SUBDIRS += app_texteditwithgif
