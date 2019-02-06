@@ -15,7 +15,7 @@ namespace {
 }/**/
 
 TextAreaHelper::TextAreaHelper() {
-    this->setFlag(QQuickItem::ItemHasContents, true);
+    this->setFlag(QQuickItem::ItemHasContents, false);
 
 }
 
