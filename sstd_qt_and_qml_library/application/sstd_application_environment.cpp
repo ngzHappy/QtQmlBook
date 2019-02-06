@@ -24,6 +24,10 @@ namespace sstd {
             /*设置默认opengl环境*/
             QSurfaceFormat::setDefaultFormat(sstd::getDefaultQSurfaceFormat());
         }
+        {
+            /*关闭异步渲染*/
+            ::qputenv("QSG_RENDER_LOOP","basic");
+        }
     }
 
 }/*namespace sstd*/
