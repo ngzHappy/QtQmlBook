@@ -42,7 +42,8 @@ Pane {
     }
 
     Component.onCompleted: {
-        idTextArea.append( "A：%1:A".arg("<img width=32 height=32 src='abc.qml'>") );
+        idTextArea.append("A：%1:A".arg(
+        "<img width=32 height=32 src='image://PlaceHolderImageProvider/abc.qml'>") );
     }
 
     Menu {
