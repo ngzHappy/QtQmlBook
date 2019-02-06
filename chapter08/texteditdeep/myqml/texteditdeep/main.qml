@@ -1,14 +1,13 @@
-﻿/*texteditdeep/main.qml*/
+﻿///*texteditdeep/main.qml*/
 import QtQuick 2.11
 import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import sstd.textarea.help 1.0
 
-Rectangle {
+Pane {
     id : idRoot
     width: 640;
     height: 480;
-    color: Qt.rgba(0.8,0.8,0.8,1);
 
     Flickable {
         id: idFlickable
@@ -28,12 +27,17 @@ Rectangle {
 
             leftPadding: 6
             rightPadding: 6
-            topPadding: 0
+            topPadding: 6
             bottomPadding: 0
-            background: TextAreaHelper{
+            background: TextAreaHelper {
                 textArea: idTextArea
                 flickable: idFlickable
                 document: idTextArea.textDocument
+                blockBackground: Rectangle{
+                    border.width: 1
+                    border.color: Qt.rgba(0,0,0,1)
+                    color: Qt.rgba(1,1,1,0)
+                }
             }
 
             MouseArea {
