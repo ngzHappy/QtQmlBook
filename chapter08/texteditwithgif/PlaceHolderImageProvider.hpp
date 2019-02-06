@@ -1,0 +1,14 @@
+﻿#pragma once
+
+class PlaceHolderImageProvier{};
+
+
+
+
+
+
+
+
+
+
+

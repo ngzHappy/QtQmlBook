@@ -33,6 +33,9 @@ SOURCES += $$PWD/main.cpp
 SOURCES += $$PWD/GifTextAreaHelper.cpp
 HEADERS += $$PWD/GifTextAreaHelper.hpp
 
+SOURCES += $$PWD/PlaceHolderImageProvider.cpp
+HEADERS += $$PWD/PlaceHolderImageProvider.hpp
+
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
 }else{

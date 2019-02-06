@@ -42,9 +42,7 @@ Pane {
     }
 
     Component.onCompleted: {
-        for(var i =0;i<100;++i){
-            idTextArea.append( "行：%1".arg(i) );
-        }
+        idTextArea.append( "A：%1:A".arg("<img width=32 height=32 src='abc.qml'>") );
     }
 
     Menu {
