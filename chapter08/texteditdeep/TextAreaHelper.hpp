@@ -17,7 +17,7 @@ private:
 private:
     Q_PROPERTY(QQuickItem * flickable READ getFlickable WRITE setFlickable NOTIFY flickableChanged)
 public:
-    TextAreaHelper( );
+    TextAreaHelper();
     QQuickItem * getFlickable() const;
     QQuickItem * getTextArea() const;
     void setTextArea(QQuickItem *);
@@ -28,12 +28,12 @@ public:
     void setDocument(QQuickTextDocument *);
     Q_SIGNAL void documentChanged();
     QQmlComponent * getBlockBackground() const;
-    void setBlockBackground(QQmlComponent *) ;
+    void setBlockBackground(QQmlComponent *);
     Q_SIGNAL void blockBackgroundChanged();
     virtual ~TextAreaHelper() override;
     Q_SLOT void checkVisible();
 protected:
-    virtual void componentComplete() override ;
+    virtual void componentComplete() override;
 private:
     Q_SLOT void pppOnDoMainChange();
     Q_SLOT void pppAboutUpdate();
