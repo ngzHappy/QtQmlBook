@@ -4,10 +4,11 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import sstd.giftextarea.help 1.0
 
-Pane {
+ApplicationWindow {
     id : idRoot
     width: 640;
     height: 480;
+    visible: true
 
     Flickable {
         id: idFlickable
@@ -39,12 +40,12 @@ Pane {
                 onClicked: {
                     idContextMenu.x = mouse.x ;
                     idContextMenu.y = mouse.y ;
-                    idContextMenu.open();
+                    idContextMenu.popup();
                 }
             }
 
             Item{
-                id : forgroundItem
+                id : idForgroundItem
             }
 
             onLinkActivated: Qt.openUrlExternally(link)
@@ -59,12 +60,6 @@ Pane {
 
     Menu {
         id: idContextMenu
-
-        closePolicy: Popup.CloseOnPressOutside
-                    |Popup.CloseOnPressOutsideParent
-                    |Popup.CloseOnReleaseOutside
-                    |Popup.CloseOnReleaseOutsideParent
-                    |Popup.CloseOnEscape ;
 
         MenuItem {
             text: qsTr("复制")
