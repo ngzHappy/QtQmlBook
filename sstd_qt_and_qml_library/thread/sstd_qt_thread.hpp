@@ -101,6 +101,9 @@ namespace sstd {
             inline sstd::intrusive_ptr< ThreadWatcher_ > getWatcher() const {
                 return mmmWatcher;
             }
+            inline void destory_this() {
+                delete this;
+            }
         private:
             SSTD_END_DEFINE_VIRTUAL_CLASS(sstd_call_in_qthread_);
         };
@@ -134,6 +137,9 @@ sstd_call_in_qthread(TF && f, QThread * arg) {
             sstd_new< FunctionType_ >(std::forward<TF>(f));
         auto varAns = varFunction->getWatcher();
         varFunction->moveToThread(arg);
+        QObject::connect(arg, &QObject::destroyed,
+            varFunction, &FunctionType_::destory_this,
+            Qt::DirectConnection);
         QCoreApplication::postEvent(varFunction, varFunction);
         return std::move(varAns);
     }
