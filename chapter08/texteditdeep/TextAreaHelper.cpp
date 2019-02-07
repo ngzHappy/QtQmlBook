@@ -195,14 +195,14 @@ void TextAreaHelper::checkVisible() {
         }
         auto varItem = varUserData->item;
         QRectF varItemRect{
-            varItem->x(),
-            varItem->y(),
+            varItem->x() ,
+            varItem->y() ,
             varItem->width() ,
             varItem->height() };
         if (varItemRect.width() <
             (1.0 + std::numeric_limits<double>::epsilon())) {
             varItem->setVisible(false);
-        } else if (varItemRect.intersected(varCheckRect).height() < 1.1) {
+        } else if (varItemRect.intersected(varCheckRect).height() < 5.1) {
             varItem->setVisible(false);
         } else {
             varItem->setVisible(true);
