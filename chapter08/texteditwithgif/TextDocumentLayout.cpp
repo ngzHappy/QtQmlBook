@@ -2,7 +2,7 @@
 
 TextDocumentLayout::TextDocumentLayout(QTextDocument * arg) :
     Super(arg) {
-
+    this->setParent(arg);
 }
 
 void TextDocumentLayout::documentChanged(int position, int charsRemoved, int charsAdded) {

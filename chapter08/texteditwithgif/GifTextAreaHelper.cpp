@@ -79,6 +79,7 @@ void GifTextAreaHelper::setDocument(QQuickTextDocument * arg) {
     assert(arg);
     auto varDocument = mmmDocument->textDocument();
     auto varDocumentLayout = sstd_new<TextDocumentLayout>(varDocument);
+    mmmTextLayout = varDocumentLayout;
     varDocument->setDocumentLayout(varDocumentLayout);
     //connect(varDocumentLayout, &QAbstractTextDocumentLayout::documentSizeChanged,
     //    this, [this](const QSizeF &) {
