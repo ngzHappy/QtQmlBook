@@ -38,8 +38,6 @@ ApplicationWindow {
                 acceptedButtons: Qt.RightButton
                 anchors.fill: parent
                 onClicked: {
-                    idContextMenu.x = mouse.x ;
-                    idContextMenu.y = mouse.y ;
                     idContextMenu.popup();
                 }
             }

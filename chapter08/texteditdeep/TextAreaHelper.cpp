@@ -41,6 +41,10 @@ void TextAreaHelper::setDocument(QQuickTextDocument * arg) {
         this, [this](const QSizeF &) {
         this->pppAboutUpdate();
     });
+    connect(varDocument,&QTextDocument::contentsChanged, 
+        this, [this]() {
+        this->pppAboutUpdate();
+    });
     documentChanged();
 }
 
