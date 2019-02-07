@@ -11,18 +11,18 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
 
         const auto varDx = charsAdded - charsRemoved;
         for (const auto & varI : mmmQmlItems) {
-            auto varOldPos = varI.first;
+            const auto varOldPos = varI.first;
             if (varOldPos < position) {/*索引没有变化*/
                 varNewQmlItems.emplace(varI.first, std::move(varI.second));
             } else if ((varOldPos - position) < charsRemoved) {/*删除了此元素*/
                 continue;
             } else if (varDx == 0) {/*索引没有变化*/
                 varNewQmlItems.emplace(
-                    varI.first,
+                    varOldPos,
                     std::move(varI.second));
             } else {/*>=position索引变化*/
                 varNewQmlItems.emplace(
-                    varDx + varI.first,
+                    varDx + varOldPos,
                     std::move(varI.second));
             }
         }
