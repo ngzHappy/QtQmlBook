@@ -30,6 +30,8 @@ public:
 protected:
     void classBegin() override;
 private:
+    void pppAboutUpdate();
+private:
     QQuickItem * mmmTextArea{ nullptr };
     QQuickItem * mmmFlickAble{ nullptr };
     QQuickTextDocument * mmmDocument{ nullptr };

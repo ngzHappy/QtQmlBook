@@ -73,6 +73,9 @@ QQuickTextDocument * GifTextAreaHelper::getDocument() const {
     return mmmDocument;
 }
 
+void GifTextAreaHelper::pppAboutUpdate() {
+}
+
 void GifTextAreaHelper::setDocument(QQuickTextDocument * arg) {
     assert(nullptr == mmmDocument);
     mmmDocument = arg;
@@ -81,14 +84,14 @@ void GifTextAreaHelper::setDocument(QQuickTextDocument * arg) {
     auto varDocumentLayout = sstd_new<TextDocumentLayout>(varDocument);
     mmmTextLayout = varDocumentLayout;
     varDocument->setDocumentLayout(varDocumentLayout);
-    //connect(varDocumentLayout, &QAbstractTextDocumentLayout::documentSizeChanged,
-    //    this, [this](const QSizeF &) {
-    //    this->pppAboutUpdate();
-    //});
-    //connect(varDocument, &QTextDocument::contentsChanged,
-    //    this, [this]() {
-    //    this->pppAboutUpdate();
-    //});
+    connect(varDocumentLayout, &QAbstractTextDocumentLayout::documentSizeChanged,
+        this, [this](const QSizeF &) {
+        this->pppAboutUpdate();
+    });
+    connect(varDocument, &QTextDocument::contentsChanged,
+        this, [this]() {
+        this->pppAboutUpdate();
+    });
     documentChanged();
 }
 
