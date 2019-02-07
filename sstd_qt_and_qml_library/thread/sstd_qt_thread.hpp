@@ -2,6 +2,7 @@
 
 #include <future>
 #include <exception>
+#include <QtCore/qcoreapplication.h>
 #include "sstd_qt_thread_object.hpp"
 #include "sstd_qt_thread_event.hpp"
 #include "../global/sstd_qt_and_qml_global.hpp"
