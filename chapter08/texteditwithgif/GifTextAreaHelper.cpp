@@ -2,6 +2,37 @@
 #include "PlaceHolderImageProvider.hpp"
 #include "TextDocumentLayout.hpp"
 
+inline static QQuickItem * createItem(const QString & argFileName,
+    QQuickItem * argParent) {
+
+    QFile varFile{ argFileName };
+    if (!varFile.open(QIODevice::ReadOnly)) {
+        return nullptr;
+    }
+
+    QByteArray varFileData;
+
+    {
+        auto varAllFile = varFile.readAll();
+        if (varAllFile.startsWith(QByteArrayLiteral("\xEF\xBB\xBF"))) {
+            varFileData = std::move(varAllFile);
+        } else {
+            varFileData = QByteArrayLiteral("\xEF\xBB\xBF") + std::move(varAllFile);
+        }
+    }
+
+    QQmlComponent varComponent{ qmlEngine(argParent) };
+    varComponent.setData(varFileData,QUrl::fromLocalFile(argFileName));
+    auto varAns = qobject_cast<QQuickItem *>(
+        varComponent.beginCreate(QQmlEngine::contextForObject(argParent)));
+    assert(varAns);
+    varAns->setParent(argParent);
+    varAns->setParentItem(argParent);
+    varComponent.completeCreate();
+    return varAns;
+
+}
+
 GifTextAreaHelper::GifTextAreaHelper() {
 
 }
