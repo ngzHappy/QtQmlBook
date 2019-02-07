@@ -7,10 +7,10 @@ namespace sstd {
         assert(qApp);
         assert(qApp->thread());
         this->moveToThread(qApp->thread());
-        connect(this, &QThread::finished, this, &QObject::deleteLater,
+        connect(
+            this, &QThread::finished, 
+            this, &QObject::deleteLater,
             Qt::QueuedConnection);
-        auto varWatcher = sstd_get_thread_object(this);
-        assert(varWatcher);
     }
 
 }/**/

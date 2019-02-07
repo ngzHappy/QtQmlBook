@@ -45,7 +45,6 @@ HEADERS += $$PWD/root_window/sstd_root_window.hpp
 HEADERS += $$PWD/get_local_file_full_path/sstd_get_local_file_full_path.hpp
 HEADERS += $$PWD/thread/sstd_qt_thread.hpp
 HEADERS += $$PWD/thread/sstd_qt_thread_object.hpp
-HEADERS += $$PWD/thread/sstd_private/sstd_qt_thread_private.hpp
 HEADERS += $$PWD/glew/sstd_glew.hpp
 HEADERS += $$PWD/quick_memory_image/sstd_quick_memory_image.hpp
 HEADERS += $$PWD/glew/sstd_glew_initialization.hpp
@@ -65,7 +64,6 @@ SOURCES += $$PWD/root_window/sstd_root_window.cpp
 SOURCES += $$PWD/get_local_file_full_path/sstd_get_local_file_full_path.cpp
 SOURCES += $$PWD/thread/sstd_qt_thread.cpp
 SOURCES += $$PWD/thread/sstd_qt_thread_object.cpp
-SOURCES += $$PWD/thread/sstd_private/sstd_qt_thread_private.cpp
 SOURCES += $$PWD/glew/sstd_glew.cpp
 SOURCES += $$PWD/glew/glew.c
 INCLUDEPATH += $$PWD/glew
@@ -84,6 +82,9 @@ SOURCES += $$PWD/dir/sstd_copy_dir.cpp
 
 HEADERS += $$PWD/root_window/sstd_private/sstd_qmlapplicationengine.hpp
 SOURCES += $$PWD/root_window/sstd_private/sstd_qmlapplicationengine.cpp
+
+HEADERS += $$PWD/thread/sstd_qt_thread_event.hpp
+SOURCES += $$PWD/thread/sstd_qt_thread_event.cpp
 
 DEFINES *= GLEW_NO_GLU
 DEFINES *= GLEW_STATIC
