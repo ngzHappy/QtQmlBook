@@ -24,7 +24,7 @@ inline static QQuickItem * createItem(const QString & argFileName,
     QQmlComponent varComponent{ qmlEngine(argParent) };
     varComponent.setData(varFileData,QUrl::fromLocalFile(argFileName));
     auto varAns = qobject_cast<QQuickItem *>(
-        varComponent.beginCreate(QQmlEngine::contextForObject(argParent)));
+        varComponent.beginCreate(qmlContext(argParent)));
     assert(varAns);
     varAns->setParent(argParent);
     varAns->setParentItem(argParent);
