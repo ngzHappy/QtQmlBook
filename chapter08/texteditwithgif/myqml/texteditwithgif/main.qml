@@ -26,9 +26,9 @@ ApplicationWindow {
             selectByMouse: true
             persistentSelection: true
 
-            leftPadding: 6
-            rightPadding: 6
-            topPadding: 6
+            leftPadding: 0
+            rightPadding: 0
+            topPadding: 0
             bottomPadding: 0
             background: GifTextAreaHelper{
                 id : idGifTextAreaHelper

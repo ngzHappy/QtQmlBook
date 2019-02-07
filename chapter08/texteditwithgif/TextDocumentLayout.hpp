@@ -7,9 +7,17 @@ class TextQmlWrappedItem {
     const QString mmmQmlPath;
     const int mmmImageWidth;
     const int mmmImageHeight;
+    double mmmX{0};
+    double mmmY{0};
 public:
     TextQmlWrappedItem(const QString &,int,int);
     ~TextQmlWrappedItem();
+
+    double getX() const;
+    double getY() const;
+    void setX(double);
+    void setY(double);
+
 private:
     SSTD_DEFINE_STATIC_CLASS(TextQmlWrappedItem);
 };
@@ -23,6 +31,8 @@ private:
     using Super = QTextDocumentLayout;
 public:
     TextDocumentLayout(QTextDocument *);
+private:
+    void updateQmlPos(QTextInlineObject item, int posInDocument, const QTextFormat &format);
 protected:
     void positionInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
     void resizeInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;

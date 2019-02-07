@@ -50,20 +50,35 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
                     varImageFormat.height()) });
         }
     }
-
     Super::documentChanged(position, charsRemoved, charsAdded);
 }
 
 void TextDocumentLayout::positionInlineObject(QTextInlineObject item,
     int posInDocument,
     const QTextFormat &format) {
+    updateQmlPos(item, posInDocument, format);
     return Super::positionInlineObject(item, posInDocument, format);
 }
 
 void TextDocumentLayout::resizeInlineObject(QTextInlineObject item,
     int posInDocument,
     const QTextFormat &format) {
+    updateQmlPos(item, posInDocument, format);
     return Super::resizeInlineObject(item, posInDocument, format);
+}
+
+void TextDocumentLayout::updateQmlPos(QTextInlineObject item,
+    int posInDocument,
+    const QTextFormat &format) {
+    auto varQMLPos = mmmQmlItems.find(posInDocument);
+    if (varQMLPos == mmmQmlItems.cend()) {
+        return;
+    }
+    auto v = varQMLPos->second.get();
+    const auto varRect = item.rect();
+    v->setX(varRect.x());
+    v->setY(varRect.y());
+    (void)format;
 }
 
 TextQmlWrappedItem::TextQmlWrappedItem(
@@ -76,8 +91,21 @@ TextQmlWrappedItem::~TextQmlWrappedItem() {
 
 }
 
+double TextQmlWrappedItem::getX() const {
+    return mmmX;
+}
 
+double TextQmlWrappedItem::getY() const {
+    return mmmY;
+}
 
+void TextQmlWrappedItem::setX(double a) {
+    mmmX = a;
+}
+
+void TextQmlWrappedItem::setY(double a) {
+    mmmY = a;
+}
 
 
 
