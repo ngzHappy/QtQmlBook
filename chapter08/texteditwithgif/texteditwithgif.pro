@@ -1,6 +1,10 @@
 #texteditwithgif.pro
 TEMPLATE = app
 
+QT += core_private
+QT += gui_private
+QT += widgets_private
+
 CONFIG(debug,debug|release){
     TARGET = texteditwithgif_debug
 }else{
@@ -35,6 +39,9 @@ HEADERS += $$PWD/GifTextAreaHelper.hpp
 
 SOURCES += $$PWD/PlaceHolderImageProvider.cpp
 HEADERS += $$PWD/PlaceHolderImageProvider.hpp
+
+SOURCES += $$PWD/TextDocumentLayout.cpp
+HEADERS += $$PWD/TextDocumentLayout.hpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
