@@ -54,11 +54,22 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
     Super::documentChanged(position, charsRemoved, charsAdded);
 }
 
+void TextDocumentLayout::positionInlineObject(QTextInlineObject item,
+    int posInDocument,
+    const QTextFormat &format) {
+    return Super::positionInlineObject(item, posInDocument, format);
+}
+
+void TextDocumentLayout::resizeInlineObject(QTextInlineObject item,
+    int posInDocument,
+    const QTextFormat &format) {
+    return Super::resizeInlineObject(item, posInDocument, format);
+}
+
 TextQmlWrappedItem::TextQmlWrappedItem(
     const QString & arg, int w, int h) : mmmQmlPath(arg),
     mmmImageWidth(w),
     mmmImageHeight(h) {
-
 }
 
 TextQmlWrappedItem::~TextQmlWrappedItem() {

@@ -24,6 +24,8 @@ private:
 public:
     TextDocumentLayout(QTextDocument *);
 protected:
+    void positionInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
+    void resizeInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
     void documentChanged(int position, int charsRemoved, int charsAdded) override;
 private:
     sstd::map< 

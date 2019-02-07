@@ -32,6 +32,9 @@ ApplicationWindow {
             bottomPadding: 0
             background: GifTextAreaHelper{
                 id : idGifTextAreaHelper
+                textArea: idTextArea
+                flickable: idFlickable
+                document: idTextArea.textDocument
             }
 
             MouseArea {
