@@ -80,8 +80,8 @@ POSIX平台下需要在开头加“file://”。
 
 :the_book_file:[[f000026]] :tex_raw:[[%main4.qml]]
 
-Qt Quick依赖于OpenGL。:tex_raw:[[\filesourcenumbernameone\ \ref{f000027}]]
-展示常用OpenGL参数设置：
+Qt Quick依赖于OpenGL。:tex_raw:[[\filesourcenumbernameone\ \ref{f000027}]]展
+示常用OpenGL参数设置：
 
 :the_book_file:[[f000027]] :tex_raw:[[%main5.qml]]
 
@@ -145,17 +145,22 @@ QQuickWidget自Qt 5.3引入。
 
 引入QQuickWidget的目的就是混用
 Qt Quick和Qt Widgets。
+
 但实际上，使用QQuickWidget加载Qml和使用QQuickView加载Qml的
 根本区别在于：
-QQuickWidget是同步渲染的，而QQuickView是异步渲染的。
+QQuickWidget总是同步渲染的，而QQuickView默认是异步渲染的。
 
 对于一些小型应用程序，异步渲染是不必要的。
 而更重要的是，在一些设备上，由于硬件限制，异步渲染是低效甚至
 不可实现的。即使可以实现，也可能有一些莫名其妙的BUG。
 
-对于以上情形，
-使用QQuickWidget比使用QQuickView能够获得
-更好的效果，甚至能消除一些BUG。
+可以在QQuickView构造之前调用:tex_raw:[[\begin{littlelongworld}]]
+::qputenv("QSG_RENDER_LOOP","basic");
+:tex_raw:[[\end{littlelongworld}]]强制
+QQuickView使用同步渲染。
+
+不过禁用异步渲染可能导致一些
+Qt Quick动画特效失效。
 
 :tex_raw:[[\filesourcenumbernameone\ \ref{f000021}]]展
 示了使用QQuickWidget加载Qml的C++代码:tex_raw:[[\footnote{]]
@@ -186,13 +191,13 @@ QQmlApplicationEngine自Qt 5.1引入。
 
 QQmlApplicationEngine是对
 QQuickView的进一步包装和扩展。
-Qt Quick Controls一些控件比如“对话框”需要一些
+Qt Quick Controls一些控件比如“对话框”、“菜单”需要一些
 全局支持。
 QQmlApplicationEngine就是被设计用来提供这些全局支持的。
 
-如果读者不需要传统对话框的话，
+如果读者不需要传统对话框或菜单的话，
 QQuickView或QQuickWidget也是足够使用的。
-但如果使用类似于对话框这样的功能，还是建议
+但如果需要使用类似于对话框这样的功能，还是建议
 读者使用QQmlApplicationEngine。
 
 :tex_raw:[[\filesourcenumbernameone\ \ref{f000022}]]展
