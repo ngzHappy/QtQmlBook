@@ -19,7 +19,7 @@ inline static QQuickItem * createItem(const QString & argFileName,
 
     QFile varFile{ argFileName };
     if (!varFile.open(QIODevice::ReadOnly)) {
-        qDebug()
+        qWarning()
             << QStringLiteral("can not open : ")
             << argFileName;
         return nullptr;
