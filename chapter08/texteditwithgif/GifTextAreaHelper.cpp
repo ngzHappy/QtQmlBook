@@ -32,7 +32,8 @@ inline static QQuickItem * createItem(const QString & argFileName,
         if (varAllFile.startsWith(QByteArrayLiteral("\xEF\xBB\xBF"))) {
             varFileData = std::move(varAllFile);
         } else {
-            varFileData = QByteArrayLiteral("\xEF\xBB\xBF") + std::move(varAllFile);
+            varFileData = QByteArrayLiteral("\xEF\xBB\xBF")
+                + std::move(varAllFile);
         }
     }
 
@@ -82,11 +83,11 @@ void GifTextAreaHelper::setTextArea(QQuickItem *arg) {
         connect(this, &QQuickItem::xChanged,
             mmmForeGroundItem, [this]() {
             mmmForeGroundItem->setX(this->x());
-        });
+        }, Qt::DirectConnection);
         connect(this, &QQuickItem::yChanged,
             mmmForeGroundItem, [this]() {
             mmmForeGroundItem->setY(this->y());
-        });
+        }, Qt::DirectConnection);
         mmmForeGroundItem->setX(this->x());
         mmmForeGroundItem->setY(this->y());
     }
@@ -127,9 +128,13 @@ void GifTextAreaHelper::checkVisible() {
         mmmFlickAble->height();
 
     const auto varBegin =
-        mmmTextLayout->hitTest({ varCX ,varCY }, Qt::FuzzyHit);
+        mmmTextLayout->hitTest({ varCX ,varCY },
+            Qt::FuzzyHit);
     const auto varEnd =
-        mmmTextLayout->hitTest({ varCX + varWidth,varCY + varHeight }, Qt::FuzzyHit);
+        mmmTextLayout->hitTest({ varCX + varWidth,varCY + varHeight },
+            Qt::FuzzyHit);
+
+    assert(varEnd >= varBegin);
 
     const QDir varDir{ sstd::getLocalFileFullFilePath(
         QStringLiteral("myqml/texteditwithgif")) };
