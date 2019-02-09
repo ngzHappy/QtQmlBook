@@ -10,6 +10,7 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
     if (mmmDocument == document()) {/*resize docuemnt ...*/
         auto varCurrentDocumentWidth =
             document()->textWidth();
+        /*I think this is a qt bug ...*/
         if (mmmPageWidth != varCurrentDocumentWidth) {
             if ((position == 0) && (charsRemoved == 0)) {
                 if (charsAdded == document()->characterCount()) {
