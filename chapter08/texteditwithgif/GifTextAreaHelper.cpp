@@ -185,12 +185,10 @@ void GifTextAreaHelper::checkVisible() {
                     auto varDoc = mmmTextLayout->document();
                     auto varBlock = varDoc->findBlock(varI.first);
                     if (!varBlock.isValid()) {
-                        varItem->setVisible(false);
                         continue;
                     }
                     auto varBlockLayout = varBlock.layout();
                     if (!varBlockLayout) {
-                        varItem->setVisible(false);
                         continue;
                     }
                     const auto varBlockPosition =
@@ -199,7 +197,6 @@ void GifTextAreaHelper::checkVisible() {
                     auto varTextLine = varBlockLayout->lineForTextPosition(
                         varPosInCurrentBlock);
                     if (!varTextLine.isValid()) {
-                        varItem->setVisible(false);
                         continue;
                     }
                     auto varPosInCurrentLine =

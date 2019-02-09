@@ -7,7 +7,7 @@ import sstd.giftextarea.help 1.0
 ApplicationWindow {
     id : idRoot
     width: 640;
-    height: 480;
+    height: 640;
     visible: true
 
     Flickable {
@@ -51,9 +51,13 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        idTextArea.append("rrrrr");
-        idTextArea.append("A：%1:A".arg(
-        "<img width=32 height=32 src='image://placeholderimageprovider/GifItem.qml'>") );
+        idTextArea.append("E:%1G".arg(
+        "<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>") );
+        idTextArea.append("中：%1文".arg(
+        "<img width=32 height=32 src='image://placeholderimageprovider/FlowerItem.qml'>") );
+        idTextArea.append("chart:");
+        idTextArea.append("%1".arg(
+        "<img width=512 height=512 src='image://placeholderimageprovider/ChartItem.qml'>") );
     }
 
     Menu {

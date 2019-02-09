@@ -52,6 +52,8 @@ export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/texteditwithgif/main.qml
 QMLSOURCES += $$PWD/myqml/texteditwithgif/GifItem.qml
+QMLSOURCES += $$PWD/myqml/texteditwithgif/FlowerItem.qml
+QMLSOURCES += $$PWD/myqml/texteditwithgif/ChartItem.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES
