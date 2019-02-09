@@ -106,6 +106,57 @@ void GifTextAreaHelper::pppAboutUpdate() {
 }
 
 void GifTextAreaHelper::checkVisible() {
+    if (!mmmTextLayout) {
+        return;
+    }
+    if (!mmmFlickAble) {
+        return;
+    }
+
+    const auto varCX =
+        mmmFlickAble->property("contentX").toDouble();
+    const auto varCY =
+        mmmFlickAble->property("contentY").toDouble();
+
+    const auto varWidth =
+        mmmFlickAble->width();
+    const auto varHeight =
+        mmmFlickAble->height();
+
+    const auto varBegin =
+        mmmTextLayout->hitTest({ varCX ,varCY }, Qt::FuzzyHit);
+    const auto varEnd =
+        mmmTextLayout->hitTest({ varCX + varWidth,varCY + varHeight }, Qt::FuzzyHit);
+
+    for (const auto & varI : mmmTextLayout->getQmlItems()) {
+        if ((varI.first < varBegin) || (varI.first > varEnd)) {/*不可见...*/
+            if (varI.second) {
+                auto varItem = varI.second->getItem();
+                if (varItem) {
+                    varItem->setVisible(false);
+                }
+            }
+        } else {/*可见...*/
+            if (varI.second) {
+                auto varItem = varI.second->getItem();
+                if (!varItem) {
+                    varItem = createItem(
+                        varI.second->getQmlPathName(),
+                        mmmForeGroundItem);
+                    if (varItem == nullptr) {
+                        continue;
+                    }
+                    varI.second->setItem(varItem);
+                }
+                varItem->setX(varI.second->getX());
+                varItem->setY(varI.second->getY());
+                varItem->setWidth(varI.second->getWidth());
+                varItem->setHeight(varI.second->getHeight());
+                varItem->setVisible(true);
+            }
+        }
+    }
+
 }
 
 void GifTextAreaHelper::setDocument(QQuickTextDocument * arg) {

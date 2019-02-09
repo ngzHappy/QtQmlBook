@@ -7,8 +7,10 @@ class TextQmlWrappedItem {
     const QString mmmQmlPath;
     const int mmmImageWidth;
     const int mmmImageHeight;
-    double mmmX{0};
-    double mmmY{0};
+    double mmmX{ 0 };
+    double mmmY{ 0 };
+    QQuickItem * mmmItem{nullptr};
+    QPointer< QQuickItem > mmmWatcher;
 public:
     TextQmlWrappedItem(const QString &,int,int);
     ~TextQmlWrappedItem();
@@ -17,6 +19,28 @@ public:
     double getY() const;
     void setX(double);
     void setY(double);
+    double getWidth() const;
+    double getHeight() const;
+    QString getQmlPathName() const;
+
+    inline void setItem(QQuickItem * arg) {
+        assert(mmmItem==nullptr);
+        mmmItem = arg;
+        mmmWatcher = arg;
+    }
+
+    inline QQuickItem * getItem() const {
+        return mmmItem;
+    }
+
+    inline void releaseItem() {
+        auto varItem = mmmWatcher.data();
+        mmmItem = nullptr;
+        mmmWatcher.clear();
+        if (varItem) {
+            delete varItem;
+        }
+    }
 
 private:
     SSTD_DEFINE_STATIC_CLASS(TextQmlWrappedItem);
@@ -31,6 +55,11 @@ private:
     using Super = QTextDocumentLayout;
 public:
     TextDocumentLayout(QTextDocument *);
+    using QmlItems = sstd::map<
+        int,
+        std::shared_ptr< TextQmlWrappedItem  >
+    >;
+    inline const QmlItems & getQmlItems() const;
 private:
     void updateQmlPos(QTextInlineObject item, int posInDocument, const QTextFormat &format);
 protected:
@@ -46,7 +75,9 @@ private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(TextDocumentLayout);
 };
 
-
+inline const TextDocumentLayout::QmlItems & TextDocumentLayout::getQmlItems() const {
+    return mmmQmlItems;
+}
 
 
 

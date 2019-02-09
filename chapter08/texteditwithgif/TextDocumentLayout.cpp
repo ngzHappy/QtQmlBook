@@ -88,7 +88,7 @@ TextQmlWrappedItem::TextQmlWrappedItem(
 }
 
 TextQmlWrappedItem::~TextQmlWrappedItem() {
-
+    releaseItem();
 }
 
 double TextQmlWrappedItem::getX() const {
@@ -107,7 +107,17 @@ void TextQmlWrappedItem::setY(double a) {
     mmmY = a;
 }
 
+double TextQmlWrappedItem::getWidth() const { 
+    return this->mmmImageWidth;
+}
 
+double TextQmlWrappedItem::getHeight() const {
+    return this->mmmImageHeight;
+}
+
+QString TextQmlWrappedItem::getQmlPathName() const {
+    return this->mmmQmlPath;
+}
 
 
 
