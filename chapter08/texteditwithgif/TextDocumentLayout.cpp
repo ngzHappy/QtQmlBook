@@ -30,8 +30,7 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
     }
 
     if (charsAdded < 1) {
-        Super::documentChanged(position, charsRemoved, charsAdded);
-        return;
+        return Super::documentChanged(position, charsRemoved, charsAdded);
     }
 
     /*插入新的QMl*/
@@ -51,21 +50,22 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
                     varImageFormat.height()) });
         }
     }
-    Super::documentChanged(position, charsRemoved, charsAdded);
+
+    return Super::documentChanged(position, charsRemoved, charsAdded);
 }
 
 void TextDocumentLayout::positionInlineObject(QTextInlineObject item,
     int posInDocument,
     const QTextFormat &format) {
-    Super::positionInlineObject(item, posInDocument, format);
     updateQmlPos(item, posInDocument, format);
+    return Super::positionInlineObject(item, posInDocument, format);
 }
 
 void TextDocumentLayout::resizeInlineObject(QTextInlineObject item,
     int posInDocument,
     const QTextFormat &format) {
-    Super::resizeInlineObject(item, posInDocument, format);
     updateQmlPos(item, posInDocument, format);
+    return Super::resizeInlineObject(item, posInDocument, format);
 }
 
 void TextDocumentLayout::updateQmlPos(QTextInlineObject item,
@@ -109,7 +109,7 @@ void TextQmlWrappedItem::setY(double a) {
     mmmY = a;
 }
 
-double TextQmlWrappedItem::getWidth() const { 
+double TextQmlWrappedItem::getWidth() const {
     return this->mmmImageWidth;
 }
 
