@@ -30,6 +30,7 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
     }
 
     if (charsAdded < 1) {
+        Super::documentChanged(position, charsRemoved, charsAdded);
         return;
     }
 
