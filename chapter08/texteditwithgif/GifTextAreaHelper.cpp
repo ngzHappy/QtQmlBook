@@ -184,12 +184,24 @@ void GifTextAreaHelper::checkVisible() {
                     varI.second->setNeedUpdatePos(false);
                     auto varDoc = mmmTextLayout->document();
                     auto varBlock = varDoc->findBlock(varI.first);
+                    if (!varBlock.isValid()) {
+                        varItem->setVisible(false);
+                        continue;
+                    }
                     auto varBlockLayout = varBlock.layout();
+                    if (!varBlockLayout) {
+                        varItem->setVisible(false);
+                        continue;
+                    }
                     const auto varBlockPosition =
                         varBlockLayout->position();
                     auto varPosInCurrentBlock = varI.first - varBlock.position();
                     auto varTextLine = varBlockLayout->lineForTextPosition(
                         varPosInCurrentBlock);
+                    if (!varTextLine.isValid()) {
+                        varItem->setVisible(false);
+                        continue;
+                    }
                     auto varPosInCurrentLine =
                         varPosInCurrentBlock - varTextLine.textStart();
                     varI.second->setX(
