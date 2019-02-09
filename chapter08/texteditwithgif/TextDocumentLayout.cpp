@@ -3,7 +3,6 @@
 TextDocumentLayout::TextDocumentLayout(QTextDocument * arg) :
     Super(arg) {
     this->setParent(arg);
-    mmmLastDocumentLength = document()->characterCount();
 }
 
 void TextDocumentLayout::documentChanged(int position, int charsRemoved, int charsAdded) {
@@ -13,10 +12,14 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
             mmmLastDocumentLength - charsRemoved + charsAdded;
         mmmLastDocumentLength = document()->characterCount();
         if (varLogicalDocumentLength != mmmLastDocumentLength) {
-            /*更新布局但不改变索引...*/
-            assert((charsRemoved == 0) || (charsAdded == 0));
-            assert((charsAdded == mmmLastDocumentLength) || (mmmLastDocumentLength == charsRemoved));
-            return Super::documentChanged(position, charsRemoved, charsAdded);
+            if (charsAdded) {/*更新布局但不改变索引...*/
+                assert((charsAdded == mmmLastDocumentLength) || (0 == charsRemoved));
+                return Super::documentChanged(position, charsRemoved, charsAdded);
+            } else {/*删除整个文档内容...*/
+                assert((charsAdded == 0) || (mmmLastDocumentLength == charsRemoved));
+                mmmQmlItems.clear();
+                return Super::documentChanged(position, charsRemoved, charsAdded);
+            }
         }
         assert((position - charsRemoved + charsAdded) <= mmmLastDocumentLength);
     } else {/*更换整个文档*/
