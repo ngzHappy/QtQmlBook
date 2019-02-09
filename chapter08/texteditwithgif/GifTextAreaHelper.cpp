@@ -19,6 +19,9 @@ inline static QQuickItem * createItem(const QString & argFileName,
 
     QFile varFile{ argFileName };
     if (!varFile.open(QIODevice::ReadOnly)) {
+        qDebug()
+            << QStringLiteral("can not open : ")
+            << argFileName;
         return nullptr;
     }
 
@@ -128,6 +131,9 @@ void GifTextAreaHelper::checkVisible() {
     const auto varEnd =
         mmmTextLayout->hitTest({ varCX + varWidth,varCY + varHeight }, Qt::FuzzyHit);
 
+    const QDir varDir{ sstd::getLocalFileFullFilePath(
+        QStringLiteral("myqml/texteditwithgif")) };
+
     for (const auto & varI : mmmTextLayout->getQmlItems()) {
         if ((varI.first < varBegin) || (varI.first > varEnd)) {/*不可见...*/
             if (varI.second) {
@@ -141,7 +147,8 @@ void GifTextAreaHelper::checkVisible() {
                 auto varItem = varI.second->getItem();
                 if (!varItem) {
                     varItem = createItem(
-                        varI.second->getQmlPathName(),
+                        varDir.absoluteFilePath(
+                            varI.second->getQmlPathName()),
                         mmmForeGroundItem);
                     if (varItem == nullptr) {
                         continue;
