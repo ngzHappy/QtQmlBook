@@ -85,7 +85,7 @@ void GifTextAreaHelper::setTextArea(QQuickItem *arg) {
         assert(mmmForeGroundItem == nullptr);
         mmmForeGroundItem = createItem<false>(QStringLiteral(R"_(
 import QtQuick 2.11
-Item{ 
+Item{
     visible: true ;
     x : 0 ;
     y : 0 ;
@@ -147,11 +147,14 @@ void GifTextAreaHelper::checkVisible() {
         return;
     }
 
+    constexpr const auto varMargin = 32.0 ;
+
     const auto varBegin =
-        mmmTextLayout->hitTest({ varCX ,varCY },
+        mmmTextLayout->hitTest({ varCX - varMargin ,varCY - varMargin },
             Qt::FuzzyHit);
     const auto varEnd =
-        mmmTextLayout->hitTest({ varCX + varWidth,varCY + varHeight },
+        mmmTextLayout->hitTest({ varCX + varWidth + varMargin,
+                                 varCY + varHeight + varMargin },
             Qt::FuzzyHit);
 
 #if defined(_DEBUG)
@@ -165,7 +168,7 @@ void GifTextAreaHelper::checkVisible() {
         QStringLiteral("myqml/texteditwithgif")) };
 
 #if defined(_DEBUG)
-    qDebug() << QStringLiteral("Qml Items Size : ") 
+    qDebug() << QStringLiteral("Qml Items Size : ")
         << mmmTextLayout->getQmlItems().size();
 #endif
 
@@ -178,7 +181,7 @@ void GifTextAreaHelper::checkVisible() {
                     assert(varDocumentSize >= varI.first);
                     qDebug() << QStringLiteral( "visible : false" );
 #endif
-                    varItem->setVisible(false);
+                    varI.second->releaseItem();
                 }
             }
         } else {/*可见...*/
