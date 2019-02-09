@@ -164,12 +164,20 @@ void GifTextAreaHelper::checkVisible() {
     const QDir varDir{ sstd::getLocalFileFullFilePath(
         QStringLiteral("myqml/texteditwithgif")) };
 
+#if defined(_DEBUG)
+    qDebug() << QStringLiteral("Qml Items Size : ") 
+        << mmmTextLayout->getQmlItems().size();
+#endif
+
     for (const auto & varI : mmmTextLayout->getQmlItems()) {
         if ((varI.first < varBegin) || (varI.first > varEnd)) {/*不可见...*/
             if (varI.second) {
                 auto varItem = varI.second->getItem();
                 if (varItem) {
+#if defined(_DEBUG)
                     assert(varDocumentSize >= varI.first);
+                    qDebug() << QStringLiteral( "visible : false" );
+#endif
                     varItem->setVisible(false);
                 }
             }
