@@ -75,6 +75,7 @@ private:
         std::shared_ptr< TextQmlWrappedItem  > 
     > mmmQmlItems;
     QTextDocument * mmmDocument{ nullptr };
+    int mmmLastDocumentLength{ 0 };
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(TextDocumentLayout);
 };
