@@ -207,6 +207,7 @@ void GifTextAreaHelper::checkVisible() {
                     varI.second->setX(
                         varTextLine.cursorToX(varPosInCurrentLine));
                     varI.second->setY(
+                        varTextLine.descent() /*图像对齐底线*/ +
                         varTextLine.y() + varBlockPosition.y()
                     );
                 }
