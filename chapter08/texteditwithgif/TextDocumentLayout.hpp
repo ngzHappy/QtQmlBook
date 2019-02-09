@@ -9,11 +9,11 @@ class TextQmlWrappedItem {
     const int mmmImageHeight;
     double mmmX{ 0 };
     double mmmY{ 0 };
-    QQuickItem * mmmItem{nullptr};
+    QQuickItem * mmmItem{ nullptr };
     QPointer< QQuickItem > mmmWatcher;
-    bool mmmNeedUpdatePos{true};
+    bool mmmNeedUpdatePos{ true };
 public:
-    TextQmlWrappedItem(const QString &,int,int);
+    TextQmlWrappedItem(const QString &, int, int);
     ~TextQmlWrappedItem();
 
     double getX() const;
@@ -27,7 +27,7 @@ public:
     void setNeedUpdatePos(bool);
 
     inline void setItem(QQuickItem * arg) {
-        assert(mmmItem==nullptr);
+        assert(mmmItem == nullptr);
         mmmItem = arg;
         mmmWatcher = arg;
     }
@@ -41,6 +41,7 @@ public:
         mmmItem = nullptr;
         mmmWatcher.clear();
         if (varItem) {
+            varItem->setVisible(false);
             delete varItem;
         }
     }
@@ -70,9 +71,9 @@ protected:
     void resizeInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
     void documentChanged(int position, int charsRemoved, int charsAdded) override;
 private:
-    sstd::map< 
-        int, 
-        std::shared_ptr< TextQmlWrappedItem  > 
+    sstd::map<
+        int,
+        std::shared_ptr< TextQmlWrappedItem  >
     > mmmQmlItems;
     QTextDocument * mmmDocument{ nullptr };
     int mmmLastDocumentLength{ 0 };
