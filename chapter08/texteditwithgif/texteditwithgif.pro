@@ -51,6 +51,7 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/texteditwithgif/main.qml
+QMLSOURCES += $$PWD/myqml/texteditwithgif/GifItem.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

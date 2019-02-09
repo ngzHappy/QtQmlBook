@@ -2,6 +2,18 @@
 #include "PlaceHolderImageProvider.hpp"
 #include "TextDocumentLayout.hpp"
 
+namespace this_file {
+    class Item :
+        public QQuickItem,
+        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Item) {
+    public:
+        inline Item() {
+        }
+    private:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(Item);
+    };
+}/**/
+
 inline static QQuickItem * createItem(const QString & argFileName,
     QQuickItem * argParent) {
 
@@ -22,7 +34,7 @@ inline static QQuickItem * createItem(const QString & argFileName,
     }
 
     QQmlComponent varComponent{ qmlEngine(argParent) };
-    varComponent.setData(varFileData,QUrl::fromLocalFile(argFileName));
+    varComponent.setData(varFileData, QUrl::fromLocalFile(argFileName));
     auto varAns = qobject_cast<QQuickItem *>(
         varComponent.beginCreate(qmlContext(argParent)));
     assert(varAns);
@@ -59,6 +71,22 @@ void GifTextAreaHelper::setTextArea(QQuickItem *arg) {
     assert(nullptr == mmmTextArea);
     mmmTextArea = arg;
     assert(arg);
+    {
+        assert(mmmForeGroundItem == nullptr);
+        mmmForeGroundItem = sstd_new<this_file::Item>();
+        mmmForeGroundItem->setParent(arg);
+        mmmForeGroundItem->setParentItem(arg);
+        connect(this, &QQuickItem::xChanged,
+            mmmForeGroundItem, [this]() {
+            mmmForeGroundItem->setX(this->x());
+        });
+        connect(this, &QQuickItem::yChanged,
+            mmmForeGroundItem, [this]() {
+            mmmForeGroundItem->setY(this->y());
+        });
+        mmmForeGroundItem->setX(this->x());
+        mmmForeGroundItem->setY(this->y());
+    }
     textAreaChanged();
 }
 
@@ -74,6 +102,10 @@ QQuickTextDocument * GifTextAreaHelper::getDocument() const {
 }
 
 void GifTextAreaHelper::pppAboutUpdate() {
+    checkVisible();
+}
+
+void GifTextAreaHelper::checkVisible() {
 }
 
 void GifTextAreaHelper::setDocument(QQuickTextDocument * arg) {
@@ -93,6 +125,17 @@ void GifTextAreaHelper::setDocument(QQuickTextDocument * arg) {
         this->pppAboutUpdate();
     });
     documentChanged();
+}
+
+void GifTextAreaHelper::componentComplete() {
+    auto varContex = QQmlEngine::contextForObject(this);
+    assert(varContex);
+    auto varExp = QQmlExpression(varContex, this, QStringLiteral(R"(
+              x = Qt.binding( function() { checkVisible(); return -flickable.contentX } )
+              y = Qt.binding( function() { checkVisible(); return -flickable.contentY } )
+)"));
+    varExp.evaluate();
+    Super::componentComplete();
 }
 
 static inline void register_this() {

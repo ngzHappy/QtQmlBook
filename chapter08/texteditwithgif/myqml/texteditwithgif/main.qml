@@ -45,10 +45,6 @@ ApplicationWindow {
                 }
             }
 
-            Item{
-                id : idForgroundItem
-            }
-
             onLinkActivated: Qt.openUrlExternally(link)
         }
 
@@ -56,7 +52,7 @@ ApplicationWindow {
 
     Component.onCompleted: {
         idTextArea.append("A：%1:A".arg(
-        "<img width=32 height=32 src='image://placeholderimageprovider/abc.qml'>") );
+        "<img width=32 height=32 src='image://placeholderimageprovider/GifItem.qml'>") );
     }
 
     Menu {

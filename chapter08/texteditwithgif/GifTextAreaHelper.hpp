@@ -27,15 +27,19 @@ public:
     QQuickTextDocument * getDocument() const;
     void setDocument(QQuickTextDocument *);
     Q_SIGNAL void documentChanged();
+    Q_SLOT void checkVisible();
 protected:
     void classBegin() override;
 private:
     void pppAboutUpdate();
+protected:
+    virtual void componentComplete() override;
 private:
     QQuickItem * mmmTextArea{ nullptr };
     QQuickItem * mmmFlickAble{ nullptr };
     QQuickTextDocument * mmmDocument{ nullptr };
     TextDocumentLayout * mmmTextLayout{ nullptr };
+    QQuickItem * mmmForeGroundItem{ nullptr };
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(GifTextAreaHelper);
 };

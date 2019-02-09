@@ -218,8 +218,7 @@ void TextAreaHelper::componentComplete() {
               x = Qt.binding( function() { checkVisible(); return -flickable.contentX } )
               y = Qt.binding( function() { checkVisible(); return -flickable.contentY } )
 )"));
-    auto varAns = varExp.evaluate();
-    qDebug() << varAns.toString();
+    varExp.evaluate();
     Super::componentComplete();
 }
 
