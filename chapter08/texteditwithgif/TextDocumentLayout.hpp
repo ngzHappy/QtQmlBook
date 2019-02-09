@@ -74,7 +74,6 @@ private:
         int, 
         std::shared_ptr< TextQmlWrappedItem  > 
     > mmmQmlItems;
-    qreal mmmPageWidth{0};
     QTextDocument * mmmDocument{ nullptr };
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(TextDocumentLayout);

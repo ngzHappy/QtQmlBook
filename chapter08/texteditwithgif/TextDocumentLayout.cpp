@@ -7,19 +7,16 @@ TextDocumentLayout::TextDocumentLayout(QTextDocument * arg) :
 
 void TextDocumentLayout::documentChanged(int position, int charsRemoved, int charsAdded) {
 
-    if (mmmDocument == document()) {/*resize docuemnt ...*/
-        auto varCurrentDocumentWidth =
-            document()->textWidth();
-        if (mmmPageWidth != varCurrentDocumentWidth) {
-            assert(position==0);
-            assert(charsRemoved==0);
-            assert(charsAdded==mmmDocument->characterCount());
-            mmmPageWidth = varCurrentDocumentWidth;
+    if (mmmDocument == document()) {/*更新整个文档*/
+        const auto varCharsSize = mmmDocument->characterCount();
+        if ((position == charsRemoved) &&
+            (position == 0) &&
+            (charsAdded == varCharsSize)) {
             return Super::documentChanged(position, charsRemoved, charsAdded);
         }
-    } else {/*document changed ...*/
+        assert((position + charsAdded) <= varCharsSize);
+    } else {/*更换整个文档*/
         mmmDocument = this->document();
-        mmmPageWidth = mmmDocument->textWidth();
         mmmQmlItems.clear();
     }
 
