@@ -87,7 +87,8 @@ void GifTextAreaHelper::setTextArea(QQuickItem *arg) {
 import QtQuick 2.11
 Item{ 
     visible: true ;
-    anchors.fill: parent;
+    x : 0 ;
+    y : 0 ;
     z : 666 ;
 }
 )_"), arg);
@@ -139,12 +140,24 @@ void GifTextAreaHelper::checkVisible() {
         return;
     }
 
+    auto varDocument =
+        mmmDocument->textDocument();
+
+    if (!varDocument) {
+        return;
+    }
+
     const auto varBegin =
         mmmTextLayout->hitTest({ varCX ,varCY },
             Qt::FuzzyHit);
     const auto varEnd =
         mmmTextLayout->hitTest({ varCX + varWidth,varCY + varHeight },
             Qt::FuzzyHit);
+
+#if defined(_DEBUG)
+    const auto varDocumentSize =
+        varDocument->characterCount();
+#endif
 
     assert(varEnd >= varBegin);
 
@@ -156,6 +169,7 @@ void GifTextAreaHelper::checkVisible() {
             if (varI.second) {
                 auto varItem = varI.second->getItem();
                 if (varItem) {
+                    assert(varDocumentSize >= varI.first);
                     varItem->setVisible(false);
                 }
             }
