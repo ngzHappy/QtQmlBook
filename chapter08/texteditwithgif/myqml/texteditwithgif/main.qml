@@ -12,10 +12,14 @@ ApplicationWindow {
 
     Flickable {
         id: idFlickable
-        flickableDirection: Flickable.VerticalFlick
+        flickableDirection:
+            Flickable.HorizontalAndVerticalFlick
         anchors.fill: parent
 
         ScrollBar.vertical: ScrollBar {
+        }
+
+        ScrollBar.horizontal: ScrollBar {
         }
 
         TextArea.flickable: TextArea {
