@@ -2,45 +2,51 @@
 #include "PlaceHolderImageProvider.hpp"
 #include "TextDocumentLayout.hpp"
 
-namespace this_file {
-    class Item :
-        public QQuickItem,
-        SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Item) {
-    public:
-        inline Item() {
-        }
-    private:
-        SSTD_END_DEFINE_VIRTUAL_CLASS(Item);
-    };
-}/**/
-
+template<bool IsFileName = true>
 inline static QQuickItem * createItem(const QString & argFileName,
     QQuickItem * argParent) {
 
-    QFile varFile{ argFileName };
-    if (!varFile.open(QIODevice::ReadOnly)) {
-        qWarning()
-            << QStringLiteral("can not open : ")
-            << argFileName;
-        return nullptr;
-    }
-
     QByteArray varFileData;
 
-    {
-        auto varAllFile = varFile.readAll();
-        if (varAllFile.startsWith(QByteArrayLiteral("\xEF\xBB\xBF"))) {
-            varFileData = std::move(varAllFile);
-        } else {
-            varFileData = QByteArrayLiteral("\xEF\xBB\xBF")
-                + std::move(varAllFile);
+    if constexpr (IsFileName) {
+        QFile varFile{ argFileName };
+        if (!varFile.open(QIODevice::ReadOnly)) {
+            qWarning()
+                << QStringLiteral("can not open : ")
+                << argFileName;
+            return nullptr;
         }
+
+        {
+            auto varAllFile = varFile.readAll();
+            if (varAllFile.startsWith(QByteArrayLiteral("\xEF\xBB\xBF"))) {
+                varFileData = std::move(varAllFile);
+            } else {
+                varFileData = QByteArrayLiteral("\xEF\xBB\xBF")
+                    + std::move(varAllFile);
+            }
+        }
+    } else {
+        varFileData = QByteArrayLiteral("\xEF\xBB\xBF")
+            + argFileName.toUtf8();
     }
 
-    QQmlComponent varComponent{ qmlEngine(argParent) };
-    varComponent.setData(varFileData, QUrl::fromLocalFile(argFileName));
-    auto varAns = qobject_cast<QQuickItem *>(
-        varComponent.beginCreate(qmlContext(argParent)));
+    auto varEngine = qmlEngine(argParent);
+    assert(varEngine);
+    QQmlComponent varComponent{ varEngine };
+    const auto varFileName = IsFileName ?
+        QUrl::fromLocalFile(argFileName) :
+        QStringLiteral("memory.raw.qml");
+    varComponent.setData(varFileData, varFileName);
+    auto varRawAns =
+        varComponent.beginCreate(qmlContext(argParent));
+    if (varRawAns == nullptr) {
+        qWarning()
+            << QStringLiteral("error building : ")
+            << varFileName;
+        return nullptr;
+    }
+    auto varAns = qobject_cast<QQuickItem *>(varRawAns);
     assert(varAns);
     varAns->setParent(argParent);
     varAns->setParentItem(argParent);
@@ -77,19 +83,15 @@ void GifTextAreaHelper::setTextArea(QQuickItem *arg) {
     assert(arg);
     {
         assert(mmmForeGroundItem == nullptr);
-        mmmForeGroundItem = sstd_new<this_file::Item>();
-        mmmForeGroundItem->setParent(arg);
-        mmmForeGroundItem->setParentItem(arg);
-        connect(this, &QQuickItem::xChanged,
-            mmmForeGroundItem, [this]() {
-            mmmForeGroundItem->setX(this->x());
-        }, Qt::DirectConnection);
-        connect(this, &QQuickItem::yChanged,
-            mmmForeGroundItem, [this]() {
-            mmmForeGroundItem->setY(this->y());
-        }, Qt::DirectConnection);
-        mmmForeGroundItem->setX(this->x());
-        mmmForeGroundItem->setY(this->y());
+        mmmForeGroundItem = createItem<false>(QStringLiteral(R"_(
+import QtQuick 2.11
+Item{ 
+    visible: true ;
+    anchors.fill: parent;
+    z : 666 ;
+}
+)_"), arg);
+        assert(mmmForeGroundItem);
     }
     textAreaChanged();
 }
@@ -116,6 +118,9 @@ void GifTextAreaHelper::checkVisible() {
     if (!mmmFlickAble) {
         return;
     }
+    if (!mmmForeGroundItem) {
+        return;
+    }
 
     const auto varCX =
         mmmFlickAble->property("contentX").toDouble();
@@ -126,6 +131,13 @@ void GifTextAreaHelper::checkVisible() {
         mmmFlickAble->width();
     const auto varHeight =
         mmmFlickAble->height();
+
+    if (varWidth < 1) {
+        return;
+    }
+    if (varHeight < 1) {
+        return;
+    }
 
     const auto varBegin =
         mmmTextLayout->hitTest({ varCX ,varCY },
@@ -151,14 +163,40 @@ void GifTextAreaHelper::checkVisible() {
             if (varI.second) {
                 auto varItem = varI.second->getItem();
                 if (!varItem) {
+                    const auto varHead =
+                        QStringLiteral("image://placeholderimageprovider/");
+                    auto varImageName =
+                        varI.second->getQmlPathName()
+                        .replace(QChar('\\'), QChar('/'));
+                    assert(varImageName.startsWith(varHead, Qt::CaseInsensitive));
+                    varImageName =
+                        varImageName.right(varImageName.size() - varHead.size());
                     varItem = createItem(
                         varDir.absoluteFilePath(
-                            varI.second->getQmlPathName()),
+                            varImageName),
                         mmmForeGroundItem);
                     if (varItem == nullptr) {
                         continue;
                     }
                     varI.second->setItem(varItem);
+                }
+                if (varI.second->needUpdatePos()) {
+                    varI.second->setNeedUpdatePos(false);
+                    auto varDoc = mmmTextLayout->document();
+                    auto varBlock = varDoc->findBlock(varI.first);
+                    auto varBlockLayout = varBlock.layout();
+                    const auto varBlockPosition =
+                        varBlockLayout->position();
+                    auto varPosInCurrentBlock = varI.first - varBlock.position();
+                    auto varTextLine = varBlockLayout->lineForTextPosition(
+                        varPosInCurrentBlock);
+                    auto varPosInCurrentLine =
+                        varPosInCurrentBlock - varTextLine.textStart();
+                    varI.second->setX(
+                        varTextLine.cursorToX(varPosInCurrentLine));
+                    varI.second->setY(
+                        varTextLine.y() + varBlockPosition.y()
+                    );
                 }
                 varItem->setX(varI.second->getX());
                 varItem->setY(varI.second->getY());

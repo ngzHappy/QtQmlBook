@@ -56,15 +56,15 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
 void TextDocumentLayout::positionInlineObject(QTextInlineObject item,
     int posInDocument,
     const QTextFormat &format) {
+    Super::positionInlineObject(item, posInDocument, format);
     updateQmlPos(item, posInDocument, format);
-    return Super::positionInlineObject(item, posInDocument, format);
 }
 
 void TextDocumentLayout::resizeInlineObject(QTextInlineObject item,
     int posInDocument,
     const QTextFormat &format) {
+    Super::resizeInlineObject(item, posInDocument, format);
     updateQmlPos(item, posInDocument, format);
-    return Super::resizeInlineObject(item, posInDocument, format);
 }
 
 void TextDocumentLayout::updateQmlPos(QTextInlineObject item,
@@ -74,10 +74,11 @@ void TextDocumentLayout::updateQmlPos(QTextInlineObject item,
     if (varQMLPos == mmmQmlItems.cend()) {
         return;
     }
-    auto v = varQMLPos->second.get();
-    const auto varRect = item.rect();
-    v->setX(varRect.x());
-    v->setY(varRect.y());
+    if (varQMLPos->second) {
+        varQMLPos->second->setNeedUpdatePos(true);
+    }
+    (void)item;
+    (void)posInDocument;
     (void)format;
 }
 
@@ -119,7 +120,13 @@ QString TextQmlWrappedItem::getQmlPathName() const {
     return this->mmmQmlPath;
 }
 
+bool TextQmlWrappedItem::needUpdatePos() const {
+    return mmmNeedUpdatePos;
+}
 
+void TextQmlWrappedItem::setNeedUpdatePos(bool v) {
+    mmmNeedUpdatePos = v;
+}
 
 
 

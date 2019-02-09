@@ -11,6 +11,7 @@ class TextQmlWrappedItem {
     double mmmY{ 0 };
     QQuickItem * mmmItem{nullptr};
     QPointer< QQuickItem > mmmWatcher;
+    bool mmmNeedUpdatePos{true};
 public:
     TextQmlWrappedItem(const QString &,int,int);
     ~TextQmlWrappedItem();
@@ -22,6 +23,8 @@ public:
     double getWidth() const;
     double getHeight() const;
     QString getQmlPathName() const;
+    bool needUpdatePos() const;
+    void setNeedUpdatePos(bool);
 
     inline void setItem(QQuickItem * arg) {
         assert(mmmItem==nullptr);

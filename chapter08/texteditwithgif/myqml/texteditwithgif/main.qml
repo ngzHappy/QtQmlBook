@@ -51,6 +51,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
+        idTextArea.append("rrrrr");
         idTextArea.append("A：%1:A".arg(
         "<img width=32 height=32 src='image://placeholderimageprovider/GifItem.qml'>") );
     }
