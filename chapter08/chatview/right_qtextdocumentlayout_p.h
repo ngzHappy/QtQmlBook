@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -37,8 +37,7 @@
 **
 ****************************************************************************/
 
-#ifndef QTEXTDOCUMENTLAYOUT_P_H
-#define QTEXTDOCUMENTLAYOUT_P_H
+#pragma once
 
 //
 //  W A R N I N G
@@ -52,9 +51,9 @@
 //
 
 #include <QtGui/private/qtguiglobal_p.h>
-#include "QtGui/qabstracttextdocumentlayout.h"
-#include "QtGui/qtextoption.h"
-#include "QtGui/qtextobject.h"
+#include <QtGui/qabstracttextdocumentlayout.h>
+#include <QtGui/qtextoption.h>
+#include <QtGui/qtextobject.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -117,4 +116,4 @@ private:
 
 QT_END_NAMESPACE
 
-#endif // QTEXTDOCUMENTLAYOUT_P_H
+
