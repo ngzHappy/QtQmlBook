@@ -1,10 +1,10 @@
 #chatview.pro
-TEMPLATE = app
+TEMPLATE = lib
 
 CONFIG(debug,debug|release){
-    TARGET = chatview_debug
+    TARGET = chatview_utility_rightd
 }else{
-    TARGET = chatview
+    TARGET = chatview_utility_right
 }
 
 QT += core_private
@@ -20,14 +20,6 @@ include($$PWD/../../sstd_library/import_sstd_library.pri)
 #import sstd_qt_and_qml_library
 include($$PWD/../../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
 
-CONFIG(debug,debug|release){
-    LIBS += -L$${RootDestDir} -lchatview_utility_leftd
-    LIBS += -L$${RootDestDir} -lchatview_utility_rightd
-}else{
-    LIBS += -L$${RootDestDir} -lchatview_utility_left
-    LIBS += -L$${RootDestDir} -lchatview_utility_right
-}
-
 !win32 {
     QMAKE_LFLAGS += -Wl,-rpath .
 }
@@ -37,16 +29,15 @@ win32-msvc*{
 }
 
 DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
+DEFINES *= CHAT_VIEW_LIBRARY
 
 DESTDIR = $${RootDestDir}
 
-SOURCES += $$PWD/main.cpp
+HEADERS += $$PWD/right_qtextdocumentlayout.hpp
+HEADERS += $$PWD/this_qtextdocumentlayout_p.h
 
-SOURCES += $$PWD/ChatHelper.cpp
-HEADERS += $$PWD/ChatHelper.hpp
-
-SOURCES += $$PWD/ChatDataItem.cpp
-HEADERS += $$PWD/ChatDataItem.hpp
+SOURCES += $$PWD/CreateRightTextDocumentLayout.cpp
+HEADERS += $$PWD/CreateRightTextDocumentLayout.hpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"

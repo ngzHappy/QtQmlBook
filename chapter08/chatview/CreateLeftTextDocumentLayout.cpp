@@ -1,13 +1,16 @@
 ﻿#include <sstd_library.hpp>
-#include "CreateRightTextDocumentLayout.hpp"
+#include "CreateLeftTextDocumentLayout.hpp"
 #include "this_qtextdocumentlayout_p.h"
-#include "right_qtextdocumentlayout.hpp"
+#ifndef QT_NO_CSSPARSER
+#define QT_NO_CSSPARSER 1
+#endif
+#include "left_qtextdocumentlayout.hpp"
 
 namespace {
 
 }/**/
 
-extern QAbstractTextDocumentLayout * createRightTextDocumentLayout(QTextDocument *){
+CHAT_VIEW_LIBRARY_EXPORT QAbstractTextDocumentLayout * createLeftTextDocumentLayout(QTextDocument *){
     return nullptr;
 }
 
