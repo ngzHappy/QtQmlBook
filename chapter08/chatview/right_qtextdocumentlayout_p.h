@@ -61,7 +61,7 @@ class QTextListFormat;
 class QTextTableCell;
 class QTextDocumentLayoutPrivate;
 
-class Q_GUI_EXPORT QTextDocumentLayout : public QAbstractTextDocumentLayout
+class QTextDocumentLayout : public QAbstractTextDocumentLayout
 {
     Q_DECLARE_PRIVATE(QTextDocumentLayout)
     Q_OBJECT

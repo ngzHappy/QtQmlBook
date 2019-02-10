@@ -40,7 +40,7 @@ HEADERS += $$PWD/ChatHelper.hpp
 SOURCES += $$PWD/ChatDataItem.cpp
 HEADERS += $$PWD/ChatDataItem.hpp
 
-SOURCES += $$PWD/right_qtextdocumentlayout.cpp
+HEADERS += $$PWD/right_qtextdocumentlayout.hpp
 HEADERS += $$PWD/right_qtextdocumentlayout_p.h
 
 CONFIG(debug,debug|release){
