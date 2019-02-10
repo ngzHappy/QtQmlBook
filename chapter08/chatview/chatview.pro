@@ -7,6 +7,10 @@ CONFIG(debug,debug|release){
     TARGET = chatview
 }
 
+QT += core_private
+QT += gui_private
+QT += widgets_private
+
 #define out put dir
 include($$PWD/../../outdirpath.pri)
 #define cplusplus environment
