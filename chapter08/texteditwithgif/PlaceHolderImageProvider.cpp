@@ -11,7 +11,9 @@ inline static QImage getImage() {
     return std::move(varImage);
 }
 
-QImage PlaceHolderImageProvider::requestImage(const QString &, QSize * s, const QSize &) {
+QImage PlaceHolderImageProvider::requestImage(const QString &,
+                                              QSize * s,
+                                              const QSize &) {
     const static auto varAns = getImage();
     if (s) {
         *s = varAns.size();

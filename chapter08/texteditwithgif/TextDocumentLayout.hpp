@@ -11,7 +11,7 @@ class TextQmlWrappedItem {
     double mmmY{ 0 };
     QQuickItem * mmmItem{ nullptr };
     QPointer< QQuickItem > mmmWatcher;
-    bool mmmNeedUpdatePos{ true };
+    sstd_bool mmmNeedUpdatePos{ true };
 public:
     TextQmlWrappedItem(const QString &, int, int);
     ~TextQmlWrappedItem();
