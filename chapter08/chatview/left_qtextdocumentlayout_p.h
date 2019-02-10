@@ -124,6 +124,4 @@ QT_END_NAMESPACE
 #include "left_qtextdocumentlayout.hpp"
 #endif
 
-#ifdef CHAT_VIEW_RIGHT_LIBRARY
-#include "right_qtextdocumentlayout.hpp"
-#endif
+

@@ -35,7 +35,7 @@ DEFINES *= CHAT_VIEW_RIGHT_LIBRARY
 DESTDIR = $${RootDestDir}
 
 HEADERS += $$PWD/right_qtextdocumentlayout.hpp
-HEADERS += $$PWD/this_qtextdocumentlayout_p.h
+HEADERS += $$PWD/right_qtextdocumentlayout_p.h
 
 SOURCES += $$PWD/CreateRightTextDocumentLayout.cpp
 HEADERS += $$PWD/CreateRightTextDocumentLayout.hpp
