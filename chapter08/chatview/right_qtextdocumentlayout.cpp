@@ -52,7 +52,7 @@
 #include <QtGui/qpainter.h>
 #include <QtCore/qmath.h>
 #include <QtCore/qrect.h>
-#include <QtCore/qpalette.h>
+#include <QtGui/qpalette.h>
 #include <QtCore/qdebug.h>
 #include <QtCore/qvarlengtharray.h>
 #include <limits.h>
