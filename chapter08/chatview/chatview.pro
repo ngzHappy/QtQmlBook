@@ -41,7 +41,10 @@ SOURCES += $$PWD/ChatDataItem.cpp
 HEADERS += $$PWD/ChatDataItem.hpp
 
 HEADERS += $$PWD/right_qtextdocumentlayout.hpp
-HEADERS += $$PWD/right_qtextdocumentlayout_p.h
+HEADERS += $$PWD/this_qtextdocumentlayout_p.h
+
+SOURCES += $$PWD/CreateRightTextDocumentLayout.cpp
+HEADERS += $$PWD/CreateRightTextDocumentLayout.hpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"

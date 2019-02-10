@@ -37,7 +37,7 @@
 **
 ****************************************************************************/
 
-#include "right_qtextdocumentlayout_p.h"
+#include "this_qtextdocumentlayout_p.h"
 #include <QtGui/private/qtextdocument_p.h>
 #include <QtGui/private/qtextimagehandler_p.h>
 #include <QtGui/qtexttable.h>
