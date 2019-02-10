@@ -16,3 +16,9 @@ SUBDIRS += app_texteditdeep
 
 app_texteditwithgif.file = $$PWD/chapter08/texteditwithgif/texteditwithgif.pro
 SUBDIRS += app_texteditwithgif
+
+app_chatview.file = $$PWD/chapter08/chatview/chatview.pro
+SUBDIRS += app_chatview
+
+
+
