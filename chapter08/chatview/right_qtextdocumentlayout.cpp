@@ -1,4 +1,4 @@
-/****************************************************************************
+﻿/****************************************************************************
 **
 ** Copyright (C) 2016 The Qt Company Ltd.
 ** Contact: https://www.qt.io/licensing/
@@ -37,27 +37,27 @@
 **
 ****************************************************************************/
 
-#include "qtextdocumentlayout_p.h"
-#include "qtextdocument_p.h"
-#include "qtextimagehandler_p.h"
-#include "qtexttable.h"
-#include "qtextlist.h"
-#include "qtextengine_p.h"
-#include "private/qcssutil_p.h"
-#include "private/qguiapplication_p.h"
+#include "right_qtextdocumentlayout_p.h"
+#include <QtGui/private/qtextdocument_p.h>
+#include <QtGui/private/qtextimagehandler_p.h>
+#include <QtGui/qtexttable.h>
+#include <QtGui/qtextlist.h>
+#include <QtGui/private/qtextengine_p.h>
+#include <QtGui/private/qcssutil_p.h>
+#include <QtGui/private/qguiapplication_p.h>
 
-#include "qabstracttextdocumentlayout_p.h"
-#include "qcssparser_p.h"
+#include <QtGui/private/qabstracttextdocumentlayout_p.h>
+#include <QtGui/private/qcssparser_p.h>
 
-#include <qpainter.h>
-#include <qmath.h>
-#include <qrect.h>
-#include <qpalette.h>
-#include <qdebug.h>
-#include <qvarlengtharray.h>
+#include <QtGui/qpainter.h>
+#include <QtCore/qmath.h>
+#include <QtCore/qrect.h>
+#include <QtCore/qpalette.h>
+#include <QtCore/qdebug.h>
+#include <QtCore/qvarlengtharray.h>
 #include <limits.h>
-#include <qbasictimer.h>
-#include "private/qfunctions_p.h"
+#include <QtCore/qbasictimer.h>
+#include <QtCore/private/qfunctions_p.h>
 
 #include <algorithm>
 
