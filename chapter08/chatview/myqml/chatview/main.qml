@@ -9,4 +9,20 @@ ApplicationWindow {
     height: 640;
     visible: true
 
+    ChatView{
+        anchors.fill: parent;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

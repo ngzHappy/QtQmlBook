@@ -1,9 +1,9 @@
 ﻿#include "ChatHelper.hpp"
+#include "CreateLeftTextDocumentLayout.hpp"
+#include "CreateRightTextDocumentLayout.hpp"
 
-
-
-
-
+ChatHelper::ChatHelper() {
+}
 
 
 

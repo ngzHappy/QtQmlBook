@@ -9,6 +9,7 @@
 #include "left_qtextdocumentlayout.hpp"
 #endif
 
+/*左对齐TextLayout*/
 namespace this_file{
 
     class Layout : public QTextDocumentLayout {
