@@ -116,4 +116,14 @@ private:
 
 QT_END_NAMESPACE
 
+#ifndef QT_NO_CSSPARSER
+#define QT_NO_CSSPARSER 1
+#endif
 
+#ifdef CHAT_VIEW_LEFT_LIBRARY
+#include "left_qtextdocumentlayout.hpp"
+#endif
+
+#ifdef CHAT_VIEW_RIGHT_LIBRARY
+#include "right_qtextdocumentlayout.hpp"
+#endif
