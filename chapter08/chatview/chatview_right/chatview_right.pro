@@ -28,6 +28,12 @@ win32-msvc*{
     CONFIG += console
 }
 
+CONFIG(debug,debug|release){
+    LIBS += -L$${RootDestDir} -lchatview_utility_basicd
+}else{
+    LIBS += -L$${RootDestDir} -lchatview_utility_basic
+}
+
 DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 DEFINES *= CHAT_VIEW_LIBRARY
 DEFINES *= CHAT_VIEW_RIGHT_LIBRARY

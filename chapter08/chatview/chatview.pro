@@ -21,9 +21,11 @@ include($$PWD/../../sstd_library/import_sstd_library.pri)
 include($$PWD/../../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
 
 CONFIG(debug,debug|release){
+    LIBS += -L$${RootDestDir} -lchatview_utility_basicd
     LIBS += -L$${RootDestDir} -lchatview_utility_leftd
     LIBS += -L$${RootDestDir} -lchatview_utility_rightd
 }else{
+    LIBS += -L$${RootDestDir} -lchatview_utility_basic
     LIBS += -L$${RootDestDir} -lchatview_utility_left
     LIBS += -L$${RootDestDir} -lchatview_utility_right
 }
