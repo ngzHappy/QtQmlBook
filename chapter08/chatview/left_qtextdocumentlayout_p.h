@@ -69,59 +69,52 @@ class QTextDocumentLayout : public QAbstractTextDocumentLayout
     Q_PROPERTY(qreal idealWidth READ idealWidth)
     Q_PROPERTY(bool contentHasAlignment READ contentHasAlignment)
 public:
-    inline explicit QTextDocumentLayout(QTextDocument *doc);
+    explicit QTextDocumentLayout(QTextDocument *doc);
 
     // from the abstract layout
-    inline void draw(QPainter *painter, const PaintContext &context) override;
-    inline int hitTest(const QPointF &point, Qt::HitTestAccuracy accuracy) const override;
+    void draw(QPainter *painter, const PaintContext &context) override;
+    int hitTest(const QPointF &point, Qt::HitTestAccuracy accuracy) const override;
 
-    inline int pageCount() const override;
-    inline QSizeF documentSize() const override;
+    int pageCount() const override;
+    QSizeF documentSize() const override;
 
-    inline void setCursorWidth(int width);
-    inline int cursorWidth() const;
+    void setCursorWidth(int width);
+    int cursorWidth() const;
 
     // internal, to support the ugly FixedColumnWidth wordwrap mode in QTextEdit
-    inline void setFixedColumnWidth(int width);
+    void setFixedColumnWidth(int width);
 
     // internal for QTextEdit's NoWrap mode
-    inline void setViewport(const QRectF &viewport);
+    void setViewport(const QRectF &viewport);
 
-    inline virtual QRectF frameBoundingRect(QTextFrame *frame) const override;
-    inline virtual QRectF blockBoundingRect(const QTextBlock &block) const override;
-    inline QRectF tableBoundingRect(QTextTable *table) const;
-    inline QRectF tableCellBoundingRect(QTextTable *table, const QTextTableCell &cell) const;
+    virtual QRectF frameBoundingRect(QTextFrame *frame) const override;
+    virtual QRectF blockBoundingRect(const QTextBlock &block) const override;
+    QRectF tableBoundingRect(QTextTable *table) const;
+    QRectF tableCellBoundingRect(QTextTable *table, const QTextTableCell &cell) const;
 
     // ####
-    inline int layoutStatus() const;
-    inline int dynamicPageCount() const;
-    inline QSizeF dynamicDocumentSize() const;
-    inline void ensureLayouted(qreal);
+    int layoutStatus() const;
+    int dynamicPageCount() const;
+    QSizeF dynamicDocumentSize() const;
+    void ensureLayouted(qreal);
 
-    inline qreal idealWidth() const;
+    qreal idealWidth() const;
 
-    inline bool contentHasAlignment() const;
+    bool contentHasAlignment() const;
 
 protected:
-    inline void documentChanged(int from, int oldLength, int length) override;
-    inline void resizeInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
-    inline void positionInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
-    inline void drawInlineObject(QPainter *p, const QRectF &rect, QTextInlineObject item,
+    void documentChanged(int from, int oldLength, int length) override;
+    void resizeInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
+    void positionInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format) override;
+    void drawInlineObject(QPainter *p, const QRectF &rect, QTextInlineObject item,
                           int posInDocument, const QTextFormat &format) override;
-    inline virtual void timerEvent(QTimerEvent *e) override;
+    virtual void timerEvent(QTimerEvent *e) override;
 private:
-    inline QRectF doLayout(int from, int oldLength, int length);
-    inline void layoutFinished();
+    QRectF doLayout(int from, int oldLength, int length);
+    void layoutFinished();
 };
 
 QT_END_NAMESPACE
 
-#ifndef QT_NO_CSSPARSER
-#define QT_NO_CSSPARSER 1
-#endif
-
-#ifdef CHAT_VIEW_LEFT_LIBRARY
-#include "left_qtextdocumentlayout.hpp"
-#endif
 
 

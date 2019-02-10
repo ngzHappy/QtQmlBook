@@ -37,7 +37,7 @@
 **
 ****************************************************************************/
 
-#include "this_qtextdocumentlayout_p.h"
+#include "left_qtextdocumentlayout_p.h"
 #include <QtGui/private/qtextdocument_p.h>
 #include <QtGui/private/qtextimagehandler_p.h>
 #include <QtGui/qtexttable.h>
@@ -2844,14 +2844,14 @@ QFixed QTextDocumentLayoutPrivate::findY(QFixed yFrom, const QTextLayoutStruct *
     return yFrom;
 }
 
-inline QTextDocumentLayout::QTextDocumentLayout(QTextDocument *doc)
+QTextDocumentLayout::QTextDocumentLayout(QTextDocument *doc)
     : QAbstractTextDocumentLayout(*new QTextDocumentLayoutPrivate, doc)
 {
     registerHandler(QTextFormat::ImageObject, new QTextImageHandler(this));
 }
 
 
-inline void QTextDocumentLayout::draw(QPainter *painter, const PaintContext &context)
+void QTextDocumentLayout::draw(QPainter *painter, const PaintContext &context)
 {
     Q_D(QTextDocumentLayout);
     QTextFrame *frame = d->document->rootFrame();
@@ -2879,7 +2879,7 @@ inline void QTextDocumentLayout::draw(QPainter *painter, const PaintContext &con
     fd->size.width = width;
 }
 
-inline void QTextDocumentLayout::setViewport(const QRectF &viewport)
+void QTextDocumentLayout::setViewport(const QRectF &viewport)
 {
     Q_D(QTextDocumentLayout);
     d->viewportRect = viewport;
@@ -2909,7 +2909,7 @@ static void markFrames(QTextFrame *current, int from, int oldLength, int length)
         markFrames(children.at(i), from, oldLength, length);
 }
 
-inline void QTextDocumentLayout::documentChanged(int from, int oldLength, int length)
+void QTextDocumentLayout::documentChanged(int from, int oldLength, int length)
 {
     Q_D(QTextDocumentLayout);
 
@@ -2975,7 +2975,7 @@ inline void QTextDocumentLayout::documentChanged(int from, int oldLength, int le
     emit update(updateRect);
 }
 
-inline QRectF QTextDocumentLayout::doLayout(int from, int oldLength, int length)
+QRectF QTextDocumentLayout::doLayout(int from, int oldLength, int length)
 {
     Q_D(QTextDocumentLayout);
 
@@ -2999,7 +2999,7 @@ inline QRectF QTextDocumentLayout::doLayout(int from, int oldLength, int length)
     return updateRect;
 }
 
-inline int QTextDocumentLayout::hitTest(const QPointF &point, Qt::HitTestAccuracy accuracy) const
+int QTextDocumentLayout::hitTest(const QPointF &point, Qt::HitTestAccuracy accuracy) const
 {
     Q_D(const QTextDocumentLayout);
     d->ensureLayouted(QFixed::fromReal(point.y()));
@@ -3025,7 +3025,7 @@ inline int QTextDocumentLayout::hitTest(const QPointF &point, Qt::HitTestAccurac
     return position;
 }
 
-inline void QTextDocumentLayout::resizeInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format)
+void QTextDocumentLayout::resizeInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format)
 {
     Q_D(QTextDocumentLayout);
     QTextCharFormat f = format.toCharFormat();
@@ -3066,7 +3066,7 @@ inline void QTextDocumentLayout::resizeInlineObject(QTextInlineObject item, int 
     }
 }
 
-inline void QTextDocumentLayout::positionInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format)
+void QTextDocumentLayout::positionInlineObject(QTextInlineObject item, int posInDocument, const QTextFormat &format)
 {
     Q_D(QTextDocumentLayout);
     Q_UNUSED(posInDocument);
@@ -3093,7 +3093,7 @@ inline void QTextDocumentLayout::positionInlineObject(QTextInlineObject item, in
     d->positionFloat(frame, line.isValid() ? &line : 0);
 }
 
-inline void QTextDocumentLayout::drawInlineObject(QPainter *p, const QRectF &rect, QTextInlineObject item,
+void QTextDocumentLayout::drawInlineObject(QPainter *p, const QRectF &rect, QTextInlineObject item,
                                            int posInDocument, const QTextFormat &format)
 {
     Q_D(QTextDocumentLayout);
@@ -3107,7 +3107,7 @@ inline void QTextDocumentLayout::drawInlineObject(QPainter *p, const QRectF &rec
     QAbstractTextDocumentLayout::drawInlineObject(p, rect, item, posInDocument, format);
 }
 
-inline int QTextDocumentLayout::dynamicPageCount() const
+int QTextDocumentLayout::dynamicPageCount() const
 {
     Q_D(const QTextDocumentLayout);
     const QSizeF pgSize = d->document->pageSize();
@@ -3116,20 +3116,20 @@ inline int QTextDocumentLayout::dynamicPageCount() const
     return qCeil(dynamicDocumentSize().height() / pgSize.height());
 }
 
-inline QSizeF QTextDocumentLayout::dynamicDocumentSize() const
+QSizeF QTextDocumentLayout::dynamicDocumentSize() const
 {
     Q_D(const QTextDocumentLayout);
     return data(d->docPrivate->rootFrame())->size.toSizeF();
 }
 
-inline int QTextDocumentLayout::pageCount() const
+int QTextDocumentLayout::pageCount() const
 {
     Q_D(const QTextDocumentLayout);
     d->ensureLayoutFinished();
     return dynamicPageCount();
 }
 
-inline QSizeF QTextDocumentLayout::documentSize() const
+QSizeF QTextDocumentLayout::documentSize() const
 {
     Q_D(const QTextDocumentLayout);
     d->ensureLayoutFinished();
@@ -3170,25 +3170,25 @@ void QTextDocumentLayoutPrivate::layoutStep() const
     lazyLayoutStepSize = qMin(200000, lazyLayoutStepSize * 2);
 }
 
-inline void QTextDocumentLayout::setCursorWidth(int width)
+void QTextDocumentLayout::setCursorWidth(int width)
 {
     Q_D(QTextDocumentLayout);
     d->cursorWidth = width;
 }
 
-inline int QTextDocumentLayout::cursorWidth() const
+int QTextDocumentLayout::cursorWidth() const
 {
     Q_D(const QTextDocumentLayout);
     return d->cursorWidth;
 }
 
-inline void QTextDocumentLayout::setFixedColumnWidth(int width)
+void QTextDocumentLayout::setFixedColumnWidth(int width)
 {
     Q_D(QTextDocumentLayout);
     d->fixedColumnWidth = width;
 }
 
-inline QRectF QTextDocumentLayout::tableCellBoundingRect(QTextTable *table, const QTextTableCell &cell) const
+QRectF QTextDocumentLayout::tableCellBoundingRect(QTextTable *table, const QTextTableCell &cell) const
 {
     if (!cell.isValid())
         return QRectF();
@@ -3201,7 +3201,7 @@ inline QRectF QTextDocumentLayout::tableCellBoundingRect(QTextTable *table, cons
     return cellRect.translated(tableRect.topLeft());
 }
 
-inline QRectF QTextDocumentLayout::tableBoundingRect(QTextTable *table) const
+QRectF QTextDocumentLayout::tableBoundingRect(QTextTable *table) const
 {
     Q_D(const QTextDocumentLayout);
     if (d->docPrivate->pageSize.isNull())
@@ -3228,7 +3228,7 @@ inline QRectF QTextDocumentLayout::tableBoundingRect(QTextTable *table) const
     return QRectF(pos, data(table)->size.toSizeF());
 }
 
-inline QRectF QTextDocumentLayout::frameBoundingRect(QTextFrame *frame) const
+QRectF QTextDocumentLayout::frameBoundingRect(QTextFrame *frame) const
 {
     Q_D(const QTextDocumentLayout);
     if (d->docPrivate->pageSize.isNull())
@@ -3257,7 +3257,7 @@ QRectF QTextDocumentLayoutPrivate::frameBoundingRectInternal(QTextFrame *frame) 
     return QRectF(pos, data(frame)->size.toSizeF());
 }
 
-inline QRectF QTextDocumentLayout::blockBoundingRect(const QTextBlock &block) const
+QRectF QTextDocumentLayout::blockBoundingRect(const QTextBlock &block) const
 {
     Q_D(const QTextDocumentLayout);
     if (d->docPrivate->pageSize.isNull() || !block.isValid() || !block.isVisible())
@@ -3286,7 +3286,7 @@ inline QRectF QTextDocumentLayout::blockBoundingRect(const QTextBlock &block) co
     return rect;
 }
 
-inline int QTextDocumentLayout::layoutStatus() const
+int QTextDocumentLayout::layoutStatus() const
 {
     Q_D(const QTextDocumentLayout);
     int pos = d->currentLazyLayoutPosition;
@@ -3295,7 +3295,7 @@ inline int QTextDocumentLayout::layoutStatus() const
     return pos * 100 / d->document->docHandle()->length();
 }
 
-inline void QTextDocumentLayout::timerEvent(QTimerEvent *e)
+void QTextDocumentLayout::timerEvent(QTimerEvent *e)
 {
     Q_D(QTextDocumentLayout);
     if (e->timerId() == d->layoutTimer.timerId()) {
@@ -3318,7 +3318,7 @@ inline void QTextDocumentLayout::timerEvent(QTimerEvent *e)
     }
 }
 
-inline void QTextDocumentLayout::layoutFinished()
+void QTextDocumentLayout::layoutFinished()
 {
     Q_D(QTextDocumentLayout);
     d->layoutTimer.stop();
@@ -3328,19 +3328,19 @@ inline void QTextDocumentLayout::layoutFinished()
     d->showLayoutProgress = true;
 }
 
-inline void QTextDocumentLayout::ensureLayouted(qreal y)
+void QTextDocumentLayout::ensureLayouted(qreal y)
 {
     d_func()->ensureLayouted(QFixed::fromReal(y));
 }
 
-inline qreal QTextDocumentLayout::idealWidth() const
+qreal QTextDocumentLayout::idealWidth() const
 {
     Q_D(const QTextDocumentLayout);
     d->ensureLayoutFinished();
     return d->idealWidth;
 }
 
-inline bool QTextDocumentLayout::contentHasAlignment() const
+bool QTextDocumentLayout::contentHasAlignment() const
 {
     Q_D(const QTextDocumentLayout);
     return d->contentHasAlignment;
