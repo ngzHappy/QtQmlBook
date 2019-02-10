@@ -17,8 +17,8 @@ SUBDIRS += app_texteditdeep
 app_texteditwithgif.file = $$PWD/chapter08/texteditwithgif/texteditwithgif.pro
 SUBDIRS += app_texteditwithgif
 
-lib_chatview_left.file = $$PWD/chapter08/chatview/chatview_left.pro
-lib_chatview_right.file = $$PWD/chapter08/chatview/chatview_right.pro
+lib_chatview_left.file = $$PWD/chapter08/chatview/left/chatview_left.pro
+lib_chatview_right.file = $$PWD/chapter08/chatview/right/chatview_right.pro
 app_chatview.file = $$PWD/chapter08/chatview/chatview.pro
 app_chatview.depends = lib_chatview_left lib_chatview_right
 SUBDIRS += lib_chatview_left
