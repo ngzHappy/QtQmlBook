@@ -12,13 +12,13 @@ QT += gui_private
 QT += widgets_private
 
 #define out put dir
-include($$PWD/../../outdirpath.pri)
+include($$PWD/../../../outdirpath.pri)
 #define cplusplus environment
-include($$PWD/../../cplusplus.pri)
+include($$PWD/../../../cplusplus.pri)
 #import sstd_library
-include($$PWD/../../sstd_library/import_sstd_library.pri)
+include($$PWD/../../../sstd_library/import_sstd_library.pri)
 #import sstd_qt_and_qml_library
-include($$PWD/../../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
+include($$PWD/../../../sstd_qt_and_qml_library/import_sstd_qt_and_qml_library.pri)
 
 !win32 {
     QMAKE_LFLAGS += -Wl,-rpath .
@@ -34,8 +34,8 @@ DEFINES *= CHAT_VIEW_LEFT_LIBRARY
 
 DESTDIR = $${RootDestDir}
 
-HEADERS += $$PWD/left_qtextdocumentlayout.hpp
-HEADERS += $$PWD/left_qtextdocumentlayout_p.h
+HEADERS += $$PWD/../left_qtextdocumentlayout.hpp
+HEADERS += $$PWD/../left_qtextdocumentlayout_p.h
 
-SOURCES += $$PWD/CreateLeftTextDocumentLayout.cpp
-HEADERS += $$PWD/CreateLeftTextDocumentLayout.hpp
+SOURCES += $$PWD/../CreateLeftTextDocumentLayout.cpp
+HEADERS += $$PWD/../CreateLeftTextDocumentLayout.hpp
