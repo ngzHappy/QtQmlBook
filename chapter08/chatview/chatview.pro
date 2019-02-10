@@ -30,6 +30,12 @@ DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/main.cpp
 
+SOURCES += $$PWD/ChatHelper.cpp
+HEADERS += $$PWD/ChatHelper.hpp
+
+SOURCES += $$PWD/ChatDataItem.cpp
+HEADERS += $$PWD/ChatDataItem.hpp
+
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
 }else{
