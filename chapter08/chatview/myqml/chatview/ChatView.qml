@@ -3,7 +3,10 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import sstd.chat.help 1.0
 
-TextArea{
+TextArea {
+
+    property bool isLeftChat: true
+
     anchors.fill: parent;
 
     textFormat: Qt.RichText
@@ -18,6 +21,7 @@ TextArea{
     topPadding: 0
     bottomPadding: 0
     background: ChatHelper{
+
     }
 
     MouseArea {
