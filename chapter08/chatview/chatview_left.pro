@@ -40,17 +40,3 @@ HEADERS += $$PWD/this_qtextdocumentlayout_p.h
 SOURCES += $$PWD/CreateLeftTextDocumentLayout.cpp
 HEADERS += $$PWD/CreateLeftTextDocumentLayout.hpp
 
-CONFIG(debug,debug|release){
-    QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
-}else{
-    QMAKE_POST_LINK += $${DESTDIR}/build_install $$PWD "myqml"
-}
-export(QMAKE_POST_LINK)
-
-QMLSOURCES += $$PWD/myqml/chatview/main.qml
-
-lupdate_only{
-    SOURCES += $$QMLSOURCES
-}
-
-DISTFILES += $$QMLSOURCES
