@@ -34,7 +34,9 @@ ApplicationWindow {
             rightPadding: 0
             topPadding: 0
             bottomPadding: 0
-            background: GifTextAreaHelper{
+            background: null ;
+
+            GifTextAreaHelper{
                 id : idGifTextAreaHelper
                 textArea: idTextArea
                 flickable: idFlickable
