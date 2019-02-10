@@ -8,15 +8,3 @@ class ChatHelper : public QQuickItem ,
     private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(ChatHelper);
 };
-
-
-
-
-
-
-
-
-
-
-
-

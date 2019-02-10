@@ -5,12 +5,3 @@ Image {
     height : 32 ;
     source: "flower.jpg"
 }
-
-
-
-
-
-
-
-
-

@@ -84,21 +84,3 @@ private:
 inline const TextDocumentLayout::QmlItems & TextDocumentLayout::getQmlItems() const {
     return mmmQmlItems;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

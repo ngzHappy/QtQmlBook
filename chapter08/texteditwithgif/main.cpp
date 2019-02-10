@@ -15,8 +15,8 @@ int main(int argc, char ** argv) {
         varEngine->load(varFullFileName);
         /*检查并报错*/
         if (varEngine->rootObjects().isEmpty()) {
-            qWarning() 
-                << QStringLiteral("can not load : ") 
+            qWarning()
+                << QStringLiteral("can not load : ")
                 << varFullFileName;
             return -1;
         }

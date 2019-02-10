@@ -17,5 +17,3 @@ namespace {
 CHAT_VIEW_LIBRARY_EXPORT QAbstractTextDocumentLayout * createLeftTextDocumentLayout(QTextDocument *){
     return nullptr;
 }
-
-

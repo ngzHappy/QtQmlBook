@@ -39,5 +39,3 @@ HEADERS += $$PWD/right_qtextdocumentlayout_p.h
 
 SOURCES += $$PWD/CreateRightTextDocumentLayout.cpp
 HEADERS += $$PWD/CreateRightTextDocumentLayout.hpp
-
-

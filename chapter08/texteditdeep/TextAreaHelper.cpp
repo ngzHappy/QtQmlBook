@@ -41,7 +41,7 @@ void TextAreaHelper::setDocument(QQuickTextDocument * arg) {
         this, [this](const QSizeF &) {
         this->pppAboutUpdate();
     });
-    connect(varDocument,&QTextDocument::contentsChanged, 
+    connect(varDocument,&QTextDocument::contentsChanged,
         this, [this]() {
         this->pppAboutUpdate();
     });
@@ -246,6 +246,3 @@ static inline void register_this() {
         "TextAreaHelper");
 }
 Q_COREAPP_STARTUP_FUNCTION(register_this)
-
-
-

@@ -19,9 +19,3 @@ protected:
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(sstd_qt_thread_object);
 };
-
-
-
-
-
-

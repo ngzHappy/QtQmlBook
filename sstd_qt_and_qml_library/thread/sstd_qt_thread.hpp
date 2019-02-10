@@ -145,7 +145,3 @@ sstd_call_in_qthread(TF && f, QThread * arg) {
     }
 
 }
-
-
-
-

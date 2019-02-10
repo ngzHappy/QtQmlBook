@@ -24,6 +24,3 @@ app_chatview.depends = lib_chatview_left lib_chatview_right
 SUBDIRS += lib_chatview_left
 SUBDIRS += lib_chatview_right
 SUBDIRS += app_chatview
-
-
-

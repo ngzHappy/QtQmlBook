@@ -24,12 +24,3 @@ namespace sstd {
         this->moveToThread(qApp->thread());
     }
 }
-
-
-
-
-
-
-
-
-

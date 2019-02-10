@@ -17,8 +17,3 @@ bool sstd_qt_thread_object::event(QEvent * e) {
     }
     return QObject::event(e);
 }
-
-
-
-
-

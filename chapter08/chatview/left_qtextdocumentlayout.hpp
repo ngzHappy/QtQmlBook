@@ -3361,5 +3361,3 @@ QFixed QTextDocumentLayoutPrivate::scaleToDevice(QFixed value) const
 }
 
 QT_END_NAMESPACE
-
-

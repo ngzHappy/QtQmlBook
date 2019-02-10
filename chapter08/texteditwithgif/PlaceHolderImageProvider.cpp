@@ -20,25 +20,3 @@ QImage PlaceHolderImageProvider::requestImage(const QString &,
     }
     return varAns;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

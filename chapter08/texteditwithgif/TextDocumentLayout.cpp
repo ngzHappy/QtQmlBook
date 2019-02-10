@@ -150,7 +150,3 @@ bool TextQmlWrappedItem::needUpdatePos() const {
 void TextQmlWrappedItem::setNeedUpdatePos(bool v) {
     mmmNeedUpdatePos = v;
 }
-
-
-
-
