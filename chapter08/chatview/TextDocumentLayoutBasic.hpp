@@ -31,9 +31,17 @@ public:
     QAbstractTextDocumentLayout * getLayout() const;
     void setLayout(QAbstractTextDocumentLayout *);
 
+    QTextDocument * getDocument() const;
+    void setDocument( QTextDocument * );
+
+    int getLastDocumentLength() const ;
+    void setLastDocumentLength(int );
+
 private:
     QmlItemsMap mmmQmlItems;
     QAbstractTextDocumentLayout * mmmLayout{nullptr};
+    QTextDocument * mmmDocument{ nullptr };
+    int mmmLastDocumentLength{ 0 };
 };
 
 

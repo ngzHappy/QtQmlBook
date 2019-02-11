@@ -1,11 +1,9 @@
 ﻿#include "TextDocumentLayoutBasic.hpp"
 
-TextDocumentLayoutBasic::~TextDocumentLayoutBasic(){
-
+TextDocumentLayoutBasic::~TextDocumentLayoutBasic() {
 }
 
-TextDocumentLayoutBasic::TextDocumentLayoutBasic(){
-
+TextDocumentLayoutBasic::TextDocumentLayoutBasic() {
 }
 
 TextDocumentLayoutBasic::QmlItemsMap & TextDocumentLayoutBasic::getQmlItems(){
@@ -22,5 +20,21 @@ QAbstractTextDocumentLayout * TextDocumentLayoutBasic::getLayout() const{
 
 void TextDocumentLayoutBasic::setLayout(QAbstractTextDocumentLayout * arg){
     mmmLayout=arg;
+}
+
+QTextDocument * TextDocumentLayoutBasic::getDocument() const{
+    return mmmDocument;
+}
+
+void TextDocumentLayoutBasic::setDocument( QTextDocument * arg){
+    mmmDocument=arg;
+}
+
+int TextDocumentLayoutBasic::getLastDocumentLength() const {
+    return mmmLastDocumentLength;
+}
+
+void TextDocumentLayoutBasic::setLastDocumentLength(int arg){
+    mmmLastDocumentLength=arg;
 }
 
