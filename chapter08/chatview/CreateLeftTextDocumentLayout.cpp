@@ -14,12 +14,15 @@ namespace this_file{
 
     class Layout :
             public QTextDocumentLayout ,
-            public TextDocumentLayoutBasic {
+            public TextDocumentLayoutBasic ,
+            SSTD_BEGIN_DEFINE_VIRTUAL_CLASS(Layout) {
     public:
         inline Layout(QTextDocument * arg) :
             QTextDocumentLayout(arg) {
             this->setParent(arg);
         }
+    private:
+        SSTD_END_DEFINE_VIRTUAL_CLASS(Layout);
     };
 
 }/**/
