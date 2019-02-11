@@ -167,10 +167,9 @@ Pane {
         }
 
         winItem : Win {
-            anchors.top: idMenuBar.bottom
-            anchors.left: idRootOfMine.left
-            anchors.right: idRootOfMine.right
-            anchors.bottom: idRootOfMine.bottom
+            anchors.centerIn: parent
+            width:idRootOfMine.width
+            height:idRootOfMine.height
         }
 
     }
