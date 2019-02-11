@@ -38,3 +38,12 @@ void TextDocumentLayoutBasic::setLastDocumentLength(int arg){
     mmmLastDocumentLength=arg;
 }
 
+TextDocumentLayoutQmlItem::TextDocumentLayoutQmlItem( const QString & p,
+                                                      int w,
+                                                      int h) : mmmQMlItemPath(p),
+    mmmItemWidth(w),mmmItemHeight(h) {
+
+}
+
+
+

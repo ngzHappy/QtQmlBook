@@ -9,9 +9,13 @@
 #include <sstd_library.hpp>
 #include <QtGui/qabstracttextdocumentlayout.h>
 
-class TextDocumentLayoutQmlItem{
+class CHAT_VIEW_BASIC_LIBRARY_EXPORT TextDocumentLayoutQmlItem{
 public:
-
+    TextDocumentLayoutQmlItem( const QString &,int,int );
+private:
+    const QString mmmQMlItemPath;
+    const double mmmItemWidth;
+    const double mmmItemHeight;
 private:
     SSTD_DEFINE_STATIC_CLASS(TextDocumentLayoutQmlItem);
 };
