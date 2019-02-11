@@ -13,8 +13,8 @@ void ChatHelper::setTextArea(QQuickItem * arg) {
     mmmTextView = arg;
     assert(mmmTextView);
 
-    mmmTextDocument =
-        arg->property("textDocument").value<QQuickTextDocument *>();
+    mmmTextDocument = arg->property("textDocument")
+        .value<QQuickTextDocument *>();
     assert(mmmTextDocument);
 
     auto varTextDocument =
@@ -24,10 +24,13 @@ void ChatHelper::setTextArea(QQuickItem * arg) {
         arg->property("isLeftChat").value<bool>();
 
     if (isLeft) {
-        mmmTextLayout = createLeftTextDocumentLayout(varTextDocument);
+        mmmTextLayout = 
+            createLeftTextDocumentLayout(varTextDocument);
     } else {
-        mmmTextLayout = createRightTextDocumentLayout(varTextDocument);
+        mmmTextLayout = 
+            createRightTextDocumentLayout(varTextDocument);
     }
+    assert(mmmTextLayout);
 
     varTextDocument->setDocumentLayout(mmmTextLayout->getLayout());
 
