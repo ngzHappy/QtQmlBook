@@ -5,7 +5,7 @@ QString ChatDataItem::getItem(int arg) const {
 }
 
 int ChatDataItem::getLength() const {
-    return static_cast<int>( mmmData.size() );
+    return static_cast<int>(mmmData.size());
 }
 
 bool ChatDataItem::isLeftItem() const {
