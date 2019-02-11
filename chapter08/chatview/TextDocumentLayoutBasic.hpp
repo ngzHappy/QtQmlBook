@@ -9,9 +9,9 @@
 #include <sstd_library.hpp>
 #include <QtGui/qabstracttextdocumentlayout.h>
 
-class CHAT_VIEW_BASIC_LIBRARY_EXPORT TextDocumentLayoutQmlItem{
+class CHAT_VIEW_BASIC_LIBRARY_EXPORT TextDocumentLayoutQmlItem {
 public:
-    TextDocumentLayoutQmlItem( const QString &,int,int );
+    TextDocumentLayoutQmlItem(const QString &, int, int);
 private:
     const QString mmmQMlItemPath;
     const double mmmItemWidth;
@@ -24,7 +24,7 @@ private:
 class CHAT_VIEW_BASIC_LIBRARY_EXPORT TextDocumentLayoutBasic {
 public:
     using QmlItemsMap =
-    sstd::map<  int, std::shared_ptr< TextDocumentLayoutQmlItem > >;
+        sstd::map< int, std::shared_ptr< TextDocumentLayoutQmlItem > >;
 public:
     virtual ~TextDocumentLayoutBasic();
     TextDocumentLayoutBasic();
@@ -36,14 +36,14 @@ public:
     void setLayout(QAbstractTextDocumentLayout *);
 
     QTextDocument * getDocument() const;
-    void setDocument( QTextDocument * );
+    void setDocument(QTextDocument *);
 
-    int getLastDocumentLength() const ;
-    void setLastDocumentLength(int );
+    int getLastDocumentLength() const;
+    void setLastDocumentLength(int);
 
 private:
     QmlItemsMap mmmQmlItems;
-    QAbstractTextDocumentLayout * mmmLayout{nullptr};
+    QAbstractTextDocumentLayout * mmmLayout{ nullptr };
     QTextDocument * mmmDocument{ nullptr };
     int mmmLastDocumentLength{ 0 };
 };
