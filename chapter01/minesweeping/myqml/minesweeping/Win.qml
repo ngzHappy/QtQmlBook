@@ -63,7 +63,7 @@ Item {
 
         /*on s01 ...*/
         Timer{
-            interval : 3010
+            interval : 1234
             repeat : true
             running : true
             triggeredOnStart : true
@@ -71,6 +71,7 @@ Item {
                 idS01.burst( 4 * Math.random() + 4 )
             }
         }
+
         Emitter{
             id :   idS01
             group: "s01"
@@ -80,7 +81,7 @@ Item {
             emitRate: 100
             /*the lifespan should long than oters...*/
             lifeSpan: 3006
-            maximumEmitted: 200
+            maximumEmitted: 16
             size: 6
             acceleration: PointDirection {
                 y: idRoot.height * 2 /9.0 ;
@@ -104,11 +105,11 @@ Item {
             size: 8
             velocity: CumulativeDirection {
                 PointDirection {
-                    y:-100
+                    y: -80
                 }
                 AngleDirection {
                     angleVariation: 360;
-                    magnitudeVariation: 80;
+                    magnitudeVariation: 0.20 * Math.min(idRoot.height,idRoot.width) ;
                 }
             }
             acceleration: PointDirection {

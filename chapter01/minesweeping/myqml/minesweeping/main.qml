@@ -168,7 +168,7 @@ Pane {
 
         winItem : Win {
             anchors.centerIn: parent
-            width:idRootOfMine.width
+            width:idRootOfMine.width * 0.85
             height:idRootOfMine.height
         }
 
