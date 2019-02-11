@@ -153,11 +153,9 @@ DISTFILES += $$QMLSOURCES
         fs::create_directory( varOutPutDir );
         OutPutStream varOutPutStream{ varOutPutDir / "main.qml"s };
         const auto varAns = replace(u8R"_1_2_(/*#outputdirname#/main.qml*/
-import QtQuick 2.9
-import QtQuick.Controls 2.12
-import QtQuick.Layouts 1.12
+import QtQuick 2.11
 
-Pane {
+Rectangle {
     id : idRoot
     width: 640;
     height: 480;
