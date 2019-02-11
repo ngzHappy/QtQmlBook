@@ -5,6 +5,7 @@ import sstd.chat.help 1.0
 
 TextArea {
 
+    id : idTextArea
     property bool isLeftChat: true
 
     anchors.fill: parent;
@@ -21,7 +22,7 @@ TextArea {
     topPadding: 0
     bottomPadding: 0
     background: ChatHelper{
-
+        textArea : idTextArea
     }
 
     MouseArea {
