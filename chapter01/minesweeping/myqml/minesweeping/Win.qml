@@ -63,7 +63,7 @@ Item {
 
         /*on s01 ...*/
         Timer{
-            interval : 2233
+            interval : 3366
             repeat : true
             running : true
             triggeredOnStart : true
@@ -100,7 +100,7 @@ Item {
             group: "s03"
             enabled: false
             emitRate: 100
-            lifeSpan: 1000
+            lifeSpan: 2000
             maximumEmitted: 6400
             size: 8
             velocity: CumulativeDirection {
@@ -109,7 +109,7 @@ Item {
                 }
                 AngleDirection {
                     angleVariation: 360;
-                    magnitudeVariation: 0.20 * Math.min(idRoot.height,idRoot.width) ;
+                    magnitudeVariation: 0.10 * Math.min(idRoot.height,idRoot.width) ;
                 }
             }
             acceleration: PointDirection {
