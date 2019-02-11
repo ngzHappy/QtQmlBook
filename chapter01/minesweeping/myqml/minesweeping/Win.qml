@@ -63,7 +63,7 @@ Item {
 
         /*on s01 ...*/
         Timer{
-            interval : 1234
+            interval : 2233
             repeat : true
             running : true
             triggeredOnStart : true
@@ -81,7 +81,7 @@ Item {
             emitRate: 100
             /*the lifespan should long than oters...*/
             lifeSpan: 3006
-            maximumEmitted: 16
+            maximumEmitted: 9
             size: 6
             acceleration: PointDirection {
                 y: idRoot.height * 2 /9.0 ;
