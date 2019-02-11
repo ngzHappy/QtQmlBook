@@ -12,17 +12,26 @@ void ChatHelper::setTextArea(QQuickItem * arg) {
     assert(mmmTextView == nullptr);
     mmmTextView = arg;
     assert(mmmTextView);
-    textAreaChanged();
-}
 
-void ChatHelper::setDocument(QQuickTextDocument * arg) {
-    if (arg == mmmDocument) {
-        return;
+    mmmTextDocument =
+        arg->property("textDocument").value<QQuickTextDocument *>();
+    assert(mmmTextDocument);
+
+    auto varTextDocument =
+        mmmTextDocument->textDocument();
+
+    bool isLeft =
+        arg->property("isLeftChat").value<bool>();
+
+    if (isLeft) {
+        mmmTextLayout = createLeftTextDocumentLayout(varTextDocument);
+    } else {
+        mmmTextLayout = createRightTextDocumentLayout(varTextDocument);
     }
-    assert(mmmDocument == nullptr);
-    mmmDocument = arg;
-    assert(mmmDocument);
-    documentChanged();
+
+    varTextDocument->setDocumentLayout(mmmTextLayout->getLayout());
+
+    textAreaChanged();
 }
 
 static inline void register_this() {
