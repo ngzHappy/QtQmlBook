@@ -20,6 +20,7 @@ namespace this_file{
         inline Layout(QTextDocument * arg) :
             QTextDocumentLayout(arg) {
             this->setParent(arg);
+            this->setLayout(this);
         }
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(Layout);
