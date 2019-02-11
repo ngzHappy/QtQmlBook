@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <QtGui/qabstracttextdocumentlayout.h>
+#include "TextDocumentLayoutBasic.hpp"
 
 #ifdef CHAT_VIEW_LIBRARY
 #define CHAT_VIEW_LIBRARY_EXPORT Q_DECL_EXPORT
@@ -8,4 +9,4 @@
 #define CHAT_VIEW_LIBRARY_EXPORT Q_DECL_IMPORT
 #endif
 
-CHAT_VIEW_LIBRARY_EXPORT QAbstractTextDocumentLayout * createLeftTextDocumentLayout(QTextDocument *);
+CHAT_VIEW_LIBRARY_EXPORT TextDocumentLayoutBasic * createLeftTextDocumentLayout(QTextDocument *);

@@ -12,9 +12,11 @@
 /*左对齐TextLayout*/
 namespace this_file{
 
-    class Layout : public QTextDocumentLayout {
+    class Layout :
+            public QTextDocumentLayout ,
+            public TextDocumentLayoutBasic {
     public:
-        inline Layout(QTextDocument * arg) : 
+        inline Layout(QTextDocument * arg) :
             QTextDocumentLayout(arg) {
             this->setParent(arg);
         }
@@ -22,7 +24,7 @@ namespace this_file{
 
 }/**/
 
-CHAT_VIEW_LIBRARY_EXPORT QAbstractTextDocumentLayout * 
+CHAT_VIEW_LIBRARY_EXPORT TextDocumentLayoutBasic *
 createLeftTextDocumentLayout(QTextDocument * arg){
     return sstd_new<this_file::Layout>(arg);
 }
