@@ -42,6 +42,7 @@ DESTDIR = $${RootDestDir}
 
 HEADERS += $$PWD/../right_qtextdocumentlayout.hpp
 HEADERS += $$PWD/../right_qtextdocumentlayout_p.h
+HEADERS += $$PWD/../CreateTextDocument.hpp
 
 SOURCES += $$PWD/../CreateRightTextDocumentLayout.cpp
 HEADERS += $$PWD/../CreateRightTextDocumentLayout.hpp
