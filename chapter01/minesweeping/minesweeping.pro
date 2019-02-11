@@ -54,6 +54,7 @@ QMLSOURCES += $$PWD/myqml/minesweeping/Boom.qml
 QMLSOURCES += $$PWD/myqml/minesweeping/OkMine.qml
 QMLSOURCES += $$PWD/myqml/minesweeping/MineMenuBar.qml
 QMLSOURCES += $$PWD/myqml/minesweeping/MineResetDialog.qml
+QMLSOURCES += $$PWD/myqml/minesweeping/Win.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

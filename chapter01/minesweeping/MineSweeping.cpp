@@ -29,6 +29,10 @@ namespace this_file {
         return 30;
     }
 
+    inline constexpr qreal getWinZValue_() {
+        return 35;
+    }
+
     inline constexpr qreal getMineZValue_() {
         return 20;
     }
@@ -693,6 +697,36 @@ namespace this_file {
             }
         }
 
+        QQuickItem * mmmWinItem{ nullptr };
+        inline void showWin() {
+            if (mmmWinItem) {
+                return;
+            }
+            auto varWinComponent =
+                mmmMineSweeping->getWinComponent();
+            if (!varWinComponent) {
+                return;
+            }
+            auto varContex = qmlContext(mmmMineSweeping);
+            auto varRawWinItem =
+                varWinComponent->beginCreate(varContex);
+            if (!varRawWinItem) {
+                return;
+            }
+            mmmWinItem =
+                sstd_runtime_cast<QQuickItem>(varRawWinItem);
+            if (!mmmWinItem) {
+                varRawWinItem->deleteLater();
+                varWinComponent->completeCreate();
+                return;
+            }
+            mmmWinItem->setParent(mmmMineSweeping);
+            mmmWinItem->setParentItem(mmmMineSweeping);
+            mmmWinItem->setZ(getWinZValue_());
+            varWinComponent->completeCreate();
+            mmmWinItem->setVisible(true);
+        }
+
         sstd::vector< MineSweepingLineNode * > mmmRowLines;
         sstd::vector< MineSweepingLineNode * > mmmColumnLines;
         sstd::vector< qreal > mmmRowLinesHeight;
@@ -743,7 +777,7 @@ namespace this_file {
         SSTD_END_DEFINE_VIRTUAL_CLASS(Node);
     };
 
-    inline void  LayoutItem::createFlag() {
+    inline void LayoutItem::createFlag() {
         if (mmmFlagItem) {
             return;
         }
@@ -1054,6 +1088,12 @@ void MineSweeping::pppSetBoomItem(QQmlComponent * arg) {
     pppBoomChanged();
 }
 
+void MineSweeping::pppSetWinItem(QQmlComponent * arg) {
+    assert(mmmWinItem == nullptr);
+    mmmWinItem = arg;
+    pppWinChanged();
+}
+
 void MineSweeping::pppSetOkMineItem(QQmlComponent * arg) {
     assert(mmmOkMineItem == nullptr);
     mmmOkMineItem = arg;
@@ -1075,6 +1115,10 @@ void MineSweeping::pppSlotCreateObjets() {
     varNode->rebuild_scene(this->width(), this->height());
     varNode->create_objects_and_mask();
     varNode->update_data(this->width(), this->height());
+    if (varNode->mmmWinItem) {
+        delete varNode->mmmWinItem;
+        varNode->mmmWinItem = nullptr;
+    }
 }
 
 void MineSweeping::setGameOver(bool arg) {
@@ -1086,6 +1130,11 @@ void MineSweeping::setGameOver(bool arg) {
 }
 
 void MineSweeping::setGameWin(bool arg) {
+    if (arg && mmmCurrentNode) {
+        auto varNode =
+            static_cast<this_file::Node*>(mmmCurrentNode);
+        varNode->showWin();
+    }
     mmmIsGameWin = arg;
 }
 

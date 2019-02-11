@@ -30,6 +30,8 @@ private:
     Q_PROPERTY(QQmlComponent * flagItem READ pppGetFlagComponent WRITE pppSetFlagComponent NOTIFY pppFlagComponentChanged)
 private:
     Q_PROPERTY(QQmlComponent * maskItem READ pppGetMaskComponent WRITE pppSetMaskComponent NOTIFY pppMaskComponentChanged)
+private:
+    Q_PROPERTY(QQmlComponent * winItem READ getWinComponent WRITE pppSetWinItem NOTIFY pppWinChanged)
 public:
     MineSweeping();
     ~MineSweeping();
@@ -42,6 +44,7 @@ public:
     inline QQmlComponent * getNumberComponent() const;
     inline QQmlComponent * getBoomComponent() const;
     inline QQmlComponent * getOkMineComponent() const;
+    inline QQmlComponent * getWinComponent() const;
     Q_SLOT void setSizeScene(int row_size, int column_size, int mine_count);
     inline bool isGameOver() const;
     void setGameOver(bool);
@@ -65,6 +68,7 @@ private:
     QQmlComponent * mmmMineItem{ nullptr };
     QQmlComponent * mmmBoomItem{ nullptr };
     QQmlComponent * mmmOkMineItem{ nullptr };
+    QQmlComponent * mmmWinItem{ nullptr };
     inline QQmlComponent * pppGetMaskComponent() const;
     inline QQmlComponent *pppGetNumberItem() const;
     inline QQmlComponent *pppGetErrorItem() const;
@@ -79,6 +83,7 @@ private:
     void pppSetMineItem(QQmlComponent *);
     void pppSetBoomItem(QQmlComponent *);
     void pppSetOkMineItem(QQmlComponent *);
+    void pppSetWinItem(QQmlComponent *);
     Q_SIGNAL void pppMaskComponentChanged();
     Q_SIGNAL void pppFlagComponentChanged();
     Q_SIGNAL void pppMineItemChanged();
@@ -86,6 +91,7 @@ private:
     Q_SIGNAL void pppNumberItemChanged();
     Q_SIGNAL void pppBoomChanged();
     Q_SIGNAL void pppOkMineChanged();
+    Q_SIGNAL void pppWinChanged();
     Q_SLOT   void pppSlotCreateObjets();
     int mmmRowCount{ -1 };
     int mmmColumnCount{ -1 };
@@ -172,4 +178,8 @@ inline QQmlComponent * MineSweeping::getBoomComponent() const {
 
 inline QQmlComponent * MineSweeping::getOkMineComponent() const {
     return pppGetOkMineItemItem();
+}
+
+inline QQmlComponent * MineSweeping::getWinComponent() const {
+    return mmmWinItem;
 }

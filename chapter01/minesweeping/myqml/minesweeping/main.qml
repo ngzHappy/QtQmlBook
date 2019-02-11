@@ -6,6 +6,8 @@ import QtQuick.Controls 2.12
 
 Pane {
 
+    id : idRootOfMine
+
     padding: 0
     topInset: 0
     leftInset: 0
@@ -162,6 +164,13 @@ Pane {
                     duration: 33
                 }
             }
+        }
+
+        winItem : Win {
+            anchors.top: idMenuBar.bottom
+            anchors.left: idRootOfMine.left
+            anchors.right: idRootOfMine.right
+            anchors.bottom: idRootOfMine.bottom
         }
 
     }
