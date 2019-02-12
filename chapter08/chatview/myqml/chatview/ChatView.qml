@@ -24,6 +24,7 @@ ColumnLayout{
         Layout.fillHeight: true
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+        Layout.minimumWidth:128
 
         Item {
             id : idIconItem
@@ -41,14 +42,13 @@ ColumnLayout{
             id : textAreaLayoutItem
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.fillWidth: true
+            Layout.fillHeight: true
             visible: true
 
             TextArea {
 
                 id : idTextArea
-                width: textAreaLayoutItem.width - idTextArea.anchorsMargins*2
-                anchors.top: textAreaLayoutItem.top
-                anchors.left: textAreaLayoutItem.left
+                anchors.fill: parent
                 property real anchorsMargins: 16
                 anchors.margins: idTextArea.anchorsMargins
 
