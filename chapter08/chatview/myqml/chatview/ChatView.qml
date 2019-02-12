@@ -5,6 +5,10 @@ import sstd.chat.help 1.0
 
 TextArea {
 
+    text:"AAAAAAAAAAAAA
+BBBBBBBBBBB
+CCCCCCCCCCCCCCCCCCC"
+
     id : idTextArea
     property bool isLeftChat: true
 

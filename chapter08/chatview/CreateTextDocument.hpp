@@ -6,7 +6,7 @@
 #endif
 
 #if defined(CHAT_VIEW_LEFT_LIBRARY) && defined(CHAT_VIEW_RIGHT_LIBRARY)
-static_assert(false,"can not defined both of them ...");
+static_assert(false, "can not defined both of them ...");
 #endif
 
 #ifdef CHAT_VIEW_LEFT_LIBRARY
@@ -35,6 +35,30 @@ namespace this_file {
             QTextDocumentLayout(arg) {
             this->setParent(arg);
             Basic::setLayout(this);
+        }
+        inline void positionInlineObject(QTextInlineObject item,
+            int posInDocument,
+            const QTextFormat &format) override {
+            return Super::positionInlineObject(item, posInDocument, format);
+        }
+        inline void resizeInlineObject(QTextInlineObject item,
+            int posInDocument,
+            const QTextFormat &format) override {
+            return Super::resizeInlineObject(item, posInDocument, format);
+        }
+        inline void updateQmlPos(QTextInlineObject item,
+            int posInDocument,
+            const QTextFormat &format) {
+            auto & varItems = Basic::getQmlItems();
+            auto varQmlPos = varItems.find( posInDocument );
+            if (varQmlPos == varItems.cend() ) {
+                return;
+            }
+            if (varQmlPos->second) {
+                varQmlPos->second->setNeedUpdatePos(true);
+            }
+            (void)item;
+            (void)format;
         }
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(Layout);

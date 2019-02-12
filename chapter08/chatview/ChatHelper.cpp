@@ -20,7 +20,7 @@ void ChatHelper::setTextArea(QQuickItem * arg) {
     auto varTextDocument =
         mmmTextDocument->textDocument();
 
-    bool isLeft =
+    const bool isLeft =
         arg->property("isLeftChat").value<bool>();
 
     if (isLeft) {

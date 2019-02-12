@@ -12,14 +12,17 @@
 class CHAT_VIEW_BASIC_LIBRARY_EXPORT TextDocumentLayoutQmlItem {
 public:
     TextDocumentLayoutQmlItem(const QString &, int, int);
+public:
+    inline void setNeedUpdatePos(bool);
+    inline bool getNeedUpdatePos() const;
 private:
     const QString mmmQMlItemPath;
     const double mmmItemWidth;
     const double mmmItemHeight;
+    sstd_bool mmmNeedUpdate{ true };
 private:
     SSTD_DEFINE_STATIC_CLASS(TextDocumentLayoutQmlItem);
 };
-
 
 class CHAT_VIEW_BASIC_LIBRARY_EXPORT TextDocumentLayoutBasic {
 public:
@@ -48,8 +51,13 @@ private:
     int mmmLastDocumentLength{ 0 };
 };
 
+inline bool TextDocumentLayoutQmlItem::getNeedUpdatePos() const {
+    return mmmNeedUpdate;
+}
 
-
+inline void TextDocumentLayoutQmlItem::setNeedUpdatePos(bool arg){
+    mmmNeedUpdate = arg;
+}
 
 
 
