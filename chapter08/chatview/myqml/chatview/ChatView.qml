@@ -8,7 +8,7 @@ ColumnLayout{
     id : idRootLayout
     height: Math.max(
                 idIconItem.height ,
-                idTextArea.Layout.margins*2 + idTextArea.contentHeight)
+                idTextArea.anchorsMargins*2 + idTextArea.contentHeight)
             + idLabel.contentHeight ;
 
     spacing: 0
@@ -32,61 +32,62 @@ ColumnLayout{
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Rectangle{
                 anchors.fill : idIconItem
-                color: "black"
+                color: Qt.rgba(0.2,0.2,0.2,0.5)
             }
-        }/*~Rectangle*/
+        }/*~Item*/
 
-        TextArea {
-            id : idTextArea
+        Item{
+
+            id : textAreaLayoutItem
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.fillWidth: true
-            Layout.margins: 16
+            visible: true
 
-            text: "test"
-            //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
+            TextArea {
 
-            property bool isLeftChat: true
+                id : idTextArea
+                width: textAreaLayoutItem.width - idTextArea.anchorsMargins*2
+                anchors.top: textAreaLayoutItem.top
+                anchors.left: textAreaLayoutItem.left
+                property real anchorsMargins: 16
+                anchors.margins: idTextArea.anchorsMargins
 
-            textFormat: Qt.RichText
-            wrapMode: TextArea.Wrap
-            focus: true
-            selectByMouse: true
-            persistentSelection: true
-            readOnly: true
+                text: "test"
+                //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
 
-            leftPadding: 0
-            rightPadding: 0
-            topPadding: 0
-            bottomPadding: 0
-            background: ChatHelper{
-                textArea : idTextArea
-            }
-
-            MouseArea {
-                acceptedButtons: Qt.RightButton
-                anchors.fill: parent
-                onClicked: {
-                    idContextMenu.popup();
+                property bool isLeftChat: true
+                textFormat: Qt.RichText
+                wrapMode: TextArea.Wrap
+                focus: true
+                selectByMouse: true
+                persistentSelection: true
+                readOnly: true
+                leftPadding: 0
+                rightPadding: 0
+                topPadding: 0
+                bottomPadding: 0
+                background: ChatHelper{
+                    textArea : idTextArea
                 }
-            }/*~MouseArea*/
-
-            onLinkActivated: Qt.openUrlExternally(link)
-
-            Menu {
-                id: idContextMenu
-
-                MenuItem {
-                    text: qsTr("复制")
-                    enabled: idTextArea.selectedText
-                    onTriggered: idTextArea.copy()
-                }/*~MenuItem*/
-
-            }/*~Menu*/
-
-        }/*~TextArea*/
-
+                MouseArea {
+                    acceptedButtons: Qt.RightButton
+                    anchors.fill: parent
+                    onClicked: {
+                        idContextMenu.popup();
+                    }
+                }/*~MouseArea*/
+                onLinkActivated: Qt.openUrlExternally(link)
+                Menu {
+                    id: idContextMenu
+                    MenuItem {
+                        text: qsTr("复制")
+                        enabled: idTextArea.selectedText
+                        onTriggered: idTextArea.copy()
+                    }/*~MenuItem*/
+                }/*~Menu*/
+            }/*~TextArea*/
+        }/*~Item*/
     }/*~RowLayout*/
-
 }/*~ColumnLayout*/
 
 
