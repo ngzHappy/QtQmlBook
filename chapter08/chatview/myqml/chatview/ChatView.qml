@@ -5,9 +5,16 @@ import sstd.chat.help 1.0
 
 ColumnLayout{
 
+    id : idRootLayout
+    height: Math.max(
+                idIconItem.height ,
+                idTextArea.Layout.margins*2 + idTextArea.contentHeight)
+            + idLabel.contentHeight ;
+
     spacing: 0
     Label{
-        text: "zzzzz"
+        id : idLabel
+        text: "unknow"
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
     }/*~Label*/
 
@@ -18,21 +25,26 @@ ColumnLayout{
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
 
-        Rectangle{
+        Item {
+            id : idIconItem
             width: 64
             height: 64
-            color: "black"
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Rectangle{
+                anchors.fill : idIconItem
+                color: "black"
+            }
         }/*~Rectangle*/
 
         TextArea {
-
+            id : idTextArea
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Layout.fillWidth: true
+            Layout.margins: 16
 
-            text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
+            text: "test"
+            //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
 
-            id : idTextArea
             property bool isLeftChat: true
 
             textFormat: Qt.RichText
