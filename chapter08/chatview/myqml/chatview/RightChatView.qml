@@ -59,11 +59,14 @@ ColumnLayout{
             TextArea {
 
                 id : idTextArea
-                anchors.fill: parent
                 property real anchorsMargins: 16
+                width: textAreaLayoutItem.width - idTextArea.anchorsMargins * 2
+                y : anchorsMargins
+                x : Math.max( 0 , idTextArea.width - idChatHelper.rightDocumentLimit)
+                + idTextArea.anchorsMargins ;
                 anchors.margins: idTextArea.anchorsMargins
 
-                text: "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+                text: "test"
                 //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
 
                 property bool isLeftChat: false
@@ -106,6 +109,7 @@ ColumnLayout{
             width: 64
             height: 64
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            z : 666
             Rectangle{ /* TODO : replace here ... */
                 anchors.fill : idIconItem
                 color: Qt.rgba(0.2,0.2,0.2,0.5)

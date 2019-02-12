@@ -59,8 +59,24 @@ inline static QQuickItem * createItem(const QString & argFileName,
 ChatHelper::ChatHelper() {
 }
 
-void ChatHelper::setNativeTextWidth(qreal arg){
-    if( std::abs( arg - mmmNativeTextWidth ) < 0.05 /*精度要求较低*/ ){
+void ChatHelper::setRightDocumentLimit(qreal arg) {
+    if (std::abs(arg - mmmRightLimit) < 0.05 /*精度要求较低*/) {
+        return;
+    }
+    mmmRightLimit = arg;
+    rightDocumentLimitChanged();
+}
+
+void ChatHelper::setLeftDocumentLimit(qreal arg) {
+    if (std::abs(arg - mmmLeftLimit) < 0.05 /*精度要求较低*/) {
+        return;
+    }
+    mmmLeftLimit = arg;
+    leftDocumentLimitChanged();
+}
+
+void ChatHelper::setNativeTextWidth(qreal arg) {
+    if (std::abs(arg - mmmNativeTextWidth) < 0.05 /*精度要求较低*/) {
         return;
     }
     mmmNativeTextWidth = arg;
@@ -143,37 +159,78 @@ void ChatHelper::classBegin() {
     }
 }
 
-static inline qreal getDocumentMaxWidth( QTextDocument * arg ){
+namespace this_file {
+    struct LineInformation {
+        qreal leftLimit{ 0 };
+        qreal rightLimit{ 0 };
+    };
+}/*this_file*/
+
+static inline qreal getDocumentMaxWidth(QTextDocument * arg,
+    this_file::LineInformation * argInfor = nullptr) {
+
+    bool varIsSet{ false };
+    std::optional<this_file::LineInformation> varLineInformation;
+    if (argInfor == nullptr) {
+        argInfor =
+            &varLineInformation.emplace();
+    } else {
+        argInfor->leftLimit = 0;
+        argInfor->rightLimit = 0;
+    }
+
     auto varPosBlock = arg->firstBlock();
-    auto varTextWidth = arg->textWidth();
-    if(varTextWidth < 0 ){
+    const auto varRawTextWidth = arg->size().width();
+    auto varTextWidth = varRawTextWidth;
+
+    if (varTextWidth <= 0) {
         varTextWidth = std::numeric_limits< qreal >::max();
     }
+
     qreal varAns = 0.0;
-    while( varPosBlock.isValid() ){
+
+    while (varPosBlock.isValid()) {
         auto varBlock = varPosBlock;
-        varPosBlock=varPosBlock.next();
-        if(!varBlock.isVisible()){
+        varPosBlock = varPosBlock.next();
+        if (!varBlock.isVisible()) {
             continue;
         }
         auto varTextLayout = varBlock.layout();
-        if(varTextLayout){
+        if (varTextLayout) {
             auto varLineAllCount = varTextLayout->lineCount();
-            for(int i =0;i<varLineAllCount;++i){
+            for (int i = 0; i < varLineAllCount; ++i) {
                 auto varLine = varTextLayout->lineAt(i);
-                if(!varLine.isValid()){
+                if (!varLine.isValid()) {
                     continue;
                 }
                 auto varThisLineWidth = varLine.naturalTextWidth();
-                if( varThisLineWidth > varAns ){
+                auto varThisLineStart = varLine.x();
+                auto varThisLineEnd = varThisLineStart + varThisLineWidth;
+                if (varIsSet) {
+                    if (varThisLineStart < argInfor->leftLimit) {
+                        argInfor->leftLimit = varThisLineStart;
+                    }
+                    if (varThisLineEnd > argInfor->rightLimit) {
+                        argInfor->rightLimit = varThisLineEnd;
+                    }
+                } else {
+                    varIsSet = true;
+                    argInfor->leftLimit = varThisLineStart;
+                    argInfor->rightLimit = varThisLineEnd;
+                }
+                if (varThisLineWidth > varAns) {
                     varAns = varThisLineWidth;
-                    if( varThisLineWidth >= varTextWidth ){
-                        return varTextWidth ;
+                    if (varThisLineWidth >= varTextWidth) {
+                        argInfor->leftLimit = 0;
+                        argInfor->rightLimit = varTextWidth;
+                        return varTextWidth;
                     }
                 }
             }
         }
     }
+
+    varAns = argInfor->rightLimit - argInfor->leftLimit;
     return varAns;
 }
 
@@ -190,8 +247,11 @@ void ChatHelper::checkVisible() {
     }
 
     {
-        auto varDocumentWidth = getDocumentMaxWidth(varDocument);
-        setNativeTextWidth( varDocumentWidth );
+        this_file::LineInformation varLineInformation;
+        auto varDocumentWidth = getDocumentMaxWidth(varDocument, &varLineInformation);
+        setNativeTextWidth(varDocumentWidth);
+        setLeftDocumentLimit(varLineInformation.leftLimit);
+        setRightDocumentLimit(varLineInformation.rightLimit);
     }
 
     const QDir varDir{ sstd::getLocalFileFullFilePath(

@@ -62,7 +62,7 @@ ColumnLayout{
                 property real anchorsMargins: 16
                 anchors.margins: idTextArea.anchorsMargins
 
-                text: "test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test"
+                text: "test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test"
                 //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
 
                 property bool isLeftChat: true
