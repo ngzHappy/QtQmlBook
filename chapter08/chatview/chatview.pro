@@ -42,6 +42,7 @@ DEFINES += CURRENT_DEBUG_PATH=\\\"$$PWD\\\"
 
 DESTDIR = $${RootDestDir}
 
+HEADERS += $$PWD/CreateTextDocument.hpp
 SOURCES += $$PWD/main.cpp
 
 SOURCES += $$PWD/ChatHelper.cpp
@@ -49,6 +50,9 @@ HEADERS += $$PWD/ChatHelper.hpp
 
 SOURCES += $$PWD/ChatDataItem.cpp
 HEADERS += $$PWD/ChatDataItem.hpp
+
+SOURCES += $$PWD/PlaceHolderImageProvider.cpp
+HEADERS += $$PWD/PlaceHolderImageProvider.hpp
 
 CONFIG(debug,debug|release){
     QMAKE_POST_LINK += $${DESTDIR}/build_install_debug $$PWD "myqml"
