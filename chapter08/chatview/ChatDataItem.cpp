@@ -1,22 +1,44 @@
 ﻿#include "ChatDataItem.hpp"
 
-QString ChatDataItem::getItem(int arg) const {
-    return mmmData[arg];
-}
-
-int ChatDataItem::getLength() const {
-    return static_cast<int>(mmmData.size());
-}
-
 bool ChatDataItem::isLeftItem() const {
     return mmmIsLeft;
 }
 
-QString ChatDataItem::title() const {
+QStringList ChatDataItem::bodyItems() const {
+    return mmmData;
+}
+
+QString ChatDataItem::getTitle() const {
     return mmmTitle;
 }
 
 ChatDataItem::ChatDataItem() {
+}
+
+void ChatDataItem::setIsLeftItem(bool arg) {
+    if (arg == mmmIsLeft) {
+        return;
+    }
+    mmmIsLeft = arg;
+    isLeftItemChanged();
+}
+
+void ChatDataItem::setTitle(const QString & arg) {
+    if (arg == mmmTitle) {
+        return;
+    }
+    mmmTitle = arg;
+    titleChanged();
+}
+
+void ChatDataItem::setBodyItems(const QStringList & arg) {
+    if (arg.size() == mmmData.size()) {
+        if (arg == mmmData) {
+            return;
+        }
+    }
+    mmmData = arg;
+    bodyItemsChanged();
 }
 
 static inline void register_this() {
