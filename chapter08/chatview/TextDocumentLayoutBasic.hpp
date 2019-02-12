@@ -11,7 +11,7 @@
 
 class CHAT_VIEW_BASIC_LIBRARY_EXPORT TextDocumentLayoutQmlItem {
 public:
-    TextDocumentLayoutQmlItem(const QString &, int, int);
+    TextDocumentLayoutQmlItem(const QString & argImageFileName, int argWidth, int argHeight);
 public:
     inline void setNeedUpdatePos(bool);
     inline bool getNeedUpdatePos() const;

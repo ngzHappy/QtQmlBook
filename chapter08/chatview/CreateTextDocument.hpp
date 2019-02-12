@@ -103,6 +103,48 @@ namespace this_file {
                 Basic::setLastDocumentLength( document()->characterCount() );
             }
 
+            {/*更新索引*/
+                TextDocumentLayoutBasic::QmlItemsMap varNewQmlItems;
+                const auto varDx = argCharsAdded - argCharsRemoved;
+                for (const auto & varI : Basic::getQmlItems() ) {
+                    const auto varOldPos = varI.first;
+                    if (varOldPos < argPosition) {/*索引没有变化*/
+                        varNewQmlItems.emplace(varOldPos, std::move(varI.second));
+                    } else if ((varOldPos - argPosition) < argCharsRemoved) {/*删除了此元素*/
+                        continue;
+                    } else if (varDx == 0) {/*索引没有变化*/
+                        varNewQmlItems.emplace(
+                            varOldPos,
+                            std::move(varI.second));
+                    } else {/*>=position索引变化*/
+                        varNewQmlItems.emplace(
+                            varDx + varOldPos,
+                            std::move(varI.second));
+                    }
+                }
+                Basic::getQmlItems() = std::move(varNewQmlItems);
+            }
+
+            if (argCharsAdded < 1) {
+                return thisReturn();
+            }
+
+            for (int i = 0; i < argCharsAdded; ++i) {
+                const auto varCurrentPos = argPosition + i;
+                auto varCharFormat = this->format(varCurrentPos);
+                if (!varCharFormat.isImageFormat()) {
+                    continue;
+                }
+                const auto varImageFormat = varCharFormat.toImageFormat();
+                const auto varImageName = varImageFormat.name();
+                if (varImageName.endsWith(QStringLiteral(".qml"), Qt::CaseInsensitive)) {
+                    Basic::getQmlItems().insert({ varCurrentPos,
+                        sstd_make_shared<TextDocumentLayoutQmlItem>(
+                            varImageName,
+                            varImageFormat.width(),
+                            varImageFormat.height()) });
+                }
+            }
 
             return thisReturn();
 
