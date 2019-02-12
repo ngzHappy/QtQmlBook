@@ -102,6 +102,14 @@ Item{
 
     varTextDocument->setDocumentLayout(mmmTextLayout->getLayout());
 
+    connect(mmmTextLayout->getLayout(),
+        &QAbstractTextDocumentLayout::documentSizeChanged,
+        this, &ChatHelper::checkVisible);
+
+    connect(varTextDocument,
+        &QTextDocument::contentsChanged,
+        this, &ChatHelper::checkVisible);
+
     textAreaChanged();
 }
 
