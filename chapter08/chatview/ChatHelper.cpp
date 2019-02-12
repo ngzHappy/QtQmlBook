@@ -135,6 +135,21 @@ void ChatHelper::classBegin() {
 }
 
 void ChatHelper::checkVisible() {
+    if (!mmmTextView) {
+        return;
+    }
+    if (!mmmForeGroundItem) {
+        return;
+    }
+    auto varDocument = mmmTextDocument->textDocument();
+    if (!varDocument) {
+        return;
+    }
+    for ( const auto & varI : mmmTextLayout->getQmlItems() ) {
+        if (varI.second) {
+
+        }
+    }
 }
 
 static inline void register_this() {
