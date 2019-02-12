@@ -145,11 +145,67 @@ void ChatHelper::checkVisible() {
     if (!varDocument) {
         return;
     }
-    for ( const auto & varI : mmmTextLayout->getQmlItems() ) {
-        if (varI.second) {
 
+    const QDir varDir{ sstd::getLocalFileFullFilePath(
+        QStringLiteral("myqml/chatview")) };
+
+    for (const auto & varI : mmmTextLayout->getQmlItems()) {
+        if (varI.second) {
+            auto varItem = varI.second->getItem();
+            if (!varItem) {
+                const auto varHead =
+                    QStringLiteral("image://placeholderimageprovider/");
+                auto varImageName =
+                    varI.second->getQmlPathName()
+                    .replace(QChar('\\'), QChar('/'));
+                assert(varImageName.startsWith(varHead, Qt::CaseInsensitive));
+                varImageName =
+                    varImageName.right(varImageName.size() - varHead.size());
+                varItem = createItem(
+                    varDir.absoluteFilePath(
+                        varImageName),
+                    mmmForeGroundItem);
+                if (varItem == nullptr) {
+                    continue;
+                }
+                varI.second->setItem(varItem);
+            }
+            if (varI.second->getNeedUpdatePos()) {
+                varI.second->setNeedUpdatePos(false);
+                auto varDoc = mmmTextLayout->getDocument();
+                auto varBlock = varDoc->findBlock(varI.first);
+                if (!varBlock.isValid()) {
+                    continue;
+                }
+                auto varBlockLayout = varBlock.layout();
+                if (!varBlockLayout) {
+                    continue;
+                }
+                const auto varBlockPosition =
+                    varBlockLayout->position();
+                auto varPosInCurrentBlock = varI.first - varBlock.position();
+                auto varTextLine = varBlockLayout->lineForTextPosition(
+                    varPosInCurrentBlock);
+                if (!varTextLine.isValid()) {
+                    continue;
+                }
+                auto varPosInCurrentLine =
+                    varPosInCurrentBlock - varTextLine.textStart();
+                varI.second->setX(
+                    varTextLine.cursorToX(varPosInCurrentLine));
+                varI.second->setY(
+                    varTextLine.descent() /*图像对齐底线*/ +
+                    varTextLine.y() + varBlockPosition.y()
+                );
+            }
+            varItem->setX(varI.second->getX());
+            varItem->setY(varI.second->getY());
+            varItem->setWidth(varI.second->getItemWidth());
+            varItem->setHeight(varI.second->getItemHeight());
+            varItem->setVisible(true);
         }
     }
+
 }
 
 static inline void register_this() {
