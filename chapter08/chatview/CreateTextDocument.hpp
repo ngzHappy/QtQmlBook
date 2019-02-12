@@ -60,6 +60,53 @@ namespace this_file {
             (void)item;
             (void)format;
         }
+        inline void documentChanged(int argPosition, 
+            int argCharsRemoved, 
+            int argCharsAdded) override {
+            
+            auto thisReturn = [ argPosition, 
+                argCharsRemoved,
+                argCharsAdded ,
+                this ]() {
+                return Super::documentChanged(argPosition,
+                    argCharsRemoved, 
+                    argCharsAdded);
+            };
+
+            if (Basic::getDocument() == document()) {
+
+                const auto varLogicalDocumentLength =
+                    Basic::getLastDocumentLength() 
+                    - argCharsRemoved 
+                    + argCharsAdded;
+
+                Basic::setLastDocumentLength(document()->characterCount());
+
+                if (varLogicalDocumentLength != Basic::getLastDocumentLength()) {
+
+                    if ( argCharsAdded ) {
+                        assert((argCharsAdded == Basic::getLastDocumentLength()) || (0 == argCharsRemoved));
+                        return thisReturn();
+                    } else {
+                        assert((argCharsAdded == 0) || (Basic::getLastDocumentLength() == argCharsRemoved));
+                        Basic::getQmlItems().clear();
+                        return thisReturn();
+                    }
+
+                }
+
+                assert((argPosition - argCharsRemoved + argCharsAdded) <= Basic::getLastDocumentLength());
+
+            } else {
+                Basic::setDocument( document() );
+                Basic::getQmlItems().clear();
+                Basic::setLastDocumentLength( document()->characterCount() );
+            }
+
+
+            return thisReturn();
+
+        }
     private:
         SSTD_END_DEFINE_VIRTUAL_CLASS(Layout);
     };
