@@ -25,12 +25,19 @@ public:
     inline QQuickItem * getItem() const;
     inline void setItem(QQuickItem * arg);
     inline void releaseItem();
+public:
+    inline double getX() const;
+    inline double getY() const;
+    inline void setX(double);
+    inline void setY(double);
 private:
     const QString mmmQMlItemPath;
     const double mmmItemWidth;
     const double mmmItemHeight;
     QQuickItem * mmmItem{ nullptr };
     QPointer< QQuickItem > mmmWatcher;
+    double mmmX{ 0 };
+    double mmmY{ 0 };
     sstd_bool mmmNeedUpdate{ true };
 private:
     SSTD_DEFINE_STATIC_CLASS(TextDocumentLayoutQmlItem);
@@ -63,6 +70,22 @@ private:
     int mmmLastDocumentLength{ 0 };
 };
 
+inline double TextDocumentLayoutQmlItem::getX() const {
+    return mmmX;
+}
+
+inline double TextDocumentLayoutQmlItem::getY() const {
+    return mmmY;
+}
+
+inline void TextDocumentLayoutQmlItem::setX(double arg) {
+    mmmX = arg;
+}
+
+inline void TextDocumentLayoutQmlItem::setY(double arg) {
+    mmmY = arg;
+}
+
 inline QString TextDocumentLayoutQmlItem::getQmlPathName() const {
     return mmmQMlItemPath;
 }
@@ -91,7 +114,7 @@ inline bool TextDocumentLayoutQmlItem::getNeedUpdatePos() const {
     return mmmNeedUpdate;
 }
 
-inline void TextDocumentLayoutQmlItem::setNeedUpdatePos(bool arg){
+inline void TextDocumentLayoutQmlItem::setNeedUpdatePos(bool arg) {
     mmmNeedUpdate = arg;
 }
 
