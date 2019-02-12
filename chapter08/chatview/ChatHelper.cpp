@@ -59,6 +59,14 @@ inline static QQuickItem * createItem(const QString & argFileName,
 ChatHelper::ChatHelper() {
 }
 
+void ChatHelper::setNativeTextWidth(qreal arg){
+    if( std::abs( arg - mmmNativeTextWidth ) < 0.05 /*精度要求较低*/ ){
+        return;
+    }
+    mmmNativeTextWidth = arg;
+    nativeTextWidthChanged();
+}
+
 void ChatHelper::setTextArea(QQuickItem * arg) {
     if (arg == mmmTextView) {
         return;
@@ -135,6 +143,40 @@ void ChatHelper::classBegin() {
     }
 }
 
+static inline qreal getDocumentMaxWidth( QTextDocument * arg ){
+    auto varPosBlock = arg->firstBlock();
+    auto varTextWidth = arg->textWidth();
+    if(varTextWidth < 0 ){
+        varTextWidth = std::numeric_limits< qreal >::max();
+    }
+    qreal varAns = 0.0;
+    while( varPosBlock.isValid() ){
+        auto varBlock = varPosBlock;
+        varPosBlock=varPosBlock.next();
+        if(!varBlock.isVisible()){
+            continue;
+        }
+        auto varTextLayout = varBlock.layout();
+        if(varTextLayout){
+            auto varLineAllCount = varTextLayout->lineCount();
+            for(int i =0;i<varLineAllCount;++i){
+                auto varLine = varTextLayout->lineAt(i);
+                if(!varLine.isValid()){
+                    continue;
+                }
+                auto varThisLineWidth = varLine.naturalTextWidth();
+                if( varThisLineWidth > varAns ){
+                    varAns = varThisLineWidth;
+                    if( varThisLineWidth >= varTextWidth ){
+                        return varTextWidth ;
+                    }
+                }
+            }
+        }
+    }
+    return varAns;
+}
+
 void ChatHelper::checkVisible() {
     if (!mmmTextView) {
         return;
@@ -145,6 +187,11 @@ void ChatHelper::checkVisible() {
     auto varDocument = mmmTextDocument->textDocument();
     if (!varDocument) {
         return;
+    }
+
+    {
+        auto varDocumentWidth = getDocumentMaxWidth(varDocument);
+        setNativeTextWidth( varDocumentWidth );
     }
 
     const QDir varDir{ sstd::getLocalFileFullFilePath(

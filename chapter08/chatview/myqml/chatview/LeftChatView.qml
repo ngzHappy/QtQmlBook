@@ -31,7 +31,7 @@ ColumnLayout{
             width: 64
             height: 64
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-            Rectangle{
+            Rectangle{ /* TODO : replace here ... */
                 anchors.fill : idIconItem
                 color: Qt.rgba(0.2,0.2,0.2,0.5)
             }

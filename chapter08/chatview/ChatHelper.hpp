@@ -12,11 +12,15 @@ private:
 private:
     Q_PROPERTY(QQuickItem * textArea READ getTextArea WRITE setTextArea NOTIFY textAreaChanged)
 private:
-
+    Q_PROPERTY(qreal nativeTextWidth READ getNativeTextWidth WRITE setNativeTextWidth NOTIFY nativeTextWidthChanged)
 public:
     ChatHelper();
 public:
     Q_SLOT void checkVisible();
+public:
+    inline qreal getNativeTextWidth() const;
+    void setNativeTextWidth(qreal);
+    Q_SIGNAL void nativeTextWidthChanged();
 public:
     inline QQuickItem * getTextArea() const;
     void setTextArea(QQuickItem *);
@@ -26,6 +30,7 @@ private:
     QQuickTextDocument * mmmTextDocument{ nullptr };
     TextDocumentLayoutBasic * mmmTextLayout{ nullptr };
     QQuickItem * mmmForeGroundItem{ nullptr };
+    qreal mmmNativeTextWidth{ 0.0 };
 protected:
     virtual void componentComplete() override;
 protected:
@@ -33,6 +38,10 @@ protected:
 private:
     SSTD_END_DEFINE_VIRTUAL_CLASS(ChatHelper);
 };
+
+inline qreal ChatHelper::getNativeTextWidth() const{
+    return mmmNativeTextWidth;
+}
 
 inline QQuickItem * ChatHelper::getTextArea() const {
     return mmmTextView;
