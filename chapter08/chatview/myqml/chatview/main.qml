@@ -10,7 +10,7 @@ ApplicationWindow {
     visible: true
 
     ChatView{
-        anchors.fill: parent;
+        width: parent.width
     }
 
 }

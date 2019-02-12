@@ -9,7 +9,7 @@ ColumnLayout{
     Label{
         text: "zzzzz"
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-    }
+    }/*~Label*/
 
     RowLayout{
 
@@ -23,7 +23,7 @@ ColumnLayout{
             height: 64
             color: "black"
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-        }
+        }/*~Rectangle*/
 
         TextArea {
 
@@ -56,7 +56,7 @@ ColumnLayout{
                 onClicked: {
                     idContextMenu.popup();
                 }
-            }
+            }/*~MouseArea*/
 
             onLinkActivated: Qt.openUrlExternally(link)
 
@@ -67,14 +67,14 @@ ColumnLayout{
                     text: qsTr("复制")
                     enabled: idTextArea.selectedText
                     onTriggered: idTextArea.copy()
-                }
+                }/*~MenuItem*/
 
-            }
+            }/*~Menu*/
 
-        }
+        }/*~TextArea*/
 
-    }
+    }/*~RowLayout*/
 
-}
+}/*~ColumnLayout*/
 
 
