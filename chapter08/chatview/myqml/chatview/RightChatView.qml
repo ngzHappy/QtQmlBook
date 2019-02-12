@@ -11,6 +11,35 @@ ColumnLayout{
                 idTextArea.anchorsMargins*2 + idTextArea.contentHeight)
             + idLabel.contentHeight ;
 
+    property var thisChatItem: ChatDataItem{
+        id : idThisItem
+        title: "unknow title x"
+        bodyItems:["unknow items"]
+    }
+
+    function resetDataByChatDataItem(){
+        idRootLayout.thisChatItem.isLeftItem = false;
+        idTextArea.text="";
+        var varItems = idRootLayout.thisChatItem.bodyItems;
+        for( var varKey in varItems ){
+            idTextArea.append( varItems[varKey] );
+        }
+        idLabel.text = Qt.binding( function(){
+            if(thisChatItem){
+                return thisChatItem.title;
+            }
+            return"";
+        } );
+    }
+
+    Component.onCompleted: {
+        idRootLayout.resetDataByChatDataItem();
+    }
+
+    onThisChatItemChanged: {
+        resetDataByChatDataItem();
+    }
+
     spacing: 0
     RowLayout{
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
@@ -33,10 +62,10 @@ ColumnLayout{
         Layout.alignment: Qt.AlignRight | Qt.AlignTop
         Layout.minimumWidth:128
 
-       Item{/*左边的spacing*/
-           width: 16
-           height: 16
-       }
+        Item{/*左边的spacing*/
+            width: 16
+            height: 16
+        }
 
         Item{
 
@@ -54,6 +83,8 @@ ColumnLayout{
                 anchors.margins: idTextArea.anchorsMargins*0.5
                 border.color: Qt.rgba(0,1,0,1)
                 border.width: 2
+                radius: 3.5
+                color: Qt.rgba( 0.8 , 0.8 , 0.3 , 0.3 )
             }
 
             TextArea {
@@ -63,11 +94,10 @@ ColumnLayout{
                 width: textAreaLayoutItem.width - idTextArea.anchorsMargins * 2
                 y : anchorsMargins
                 x : Math.max( 0 , idTextArea.width - idChatHelper.rightDocumentLimit)
-                + idTextArea.anchorsMargins ;
+                    + idTextArea.anchorsMargins ;
                 anchors.margins: idTextArea.anchorsMargins
 
-                text: "test"
-                //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
+                text: "empty"
 
                 property bool isLeftChat: false
                 textFormat: Qt.RichText
@@ -112,7 +142,7 @@ ColumnLayout{
             z : 666
             Rectangle{ /* TODO : replace here ... */
                 anchors.fill : idIconItem
-                color: Qt.rgba(0.2,0.2,0.2,0.5)
+                color: Qt.rgba(0.7,0.2,0.2,0.5)
             }
         }/*~Item*/
 

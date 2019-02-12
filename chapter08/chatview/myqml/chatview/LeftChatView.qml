@@ -6,6 +6,35 @@ import sstd.chat.help 1.0
 ColumnLayout{
 
     id : idRootLayout
+    property var thisChatItem: ChatDataItem{
+        id : idThisItem
+        title: "unknow title x"
+        bodyItems:["unknow items"]
+    }
+
+    function resetDataByChatDataItem(){
+        idRootLayout.thisChatItem.isLeftItem = true;
+        idTextArea.text="";
+        var varItems = idRootLayout.thisChatItem.bodyItems;
+        for( var varKey in varItems ){
+            idTextArea.append( varItems[varKey] );
+        }
+        idLabel.text = Qt.binding( function(){
+            if(thisChatItem){
+                return thisChatItem.title;
+            }
+            return"";
+        } );
+    }
+
+    Component.onCompleted: {
+        idRootLayout.resetDataByChatDataItem();
+    }
+
+    onThisChatItemChanged: {
+        resetDataByChatDataItem();
+    }
+
     height: Math.max(
                 idIconItem.height ,
                 idTextArea.anchorsMargins*2 + idTextArea.contentHeight)
@@ -14,7 +43,7 @@ ColumnLayout{
     spacing: 0
     Label{
         id : idLabel
-        text: "unknow"
+        text: "unknow" ;
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
     }/*~Label*/
 
@@ -33,7 +62,7 @@ ColumnLayout{
             Layout.alignment: Qt.AlignLeft | Qt.AlignTop
             Rectangle{ /* TODO : replace here ... */
                 anchors.fill : idIconItem
-                color: Qt.rgba(0.2,0.2,0.2,0.5)
+                color: Qt.rgba(0.2,0.7,0.2,0.5)
             }
         }/*~Item*/
 
@@ -53,6 +82,8 @@ ColumnLayout{
                 anchors.margins: idTextArea.anchorsMargins*0.5
                 border.color: Qt.rgba(0,1,0,1)
                 border.width: 2
+                radius: 3.5
+                color: Qt.rgba( 0.3 , 0.8 , 0.9 , 0.3 )
             }
 
             TextArea {
@@ -62,8 +93,7 @@ ColumnLayout{
                 property real anchorsMargins: 16
                 anchors.margins: idTextArea.anchorsMargins
 
-                text: "test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test"
-                //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
+                text: "empty "
 
                 property bool isLeftChat: true
                 textFormat: Qt.RichText
