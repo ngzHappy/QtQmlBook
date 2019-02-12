@@ -66,12 +66,6 @@ namespace this_file {
             int argCharsRemoved,
             int argCharsAdded) override {
 
-            qDebug() 
-                << argPosition 
-                << argCharsRemoved 
-                << argCharsAdded 
-                << document()->characterCount();
-
             auto thisReturn = [argPosition,
                 argCharsRemoved,
                 argCharsAdded,
