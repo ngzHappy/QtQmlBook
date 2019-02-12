@@ -63,10 +63,10 @@ ColumnLayout{
                 property real anchorsMargins: 16
                 anchors.margins: idTextArea.anchorsMargins
 
-                text: "test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test test"
+                text: "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
                 //text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
 
-                property bool isLeftChat: true
+                property bool isLeftChat: false
                 textFormat: Qt.RichText
                 wrapMode: TextArea.Wrap
                 focus: true

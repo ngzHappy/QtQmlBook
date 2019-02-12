@@ -10,7 +10,7 @@ ApplicationWindow {
     visible: true
 
     minimumHeight : 256
-    minimumWidth :256
+    minimumWidth :  256
 
     Item{
         anchors.fill: parent;
