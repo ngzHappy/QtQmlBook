@@ -63,6 +63,7 @@ export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/chatview/main.qml
 QMLSOURCES += $$PWD/myqml/chatview/LeftChatView.qml
+QMLSOURCES += $$PWD/myqml/chatview/RightChatView.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

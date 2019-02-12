@@ -12,35 +12,36 @@ ColumnLayout{
             + idLabel.contentHeight ;
 
     spacing: 0
-    Label{
-        id : idLabel
-        text: "unknow"
+    RowLayout{
         Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-    }/*~Label*/
+        spacing: 0
+        Item{
+            height: 1
+            Layout.fillWidth: true
+        }
+        Label{
+            id : idLabel
+            text: "unknow"
+        }/*~Label*/
+    }
 
     RowLayout{
 
         spacing: 0
         Layout.fillHeight: true
         Layout.fillWidth: true
-        Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+        Layout.alignment: Qt.AlignRight | Qt.AlignTop
         Layout.minimumWidth:128
 
-        Item {
-            id : idIconItem
-            width: 64
-            height: 64
-            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
-            Rectangle{ /* TODO : replace here ... */
-                anchors.fill : idIconItem
-                color: Qt.rgba(0.2,0.2,0.2,0.5)
-            }
-        }/*~Item*/
+       Item{/*左边的spacing*/
+           width: 16
+           height: 16
+       }
 
         Item{
 
             id : textAreaLayoutItem
-            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Layout.alignment: Qt.AlignRight | Qt.AlignTop
             Layout.fillWidth: true
             Layout.fillHeight: true
             visible: true
@@ -48,7 +49,7 @@ ColumnLayout{
             Rectangle{ /* TODO : replace here ... */
                 width: idChatHelper.nativeTextWidth + idTextArea.anchorsMargins
                 height: idTextArea.contentHeight + idTextArea.anchorsMargins
-                anchors.left: textAreaLayoutItem.left
+                anchors.right: textAreaLayoutItem.right
                 anchors.top: textAreaLayoutItem.top
                 anchors.margins: idTextArea.anchorsMargins*0.5
                 border.color: Qt.rgba(0,1,0,1)
@@ -100,10 +101,16 @@ ColumnLayout{
             }/*~TextArea*/
         }/*~Item*/
 
-        Item{/*右边的spacing*/
-            width: 16
-            height: 16
-        }
+        Item {
+            id : idIconItem
+            width: 64
+            height: 64
+            Layout.alignment: Qt.AlignLeft | Qt.AlignTop
+            Rectangle{ /* TODO : replace here ... */
+                anchors.fill : idIconItem
+                color: Qt.rgba(0.2,0.2,0.2,0.5)
+            }
+        }/*~Item*/
 
     }/*~RowLayout*/
 }/*~ColumnLayout*/

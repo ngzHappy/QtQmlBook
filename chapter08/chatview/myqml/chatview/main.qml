@@ -9,22 +9,20 @@ ApplicationWindow {
     height: 640;
     visible: true
 
-    LeftChatView {
-        width: parent.width
+    minimumHeight : 256
+    minimumWidth :256
+
+    Item{
+        anchors.fill: parent;
+        LeftChatView {
+            id : idLeftItem
+            width: parent.width
+        }
+        RightChatView{
+            anchors.top: idLeftItem.bottom
+            width: parent.width
+        }
     }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
