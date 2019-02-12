@@ -62,7 +62,7 @@ CONFIG(debug,debug|release){
 export(QMAKE_POST_LINK)
 
 QMLSOURCES += $$PWD/myqml/chatview/main.qml
-QMLSOURCES += $$PWD/myqml/chatview/ChatView.qml
+QMLSOURCES += $$PWD/myqml/chatview/LeftChatView.qml
 
 lupdate_only{
     SOURCES += $$QMLSOURCES

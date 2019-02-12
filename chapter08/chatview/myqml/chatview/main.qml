@@ -9,9 +9,11 @@ ApplicationWindow {
     height: 640;
     visible: true
 
-    ChatView{
+    LeftChatView {
         width: parent.width
     }
+
+
 
 }
 
