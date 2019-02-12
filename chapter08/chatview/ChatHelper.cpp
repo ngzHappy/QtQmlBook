@@ -110,6 +110,7 @@ Item{
         &QTextDocument::contentsChanged,
         this, &ChatHelper::checkVisible);
 
+    checkVisible();
     textAreaChanged();
 }
 
@@ -117,8 +118,8 @@ void ChatHelper::componentComplete() {
     auto varContex = QQmlEngine::contextForObject(this);
     assert(varContex);
     auto varExp = QQmlExpression(varContex, this, QStringLiteral(R"(
-              x = Qt.binding( function() { checkVisible(); return -flickable.contentX } )
-              y = Qt.binding( function() { checkVisible(); return -flickable.contentY } )
+              x = 0 ;
+              y = 0 ;
 )"));
     varExp.evaluate();
     Super::componentComplete();

@@ -39,11 +39,13 @@ namespace this_file {
         inline void positionInlineObject(QTextInlineObject item,
             int posInDocument,
             const QTextFormat &format) override {
+            updateQmlPos(item, posInDocument, format);
             return Super::positionInlineObject(item, posInDocument, format);
         }
         inline void resizeInlineObject(QTextInlineObject item,
             int posInDocument,
             const QTextFormat &format) override {
+            updateQmlPos(item,posInDocument,format);
             return Super::resizeInlineObject(item, posInDocument, format);
         }
         inline void updateQmlPos(QTextInlineObject item,
@@ -63,6 +65,12 @@ namespace this_file {
         inline void documentChanged(int argPosition,
             int argCharsRemoved,
             int argCharsAdded) override {
+
+            qDebug() 
+                << argPosition 
+                << argCharsRemoved 
+                << argCharsAdded 
+                << document()->characterCount();
 
             auto thisReturn = [argPosition,
                 argCharsRemoved,
@@ -90,6 +98,7 @@ namespace this_file {
                     } else {
                         assert((argCharsAdded == 0) || (Basic::getLastDocumentLength() == argCharsRemoved));
                         Basic::getQmlItems().clear();
+                        Basic::setDocument(nullptr);
                         return thisReturn();
                     }
 

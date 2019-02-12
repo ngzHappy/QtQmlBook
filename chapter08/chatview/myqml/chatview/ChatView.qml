@@ -5,9 +5,7 @@ import sstd.chat.help 1.0
 
 TextArea {
 
-    text:"AAAAAAAAAAAAA
-BBBBBBBBBBB
-CCCCCCCCCCCCCCCCCCC"
+    text:"fff<img width=24 height=24 src='image://placeholderimageprovider/GifItem.qml'>dsfds"
 
     id : idTextArea
     property bool isLeftChat: true

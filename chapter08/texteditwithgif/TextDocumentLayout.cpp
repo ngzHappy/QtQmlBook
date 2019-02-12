@@ -18,6 +18,10 @@ void TextDocumentLayout::documentChanged(int position, int charsRemoved, int cha
             } else {/*删除整个文档内容...*/
                 assert((charsAdded == 0) || (mmmLastDocumentLength == charsRemoved));
                 mmmQmlItems.clear();
+                mmmDocument = nullptr;
+#if defined(_DEBUG)
+                qDebug() << QStringLiteral("clear the document");
+#endif
                 return Super::documentChanged(position, charsRemoved, charsAdded);
             }
         }
