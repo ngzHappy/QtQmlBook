@@ -45,6 +45,16 @@ ColumnLayout{
             Layout.fillHeight: true
             visible: true
 
+            Rectangle{ /* TODO : replace here ... */
+                width: idChatHelper.nativeTextWidth + idTextArea.anchorsMargins
+                height: idTextArea.contentHeight + idTextArea.anchorsMargins
+                anchors.left: textAreaLayoutItem.left
+                anchors.top: textAreaLayoutItem.top
+                anchors.margins: idTextArea.anchorsMargins*0.5
+                border.color: Qt.rgba(0,1,0,1)
+                border.width: 2
+            }
+
             TextArea {
 
                 id : idTextArea
@@ -67,7 +77,9 @@ ColumnLayout{
                 topPadding: 0
                 bottomPadding: 0
                 background: ChatHelper{
+                    id : idChatHelper
                     textArea : idTextArea
+                    /*qreal nativeTextWidth*/
                 }
                 MouseArea {
                     acceptedButtons: Qt.RightButton
