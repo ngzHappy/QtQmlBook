@@ -35,4 +35,3 @@ DESTDIR = $${RootDestDir}
 
 SOURCES += $$PWD/../TextDocumentLayoutBasic.cpp
 HEADERS += $$PWD/../TextDocumentLayoutBasic.hpp
-

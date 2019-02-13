@@ -48,5 +48,3 @@ TextDocumentLayoutQmlItem::TextDocumentLayoutQmlItem(const QString & p,
 TextDocumentLayoutQmlItem::~TextDocumentLayoutQmlItem() {
     releaseItem();
 }
-
-

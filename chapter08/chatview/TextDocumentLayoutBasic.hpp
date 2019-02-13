@@ -126,12 +126,3 @@ inline double TextDocumentLayoutQmlItem::getItemWidth() const {
 inline double TextDocumentLayoutQmlItem::getItemHeight() const {
     return mmmItemHeight;
 }
-
-
-
-
-
-
-
-
-

@@ -43,47 +43,47 @@ color
 QFont
     :tex_raw:[[&]]
 font
-    :tex_raw:[[\\]]    
+    :tex_raw:[[\\]]
 
 QDateTime
     :tex_raw:[[&]]
 date
-    :tex_raw:[[\\]]   
+    :tex_raw:[[\\]]
 
 QPoint, QPointF
     :tex_raw:[[&]]
 point
-    :tex_raw:[[\\]]  
+    :tex_raw:[[\\]]
 
 QSize, QSizeF
     :tex_raw:[[&]]
 size
-    :tex_raw:[[\\]]  
+    :tex_raw:[[\\]]
 
 QRect, QRectF
     :tex_raw:[[&]]
 rect
-    :tex_raw:[[\\]]  
+    :tex_raw:[[\\]]
 
 QMatrix4x4
     :tex_raw:[[&]]
 matrix4x4
-    :tex_raw:[[\\]]  
+    :tex_raw:[[\\]]
 
 QQuaternion
     :tex_raw:[[&]]
 quaternion
-    :tex_raw:[[\\]]      
+    :tex_raw:[[\\]]
 
 QVector2D, QVector3D, QVector4D
     :tex_raw:[[&]]
 vector2d, vector3d, vector4d
-    :tex_raw:[[\\]]   
+    :tex_raw:[[\\]]
 
 Enums declared with Q_ENUM() or Q_ENUMS()
     :tex_raw:[[&]]
 enumeration
-    :tex_raw:[[\\]]   
+    :tex_raw:[[\\]]
 
 :tex_raw:[[
 % ______all_key_words

@@ -10,10 +10,3 @@
 #endif
 
 CHAT_VIEW_LIBRARY_EXPORT TextDocumentLayoutBasic * createRightTextDocumentLayout(QTextDocument *);
-
-
-
-
-
-
-

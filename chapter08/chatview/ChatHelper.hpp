@@ -26,7 +26,7 @@ public:
     void setNativeTextWidth(qreal);
     Q_SIGNAL void nativeTextWidthChanged();
 public:
-    inline qreal getLeftDocumentLimit() const ; 
+    inline qreal getLeftDocumentLimit() const ;
     void setLeftDocumentLimit(qreal );
     Q_SIGNAL void leftDocumentLimitChanged();
 public:
@@ -68,12 +68,3 @@ inline qreal ChatHelper::getNativeTextWidth() const{
 inline QQuickItem * ChatHelper::getTextArea() const {
     return mmmTextView;
 }
-
-
-
-
-
-
-
-
-

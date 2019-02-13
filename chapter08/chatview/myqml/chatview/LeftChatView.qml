@@ -137,5 +137,3 @@ ColumnLayout{
 
     }/*~RowLayout*/
 }/*~ColumnLayout*/
-
-

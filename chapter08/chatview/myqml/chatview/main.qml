@@ -23,7 +23,7 @@ ApplicationWindow {
                 thisChatItem: ChatDataItem{
                     title: "A"
                     bodyItems:["x",
-                    "<img width=24 height=24 
+                    "<img width=24 height=24
                     src='image://placeholderimageprovider/GifItem.qml'>"]
                 }
             }
@@ -33,7 +33,7 @@ ApplicationWindow {
                 thisChatItem: ChatDataItem{
                      title: "Me"
                      bodyItems:["x",
-                     "<img width=24 height=24 
+                     "<img width=24 height=24
                      src='image://placeholderimageprovider/GifItem.qml'>"]
                 }
             }
@@ -43,7 +43,7 @@ ApplicationWindow {
                 thisChatItem: ChatDataItem{
                      title: "B"
                      bodyItems:["x",
-                     "<img width=24 height=24 
+                     "<img width=24 height=24
                      src='image://placeholderimageprovider/GifItem.qml'>"]
                 }
             }
@@ -53,9 +53,9 @@ ApplicationWindow {
                 thisChatItem: ChatDataItem{
                      title: "Me"
                      bodyItems:["x",
-                     "test test test test test test test 
+                     "test test test test test test test
                      test test test test test test test test ",
-                     "<img width=24 height=24 
+                     "<img width=24 height=24
                      src='image://placeholderimageprovider/GifItem.qml'>"]
                 }
             }
@@ -64,4 +64,3 @@ ApplicationWindow {
     }
 
 }
-
