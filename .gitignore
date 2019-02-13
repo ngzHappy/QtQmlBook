@@ -17,3 +17,6 @@ build-TheBook-*
 build_msvc.new.bat
 sstd_tools/msvc2017-settings/CurrentSettings.vssettings
 TheBook/.BridgeLabelsAndRatings
+*.dwl
+*.dwl2
+*.bak
