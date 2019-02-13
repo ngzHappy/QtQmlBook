@@ -99,13 +99,19 @@ QML中的var用于代表一切合法类型，包括信号槽，容器，基本�
 
 :tex_raw:[[%扩展类型]]
 :the_book_subsubsection:[[c000011s000000s01s02]]
+除了第:tex_raw:[[\ref{c000011s000000s01s01}]]节提到的
+基本类型之外，
+不同的QML库还提供了一些扩展类型。
+
+对于一般读者而言，这些扩展类型和基本类型之间除了构造方法之外
+没有什么不同。
 
 
 :tex_raw:[[%自定义类型]]
 :the_book_subsubsection:[[c000011s000000s01s03]]
-QML被设计为一门扩展Qt C++的语言，
+QML被设计为一门专门用于扩展Qt C++的语言，
 因而，从Qt C++向QML导出自定义类是相当自然的。
-详细内容见第:tex_raw:[[\ref{c000012}]]章。
+详细内容见第:tex_raw:[[\ \ref{c000012}]]章。
 
 :tex_raw:[[%QML常用基本与Qt C++常用类型对应表]]
 :the_book_subsubsection:[[c000011s000000s01s04]]
@@ -133,7 +139,7 @@ QList<QUrl>
 更加一般的是Qt C++端的
 QVariantList容器和QVariantMap容器，
 总是能被QML端识别。
-但比更加具体的对象容器效率要低。
+但比使用更加具体的对象容器效率要低。
 
 除了可以使用QList和QMap
 包装对象，也可以使用
@@ -142,7 +148,7 @@ std::vector包装
 对象。
 
 值得注意的是，包装QString最好使用QStringList类，
-包装QObject *最好使用QObjectList类。
+包装QObject * 最好使用QObjectList类。
 
 :tex_raw:[[
 % ______all_key_words

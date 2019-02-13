@@ -119,6 +119,12 @@ QML中的var用于代表一切合法类型，包括信号槽，容器，基本�
 扩展类型
 }\label{c000011s000000s01s02}
 
+除了第\ref{c000011s000000s01s01}节提到的
+基本类型之外，
+不同的QML库还提供了一些扩展类型。
+
+对于一般读者而言，这些扩展类型和基本类型之间除了构造方法之外
+没有什么不同。
 
 
 %自定义类型
@@ -165,7 +171,7 @@ QList<QUrl>
 更加一般的是Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}端的
 QVariantList容器和QVariantMap容器，
 总是能被QML端识别。
-但比更加具体的对象容器效率要低。
+但比使用更加具体的对象容器效率要低。
 
 除了可以使用QList和QMap
 包装对象，也可以使用
@@ -173,8 +179,8 @@ QVector、
 std::vector包装
 对象。
 
-特别的包装QString最好使用QStringList类，
-包装QObject \raisebox{-0.35ex}{\sourcefonttwo{}*}最好使用QObjectList。
+值得注意的是，包装QString最好使用QStringList类，
+包装QObject \raisebox{-0.35ex}{\sourcefonttwo{}*} 最好使用QObjectList类。
 
 
 % ______all_key_words
