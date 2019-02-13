@@ -1,0 +1,100 @@
+﻿:tex_raw:[[%类型 说明]]
+
+bool
+    :tex_raw:[[&]]
+bool
+    :tex_raw:[[\\]]
+
+unsigned int, int
+    :tex_raw:[[&]]
+int
+    :tex_raw:[[\\]]
+
+double
+    :tex_raw:[[&]]
+double
+    :tex_raw:[[\\]]
+
+float, qreal
+    :tex_raw:[[&]]
+real
+    :tex_raw:[[\\]]
+
+float, qreal
+    :tex_raw:[[&]]
+real
+    :tex_raw:[[\\]]
+
+QString
+    :tex_raw:[[&]]
+string
+    :tex_raw:[[\\]]
+
+QUrl
+    :tex_raw:[[&]]
+url
+    :tex_raw:[[\\]]
+
+QColor
+    :tex_raw:[[&]]
+color
+    :tex_raw:[[\\]]
+
+QFont
+    :tex_raw:[[&]]
+font
+    :tex_raw:[[\\]]    
+
+QDateTime
+    :tex_raw:[[&]]
+date
+    :tex_raw:[[\\]]   
+
+QPoint, QPointF
+    :tex_raw:[[&]]
+point
+    :tex_raw:[[\\]]  
+
+QSize, QSizeF
+    :tex_raw:[[&]]
+size
+    :tex_raw:[[\\]]  
+
+QRect, QRectF
+    :tex_raw:[[&]]
+rect
+    :tex_raw:[[\\]]  
+
+QMatrix4x4
+    :tex_raw:[[&]]
+matrix4x4
+    :tex_raw:[[\\]]  
+
+QQuaternion
+    :tex_raw:[[&]]
+quaternion
+    :tex_raw:[[\\]]      
+
+QVector2D, QVector3D, QVector4D
+    :tex_raw:[[&]]
+vector2d, vector3d, vector4d
+    :tex_raw:[[\\]]   
+
+Enums declared with Q_ENUM() or Q_ENUMS()
+    :tex_raw:[[&]]
+enumeration
+    :tex_raw:[[\\]]   
+
+:tex_raw:[[
+% ______all_key_words
+% the_book_chapter the_book_subsection the_book_subsubsection
+% the_book_section the_book_image the_book_table
+% the_book_file the_book_tree_file the_book_command_file
+% littlelongworld tabbing ref
+% figurename tablename filesourcenumbernameone
+% treeindexnumbernameone commandnumbernameone footnote
+% item itemize comment textbullet
+% \hspace*{\parindent}
+% FloatBarrier
+]]
+

@@ -9,9 +9,28 @@
 
 \FloatBarrier
 \subsection{
-属性
+类型与对象属性
 }\label{c000011s000000s01}
 
+
+QML被设计为一门可以支持JavaScript的
+弱类型语言。
+
+虽然绝大多数JavaScript代码可以在QML
+环境之中正常运行。
+但并不意味着JavaScript语义与QML语义
+完全一致。
+
+一般而言，QML对JavaScript做了适当扩展。
+
+如果读者完全按照JavaScript语义理解
+QML类型系统，倒也不算错。
+但损失大量效率是免不了的。
+
+QML类型可以分为
+基本类型、
+扩展类型
+和用户自定义类型。
 
 %QML Basic Types
 %bool
@@ -28,6 +47,8 @@
 %rect
 %size
 
+
+%基本类型
 \FloatBarrier
 \subsubsection{
 基本类型
@@ -35,19 +56,6 @@
 
 
 %http://doc.qt.io/qt-5/qml-int.html
-QML被设计为一门可以支持JavaScript的
-弱类型语言。
-
-虽然绝大多数JavaScript代码可以在QML
-环境之中正常运行。
-但并不意味着JavaScript语义与QML语义
-完全一致。
-
-一般而言，QML对JavaScript做了适当扩展。
-
-如果读者完全按照JavaScript语义理解
-QML类型系统，倒也不算错。
-但损失大量效率是免不了的。
 
 \tablename\ \ref{tb000005}展示了
 QML中的基本类型。
@@ -104,6 +112,39 @@ QML中的var用于代表一切合法类型，包括信号槽，容器，基本�
 支持这个词仅仅是为了兼容老版本的QML。
 
 \end{itemize}
+
+%扩展类型
+\FloatBarrier
+\subsubsection{
+扩展类型
+}\label{c000011s000000s01s02}
+
+
+
+%自定义类型
+\FloatBarrier
+\subsubsection{
+自定义类型
+}\label{c000011s000000s01s03}
+
+QML被设计为一门扩展Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}的语言，
+因而，从Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}向QML导出自定义类是相当自然的。
+详细内容见第\ref{c000012}章。
+
+%QML常用基本与Qt C++常用类型对应表
+\FloatBarrier
+\subsubsection{
+QML常用基本与Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}常用类型对应表
+}\label{c000011s000000s01s04}
+
+
+\tablename\ \ref{tb000005}展示了
+QML常用基本与Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}常用类型的对应关系。
+
+\input{chapter02/table/types_between_qml_and_qt/table.tex}
+
+对于\tablename\ \ref{tb000005}中
+没有提及的类型，一般用var代替即可。
 
 
 % ______all_key_words

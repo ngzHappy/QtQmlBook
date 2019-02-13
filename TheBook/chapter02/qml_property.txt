@@ -1,6 +1,25 @@
 ﻿
 :the_book_subsection:[[c000011s000000s01]]
 
+QML被设计为一门可以支持JavaScript的
+弱类型语言。
+
+虽然绝大多数JavaScript代码可以在QML
+环境之中正常运行。
+但并不意味着JavaScript语义与QML语义
+完全一致。
+
+一般而言，QML对JavaScript做了适当扩展。
+
+如果读者完全按照JavaScript语义理解
+QML类型系统，倒也不算错。
+但损失大量效率是免不了的。
+
+QML类型可以分为
+基本类型、
+扩展类型
+和用户自定义类型。
+
 :tex_raw:[[%QML Basic Types
 %bool
 %double
@@ -16,22 +35,11 @@
 %rect
 %size
 ]]
+
+:tex_raw:[[%基本类型]]
 :the_book_subsubsection:[[c000011s000000s01s01]]
 
 :tex_raw:[[%http://doc.qt.io/qt-5/qml-int.html]]
-QML被设计为一门可以支持JavaScript的
-弱类型语言。
-
-虽然绝大多数JavaScript代码可以在QML
-环境之中正常运行。
-但并不意味着JavaScript语义与QML语义
-完全一致。
-
-一般而言，QML对JavaScript做了适当扩展。
-
-如果读者完全按照JavaScript语义理解
-QML类型系统，倒也不算错。
-但损失大量效率是免不了的。
 
 :tex_raw:[[\tablename\ \ref{tb000005}]]展示了
 QML中的基本类型。
@@ -88,6 +96,27 @@ QML中的var用于代表一切合法类型，包括信号槽，容器，基本�
 支持这个词仅仅是为了兼容老版本的QML。
 
 :tex_raw:[[\end{itemize}]]
+
+:tex_raw:[[%扩展类型]]
+:the_book_subsubsection:[[c000011s000000s01s02]]
+
+
+:tex_raw:[[%自定义类型]]
+:the_book_subsubsection:[[c000011s000000s01s03]]
+QML被设计为一门扩展Qt C++的语言，
+因而，从Qt C++向QML导出自定义类是相当自然的。
+详细内容见第:tex_raw:[[\ref{c000012}]]章。
+
+:tex_raw:[[%QML常用基本与Qt C++常用类型对应表]]
+:the_book_subsubsection:[[c000011s000000s01s04]]
+
+:tex_raw:[[\tablename\ \ref{tb000005}]]展示了
+QML常用基本与Qt C++常用类型的对应关系。
+
+:the_book_table:[[tb000006]]
+
+对于:tex_raw:[[\tablename\ \ref{tb000005}]]中
+没有提及的类型，一般用var代替即可。
 
 :tex_raw:[[
 % ______all_key_words

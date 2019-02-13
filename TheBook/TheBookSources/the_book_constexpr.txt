@@ -49,8 +49,11 @@ c000011s000000s03::::文件编码
 
 c000011s000000s02::::注释与帮助
 
-c000011s000000s01::::属性
+c000011s000000s01::::类型与对象属性
 c000011s000000s01s01::::基本类型
+c000011s000000s01s02::::扩展类型
+c000011s000000s01s03::::自定义类型
+c000011s000000s01s04::::QML常用基本与Qt C++常用类型对应表
 % ::::自定义属性
 % ::::只读属性
 % ::::注释
@@ -306,6 +309,7 @@ tb000002::::类型属性::::chapter06/blendeffect/table_mode
 tb000003::::类型属性::::chapter06/brightnesscontrasteffect/table_property
 tb000004::::类型属性::::chapter06/coloroverlayeffect/table_property
 tb000005::::QML基本类型::::chapter02/table/basic_qml_type_table
+tb000006::::QML常用基本与Qt C++常用类型对应关系::::chapter02/table/types_between_qml_and_qt
 
 %
 % :tex_raw:[[\figurename\ \ref{p000003}]]
