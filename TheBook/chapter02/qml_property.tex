@@ -146,6 +146,36 @@ QML常用基本与Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}常用类型的对�
 对于\tablename\ \ref{tb000005}中
 没有提及的类型，一般用var代替即可。
 
+%容器
+\FloatBarrier
+\subsubsection{
+QML可以识别的Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}容器
+}\label{c000011s000000s01s05}
+
+
+一般而言如果一个Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}类型能够被QML识别，
+那么用QList和QMap包装这个对象，也能够被QML识别。
+
+比如，Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}端
+QUrl能够被
+QML识别，那么
+QList<QUrl>
+也能被QML识别。
+
+更加一般的是Qt C{\sourcefonttwo{}+}{\sourcefonttwo{}+}端的
+QVariantList容器和QVariantMap容器，
+总是能被QML端识别。
+但比更加具体的对象容器效率要低。
+
+除了可以使用QList和QMap
+包装对象，也可以使用
+QVector、
+std::vector包装
+对象。
+
+特别的包装QString最好使用QStringList类，
+包装QObject \raisebox{-0.35ex}{\sourcefonttwo{}*}最好使用QObjectList。
+
 
 % ______all_key_words
 % the_book_chapter the_book_subsection the_book_subsubsection
