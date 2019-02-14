@@ -13,30 +13,36 @@ public:
     Q_INVOKABLE inline void setX(double arg);
     Q_INVOKABLE inline void setY(double arg);
 public:
-    inline MyValue() = default ;
-    inline MyValue(const MyValue &) = default ;
-    inline MyValue(MyValue &&) = default ;
-    inline MyValue&operator=(const MyValue &) = default ;
-    inline MyValue&operator=(MyValue &&) = default ;
-    MyValue(double,double);
+    inline MyValue() = default;
+    inline MyValue(const MyValue &) = default;
+    inline MyValue(MyValue &&) = default;
+    inline MyValue&operator=(const MyValue &) = default;
+    inline MyValue&operator=(MyValue &&) = default;
+    MyValue(double, double);
+public:
+    Q_INVOKABLE inline bool operator==(const MyValue &) const;
 private:
     SSTD_DEFINE_STATIC_CLASS(MyValue);
 };
 
-inline double MyValue::getX() const{
-    return mmmX ;
+inline double MyValue::getX() const {
+    return mmmX;
 }
 
-inline double MyValue::getY() const{
+inline double MyValue::getY() const {
     return mmmY;
 }
 
-Q_INVOKABLE inline void MyValue::setX(double arg){
+inline void MyValue::setX(double arg) {
     mmmX = arg;
 }
 
-Q_INVOKABLE inline void MyValue::setY(double arg){
+inline void MyValue::setY(double arg) {
     mmmY = arg;
+}
+
+inline bool MyValue::operator==(const MyValue & arg) const {
+    return (mmmX == arg.mmmX) && (mmmY == arg.mmmY);
 }
 
 Q_DECLARE_METATYPE(MyValue)
