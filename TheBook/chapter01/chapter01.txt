@@ -13,8 +13,11 @@
 \input{chapter01/defaultstyle.tex}
 \input{chapter01/use_shader_in_qt_quick.tex}
 \input{chapter01/directdrawbyopengl.tex}
-
-
+\input{chapter01/externbycplusplus.tex}
+\input{chapter01/colormodel.tex}
+\input{chapter01/bigscene.tex}
+\input{chapter01/bigscene2dviewer.tex}
+\input{chapter01/minesweeping.tex}
 
 ]===]
 

@@ -18,6 +18,11 @@ chapter01/hellow_world.txt
 chapter01/defaultstyle.txt
 chapter01/use_shader_in_qt_quick.txt
 chapter01/directdrawbyopengl.txt
+chapter01/externbycplusplus.txt
+chapter01/colormodel.txt
+chapter01/bigscene.txt
+chapter01/bigscene2dviewer.txt
+chapter01/minesweeping.txt
 chapter02/chapter02.txt
 chapter02/qml_basic.txt
 chapter02/qml_property.txt
