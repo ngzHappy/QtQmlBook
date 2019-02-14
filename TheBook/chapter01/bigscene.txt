@@ -1,7 +1,7 @@
 ﻿
 :the_book_section:[[s100810t03]]
 
-:the_book_image:[[p000062]]
+:the_book_image:[[p000067]]
 
 :tex_raw:[[
 % ______all_key_words

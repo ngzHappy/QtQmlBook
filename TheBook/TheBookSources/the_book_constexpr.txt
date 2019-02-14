@@ -202,11 +202,11 @@ p000059::::QtCharts::::../chapter08/charts/PieSeries.png::::[htb]::::[width=0.95
 p000060::::QtCharts::::../chapter08/charts/BoxPlotSeries.png::::[htb]::::[width=0.95\textwidth]
 p000061::::QtCharts::::../chapter08/charts/HorizontalBarSeries.png::::[htb]::::[width=0.95\textwidth]
 
-p000062::::bigscene::::../chapter01/bigscene/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000063::::bigscene::::../chapter01/colormodel/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000064::::bigscene::::../chapter01/externbycplusplus/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000065::::bigscene::::../chapter01/minesweeping/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000066::::bigscene::::../chapter01/bigscene2dviewer/the_app.png::::[htb]::::[width=0.95\textwidth]
+p000067::::bigscene::::../chapter01/bigscene/the_app.png::::[htb]::::[width=0.95\textwidth]
 
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
