@@ -140,7 +140,6 @@ namespace this_file {
             }
         }
 
-
     }
 
     inline Node::Node(
