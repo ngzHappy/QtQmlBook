@@ -137,6 +137,7 @@ c000019s02::::自定义树模型
 c000020::::前言
 
 %图片路径
+p000000a::::Qt官网下载内容::::chapter01/images/qt_io_download.png::::[htb]::::[width=8cm]
 p000000::::Qt在线安装包下载路径::::chapter01/images/windows_download_here.png::::[htb]::::[width=8cm]
 p000001::::Qt在线安装建议安装组件::::chapter01/images/windows_qt_online_install.png::::[htb]::::[width=0.95\textwidth]
 p000002::::qmake对C/C++编译链接过程中的控制点::::&chapter01/images/advance_use_qmake.pdf::::[htb]::::[width=0.95\textwidth]

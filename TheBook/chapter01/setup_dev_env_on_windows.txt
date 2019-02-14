@@ -7,18 +7,33 @@
 
 读者可以到:tex_raw:[[ \url{http://download.qt.io/archive/
 }]]
-下载最新的Qt运行环境。
-然而，遗憾的是，从Qt 5.12.0开始从此网址下载的Windows平台下的Qt开发环境并不完整。
-:tex_raw:[[%介绍如何下载在线安装包...]]
-读者不得不访问Qt官网:tex_raw:[[ \url{https://www.qt.io
-}]]，
-注册Qt帐号，然后按照流程下载在线安装包。
-不得不说，这对初学者很不友好。
-幸运的是，目前Qt网站有一个漏洞。读者可以直接访问
-:tex_raw:[[ \url{https://www.qt.io/download-thank-you
-}]]，点击“here”下载在线安装包。如:tex_raw:[[\figurename\ \ref{p000000}]]。
-:the_book_image:[[p000000]]
-以管理员身份运行在线安装包，
+下载最新的Qt运行环境。该网址核心内容
+如:tex_raw:[[\figurename\ \ref{p000000a}]]所示。
+
+:the_book_image:[[p000000a]]
+
+:tex_raw:[[\begin{itemize}]]
+:tex_raw:[[\item ]]“vsaddin/” 
+
+此目录存放了Visual Studio插件
+:tex_raw:[[\item ]]“qtcreator/” 
+
+此目录存放了各版本Qt Creator源码及编译好的二进制离线安装包
+:tex_raw:[[\item ]]“qt/” 
+
+此目录存放了各版本Qt源码及编译好的二进制离线安装包
+:tex_raw:[[\item ]]“online_installers/”
+
+此目录存放了各个版本的离线二进制安装包
+:tex_raw:[[\end{itemize}]]
+
+一般情况下，读者直接从“qt/” 下载离线安装包即可。
+
+然而，遗憾的是，从Qt 5.12.0开始从“qt/”目录下载的Windows平台下的离线Qt开发环境并不完整。
+读者最好从“online_installers/”目录下在离线安装包。然后，
+以管理员身份运行下载下来的离线安装包。
+
+值得注意的是，
 选择安装路径时请不要选择包含空格和中文字符的路径。
 虽然现代开发环境对于空格和中文字符支持良好，
 但是，很多第三方辅助工具未必支持空格和中文字符。
