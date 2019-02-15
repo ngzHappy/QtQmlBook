@@ -74,6 +74,22 @@ Qt Quick拥有脚本语言的所有特性，
 
 :tex_raw:[[\end{itemize}]]
 
+接下来再看看Qt C++主要逻辑代码，
+如:tex_raw:[[\filesourcenumbernameone\ \ref{f000044}]]所
+示。
+
+:tex_raw:[[\begin{itemize}]]
+
+:tex_raw:[[\item ]]第29~44行展示了如何
+在Qt C++端从Qml对象树中找到所需对象，并
+在Qt C++端创建对象并添加到Qml对象树中。
+
+
+:tex_raw:[[\item ]]第46~78行展示了如何
+在Qt C++端编译Qml并创建对象。
+
+:tex_raw:[[\end{itemize}]]
+
 :the_book_file:[[f000044]]
 
 :tex_raw:[[
