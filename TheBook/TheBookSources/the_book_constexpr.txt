@@ -308,6 +308,7 @@ f000082::::../chapter01/externbycplusplus/main.cpp::::]
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
 d000001::::chapter01/files/import_library/tree.txt::::]
 d000002::::chapter01/files/first_application/the_project_dir.txt::::]
+d000003::::../chapter01/minesweeping/tree.txt::::]
 
 %命令行
 command000000::::chapter01/files/command.install.linux.qt.txt::::]

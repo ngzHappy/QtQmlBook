@@ -1,0 +1,26 @@
+.
+├── minesweeping.pro
+├── main.cpp
+├── MineSweepingLine.cpp
+├── MineSweepingLine.hpp
+├── MineSweepingLineNode.cpp
+├── MineSweepingLineNode.hpp
+├── MineSweeping.hpp
+├── MineSweeping.cpp
+└── myqml
+    ├── minesweeping
+    │   ├── Boom.qml
+    │   ├── Error.qml
+    │   ├── Flag.qml
+    │   ├── Mine.png
+    │   ├── Mine.qml
+    │   ├── MineMenuBar.qml
+    │   ├── MineResetDialog.qml
+    │   ├── Number.qml
+    │   ├── OkMine.qml
+    │   ├── Win.qml
+    │   └── main.qml
+    └── minesweeping_qtquickcontrols2.conf
+
+
+
