@@ -16,7 +16,7 @@ Pane {
     width: 640;
     height: 480;
 
-    MineResetDialog{
+    MineResetDialog{/*重置对话框*/
         id: idResetActionDialog ;
         onResizeMine : {
             idMineSweeping.setSizeScene(
@@ -26,7 +26,7 @@ Pane {
         }
     }
 
-    MineMenuBar{
+    MineMenuBar{/*菜单*/
         id : idMenuBar
         width: parent.width ;
         anchors.top: parent.top ;
@@ -46,7 +46,7 @@ Pane {
         width: minWidthHeight * 0.8;
         height: minWidthHeight * 0.8;
 
-        maskItem : Rectangle {
+        maskItem : Rectangle {/*遮罩*/
             anchors.centerIn: parent       ;
             width: parent.width * 0.95     ;
             height: parent.height * 0.95   ;
@@ -68,7 +68,7 @@ Pane {
             }
         }
 
-        flagItem : Flag{
+        flagItem : Flag{/*地雷标记*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.75 ;
             height : parent.height * 0.75 ;
@@ -84,7 +84,7 @@ Pane {
             }
         }
 
-        numberItem : Number{
+        numberItem : Number{/*数字*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -100,7 +100,7 @@ Pane {
             }
         }
 
-        errorItem : Error{
+        errorItem : Error{/*识别错误标记*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -116,7 +116,7 @@ Pane {
             }
         }
 
-        mineItem : Mine{
+        mineItem : Mine{/*未识别的地雷*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -132,7 +132,7 @@ Pane {
             }
         }
 
-        okMineItem : OkMine{
+        okMineItem : OkMine{/*正确识别的地雷*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -148,7 +148,7 @@ Pane {
             }
         }
 
-        boomItem : Boom {
+        boomItem : Boom {/*引爆的地雷*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -164,7 +164,7 @@ Pane {
             }
         }
 
-        winItem : Win {
+        winItem : Win {/*游戏成功时现实*/
             anchors.centerIn: parent
             width:idRootOfMine.width * 0.85
             height:idRootOfMine.height

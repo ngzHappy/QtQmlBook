@@ -96,7 +96,7 @@ Pane {
     width: 640;
     height: 480;
 
-    MineResetDialog{
+    MineResetDialog{/*重置对话框*/
         id: idResetActionDialog ;
         onResizeMine : {
             idMineSweeping.setSizeScene(
@@ -106,7 +106,7 @@ Pane {
         }
     }
 
-    MineMenuBar{
+    MineMenuBar{/*菜单*/
         id : idMenuBar
         width: parent.width ;
         anchors.top: parent.top ;
@@ -126,7 +126,7 @@ Pane {
         width: minWidthHeight * 0.8;
         height: minWidthHeight * 0.8;
 
-        maskItem : Rectangle {
+        maskItem : Rectangle {/*遮罩*/
             anchors.centerIn: parent       ;
             width: parent.width * 0.95     ;
             height: parent.height * 0.95   ;
@@ -148,7 +148,7 @@ Pane {
             }
         }
 
-        flagItem : Flag{
+        flagItem : Flag{/*地雷标记*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.75 ;
             height : parent.height * 0.75 ;
@@ -164,7 +164,7 @@ Pane {
             }
         }
 
-        numberItem : Number{
+        numberItem : Number{/*数字*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -180,7 +180,7 @@ Pane {
             }
         }
 
-        errorItem : Error{
+        errorItem : Error{/*识别错误标记*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -196,7 +196,7 @@ Pane {
             }
         }
 
-        mineItem : Mine{
+        mineItem : Mine{/*未识别的地雷*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -212,7 +212,7 @@ Pane {
             }
         }
 
-        okMineItem : OkMine{
+        okMineItem : OkMine{/*正确识别的地雷*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -228,7 +228,7 @@ Pane {
             }
         }
 
-        boomItem : Boom {
+        boomItem : Boom {/*引爆的地雷*/
             anchors.centerIn: parent ;
             width  : parent.width * 0.9 ;
             height : parent.height * 0.9 ;
@@ -244,7 +244,7 @@ Pane {
             }
         }
 
-        winItem : Win {
+        winItem : Win {/*游戏成功时现实*/
             anchors.centerIn: parent
             width:idRootOfMine.width * 0.85
             height:idRootOfMine.height
@@ -271,10 +271,7 @@ QML轻松的将一个大型复杂整体
 在不同粒度下都得到了有机的
 分离与统一。
 
-敏捷开发，
-使得团队中每一个队员专注于自己的事务，
-而不是使得个人陷入
-一张复杂的业务网。
+
 
 毫无疑问，恰如其名，Qt Quick将为现代通用GUI开发注入急速。
 
