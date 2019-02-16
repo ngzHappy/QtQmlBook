@@ -164,7 +164,7 @@ Pane {
             }
         }
 
-        winItem : Win {/*游戏成功时现实*/
+        winItem : Win {/*游戏成功时显示*/
             anchors.centerIn: parent
             width:idRootOfMine.width * 0.85
             height:idRootOfMine.height
