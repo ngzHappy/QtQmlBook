@@ -1,9 +1,41 @@
 ﻿
 :the_book_section:[[s100810t05]]
 
+最后，举一个稍微复杂一点的小例子：实现一个简单的扫雷程序。
+
+项目目录结构如:tex_raw:[[\treeindexnumbernameone\ \ref{d000003}]]所
+示。
+
 :the_book_tree_file:[[d000003]]
 
+此项目运行效果
+如:tex_raw:[[\figurename\ \ref{p000065}]]所
+示。
+
 :the_book_image:[[p000065]]
+
+由于此章只是导引章节，
+所以只列举“main.qml”源码。
+
+:the_book_file:[[f000083]]
+
+从:tex_raw:[[\filesourcenumbernameone\ \ref{f000083}]]可
+以看出，
+QML轻松的将一个大型复杂整体
+轻松地
+分割成了一个个相对独立的小结构；
+同时又
+将一个个相对独立的小结构
+毫无阻碍地
+合成了一个大的整体。
+
+结构、样式和逻辑
+在不同粒度下都得到了有机的
+分离与统一。
+
+
+
+毫无疑问，恰如其名，Qt Quick将为现代通用GUI开发注入急速。
 
 :tex_raw:[[
 % ______all_key_words

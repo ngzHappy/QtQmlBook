@@ -1,4 +1,4 @@
-﻿/*main.qml*/
+﻿/*minesweeping/main.qml*/
 import QtQuick 2.9
 import sstd.minesweeping 1.0
 import QtQuick.Controls 2.12
@@ -18,7 +18,6 @@ Pane {
 
     MineResetDialog{
         id: idResetActionDialog ;
-        /*(int rowAndColumn,int mineSize);*/
         onResizeMine : {
             idMineSweeping.setSizeScene(
                         rowAndColumn,

@@ -304,6 +304,8 @@ f000080::::../chapter08/firstchart/myqml/firstchart/main.qml::::]
 f000081::::../chapter01/externbycplusplus/myqml/externbycplusplus/main.qml::::]
 f000082::::../chapter01/externbycplusplus/main.cpp::::]
 
+f000083::::../chapter01/minesweeping/myqml/minesweeping/main.qml::::]
+
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
 d000001::::chapter01/files/import_library/tree.txt::::]
