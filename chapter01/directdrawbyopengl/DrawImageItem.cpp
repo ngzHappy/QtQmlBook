@@ -65,10 +65,6 @@ namespace {
         /*初始化OpenGL环境*/
         ppp_construct_opengl();
 
-        assert(mmmGLProgram);
-        assert(mmmGLVAO);
-        assert(mmmGLVABI);
-
         glUseProgram(mmmGLProgram);
         glBindVertexArray(mmmGLVAO);
         glVertexArrayElementBuffer(mmmGLVAO, mmmGLVABI);
@@ -127,7 +123,6 @@ void main(){
 }
 
 /*简单顶点着色器，用于渲染一个图片*/
-
 )"sv;
 
             const auto varFP = u8R"(
@@ -143,7 +138,6 @@ void main(){
 }
 
 /*简单片段着色器*/
-
 )"sv;
 
             mmmGLProgram = sstd::opengl_utility::createVFProgram(varVP, varFP);
@@ -194,13 +188,6 @@ void main(){
             glDeleteTextures(1, &mmmGLTexture);
             glDeleteBuffers(1, &mmmGLVAB);
             glDeleteBuffers(1, &mmmGLVABI);
-#if defined(_DEBUG)
-            mmmGLProgram = 0;
-            mmmGLVAO = 0;
-            mmmGLVAB = 0;
-            mmmGLTexture = 0;
-            mmmGLVABI = 0;
-#endif
         };
         std::call_once(mmm_destory_opengl, varCallFunction);
     }

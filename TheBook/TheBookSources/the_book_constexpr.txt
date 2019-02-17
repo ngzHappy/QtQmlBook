@@ -268,7 +268,7 @@ f000040::::chapter01/files/source.boost.pri.gcc.txt::::,numbers=none]
 f000041::::chapter01/files/source.boost.pri.vs.txt::::,numbers=none]
 
 f000042::::../chapter01/directdrawbyopengl/myqml/directdrawbyopengl/main.qml::::]
-f000043::::chapter01/files/directdrawbyopengl/cpp.01.txt::::]
+f000043::::chapter01/files/directdrawbyopengl/cpp.01.txt::::,firstnumber=282]
 f000044::::../chapter01/directdrawbyopengl/main.cpp::::]
 
 f000050::::chapter06/blendeffect/Blend.qml::::]
@@ -307,6 +307,9 @@ f000081::::../chapter01/externbycplusplus/myqml/externbycplusplus/main.qml::::]
 f000082::::../chapter01/externbycplusplus/main.cpp::::]
 
 f000083::::../chapter01/minesweeping/myqml/minesweeping/main.qml::::]
+
+f000090::::../chapter01/directdrawbyopengl/DrawImageItem.cpp::::]
+f000091::::../chapter01/directdrawbyopengl/DrawImageItem.hpp::::]
 
 %树目录路径
 d000000::::chapter01/files/advance_use_qmake/tree.txt::::]
