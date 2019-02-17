@@ -1,4 +1,8 @@
 ﻿
+:tex_raw:[[
+%https://blog.csdn.net/fansongy/article/details/79303646
+]]
+
 :the_book_section:[[s100710]]
 
 读者可能认为使用Qt Quick只需要Qml足以，但不久读者就会失望。
