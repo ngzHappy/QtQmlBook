@@ -208,6 +208,8 @@ p000065::::bigscene::::&chapter01/images/minesweeping_app.pdf::::[htb]::::[width
 p000066::::bigscene::::../chapter01/bigscene2dviewer/the_app.png::::[htb]::::[width=0.95\textwidth]
 p000067::::bigscene::::../chapter01/bigscene/the_app.png::::[htb]::::[width=0.95\textwidth]
 
+p000070::::bigscene::::&chapter03/images/ChoosingTheCorrectIntegrationMethodBetweenCppAndQML.pdf::::[htb]::::[width=0.95\textwidth]
+
 %源代码路径
 f000000::::chapter01/files/test.hpp::::]
 f000001::::chapter01/files/test.hpp::::]
