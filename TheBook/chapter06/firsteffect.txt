@@ -1,4 +1,5 @@
-﻿
+﻿:tex_raw:[[%https://www.68ps.com/zt/cs5/hh_liangguang.htm
+]]
 
 由于Qt Quick的所有渲染最终都
 依靠现代3D可编程渲染管线实现。
