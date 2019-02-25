@@ -2,7 +2,8 @@ private:
     /*define : $This$::$type$ $name$ $inline$ */
     $type$ mmm$name:c$;
 public:
-    using ElementType$name:c$ = $type$;
+    using ElementType$name:c$ = 
+        std::remove_cv_t<decltype(mmm$name:c$)>;
 private:
     template<typename ArgT>
     inline void templateSet$name:c$(ArgT &&) ;
