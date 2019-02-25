@@ -1,0 +1,36 @@
+private:
+    /*define : $This$::$type$ $name$ $inline$ */
+    $type$ mmm$name:c$;
+public:
+    using ElementType$name:c$ = $type$;
+private:
+    template<typename ArgT>
+    inline void templateSet$name:c$(ArgT &&) ;
+public:
+    inline ElementType$name:c$ get$name:c$() const;
+    $inline$ void set$name:c$(const ElementType$name:c$ &);
+    $inline$ void set$name:c$(ElementType$name:c$ &&);
+    inline void set$name:c$Default(ElementType$name:c$);
+
+inline void $This$::set$name:c$Default(ElementType$name:c$ arg) {
+    set$name:c$(std::move(arg));
+}
+
+/*this function must define before other set function */
+template<typename ArgT>
+inline void $This$::templateSet$name:c$(ArgT && arg) {
+    mmm$name:c$ = std::forward<ArgT>(arg);
+}
+
+$inline$ void $This$::set$name:c$(const ElementType$name:c$ & arg) {
+    templateSet$name:c$(arg);
+}
+
+$inline$ void $This$::set$name:c$(ElementType$name:c$ && arg) {
+    templateSet$name:c$(std::move(arg));
+}
+
+$inline$ $This$::ElementType$name:c$ $This$::get$name:c$() const {
+    return mmm$name:c$;
+}
+
