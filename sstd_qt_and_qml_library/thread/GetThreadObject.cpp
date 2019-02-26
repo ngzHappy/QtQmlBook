@@ -3,6 +3,7 @@
 #include <optional>
 #include <cassert>
 #include <shared_mutex>
+#include <array>
 
 namespace this_file {
 
@@ -17,7 +18,11 @@ namespace this_file {
     class GlobalStaticData{
     public:
         const static decltype(QObject::registerUserData()) objectIndex;
-        std::shared_mutex objectMutex;
+        mutable std::array<
+        std::shared_mutex ,
+        128/*必须是2的整数倍*/ > objectMutexs;
+    public:
+        inline std::shared_mutex & getMutext(const void *) const ;
     };
 
     inline GlobalStaticData & getGlobalData();
@@ -32,16 +37,18 @@ QObject * sstd_get_thread_object(QThread * arg){
     }
 
     auto & var = this_file::getGlobalData();
+
     QObjectUserData * varUserDataRaw = nullptr;
+    auto & varMutex = var.getMutext(arg);
 
     {/*read ...*/
-        std::shared_lock varReadLock{ var.objectMutex };
+        std::shared_lock varReadLock{ varMutex };
         varUserDataRaw = arg->userData(var.objectIndex);
     }
 
     if(!varUserDataRaw) {
         do {/*write ...*/
-            std::unique_lock varWriteLock{ var.objectMutex };
+            std::unique_lock varWriteLock{ varMutex };
 
             {/*read again ...*/
                 varUserDataRaw = arg->userData(var.objectIndex);
@@ -89,6 +96,13 @@ namespace this_file {
     inline GlobalStaticData & getGlobalData(){
         static GlobalStaticData varAns;
         return varAns;
+    }
+
+    inline std::shared_mutex & GlobalStaticData::getMutext(const void * arg) const {
+        auto varPointer =
+             reinterpret_cast<std::uintptr_t>(arg);
+        return objectMutexs[
+         ((varPointer >> 2)&(objectMutexs.size()-1))];
     }
 
 }/**/
