@@ -94,8 +94,9 @@ namespace this_file {
     GlobalStaticData::objectIndex = QObject::registerUserData();
 
     inline GlobalStaticData & getGlobalData(){
-        static GlobalStaticData varAns;
-        return varAns;
+        /*永远不删除*/
+        static auto * varAns = new GlobalStaticData;
+        return *varAns;
     }
 
     inline std::shared_mutex & GlobalStaticData::getMutext(const void * arg) const {
